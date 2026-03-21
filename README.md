@@ -7,8 +7,10 @@
 This scaffold includes:
 - package layout for core subsystems
 - YAML-based layered config system (base + dataset + model + preset + user overrides)
+- dataset factory with explicit backend mapping and DBLP adapter placeholder
+- exact-ratio seeded split generation with split artifact saving
 - CLI entrypoints via `python -m gnn_pruning`
-- pytest setup with smoke/config tests
+- pytest setup with smoke/config/data tests
 
 ## Setup
 
@@ -38,10 +40,11 @@ python -m gnn_pruning show-config --config configs/experiments/example.yaml
 python -m gnn_pruning run --config configs/experiments/example.yaml
 ```
 
-The `run` command writes a resolved snapshot to:
+The `run` command writes artifacts to `run.output_dir`:
 
 ```text
-<run.output_dir>/resolved_config.yaml
+resolved_config.yaml
+splits.yaml
 ```
 
 ## Run tests

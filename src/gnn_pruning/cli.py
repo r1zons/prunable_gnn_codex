@@ -41,9 +41,10 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 0
 
     if args.command == "run":
-        snapshot = run_pipeline(args.config)
+        artifacts = run_pipeline(args.config)
         print(f"[gnn_pruning] scaffold pipeline invoked with config: {args.config}")
-        print(f"[gnn_pruning] resolved config snapshot saved to: {snapshot}")
+        print(f"[gnn_pruning] resolved config snapshot saved to: {artifacts.config_snapshot}")
+        print(f"[gnn_pruning] split artifact saved to: {artifacts.split_artifact}")
         return 0
 
     parser.error(f"Unsupported command: {args.command}")

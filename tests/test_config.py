@@ -59,7 +59,7 @@ def test_resolve_config_merges_layers_and_user_override(tmp_path: Path) -> None:
     assert resolved.run.output_dir == "runs/test_output"
 
 
-def test_run_pipeline_saves_resolved_snapshot(tmp_path: Path) -> None:
+def test_run_pipeline_saves_resolved_snapshot(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     output_dir = tmp_path / "artifacts"
     user_config = tmp_path / "experiment.yaml"
     user_config.write_text(
@@ -75,10 +75,24 @@ def test_run_pipeline_saves_resolved_snapshot(tmp_path: Path) -> None:
         encoding="utf-8",
     )
 
-    snapshot = run_pipeline(str(user_config))
+    class _DummyGraph:
+        num_nodes = 50
 
-    assert snapshot.exists()
-    loaded = load_yaml(snapshot)
+    class _DummyDataset:
+        def __getitem__(self, idx: int):
+            _ = idx
+            return _DummyGraph()
+
+    import importlib
+
+    run_module = importlib.import_module("gnn_pruning.pipelines.run_pipeline")
+    monkeypatch.setattr(run_module, "load_dataset", lambda name, root: _DummyDataset())
+
+    artifacts = run_pipeline(str(user_config))
+
+    assert artifacts.config_snapshot.exists()
+    assert artifacts.split_artifact.exists()
+    loaded = load_yaml(artifacts.config_snapshot)
     assert loaded["data"]["name"] == "cora"
     assert loaded["model"]["name"] == "gcn"
 
