@@ -8,6 +8,7 @@ from typing import Optional, Sequence
 from .config import resolve_config
 from .pipelines import run_dense_pipeline, run_pipeline
 from .pruning import list_pruners
+from .pruning.workflow import prune_from_checkpoint
 from .training import evaluate_dense_and_save, train_dense
 
 
@@ -38,6 +39,10 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
         help="Optional checkpoint path; defaults to run.output_dir/dense_checkpoint.pt",
     )
+
+    prune_parser = subparsers.add_parser("prune", help="Apply pruning to a dense checkpoint.")
+    prune_parser.add_argument("--checkpoint", type=str, required=True, help="Path to dense checkpoint.")
+    prune_parser.add_argument("--config", type=str, required=True, help="Path to experiment YAML config.")
 
     show_parser = subparsers.add_parser("show-config", help="Resolve and print effective config.")
     show_parser.add_argument("--config", type=str, required=True, help="Path to experiment YAML config.")
@@ -70,6 +75,12 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             return 0
         for row in records:
             print(row)
+        return 0
+
+    if args.command == "prune":
+        artifacts = prune_from_checkpoint(checkpoint_path=args.checkpoint, config_path=args.config)
+        print(f"[gnn_pruning] pruned checkpoint saved to: {artifacts.pruned_checkpoint_path}")
+        print(f"[gnn_pruning] pruning metrics saved to: {artifacts.pruning_metrics_path}")
         return 0
 
     if args.command == "run":

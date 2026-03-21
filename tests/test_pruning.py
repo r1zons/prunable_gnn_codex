@@ -21,8 +21,9 @@ class DummyPruner(BasePruner):
     def score(self, model, context):
         return {"score": 1.0}
 
-    def apply(self, model, scores, context):
-        return PruningPlan(name=self.name, category=self.category, target_sparsity=0.5)
+    def apply(self, model, scores, context, target_sparsity, structured):
+        _ = scores, context, structured
+        return model, PruningPlan(name=self.name, category=self.category, target_sparsity=target_sparsity)
 
 
 def test_pruning_plan_object_fields() -> None:
@@ -41,6 +42,7 @@ def test_pruning_plan_object_fields() -> None:
 
 
 def test_pruner_registry_and_metadata_listing() -> None:
+    existing = dict(PRUNER_REGISTRY)
     PRUNER_REGISTRY.clear()
     register_pruner(DummyPruner)
 
@@ -50,6 +52,9 @@ def test_pruner_registry_and_metadata_listing() -> None:
     assert rows[0]["name"] == "dummy"
     assert rows[0]["supports_unstructured"] is True
     assert rows[0]["supports_structured"] is True
+
+    PRUNER_REGISTRY.clear()
+    PRUNER_REGISTRY.update(existing)
 
 
 def test_pruning_context_fields() -> None:

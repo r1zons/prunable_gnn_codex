@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
-from typing import Any, Dict, Mapping, MutableMapping, Optional
+from typing import Any, Dict, Mapping, MutableMapping, Optional, Tuple
 
 
 @dataclass
@@ -26,6 +26,7 @@ class PruningPlan:
     target_sparsity: float
     details: MutableMapping[str, Any] = field(default_factory=dict)
     achieved_sparsity: Optional[float] = None
+    pruning_time_sec: Optional[float] = None
 
 
 class BasePruner(ABC):
@@ -44,8 +45,15 @@ class BasePruner(ABC):
         """Compute pruning scores without mutating model weights."""
 
     @abstractmethod
-    def apply(self, model: Any, scores: Any, context: PruningContext) -> PruningPlan:
-        """Apply pruning decisions and return a structural pruning plan."""
+    def apply(
+        self,
+        model: Any,
+        scores: Any,
+        context: PruningContext,
+        target_sparsity: float,
+        structured: bool,
+    ) -> Tuple[Any, PruningPlan]:
+        """Apply pruning and return (pruned_model, structural/unstructured plan)."""
 
     def metadata(self) -> Dict[str, Any]:
         """Return standard metadata fields for this pruner."""
