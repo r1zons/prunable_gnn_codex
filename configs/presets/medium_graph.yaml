@@ -4,3 +4,8 @@ training:
   early_stopping_patience: 40
 run:
   experiment_name: medium_graph
+
+dataset_overrides:
+  flickr:
+    training:
+      epochs: 120

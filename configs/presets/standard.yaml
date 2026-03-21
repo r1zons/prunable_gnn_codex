@@ -4,3 +4,8 @@ training:
   early_stopping_patience: 50
 run:
   experiment_name: standard
+
+dataset_overrides:
+  citeseer:
+    training:
+      epochs: 180

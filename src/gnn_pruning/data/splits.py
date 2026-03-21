@@ -7,7 +7,9 @@ from pathlib import Path
 from random import Random
 from typing import Dict, List, Union
 
-from gnn_pruning.config import dump_yaml
+import torch
+
+from gnn_pruning.config import dump_yaml, load_yaml
 
 
 @dataclass(frozen=True)
@@ -21,6 +23,11 @@ class SplitIndices:
     def to_dict(self) -> Dict[str, List[int]]:
         """Serialize splits into plain dictionaries."""
         return asdict(self)
+
+    @classmethod
+    def from_dict(cls, payload: Dict[str, List[int]]) -> "SplitIndices":
+        """Create split object from dictionary payload."""
+        return cls(train=list(payload["train"]), val=list(payload["val"]), test=list(payload["test"]))
 
 
 def generate_exact_ratio_split(
@@ -56,3 +63,18 @@ def save_split_indices(split: SplitIndices, output_dir: Union[str, Path]) -> Pat
     target = Path(output_dir).expanduser() / "splits.yaml"
     dump_yaml(split.to_dict(), target)
     return target
+
+
+def load_split_indices(path: Union[str, Path]) -> SplitIndices:
+    """Load split artifact from disk."""
+    payload = load_yaml(path)
+    return SplitIndices.from_dict(payload)
+
+
+def to_index_tensors(split: SplitIndices, device: Union[str, torch.device]) -> Dict[str, torch.Tensor]:
+    """Convert split index lists into torch index tensors."""
+    return {
+        "train": torch.tensor(split.train, dtype=torch.long, device=device),
+        "val": torch.tensor(split.val, dtype=torch.long, device=device),
+        "test": torch.tensor(split.test, dtype=torch.long, device=device),
+    }

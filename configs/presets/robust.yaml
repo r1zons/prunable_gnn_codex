@@ -5,3 +5,9 @@ training:
   early_stopping_patience: 100
 run:
   experiment_name: robust
+
+dataset_overrides:
+  reddit:
+    training:
+      epochs: 300
+      early_stopping_patience: 60

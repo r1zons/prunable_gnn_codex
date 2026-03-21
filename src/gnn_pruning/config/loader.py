@@ -46,6 +46,8 @@ def resolve_config(config_path: Union[str, Path]) -> ExperimentConfig:
     dataset_cfg = _load_ref(dataset_ref, folder="datasets") if dataset_ref else {}
     model_cfg = _load_ref(model_ref, folder="models") if model_ref else {}
     preset_cfg = _load_ref(preset_ref, folder="presets") if preset_ref else {}
+    dataset_name = _resolve_dataset_name(dataset_cfg=dataset_cfg, dataset_ref=dataset_ref)
+    preset_cfg = _apply_dataset_overrides(preset_cfg, dataset_name)
 
     user_overrides = dict(user_config)
     for key in ("base", "dataset", "model", "preset"):
@@ -61,6 +63,33 @@ def dump_yaml(payload: Dict[str, Any], path: Union[str, Path]) -> None:
     target.parent.mkdir(parents=True, exist_ok=True)
     text = _safe_dump(payload)
     target.write_text(text, encoding="utf-8")
+
+
+
+def _resolve_dataset_name(dataset_cfg: Dict[str, Any], dataset_ref: Any) -> str:
+    data_cfg = dataset_cfg.get("data", {}) if isinstance(dataset_cfg, dict) else {}
+    if isinstance(data_cfg, dict) and "name" in data_cfg:
+        return str(data_cfg["name"]).lower()
+    if isinstance(dataset_ref, str):
+        return dataset_ref.lower()
+    return ""
+
+
+def _apply_dataset_overrides(preset_cfg: Dict[str, Any], dataset_name: str) -> Dict[str, Any]:
+    if not isinstance(preset_cfg, dict):
+        return preset_cfg
+
+    overrides = preset_cfg.get("dataset_overrides")
+    if not isinstance(overrides, dict):
+        return preset_cfg
+
+    selected = overrides.get(dataset_name, {})
+    base_cfg = dict(preset_cfg)
+    base_cfg.pop("dataset_overrides", None)
+
+    if isinstance(selected, dict):
+        return deep_merge(base_cfg, selected)
+    return base_cfg
 
 
 def _merge_pair(left: Dict[str, Any], right: Dict[str, Any]) -> Dict[str, Any]:

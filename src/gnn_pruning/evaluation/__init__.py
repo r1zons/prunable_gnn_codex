@@ -1,5 +1,5 @@
-"""Evaluation subsystem placeholders."""
+"""Evaluation subsystem."""
 
-from .metrics import evaluate
+from .metrics import classification_metrics
 
-__all__ = ["evaluate"]
+__all__ = ["classification_metrics"]

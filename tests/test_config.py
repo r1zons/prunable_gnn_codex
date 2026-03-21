@@ -114,3 +114,23 @@ def test_invalid_split_ratio_raises(tmp_path: Path) -> None:
 
     with pytest.raises(ValueError, match="sum to 1.0"):
         resolve_config(user_config)
+
+
+def test_dataset_dependent_preset_override_applies(tmp_path: Path) -> None:
+    user_config = tmp_path / "experiment.yaml"
+    user_config.write_text(
+        "\n".join(
+            [
+                "base: base/default",
+                "dataset: citeseer",
+                "model: gcn",
+                "preset: fast_debug",
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    resolved = resolve_config(user_config)
+
+    assert resolved.training.epochs == 3
+    assert resolved.training.early_stopping_patience == 3

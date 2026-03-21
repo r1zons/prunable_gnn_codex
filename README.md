@@ -9,8 +9,10 @@ This scaffold includes:
 - YAML-based layered config system (base + dataset + model + preset + user overrides)
 - dataset factory with explicit backend mapping and DBLP adapter placeholder
 - exact-ratio seeded split generation with split artifact saving
+- baseline dense node-classification models: GCN and GraphSAGE
+- dense training/evaluation workflow with early stopping and checkpointing
 - CLI entrypoints via `python -m gnn_pruning`
-- pytest setup with smoke/config/data tests
+- pytest setup with smoke/config/data/model/training tests
 
 ## Setup
 
@@ -37,14 +39,24 @@ configs/
 ```bash
 python -m gnn_pruning --help
 python -m gnn_pruning show-config --config configs/experiments/example.yaml
-python -m gnn_pruning run --config configs/experiments/example.yaml
+python -m gnn_pruning train --config configs/experiments/example.yaml
+python -m gnn_pruning evaluate --config configs/experiments/example.yaml
 ```
 
-The `run` command writes artifacts to `run.output_dir`:
+`train` writes artifacts to `run.output_dir`:
 
 ```text
 resolved_config.yaml
 splits.yaml
+dense_checkpoint.pt
+metrics_train.json
+```
+
+`evaluate` writes:
+
+```text
+resolved_config.yaml
+metrics_eval.json
 ```
 
 ## Run tests
