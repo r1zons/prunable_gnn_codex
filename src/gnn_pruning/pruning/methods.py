@@ -22,10 +22,6 @@ def _named_prunable_parameters(model: torch.nn.Module):
             yield name, parameter
 
 
-def _parameter_count(model: torch.nn.Module) -> int:
-    return sum(parameter.numel() for parameter in model.parameters())
-
-
 def _zero_sparsity(model: torch.nn.Module) -> float:
     total = 0
     zeros = 0
@@ -65,27 +61,74 @@ def _structured_scores(model: Any, random: bool = False) -> torch.Tensor:
     raise TypeError("Unsupported model for structured pruning scores.")
 
 
-def _apply_structured(model: Any, scores: torch.Tensor, target_sparsity: float, pruner_name: str, category: str) -> Tuple[Any, PruningPlan]:
-    channels = int(scores.numel())
-    keep = max(1, int(round((1.0 - target_sparsity) * channels)))
-    _, indices = torch.topk(scores, k=keep, largest=True)
-    pruned_model = structurally_prune_hidden_channels(model, layer_index=0, keep_indices=indices.tolist())
+def _validate_sparsity(value: float) -> None:
+    if value < 0.0 or value >= 1.0:
+        raise ValueError("target_sparsity must be in [0.0, 1.0).")
 
-    achieved = 1.0 - (keep / channels)
-    plan = PruningPlan(
-        name=pruner_name,
+
+def _extract_apply_inputs(pruning_plan: Any, context: Any, kwargs: Dict[str, Any]) -> Tuple[PruningPlan, PruningContext]:
+    if pruning_plan is None and "plan" in kwargs:
+        pruning_plan = kwargs.pop("plan")
+    if pruning_plan is None and "scores" in kwargs:
+        pruning_plan = kwargs.pop("scores")
+    if not isinstance(pruning_plan, PruningPlan):
+        raise ValueError("apply requires a valid PruningPlan instance.")
+    return pruning_plan, PruningContext.from_input(context)
+
+
+def _sync_plan_from_kwargs(plan: PruningPlan, kwargs: Dict[str, Any]) -> None:
+    target_sparsity = kwargs.get("target_sparsity")
+    if target_sparsity is not None:
+        _validate_sparsity(float(target_sparsity))
+        plan.requested_sparsity = float(target_sparsity)
+        plan.target_sparsity = float(target_sparsity)
+
+
+def _build_plan(name: str, category: str, target_sparsity: float, mode: str, score_payload: Any, layer_index: int = 0) -> PruningPlan:
+    _validate_sparsity(target_sparsity)
+    return PruningPlan(
+        name=name,
         category=category,
+        requested_sparsity=float(target_sparsity),
         target_sparsity=float(target_sparsity),
-        achieved_sparsity=float(achieved),
-        details={"mode": "structured", "layer_index": 0, "kept_channels": keep, "total_channels": channels},
+        mode=mode,
+        layer_index=layer_index,
+        score_payload=score_payload,
+        details={"mode": mode, "layer_index": layer_index},
     )
-    return pruned_model, plan
 
 
-def _apply_unstructured_global(model: torch.nn.Module, scores: Dict[str, torch.Tensor], target_sparsity: float, pruner_name: str, category: str) -> Tuple[Any, PruningPlan]:
+def _apply_structured(model: Any, plan: PruningPlan) -> Any:
+    scores = plan.score_payload
+    if not isinstance(scores, torch.Tensor):
+        raise ValueError("Structured pruning requires tensor channel scores in plan.score_payload.")
+
+    channels = int(scores.numel())
+    keep_count = max(1, int(round((1.0 - plan.requested_sparsity) * channels)))
+
+    if plan.target_units:
+        if len(plan.target_units) == 0:
+            raise ValueError("target_units cannot be empty when provided.")
+        keep_indices = sorted(set(int(i) for i in plan.target_units))
+    else:
+        _, indices = torch.topk(scores, k=keep_count, largest=True)
+        keep_indices = indices.tolist()
+
+    pruned_model = structurally_prune_hidden_channels(model, layer_index=plan.layer_index or 0, keep_indices=keep_indices)
+    plan.target_units = keep_indices
+    plan.achieved_sparsity = float(1.0 - (len(keep_indices) / channels))
+    plan.details.update({"kept_channels": len(keep_indices), "total_channels": channels})
+    return pruned_model
+
+
+def _apply_unstructured_global(model: torch.nn.Module, plan: PruningPlan) -> Any:
+    scores = plan.score_payload
+    if not isinstance(scores, dict):
+        raise ValueError("Unstructured pruning requires parameter score dict in plan.score_payload.")
+
     pruned_model = copy.deepcopy(model)
     flat_scores = torch.cat([score.flatten() for score in scores.values()])
-    prune_count = int(math.floor(target_sparsity * flat_scores.numel()))
+    prune_count = int(math.floor(plan.requested_sparsity * flat_scores.numel()))
     threshold = torch.topk(flat_scores, k=max(flat_scores.numel() - prune_count, 1), largest=True).values.min()
 
     with torch.no_grad():
@@ -93,36 +136,30 @@ def _apply_unstructured_global(model: torch.nn.Module, scores: Dict[str, torch.T
             mask = scores[name].to(parameter.device) >= threshold
             parameter.mul_(mask)
 
-    plan = PruningPlan(
-        name=pruner_name,
-        category=category,
-        target_sparsity=float(target_sparsity),
-        achieved_sparsity=_zero_sparsity(pruned_model),
-        details={"mode": "unstructured", "scope": "global"},
-    )
-    return pruned_model, plan
+    plan.achieved_sparsity = _zero_sparsity(pruned_model)
+    plan.details.update({"scope": "global"})
+    return pruned_model
 
 
-def _apply_unstructured_layerwise(model: torch.nn.Module, scores: Dict[str, torch.Tensor], target_sparsity: float, pruner_name: str, category: str) -> Tuple[Any, PruningPlan]:
+def _apply_unstructured_layerwise(model: torch.nn.Module, plan: PruningPlan) -> Any:
+    scores = plan.score_payload
+    if not isinstance(scores, dict):
+        raise ValueError("Unstructured pruning requires parameter score dict in plan.score_payload.")
+
     pruned_model = copy.deepcopy(model)
 
     with torch.no_grad():
         for name, parameter in _named_prunable_parameters(pruned_model):
             layer_scores = scores[name].flatten()
-            prune_count = int(math.floor(target_sparsity * layer_scores.numel()))
+            prune_count = int(math.floor(plan.requested_sparsity * layer_scores.numel()))
             keep_count = max(layer_scores.numel() - prune_count, 1)
             threshold = torch.topk(layer_scores, k=keep_count, largest=True).values.min()
             mask = scores[name].to(parameter.device) >= threshold
             parameter.mul_(mask)
 
-    plan = PruningPlan(
-        name=pruner_name,
-        category=category,
-        target_sparsity=float(target_sparsity),
-        achieved_sparsity=_zero_sparsity(pruned_model),
-        details={"mode": "unstructured", "scope": "layerwise"},
-    )
-    return pruned_model, plan
+    plan.achieved_sparsity = _zero_sparsity(pruned_model)
+    plan.details.update({"scope": "layerwise"})
+    return pruned_model
 
 
 @register_pruner
@@ -132,20 +169,34 @@ class RandomPruner(BasePruner):
     supports_unstructured = True
     supports_structured = True
 
-    def score(self, model: Any, context: PruningContext) -> Any:
-        torch.manual_seed(context.seed)
-        param_scores = {name: torch.rand_like(parameter) for name, parameter in _named_prunable_parameters(model)}
-        structured_scores = _structured_scores(model, random=True)
-        return {"params": param_scores, "structured": structured_scores}
+    def score(self, model: Any, context: Any, **kwargs: Any) -> PruningPlan:
+        context = PruningContext.from_input(context)
+        target_sparsity = float(kwargs.get("target_sparsity", context.structure_target or 0.5))
+        structured = bool(kwargs.get("structured", context.mode == "structured"))
 
-    def apply(self, model: Any, scores: Any, context: PruningContext, target_sparsity: float, structured: bool) -> Tuple[Any, PruningPlan]:
-        _ = context
-        start = time.perf_counter()
+        torch.manual_seed(context.seed)
         if structured:
-            pruned_model, plan = _apply_structured(model, scores["structured"], target_sparsity, self.name, self.category)
-        else:
-            pruned_model, plan = _apply_unstructured_global(model, scores["params"], target_sparsity, self.name, self.category)
+            payload = _structured_scores(model, random=True)
+            return _build_plan(self.name, self.category, target_sparsity, "structured", payload)
+
+        payload = {name: torch.rand_like(parameter) for name, parameter in _named_prunable_parameters(model)}
+        return _build_plan(self.name, self.category, target_sparsity, "unstructured", payload)
+
+    def apply(self, model: Any, pruning_plan: PruningPlan = None, context: Any = None, **kwargs: Any) -> Any:
+        plan, _ = _extract_apply_inputs(pruning_plan, context, kwargs)
+        _sync_plan_from_kwargs(plan, kwargs)
+        start = time.perf_counter()
+        structured = bool(kwargs.get("structured", plan.mode == "structured"))
+        if structured and plan.mode != "structured":
+            plan.mode = "structured"
+            plan.score_payload = _structured_scores(model, random=True)
+        elif not structured and plan.mode != "unstructured":
+            plan.mode = "unstructured"
+            plan.score_payload = {name: torch.rand_like(parameter) for name, parameter in _named_prunable_parameters(model)}
+        plan.details["mode"] = plan.mode
+        pruned_model = _apply_structured(model, plan) if structured else _apply_unstructured_global(model, plan)
         plan.pruning_time_sec = float(time.perf_counter() - start)
+        plan.score_payload = None
         return pruned_model, plan
 
 
@@ -156,20 +207,33 @@ class GlobalMagnitudePruner(BasePruner):
     supports_unstructured = True
     supports_structured = True
 
-    def score(self, model: Any, context: PruningContext) -> Any:
-        _ = context
-        param_scores = {name: parameter.detach().abs().clone() for name, parameter in _named_prunable_parameters(model)}
-        structured_scores = _structured_scores(model, random=False)
-        return {"params": param_scores, "structured": structured_scores}
+    def score(self, model: Any, context: Any, **kwargs: Any) -> PruningPlan:
+        context = PruningContext.from_input(context)
+        target_sparsity = float(kwargs.get("target_sparsity", context.structure_target or 0.5))
+        structured = bool(kwargs.get("structured", context.mode == "structured"))
 
-    def apply(self, model: Any, scores: Any, context: PruningContext, target_sparsity: float, structured: bool) -> Tuple[Any, PruningPlan]:
-        _ = context
-        start = time.perf_counter()
         if structured:
-            pruned_model, plan = _apply_structured(model, scores["structured"], target_sparsity, self.name, self.category)
-        else:
-            pruned_model, plan = _apply_unstructured_global(model, scores["params"], target_sparsity, self.name, self.category)
+            payload = _structured_scores(model, random=False)
+            return _build_plan(self.name, self.category, target_sparsity, "structured", payload)
+
+        payload = {name: parameter.detach().abs().clone() for name, parameter in _named_prunable_parameters(model)}
+        return _build_plan(self.name, self.category, target_sparsity, "unstructured", payload)
+
+    def apply(self, model: Any, pruning_plan: PruningPlan = None, context: Any = None, **kwargs: Any) -> Any:
+        plan, _ = _extract_apply_inputs(pruning_plan, context, kwargs)
+        _sync_plan_from_kwargs(plan, kwargs)
+        start = time.perf_counter()
+        structured = bool(kwargs.get("structured", plan.mode == "structured"))
+        if structured and plan.mode != "structured":
+            plan.mode = "structured"
+            plan.score_payload = _structured_scores(model, random=False)
+        elif not structured and plan.mode != "unstructured":
+            plan.mode = "unstructured"
+            plan.score_payload = {name: parameter.detach().abs().clone() for name, parameter in _named_prunable_parameters(model)}
+        plan.details["mode"] = plan.mode
+        pruned_model = _apply_structured(model, plan) if structured else _apply_unstructured_global(model, plan)
         plan.pruning_time_sec = float(time.perf_counter() - start)
+        plan.score_payload = None
         return pruned_model, plan
 
 
@@ -180,18 +244,31 @@ class LayerWiseMagnitudePruner(BasePruner):
     supports_unstructured = True
     supports_structured = True
 
-    def score(self, model: Any, context: PruningContext) -> Any:
-        _ = context
-        param_scores = {name: parameter.detach().abs().clone() for name, parameter in _named_prunable_parameters(model)}
-        structured_scores = _structured_scores(model, random=False)
-        return {"params": param_scores, "structured": structured_scores}
+    def score(self, model: Any, context: Any, **kwargs: Any) -> PruningPlan:
+        context = PruningContext.from_input(context)
+        target_sparsity = float(kwargs.get("target_sparsity", context.structure_target or 0.5))
+        structured = bool(kwargs.get("structured", context.mode == "structured"))
 
-    def apply(self, model: Any, scores: Any, context: PruningContext, target_sparsity: float, structured: bool) -> Tuple[Any, PruningPlan]:
-        _ = context
-        start = time.perf_counter()
         if structured:
-            pruned_model, plan = _apply_structured(model, scores["structured"], target_sparsity, self.name, self.category)
-        else:
-            pruned_model, plan = _apply_unstructured_layerwise(model, scores["params"], target_sparsity, self.name, self.category)
+            payload = _structured_scores(model, random=False)
+            return _build_plan(self.name, self.category, target_sparsity, "structured", payload)
+
+        payload = {name: parameter.detach().abs().clone() for name, parameter in _named_prunable_parameters(model)}
+        return _build_plan(self.name, self.category, target_sparsity, "unstructured", payload)
+
+    def apply(self, model: Any, pruning_plan: PruningPlan = None, context: Any = None, **kwargs: Any) -> Any:
+        plan, _ = _extract_apply_inputs(pruning_plan, context, kwargs)
+        _sync_plan_from_kwargs(plan, kwargs)
+        start = time.perf_counter()
+        structured = bool(kwargs.get("structured", plan.mode == "structured"))
+        if structured and plan.mode != "structured":
+            plan.mode = "structured"
+            plan.score_payload = _structured_scores(model, random=False)
+        elif not structured and plan.mode != "unstructured":
+            plan.mode = "unstructured"
+            plan.score_payload = {name: parameter.detach().abs().clone() for name, parameter in _named_prunable_parameters(model)}
+        plan.details["mode"] = plan.mode
+        pruned_model = _apply_structured(model, plan) if structured else _apply_unstructured_layerwise(model, plan)
         plan.pruning_time_sec = float(time.perf_counter() - start)
+        plan.score_payload = None
         return pruned_model, plan
