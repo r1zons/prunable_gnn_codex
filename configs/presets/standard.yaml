@@ -1,0 +1,11 @@
+training:
+  epochs: 200
+  lr: 0.01
+  early_stopping_patience: 50
+run:
+  experiment_name: standard
+
+dataset_overrides:
+  citeseer:
+    training:
+      epochs: 180
