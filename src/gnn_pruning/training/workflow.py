@@ -22,7 +22,7 @@ from gnn_pruning.evaluation import classification_metrics
 from gnn_pruning.models import build_model
 from gnn_pruning.training.checkpoints import load_checkpoint, save_checkpoint
 from gnn_pruning.training.trainer import DenseTrainer
-from gnn_pruning.utils.seed import set_seed
+from gnn_pruning.utils import resolve_output_dir, set_seed
 
 
 @dataclass
@@ -43,11 +43,12 @@ class EvalArtifacts:
     metrics_path: Path
 
 
-def train_dense(config_path: str, resume: bool = True) -> TrainArtifacts:
+def train_dense(config_path: str, resume: bool = True, output_dir_override: Optional[str] = None) -> TrainArtifacts:
     """Train dense model and persist checkpoint/metrics artifacts."""
     resolved = resolve_config(config_path)
-    output_dir = Path(resolved.run.output_dir)
+    output_dir = _resolve_run_dir(resolved, resume=resume, output_dir_override=output_dir_override)
     output_dir.mkdir(parents=True, exist_ok=True)
+    resolved.run.output_dir = str(output_dir)
 
     set_seed(resolved.run.seed)
     resolved_path = snapshot_path(output_dir)
@@ -89,7 +90,13 @@ def train_dense(config_path: str, resume: bool = True) -> TrainArtifacts:
     train_result = trainer.fit(data=data, train_idx=indices["train"], val_idx=indices["val"], resume_state=resume_state)
 
     # evaluate on splits using best model state restored by trainer
-    metrics = evaluate_dense(config_path, checkpoint_path=None, model_override=trainer.model, split_override=split)
+    metrics = evaluate_dense(
+        config_path,
+        checkpoint_path=None,
+        model_override=trainer.model,
+        split_override=split,
+        output_dir_override=str(output_dir),
+    )
     metrics["training"] = train_result.to_dict()
 
     checkpoint_payload = {
@@ -125,9 +132,17 @@ def evaluate_dense(
     checkpoint_path: Optional[Path] = None,
     model_override: Optional[torch.nn.Module] = None,
     split_override: Any = None,
+    output_dir_override: Optional[str] = None,
 ) -> Dict[str, Dict[str, float]]:
     """Evaluate dense model and return split metrics."""
     resolved = resolve_config(config_path)
+    output_dir = _resolve_run_dir(
+        resolved,
+        resume=True,
+        output_dir_override=output_dir_override or (str(checkpoint_path.parent) if checkpoint_path else None),
+    )
+    resolved.run.output_dir = str(output_dir)
+
     set_seed(resolved.run.seed)
 
     dataset = load_dataset(resolved.data.name, resolved.data.root)
@@ -136,7 +151,7 @@ def evaluate_dense(
 
     split = split_override
     if split is None:
-        split_file = Path(resolved.run.output_dir) / "splits.yaml"
+        split_file = output_dir / "splits.yaml"
         if split_file.exists():
             split = load_split_indices(split_file)
         else:
@@ -155,7 +170,7 @@ def evaluate_dense(
     else:
         model = _build_model_from_data(resolved, data).to(device)
         if checkpoint_path is None:
-            checkpoint_path = Path(resolved.run.output_dir) / "dense_checkpoint.pt"
+            checkpoint_path = output_dir / "dense_checkpoint.pt"
         state = load_checkpoint(checkpoint_path, map_location=device)
         model.load_state_dict(state["model_state_dict"])
 
@@ -176,17 +191,26 @@ def evaluate_dense(
     return result
 
 
-def evaluate_dense_and_save(config_path: str, checkpoint_path: Optional[str] = None) -> EvalArtifacts:
+def evaluate_dense_and_save(
+    config_path: str,
+    checkpoint_path: Optional[str] = None,
+    output_dir_override: Optional[str] = None,
+) -> EvalArtifacts:
     """Evaluate dense checkpoint and save metrics/resolved config artifacts."""
     resolved = resolve_config(config_path)
-    output_dir = Path(resolved.run.output_dir)
+    if checkpoint_path:
+        output_dir = Path(checkpoint_path).expanduser().parent
+    else:
+        output_dir = _resolve_run_dir(resolved, resume=True, output_dir_override=output_dir_override)
+
     output_dir.mkdir(parents=True, exist_ok=True)
+    resolved.run.output_dir = str(output_dir)
 
     resolved_path = snapshot_path(output_dir)
     dump_yaml(resolved.to_dict(), resolved_path)
 
     ckpt = Path(checkpoint_path).expanduser() if checkpoint_path else None
-    metrics = evaluate_dense(config_path=config_path, checkpoint_path=ckpt)
+    metrics = evaluate_dense(config_path=config_path, checkpoint_path=ckpt, output_dir_override=str(output_dir))
     metrics_path = output_dir / "metrics_eval.json"
     _write_json(metrics, metrics_path)
     return EvalArtifacts(resolved_config_path=resolved_path, metrics_path=metrics_path)
@@ -219,3 +243,16 @@ def _write_json(payload: Dict[str, Any], path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8") as handle:
         json.dump(payload, handle, indent=2)
+
+
+def _resolve_run_dir(resolved: Any, resume: bool, output_dir_override: Optional[str]) -> Path:
+    if output_dir_override:
+        return Path(output_dir_override).expanduser()
+    return resolve_output_dir(
+        configured_output_dir=resolved.run.output_dir,
+        experiment_name=resolved.run.experiment_name,
+        dataset_name=resolved.data.name,
+        model_name=resolved.model.name,
+        seed=resolved.run.seed,
+        resume=resume,
+    )

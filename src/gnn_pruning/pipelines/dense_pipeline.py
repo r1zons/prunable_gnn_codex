@@ -10,6 +10,7 @@ from typing import Dict
 from gnn_pruning.config import resolve_config
 from gnn_pruning.reporting import write_csv_row
 from gnn_pruning.training import evaluate_dense_and_save, train_dense
+from gnn_pruning.utils import resolve_output_dir
 
 
 @dataclass
@@ -29,13 +30,21 @@ class DensePipelineArtifacts:
 def run_dense_pipeline(config_path: str) -> DensePipelineArtifacts:
     """Run full dense pipeline and save structured artifacts."""
     resolved = resolve_config(config_path)
-    output_dir = Path(resolved.run.output_dir).expanduser()
+    output_dir = resolve_output_dir(
+        configured_output_dir=resolved.run.output_dir,
+        experiment_name=resolved.run.experiment_name,
+        dataset_name=resolved.data.name,
+        model_name=resolved.model.name,
+        seed=resolved.run.seed,
+        resume=False,
+    )
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    train_artifacts = train_dense(config_path=config_path, resume=True)
+    train_artifacts = train_dense(config_path=config_path, resume=True, output_dir_override=str(output_dir))
     eval_artifacts = evaluate_dense_and_save(
         config_path=config_path,
         checkpoint_path=str(train_artifacts.checkpoint_path),
+        output_dir_override=str(output_dir),
     )
 
     train_metrics = _read_json(train_artifacts.metrics_path)

@@ -8,6 +8,7 @@ from pathlib import Path
 from gnn_pruning.config import dump_yaml, resolve_config
 from gnn_pruning.config.schema import snapshot_path
 from gnn_pruning.data import generate_exact_ratio_split, load_dataset, save_split_indices
+from gnn_pruning.utils import resolve_output_dir
 
 
 @dataclass
@@ -21,8 +22,18 @@ class PipelineArtifacts:
 def run_pipeline(config_path: str) -> PipelineArtifacts:
     """Load config and persist resolved config plus one reproducible split artifact."""
     resolved = resolve_config(config_path)
+    output_dir = resolve_output_dir(
+        configured_output_dir=resolved.run.output_dir,
+        experiment_name=resolved.run.experiment_name,
+        dataset_name=resolved.data.name,
+        model_name=resolved.model.name,
+        seed=resolved.run.seed,
+        resume=False,
+    )
+    output_dir.mkdir(parents=True, exist_ok=True)
+    resolved.run.output_dir = str(output_dir)
 
-    config_out = snapshot_path(resolved.run.output_dir)
+    config_out = snapshot_path(output_dir)
     dump_yaml(resolved.to_dict(), config_out)
 
     dataset = load_dataset(name=resolved.data.name, root=resolved.data.root)
@@ -34,7 +45,7 @@ def run_pipeline(config_path: str) -> PipelineArtifacts:
         val_ratio=resolved.data.val_ratio,
         test_ratio=resolved.data.test_ratio,
     )
-    split_out = save_split_indices(split, resolved.run.output_dir)
+    split_out = save_split_indices(split, output_dir)
 
     return PipelineArtifacts(config_snapshot=config_out, split_artifact=split_out)
 
