@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any, Dict, Union
 
 try:
     import yaml  # type: ignore
@@ -16,7 +16,7 @@ from ..utils import simple_yaml
 CONFIG_DIR = Path(__file__).resolve().parents[3] / "configs"
 
 
-def load_yaml(path: str | Path) -> Dict[str, Any]:
+def load_yaml(path: Union[str, Path]) -> Dict[str, Any]:
     """Load a YAML file and validate the top-level type."""
     raw_text = Path(path).expanduser().read_text(encoding="utf-8")
     payload = _safe_load(raw_text) or {}
@@ -33,7 +33,7 @@ def deep_merge(*parts: Dict[str, Any]) -> Dict[str, Any]:
     return merged
 
 
-def resolve_config(config_path: str | Path) -> ExperimentConfig:
+def resolve_config(config_path: Union[str, Path]) -> ExperimentConfig:
     """Resolve layered config into a validated typed config."""
     user_config = load_yaml(config_path)
 
@@ -55,7 +55,7 @@ def resolve_config(config_path: str | Path) -> ExperimentConfig:
     return ExperimentConfig.from_dict(resolved)
 
 
-def dump_yaml(payload: Dict[str, Any], path: str | Path) -> None:
+def dump_yaml(payload: Dict[str, Any], path: Union[str, Path]) -> None:
     """Write a dictionary to YAML."""
     target = Path(path).expanduser()
     target.parent.mkdir(parents=True, exist_ok=True)

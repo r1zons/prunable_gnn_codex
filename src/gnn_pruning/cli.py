@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import argparse
-from typing import Sequence
+from typing import Optional, Sequence
 
 from .config import resolve_config
 from .pipelines import run_pipeline
@@ -24,7 +24,7 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def main(argv: Sequence[str] | None = None) -> int:
+def main(argv: Optional[Sequence[str]] = None) -> int:
     """Execute the CLI entrypoint and return process exit code."""
     parser = build_parser()
     args = parser.parse_args(argv)

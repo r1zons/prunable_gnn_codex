@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Union
 
 
 @dataclass
@@ -109,6 +109,6 @@ def _validate_positive_values(model: ModelConfig, training: TrainingConfig) -> N
         raise ValueError("training.early_stopping_patience must be positive.")
 
 
-def snapshot_path(output_dir: str | Path) -> Path:
+def snapshot_path(output_dir: Union[str, Path]) -> Path:
     """Return output path for resolved config snapshots."""
     return Path(output_dir).expanduser() / "resolved_config.yaml"

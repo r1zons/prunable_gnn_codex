@@ -7,7 +7,7 @@ This module supports only the subset of YAML used by project config files:
 
 from __future__ import annotations
 
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 
 def safe_load(text: str) -> Dict[str, Any]:
@@ -55,7 +55,7 @@ def _dump_map(payload: Dict[str, Any], lines: List[str], indent: int, sort_keys:
             lines.append(f"{prefix}{key}: {_format_scalar(value)}")
 
 
-def _parse_line(line: str) -> Tuple[str, str | None]:
+def _parse_line(line: str) -> Tuple[str, Optional[str]]:
     if ":" not in line:
         raise ValueError(f"Invalid YAML line: {line}")
     key, rest = line.split(":", 1)

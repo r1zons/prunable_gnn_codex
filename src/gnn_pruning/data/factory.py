@@ -3,11 +3,11 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any, Callable, Dict
+from typing import Any, Callable, Dict, Union
 
 from .dblp_adapter import load_dblp_dataset
 
-DatasetLoader = Callable[[str | Path], Any]
+DatasetLoader = Callable[[Union[str, Path]], Any]
 
 
 def get_supported_datasets() -> Dict[str, str]:
@@ -53,38 +53,38 @@ def get_dataset_loader(name: str) -> DatasetLoader:
     raise KeyError(f"Unhandled dataset family for {name}: {family}")
 
 
-def load_dataset(name: str, root: str | Path = "./data") -> Any:
+def load_dataset(name: str, root: Union[str, Path] = "./data") -> Any:
     """Load dataset instance with caching enabled by default in PyG."""
     loader = get_dataset_loader(name)
     return loader(Path(root).expanduser())
 
 
-def _load_planetoid(root: str | Path, name: str) -> Any:
+def _load_planetoid(root: Union[str, Path], name: str) -> Any:
     module = _require_pyg()
     return module.Planetoid(root=str(Path(root) / "planetoid"), name=name.capitalize())
 
 
-def _load_webkb(root: str | Path, name: str) -> Any:
+def _load_webkb(root: Union[str, Path], name: str) -> Any:
     module = _require_pyg()
     return module.WebKB(root=str(Path(root) / "webkb"), name=name.capitalize())
 
 
-def _load_actor(root: str | Path) -> Any:
+def _load_actor(root: Union[str, Path]) -> Any:
     module = _require_pyg()
     return module.Actor(root=str(Path(root) / "actor"))
 
 
-def _load_amazon_computers(root: str | Path) -> Any:
+def _load_amazon_computers(root: Union[str, Path]) -> Any:
     module = _require_pyg()
     return module.Amazon(root=str(Path(root) / "amazon"), name="Computers")
 
 
-def _load_flickr(root: str | Path) -> Any:
+def _load_flickr(root: Union[str, Path]) -> Any:
     module = _require_pyg()
     return module.Flickr(root=str(Path(root) / "flickr"))
 
 
-def _load_reddit(root: str | Path) -> Any:
+def _load_reddit(root: Union[str, Path]) -> Any:
     module = _require_pyg()
     return module.Reddit(root=str(Path(root) / "reddit"))
 

@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from random import Random
-from typing import Dict, List
+from typing import Dict, List, Union
 
 from gnn_pruning.config import dump_yaml
 
@@ -51,7 +51,7 @@ def generate_exact_ratio_split(
     return SplitIndices(train=train_idx, val=val_idx, test=test_idx)
 
 
-def save_split_indices(split: SplitIndices, output_dir: str | Path) -> Path:
+def save_split_indices(split: SplitIndices, output_dir: Union[str, Path]) -> Path:
     """Persist split indices as a YAML artifact under output directory."""
     target = Path(output_dir).expanduser() / "splits.yaml"
     dump_yaml(split.to_dict(), target)
