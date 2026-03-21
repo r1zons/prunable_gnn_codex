@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
-from typing import Any, Dict, List, Union
+from typing import Any, Dict, List, Optional, Union
 
 
 @dataclass
@@ -32,7 +32,9 @@ class ModelConfig:
     """Model settings."""
 
     name: str = "gcn"
+    in_channels: Optional[int] = None
     hidden_channels: int = 64
+    out_channels: Optional[int] = None
     num_layers: int = 2
     dropout: float = 0.5
 
@@ -93,8 +95,12 @@ def _validate_split_ratios(data: DataConfig) -> None:
 
 
 def _validate_positive_values(model: ModelConfig, training: TrainingConfig) -> None:
+    if model.in_channels is not None and model.in_channels <= 0:
+        raise ValueError("model.in_channels must be positive when provided.")
     if model.hidden_channels <= 0:
         raise ValueError("model.hidden_channels must be positive.")
+    if model.out_channels is not None and model.out_channels <= 0:
+        raise ValueError("model.out_channels must be positive when provided.")
     if model.num_layers <= 0:
         raise ValueError("model.num_layers must be positive.")
     if not 0.0 <= model.dropout < 1.0:

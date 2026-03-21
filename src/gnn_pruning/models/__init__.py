@@ -1,5 +1,14 @@
 """Model abstractions and registry."""
 
-from .registry import MODEL_REGISTRY
+from .base import BaseNodeClassifier
+from .gcn import GCNNodeClassifier
+from .graphsage import GraphSAGENodeClassifier
+from .registry import MODEL_REGISTRY, build_model
 
-__all__ = ["MODEL_REGISTRY"]
+__all__ = [
+    "BaseNodeClassifier",
+    "GCNNodeClassifier",
+    "GraphSAGENodeClassifier",
+    "MODEL_REGISTRY",
+    "build_model",
+]
