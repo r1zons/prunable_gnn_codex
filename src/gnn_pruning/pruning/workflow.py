@@ -10,7 +10,10 @@ from typing import Any, Dict
 import torch
 
 from gnn_pruning.config import load_yaml, resolve_config
+from gnn_pruning.data import generate_exact_ratio_split, load_dataset, load_split_indices, save_split_indices, to_index_tensors
 from gnn_pruning.models import build_model
+from gnn_pruning.training.trainer import DenseTrainer
+from gnn_pruning.training.workflow import evaluate_dense
 
 from .base import PruningContext
 from .registry import get_pruner
@@ -22,6 +25,24 @@ class PruningArtifacts:
 
     pruned_checkpoint_path: Path
     pruning_metrics_path: Path
+    post_prune_metrics_path: Path | None = None
+
+
+@dataclass
+class PrunedEvalArtifacts:
+    """Artifacts produced by evaluate-pruned workflow."""
+
+    metrics_path: Path
+
+
+@dataclass
+class FineTuneArtifacts:
+    """Artifacts produced by finetuning a pruned checkpoint."""
+
+    pre_finetune_checkpoint_path: Path
+    post_finetune_checkpoint_path: Path
+    pre_finetune_metrics_path: Path
+    post_finetune_metrics_path: Path
 
 
 def prune_from_checkpoint(checkpoint_path: str, config_path: str) -> PruningArtifacts:
@@ -76,7 +97,135 @@ def prune_from_checkpoint(checkpoint_path: str, config_path: str) -> PruningArti
     with pruning_metrics_path.open("w", encoding="utf-8") as handle:
         json.dump(asdict(plan), handle, indent=2)
 
+    split = _load_or_create_split(config_path=config_path, output_dir=output_dir)
+    post_prune_metrics = evaluate_dense(
+        config_path=config_path,
+        model_override=pruned_model,
+        split_override=split,
+        output_dir_override=str(output_dir),
+    )
+    post_prune_metrics_path = output_dir / f"metrics_post_prune_{method}.json"
+    with post_prune_metrics_path.open("w", encoding="utf-8") as handle:
+        json.dump(post_prune_metrics, handle, indent=2)
+
     return PruningArtifacts(
         pruned_checkpoint_path=pruned_checkpoint_path,
         pruning_metrics_path=pruning_metrics_path,
+        post_prune_metrics_path=post_prune_metrics_path,
     )
+
+
+def evaluate_pruned_checkpoint(checkpoint_path: str, config_path: str) -> PrunedEvalArtifacts:
+    """Evaluate a pruned checkpoint and save metrics."""
+    checkpoint = Path(checkpoint_path).expanduser()
+    output_dir = checkpoint.parent
+    payload = torch.load(checkpoint, map_location=resolve_config(config_path).device.device)
+    model = build_model(payload["model_name"], **payload["model_config"])
+    model.load_state_dict(payload["model_state_dict"])
+    split = _load_or_create_split(config_path=config_path, output_dir=output_dir)
+    metrics = evaluate_dense(config_path=config_path, model_override=model, split_override=split, output_dir_override=str(output_dir))
+    metrics_path = output_dir / f"metrics_evaluate_{checkpoint.stem}.json"
+    with metrics_path.open("w", encoding="utf-8") as handle:
+        json.dump(metrics, handle, indent=2)
+    return PrunedEvalArtifacts(metrics_path=metrics_path)
+
+
+def finetune_pruned_checkpoint(
+    checkpoint_path: str,
+    config_path: str,
+    finetune_epochs: int | None = None,
+) -> FineTuneArtifacts:
+    """Fine-tune a pruned checkpoint, saving pre/post checkpoints and metrics."""
+    resolved = resolve_config(config_path)
+    raw_cfg = load_yaml(config_path)
+    prune_cfg: Dict[str, Any] = raw_cfg.get("pruning", {}) if isinstance(raw_cfg.get("pruning", {}), dict) else {}
+    epochs = int(finetune_epochs if finetune_epochs is not None else prune_cfg.get("finetune_epochs", 50))
+
+    checkpoint = torch.load(Path(checkpoint_path).expanduser(), map_location=resolved.device.device)
+    output_dir = Path(checkpoint_path).expanduser().parent
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    dataset = load_dataset(resolved.data.name, resolved.data.root)
+    data = dataset[0]
+
+    split = _load_or_create_split(config_path=config_path, output_dir=output_dir, data=data)
+    indices = to_index_tensors(split, device=resolved.device.device)
+
+    model = build_model(checkpoint["model_name"], **checkpoint["model_config"])
+    model.load_state_dict(checkpoint["model_state_dict"])
+
+    pre_finetune_checkpoint_path = output_dir / f"{Path(checkpoint_path).stem}_pre_finetune.pt"
+    torch.save(checkpoint, pre_finetune_checkpoint_path)
+
+    pre_metrics = evaluate_dense(
+        config_path=config_path,
+        model_override=model,
+        split_override=split,
+        output_dir_override=str(output_dir),
+    )
+    pre_finetune_metrics_path = output_dir / "metrics_pruned_pre_finetune.json"
+    with pre_finetune_metrics_path.open("w", encoding="utf-8") as handle:
+        json.dump(pre_metrics, handle, indent=2)
+
+    trainer = DenseTrainer(
+        model=model,
+        device=resolved.device.device,
+        lr=resolved.training.lr,
+        weight_decay=resolved.training.weight_decay,
+        max_epochs=epochs,
+        early_stopping_patience=resolved.training.early_stopping_patience,
+    )
+    train_result = trainer.fit(data=data, train_idx=indices["train"], val_idx=indices["val"])
+
+    post_metrics = evaluate_dense(
+        config_path=config_path,
+        model_override=trainer.model,
+        split_override=split,
+        output_dir_override=str(output_dir),
+    )
+    post_metrics["finetune_training"] = train_result.to_dict()
+    post_finetune_metrics_path = output_dir / "metrics_pruned_post_finetune.json"
+    with post_finetune_metrics_path.open("w", encoding="utf-8") as handle:
+        json.dump(post_metrics, handle, indent=2)
+
+    post_finetune_checkpoint_path = output_dir / f"{Path(checkpoint_path).stem}_post_finetune.pt"
+    torch.save(
+        {
+            "model_name": checkpoint["model_name"],
+            "model_config": checkpoint["model_config"],
+            "source_checkpoint": str(Path(checkpoint_path).expanduser()),
+            "model_state_dict": trainer.model.state_dict(),
+            "finetune_epochs": epochs,
+            "finetune_training": train_result.to_dict(),
+        },
+        post_finetune_checkpoint_path,
+    )
+
+    return FineTuneArtifacts(
+        pre_finetune_checkpoint_path=pre_finetune_checkpoint_path,
+        post_finetune_checkpoint_path=post_finetune_checkpoint_path,
+        pre_finetune_metrics_path=pre_finetune_metrics_path,
+        post_finetune_metrics_path=post_finetune_metrics_path,
+    )
+
+
+def _load_or_create_split(config_path: str, output_dir: Path, data: Any | None = None) -> Any:
+    resolved = resolve_config(config_path)
+    graph = data
+    if graph is None:
+        dataset = load_dataset(resolved.data.name, resolved.data.root)
+        graph = dataset[0]
+
+    split_path = output_dir / "splits.yaml"
+    if split_path.exists():
+        return load_split_indices(split_path)
+
+    split = generate_exact_ratio_split(
+        num_nodes=int(graph.num_nodes),
+        seed=resolved.run.seed,
+        train_ratio=resolved.data.train_ratio,
+        val_ratio=resolved.data.val_ratio,
+        test_ratio=resolved.data.test_ratio,
+    )
+    save_split_indices(split, output_dir)
+    return split

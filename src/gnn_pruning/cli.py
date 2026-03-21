@@ -8,7 +8,7 @@ from typing import Optional, Sequence
 from .config import resolve_config
 from .pipelines import run_dense_pipeline, run_pipeline
 from .pruning import list_pruners
-from .pruning.workflow import prune_from_checkpoint
+from .pruning.workflow import evaluate_pruned_checkpoint, finetune_pruned_checkpoint, prune_from_checkpoint
 from .training import evaluate_dense_and_save, train_dense
 
 
@@ -43,6 +43,20 @@ def build_parser() -> argparse.ArgumentParser:
     prune_parser = subparsers.add_parser("prune", help="Apply pruning to a dense checkpoint.")
     prune_parser.add_argument("--checkpoint", type=str, required=True, help="Path to dense checkpoint.")
     prune_parser.add_argument("--config", type=str, required=True, help="Path to experiment YAML config.")
+
+    eval_pruned_parser = subparsers.add_parser("evaluate-pruned", help="Evaluate a pruned checkpoint.")
+    eval_pruned_parser.add_argument("--checkpoint", type=str, required=True, help="Path to pruned checkpoint.")
+    eval_pruned_parser.add_argument("--config", type=str, required=True, help="Path to experiment YAML config.")
+
+    finetune_parser = subparsers.add_parser("finetune", help="Fine-tune a pruned checkpoint.")
+    finetune_parser.add_argument("--checkpoint", type=str, required=True, help="Path to pruned checkpoint.")
+    finetune_parser.add_argument("--config", type=str, required=True, help="Path to experiment YAML config.")
+    finetune_parser.add_argument(
+        "--epochs",
+        type=int,
+        default=None,
+        help="Optional fine-tune epochs override (default: pruning.finetune_epochs or 50).",
+    )
 
     show_parser = subparsers.add_parser("show-config", help="Resolve and print effective config.")
     show_parser.add_argument("--config", type=str, required=True, help="Path to experiment YAML config.")
@@ -81,6 +95,25 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         artifacts = prune_from_checkpoint(checkpoint_path=args.checkpoint, config_path=args.config)
         print(f"[gnn_pruning] pruned checkpoint saved to: {artifacts.pruned_checkpoint_path}")
         print(f"[gnn_pruning] pruning metrics saved to: {artifacts.pruning_metrics_path}")
+        if artifacts.post_prune_metrics_path is not None:
+            print(f"[gnn_pruning] post-prune metrics saved to: {artifacts.post_prune_metrics_path}")
+        return 0
+
+    if args.command == "evaluate-pruned":
+        artifacts = evaluate_pruned_checkpoint(checkpoint_path=args.checkpoint, config_path=args.config)
+        print(f"[gnn_pruning] pruned evaluation metrics saved to: {artifacts.metrics_path}")
+        return 0
+
+    if args.command == "finetune":
+        artifacts = finetune_pruned_checkpoint(
+            checkpoint_path=args.checkpoint,
+            config_path=args.config,
+            finetune_epochs=args.epochs,
+        )
+        print(f"[gnn_pruning] pre-finetune checkpoint saved to: {artifacts.pre_finetune_checkpoint_path}")
+        print(f"[gnn_pruning] post-finetune checkpoint saved to: {artifacts.post_finetune_checkpoint_path}")
+        print(f"[gnn_pruning] pre-finetune metrics saved to: {artifacts.pre_finetune_metrics_path}")
+        print(f"[gnn_pruning] post-finetune metrics saved to: {artifacts.post_finetune_metrics_path}")
         return 0
 
     if args.command == "run":

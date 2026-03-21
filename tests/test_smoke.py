@@ -18,7 +18,7 @@ def test_cli_show_config_returns_success() -> None:
 def test_cli_train_and_evaluate_commands(monkeypatch, tmp_path) -> None:
     from gnn_pruning import cli
     from gnn_pruning.pipelines.dense_pipeline import DensePipelineArtifacts
-    from gnn_pruning.pruning.workflow import PruningArtifacts
+    from gnn_pruning.pruning.workflow import FineTuneArtifacts, PrunedEvalArtifacts, PruningArtifacts
     from gnn_pruning.training.workflow import EvalArtifacts, TrainArtifacts
 
     train_artifacts = TrainArtifacts(
@@ -41,6 +41,16 @@ def test_cli_train_and_evaluate_commands(monkeypatch, tmp_path) -> None:
     prune_artifacts = PruningArtifacts(
         pruned_checkpoint_path=tmp_path / "pruned_random.pt",
         pruning_metrics_path=tmp_path / "pruning_metrics_random.json",
+        post_prune_metrics_path=tmp_path / "metrics_post_prune_random.json",
+    )
+
+    pruned_eval_artifacts = PrunedEvalArtifacts(metrics_path=tmp_path / "metrics_evaluate_pruned.json")
+
+    finetune_artifacts = FineTuneArtifacts(
+        pre_finetune_checkpoint_path=tmp_path / "pruned_pre_finetune.pt",
+        post_finetune_checkpoint_path=tmp_path / "pruned_post_finetune.pt",
+        pre_finetune_metrics_path=tmp_path / "metrics_pruned_pre_finetune.json",
+        post_finetune_metrics_path=tmp_path / "metrics_pruned_post_finetune.json",
     )
 
     eval_artifacts = EvalArtifacts(
@@ -52,11 +62,19 @@ def test_cli_train_and_evaluate_commands(monkeypatch, tmp_path) -> None:
     monkeypatch.setattr(cli, "evaluate_dense_and_save", lambda config_path, checkpoint_path: eval_artifacts)
     monkeypatch.setattr(cli, "run_dense_pipeline", lambda config_path: dense_artifacts)
     monkeypatch.setattr(cli, "prune_from_checkpoint", lambda checkpoint_path, config_path: prune_artifacts)
+    monkeypatch.setattr(cli, "evaluate_pruned_checkpoint", lambda checkpoint_path, config_path: pruned_eval_artifacts)
+    monkeypatch.setattr(
+        cli,
+        "finetune_pruned_checkpoint",
+        lambda checkpoint_path, config_path, finetune_epochs: finetune_artifacts,
+    )
 
     assert main(["train", "--config", "configs/experiments/example.yaml", "--no-resume"]) == 0
     assert main(["evaluate", "--config", "configs/experiments/example.yaml"]) == 0
     assert main(["run-dense", "--config", "configs/experiments/example.yaml"]) == 0
     assert main(["prune", "--checkpoint", "dense.pt", "--config", "configs/experiments/example.yaml"]) == 0
+    assert main(["evaluate-pruned", "--checkpoint", "pruned.pt", "--config", "configs/experiments/example.yaml"]) == 0
+    assert main(["finetune", "--checkpoint", "pruned.pt", "--config", "configs/experiments/example.yaml"]) == 0
 
 
 def test_cli_list_pruners_command() -> None:

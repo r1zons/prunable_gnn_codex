@@ -3,13 +3,15 @@
 from __future__ import annotations
 
 import json
+import importlib
 from pathlib import Path
 
 import torch
+from torch_geometric.data import Data
 
 from gnn_pruning.models import GCNNodeClassifier
 from gnn_pruning.pruning import PruningContext, get_pruner
-from gnn_pruning.pruning.workflow import prune_from_checkpoint
+from gnn_pruning.pruning.workflow import finetune_pruned_checkpoint, prune_from_checkpoint
 
 
 def _make_checkpoint(path: Path) -> Path:
@@ -42,6 +44,7 @@ def _make_config(path: Path, output_dir: Path, method: str, structured: bool) ->
                 f"  method: {method}",
                 "  target_sparsity: 0.5",
                 f"  structured: {'true' if structured else 'false'}",
+                "  finetune_epochs: 3",
             ]
         ),
         encoding="utf-8",
@@ -51,6 +54,25 @@ def _make_config(path: Path, output_dir: Path, method: str, structured: bool) ->
 
 def _param_count(model: torch.nn.Module) -> int:
     return sum(parameter.numel() for parameter in model.parameters())
+
+
+def _dummy_dataset(num_nodes: int = 24, in_channels: int = 6, num_classes: int = 3):
+    x = torch.randn((num_nodes, in_channels), dtype=torch.float32)
+    y = torch.randint(0, num_classes, (num_nodes,), dtype=torch.long)
+    edge_index = torch.vstack(
+        [
+            torch.arange(0, num_nodes, dtype=torch.long),
+            torch.roll(torch.arange(0, num_nodes, dtype=torch.long), shifts=-1),
+        ]
+    )
+    data = Data(x=x, y=y, edge_index=edge_index)
+
+    class DummyDataset:
+        def __getitem__(self, idx: int):
+            _ = idx
+            return data
+
+    return DummyDataset()
 
 
 def test_pruner_outputs_valid_plan() -> None:
@@ -66,7 +88,12 @@ def test_pruner_outputs_valid_plan() -> None:
     assert plan.pruning_time_sec is not None
 
 
-def test_pruning_runs_end_to_end_on_small_model(tmp_path: Path) -> None:
+def test_pruning_runs_end_to_end_on_small_model(monkeypatch, tmp_path: Path) -> None:
+    training_workflow = importlib.import_module("gnn_pruning.training.workflow")
+    pruning_workflow = importlib.import_module("gnn_pruning.pruning.workflow")
+    monkeypatch.setattr(training_workflow, "load_dataset", lambda name, root: _dummy_dataset())
+    monkeypatch.setattr(pruning_workflow, "load_dataset", lambda name, root: _dummy_dataset())
+
     ckpt = _make_checkpoint(tmp_path / "dense.pt")
     cfg = _make_config(tmp_path / "cfg.yaml", tmp_path / "artifacts", method="global_magnitude", structured=False)
 
@@ -74,6 +101,8 @@ def test_pruning_runs_end_to_end_on_small_model(tmp_path: Path) -> None:
 
     assert artifacts.pruned_checkpoint_path.exists()
     assert artifacts.pruning_metrics_path.exists()
+    assert artifacts.post_prune_metrics_path is not None
+    assert artifacts.post_prune_metrics_path.exists()
 
     payload = json.loads(artifacts.pruning_metrics_path.read_text(encoding="utf-8"))
     assert payload["name"] == "global_magnitude"
@@ -91,3 +120,36 @@ def test_structured_mode_reduces_parameter_count() -> None:
     assert _param_count(pruned_model) < _param_count(model)
     assert plan.details["mode"] == "structured"
     assert plan.achieved_sparsity is not None
+
+
+def test_finetuning_runs_and_saves_post_checkpoint(monkeypatch, tmp_path: Path) -> None:
+    training_workflow = importlib.import_module("gnn_pruning.training.workflow")
+    pruning_workflow = importlib.import_module("gnn_pruning.pruning.workflow")
+    monkeypatch.setattr(training_workflow, "load_dataset", lambda name, root: _dummy_dataset())
+    monkeypatch.setattr(pruning_workflow, "load_dataset", lambda name, root: _dummy_dataset())
+
+    ckpt = _make_checkpoint(tmp_path / "dense.pt")
+    cfg = _make_config(tmp_path / "cfg.yaml", tmp_path / "artifacts", method="random", structured=False)
+    prune_artifacts = prune_from_checkpoint(str(ckpt), str(cfg))
+
+    finetune_artifacts = finetune_pruned_checkpoint(str(prune_artifacts.pruned_checkpoint_path), str(cfg))
+    assert finetune_artifacts.pre_finetune_checkpoint_path.exists()
+    assert finetune_artifacts.post_finetune_checkpoint_path.exists()
+
+
+def test_metric_files_exist_for_prune_and_finetune_phases(monkeypatch, tmp_path: Path) -> None:
+    training_workflow = importlib.import_module("gnn_pruning.training.workflow")
+    pruning_workflow = importlib.import_module("gnn_pruning.pruning.workflow")
+    monkeypatch.setattr(training_workflow, "load_dataset", lambda name, root: _dummy_dataset())
+    monkeypatch.setattr(pruning_workflow, "load_dataset", lambda name, root: _dummy_dataset())
+
+    ckpt = _make_checkpoint(tmp_path / "dense.pt")
+    cfg = _make_config(tmp_path / "cfg.yaml", tmp_path / "artifacts", method="layerwise_magnitude", structured=False)
+    prune_artifacts = prune_from_checkpoint(str(ckpt), str(cfg))
+    finetune_artifacts = finetune_pruned_checkpoint(str(prune_artifacts.pruned_checkpoint_path), str(cfg), finetune_epochs=2)
+
+    assert prune_artifacts.pruning_metrics_path.exists()
+    assert prune_artifacts.post_prune_metrics_path is not None
+    assert prune_artifacts.post_prune_metrics_path.exists()
+    assert finetune_artifacts.pre_finetune_metrics_path.exists()
+    assert finetune_artifacts.post_finetune_metrics_path.exists()
