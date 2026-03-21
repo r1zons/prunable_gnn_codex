@@ -56,6 +56,15 @@ class DeviceConfig:
     device: str = "cpu"
 
 
+
+
+@dataclass
+class BenchmarkConfig:
+    """Benchmark settings."""
+
+    inference_warmup_passes: int = 5
+    inference_timed_passes: int = 20
+
 @dataclass
 class ExperimentConfig:
     """Resolved experiment config."""
@@ -65,6 +74,7 @@ class ExperimentConfig:
     model: ModelConfig = field(default_factory=ModelConfig)
     training: TrainingConfig = field(default_factory=TrainingConfig)
     device: DeviceConfig = field(default_factory=DeviceConfig)
+    benchmark: BenchmarkConfig = field(default_factory=BenchmarkConfig)
 
     @classmethod
     def from_dict(cls, payload: Dict[str, Any]) -> "ExperimentConfig":
@@ -74,11 +84,13 @@ class ExperimentConfig:
         model = ModelConfig(**payload.get("model", {}))
         training = TrainingConfig(**payload.get("training", {}))
         device = DeviceConfig(**payload.get("device", {}))
+        benchmark = BenchmarkConfig(**payload.get("benchmark", {}))
 
         _validate_split_ratios(data)
         _validate_positive_values(model, training)
+        _validate_benchmark(benchmark)
 
-        return cls(run=run, data=data, model=model, training=training, device=device)
+        return cls(run=run, data=data, model=model, training=training, device=device, benchmark=benchmark)
 
     def to_dict(self) -> Dict[str, Any]:
         """Convert typed config to a standard dictionary."""
@@ -113,6 +125,14 @@ def _validate_positive_values(model: ModelConfig, training: TrainingConfig) -> N
         raise ValueError("training.weight_decay must be >= 0.")
     if training.early_stopping_patience <= 0:
         raise ValueError("training.early_stopping_patience must be positive.")
+
+
+
+def _validate_benchmark(benchmark: BenchmarkConfig) -> None:
+    if benchmark.inference_warmup_passes < 0:
+        raise ValueError("benchmark.inference_warmup_passes must be >= 0.")
+    if benchmark.inference_timed_passes <= 0:
+        raise ValueError("benchmark.inference_timed_passes must be > 0.")
 
 
 def snapshot_path(output_dir: Union[str, Path]) -> Path:

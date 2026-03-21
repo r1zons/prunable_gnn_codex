@@ -22,3 +22,7 @@ training:
 
 device:
   device: cpu
+
+benchmark:
+  inference_warmup_passes: 5
+  inference_timed_passes: 20

@@ -18,7 +18,12 @@ from gnn_pruning.data import (
     save_split_indices,
     to_index_tensors,
 )
-from gnn_pruning.evaluation import classification_metrics
+from gnn_pruning.evaluation import (
+    classification_metrics,
+    measure_inference_time,
+    model_size_metrics,
+    runtime_memory_metrics,
+)
 from gnn_pruning.models import build_model
 from gnn_pruning.training.checkpoints import load_checkpoint, save_checkpoint
 from gnn_pruning.training.trainer import DenseTrainer
@@ -187,6 +192,31 @@ def evaluate_dense(
     for split_name, idx_tensor in index_tensors.items():
         idx = idx_tensor.detach().cpu().numpy()
         result[split_name] = classification_metrics(y_true[idx], y_pred[idx])
+
+    benchmark_metrics: Dict[str, float] = {}
+    benchmark_metrics.update(
+        measure_inference_time(
+            model=model,
+            data=data,
+            device=device,
+            warmup_passes=resolved.benchmark.inference_warmup_passes,
+            timed_passes=resolved.benchmark.inference_timed_passes,
+        )
+    )
+    benchmark_metrics.update(
+        model_size_metrics(
+            model=model,
+            checkpoint_path=checkpoint_path,
+        )
+    )
+    benchmark_metrics.update(
+        runtime_memory_metrics(
+            model=model,
+            data=data,
+            device=device,
+        )
+    )
+    result["benchmark"] = benchmark_metrics
 
     return result
 
