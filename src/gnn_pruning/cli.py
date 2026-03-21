@@ -6,7 +6,7 @@ import argparse
 from typing import Optional, Sequence
 
 from .config import resolve_config
-from .pipelines import run_pipeline
+from .pipelines import run_dense_pipeline, run_pipeline
 from .training import evaluate_dense_and_save, train_dense
 
 
@@ -17,6 +17,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     run_parser = subparsers.add_parser("run", help="Run the default pipeline scaffold.")
     run_parser.add_argument("--config", type=str, required=True, help="Path to experiment YAML config.")
+
+    run_dense_parser = subparsers.add_parser("run-dense", help="Run full dense experiment pipeline.")
+    run_dense_parser.add_argument("--config", type=str, required=True, help="Path to experiment YAML config.")
 
     train_parser = subparsers.add_parser("train", help="Train dense model.")
     train_parser.add_argument("--config", type=str, required=True, help="Path to experiment YAML config.")
@@ -63,6 +66,15 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         print(f"[gnn_pruning] scaffold pipeline invoked with config: {args.config}")
         print(f"[gnn_pruning] resolved config snapshot saved to: {artifacts.config_snapshot}")
         print(f"[gnn_pruning] split artifact saved to: {artifacts.split_artifact}")
+        return 0
+
+    if args.command == "run-dense":
+        artifacts = run_dense_pipeline(args.config)
+        print(f"[gnn_pruning] dense pipeline complete at: {artifacts.output_dir}")
+        print(f"[gnn_pruning] checkpoint: {artifacts.checkpoint_path}")
+        print(f"[gnn_pruning] eval metrics: {artifacts.eval_metrics_path}")
+        print(f"[gnn_pruning] summary: {artifacts.summary_path}")
+        print(f"[gnn_pruning] csv: {artifacts.csv_path}")
         return 0
 
     if args.command == "train":

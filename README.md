@@ -41,6 +41,7 @@ python -m gnn_pruning --help
 python -m gnn_pruning show-config --config configs/experiments/example.yaml
 python -m gnn_pruning train --config configs/experiments/example.yaml
 python -m gnn_pruning evaluate --config configs/experiments/example.yaml
+python -m gnn_pruning run-dense --config configs/experiments/example.yaml
 ```
 
 `train` writes artifacts to `run.output_dir`:
@@ -57,6 +58,18 @@ metrics_train.json
 ```text
 resolved_config.yaml
 metrics_eval.json
+```
+
+`run-dense` writes a structured dense experiment directory with:
+
+```text
+resolved_config.yaml
+splits.yaml
+dense_checkpoint.pt
+metrics_train.json
+metrics_eval.json
+summary.md
+dense_results.csv
 ```
 
 ## Run tests
