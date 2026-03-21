@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any, Dict, Union
+from typing import Any, Dict, Mapping, Union
 
 try:
     import yaml  # type: ignore
@@ -42,10 +42,11 @@ def resolve_config(config_path: Union[str, Path]) -> ExperimentConfig:
     model_ref = user_config.get("model")
     preset_ref = user_config.get("preset")
 
-    base_cfg = _load_ref(base_ref, folder="base") if base_ref else {}
-    dataset_cfg = _load_ref(dataset_ref, folder="datasets") if dataset_ref else {}
-    model_cfg = _load_ref(model_ref, folder="models") if model_ref else {}
-    preset_cfg = _load_ref(preset_ref, folder="presets") if preset_ref else {}
+    base_cfg = _resolve_reference_config(base_ref, folder="base", field_name="base")
+    dataset_cfg = _resolve_component_config(dataset_ref, folder="datasets", field_name="dataset", section_key="data")
+    model_cfg = _resolve_component_config(model_ref, folder="models", field_name="model", section_key="model")
+    preset_cfg = _resolve_reference_config(preset_ref, folder="presets", field_name="preset")
+
     dataset_name = _resolve_dataset_name(dataset_cfg=dataset_cfg, dataset_ref=dataset_ref)
     preset_cfg = _apply_dataset_overrides(preset_cfg, dataset_name)
 
@@ -65,6 +66,35 @@ def dump_yaml(payload: Dict[str, Any], path: Union[str, Path]) -> None:
     target.write_text(text, encoding="utf-8")
 
 
+def _resolve_reference_config(ref: Any, folder: str, field_name: str) -> Dict[str, Any]:
+    if ref is None:
+        return {}
+    if isinstance(ref, str):
+        return _load_ref(ref, folder)
+    raise ValueError(
+        f"`{field_name}` must be a string reference or null. Got {type(ref).__name__}."
+    )
+
+
+def _resolve_component_config(
+    value: Any,
+    folder: str,
+    field_name: str,
+    section_key: str,
+) -> Dict[str, Any]:
+    if value is None:
+        return {}
+    if isinstance(value, str):
+        return _load_ref(value, folder)
+    if isinstance(value, Mapping):
+        if section_key in value and isinstance(value[section_key], Mapping):
+            return dict(value)
+        return {section_key: dict(value)}
+    raise ValueError(
+        f"`{field_name}` must be either a string reference or a mapping. "
+        f"Got {type(value).__name__}."
+    )
+
 
 def _resolve_dataset_name(dataset_cfg: Dict[str, Any], dataset_ref: Any) -> str:
     data_cfg = dataset_cfg.get("data", {}) if isinstance(dataset_cfg, dict) else {}
@@ -72,6 +102,8 @@ def _resolve_dataset_name(dataset_cfg: Dict[str, Any], dataset_ref: Any) -> str:
         return str(data_cfg["name"]).lower()
     if isinstance(dataset_ref, str):
         return dataset_ref.lower()
+    if isinstance(dataset_ref, Mapping) and "name" in dataset_ref:
+        return str(dataset_ref["name"]).lower()
     return ""
 
 

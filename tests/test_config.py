@@ -134,3 +134,117 @@ def test_dataset_dependent_preset_override_applies(tmp_path: Path) -> None:
 
     assert resolved.training.epochs == 3
     assert resolved.training.early_stopping_patience == 3
+
+
+def test_dataset_string_reference_resolves(tmp_path: Path) -> None:
+    config_file = tmp_path / "dataset_string.yaml"
+    config_file.write_text(
+        "\n".join([
+            "base: base/default",
+            "dataset: cora",
+            "model: gcn",
+        ]),
+        encoding="utf-8",
+    )
+
+    resolved = resolve_config(config_file)
+    assert resolved.data.name == "cora"
+
+
+def test_dataset_inline_dict_resolves(tmp_path: Path) -> None:
+    config_file = tmp_path / "dataset_dict.yaml"
+    config_file.write_text(
+        "\n".join([
+            "base: base/default",
+            "dataset:",
+            "  name: cora",
+            "model: gcn",
+        ]),
+        encoding="utf-8",
+    )
+
+    resolved = resolve_config(config_file)
+    assert resolved.data.name == "cora"
+
+
+def test_model_string_reference_resolves(tmp_path: Path) -> None:
+    config_file = tmp_path / "model_string.yaml"
+    config_file.write_text(
+        "\n".join([
+            "base: base/default",
+            "dataset: citeseer",
+            "model: graphsage",
+        ]),
+        encoding="utf-8",
+    )
+
+    resolved = resolve_config(config_file)
+    assert resolved.model.name == "graphsage"
+
+
+def test_model_inline_dict_resolves(tmp_path: Path) -> None:
+    config_file = tmp_path / "model_dict.yaml"
+    config_file.write_text(
+        "\n".join([
+            "base: base/default",
+            "dataset: cora",
+            "model:",
+            "  name: graphsage",
+            "  hidden_channels: 64",
+            "  num_layers: 2",
+            "  dropout: 0.5",
+        ]),
+        encoding="utf-8",
+    )
+
+    resolved = resolve_config(config_file)
+    assert resolved.model.name == "graphsage"
+    assert resolved.model.hidden_channels == 64
+
+
+def test_mixed_inline_and_reference_resolution(tmp_path: Path) -> None:
+    config_file = tmp_path / "mixed.yaml"
+    config_file.write_text(
+        "\n".join([
+            "base: base/default",
+            "dataset:",
+            "  name: cora",
+            "model: graphsage",
+            "preset: fast_debug",
+        ]),
+        encoding="utf-8",
+    )
+
+    resolved = resolve_config(config_file)
+    assert resolved.data.name == "cora"
+    assert resolved.model.name == "graphsage"
+
+
+def test_dataset_invalid_type_raises_clear_value_error(tmp_path: Path) -> None:
+    config_file = tmp_path / "dataset_invalid.yaml"
+    config_file.write_text(
+        "\n".join([
+            "base: base/default",
+            "dataset: 42",
+            "model: gcn",
+        ]),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="dataset"):
+        resolve_config(config_file)
+
+
+def test_model_invalid_type_raises_clear_value_error(tmp_path: Path) -> None:
+    config_file = tmp_path / "model_invalid.yaml"
+    config_file.write_text(
+        "\n".join([
+            "base: base/default",
+            "dataset: cora",
+            "model: 7",
+        ]),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="model"):
+        resolve_config(config_file)
