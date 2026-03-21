@@ -1,0 +1,7 @@
+base: base/default
+dataset: citeseer
+model: graphsage
+preset: fast_debug
+
+run:
+  output_dir: runs/citeseer_graphsage_fast_debug
