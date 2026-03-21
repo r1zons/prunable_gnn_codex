@@ -7,6 +7,7 @@ from typing import Optional, Sequence
 
 from .config import resolve_config
 from .pipelines import run_dense_pipeline, run_pipeline
+from .pruning import list_pruners
 from .training import evaluate_dense_and_save, train_dense
 
 
@@ -42,6 +43,7 @@ def build_parser() -> argparse.ArgumentParser:
     show_parser.add_argument("--config", type=str, required=True, help="Path to experiment YAML config.")
 
     subparsers.add_parser("version", help="Print package version.")
+    subparsers.add_parser("list-pruners", help="List registered pruner placeholders.")
     return parser
 
 
@@ -59,6 +61,15 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     if args.command == "show-config":
         resolved = resolve_config(args.config)
         print(resolved.to_dict())
+        return 0
+
+    if args.command == "list-pruners":
+        records = list_pruners()
+        if not records:
+            print("[gnn_pruning] no pruners registered yet")
+            return 0
+        for row in records:
+            print(row)
         return 0
 
     if args.command == "run":

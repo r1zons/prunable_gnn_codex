@@ -49,3 +49,7 @@ def test_cli_train_and_evaluate_commands(monkeypatch, tmp_path) -> None:
     assert main(["train", "--config", "configs/experiments/example.yaml", "--no-resume"]) == 0
     assert main(["evaluate", "--config", "configs/experiments/example.yaml"]) == 0
     assert main(["run-dense", "--config", "configs/experiments/example.yaml"]) == 0
+
+
+def test_cli_list_pruners_command() -> None:
+    assert main(["list-pruners"]) == 0
