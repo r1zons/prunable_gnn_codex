@@ -85,7 +85,7 @@ def prune_from_checkpoint(checkpoint_path: str, config_path: str) -> PruningArti
     torch.save(
         {
             "model_name": model_name,
-            "model_config": model_cfg,
+            "model_config": _model_config_from_model(pruned_model, fallback=model_cfg),
             "source_checkpoint": str(Path(checkpoint_path).expanduser()),
             "model_state_dict": pruned_model.state_dict(),
             "pruning_plan": asdict(plan),
@@ -118,8 +118,10 @@ def prune_from_checkpoint(checkpoint_path: str, config_path: str) -> PruningArti
 def evaluate_pruned_checkpoint(checkpoint_path: str, config_path: str) -> PrunedEvalArtifacts:
     """Evaluate a pruned checkpoint and save metrics."""
     checkpoint = Path(checkpoint_path).expanduser()
+    if not checkpoint.exists():
+        raise FileNotFoundError(f"Pruned checkpoint not found: {checkpoint}")
     output_dir = checkpoint.parent
-    payload = torch.load(checkpoint, map_location=resolve_config(config_path).device.device)
+    payload = _load_pruned_checkpoint_payload(checkpoint, resolve_config(config_path).device.device)
     model = build_model(payload["model_name"], **payload["model_config"])
     model.load_state_dict(payload["model_state_dict"])
     split = _load_or_create_split(config_path=config_path, output_dir=output_dir)
@@ -141,7 +143,7 @@ def finetune_pruned_checkpoint(
     prune_cfg: Dict[str, Any] = raw_cfg.get("pruning", {}) if isinstance(raw_cfg.get("pruning", {}), dict) else {}
     epochs = int(finetune_epochs if finetune_epochs is not None else prune_cfg.get("finetune_epochs", 50))
 
-    checkpoint = torch.load(Path(checkpoint_path).expanduser(), map_location=resolved.device.device)
+    checkpoint = _load_pruned_checkpoint_payload(Path(checkpoint_path).expanduser(), resolved.device.device)
     output_dir = Path(checkpoint_path).expanduser().parent
     output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -192,7 +194,7 @@ def finetune_pruned_checkpoint(
     torch.save(
         {
             "model_name": checkpoint["model_name"],
-            "model_config": checkpoint["model_config"],
+            "model_config": _model_config_from_model(trainer.model, fallback=checkpoint["model_config"]),
             "source_checkpoint": str(Path(checkpoint_path).expanduser()),
             "model_state_dict": trainer.model.state_dict(),
             "finetune_epochs": epochs,
@@ -229,3 +231,29 @@ def _load_or_create_split(config_path: str, output_dir: Path, data: Any | None =
     )
     save_split_indices(split, output_dir)
     return split
+
+
+def _load_pruned_checkpoint_payload(checkpoint_path: Path, map_location: str) -> Dict[str, Any]:
+    if not checkpoint_path.exists():
+        raise FileNotFoundError(f"Pruned checkpoint not found: {checkpoint_path}")
+    payload = torch.load(checkpoint_path, map_location=map_location)
+    required = ("model_name", "model_config", "model_state_dict")
+    missing = [key for key in required if key not in payload]
+    if missing:
+        raise ValueError(f"Invalid pruned checkpoint. Missing required keys: {missing}")
+    return payload
+
+
+def _model_config_from_model(model: torch.nn.Module, fallback: Dict[str, Any]) -> Dict[str, Any]:
+    if hasattr(model, "convs") and len(model.convs) >= 2:
+        conv0 = model.convs[0]
+        conv1 = model.convs[1]
+        if hasattr(conv0, "lin") and hasattr(conv1, "lin"):
+            return {
+                "in_channels": int(conv0.lin.weight.shape[1]),
+                "hidden_channels": int(conv0.lin.weight.shape[0]),
+                "out_channels": int(conv1.lin.weight.shape[0]),
+                "num_layers": int(len(model.convs)),
+                "dropout": float(getattr(model, "dropout", fallback.get("dropout", 0.0))),
+            }
+    return dict(fallback)
