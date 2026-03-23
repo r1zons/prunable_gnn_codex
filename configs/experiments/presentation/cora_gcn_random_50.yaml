@@ -1,0 +1,14 @@
+base: base/default
+dataset: cora
+model: gcn
+preset: fast_debug
+
+run:
+  experiment_name: presentation_cora_gcn_random_50
+  output_dir: runs/presentation/cora_gcn_random_50
+
+pruning:
+  method: random
+  target_sparsity: 0.5
+  structured: false
+  finetune_epochs: 10
