@@ -37,6 +37,18 @@ def _first_hidden_channels(model: Any) -> int:
     raise ValueError("Model does not have supported hidden conv layers.")
 
 
+def _parameter_count(model: torch.nn.Module) -> int:
+    return sum(parameter.numel() for parameter in model.parameters())
+
+
+def _hidden_width(model: Any, layer_index: int = 0) -> int:
+    if hasattr(model, "convs") and len(model.convs) > layer_index:
+        conv = model.convs[layer_index]
+        if hasattr(conv, "out_channels"):
+            return int(conv.out_channels)
+    raise ValueError("Model does not expose hidden width for requested layer.")
+
+
 def _structured_scores(model: Any, random: bool = False) -> torch.Tensor:
     channels = _first_hidden_channels(model)
     if random:
@@ -114,10 +126,30 @@ def _apply_structured(model: Any, plan: PruningPlan) -> Any:
         _, indices = torch.topk(scores, k=keep_count, largest=True)
         keep_indices = indices.tolist()
 
-    pruned_model = structurally_prune_hidden_channels(model, layer_index=plan.layer_index or 0, keep_indices=keep_indices)
+    layer_index = plan.layer_index or 0
+    before_hidden = _hidden_width(model, layer_index=layer_index)
+    before_params = _parameter_count(model)
+
+    pruned_model = structurally_prune_hidden_channels(model, layer_index=layer_index, keep_indices=keep_indices)
+    after_hidden = _hidden_width(pruned_model, layer_index=layer_index)
+    after_params = _parameter_count(pruned_model)
+
     plan.target_units = keep_indices
     plan.achieved_sparsity = float(1.0 - (len(keep_indices) / channels))
-    plan.details.update({"kept_channels": len(keep_indices), "total_channels": channels})
+    plan.details.update(
+        {
+            "scope": "structured_hidden_channels",
+            "layer_index": layer_index,
+            "kept_channel_indices": keep_indices,
+            "kept_channels": len(keep_indices),
+            "total_channels": channels,
+            "hidden_dim_before": before_hidden,
+            "hidden_dim_after": after_hidden,
+            "parameter_count_before": before_params,
+            "parameter_count_after": after_params,
+            "structural_param_reduction": int(before_params - after_params),
+        }
+    )
     return pruned_model
 
 
@@ -137,7 +169,7 @@ def _apply_unstructured_global(model: torch.nn.Module, plan: PruningPlan) -> Any
             parameter.mul_(mask)
 
     plan.achieved_sparsity = _zero_sparsity(pruned_model)
-    plan.details.update({"scope": "global"})
+    plan.details.update({"scope": "global", "structural_compression": False})
     return pruned_model
 
 
@@ -158,7 +190,7 @@ def _apply_unstructured_layerwise(model: torch.nn.Module, plan: PruningPlan) -> 
             parameter.mul_(mask)
 
     plan.achieved_sparsity = _zero_sparsity(pruned_model)
-    plan.details.update({"scope": "layerwise"})
+    plan.details.update({"scope": "layerwise", "structural_compression": False})
     return pruned_model
 
 

@@ -122,6 +122,55 @@ def test_structured_mode_reduces_parameter_count() -> None:
     assert plan.achieved_sparsity is not None
 
 
+def test_random_structured_pruning_applies_surgery_and_preserves_forward_shape() -> None:
+    model = GCNNodeClassifier(in_channels=6, hidden_channels=8, out_channels=3, num_layers=2, dropout=0.0)
+    pruner = get_pruner("random")()
+    context = PruningContext(config={}, data=None, device="cpu", seed=42)
+
+    scores = pruner.score(model, context, structured=True, target_sparsity=0.5)
+    pruned_model, plan = pruner.apply(model, scores, context, structured=True, target_sparsity=0.5)
+
+    assert plan.details["hidden_dim_after"] < plan.details["hidden_dim_before"]
+    assert plan.details["parameter_count_after"] < plan.details["parameter_count_before"]
+    assert len(plan.details["kept_channel_indices"]) == plan.details["kept_channels"]
+
+    data = _dummy_dataset(num_nodes=16, in_channels=6, num_classes=3)[0]
+    with torch.no_grad():
+        logits = pruned_model(data)
+    assert logits.shape == (data.num_nodes, 3)
+
+
+def test_global_magnitude_structured_pruning_applies_surgery_and_preserves_forward_shape() -> None:
+    model = GCNNodeClassifier(in_channels=6, hidden_channels=10, out_channels=3, num_layers=2, dropout=0.0)
+    pruner = get_pruner("global_magnitude")()
+    context = PruningContext(config={}, data=None, device="cpu", seed=42)
+
+    scores = pruner.score(model, context, structured=True, target_sparsity=0.6)
+    pruned_model, plan = pruner.apply(model, scores, context, structured=True, target_sparsity=0.6)
+
+    assert plan.details["hidden_dim_after"] < plan.details["hidden_dim_before"]
+    assert plan.details["parameter_count_after"] < plan.details["parameter_count_before"]
+    assert plan.details["scope"] == "structured_hidden_channels"
+    assert plan.achieved_sparsity is not None
+
+    data = _dummy_dataset(num_nodes=18, in_channels=6, num_classes=3)[0]
+    with torch.no_grad():
+        logits = pruned_model(data)
+    assert logits.shape == (data.num_nodes, 3)
+
+
+def test_unstructured_mode_does_not_report_structural_compression() -> None:
+    model = GCNNodeClassifier(in_channels=6, hidden_channels=8, out_channels=3, num_layers=2, dropout=0.0)
+    pruner = get_pruner("global_magnitude")()
+    context = PruningContext(config={}, data=None, device="cpu", seed=42)
+
+    scores = pruner.score(model, context, structured=False, target_sparsity=0.5)
+    _, plan = pruner.apply(model, scores, context, structured=False, target_sparsity=0.5)
+
+    assert plan.details["scope"] == "global"
+    assert plan.details["structural_compression"] is False
+
+
 def test_finetuning_runs_and_saves_post_checkpoint(monkeypatch, tmp_path: Path) -> None:
     training_workflow = importlib.import_module("gnn_pruning.training.workflow")
     pruning_workflow = importlib.import_module("gnn_pruning.pruning.workflow")
