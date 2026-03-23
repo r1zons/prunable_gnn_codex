@@ -9,6 +9,8 @@ import os
 from pathlib import Path
 from typing import Any, Dict, List
 
+import torch
+
 
 def _load_json(path: Path) -> Dict[str, Any]:
     with path.open("r", encoding="utf-8") as handle:
@@ -26,6 +28,7 @@ def _collect_dense(run_dir: Path, model: str) -> Dict[str, Any]:
     return {
         "model": model,
         "method": "dense",
+        "mode": "dense",
         "sparsity": 0.0,
         "test_accuracy": float(metrics["test"]["accuracy"]),
         "test_macro_f1": float(metrics["test"]["macro_f1"]),
@@ -37,6 +40,8 @@ def _collect_dense(run_dir: Path, model: str) -> Dict[str, Any]:
 
 
 def _collect_pruned(run_dir: Path, model: str, method: str, sparsity: float) -> Dict[str, Any]:
+    pruning_metrics = _load_json(run_dir / f"pruning_metrics_{method}.json")
+    mode = str(pruning_metrics.get("mode", "unknown"))
     metrics_path = run_dir / "metrics_pruned_post_finetune.json"
     if not metrics_path.exists():
         metrics_path = run_dir / f"metrics_post_prune_{method}.json"
@@ -45,14 +50,23 @@ def _collect_pruned(run_dir: Path, model: str, method: str, sparsity: float) -> 
     post_ckpt = run_dir / f"pruned_{method}_post_finetune.pt"
     checkpoint_size_bytes = float(os.path.getsize(post_ckpt)) if post_ckpt.exists() else 0.0
 
+    checkpoint_param_count = _parameter_count_from_checkpoint(post_ckpt if post_ckpt.exists() else run_dir / f"pruned_{method}.pt")
+    reported_param_count = _get_value(metrics, "parameter_count")
+    if checkpoint_param_count > 0 and reported_param_count > 0 and int(checkpoint_param_count) != int(reported_param_count):
+        raise ValueError(
+            f"Parameter count mismatch for {run_dir.name}: "
+            f"metrics={reported_param_count}, checkpoint={checkpoint_param_count}"
+        )
+
     return {
         "model": model,
         "method": method,
+        "mode": mode,
         "sparsity": sparsity,
         "test_accuracy": float(metrics["test"]["accuracy"]),
         "test_macro_f1": float(metrics["test"]["macro_f1"]),
         "inference_time_mean_sec": _get_value(metrics, "inference_time_mean_sec"),
-        "parameter_count": _get_value(metrics, "parameter_count"),
+        "parameter_count": reported_param_count,
         "checkpoint_size_bytes": checkpoint_size_bytes,
         "run_dir": str(run_dir),
     }
@@ -83,6 +97,14 @@ def build_rows(runs_root: Path) -> List[Dict[str, Any]]:
     return rows
 
 
+def _parameter_count_from_checkpoint(checkpoint_path: Path) -> float:
+    if not checkpoint_path.exists():
+        return 0.0
+    payload = torch.load(checkpoint_path, map_location="cpu")
+    state_dict = payload.get("model_state_dict", {})
+    return float(sum(tensor.numel() for tensor in state_dict.values()))
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Collect presentation benchmark metrics into CSV.")
     parser.add_argument("--runs-root", default="runs/presentation", help="Root directory containing presentation run folders.")
@@ -101,6 +123,7 @@ def main() -> int:
             fieldnames=[
                 "model",
                 "method",
+                "mode",
                 "sparsity",
                 "test_accuracy",
                 "test_macro_f1",

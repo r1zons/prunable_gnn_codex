@@ -64,6 +64,8 @@ def prune_from_checkpoint(checkpoint_path: str, config_path: str) -> PruningArti
 
     model = build_model(model_name, **model_cfg)
     model.load_state_dict(checkpoint["model_state_dict"])
+    dense_param_count = _parameter_count(model)
+    dense_hidden_dims = _hidden_dims(model)
 
     pruner_cls = get_pruner(method)
     pruner = pruner_cls()
@@ -80,6 +82,20 @@ def prune_from_checkpoint(checkpoint_path: str, config_path: str) -> PruningArti
 
     output_dir = Path(resolved.run.output_dir).expanduser()
     output_dir.mkdir(parents=True, exist_ok=True)
+    pruned_param_count = _parameter_count(pruned_model)
+    pruned_hidden_dims = _hidden_dims(pruned_model)
+
+    if structured:
+        if pruned_param_count >= dense_param_count:
+            raise RuntimeError(
+                "Structured pruning must reduce parameter count, "
+                f"but got before={dense_param_count}, after={pruned_param_count}."
+            )
+        if not any(after < before for before, after in zip(dense_hidden_dims, pruned_hidden_dims)):
+            raise RuntimeError(
+                "Structured pruning must reduce at least one hidden dimension, "
+                f"but got before={dense_hidden_dims}, after={pruned_hidden_dims}."
+            )
 
     pruned_checkpoint_path = output_dir / f"pruned_{method}.pt"
     torch.save(
@@ -107,6 +123,31 @@ def prune_from_checkpoint(checkpoint_path: str, config_path: str) -> PruningArti
     post_prune_metrics_path = output_dir / f"metrics_post_prune_{method}.json"
     with post_prune_metrics_path.open("w", encoding="utf-8") as handle:
         json.dump(post_prune_metrics, handle, indent=2)
+
+    eval_param_count = int(post_prune_metrics.get("benchmark", {}).get("parameter_count", -1))
+    if structured and eval_param_count != pruned_param_count:
+        raise RuntimeError(
+            "Structured pruned evaluation must run with the compressed model, "
+            f"but benchmark parameter_count={eval_param_count} and pruned_model parameter_count={pruned_param_count}."
+        )
+
+    debug_payload = {
+        "stage": "post_prune",
+        "structured": structured,
+        "method": method,
+        "model_class_before": model.__class__.__name__,
+        "model_class_after": pruned_model.__class__.__name__,
+        "hidden_dims_before": dense_hidden_dims,
+        "hidden_dims_after": pruned_hidden_dims,
+        "parameter_count_before": dense_param_count,
+        "parameter_count_after": pruned_param_count,
+        "evaluated_parameter_count": eval_param_count,
+        "achieved_sparsity": plan.achieved_sparsity,
+        "kept_channel_indices": list(plan.details.get("kept_channel_indices", [])),
+        "saved_checkpoint_path": str(pruned_checkpoint_path),
+        "loaded_checkpoint_path": str(Path(checkpoint_path).expanduser()),
+    }
+    _write_debug_artifact(output_dir, "prune", debug_payload)
 
     return PruningArtifacts(
         pruned_checkpoint_path=pruned_checkpoint_path,
@@ -146,6 +187,7 @@ def finetune_pruned_checkpoint(
     checkpoint = _load_pruned_checkpoint_payload(Path(checkpoint_path).expanduser(), resolved.device.device)
     output_dir = Path(checkpoint_path).expanduser().parent
     output_dir.mkdir(parents=True, exist_ok=True)
+    structured = str(checkpoint.get("pruning_plan", {}).get("mode", "")) == "structured"
 
     dataset = load_dataset(resolved.data.name, resolved.data.root)
     data = dataset[0]
@@ -155,6 +197,23 @@ def finetune_pruned_checkpoint(
 
     model = build_model(checkpoint["model_name"], **checkpoint["model_config"])
     model.load_state_dict(checkpoint["model_state_dict"])
+    pre_finetune_param_count = _parameter_count(model)
+    pre_finetune_hidden_dims = _hidden_dims(model)
+
+    source_checkpoint = checkpoint.get("source_checkpoint")
+    source_param_count = None
+    source_hidden_dims = None
+    if source_checkpoint:
+        source_payload = torch.load(Path(source_checkpoint).expanduser(), map_location=resolved.device.device)
+        source_model = build_model(source_payload["model_name"], **source_payload["model_config"])
+        source_model.load_state_dict(source_payload["model_state_dict"])
+        source_param_count = _parameter_count(source_model)
+        source_hidden_dims = _hidden_dims(source_model)
+        if structured and pre_finetune_param_count >= source_param_count:
+            raise RuntimeError(
+                "Finetune must continue from compressed structured model, "
+                f"but source parameter_count={source_param_count}, finetune start parameter_count={pre_finetune_param_count}."
+            )
 
     pre_finetune_checkpoint_path = output_dir / f"{Path(checkpoint_path).stem}_pre_finetune.pt"
     torch.save(checkpoint, pre_finetune_checkpoint_path)
@@ -191,6 +250,20 @@ def finetune_pruned_checkpoint(
         json.dump(post_metrics, handle, indent=2)
 
     post_finetune_checkpoint_path = output_dir / f"{Path(checkpoint_path).stem}_post_finetune.pt"
+    post_finetune_param_count = _parameter_count(trainer.model)
+    post_finetune_hidden_dims = _hidden_dims(trainer.model)
+    if structured and source_param_count is not None and post_finetune_param_count >= source_param_count:
+        raise RuntimeError(
+            "Post-finetune model must remain structurally compressed, "
+            f"but source parameter_count={source_param_count}, post-finetune parameter_count={post_finetune_param_count}."
+        )
+    post_eval_param_count = int(post_metrics.get("benchmark", {}).get("parameter_count", -1))
+    if structured and post_eval_param_count != post_finetune_param_count:
+        raise RuntimeError(
+            "Post-finetune evaluation must run with compressed model, "
+            f"but benchmark parameter_count={post_eval_param_count}, model parameter_count={post_finetune_param_count}."
+        )
+
     torch.save(
         {
             "model_name": checkpoint["model_name"],
@@ -199,9 +272,27 @@ def finetune_pruned_checkpoint(
             "model_state_dict": trainer.model.state_dict(),
             "finetune_epochs": epochs,
             "finetune_training": train_result.to_dict(),
+            "pruning_plan": checkpoint.get("pruning_plan", {}),
         },
         post_finetune_checkpoint_path,
     )
+
+    debug_payload = {
+        "stage": "post_finetune",
+        "structured": structured,
+        "model_class_before": model.__class__.__name__,
+        "model_class_after": trainer.model.__class__.__name__,
+        "hidden_dims_source": source_hidden_dims,
+        "hidden_dims_before_finetune": pre_finetune_hidden_dims,
+        "hidden_dims_after_finetune": post_finetune_hidden_dims,
+        "parameter_count_source": source_param_count,
+        "parameter_count_before_finetune": pre_finetune_param_count,
+        "parameter_count_after_finetune": post_finetune_param_count,
+        "evaluated_parameter_count_post_finetune": post_eval_param_count,
+        "loaded_checkpoint_path": str(Path(checkpoint_path).expanduser()),
+        "saved_checkpoint_path": str(post_finetune_checkpoint_path),
+    }
+    _write_debug_artifact(output_dir, "finetune", debug_payload)
 
     return FineTuneArtifacts(
         pre_finetune_checkpoint_path=pre_finetune_checkpoint_path,
@@ -256,4 +347,36 @@ def _model_config_from_model(model: torch.nn.Module, fallback: Dict[str, Any]) -
                 "num_layers": int(len(model.convs)),
                 "dropout": float(getattr(model, "dropout", fallback.get("dropout", 0.0))),
             }
+        if hasattr(conv0, "lin_l") and hasattr(conv1, "lin_l"):
+            return {
+                "in_channels": int(conv0.lin_l.weight.shape[1]),
+                "hidden_channels": int(conv0.lin_l.weight.shape[0]),
+                "out_channels": int(conv1.lin_l.weight.shape[0]),
+                "num_layers": int(len(model.convs)),
+                "dropout": float(getattr(model, "dropout", fallback.get("dropout", 0.0))),
+            }
     return dict(fallback)
+
+
+def _parameter_count(model: torch.nn.Module) -> int:
+    return sum(parameter.numel() for parameter in model.parameters())
+
+
+def _hidden_dims(model: torch.nn.Module) -> list[int]:
+    dims: list[int] = []
+    if hasattr(model, "convs"):
+        for conv in model.convs[:-1]:
+            if hasattr(conv, "out_channels"):
+                dims.append(int(conv.out_channels))
+    return dims
+
+
+def _write_debug_artifact(output_dir: Path, key: str, payload: Dict[str, Any]) -> None:
+    path = output_dir / "pruning_debug.json"
+    existing: Dict[str, Any] = {}
+    if path.exists():
+        with path.open("r", encoding="utf-8") as handle:
+            existing = json.load(handle)
+    existing[key] = payload
+    with path.open("w", encoding="utf-8") as handle:
+        json.dump(existing, handle, indent=2)

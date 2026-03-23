@@ -10,5 +10,5 @@ run:
 pruning:
   method: random
   target_sparsity: 0.9
-  structured: false
+  structured: true
   finetune_epochs: 10
