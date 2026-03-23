@@ -1,0 +1,12 @@
+training:
+  epochs: 5
+  lr: 0.01
+  early_stopping_patience: 5
+run:
+  experiment_name: fast_debug
+
+dataset_overrides:
+  citeseer:
+    training:
+      epochs: 3
+      early_stopping_patience: 3
