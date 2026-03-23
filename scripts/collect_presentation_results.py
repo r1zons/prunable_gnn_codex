@@ -21,15 +21,23 @@ def _get_value(metrics: Dict[str, Any], key: str, default: float = 0.0) -> float
     return float(metrics.get("benchmark", {}).get(key, default))
 
 
-def _collect_dense(run_dir: Path, model: str) -> Dict[str, Any]:
-    metrics = _load_json(run_dir / "metrics_eval.json")
-    checkpoint_path = run_dir / "dense_checkpoint.pt"
-    checkpoint_size_bytes = float(os.path.getsize(checkpoint_path)) if checkpoint_path.exists() else 0.0
+def _row_from_metrics(
+    *,
+    model: str,
+    method: str,
+    mode: str,
+    phase: str,
+    sparsity: float,
+    metrics: Dict[str, Any],
+    checkpoint_size_bytes: float,
+    run_dir: Path,
+) -> Dict[str, Any]:
     return {
         "model": model,
-        "method": "dense",
-        "mode": "dense",
-        "sparsity": 0.0,
+        "method": method,
+        "mode": mode,
+        "phase": phase,
+        "sparsity": sparsity,
         "test_accuracy": float(metrics["test"]["accuracy"]),
         "test_macro_f1": float(metrics["test"]["macro_f1"]),
         "inference_time_mean_sec": _get_value(metrics, "inference_time_mean_sec"),
@@ -39,9 +47,26 @@ def _collect_dense(run_dir: Path, model: str) -> Dict[str, Any]:
     }
 
 
-def _collect_pruned(run_dir: Path, model: str, method: str, sparsity: float) -> Dict[str, Any]:
+def _collect_dense(run_dir: Path, model: str) -> Dict[str, Any]:
+    metrics = _load_json(run_dir / "metrics_eval.json")
+    checkpoint_path = run_dir / "dense_checkpoint.pt"
+    checkpoint_size_bytes = float(os.path.getsize(checkpoint_path)) if checkpoint_path.exists() else 0.0
+    return _row_from_metrics(
+        model=model,
+        method="dense",
+        mode="dense",
+        phase="dense",
+        sparsity=0.0,
+        metrics=metrics,
+        checkpoint_size_bytes=checkpoint_size_bytes,
+        run_dir=run_dir,
+    )
+
+
+def _collect_pruned(run_dir: Path, model: str, method: str, sparsity: float) -> List[Dict[str, Any]]:
     pruning_metrics = _load_json(run_dir / f"pruning_metrics_{method}.json")
     mode = str(pruning_metrics.get("mode", "unknown"))
+    diagnostics = _load_json(run_dir / "pruning_diagnostics.json")
     metrics_path = run_dir / "metrics_pruned_post_finetune.json"
     if not metrics_path.exists():
         metrics_path = run_dir / f"metrics_post_prune_{method}.json"
@@ -58,18 +83,40 @@ def _collect_pruned(run_dir: Path, model: str, method: str, sparsity: float) -> 
             f"metrics={reported_param_count}, checkpoint={checkpoint_param_count}"
         )
 
-    return {
-        "model": model,
-        "method": method,
-        "mode": mode,
-        "sparsity": sparsity,
-        "test_accuracy": float(metrics["test"]["accuracy"]),
-        "test_macro_f1": float(metrics["test"]["macro_f1"]),
-        "inference_time_mean_sec": _get_value(metrics, "inference_time_mean_sec"),
-        "parameter_count": reported_param_count,
-        "checkpoint_size_bytes": checkpoint_size_bytes,
-        "run_dir": str(run_dir),
-    }
+    rows = [
+        _row_from_metrics(
+            model=model,
+            method=method,
+            mode=mode,
+            phase="dense",
+            sparsity=0.0,
+            metrics=diagnostics["metrics"]["dense"],
+            checkpoint_size_bytes=float(diagnostics.get("dense_checkpoint_size", 0.0)),
+            run_dir=run_dir,
+        ),
+        _row_from_metrics(
+            model=model,
+            method=method,
+            mode=mode,
+            phase="post_prune",
+            sparsity=sparsity,
+            metrics=diagnostics["metrics"]["post_prune"],
+            checkpoint_size_bytes=float(diagnostics.get("pruned_checkpoint_size", 0.0)),
+            run_dir=run_dir,
+        ),
+        _row_from_metrics(
+            model=model,
+            method=method,
+            mode=mode,
+            phase="post_finetune",
+            sparsity=sparsity,
+            metrics=diagnostics["metrics"].get("post_finetune", metrics),
+            checkpoint_size_bytes=checkpoint_size_bytes,
+            run_dir=run_dir,
+        ),
+    ]
+    rows[-1]["parameter_count"] = reported_param_count
+    return rows
 
 
 def build_rows(runs_root: Path) -> List[Dict[str, Any]]:
@@ -92,7 +139,7 @@ def build_rows(runs_root: Path) -> List[Dict[str, Any]]:
     for model, method, sparsity in specs:
         label = "50" if sparsity == 0.5 else "90"
         run_dir = runs_root / f"cora_{model}_{method}_{label}"
-        rows.append(_collect_pruned(run_dir, model, method, sparsity))
+        rows.extend(_collect_pruned(run_dir, model, method, sparsity))
 
     return rows
 
@@ -124,6 +171,7 @@ def main() -> int:
                 "model",
                 "method",
                 "mode",
+                "phase",
                 "sparsity",
                 "test_accuracy",
                 "test_macro_f1",

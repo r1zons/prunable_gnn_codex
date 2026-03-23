@@ -26,6 +26,7 @@ class PruningArtifacts:
     pruned_checkpoint_path: Path
     pruning_metrics_path: Path
     post_prune_metrics_path: Path | None = None
+    diagnostics_path: Path | None = None
 
 
 @dataclass
@@ -43,6 +44,7 @@ class FineTuneArtifacts:
     post_finetune_checkpoint_path: Path
     pre_finetune_metrics_path: Path
     post_finetune_metrics_path: Path
+    diagnostics_path: Path | None = None
 
 
 def prune_from_checkpoint(checkpoint_path: str, config_path: str) -> PruningArtifacts:
@@ -114,6 +116,12 @@ def prune_from_checkpoint(checkpoint_path: str, config_path: str) -> PruningArti
         json.dump(asdict(plan), handle, indent=2)
 
     split = _load_or_create_split(config_path=config_path, output_dir=output_dir)
+    dense_metrics = evaluate_dense(
+        config_path=config_path,
+        model_override=model,
+        split_override=split,
+        output_dir_override=str(output_dir),
+    )
     post_prune_metrics = evaluate_dense(
         config_path=config_path,
         model_override=pruned_model,
@@ -148,11 +156,40 @@ def prune_from_checkpoint(checkpoint_path: str, config_path: str) -> PruningArti
         "loaded_checkpoint_path": str(Path(checkpoint_path).expanduser()),
     }
     _write_debug_artifact(output_dir, "prune", debug_payload)
+    diagnostics_path = _write_pruning_diagnostics(
+        output_dir=output_dir,
+        payload={
+            "dataset": resolved.data.name,
+            "model": model_name,
+            "method": method,
+            "mode": "structured" if structured else "unstructured",
+            "requested_sparsity": target_sparsity,
+            "achieved_sparsity": plan.achieved_sparsity,
+            "dense_hidden_dimensions": dense_hidden_dims,
+            "pruned_hidden_dimensions": pruned_hidden_dims,
+            "dense_parameter_count": dense_param_count,
+            "pruned_parameter_count": pruned_param_count,
+            "dense_checkpoint_size": _file_size_bytes(Path(checkpoint_path).expanduser()),
+            "pruned_checkpoint_size": _file_size_bytes(pruned_checkpoint_path),
+            "kept_channel_indices_per_layer": {str(plan.details.get("layer_index", 0)): list(plan.details.get("kept_channel_indices", []))},
+            "dropped_channel_indices_per_layer": {
+                str(plan.details.get("layer_index", 0)): _dropped_indices(
+                    dense_hidden_dims[0] if dense_hidden_dims else 0,
+                    list(plan.details.get("kept_channel_indices", [])),
+                )
+            },
+            "metrics": {
+                "dense": dense_metrics,
+                "post_prune": post_prune_metrics,
+            },
+        },
+    )
 
     return PruningArtifacts(
         pruned_checkpoint_path=pruned_checkpoint_path,
         pruning_metrics_path=pruning_metrics_path,
         post_prune_metrics_path=post_prune_metrics_path,
+        diagnostics_path=diagnostics_path,
     )
 
 
@@ -293,12 +330,27 @@ def finetune_pruned_checkpoint(
         "saved_checkpoint_path": str(post_finetune_checkpoint_path),
     }
     _write_debug_artifact(output_dir, "finetune", debug_payload)
+    diagnostics_path = _write_pruning_diagnostics(
+        output_dir=output_dir,
+        payload={
+            "metrics": {
+                "post_finetune": post_metrics,
+            },
+            "finetune": {
+                "loaded_checkpoint_path": str(Path(checkpoint_path).expanduser()),
+                "parameter_count_before_finetune": pre_finetune_param_count,
+                "parameter_count_after_finetune": post_finetune_param_count,
+            },
+        },
+        merge=True,
+    )
 
     return FineTuneArtifacts(
         pre_finetune_checkpoint_path=pre_finetune_checkpoint_path,
         post_finetune_checkpoint_path=post_finetune_checkpoint_path,
         pre_finetune_metrics_path=pre_finetune_metrics_path,
         post_finetune_metrics_path=post_finetune_metrics_path,
+        diagnostics_path=diagnostics_path,
     )
 
 
@@ -380,3 +432,34 @@ def _write_debug_artifact(output_dir: Path, key: str, payload: Dict[str, Any]) -
     existing[key] = payload
     with path.open("w", encoding="utf-8") as handle:
         json.dump(existing, handle, indent=2)
+
+
+def _write_pruning_diagnostics(output_dir: Path, payload: Dict[str, Any], merge: bool = False) -> Path:
+    path = output_dir / "pruning_diagnostics.json"
+    existing: Dict[str, Any] = {}
+    if merge and path.exists():
+        with path.open("r", encoding="utf-8") as handle:
+            existing = json.load(handle)
+    merged = _deep_merge(existing, payload)
+    with path.open("w", encoding="utf-8") as handle:
+        json.dump(merged, handle, indent=2)
+    return path
+
+
+def _deep_merge(base: Dict[str, Any], update: Dict[str, Any]) -> Dict[str, Any]:
+    merged = dict(base)
+    for key, value in update.items():
+        if isinstance(value, dict) and isinstance(merged.get(key), dict):
+            merged[key] = _deep_merge(merged[key], value)
+        else:
+            merged[key] = value
+    return merged
+
+
+def _file_size_bytes(path: Path) -> int:
+    return int(path.stat().st_size) if path.exists() else 0
+
+
+def _dropped_indices(total_channels: int, kept: list[int]) -> list[int]:
+    kept_set = set(int(i) for i in kept)
+    return [idx for idx in range(total_channels) if idx not in kept_set]
