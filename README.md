@@ -34,6 +34,9 @@ configs/
   models/*.yaml
   presets/*.yaml
   experiments/example.yaml
+  experiments/presentation_flickr.yaml
+  experiments/presentation_reddit.yaml
+  experiments/flickr_graphsage_l*_h*.yaml
   suites/default_small.yaml
   suites/default_medium.yaml
   suites/extended_optional.yaml
@@ -49,6 +52,9 @@ python -m gnn_pruning evaluate --config configs/experiments/example.yaml
 python -m gnn_pruning run-dense --config configs/experiments/example.yaml
 python -m gnn_pruning run-pipeline --config configs/experiments/pipeline_pubmed_gcn.yaml
 python -m gnn_pruning run-suite --config configs/suites/default_small.yaml
+python scripts/run_large_datasets.py
+python scripts/run_flickr_graphsage_sweep.py
+python scripts/summarize_flickr_graphsage_sweep.py --csv runs/flickr_graphsage_sweep/sweep_results.csv
 ```
 
 `train` writes artifacts to `run.output_dir`:
@@ -100,6 +106,14 @@ run_000/
 run_001/
 ...
 ```
+
+## Large dataset + architecture studies
+
+- `configs/experiments/presentation_flickr.yaml` and `configs/experiments/presentation_reddit.yaml` run the same random/global-magnitude comparison setup used by presentation runs (dense/post_prune/post_finetune, sparsity 0.5/0.9).
+- `configs/experiments/flickr_graphsage_l*_h*.yaml` provides a dedicated Flickr GraphSAGE depth/width sweep.
+- `scripts/run_large_datasets.py` runs Flickr/Reddit comparisons and merges pipeline CSV outputs.
+- `scripts/run_flickr_graphsage_sweep.py` runs all Flickr GraphSAGE sweep configs and writes `runs/flickr_graphsage_sweep/sweep_results.csv`.
+- `scripts/summarize_flickr_graphsage_sweep.py` prints grouped summaries and best post-finetune/tradeoff rows.
 
 ## Run tests
 

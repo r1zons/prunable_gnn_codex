@@ -8,3 +8,5 @@ run:
 experiments:
   - configs/experiments/pipeline_citeseer_graphsage.yaml
   - configs/experiments/pipeline_pubmed_gcn.yaml
+  - configs/experiments/presentation_flickr.yaml
+  - configs/experiments/presentation_reddit.yaml

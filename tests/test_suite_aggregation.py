@@ -88,3 +88,34 @@ def test_suite_run_csv_schema(tmp_path: Path) -> None:
     }
     assert required.issubset(set(header))
     assert len(rows) == 1
+
+
+def test_aggregate_separates_rows_by_dataset() -> None:
+    rows = [
+        {
+            "suite_name": "default_medium",
+            "experiment_name": "presentation_flickr",
+            "dataset": "flickr",
+            "model": "gcn",
+            "phase": "post_finetune",
+            "pruning_method": "random",
+            "requested_sparsity": "0.5",
+            "test_accuracy": "0.80",
+            "test_macro_f1": "0.75",
+        },
+        {
+            "suite_name": "default_medium",
+            "experiment_name": "presentation_reddit",
+            "dataset": "reddit",
+            "model": "gcn",
+            "phase": "post_finetune",
+            "pruning_method": "random",
+            "requested_sparsity": "0.5",
+            "test_accuracy": "0.60",
+            "test_macro_f1": "0.55",
+        },
+    ]
+    aggregate = aggregate_suite_rows(rows)
+    assert len(aggregate) == 2
+    datasets = {row["dataset"] for row in aggregate}
+    assert datasets == {"flickr", "reddit"}
