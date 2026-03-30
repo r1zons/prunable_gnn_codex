@@ -1,0 +1,9 @@
+suite_name: default_small
+
+run:
+  num_runs: 2
+  base_seed: 42
+  output_dir: runs/suites/default_small
+
+experiments:
+  - configs/experiments/pipeline_citeseer_graphsage.yaml
