@@ -116,6 +116,7 @@ run_001/
 - `scripts/run_large_datasets.py` runs Flickr/Reddit comparisons and merges pipeline CSV outputs.
 - `scripts/run_flickr_graphsage_sweep.py` runs all Flickr GraphSAGE sweep configs and writes `runs/flickr_graphsage_sweep/sweep_results.csv`.
 - `scripts/summarize_flickr_graphsage_sweep.py` prints grouped summaries and best post-finetune/tradeoff rows.
+- `scripts/debug_flickr_sweep_consistency.py` verifies architecture configs map to distinct dense checkpoints and prints per-config parameter counts/run dirs.
 
 ## Optional live progress reporting
 
@@ -128,6 +129,12 @@ logging:
 ```
 
 - When enabled, runs write a `progress.log` file in the run directory for debugging interrupted jobs.
+
+## Checkpoint isolation rules
+
+- Within one config run, all pruners reuse the same dense checkpoint baseline.
+- Across different architecture configs (dataset/model/layers/hidden/seed/split/config hash changes), incompatible checkpoints are rejected and not silently reused.
+- Run metadata is stored in `run_metadata.json` for dense/pruned/finetuned phases.
 
 ## Run tests
 

@@ -17,3 +17,7 @@ pruning:
   sparsity_levels: [0.5, 0.9]
   structured: true
   finetune_epochs: 5
+
+training:
+  epochs: 150
+  early_stopping_patience: 30

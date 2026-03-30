@@ -83,6 +83,23 @@ def run_pipeline(config_path: str, show_progress: bool = False) -> PipelineArtif
             split_path=train_artifacts.split_path,
         )
     )
+    _append_run_metadata(
+        output_dir=output_dir,
+        payload={
+            "phase": "dense",
+            "dataset": resolved.data.name,
+            "model": resolved.model.name,
+            "num_layers": resolved.model.num_layers,
+            "hidden_channels": resolved.model.hidden_channels,
+            "seed": resolved.run.seed,
+            "split_hash": train_artifacts.split_hash,
+            "dense_checkpoint_path": str(train_artifacts.checkpoint_path),
+            "checkpoint_reused": train_artifacts.checkpoint_reused,
+            "pruning_method": "dense",
+            "sparsity": 0.0,
+            "parameter_count": dense_metrics.get("benchmark", {}).get("parameter_count", ""),
+        },
+    )
 
     variant_summaries: List[Dict[str, Any]] = []
     total_variants = max(1, len(methods) * len(sparsity_levels))
@@ -136,6 +153,23 @@ def run_pipeline(config_path: str, show_progress: bool = False) -> PipelineArtif
                     split_path=variant_dir / "splits.yaml",
                 )
             )
+            _append_run_metadata(
+                output_dir=variant_dir,
+                payload={
+                    "phase": "post_prune",
+                    "dataset": resolved.data.name,
+                    "model": resolved.model.name,
+                    "num_layers": resolved.model.num_layers,
+                    "hidden_channels": resolved.model.hidden_channels,
+                    "seed": resolved.run.seed,
+                    "split_hash": train_artifacts.split_hash,
+                    "dense_checkpoint_path": str(train_artifacts.checkpoint_path),
+                    "checkpoint_reused": train_artifacts.checkpoint_reused,
+                    "pruning_method": method,
+                    "sparsity": sparsity,
+                    "parameter_count": prune_metrics.get("benchmark", {}).get("parameter_count", ""),
+                },
+            )
             rows.append(
                 _build_csv_row(
                     resolved=resolved,
@@ -149,6 +183,23 @@ def run_pipeline(config_path: str, show_progress: bool = False) -> PipelineArtif
                     config_path=variant_config,
                     split_path=variant_dir / "splits.yaml",
                 )
+            )
+            _append_run_metadata(
+                output_dir=variant_dir,
+                payload={
+                    "phase": "post_finetune",
+                    "dataset": resolved.data.name,
+                    "model": resolved.model.name,
+                    "num_layers": resolved.model.num_layers,
+                    "hidden_channels": resolved.model.hidden_channels,
+                    "seed": resolved.run.seed,
+                    "split_hash": train_artifacts.split_hash,
+                    "dense_checkpoint_path": str(train_artifacts.checkpoint_path),
+                    "checkpoint_reused": train_artifacts.checkpoint_reused,
+                    "pruning_method": method,
+                    "sparsity": sparsity,
+                    "parameter_count": finetune_metrics.get("benchmark", {}).get("parameter_count", ""),
+                },
             )
             variant_summaries.append(
                 {
@@ -314,3 +365,16 @@ def _build_summary_markdown(
         )
 
     return "\n".join(lines) + "\n"
+
+
+def _append_run_metadata(output_dir: Path, payload: Dict[str, Any]) -> None:
+    path = output_dir / "run_metadata.json"
+    existing: list[Dict[str, Any]] = []
+    if path.exists():
+        with path.open("r", encoding="utf-8") as handle:
+            loaded = json.load(handle)
+            if isinstance(loaded, list):
+                existing = loaded
+    existing.append(payload)
+    with path.open("w", encoding="utf-8") as handle:
+        json.dump(existing, handle, indent=2)

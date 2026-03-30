@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 from dataclasses import dataclass
 from pathlib import Path
@@ -38,6 +39,9 @@ class TrainArtifacts:
     split_path: Path
     checkpoint_path: Path
     metrics_path: Path
+    checkpoint_reused: bool = False
+    split_hash: str = ""
+    config_hash: str = ""
 
 
 @dataclass
@@ -82,16 +86,31 @@ def train_dense(
             test_ratio=resolved.data.test_ratio,
         )
         split_path = save_split_indices(split, output_dir)
+    split_hash = _split_hash(split)
 
     device = resolved.device.device
     indices = to_index_tensors(split, device=device)
     reporter.stage(3, 6, f"Building model ({resolved.model.name})")
     model = _build_model_from_data(resolved, data)
+    reporter.info(
+        f"Architecture: model={resolved.model.name} num_layers={resolved.model.num_layers} "
+        f"hidden_channels={resolved.model.hidden_channels} params={_parameter_count(model)}"
+    )
 
     checkpoint_path = output_dir / "dense_checkpoint.pt"
     resume_state: Optional[Dict[str, Any]] = None
+    checkpoint_reused = False
+    run_signature = _build_run_signature(resolved=resolved, split_hash=split_hash)
     if resume and checkpoint_path.exists():
-        resume_state = load_checkpoint(checkpoint_path, map_location=device)
+        loaded = load_checkpoint(checkpoint_path, map_location=device)
+        compatible, reason = _checkpoint_is_compatible(loaded, run_signature)
+        if compatible:
+            resume_state = loaded
+            checkpoint_reused = True
+            reporter.info(f"Using dense checkpoint: {checkpoint_path}")
+            reporter.info("Checkpoint compatibility validated")
+        else:
+            reporter.info(f"Checkpoint rejected due to config mismatch: {reason}")
 
     trainer = DenseTrainer(
         model=model,
@@ -146,6 +165,7 @@ def train_dense(
             "num_layers": resolved.model.num_layers,
             "dropout": resolved.model.dropout,
         },
+        "run_signature": run_signature,
     }
     save_checkpoint(checkpoint_payload, checkpoint_path)
     reporter.stage(6, 6, "Saving artifacts")
@@ -158,6 +178,9 @@ def train_dense(
         split_path=split_path,
         checkpoint_path=checkpoint_path,
         metrics_path=metrics_path,
+        checkpoint_reused=checkpoint_reused,
+        split_hash=split_hash,
+        config_hash=str(run_signature["config_hash"]),
     )
 
 
@@ -306,6 +329,42 @@ def _write_json(payload: Dict[str, Any], path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8") as handle:
         json.dump(payload, handle, indent=2)
+
+
+def _split_hash(split: Any) -> str:
+    payload = {
+        "train": [int(v) for v in split.train],
+        "val": [int(v) for v in split.val],
+        "test": [int(v) for v in split.test],
+    }
+    return hashlib.sha256(json.dumps(payload, sort_keys=True).encode("utf-8")).hexdigest()
+
+
+def _build_run_signature(resolved: Any, split_hash: str) -> Dict[str, Any]:
+    return {
+        "dataset": resolved.data.name,
+        "model_name": resolved.model.name,
+        "num_layers": int(resolved.model.num_layers),
+        "hidden_channels": int(resolved.model.hidden_channels),
+        "dropout": float(resolved.model.dropout),
+        "seed": int(resolved.run.seed),
+        "split_hash": split_hash,
+        "config_hash": hashlib.sha256(json.dumps(resolved.to_dict(), sort_keys=True).encode("utf-8")).hexdigest(),
+    }
+
+
+def _checkpoint_is_compatible(payload: Dict[str, Any], expected: Dict[str, Any]) -> tuple[bool, str]:
+    saved = payload.get("run_signature")
+    if not isinstance(saved, dict):
+        return False, "missing run_signature"
+    for key in ["dataset", "model_name", "num_layers", "hidden_channels", "dropout", "seed", "split_hash", "config_hash"]:
+        if saved.get(key) != expected.get(key):
+            return False, f"{key} differs (saved={saved.get(key)} expected={expected.get(key)})"
+    return True, ""
+
+
+def _parameter_count(model: torch.nn.Module) -> int:
+    return int(sum(parameter.numel() for parameter in model.parameters()))
 
 
 def _resolve_run_dir(resolved: Any, resume: bool, output_dir_override: Optional[str]) -> Path:
