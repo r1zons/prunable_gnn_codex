@@ -61,7 +61,12 @@ def load_dataset(name: str, root: Union[str, Path] = "./data") -> Any:
 
 def _load_planetoid(root: Union[str, Path], name: str) -> Any:
     module = _require_pyg()
-    return module.Planetoid(root=str(Path(root) / "planetoid"), name=name.capitalize())
+    canonical = {
+        "cora": "Cora",
+        "citeseer": "CiteSeer",
+        "pubmed": "PubMed",
+    }.get(name, name.capitalize())
+    return module.Planetoid(root=str(Path(root) / "planetoid"), name=canonical)
 
 
 def _load_webkb(root: Union[str, Path], name: str) -> Any:

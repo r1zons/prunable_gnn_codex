@@ -134,7 +134,7 @@ def test_csv_reports_actual_pruned_model_parameter_count(monkeypatch, tmp_path: 
     finetune_pruned_checkpoint(str(artifacts.pruned_checkpoint_path), str(config), finetune_epochs=1)
 
     collector = _load_collect_module()
-    rows = collector._collect_pruned(run_dir=run_dir, model="gcn", method="global_magnitude", sparsity=0.5)
+    rows = collector._collect_pruned(run_dir=run_dir, dataset="cora", model="gcn", method="global_magnitude", sparsity=0.5)
     row = next(r for r in rows if r["phase"] == "post_finetune")
     checkpoint_params = _param_count_from_checkpoint(run_dir / "pruned_global_magnitude_post_finetune.pt")
 

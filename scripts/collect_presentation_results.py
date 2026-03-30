@@ -23,6 +23,7 @@ def _get_value(metrics: Dict[str, Any], key: str, default: float = 0.0) -> float
 
 def _row_from_metrics(
     *,
+    dataset: str,
     model: str,
     method: str,
     mode: str,
@@ -33,6 +34,7 @@ def _row_from_metrics(
     run_dir: Path,
 ) -> Dict[str, Any]:
     return {
+        "dataset": dataset,
         "model": model,
         "method": method,
         "mode": mode,
@@ -47,12 +49,13 @@ def _row_from_metrics(
     }
 
 
-def _collect_dense(run_dir: Path, model: str) -> Dict[str, Any]:
+def _collect_dense(run_dir: Path, dataset: str, model: str) -> Dict[str, Any]:
     metrics = _load_json(run_dir / "metrics_eval.json")
     checkpoint_path = run_dir / "dense_checkpoint.pt"
     checkpoint_size_bytes = float(os.path.getsize(checkpoint_path)) if checkpoint_path.exists() else 0.0
     return _row_from_metrics(
         model=model,
+        dataset=dataset,
         method="dense",
         mode="dense",
         phase="dense",
@@ -63,7 +66,7 @@ def _collect_dense(run_dir: Path, model: str) -> Dict[str, Any]:
     )
 
 
-def _collect_pruned(run_dir: Path, model: str, method: str, sparsity: float) -> List[Dict[str, Any]]:
+def _collect_pruned(run_dir: Path, dataset: str, model: str, method: str, sparsity: float) -> List[Dict[str, Any]]:
     pruning_metrics = _load_json(run_dir / f"pruning_metrics_{method}.json")
     mode = str(pruning_metrics.get("mode", "unknown"))
     diagnostics = _load_json(run_dir / "pruning_diagnostics.json")
@@ -86,6 +89,7 @@ def _collect_pruned(run_dir: Path, model: str, method: str, sparsity: float) -> 
     rows = [
         _row_from_metrics(
             model=model,
+            dataset=dataset,
             method=method,
             mode=mode,
             phase="dense",
@@ -96,6 +100,7 @@ def _collect_pruned(run_dir: Path, model: str, method: str, sparsity: float) -> 
         ),
         _row_from_metrics(
             model=model,
+            dataset=dataset,
             method=method,
             mode=mode,
             phase="post_prune",
@@ -106,6 +111,7 @@ def _collect_pruned(run_dir: Path, model: str, method: str, sparsity: float) -> 
         ),
         _row_from_metrics(
             model=model,
+            dataset=dataset,
             method=method,
             mode=mode,
             phase="post_finetune",
@@ -122,8 +128,8 @@ def _collect_pruned(run_dir: Path, model: str, method: str, sparsity: float) -> 
 def build_rows(runs_root: Path) -> List[Dict[str, Any]]:
     rows: List[Dict[str, Any]] = []
 
-    rows.append(_collect_dense(runs_root / "cora_gcn_dense", "gcn"))
-    rows.append(_collect_dense(runs_root / "cora_graphsage_dense", "graphsage"))
+    rows.append(_collect_dense(runs_root / "cora_gcn_dense", "cora", "gcn"))
+    rows.append(_collect_dense(runs_root / "cora_graphsage_dense", "cora", "graphsage"))
 
     specs = [
         ("gcn", "random", 0.5),
@@ -139,7 +145,7 @@ def build_rows(runs_root: Path) -> List[Dict[str, Any]]:
     for model, method, sparsity in specs:
         label = "50" if sparsity == 0.5 else "90"
         run_dir = runs_root / f"cora_{model}_{method}_{label}"
-        rows.extend(_collect_pruned(run_dir, model, method, sparsity))
+        rows.extend(_collect_pruned(run_dir, "cora", model, method, sparsity))
 
     return rows
 
@@ -168,6 +174,7 @@ def main() -> int:
         writer = csv.DictWriter(
             handle,
             fieldnames=[
+                "dataset",
                 "model",
                 "method",
                 "mode",
