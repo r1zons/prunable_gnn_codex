@@ -11,6 +11,7 @@ from typing import Any, Dict, Iterable, List, Sequence, Tuple
 
 from gnn_pruning.config import dump_yaml, load_yaml
 from gnn_pruning.reporting import write_suite_aggregate_rows, write_suite_run_rows
+from gnn_pruning.utils import ProgressReporter
 
 from .run_pipeline import run_pipeline
 
@@ -24,7 +25,7 @@ class SuiteArtifacts:
     aggregate_csv_path: Path
 
 
-def run_suite(config_path: str) -> SuiteArtifacts:
+def run_suite(config_path: str, show_progress: bool = False) -> SuiteArtifacts:
     """Run repeated pipeline benchmarks and export aggregate metrics."""
     suite_cfg = load_yaml(config_path)
     run_cfg = suite_cfg.get("run", {}) if isinstance(suite_cfg.get("run", {}), dict) else {}
@@ -33,22 +34,30 @@ def run_suite(config_path: str) -> SuiteArtifacts:
     base_seed = int(run_cfg.get("base_seed", 42))
     output_dir = Path(str(run_cfg.get("output_dir", f"runs/suites/{suite_name}"))).expanduser()
     output_dir.mkdir(parents=True, exist_ok=True)
+    reporter = ProgressReporter(enabled=show_progress, log_path=output_dir / "progress.log")
 
     experiment_refs = _resolve_experiment_configs(suite_cfg)
     run_rows: List[Dict[str, Any]] = []
 
+    total_jobs = max(1, num_runs * len(experiment_refs))
+    job_index = 0
     for run_index in range(num_runs):
         run_seed = base_seed + run_index
         run_dir = output_dir / f"run_{run_index:03d}"
         run_dir.mkdir(parents=True, exist_ok=True)
         for experiment_config in experiment_refs:
+            job_index += 1
             pipeline_config = _build_run_config(
                 source_config=experiment_config,
                 destination=run_dir / f"{Path(experiment_config).stem}.yaml",
                 run_seed=run_seed,
                 output_dir=run_dir / Path(experiment_config).stem,
             )
-            pipeline_artifacts = run_pipeline(str(pipeline_config))
+            reporter.info(
+                f"[suite {job_index}/{total_jobs}] run={run_index + 1}/{num_runs} "
+                f"config={Path(experiment_config).name} seed={run_seed}"
+            )
+            pipeline_artifacts = run_pipeline(str(pipeline_config), show_progress=show_progress)
             run_rows.extend(
                 _load_pipeline_rows(
                     suite_name=suite_name,

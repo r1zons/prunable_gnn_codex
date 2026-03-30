@@ -13,7 +13,7 @@ from gnn_pruning.data import load_split_indices
 from gnn_pruning.pruning.workflow import finetune_pruned_checkpoint, prune_from_checkpoint
 from gnn_pruning.reporting import write_pipeline_csv_rows
 from gnn_pruning.training import evaluate_dense_and_save, train_dense
-from gnn_pruning.utils import resolve_output_dir
+from gnn_pruning.utils import ProgressReporter, resolve_output_dir
 
 
 @dataclass
@@ -29,7 +29,7 @@ class PipelineArtifacts:
     summary_path: Path
 
 
-def run_pipeline(config_path: str) -> PipelineArtifacts:
+def run_pipeline(config_path: str, show_progress: bool = False) -> PipelineArtifacts:
     """Run dense + pruning benchmark pipeline with shared split/checkpoint."""
     resolved = resolve_config(config_path)
     output_dir = resolve_output_dir(
@@ -41,12 +41,21 @@ def run_pipeline(config_path: str) -> PipelineArtifacts:
         resume=False,
     )
     output_dir.mkdir(parents=True, exist_ok=True)
+    reporter = ProgressReporter(enabled=show_progress, log_path=output_dir / "progress.log")
 
-    train_artifacts = train_dense(config_path=config_path, resume=True, output_dir_override=str(output_dir))
+    reporter.stage(1, 6, "Training dense model")
+    train_artifacts = train_dense(
+        config_path=config_path,
+        resume=True,
+        output_dir_override=str(output_dir),
+        progress_reporter=reporter,
+    )
+    reporter.stage(2, 6, "Evaluating dense model")
     eval_artifacts = evaluate_dense_and_save(
         config_path=config_path,
         checkpoint_path=str(train_artifacts.checkpoint_path),
         output_dir_override=str(output_dir),
+        progress_reporter=reporter,
     )
 
     resolved.run.output_dir = str(output_dir)
@@ -76,10 +85,15 @@ def run_pipeline(config_path: str) -> PipelineArtifacts:
     )
 
     variant_summaries: List[Dict[str, Any]] = []
+    total_variants = max(1, len(methods) * len(sparsity_levels))
+    variant_index = 0
     for method in methods:
         for sparsity in sparsity_levels:
+            variant_index += 1
+            reporter.stage(3, 6, f"Pruning variant {variant_index}/{total_variants}: method={method} sparsity={sparsity}")
             variant_dir = output_dir / "pruning" / method / f"sparsity_{_slug_sparsity(sparsity)}"
             variant_dir.mkdir(parents=True, exist_ok=True)
+            variant_reporter = ProgressReporter(enabled=show_progress, log_path=variant_dir / "progress.log")
             variant_config = _write_variant_config(
                 source_cfg=raw_cfg,
                 destination=variant_dir / "pipeline_variant.yaml",
@@ -92,12 +106,16 @@ def run_pipeline(config_path: str) -> PipelineArtifacts:
             prune_artifacts = prune_from_checkpoint(
                 checkpoint_path=str(train_artifacts.checkpoint_path),
                 config_path=str(variant_config),
+                progress_reporter=variant_reporter,
             )
+            reporter.stage(4, 6, f"Post-prune evaluation done for {method}@{sparsity}")
             finetune_artifacts = finetune_pruned_checkpoint(
                 checkpoint_path=str(prune_artifacts.pruned_checkpoint_path),
                 config_path=str(variant_config),
                 finetune_epochs=None,
+                progress_reporter=variant_reporter,
             )
+            reporter.stage(5, 6, f"Post-finetune evaluation done for {method}@{sparsity}")
 
             prune_metrics = _read_json(prune_artifacts.post_prune_metrics_path) if prune_artifacts.post_prune_metrics_path else {}
             finetune_metrics = _read_json(finetune_artifacts.post_finetune_metrics_path)
@@ -155,6 +173,7 @@ def run_pipeline(config_path: str) -> PipelineArtifacts:
         ),
         encoding="utf-8",
     )
+    reporter.stage(6, 6, "Saving artifacts")
 
     return PipelineArtifacts(
         output_dir=output_dir,

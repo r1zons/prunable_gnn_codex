@@ -52,6 +52,8 @@ python -m gnn_pruning evaluate --config configs/experiments/example.yaml
 python -m gnn_pruning run-dense --config configs/experiments/example.yaml
 python -m gnn_pruning run-pipeline --config configs/experiments/pipeline_pubmed_gcn.yaml
 python -m gnn_pruning run-suite --config configs/suites/default_small.yaml
+python -m gnn_pruning run-dense --config configs/experiments/example.yaml --progress
+python -m gnn_pruning run-pipeline --config configs/experiments/presentation_flickr.yaml --progress
 python scripts/run_large_datasets.py
 python scripts/run_flickr_graphsage_sweep.py
 python scripts/summarize_flickr_graphsage_sweep.py --csv runs/flickr_graphsage_sweep/sweep_results.csv
@@ -114,6 +116,18 @@ run_001/
 - `scripts/run_large_datasets.py` runs Flickr/Reddit comparisons and merges pipeline CSV outputs.
 - `scripts/run_flickr_graphsage_sweep.py` runs all Flickr GraphSAGE sweep configs and writes `runs/flickr_graphsage_sweep/sweep_results.csv`.
 - `scripts/summarize_flickr_graphsage_sweep.py` prints grouped summaries and best post-finetune/tradeoff rows.
+
+## Optional live progress reporting
+
+- Add `--progress` to supported commands (`train`, `finetune`, `run-dense`, `run-pipeline`, `run-suite`) to print stage and epoch-level progress live.
+- You can also enable it in config:
+
+```yaml
+logging:
+  show_progress: true
+```
+
+- When enabled, runs write a `progress.log` file in the run directory for debugging interrupted jobs.
 
 ## Run tests
 

@@ -30,23 +30,30 @@ def structurally_prune_hidden_channels(model: Any, layer_index: int, keep_indice
     if layer_index < 0 or layer_index >= len(convs) - 1:
         raise ValueError("layer_index must target a hidden layer with a downstream layer.")
 
-    original_conv = convs[layer_index]
-    next_conv = convs[layer_index + 1]
-
     if isinstance(pruned_model, GCNNodeClassifier):
-        convs[layer_index] = _rebuild_gcn_out(original_conv, kept)
-        convs[layer_index + 1] = _rebuild_gcn_in(next_conv, kept)
+        _cascade_hidden_prune_gcn(convs=convs, start_layer=layer_index, keep=kept)
     elif isinstance(pruned_model, GraphSAGENodeClassifier):
-        convs[layer_index] = _rebuild_sage_out(original_conv, kept)
-        convs[layer_index + 1] = _rebuild_sage_in(next_conv, kept)
+        _cascade_hidden_prune_sage(convs=convs, start_layer=layer_index, keep=kept)
     else:
         raise TypeError("Unsupported model type for structural hidden-channel pruning.")
 
     if hasattr(pruned_model, "hidden_channels"):
         pruned_model.hidden_channels = int(kept.numel())
 
-    _validate_internal_shapes(pruned_model, layer_index)
+    _validate_all_internal_shapes(pruned_model)
     return pruned_model
+
+
+def _cascade_hidden_prune_gcn(convs: Any, start_layer: int, keep: torch.Tensor) -> None:
+    for idx in range(start_layer, len(convs) - 1):
+        convs[idx] = _rebuild_gcn_out(convs[idx], keep)
+        convs[idx + 1] = _rebuild_gcn_in(convs[idx + 1], keep)
+
+
+def _cascade_hidden_prune_sage(convs: Any, start_layer: int, keep: torch.Tensor) -> None:
+    for idx in range(start_layer, len(convs) - 1):
+        convs[idx] = _rebuild_sage_out(convs[idx], keep)
+        convs[idx + 1] = _rebuild_sage_in(convs[idx + 1], keep)
 
 
 def validate_structural_compression(original_model: Any, compressed_model: Any, data: Any) -> None:
@@ -160,6 +167,13 @@ def _validate_internal_shapes(model: Any, layer_index: int) -> None:
     in_channels = _conv_in_channels(next_conv)
     if out_channels != in_channels:
         raise ValueError("Surgery produced incompatible adjacent layer shapes.")
+
+
+def _validate_all_internal_shapes(model: Any) -> None:
+    if not hasattr(model, "convs"):
+        return
+    for idx in range(len(model.convs) - 1):
+        _validate_internal_shapes(model, idx)
 
 
 def _conv_out_channels(conv: Any) -> int:

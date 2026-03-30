@@ -3,7 +3,8 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Any, Dict, Optional
+import time
+from typing import Any, Callable, Dict, Optional
 
 import torch
 from torch import nn
@@ -56,6 +57,7 @@ class DenseTrainer:
         train_idx: torch.Tensor,
         val_idx: torch.Tensor,
         resume_state: Optional[Dict[str, Any]] = None,
+        progress_callback: Optional[Callable[[Dict[str, float]], None]] = None,
     ) -> TrainResult:
         """Train model with early stopping and optional resume state."""
         data = data.to(self.device)
@@ -80,6 +82,7 @@ class DenseTrainer:
         last_epoch = start_epoch - 1
 
         for epoch in range(start_epoch, self.max_epochs):
+            epoch_start = time.perf_counter()
             last_epoch = epoch
             self.model.train()
             self.optimizer.zero_grad()
@@ -92,6 +95,8 @@ class DenseTrainer:
             with torch.no_grad():
                 logits = self.model(data)
                 val_loss = self.loss_fn(logits[val_idx], data.y[val_idx])
+                train_acc = float((logits[train_idx].argmax(dim=-1) == data.y[train_idx]).float().mean().item())
+                val_acc = float((logits[val_idx].argmax(dim=-1) == data.y[val_idx]).float().mean().item())
 
             final_train_loss = float(train_loss.item())
             final_val_loss = float(val_loss.item())
@@ -103,6 +108,21 @@ class DenseTrainer:
                 epochs_without_improvement = 0
             else:
                 epochs_without_improvement += 1
+
+            if progress_callback is not None:
+                progress_callback(
+                    {
+                        "epoch": float(epoch + 1),
+                        "max_epochs": float(self.max_epochs),
+                        "train_loss": final_train_loss,
+                        "val_loss": final_val_loss,
+                        "train_acc": train_acc,
+                        "val_acc": val_acc,
+                        "best_epoch": float(best_epoch + 1 if best_epoch >= 0 else 0),
+                        "early_stopping_counter": float(epochs_without_improvement),
+                        "elapsed_sec": float(time.perf_counter() - epoch_start),
+                    }
+                )
 
             if epochs_without_improvement >= self.early_stopping_patience:
                 break

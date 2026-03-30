@@ -27,7 +27,7 @@ from gnn_pruning.evaluation import (
 from gnn_pruning.models import build_model
 from gnn_pruning.training.checkpoints import load_checkpoint, save_checkpoint
 from gnn_pruning.training.trainer import DenseTrainer
-from gnn_pruning.utils import resolve_output_dir, set_seed
+from gnn_pruning.utils import ProgressReporter, resolve_output_dir, set_seed
 
 
 @dataclass
@@ -48,21 +48,29 @@ class EvalArtifacts:
     metrics_path: Path
 
 
-def train_dense(config_path: str, resume: bool = True, output_dir_override: Optional[str] = None) -> TrainArtifacts:
+def train_dense(
+    config_path: str,
+    resume: bool = True,
+    output_dir_override: Optional[str] = None,
+    progress_reporter: Optional[ProgressReporter] = None,
+) -> TrainArtifacts:
     """Train dense model and persist checkpoint/metrics artifacts."""
     resolved = resolve_config(config_path)
     output_dir = _resolve_run_dir(resolved, resume=resume, output_dir_override=output_dir_override)
     output_dir.mkdir(parents=True, exist_ok=True)
     resolved.run.output_dir = str(output_dir)
+    reporter = progress_reporter or ProgressReporter(enabled=False)
 
     set_seed(resolved.run.seed)
     resolved_path = snapshot_path(output_dir)
     dump_yaml(resolved.to_dict(), resolved_path)
 
+    reporter.stage(1, 6, f"Loading dataset ({resolved.data.name})")
     dataset = load_dataset(resolved.data.name, resolved.data.root)
     data = dataset[0]
 
     split_path = output_dir / "splits.yaml"
+    reporter.stage(2, 6, "Creating/loading split")
     if split_path.exists():
         split = load_split_indices(split_path)
     else:
@@ -77,6 +85,7 @@ def train_dense(config_path: str, resume: bool = True, output_dir_override: Opti
 
     device = resolved.device.device
     indices = to_index_tensors(split, device=device)
+    reporter.stage(3, 6, f"Building model ({resolved.model.name})")
     model = _build_model_from_data(resolved, data)
 
     checkpoint_path = output_dir / "dense_checkpoint.pt"
@@ -92,9 +101,27 @@ def train_dense(config_path: str, resume: bool = True, output_dir_override: Opti
         max_epochs=resolved.training.epochs,
         early_stopping_patience=resolved.training.early_stopping_patience,
     )
-    train_result = trainer.fit(data=data, train_idx=indices["train"], val_idx=indices["val"], resume_state=resume_state)
+    reporter.stage(4, 6, "Training dense model")
+    train_result = trainer.fit(
+        data=data,
+        train_idx=indices["train"],
+        val_idx=indices["val"],
+        resume_state=resume_state,
+        progress_callback=lambda payload: reporter.epoch(
+            epoch=int(payload["epoch"]),
+            max_epochs=int(payload["max_epochs"]),
+            train_loss=float(payload["train_loss"]),
+            val_loss=float(payload["val_loss"]),
+            train_acc=float(payload["train_acc"]),
+            val_acc=float(payload["val_acc"]),
+            best_epoch=int(payload["best_epoch"]),
+            early_stopping_counter=int(payload["early_stopping_counter"]),
+            elapsed_sec=float(payload["elapsed_sec"]),
+        ),
+    )
 
     # evaluate on splits using best model state restored by trainer
+    reporter.stage(5, 6, "Evaluating dense model")
     metrics = evaluate_dense(
         config_path,
         checkpoint_path=None,
@@ -103,6 +130,7 @@ def train_dense(config_path: str, resume: bool = True, output_dir_override: Opti
         output_dir_override=str(output_dir),
     )
     metrics["training"] = train_result.to_dict()
+    reporter.phase_metrics("dense", metrics)
 
     checkpoint_payload = {
         "epoch": int(train_result.epochs_ran - 1),
@@ -120,6 +148,7 @@ def train_dense(config_path: str, resume: bool = True, output_dir_override: Opti
         },
     }
     save_checkpoint(checkpoint_payload, checkpoint_path)
+    reporter.stage(6, 6, "Saving artifacts")
 
     metrics_path = output_dir / "metrics_train.json"
     _write_json(metrics, metrics_path)
@@ -225,6 +254,7 @@ def evaluate_dense_and_save(
     config_path: str,
     checkpoint_path: Optional[str] = None,
     output_dir_override: Optional[str] = None,
+    progress_reporter: Optional[ProgressReporter] = None,
 ) -> EvalArtifacts:
     """Evaluate dense checkpoint and save metrics/resolved config artifacts."""
     resolved = resolve_config(config_path)
@@ -235,12 +265,15 @@ def evaluate_dense_and_save(
 
     output_dir.mkdir(parents=True, exist_ok=True)
     resolved.run.output_dir = str(output_dir)
+    reporter = progress_reporter or ProgressReporter(enabled=False)
 
     resolved_path = snapshot_path(output_dir)
     dump_yaml(resolved.to_dict(), resolved_path)
 
     ckpt = Path(checkpoint_path).expanduser() if checkpoint_path else None
+    reporter.info("Evaluating dense checkpoint...")
     metrics = evaluate_dense(config_path=config_path, checkpoint_path=ckpt, output_dir_override=str(output_dir))
+    reporter.phase_metrics("dense_eval", metrics)
     metrics_path = output_dir / "metrics_eval.json"
     _write_json(metrics, metrics_path)
     return EvalArtifacts(resolved_config_path=resolved_path, metrics_path=metrics_path)

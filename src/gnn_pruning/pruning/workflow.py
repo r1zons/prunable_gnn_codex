@@ -14,6 +14,7 @@ from gnn_pruning.data import generate_exact_ratio_split, load_dataset, load_spli
 from gnn_pruning.models import build_model
 from gnn_pruning.training.trainer import DenseTrainer
 from gnn_pruning.training.workflow import evaluate_dense
+from gnn_pruning.utils import ProgressReporter
 
 from .base import PruningContext
 from .registry import get_pruner
@@ -47,9 +48,14 @@ class FineTuneArtifacts:
     diagnostics_path: Path | None = None
 
 
-def prune_from_checkpoint(checkpoint_path: str, config_path: str) -> PruningArtifacts:
+def prune_from_checkpoint(
+    checkpoint_path: str,
+    config_path: str,
+    progress_reporter: ProgressReporter | None = None,
+) -> PruningArtifacts:
     """Load dense checkpoint, apply selected pruner, and save pruned artifacts."""
     resolved = resolve_config(config_path)
+    reporter = progress_reporter or ProgressReporter(enabled=False)
     raw_cfg = load_yaml(config_path)
     prune_cfg: Dict[str, Any] = raw_cfg.get("pruning", {}) if isinstance(raw_cfg.get("pruning", {}), dict) else {}
 
@@ -73,7 +79,9 @@ def prune_from_checkpoint(checkpoint_path: str, config_path: str) -> PruningArti
     pruner = pruner_cls()
 
     context = PruningContext(config=resolved.to_dict(), data=None, device=resolved.device.device, seed=resolved.run.seed)
+    reporter.info(f"Scoring channels for {method} pruning...")
     scores = pruner.score(model, context)
+    reporter.info("Applying pruning...")
     pruned_model, plan = pruner.apply(
         model=model,
         scores=scores,
@@ -116,12 +124,14 @@ def prune_from_checkpoint(checkpoint_path: str, config_path: str) -> PruningArti
         json.dump(asdict(plan), handle, indent=2)
 
     split = _load_or_create_split(config_path=config_path, output_dir=output_dir)
+    reporter.info("Evaluating dense checkpoint metrics...")
     dense_metrics = evaluate_dense(
         config_path=config_path,
         model_override=model,
         split_override=split,
         output_dir_override=str(output_dir),
     )
+    reporter.info("Evaluating post-prune model...")
     post_prune_metrics = evaluate_dense(
         config_path=config_path,
         model_override=pruned_model,
@@ -131,6 +141,7 @@ def prune_from_checkpoint(checkpoint_path: str, config_path: str) -> PruningArti
     post_prune_metrics_path = output_dir / f"metrics_post_prune_{method}.json"
     with post_prune_metrics_path.open("w", encoding="utf-8") as handle:
         json.dump(post_prune_metrics, handle, indent=2)
+    reporter.phase_metrics("post_prune", post_prune_metrics)
 
     eval_param_count = int(post_prune_metrics.get("benchmark", {}).get("parameter_count", -1))
     if structured and eval_param_count != pruned_param_count:
@@ -214,9 +225,11 @@ def finetune_pruned_checkpoint(
     checkpoint_path: str,
     config_path: str,
     finetune_epochs: int | None = None,
+    progress_reporter: ProgressReporter | None = None,
 ) -> FineTuneArtifacts:
     """Fine-tune a pruned checkpoint, saving pre/post checkpoints and metrics."""
     resolved = resolve_config(config_path)
+    reporter = progress_reporter or ProgressReporter(enabled=False)
     raw_cfg = load_yaml(config_path)
     prune_cfg: Dict[str, Any] = raw_cfg.get("pruning", {}) if isinstance(raw_cfg.get("pruning", {}), dict) else {}
     epochs = int(finetune_epochs if finetune_epochs is not None else prune_cfg.get("finetune_epochs", 50))
@@ -255,6 +268,7 @@ def finetune_pruned_checkpoint(
     pre_finetune_checkpoint_path = output_dir / f"{Path(checkpoint_path).stem}_pre_finetune.pt"
     torch.save(checkpoint, pre_finetune_checkpoint_path)
 
+    reporter.info("Evaluating pre-finetune model...")
     pre_metrics = evaluate_dense(
         config_path=config_path,
         model_override=model,
@@ -264,6 +278,7 @@ def finetune_pruned_checkpoint(
     pre_finetune_metrics_path = output_dir / "metrics_pruned_pre_finetune.json"
     with pre_finetune_metrics_path.open("w", encoding="utf-8") as handle:
         json.dump(pre_metrics, handle, indent=2)
+    reporter.phase_metrics("pre_finetune", pre_metrics)
 
     trainer = DenseTrainer(
         model=model,
@@ -273,8 +288,25 @@ def finetune_pruned_checkpoint(
         max_epochs=epochs,
         early_stopping_patience=resolved.training.early_stopping_patience,
     )
-    train_result = trainer.fit(data=data, train_idx=indices["train"], val_idx=indices["val"])
+    reporter.info(f"Starting fine-tuning for {epochs} epochs...")
+    train_result = trainer.fit(
+        data=data,
+        train_idx=indices["train"],
+        val_idx=indices["val"],
+        progress_callback=lambda payload: reporter.epoch(
+            epoch=int(payload["epoch"]),
+            max_epochs=int(payload["max_epochs"]),
+            train_loss=float(payload["train_loss"]),
+            val_loss=float(payload["val_loss"]),
+            train_acc=float(payload["train_acc"]),
+            val_acc=float(payload["val_acc"]),
+            best_epoch=int(payload["best_epoch"]),
+            early_stopping_counter=int(payload["early_stopping_counter"]),
+            elapsed_sec=float(payload["elapsed_sec"]),
+        ),
+    )
 
+    reporter.info("Evaluating post-finetune model...")
     post_metrics = evaluate_dense(
         config_path=config_path,
         model_override=trainer.model,
@@ -285,6 +317,7 @@ def finetune_pruned_checkpoint(
     post_finetune_metrics_path = output_dir / "metrics_pruned_post_finetune.json"
     with post_finetune_metrics_path.open("w", encoding="utf-8") as handle:
         json.dump(post_metrics, handle, indent=2)
+    reporter.phase_metrics("post_finetune", post_metrics)
 
     post_finetune_checkpoint_path = output_dir / f"{Path(checkpoint_path).stem}_post_finetune.pt"
     post_finetune_param_count = _parameter_count(trainer.model)
@@ -390,20 +423,20 @@ def _load_pruned_checkpoint_payload(checkpoint_path: Path, map_location: str) ->
 def _model_config_from_model(model: torch.nn.Module, fallback: Dict[str, Any]) -> Dict[str, Any]:
     if hasattr(model, "convs") and len(model.convs) >= 2:
         conv0 = model.convs[0]
-        conv1 = model.convs[1]
-        if hasattr(conv0, "lin") and hasattr(conv1, "lin"):
+        conv_last = model.convs[-1]
+        if hasattr(conv0, "lin") and hasattr(conv_last, "lin"):
             return {
                 "in_channels": int(conv0.lin.weight.shape[1]),
                 "hidden_channels": int(conv0.lin.weight.shape[0]),
-                "out_channels": int(conv1.lin.weight.shape[0]),
+                "out_channels": int(conv_last.lin.weight.shape[0]),
                 "num_layers": int(len(model.convs)),
                 "dropout": float(getattr(model, "dropout", fallback.get("dropout", 0.0))),
             }
-        if hasattr(conv0, "lin_l") and hasattr(conv1, "lin_l"):
+        if hasattr(conv0, "lin_l") and hasattr(conv_last, "lin_l"):
             return {
                 "in_channels": int(conv0.lin_l.weight.shape[1]),
                 "hidden_channels": int(conv0.lin_l.weight.shape[0]),
-                "out_channels": int(conv1.lin_l.weight.shape[0]),
+                "out_channels": int(conv_last.lin_l.weight.shape[0]),
                 "num_layers": int(len(model.convs)),
                 "dropout": float(getattr(model, "dropout", fallback.get("dropout", 0.0))),
             }

@@ -10,7 +10,7 @@ from typing import Dict
 from gnn_pruning.config import resolve_config
 from gnn_pruning.reporting import write_csv_row
 from gnn_pruning.training import evaluate_dense_and_save, train_dense
-from gnn_pruning.utils import resolve_output_dir
+from gnn_pruning.utils import ProgressReporter, resolve_output_dir
 
 
 @dataclass
@@ -27,7 +27,7 @@ class DensePipelineArtifacts:
     csv_path: Path
 
 
-def run_dense_pipeline(config_path: str) -> DensePipelineArtifacts:
+def run_dense_pipeline(config_path: str, show_progress: bool = False) -> DensePipelineArtifacts:
     """Run full dense pipeline and save structured artifacts."""
     resolved = resolve_config(config_path)
     output_dir = resolve_output_dir(
@@ -39,12 +39,19 @@ def run_dense_pipeline(config_path: str) -> DensePipelineArtifacts:
         resume=False,
     )
     output_dir.mkdir(parents=True, exist_ok=True)
+    reporter = ProgressReporter(enabled=show_progress, log_path=output_dir / "progress.log")
 
-    train_artifacts = train_dense(config_path=config_path, resume=True, output_dir_override=str(output_dir))
+    train_artifacts = train_dense(
+        config_path=config_path,
+        resume=True,
+        output_dir_override=str(output_dir),
+        progress_reporter=reporter,
+    )
     eval_artifacts = evaluate_dense_and_save(
         config_path=config_path,
         checkpoint_path=str(train_artifacts.checkpoint_path),
         output_dir_override=str(output_dir),
+        progress_reporter=reporter,
     )
 
     train_metrics = _read_json(train_artifacts.metrics_path)
