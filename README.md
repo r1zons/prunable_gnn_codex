@@ -11,6 +11,8 @@ This scaffold includes:
 - exact-ratio seeded split generation with split artifact saving
 - baseline dense node-classification models: GCN and GraphSAGE
 - dense training/evaluation workflow with early stopping and checkpointing
+- full pruning pipeline orchestration (dense → prune → finetune across methods/sparsity levels)
+- repeated benchmark suites with deterministic per-run seeds and aggregate reporting
 - CLI entrypoints via `python -m gnn_pruning`
 - pytest setup with smoke/config/data/model/training tests
 
@@ -32,6 +34,9 @@ configs/
   models/*.yaml
   presets/*.yaml
   experiments/example.yaml
+  suites/default_small.yaml
+  suites/default_medium.yaml
+  suites/extended_optional.yaml
 ```
 
 ## Run CLI
@@ -42,6 +47,8 @@ python -m gnn_pruning show-config --config configs/experiments/example.yaml
 python -m gnn_pruning train --config configs/experiments/example.yaml
 python -m gnn_pruning evaluate --config configs/experiments/example.yaml
 python -m gnn_pruning run-dense --config configs/experiments/example.yaml
+python -m gnn_pruning run-pipeline --config configs/experiments/pipeline_pubmed_gcn.yaml
+python -m gnn_pruning run-suite --config configs/suites/default_small.yaml
 ```
 
 `train` writes artifacts to `run.output_dir`:
@@ -70,6 +77,28 @@ metrics_train.json
 metrics_eval.json
 summary.md
 dense_results.csv
+```
+
+`run-pipeline` writes a full pruning benchmark run directory including:
+
+```text
+resolved_config.yaml
+splits.yaml
+dense_checkpoint.pt
+metrics_eval.json
+pipeline_results.csv
+summary_pipeline.md
+pruning/<method>/sparsity_<level>/...
+```
+
+`run-suite` repeats `run-pipeline` for `num_runs` with seeds derived from `base_seed + run_index` and writes:
+
+```text
+suite_runs.csv
+suite_aggregate.csv
+run_000/
+run_001/
+...
 ```
 
 ## Run tests

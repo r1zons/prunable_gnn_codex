@@ -1,0 +1,10 @@
+suite_name: default_medium
+
+run:
+  num_runs: 3
+  base_seed: 42
+  output_dir: runs/suites/default_medium
+
+experiments:
+  - configs/experiments/pipeline_citeseer_graphsage.yaml
+  - configs/experiments/pipeline_pubmed_gcn.yaml

@@ -6,7 +6,7 @@ import argparse
 from typing import Optional, Sequence
 
 from .config import resolve_config
-from .pipelines import run_dense_pipeline, run_pipeline
+from .pipelines import run_dense_pipeline, run_pipeline, run_suite
 from .pruning import list_pruners
 from .pruning.workflow import evaluate_pruned_checkpoint, finetune_pruned_checkpoint, prune_from_checkpoint
 from .training import evaluate_dense_and_save, train_dense
@@ -22,6 +22,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     run_pipeline_parser = subparsers.add_parser("run-pipeline", help="Run the full pruning benchmark pipeline.")
     run_pipeline_parser.add_argument("--config", type=str, required=True, help="Path to experiment YAML config.")
+
+    run_suite_parser = subparsers.add_parser("run-suite", help="Run repeated benchmark suite and aggregate results.")
+    run_suite_parser.add_argument("--config", type=str, required=True, help="Path to suite YAML config.")
 
     run_dense_parser = subparsers.add_parser("run-dense", help="Run full dense experiment pipeline.")
     run_dense_parser.add_argument("--config", type=str, required=True, help="Path to experiment YAML config.")
@@ -129,6 +132,13 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         print(f"[gnn_pruning] dense metrics: {artifacts.dense_metrics_path}")
         print(f"[gnn_pruning] csv: {artifacts.csv_path}")
         print(f"[gnn_pruning] summary: {artifacts.summary_path}")
+        return 0
+
+    if args.command == "run-suite":
+        artifacts = run_suite(args.config)
+        print(f"[gnn_pruning] suite output dir: {artifacts.output_dir}")
+        print(f"[gnn_pruning] runs csv: {artifacts.runs_csv_path}")
+        print(f"[gnn_pruning] aggregate csv: {artifacts.aggregate_csv_path}")
         return 0
 
     if args.command == "run-dense":
