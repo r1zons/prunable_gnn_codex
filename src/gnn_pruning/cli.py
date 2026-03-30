@@ -20,19 +20,19 @@ def build_parser() -> argparse.ArgumentParser:
 
     run_parser = subparsers.add_parser("run", help="Run the full pruning benchmark pipeline.")
     run_parser.add_argument("--config", type=str, required=True, help="Path to experiment YAML config.")
-    run_parser.add_argument("--progress", action=argparse.BooleanOptionalAction, default=None, help="Enable live progress output.")
+    _add_progress_flag(run_parser)
 
     run_pipeline_parser = subparsers.add_parser("run-pipeline", help="Run the full pruning benchmark pipeline.")
     run_pipeline_parser.add_argument("--config", type=str, required=True, help="Path to experiment YAML config.")
-    run_pipeline_parser.add_argument("--progress", action=argparse.BooleanOptionalAction, default=None, help="Enable live progress output.")
+    _add_progress_flag(run_pipeline_parser)
 
     run_suite_parser = subparsers.add_parser("run-suite", help="Run repeated benchmark suite and aggregate results.")
     run_suite_parser.add_argument("--config", type=str, required=True, help="Path to suite YAML config.")
-    run_suite_parser.add_argument("--progress", action=argparse.BooleanOptionalAction, default=None, help="Enable live progress output.")
+    _add_progress_flag(run_suite_parser)
 
     run_dense_parser = subparsers.add_parser("run-dense", help="Run full dense experiment pipeline.")
     run_dense_parser.add_argument("--config", type=str, required=True, help="Path to experiment YAML config.")
-    run_dense_parser.add_argument("--progress", action=argparse.BooleanOptionalAction, default=None, help="Enable live progress output.")
+    _add_progress_flag(run_dense_parser)
 
     train_parser = subparsers.add_parser("train", help="Train dense model.")
     train_parser.add_argument("--config", type=str, required=True, help="Path to experiment YAML config.")
@@ -41,7 +41,7 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Disable checkpoint resume behavior.",
     )
-    train_parser.add_argument("--progress", action=argparse.BooleanOptionalAction, default=None, help="Enable live progress output.")
+    _add_progress_flag(train_parser)
 
     eval_parser = subparsers.add_parser("evaluate", help="Evaluate dense checkpoint.")
     eval_parser.add_argument("--config", type=str, required=True, help="Path to experiment YAML config.")
@@ -69,7 +69,7 @@ def build_parser() -> argparse.ArgumentParser:
         default=None,
         help="Optional fine-tune epochs override (default: pruning.finetune_epochs or 50).",
     )
-    finetune_parser.add_argument("--progress", action=argparse.BooleanOptionalAction, default=None, help="Enable live progress output.")
+    _add_progress_flag(finetune_parser)
 
     show_parser = subparsers.add_parser("show-config", help="Resolve and print effective config.")
     show_parser.add_argument("--config", type=str, required=True, help="Path to experiment YAML config.")
@@ -119,13 +119,20 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
 
     if args.command == "finetune":
         show_progress = resolve_show_progress(args.config, args.progress)
-        reporter = ProgressReporter(enabled=show_progress)
-        artifacts = finetune_pruned_checkpoint(
-            checkpoint_path=args.checkpoint,
-            config_path=args.config,
-            finetune_epochs=args.epochs,
-            progress_reporter=reporter,
-        )
+        if show_progress:
+            reporter = ProgressReporter(enabled=True)
+            artifacts = finetune_pruned_checkpoint(
+                checkpoint_path=args.checkpoint,
+                config_path=args.config,
+                finetune_epochs=args.epochs,
+                progress_reporter=reporter,
+            )
+        else:
+            artifacts = finetune_pruned_checkpoint(
+                checkpoint_path=args.checkpoint,
+                config_path=args.config,
+                finetune_epochs=args.epochs,
+            )
         print(f"[gnn_pruning] pre-finetune checkpoint saved to: {artifacts.pre_finetune_checkpoint_path}")
         print(f"[gnn_pruning] post-finetune checkpoint saved to: {artifacts.post_finetune_checkpoint_path}")
         print(f"[gnn_pruning] pre-finetune metrics saved to: {artifacts.pre_finetune_metrics_path}")
@@ -134,7 +141,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
 
     if args.command in {"run", "run-pipeline"}:
         show_progress = resolve_show_progress(args.config, args.progress)
-        artifacts = run_pipeline(args.config, show_progress=show_progress)
+        artifacts = run_pipeline(args.config, show_progress=True) if show_progress else run_pipeline(args.config)
         print(f"[gnn_pruning] pipeline invoked with config: {args.config}")
         print(f"[gnn_pruning] output dir: {artifacts.output_dir}")
         print(f"[gnn_pruning] resolved config snapshot saved to: {artifacts.config_snapshot}")
@@ -147,7 +154,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
 
     if args.command == "run-suite":
         show_progress = resolve_show_progress(args.config, args.progress)
-        artifacts = run_suite(args.config, show_progress=show_progress)
+        artifacts = run_suite(args.config, show_progress=True) if show_progress else run_suite(args.config)
         print(f"[gnn_pruning] suite output dir: {artifacts.output_dir}")
         print(f"[gnn_pruning] runs csv: {artifacts.runs_csv_path}")
         print(f"[gnn_pruning] aggregate csv: {artifacts.aggregate_csv_path}")
@@ -155,7 +162,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
 
     if args.command == "run-dense":
         show_progress = resolve_show_progress(args.config, args.progress)
-        artifacts = run_dense_pipeline(args.config, show_progress=show_progress)
+        artifacts = run_dense_pipeline(args.config, show_progress=True) if show_progress else run_dense_pipeline(args.config)
         print(f"[gnn_pruning] dense pipeline complete at: {artifacts.output_dir}")
         print(f"[gnn_pruning] checkpoint: {artifacts.checkpoint_path}")
         print(f"[gnn_pruning] eval metrics: {artifacts.eval_metrics_path}")
@@ -165,8 +172,11 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
 
     if args.command == "train":
         show_progress = resolve_show_progress(args.config, args.progress)
-        reporter = ProgressReporter(enabled=show_progress)
-        artifacts = train_dense(config_path=args.config, resume=not args.no_resume, progress_reporter=reporter)
+        if show_progress:
+            reporter = ProgressReporter(enabled=True)
+            artifacts = train_dense(config_path=args.config, resume=not args.no_resume, progress_reporter=reporter)
+        else:
+            artifacts = train_dense(config_path=args.config, resume=not args.no_resume)
         print(f"[gnn_pruning] dense checkpoint saved to: {artifacts.checkpoint_path}")
         print(f"[gnn_pruning] metrics saved to: {artifacts.metrics_path}")
         print(f"[gnn_pruning] resolved config saved to: {artifacts.resolved_config_path}")
@@ -180,3 +190,23 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
 
     parser.error(f"Unsupported command: {args.command}")
     return 2
+
+
+def _add_progress_flag(parser: argparse.ArgumentParser) -> None:
+    """Add argparse-3.8-compatible --progress/--no-progress flags."""
+    parser.add_argument(
+        "--progress",
+        dest="progress",
+        action="store_const",
+        const=True,
+        default=None,
+        help="Enable live progress output.",
+    )
+    parser.add_argument(
+        "--no-progress",
+        dest="progress",
+        action="store_const",
+        const=False,
+        default=None,
+        help="Disable live progress output (overrides config).",
+    )
