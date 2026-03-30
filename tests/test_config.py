@@ -68,30 +68,46 @@ def test_run_pipeline_saves_resolved_snapshot(tmp_path: Path, monkeypatch: pytes
                 "base: base/default",
                 "dataset: cora",
                 "model: gcn",
-                "preset: standard",
+                "preset: fast_debug",
                 f"run:\n  output_dir: {output_dir.as_posix()}",
+                "pruning:",
+                "  method: random",
+                "  sparsity_levels: [0.5]",
+                "  finetune_epochs: 1",
             ]
         ),
         encoding="utf-8",
     )
 
-    class _DummyGraph:
-        num_nodes = 50
+    import torch
+    from torch_geometric.data import Data
 
     class _DummyDataset:
+        def __init__(self) -> None:
+            x = torch.randn((30, 8), dtype=torch.float32)
+            y = torch.randint(0, 3, (30,), dtype=torch.long)
+            edge_index = torch.vstack([torch.arange(30), torch.roll(torch.arange(30), shifts=-1)]).long()
+            self.data = Data(x=x, y=y, edge_index=edge_index)
+
         def __getitem__(self, idx: int):
             _ = idx
-            return _DummyGraph()
+            return self.data
 
     import importlib
 
     run_module = importlib.import_module("gnn_pruning.pipelines.run_pipeline")
-    monkeypatch.setattr(run_module, "load_dataset", lambda name, root: _DummyDataset())
+    training_module = importlib.import_module("gnn_pruning.training.workflow")
+    pruning_module = importlib.import_module("gnn_pruning.pruning.workflow")
+    dummy_dataset = _DummyDataset()
+    monkeypatch.setattr(training_module, "load_dataset", lambda name, root: dummy_dataset)
+    monkeypatch.setattr(pruning_module, "load_dataset", lambda name, root: dummy_dataset)
 
     artifacts = run_pipeline(str(user_config))
 
     assert artifacts.config_snapshot.exists()
     assert artifacts.split_artifact.exists()
+    assert artifacts.csv_path.exists()
+    assert artifacts.summary_path.exists()
     loaded = load_yaml(artifacts.config_snapshot)
     assert loaded["data"]["name"] == "cora"
     assert loaded["model"]["name"] == "gcn"

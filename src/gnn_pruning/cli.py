@@ -17,8 +17,11 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="gnn_pruning")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    run_parser = subparsers.add_parser("run", help="Run the default pipeline scaffold.")
+    run_parser = subparsers.add_parser("run", help="Run the full pruning benchmark pipeline.")
     run_parser.add_argument("--config", type=str, required=True, help="Path to experiment YAML config.")
+
+    run_pipeline_parser = subparsers.add_parser("run-pipeline", help="Run the full pruning benchmark pipeline.")
+    run_pipeline_parser.add_argument("--config", type=str, required=True, help="Path to experiment YAML config.")
 
     run_dense_parser = subparsers.add_parser("run-dense", help="Run full dense experiment pipeline.")
     run_dense_parser.add_argument("--config", type=str, required=True, help="Path to experiment YAML config.")
@@ -116,11 +119,16 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         print(f"[gnn_pruning] post-finetune metrics saved to: {artifacts.post_finetune_metrics_path}")
         return 0
 
-    if args.command == "run":
+    if args.command in {"run", "run-pipeline"}:
         artifacts = run_pipeline(args.config)
-        print(f"[gnn_pruning] scaffold pipeline invoked with config: {args.config}")
+        print(f"[gnn_pruning] pipeline invoked with config: {args.config}")
+        print(f"[gnn_pruning] output dir: {artifacts.output_dir}")
         print(f"[gnn_pruning] resolved config snapshot saved to: {artifacts.config_snapshot}")
         print(f"[gnn_pruning] split artifact saved to: {artifacts.split_artifact}")
+        print(f"[gnn_pruning] dense checkpoint: {artifacts.dense_checkpoint_path}")
+        print(f"[gnn_pruning] dense metrics: {artifacts.dense_metrics_path}")
+        print(f"[gnn_pruning] csv: {artifacts.csv_path}")
+        print(f"[gnn_pruning] summary: {artifacts.summary_path}")
         return 0
 
     if args.command == "run-dense":
