@@ -159,6 +159,71 @@ def _structured_scores_from_saliency(model: Any, saliency: Dict[str, torch.Tenso
     raise TypeError("Unsupported model for structured gradient-based pruning.")
 
 
+def _group_lasso_channel_penalty(model: Any) -> torch.Tensor:
+    """Return channel-wise Group Lasso penalties for the first hidden layer."""
+    if isinstance(model, GCNNodeClassifier):
+        conv0 = model.convs[0].lin.weight.norm(p=2, dim=1)
+        conv1 = model.convs[1].lin.weight.norm(p=2, dim=0)
+        return conv0 + conv1
+    if isinstance(model, GraphSAGENodeClassifier):
+        conv0 = model.convs[0].lin_l.weight.norm(p=2, dim=1)
+        if getattr(model.convs[0], "root_weight", False):
+            conv0 = conv0 + model.convs[0].lin_r.weight.norm(p=2, dim=1)
+        conv1 = model.convs[1].lin_l.weight.norm(p=2, dim=0)
+        if getattr(model.convs[1], "root_weight", False):
+            conv1 = conv1 + model.convs[1].lin_r.weight.norm(p=2, dim=0)
+        return conv0 + conv1
+    raise TypeError("Unsupported model for Group Lasso channel penalties.")
+
+
+def _compute_l1_regularized_saliency(model: nn.Module, context: PruningContext, reg_strength: float) -> Dict[str, torch.Tensor]:
+    """Compute saliency with L1 regularization in a pruning-time scoring pass."""
+    data, train_idx, _ = _extract_training_batch(context)
+    score_model = copy.deepcopy(model)
+    score_model.train()
+    score_model.zero_grad(set_to_none=True)
+
+    logits = score_model(data)
+    loss = nn.functional.cross_entropy(logits[train_idx], data.y[train_idx])
+    l1_term = torch.zeros((), device=loss.device)
+    for _, parameter in _named_prunable_parameter_list(score_model):
+        l1_term = l1_term + parameter.abs().sum()
+    objective = loss + (float(reg_strength) * l1_term)
+    objective.backward()
+
+    scores: Dict[str, torch.Tensor] = {}
+    for name, parameter in _named_prunable_parameter_list(score_model):
+        if parameter.grad is None:
+            scores[name] = torch.zeros_like(parameter, device="cpu")
+            continue
+        scores[name] = (parameter.grad * parameter).detach().abs().cpu()
+    return scores
+
+
+def _compute_group_lasso_saliency(model: nn.Module, context: PruningContext, reg_strength: float) -> torch.Tensor:
+    """Compute channel saliency using Group-Lasso-regularized objective."""
+    data, train_idx, _ = _extract_training_batch(context)
+    score_model = copy.deepcopy(model)
+    score_model.train()
+    score_model.zero_grad(set_to_none=True)
+
+    logits = score_model(data)
+    loss = nn.functional.cross_entropy(logits[train_idx], data.y[train_idx])
+    group_penalty = _group_lasso_channel_penalty(score_model).sum()
+    objective = loss + (float(reg_strength) * group_penalty)
+    objective.backward()
+
+    saliency = {}
+    for name, parameter in _named_prunable_parameter_list(score_model):
+        if parameter.grad is None:
+            saliency[name] = torch.zeros_like(parameter, device="cpu")
+            continue
+        saliency[name] = (parameter.grad * parameter).detach().abs().cpu()
+    channel_scores = _structured_scores_from_saliency(score_model, saliency)
+    channel_scores = channel_scores + (float(reg_strength) * _group_lasso_channel_penalty(score_model).detach().cpu())
+    return channel_scores
+
+
 def _validate_sparsity(value: float) -> None:
     if value < 0.0 or value >= 1.0:
         raise ValueError("target_sparsity must be in [0.0, 1.0).")
@@ -277,6 +342,24 @@ def _apply_unstructured_layerwise(model: torch.nn.Module, plan: PruningPlan) -> 
 
     plan.achieved_sparsity = _zero_sparsity(pruned_model)
     plan.details.update({"scope": "layerwise", "structural_compression": False})
+    return pruned_model
+
+
+def _apply_unstructured_threshold(model: torch.nn.Module, plan: PruningPlan) -> Any:
+    """Apply saliency threshold pruning using score payload and fixed threshold."""
+    scores = plan.score_payload
+    if not isinstance(scores, dict):
+        raise ValueError("Threshold pruning requires parameter score dict in plan.score_payload.")
+    threshold = float(plan.details.get("score_threshold", 0.0))
+
+    pruned_model = copy.deepcopy(model)
+    with torch.no_grad():
+        for name, parameter in _named_prunable_parameters(pruned_model):
+            mask = scores[name].to(parameter.device) >= threshold
+            parameter.mul_(mask)
+
+    plan.achieved_sparsity = _zero_sparsity(pruned_model)
+    plan.details.update({"scope": "threshold", "structural_compression": False})
     return pruned_model
 
 
@@ -463,6 +546,83 @@ class GraSPPruner(BasePruner):
             plan.score_payload = _compute_grasp_saliency(model, parsed_context)
         plan.details["mode"] = plan.mode
         pruned_model = _apply_structured(model, plan) if structured else _apply_unstructured_global(model, plan)
+        plan.pruning_time_sec = float(time.perf_counter() - start)
+        plan.score_payload = None
+        return pruned_model, plan
+
+
+@register_pruner
+class L1ThresholdPruner(BasePruner):
+    """L1-regularized saliency with explicit threshold-based pruning."""
+
+    name = "l1_threshold"
+    category = "regularization"
+    supports_unstructured = True
+    supports_structured = False
+
+    def score(self, model: Any, context: Any, **kwargs: Any) -> PruningPlan:
+        context = PruningContext.from_input(context)
+        target_sparsity = float(kwargs.get("target_sparsity", context.structure_target or 0.5))
+        reg_strength = float(kwargs.get("reg_strength", context.config.get("pruning", {}).get("reg_strength", 1e-4)))
+        saliency = _compute_l1_regularized_saliency(model, context, reg_strength=reg_strength)
+        flat = torch.cat([score.flatten() for score in saliency.values()])
+        prune_count = int(math.floor(target_sparsity * flat.numel()))
+        keep_count = max(flat.numel() - prune_count, 1)
+        threshold = float(torch.topk(flat, k=keep_count, largest=True).values.min().item())
+        plan = _build_plan(self.name, self.category, target_sparsity, "unstructured", saliency)
+        plan.details.update({"regularization": "l1", "reg_strength": reg_strength, "score_threshold": threshold})
+        return plan
+
+    def apply(self, model: Any, pruning_plan: PruningPlan = None, context: Any = None, **kwargs: Any) -> Any:
+        plan, parsed_context = _extract_apply_inputs(pruning_plan, context, kwargs)
+        _sync_plan_from_kwargs(plan, kwargs)
+        start = time.perf_counter()
+        if plan.mode != "unstructured":
+            plan.mode = "unstructured"
+            reg_strength = float(kwargs.get("reg_strength", 1e-4))
+            plan.score_payload = _compute_l1_regularized_saliency(model, parsed_context, reg_strength=reg_strength)
+            plan.details["reg_strength"] = reg_strength
+        if "score_threshold" not in plan.details:
+            flat = torch.cat([score.flatten() for score in plan.score_payload.values()])
+            prune_count = int(math.floor(plan.requested_sparsity * flat.numel()))
+            keep_count = max(flat.numel() - prune_count, 1)
+            plan.details["score_threshold"] = float(torch.topk(flat, k=keep_count, largest=True).values.min().item())
+        plan.details["mode"] = "unstructured"
+        pruned_model = _apply_unstructured_threshold(model, plan)
+        plan.pruning_time_sec = float(time.perf_counter() - start)
+        plan.score_payload = None
+        return pruned_model, plan
+
+
+@register_pruner
+class GroupLassoPruner(BasePruner):
+    """Group-Lasso channel saliency with structural hidden-channel pruning."""
+
+    name = "group_lasso"
+    category = "regularization"
+    supports_unstructured = False
+    supports_structured = True
+
+    def score(self, model: Any, context: Any, **kwargs: Any) -> PruningPlan:
+        context = PruningContext.from_input(context)
+        target_sparsity = float(kwargs.get("target_sparsity", context.structure_target or 0.5))
+        reg_strength = float(kwargs.get("reg_strength", context.config.get("pruning", {}).get("reg_strength", 1e-4)))
+        payload = _compute_group_lasso_saliency(model, context, reg_strength=reg_strength)
+        plan = _build_plan(self.name, self.category, target_sparsity, "structured", payload)
+        plan.details.update({"regularization": "group_lasso", "reg_strength": reg_strength})
+        return plan
+
+    def apply(self, model: Any, pruning_plan: PruningPlan = None, context: Any = None, **kwargs: Any) -> Any:
+        plan, parsed_context = _extract_apply_inputs(pruning_plan, context, kwargs)
+        _sync_plan_from_kwargs(plan, kwargs)
+        start = time.perf_counter()
+        if plan.mode != "structured":
+            plan.mode = "structured"
+            reg_strength = float(kwargs.get("reg_strength", 1e-4))
+            plan.score_payload = _compute_group_lasso_saliency(model, parsed_context, reg_strength=reg_strength)
+            plan.details["reg_strength"] = reg_strength
+        plan.details["mode"] = "structured"
+        pruned_model = _apply_structured(model, plan)
         plan.pruning_time_sec = float(time.perf_counter() - start)
         plan.score_payload = None
         return pruned_model, plan

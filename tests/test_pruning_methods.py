@@ -209,6 +209,36 @@ def test_grasp_structured_pruning_reuses_surgery() -> None:
     assert logits.shape == (data.num_nodes, 3)
 
 
+def test_l1_threshold_regularized_scoring_path_records_threshold() -> None:
+    model = GCNNodeClassifier(in_channels=6, hidden_channels=8, out_channels=3, num_layers=2, dropout=0.0)
+    pruner = get_pruner("l1_threshold")()
+    context = _saliency_context(model)
+
+    scores = pruner.score(model, context, structured=False, target_sparsity=0.5, reg_strength=1e-3)
+    _, plan = pruner.apply(model, scores, context, structured=False, target_sparsity=0.5, reg_strength=1e-3)
+
+    assert plan.name == "l1_threshold"
+    assert plan.details["regularization"] == "l1"
+    assert "score_threshold" in plan.details
+    assert plan.details["scope"] == "threshold"
+    assert plan.achieved_sparsity is not None
+
+
+def test_group_lasso_structured_pruning_shrinks_model() -> None:
+    model = GCNNodeClassifier(in_channels=6, hidden_channels=12, out_channels=3, num_layers=2, dropout=0.0)
+    pruner = get_pruner("group_lasso")()
+    context = _saliency_context(model)
+
+    scores = pruner.score(model, context, structured=True, target_sparsity=0.5, reg_strength=1e-3)
+    pruned_model, plan = pruner.apply(model, scores, context, structured=True, target_sparsity=0.5, reg_strength=1e-3)
+
+    assert plan.name == "group_lasso"
+    assert plan.details["regularization"] == "group_lasso"
+    assert plan.details["scope"] == "structured_hidden_channels"
+    assert plan.details["parameter_count_after"] < plan.details["parameter_count_before"]
+    assert _param_count(pruned_model) < _param_count(model)
+
+
 def test_finetuning_runs_and_saves_post_checkpoint(monkeypatch, tmp_path: Path) -> None:
     training_workflow = importlib.import_module("gnn_pruning.training.workflow")
     pruning_workflow = importlib.import_module("gnn_pruning.pruning.workflow")
