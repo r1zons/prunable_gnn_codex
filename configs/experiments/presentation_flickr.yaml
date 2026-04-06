@@ -1,0 +1,14 @@
+base: base/default
+dataset: flickr
+model: gcn
+preset: fast_debug
+
+run:
+  experiment_name: presentation_flickr
+  output_dir: runs/presentation/flickr
+
+pruning:
+  methods: [random, global_magnitude]
+  sparsity_levels: [0.5, 0.9]
+  structured: true
+  finetune_epochs: 5

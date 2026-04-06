@@ -1,0 +1,28 @@
+run:
+  seed: 42
+  output_dir: runs/default
+  experiment_name: default_experiment
+
+data:
+  root: ./data
+  train_ratio: 0.6
+  val_ratio: 0.2
+  test_ratio: 0.2
+
+model:
+  hidden_channels: 64
+  num_layers: 2
+  dropout: 0.5
+
+training:
+  epochs: 200
+  lr: 0.01
+  weight_decay: 0.0005
+  early_stopping_patience: 50
+
+device:
+  device: cpu
+
+benchmark:
+  inference_warmup_passes: 5
+  inference_timed_passes: 20
