@@ -78,7 +78,20 @@ def prune_from_checkpoint(
     pruner_cls = get_pruner(method)
     pruner = pruner_cls()
 
-    context = PruningContext(config=resolved.to_dict(), data=None, device=resolved.device.device, seed=resolved.run.seed)
+    output_dir = Path(resolved.run.output_dir).expanduser()
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    dataset = load_dataset(resolved.data.name, resolved.data.root)
+    data = dataset[0]
+    split = _load_or_create_split(config_path=config_path, output_dir=output_dir, data=data)
+    indices = to_index_tensors(split, device=resolved.device.device)
+
+    context = PruningContext(
+        config=resolved.to_dict(),
+        data={"data": data, "train_idx": indices["train"]},
+        device=resolved.device.device,
+        seed=resolved.run.seed,
+    )
     reporter.info(f"Scoring channels for {method} pruning...")
     scores = pruner.score(model, context)
     reporter.info("Applying pruning...")
@@ -90,8 +103,6 @@ def prune_from_checkpoint(
         structured=structured,
     )
 
-    output_dir = Path(resolved.run.output_dir).expanduser()
-    output_dir.mkdir(parents=True, exist_ok=True)
     pruned_param_count = _parameter_count(pruned_model)
     pruned_hidden_dims = _hidden_dims(pruned_model)
 
@@ -123,7 +134,6 @@ def prune_from_checkpoint(
     with pruning_metrics_path.open("w", encoding="utf-8") as handle:
         json.dump(asdict(plan), handle, indent=2)
 
-    split = _load_or_create_split(config_path=config_path, output_dir=output_dir)
     reporter.info("Evaluating dense checkpoint metrics...")
     dense_metrics = evaluate_dense(
         config_path=config_path,

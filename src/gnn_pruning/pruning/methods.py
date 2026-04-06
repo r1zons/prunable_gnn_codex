@@ -1,4 +1,8 @@
-"""First concrete pruning methods."""
+"""Concrete pruning methods.
+
+This module includes magnitude/random baselines and gradient-saliency pruners
+(SNIP and GraSP) that plug into the same score/apply flow.
+"""
 
 from __future__ import annotations
 
@@ -8,6 +12,7 @@ import time
 from typing import Any, Dict, Tuple
 
 import torch
+from torch import nn
 
 from gnn_pruning.models import GCNNodeClassifier, GraphSAGENodeClassifier
 from gnn_pruning.surgery import structurally_prune_hidden_channels
@@ -20,6 +25,11 @@ def _named_prunable_parameters(model: torch.nn.Module):
     for name, parameter in model.named_parameters():
         if parameter.requires_grad and parameter.ndim > 1:
             yield name, parameter
+
+
+def _named_prunable_parameter_list(model: torch.nn.Module) -> list[tuple[str, torch.nn.Parameter]]:
+    """Materialize prunable parameters as a list for deterministic reuse."""
+    return list(_named_prunable_parameters(model))
 
 
 def _zero_sparsity(model: torch.nn.Module) -> float:
@@ -71,6 +81,82 @@ def _structured_scores(model: Any, random: bool = False) -> torch.Tensor:
         return s0 + s1
 
     raise TypeError("Unsupported model for structured pruning scores.")
+
+
+def _extract_training_batch(context: PruningContext) -> tuple[Any, torch.Tensor, torch.device]:
+    """Extract graph data and train indices used for gradient saliency scoring."""
+    if not isinstance(context.data, dict):
+        raise ValueError("Gradient-based pruners require context.data with {'data', 'train_idx'}.")
+    if "data" not in context.data or "train_idx" not in context.data:
+        raise ValueError("Gradient-based pruners require context.data keys: data and train_idx.")
+
+    device = torch.device(context.device or "cpu")
+    data = context.data["data"].to(device)
+    train_idx = context.data["train_idx"]
+    if not torch.is_tensor(train_idx):
+        train_idx = torch.tensor(train_idx, dtype=torch.long)
+    train_idx = train_idx.to(device=device, dtype=torch.long)
+    return data, train_idx, device
+
+
+def _compute_snip_saliency(model: nn.Module, context: PruningContext) -> Dict[str, torch.Tensor]:
+    """Compute SNIP saliency: |∂L/∂w * w| on a training subset."""
+    data, train_idx, _ = _extract_training_batch(context)
+    score_model = copy.deepcopy(model)
+    score_model.train()
+    score_model.zero_grad(set_to_none=True)
+
+    logits = score_model(data)
+    loss = nn.functional.cross_entropy(logits[train_idx], data.y[train_idx])
+    loss.backward()
+
+    scores: Dict[str, torch.Tensor] = {}
+    for name, parameter in _named_prunable_parameter_list(score_model):
+        if parameter.grad is None:
+            scores[name] = torch.zeros_like(parameter, device="cpu")
+            continue
+        scores[name] = (parameter.grad * parameter).detach().abs().cpu()
+    return scores
+
+
+def _compute_grasp_saliency(model: nn.Module, context: PruningContext) -> Dict[str, torch.Tensor]:
+    """Compute GraSP saliency via Hessian-gradient product approximation."""
+    data, train_idx, _ = _extract_training_batch(context)
+    score_model = copy.deepcopy(model)
+    score_model.train()
+    score_model.zero_grad(set_to_none=True)
+
+    logits = score_model(data)
+    loss = nn.functional.cross_entropy(logits[train_idx], data.y[train_idx])
+    params = [parameter for _, parameter in _named_prunable_parameter_list(score_model)]
+    grads = torch.autograd.grad(loss, params, create_graph=True, allow_unused=False)
+
+    grad_dot_weights = torch.zeros((), device=loss.device)
+    for grad, param in zip(grads, params):
+        grad_dot_weights = grad_dot_weights + (grad * param).sum()
+    hessian_grad = torch.autograd.grad(grad_dot_weights, params, create_graph=False, allow_unused=False)
+
+    scores: Dict[str, torch.Tensor] = {}
+    for (name, parameter), grad2 in zip(_named_prunable_parameter_list(score_model), hessian_grad):
+        scores[name] = (-(parameter * grad2)).detach().abs().cpu()
+    return scores
+
+
+def _structured_scores_from_saliency(model: Any, saliency: Dict[str, torch.Tensor]) -> torch.Tensor:
+    """Aggregate per-parameter saliency into hidden-channel scores for surgery."""
+    if isinstance(model, GCNNodeClassifier):
+        conv0 = saliency["convs.0.lin.weight"].sum(dim=1)
+        conv1 = saliency["convs.1.lin.weight"].sum(dim=0)
+        return conv0 + conv1
+    if isinstance(model, GraphSAGENodeClassifier):
+        conv0 = saliency["convs.0.lin_l.weight"].sum(dim=1)
+        if getattr(model.convs[0], "root_weight", False):
+            conv0 = conv0 + saliency["convs.0.lin_r.weight"].sum(dim=1)
+        conv1 = saliency["convs.1.lin_l.weight"].sum(dim=0)
+        if getattr(model.convs[1], "root_weight", False):
+            conv1 = conv1 + saliency["convs.1.lin_r.weight"].sum(dim=0)
+        return conv0 + conv1
+    raise TypeError("Unsupported model for structured gradient-based pruning.")
 
 
 def _validate_sparsity(value: float) -> None:
@@ -301,6 +387,82 @@ class LayerWiseMagnitudePruner(BasePruner):
             plan.score_payload = {name: parameter.detach().abs().clone() for name, parameter in _named_prunable_parameters(model)}
         plan.details["mode"] = plan.mode
         pruned_model = _apply_structured(model, plan) if structured else _apply_unstructured_layerwise(model, plan)
+        plan.pruning_time_sec = float(time.perf_counter() - start)
+        plan.score_payload = None
+        return pruned_model, plan
+
+
+@register_pruner
+class SNIPPruner(BasePruner):
+    """Single-shot Network Pruning using connection sensitivity."""
+
+    name = "snip"
+    category = "gradient_saliency"
+    supports_unstructured = True
+    supports_structured = True
+
+    def score(self, model: Any, context: Any, **kwargs: Any) -> PruningPlan:
+        context = PruningContext.from_input(context)
+        target_sparsity = float(kwargs.get("target_sparsity", context.structure_target or 0.5))
+        structured = bool(kwargs.get("structured", context.mode == "structured"))
+
+        saliency = _compute_snip_saliency(model, context)
+        if structured:
+            payload = _structured_scores_from_saliency(model, saliency)
+            return _build_plan(self.name, self.category, target_sparsity, "structured", payload)
+        return _build_plan(self.name, self.category, target_sparsity, "unstructured", saliency)
+
+    def apply(self, model: Any, pruning_plan: PruningPlan = None, context: Any = None, **kwargs: Any) -> Any:
+        plan, parsed_context = _extract_apply_inputs(pruning_plan, context, kwargs)
+        _sync_plan_from_kwargs(plan, kwargs)
+        start = time.perf_counter()
+        structured = bool(kwargs.get("structured", plan.mode == "structured"))
+        if structured and plan.mode != "structured":
+            plan.mode = "structured"
+            plan.score_payload = _structured_scores_from_saliency(model, _compute_snip_saliency(model, parsed_context))
+        elif not structured and plan.mode != "unstructured":
+            plan.mode = "unstructured"
+            plan.score_payload = _compute_snip_saliency(model, parsed_context)
+        plan.details["mode"] = plan.mode
+        pruned_model = _apply_structured(model, plan) if structured else _apply_unstructured_global(model, plan)
+        plan.pruning_time_sec = float(time.perf_counter() - start)
+        plan.score_payload = None
+        return pruned_model, plan
+
+
+@register_pruner
+class GraSPPruner(BasePruner):
+    """Gradient Signal Preservation pruning via second-order saliency."""
+
+    name = "grasp"
+    category = "gradient_saliency"
+    supports_unstructured = True
+    supports_structured = True
+
+    def score(self, model: Any, context: Any, **kwargs: Any) -> PruningPlan:
+        context = PruningContext.from_input(context)
+        target_sparsity = float(kwargs.get("target_sparsity", context.structure_target or 0.5))
+        structured = bool(kwargs.get("structured", context.mode == "structured"))
+
+        saliency = _compute_grasp_saliency(model, context)
+        if structured:
+            payload = _structured_scores_from_saliency(model, saliency)
+            return _build_plan(self.name, self.category, target_sparsity, "structured", payload)
+        return _build_plan(self.name, self.category, target_sparsity, "unstructured", saliency)
+
+    def apply(self, model: Any, pruning_plan: PruningPlan = None, context: Any = None, **kwargs: Any) -> Any:
+        plan, parsed_context = _extract_apply_inputs(pruning_plan, context, kwargs)
+        _sync_plan_from_kwargs(plan, kwargs)
+        start = time.perf_counter()
+        structured = bool(kwargs.get("structured", plan.mode == "structured"))
+        if structured and plan.mode != "structured":
+            plan.mode = "structured"
+            plan.score_payload = _structured_scores_from_saliency(model, _compute_grasp_saliency(model, parsed_context))
+        elif not structured and plan.mode != "unstructured":
+            plan.mode = "unstructured"
+            plan.score_payload = _compute_grasp_saliency(model, parsed_context)
+        plan.details["mode"] = plan.mode
+        pruned_model = _apply_structured(model, plan) if structured else _apply_unstructured_global(model, plan)
         plan.pruning_time_sec = float(time.perf_counter() - start)
         plan.score_payload = None
         return pruned_model, plan

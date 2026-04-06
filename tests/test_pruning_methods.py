@@ -75,6 +75,13 @@ def _dummy_dataset(num_nodes: int = 24, in_channels: int = 6, num_classes: int =
     return DummyDataset()
 
 
+def _saliency_context(model: GCNNodeClassifier, num_nodes: int = 20) -> PruningContext:
+    data = _dummy_dataset(num_nodes=num_nodes, in_channels=model.in_channels, num_classes=model.out_channels)[0]
+    train_count = max(2, num_nodes // 2)
+    train_idx = torch.arange(train_count, dtype=torch.long)
+    return PruningContext(config={}, data={"data": data, "train_idx": train_idx}, device="cpu", seed=42)
+
+
 def test_pruner_outputs_valid_plan() -> None:
     model = GCNNodeClassifier(in_channels=6, hidden_channels=8, out_channels=3, num_layers=2, dropout=0.0)
     pruner = get_pruner("random")()
@@ -171,6 +178,37 @@ def test_unstructured_mode_does_not_report_structural_compression() -> None:
     assert plan.details["structural_compression"] is False
 
 
+def test_snip_unstructured_pruning_runs_with_gradient_saliency() -> None:
+    model = GCNNodeClassifier(in_channels=6, hidden_channels=8, out_channels=3, num_layers=2, dropout=0.0)
+    pruner = get_pruner("snip")()
+    context = _saliency_context(model)
+
+    scores = pruner.score(model, context, structured=False, target_sparsity=0.5)
+    _, plan = pruner.apply(model, scores, context, structured=False, target_sparsity=0.5)
+
+    assert plan.name == "snip"
+    assert plan.details["scope"] == "global"
+    assert plan.achieved_sparsity is not None
+
+
+def test_grasp_structured_pruning_reuses_surgery() -> None:
+    model = GCNNodeClassifier(in_channels=6, hidden_channels=10, out_channels=3, num_layers=2, dropout=0.0)
+    pruner = get_pruner("grasp")()
+    context = _saliency_context(model)
+
+    scores = pruner.score(model, context, structured=True, target_sparsity=0.6)
+    pruned_model, plan = pruner.apply(model, scores, context, structured=True, target_sparsity=0.6)
+
+    assert plan.name == "grasp"
+    assert plan.details["scope"] == "structured_hidden_channels"
+    assert plan.details["parameter_count_after"] < plan.details["parameter_count_before"]
+
+    data = _dummy_dataset(num_nodes=14, in_channels=6, num_classes=3)[0]
+    with torch.no_grad():
+        logits = pruned_model(data)
+    assert logits.shape == (data.num_nodes, 3)
+
+
 def test_finetuning_runs_and_saves_post_checkpoint(monkeypatch, tmp_path: Path) -> None:
     training_workflow = importlib.import_module("gnn_pruning.training.workflow")
     pruning_workflow = importlib.import_module("gnn_pruning.pruning.workflow")
@@ -202,3 +240,19 @@ def test_metric_files_exist_for_prune_and_finetune_phases(monkeypatch, tmp_path:
     assert prune_artifacts.post_prune_metrics_path.exists()
     assert finetune_artifacts.pre_finetune_metrics_path.exists()
     assert finetune_artifacts.post_finetune_metrics_path.exists()
+
+
+def test_snip_pruning_workflow_smoke(monkeypatch, tmp_path: Path) -> None:
+    training_workflow = importlib.import_module("gnn_pruning.training.workflow")
+    pruning_workflow = importlib.import_module("gnn_pruning.pruning.workflow")
+    monkeypatch.setattr(training_workflow, "load_dataset", lambda name, root: _dummy_dataset())
+    monkeypatch.setattr(pruning_workflow, "load_dataset", lambda name, root: _dummy_dataset())
+
+    ckpt = _make_checkpoint(tmp_path / "dense.pt")
+    cfg = _make_config(tmp_path / "cfg.yaml", tmp_path / "artifacts", method="snip", structured=True)
+
+    artifacts = prune_from_checkpoint(str(ckpt), str(cfg))
+
+    payload = json.loads(artifacts.pruning_metrics_path.read_text(encoding="utf-8"))
+    assert payload["name"] == "snip"
+    assert payload["mode"] == "structured"
