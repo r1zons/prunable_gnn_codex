@@ -81,11 +81,7 @@ def prune_from_checkpoint(
     output_dir = Path(resolved.run.output_dir).expanduser()
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    dataset = load_dataset(
-        resolved.data.name,
-        resolved.data.root,
-        dblp_strategy=getattr(resolved.data, "dblp_strategy", "author_homogeneous"),
-    )
+    dataset = _load_dataset_for_config(resolved)
     data = dataset[0]
     split = _load_or_create_split(config_path=config_path, output_dir=output_dir, data=data)
     indices = to_index_tensors(split, device=resolved.device.device)
@@ -253,11 +249,7 @@ def finetune_pruned_checkpoint(
     output_dir.mkdir(parents=True, exist_ok=True)
     structured = str(checkpoint.get("pruning_plan", {}).get("mode", "")) == "structured"
 
-    dataset = load_dataset(
-        resolved.data.name,
-        resolved.data.root,
-        dblp_strategy=getattr(resolved.data, "dblp_strategy", "author_homogeneous"),
-    )
+    dataset = _load_dataset_for_config(resolved)
     data = dataset[0]
 
     split = _load_or_create_split(config_path=config_path, output_dir=output_dir, data=data)
@@ -409,11 +401,7 @@ def _load_or_create_split(config_path: str, output_dir: Path, data: Any | None =
     resolved = resolve_config(config_path)
     graph = data
     if graph is None:
-        dataset = load_dataset(
-            resolved.data.name,
-            resolved.data.root,
-            dblp_strategy=getattr(resolved.data, "dblp_strategy", "author_homogeneous"),
-        )
+        dataset = _load_dataset_for_config(resolved)
         graph = dataset[0]
 
     split_path = output_dir / "splits.yaml"
@@ -518,3 +506,14 @@ def _file_size_bytes(path: Path) -> int:
 def _dropped_indices(total_channels: int, kept: list[int]) -> list[int]:
     kept_set = set(int(i) for i in kept)
     return [idx for idx in range(total_channels) if idx not in kept_set]
+
+
+def _load_dataset_for_config(resolved: Any) -> Any:
+    """Load dataset with backward-compatible signature for monkeypatched tests."""
+    if str(resolved.data.name).strip().lower() == "dblp":
+        return load_dataset(
+            resolved.data.name,
+            resolved.data.root,
+            getattr(resolved.data, "dblp_strategy", "author_homogeneous"),
+        )
+    return load_dataset(resolved.data.name, resolved.data.root)

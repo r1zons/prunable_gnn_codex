@@ -70,11 +70,7 @@ def train_dense(
     dump_yaml(resolved.to_dict(), resolved_path)
 
     reporter.stage(1, 6, f"Loading dataset ({resolved.data.name})")
-    dataset = load_dataset(
-        resolved.data.name,
-        resolved.data.root,
-        dblp_strategy=getattr(resolved.data, "dblp_strategy", "author_homogeneous"),
-    )
+    dataset = _load_dataset_for_config(resolved)
     data = dataset[0]
 
     split_path = output_dir / "splits.yaml"
@@ -206,11 +202,7 @@ def evaluate_dense(
 
     set_seed(resolved.run.seed)
 
-    dataset = load_dataset(
-        resolved.data.name,
-        resolved.data.root,
-        dblp_strategy=getattr(resolved.data, "dblp_strategy", "author_homogeneous"),
-    )
+    dataset = _load_dataset_for_config(resolved)
     data = dataset[0]
     device = torch.device(resolved.device.device)
 
@@ -386,3 +378,14 @@ def _resolve_run_dir(resolved: Any, resume: bool, output_dir_override: Optional[
         seed=resolved.run.seed,
         resume=resume,
     )
+
+
+def _load_dataset_for_config(resolved: Any) -> Any:
+    """Load dataset with backward-compatible call signature for monkeypatched tests."""
+    if str(resolved.data.name).strip().lower() == "dblp":
+        return load_dataset(
+            resolved.data.name,
+            resolved.data.root,
+            getattr(resolved.data, "dblp_strategy", "author_homogeneous"),
+        )
+    return load_dataset(resolved.data.name, resolved.data.root)
