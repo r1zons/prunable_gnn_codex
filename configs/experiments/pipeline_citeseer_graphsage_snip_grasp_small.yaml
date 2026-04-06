@@ -1,0 +1,14 @@
+base: base/default
+dataset: citeseer
+model: graphsage
+preset: fast_debug
+
+run:
+  experiment_name: pipeline_citeseer_graphsage_snip_grasp_small
+  output_dir: runs/pipeline/citeseer_graphsage_snip_grasp_small
+
+pruning:
+  methods: [snip, grasp]
+  sparsity_levels: [0.5]
+  structured: true
+  finetune_epochs: 2
