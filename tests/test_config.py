@@ -1,0 +1,266 @@
+"""Unit tests for config loading, merging, and validation."""
+
+from __future__ import annotations
+
+from pathlib import Path
+
+import pytest
+
+from gnn_pruning.config import load_yaml, resolve_config
+from gnn_pruning.config.loader import deep_merge
+from gnn_pruning.pipelines import run_pipeline
+
+
+def test_load_yaml_reads_mapping(tmp_path: Path) -> None:
+    config_file = tmp_path / "simple.yaml"
+    config_file.write_text("run:\n  seed: 123\n", encoding="utf-8")
+
+    payload = load_yaml(config_file)
+
+    assert payload["run"]["seed"] == 123
+
+
+def test_deep_merge_prefers_right_side() -> None:
+    left = {"training": {"epochs": 100, "lr": 0.01}, "run": {"seed": 42}}
+    right = {"training": {"epochs": 5}, "run": {"output_dir": "runs/x"}}
+
+    merged = deep_merge(left, right)
+
+    assert merged["training"]["epochs"] == 5
+    assert merged["training"]["lr"] == 0.01
+    assert merged["run"]["seed"] == 42
+    assert merged["run"]["output_dir"] == "runs/x"
+
+
+def test_resolve_config_merges_layers_and_user_override(tmp_path: Path) -> None:
+    user_config = tmp_path / "experiment.yaml"
+    user_config.write_text(
+        "\n".join(
+            [
+                "base: base/default",
+                "dataset: citeseer",
+                "model: graphsage",
+                "preset: fast_debug",
+                "training:",
+                "  epochs: 7",
+                "run:",
+                "  output_dir: runs/test_output",
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    resolved = resolve_config(user_config)
+
+    assert resolved.data.name == "citeseer"
+    assert resolved.model.name == "graphsage"
+    assert resolved.training.epochs == 7
+    assert resolved.run.experiment_name == "fast_debug"
+    assert resolved.run.output_dir == "runs/test_output"
+
+
+def test_run_pipeline_saves_resolved_snapshot(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    output_dir = tmp_path / "artifacts"
+    user_config = tmp_path / "experiment.yaml"
+    user_config.write_text(
+        "\n".join(
+            [
+                "base: base/default",
+                "dataset: cora",
+                "model: gcn",
+                "preset: fast_debug",
+                f"run:\n  output_dir: {output_dir.as_posix()}",
+                "pruning:",
+                "  method: random",
+                "  sparsity_levels: [0.5]",
+                "  finetune_epochs: 1",
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    import torch
+    from torch_geometric.data import Data
+
+    class _DummyDataset:
+        def __init__(self) -> None:
+            x = torch.randn((30, 8), dtype=torch.float32)
+            y = torch.randint(0, 3, (30,), dtype=torch.long)
+            edge_index = torch.vstack([torch.arange(30), torch.roll(torch.arange(30), shifts=-1)]).long()
+            self.data = Data(x=x, y=y, edge_index=edge_index)
+
+        def __getitem__(self, idx: int):
+            _ = idx
+            return self.data
+
+    import importlib
+
+    run_module = importlib.import_module("gnn_pruning.pipelines.run_pipeline")
+    training_module = importlib.import_module("gnn_pruning.training.workflow")
+    pruning_module = importlib.import_module("gnn_pruning.pruning.workflow")
+    dummy_dataset = _DummyDataset()
+    monkeypatch.setattr(training_module, "load_dataset", lambda name, root: dummy_dataset)
+    monkeypatch.setattr(pruning_module, "load_dataset", lambda name, root: dummy_dataset)
+
+    artifacts = run_pipeline(str(user_config))
+
+    assert artifacts.config_snapshot.exists()
+    assert artifacts.split_artifact.exists()
+    assert artifacts.csv_path.exists()
+    assert artifacts.summary_path.exists()
+    loaded = load_yaml(artifacts.config_snapshot)
+    assert loaded["data"]["name"] == "cora"
+    assert loaded["model"]["name"] == "gcn"
+
+
+def test_invalid_split_ratio_raises(tmp_path: Path) -> None:
+    user_config = tmp_path / "bad.yaml"
+    user_config.write_text(
+        "\n".join(
+            [
+                "base: base/default",
+                "data:",
+                "  train_ratio: 0.8",
+                "  val_ratio: 0.3",
+                "  test_ratio: 0.2",
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="sum to 1.0"):
+        resolve_config(user_config)
+
+
+def test_dataset_dependent_preset_override_applies(tmp_path: Path) -> None:
+    user_config = tmp_path / "experiment.yaml"
+    user_config.write_text(
+        "\n".join(
+            [
+                "base: base/default",
+                "dataset: citeseer",
+                "model: gcn",
+                "preset: fast_debug",
+            ]
+        ),
+        encoding="utf-8",
+    )
+
+    resolved = resolve_config(user_config)
+
+    assert resolved.training.epochs == 3
+    assert resolved.training.early_stopping_patience == 3
+
+
+def test_dataset_string_reference_resolves(tmp_path: Path) -> None:
+    config_file = tmp_path / "dataset_string.yaml"
+    config_file.write_text(
+        "\n".join([
+            "base: base/default",
+            "dataset: cora",
+            "model: gcn",
+        ]),
+        encoding="utf-8",
+    )
+
+    resolved = resolve_config(config_file)
+    assert resolved.data.name == "cora"
+
+
+def test_dataset_inline_dict_resolves(tmp_path: Path) -> None:
+    config_file = tmp_path / "dataset_dict.yaml"
+    config_file.write_text(
+        "\n".join([
+            "base: base/default",
+            "dataset:",
+            "  name: cora",
+            "model: gcn",
+        ]),
+        encoding="utf-8",
+    )
+
+    resolved = resolve_config(config_file)
+    assert resolved.data.name == "cora"
+
+
+def test_model_string_reference_resolves(tmp_path: Path) -> None:
+    config_file = tmp_path / "model_string.yaml"
+    config_file.write_text(
+        "\n".join([
+            "base: base/default",
+            "dataset: citeseer",
+            "model: graphsage",
+        ]),
+        encoding="utf-8",
+    )
+
+    resolved = resolve_config(config_file)
+    assert resolved.model.name == "graphsage"
+
+
+def test_model_inline_dict_resolves(tmp_path: Path) -> None:
+    config_file = tmp_path / "model_dict.yaml"
+    config_file.write_text(
+        "\n".join([
+            "base: base/default",
+            "dataset: cora",
+            "model:",
+            "  name: graphsage",
+            "  hidden_channels: 64",
+            "  num_layers: 2",
+            "  dropout: 0.5",
+        ]),
+        encoding="utf-8",
+    )
+
+    resolved = resolve_config(config_file)
+    assert resolved.model.name == "graphsage"
+    assert resolved.model.hidden_channels == 64
+
+
+def test_mixed_inline_and_reference_resolution(tmp_path: Path) -> None:
+    config_file = tmp_path / "mixed.yaml"
+    config_file.write_text(
+        "\n".join([
+            "base: base/default",
+            "dataset:",
+            "  name: cora",
+            "model: graphsage",
+            "preset: fast_debug",
+        ]),
+        encoding="utf-8",
+    )
+
+    resolved = resolve_config(config_file)
+    assert resolved.data.name == "cora"
+    assert resolved.model.name == "graphsage"
+
+
+def test_dataset_invalid_type_raises_clear_value_error(tmp_path: Path) -> None:
+    config_file = tmp_path / "dataset_invalid.yaml"
+    config_file.write_text(
+        "\n".join([
+            "base: base/default",
+            "dataset: 42",
+            "model: gcn",
+        ]),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="dataset"):
+        resolve_config(config_file)
+
+
+def test_model_invalid_type_raises_clear_value_error(tmp_path: Path) -> None:
+    config_file = tmp_path / "model_invalid.yaml"
+    config_file.write_text(
+        "\n".join([
+            "base: base/default",
+            "dataset: cora",
+            "model: 7",
+        ]),
+        encoding="utf-8",
+    )
+
+    with pytest.raises(ValueError, match="model"):
+        resolve_config(config_file)

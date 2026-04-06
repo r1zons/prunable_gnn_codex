@@ -1,0 +1,14 @@
+base: base/default
+dataset: pubmed
+model: gcn
+preset: fast_debug
+
+run:
+  experiment_name: pipeline_pubmed_gcn
+  output_dir: runs/pipeline/pubmed_gcn
+
+pruning:
+  method: global_magnitude
+  target_sparsity: 0.9
+  structured: true
+  finetune_epochs: 10
