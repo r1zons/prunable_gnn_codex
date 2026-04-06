@@ -1,0 +1,23 @@
+base: base/default
+dataset: flickr
+model: graphsage
+preset: fast_debug
+
+run:
+  experiment_name: flickr_graphsage_l3_h64
+  output_dir: runs/flickr_graphsage_sweep/l3_h64
+
+model:
+  name: graphsage
+  num_layers: 3
+  hidden_channels: 64
+
+pruning:
+  methods: [random, global_magnitude]
+  sparsity_levels: [0.5, 0.9]
+  structured: true
+  finetune_epochs: 5
+
+training:
+  epochs: 150
+  early_stopping_patience: 30
