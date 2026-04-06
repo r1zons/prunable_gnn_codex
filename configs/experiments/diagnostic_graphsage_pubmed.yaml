@@ -1,0 +1,14 @@
+base: base/default
+dataset: pubmed
+model: graphsage
+preset: fast_debug
+
+run:
+  experiment_name: diagnostic_graphsage_pubmed
+  output_dir: runs/diagnostic/graphsage_pubmed
+
+pruning:
+  method: global_magnitude
+  target_sparsity: 0.9
+  structured: true
+  finetune_epochs: 5
