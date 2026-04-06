@@ -6,7 +6,7 @@ from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
 
-from gnn_pruning.data.dblp_adapter import SUPPORTED_DBLP_STRATEGIES
+SUPPORTED_DBLP_STRATEGIES = ("author_homogeneous",)
 
 
 @dataclass
