@@ -239,6 +239,34 @@ def test_group_lasso_structured_pruning_shrinks_model() -> None:
     assert _param_count(pruned_model) < _param_count(model)
 
 
+def test_movement_pruning_reports_compaction_requirement() -> None:
+    model = GCNNodeClassifier(in_channels=6, hidden_channels=10, out_channels=3, num_layers=2, dropout=0.0)
+    pruner = get_pruner("movement")()
+    context = _saliency_context(model)
+
+    scores = pruner.score(model, context, structured=False, target_sparsity=0.5, movement_steps=2, movement_lr=1e-2)
+    _, plan = pruner.apply(model, scores, context, structured=False, target_sparsity=0.5)
+
+    assert plan.name == "movement"
+    assert plan.details["scope"] == "global"
+    assert plan.details["structural_compression_support"] == "requires_compaction_step"
+    assert plan.achieved_sparsity is not None
+
+
+def test_hard_concrete_l0_pruning_reports_compaction_requirement() -> None:
+    model = GCNNodeClassifier(in_channels=6, hidden_channels=10, out_channels=3, num_layers=2, dropout=0.0)
+    pruner = get_pruner("hard_concrete_l0")()
+    context = _saliency_context(model)
+
+    scores = pruner.score(model, context, structured=False, target_sparsity=0.5, gate_steps=2, gate_lr=1e-2, l0_lambda=1e-3)
+    _, plan = pruner.apply(model, scores, context, structured=False, target_sparsity=0.5)
+
+    assert plan.name == "hard_concrete_l0"
+    assert plan.details["scope"] == "global"
+    assert plan.details["structural_compression_support"] == "requires_compaction_step"
+    assert plan.achieved_sparsity is not None
+
+
 def test_finetuning_runs_and_saves_post_checkpoint(monkeypatch, tmp_path: Path) -> None:
     training_workflow = importlib.import_module("gnn_pruning.training.workflow")
     pruning_workflow = importlib.import_module("gnn_pruning.pruning.workflow")
@@ -286,3 +314,19 @@ def test_snip_pruning_workflow_smoke(monkeypatch, tmp_path: Path) -> None:
     payload = json.loads(artifacts.pruning_metrics_path.read_text(encoding="utf-8"))
     assert payload["name"] == "snip"
     assert payload["mode"] == "structured"
+
+
+def test_movement_pruning_workflow_smoke(monkeypatch, tmp_path: Path) -> None:
+    training_workflow = importlib.import_module("gnn_pruning.training.workflow")
+    pruning_workflow = importlib.import_module("gnn_pruning.pruning.workflow")
+    monkeypatch.setattr(training_workflow, "load_dataset", lambda name, root: _dummy_dataset())
+    monkeypatch.setattr(pruning_workflow, "load_dataset", lambda name, root: _dummy_dataset())
+
+    ckpt = _make_checkpoint(tmp_path / "dense.pt")
+    cfg = _make_config(tmp_path / "cfg.yaml", tmp_path / "artifacts", method="movement", structured=False)
+
+    artifacts = prune_from_checkpoint(str(ckpt), str(cfg))
+
+    payload = json.loads(artifacts.pruning_metrics_path.read_text(encoding="utf-8"))
+    assert payload["name"] == "movement"
+    assert payload["mode"] == "unstructured"

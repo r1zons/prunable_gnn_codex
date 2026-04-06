@@ -1,7 +1,17 @@
 """Pruning subsystem abstractions."""
 
 from .base import BasePruner, PruningContext, PruningPlan
-from .methods import GlobalMagnitudePruner, GraSPPruner, GroupLassoPruner, L1ThresholdPruner, LayerWiseMagnitudePruner, RandomPruner, SNIPPruner
+from .methods import (
+    GlobalMagnitudePruner,
+    GraSPPruner,
+    GroupLassoPruner,
+    HardConcretePruner,
+    L1ThresholdPruner,
+    LayerWiseMagnitudePruner,
+    MovementPruner,
+    RandomPruner,
+    SNIPPruner,
+)
 from .registry import PRUNER_REGISTRY, get_pruner, list_pruners, register_pruner
 from .workflow import FineTuneArtifacts, PrunedEvalArtifacts, PruningArtifacts, evaluate_pruned_checkpoint, finetune_pruned_checkpoint, prune_from_checkpoint
 
@@ -20,6 +30,8 @@ __all__ = [
     "GraSPPruner",
     "L1ThresholdPruner",
     "GroupLassoPruner",
+    "MovementPruner",
+    "HardConcretePruner",
     "PruningArtifacts",
     "PrunedEvalArtifacts",
     "FineTuneArtifacts",

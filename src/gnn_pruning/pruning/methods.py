@@ -224,6 +224,93 @@ def _compute_group_lasso_saliency(model: nn.Module, context: PruningContext, reg
     return channel_scores
 
 
+def _compute_movement_scores(
+    model: nn.Module,
+    context: PruningContext,
+    steps: int,
+    lr: float,
+) -> Dict[str, torch.Tensor]:
+    """Compute movement scores by accumulating gradient-driven weight updates."""
+    data, train_idx, _ = _extract_training_batch(context)
+    score_model = copy.deepcopy(model)
+    score_model.train()
+    params = _named_prunable_parameter_list(score_model)
+    movement = {name: torch.zeros_like(parameter, device="cpu") for name, parameter in params}
+
+    for _ in range(max(1, int(steps))):
+        score_model.zero_grad(set_to_none=True)
+        logits = score_model(data)
+        loss = nn.functional.cross_entropy(logits[train_idx], data.y[train_idx])
+        loss.backward()
+        with torch.no_grad():
+            for name, parameter in params:
+                if parameter.grad is None:
+                    continue
+                delta = -float(lr) * parameter.grad
+                movement[name] = movement[name] + (delta * parameter).detach().abs().cpu()
+                parameter.add_(delta)
+    return movement
+
+
+def _hard_concrete_sample(log_alpha: torch.Tensor, beta: float, gamma: float, zeta: float, training: bool) -> torch.Tensor:
+    """Sample (or deterministically estimate) stretched hard-concrete gates."""
+    if training:
+        u = torch.rand_like(log_alpha).clamp_(1e-6, 1.0 - 1e-6)
+        s = torch.sigmoid((u.log() - (1 - u).log() + log_alpha) / beta)
+    else:
+        s = torch.sigmoid(log_alpha)
+    s_bar = s * (zeta - gamma) + gamma
+    return s_bar.clamp(0.0, 1.0)
+
+
+def _compute_hard_concrete_scores(
+    model: nn.Module,
+    context: PruningContext,
+    steps: int,
+    lr: float,
+    l0_lambda: float,
+    beta: float,
+    gamma: float = -0.1,
+    zeta: float = 1.1,
+) -> Dict[str, torch.Tensor]:
+    """Optimize hard-concrete gate logits and return expected gate probabilities."""
+    data, train_idx, _ = _extract_training_batch(context)
+    score_model = copy.deepcopy(model)
+    score_model.train()
+    params = _named_prunable_parameter_list(score_model)
+    log_alpha = {
+        name: torch.zeros_like(parameter, device=parameter.device, requires_grad=True)
+        for name, parameter in params
+    }
+    optimizer = torch.optim.Adam(log_alpha.values(), lr=float(lr))
+
+    for _ in range(max(1, int(steps))):
+        score_model.zero_grad(set_to_none=True)
+        logits = score_model(data)
+        cls_loss = nn.functional.cross_entropy(logits[train_idx], data.y[train_idx])
+        cls_loss.backward()
+
+        optimizer.zero_grad()
+        gates = {name: _hard_concrete_sample(alpha, beta=beta, gamma=gamma, zeta=zeta, training=True) for name, alpha in log_alpha.items()}
+        importance_term = torch.zeros((), device=logits.device)
+        for name, parameter in params:
+            if parameter.grad is None:
+                continue
+            importance = (parameter.grad * parameter).detach().abs()
+            importance_term = importance_term - (importance * gates[name]).mean()
+        expected_l0 = torch.stack([torch.sigmoid(alpha - beta * math.log(-gamma / zeta)).mean() for alpha in log_alpha.values()]).mean()
+        loss = importance_term + float(l0_lambda) * expected_l0
+        loss.backward()
+        optimizer.step()
+
+    with torch.no_grad():
+        scores = {
+            name: _hard_concrete_sample(alpha, beta=beta, gamma=gamma, zeta=zeta, training=False).detach().cpu()
+            for name, alpha in log_alpha.items()
+        }
+    return scores
+
+
 def _validate_sparsity(value: float) -> None:
     if value < 0.0 or value >= 1.0:
         raise ValueError("target_sparsity must be in [0.0, 1.0).")
@@ -623,6 +710,121 @@ class GroupLassoPruner(BasePruner):
             plan.details["reg_strength"] = reg_strength
         plan.details["mode"] = "structured"
         pruned_model = _apply_structured(model, plan)
+        plan.pruning_time_sec = float(time.perf_counter() - start)
+        plan.score_payload = None
+        return pruned_model, plan
+
+
+@register_pruner
+class MovementPruner(BasePruner):
+    """Movement pruning (unstructured).
+
+    Structural compression: not directly supported. This method zeroes weights and
+    therefore requires a later compaction/surgery step for true model shrinkage.
+    """
+
+    name = "movement"
+    category = "learnable"
+    supports_unstructured = True
+    supports_structured = False
+
+    def score(self, model: Any, context: Any, **kwargs: Any) -> PruningPlan:
+        context = PruningContext.from_input(context)
+        target_sparsity = float(kwargs.get("target_sparsity", context.structure_target or 0.5))
+        steps = int(kwargs.get("movement_steps", context.config.get("pruning", {}).get("movement_steps", 3)))
+        lr = float(kwargs.get("movement_lr", context.config.get("pruning", {}).get("movement_lr", 1e-2)))
+        payload = _compute_movement_scores(model, context, steps=steps, lr=lr)
+        plan = _build_plan(self.name, self.category, target_sparsity, "unstructured", payload)
+        plan.details.update(
+            {
+                "learnable_pruning": True,
+                "movement_steps": steps,
+                "movement_lr": lr,
+                "structural_compression_support": "requires_compaction_step",
+            }
+        )
+        return plan
+
+    def apply(self, model: Any, pruning_plan: PruningPlan = None, context: Any = None, **kwargs: Any) -> Any:
+        plan, parsed_context = _extract_apply_inputs(pruning_plan, context, kwargs)
+        _sync_plan_from_kwargs(plan, kwargs)
+        start = time.perf_counter()
+        if plan.mode != "unstructured":
+            plan.mode = "unstructured"
+            steps = int(kwargs.get("movement_steps", 3))
+            lr = float(kwargs.get("movement_lr", 1e-2))
+            plan.score_payload = _compute_movement_scores(model, parsed_context, steps=steps, lr=lr)
+            plan.details["movement_steps"] = steps
+            plan.details["movement_lr"] = lr
+        plan.details["mode"] = "unstructured"
+        pruned_model = _apply_unstructured_global(model, plan)
+        plan.pruning_time_sec = float(time.perf_counter() - start)
+        plan.score_payload = None
+        return pruned_model, plan
+
+
+@register_pruner
+class HardConcretePruner(BasePruner):
+    """Hard-concrete / L0-style gating (unstructured).
+
+    Structural compression: not directly supported. Gates induce sparse masks and
+    require subsequent structural compaction if true shrinkage is desired.
+    """
+
+    name = "hard_concrete_l0"
+    category = "learnable"
+    supports_unstructured = True
+    supports_structured = False
+
+    def score(self, model: Any, context: Any, **kwargs: Any) -> PruningPlan:
+        context = PruningContext.from_input(context)
+        target_sparsity = float(kwargs.get("target_sparsity", context.structure_target or 0.5))
+        steps = int(kwargs.get("gate_steps", context.config.get("pruning", {}).get("gate_steps", 5)))
+        lr = float(kwargs.get("gate_lr", context.config.get("pruning", {}).get("gate_lr", 1e-2)))
+        l0_lambda = float(kwargs.get("l0_lambda", context.config.get("pruning", {}).get("l0_lambda", 1e-3)))
+        beta = float(kwargs.get("gate_beta", context.config.get("pruning", {}).get("gate_beta", 2.0 / 3.0)))
+        payload = _compute_hard_concrete_scores(
+            model,
+            context,
+            steps=steps,
+            lr=lr,
+            l0_lambda=l0_lambda,
+            beta=beta,
+        )
+        plan = _build_plan(self.name, self.category, target_sparsity, "unstructured", payload)
+        plan.details.update(
+            {
+                "learnable_pruning": True,
+                "gate_steps": steps,
+                "gate_lr": lr,
+                "l0_lambda": l0_lambda,
+                "gate_beta": beta,
+                "structural_compression_support": "requires_compaction_step",
+            }
+        )
+        return plan
+
+    def apply(self, model: Any, pruning_plan: PruningPlan = None, context: Any = None, **kwargs: Any) -> Any:
+        plan, parsed_context = _extract_apply_inputs(pruning_plan, context, kwargs)
+        _sync_plan_from_kwargs(plan, kwargs)
+        start = time.perf_counter()
+        if plan.mode != "unstructured":
+            plan.mode = "unstructured"
+            steps = int(kwargs.get("gate_steps", 5))
+            lr = float(kwargs.get("gate_lr", 1e-2))
+            l0_lambda = float(kwargs.get("l0_lambda", 1e-3))
+            beta = float(kwargs.get("gate_beta", 2.0 / 3.0))
+            plan.score_payload = _compute_hard_concrete_scores(
+                model,
+                parsed_context,
+                steps=steps,
+                lr=lr,
+                l0_lambda=l0_lambda,
+                beta=beta,
+            )
+            plan.details.update({"gate_steps": steps, "gate_lr": lr, "l0_lambda": l0_lambda, "gate_beta": beta})
+        plan.details["mode"] = "unstructured"
+        pruned_model = _apply_unstructured_global(model, plan)
         plan.pruning_time_sec = float(time.perf_counter() - start)
         plan.score_payload = None
         return pruned_model, plan
