@@ -81,7 +81,11 @@ def prune_from_checkpoint(
     output_dir = Path(resolved.run.output_dir).expanduser()
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    dataset = load_dataset(resolved.data.name, resolved.data.root)
+    dataset = load_dataset(
+        resolved.data.name,
+        resolved.data.root,
+        dblp_strategy=getattr(resolved.data, "dblp_strategy", "author_homogeneous"),
+    )
     data = dataset[0]
     split = _load_or_create_split(config_path=config_path, output_dir=output_dir, data=data)
     indices = to_index_tensors(split, device=resolved.device.device)
@@ -249,7 +253,11 @@ def finetune_pruned_checkpoint(
     output_dir.mkdir(parents=True, exist_ok=True)
     structured = str(checkpoint.get("pruning_plan", {}).get("mode", "")) == "structured"
 
-    dataset = load_dataset(resolved.data.name, resolved.data.root)
+    dataset = load_dataset(
+        resolved.data.name,
+        resolved.data.root,
+        dblp_strategy=getattr(resolved.data, "dblp_strategy", "author_homogeneous"),
+    )
     data = dataset[0]
 
     split = _load_or_create_split(config_path=config_path, output_dir=output_dir, data=data)
@@ -401,7 +409,11 @@ def _load_or_create_split(config_path: str, output_dir: Path, data: Any | None =
     resolved = resolve_config(config_path)
     graph = data
     if graph is None:
-        dataset = load_dataset(resolved.data.name, resolved.data.root)
+        dataset = load_dataset(
+            resolved.data.name,
+            resolved.data.root,
+            dblp_strategy=getattr(resolved.data, "dblp_strategy", "author_homogeneous"),
+        )
         graph = dataset[0]
 
     split_path = output_dir / "splits.yaml"

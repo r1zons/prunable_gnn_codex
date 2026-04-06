@@ -1,2 +1,3 @@
 data:
   name: dblp
+  dblp_strategy: author_homogeneous

@@ -6,6 +6,8 @@ from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
 
+from gnn_pruning.data.dblp_adapter import SUPPORTED_DBLP_STRATEGIES
+
 
 @dataclass
 class RunConfig:
@@ -25,6 +27,7 @@ class DataConfig:
     train_ratio: float = 0.6
     val_ratio: float = 0.2
     test_ratio: float = 0.2
+    dblp_strategy: str = "author_homogeneous"
 
 
 @dataclass
@@ -89,6 +92,7 @@ class ExperimentConfig:
         _validate_split_ratios(data)
         _validate_positive_values(model, training)
         _validate_benchmark(benchmark)
+        _validate_dblp(data)
 
         return cls(run=run, data=data, model=model, training=training, device=device, benchmark=benchmark)
 
@@ -133,6 +137,16 @@ def _validate_benchmark(benchmark: BenchmarkConfig) -> None:
         raise ValueError("benchmark.inference_warmup_passes must be >= 0.")
     if benchmark.inference_timed_passes <= 0:
         raise ValueError("benchmark.inference_timed_passes must be > 0.")
+
+
+def _validate_dblp(data: DataConfig) -> None:
+    name = data.name.strip().lower()
+    strategy = data.dblp_strategy.strip().lower()
+    if name == "dblp" and strategy not in SUPPORTED_DBLP_STRATEGIES:
+        raise ValueError(
+            f"Unsupported data.dblp_strategy '{data.dblp_strategy}' for DBLP. "
+            f"Supported: {list(SUPPORTED_DBLP_STRATEGIES)}"
+        )
 
 
 def snapshot_path(output_dir: Union[str, Path]) -> Path:

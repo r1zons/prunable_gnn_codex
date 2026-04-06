@@ -7,7 +7,7 @@
 This scaffold includes:
 - package layout for core subsystems
 - YAML-based layered config system (base + dataset + model + preset + user overrides)
-- dataset factory with explicit backend mapping and DBLP adapter placeholder
+- dataset factory with explicit backend mapping and DBLP adapter strategy (no silent heterogeneous fallback)
 - exact-ratio seeded split generation with split artifact saving
 - baseline dense node-classification models: GCN and GraphSAGE
 - dense training/evaluation workflow with early stopping and checkpointing
@@ -117,6 +117,31 @@ run_001/
 - `scripts/run_flickr_graphsage_sweep.py` runs all Flickr GraphSAGE sweep configs and writes `runs/flickr_graphsage_sweep/sweep_results.csv`.
 - `scripts/summarize_flickr_graphsage_sweep.py` prints grouped summaries and best post-finetune/tradeoff rows.
 - `scripts/debug_flickr_sweep_consistency.py` verifies architecture configs map to distinct dense checkpoints and prints per-config parameter counts/run dirs.
+
+## DBLP adapter strategy (explicit)
+
+DBLP is heterogeneous in PyG, so this project requires an explicit adapter strategy for homogeneous baselines.
+
+Current implemented strategy:
+
+- `author_homogeneous` (default):
+  - keeps only `author` nodes (features + labels)
+  - creates co-author edges by projecting `author -> paper <- author`
+  - outputs a homogeneous `Data(x, y, edge_index)` graph for baseline GCN/GraphSAGE
+
+Configuration:
+
+```yaml
+data:
+  name: dblp
+  dblp_strategy: author_homogeneous
+```
+
+Caveats:
+
+- This projection drops non-author node types and relation semantics.
+- Co-author projection can introduce dense connectivity depending on paper author counts.
+- This adapter path is explicit by design; DBLP is never treated as a plain homogeneous graph silently.
 
 ## Optional live progress reporting
 

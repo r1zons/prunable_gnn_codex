@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Any, Callable, Dict, Union
+from typing import Any, Callable, Dict, Optional, Union
 
 from .dblp_adapter import load_dblp_dataset
 
@@ -53,9 +53,17 @@ def get_dataset_loader(name: str) -> DatasetLoader:
     raise KeyError(f"Unhandled dataset family for {name}: {family}")
 
 
-def load_dataset(name: str, root: Union[str, Path] = "./data") -> Any:
+def load_dataset(
+    name: str,
+    root: Union[str, Path] = "./data",
+    dblp_strategy: Optional[str] = None,
+) -> Any:
     """Load dataset instance with caching enabled by default in PyG."""
-    loader = get_dataset_loader(name)
+    normalized = _normalize(name)
+    if normalized == "dblp":
+        strategy = str(dblp_strategy or "author_homogeneous")
+        return load_dblp_dataset(Path(root).expanduser(), strategy=strategy)
+    loader = get_dataset_loader(normalized)
     return loader(Path(root).expanduser())
 
 
