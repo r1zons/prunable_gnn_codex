@@ -1,0 +1,20 @@
+base: base/default
+dataset: citeseer
+model: graphsage
+preset: fast_debug
+
+run:
+  experiment_name: pipeline_citeseer_graphsage_learnable_small
+  output_dir: runs/pipeline/citeseer_graphsage_learnable_small
+
+pruning:
+  methods: [movement, hard_concrete_l0]
+  sparsity_levels: [0.5]
+  structured: false
+  finetune_epochs: 2
+  movement_steps: 3
+  movement_lr: 0.01
+  gate_steps: 5
+  gate_lr: 0.01
+  l0_lambda: 0.001
+  gate_beta: 0.6666667
