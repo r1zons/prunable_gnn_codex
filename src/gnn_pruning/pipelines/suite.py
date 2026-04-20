@@ -82,15 +82,37 @@ def aggregate_suite_rows(rows: Sequence[Dict[str, Any]]) -> List[Dict[str, Any]]
             str(row.get("experiment_name", "")),
             str(row.get("dataset", "")),
             str(row.get("model", "")),
+            str(row.get("num_layers", "")),
+            str(row.get("hidden_channels", "")),
+            str(row.get("seed", "")),
             str(row.get("phase", "")),
+            str(row.get("method", "")),
+            str(row.get("sparsity", "")),
             str(row.get("pruning_method", "")),
             str(row.get("requested_sparsity", "")),
+            str(row.get("config_hash", "")),
+            str(row.get("run_dir", "")),
         )
         grouped.setdefault(key, []).append(row)
 
     aggregate_rows: List[Dict[str, Any]] = []
     for key, members in grouped.items():
-        suite_name, experiment_name, dataset, model, phase, pruning_method, requested_sparsity = key
+        (
+            suite_name,
+            experiment_name,
+            dataset,
+            model,
+            num_layers,
+            hidden_channels,
+            seed,
+            phase,
+            method,
+            sparsity,
+            pruning_method,
+            requested_sparsity,
+            config_hash,
+            run_dir,
+        ) = key
         test_accuracy_values = _extract_numeric(members, "test_accuracy")
         test_macro_f1_values = _extract_numeric(members, "test_macro_f1")
         aggregate_rows.append(
@@ -99,9 +121,16 @@ def aggregate_suite_rows(rows: Sequence[Dict[str, Any]]) -> List[Dict[str, Any]]
                 "experiment_name": experiment_name,
                 "dataset": dataset,
                 "model": model,
+                "num_layers": num_layers,
+                "hidden_channels": hidden_channels,
+                "seed": seed,
                 "phase": phase,
+                "method": method,
+                "sparsity": sparsity,
                 "pruning_method": pruning_method,
                 "requested_sparsity": requested_sparsity,
+                "config_hash": config_hash,
+                "run_dir": run_dir,
                 "num_runs": len(members),
                 "test_accuracy_mean": _safe_mean(test_accuracy_values),
                 "test_accuracy_std": _safe_std(test_accuracy_values),
@@ -172,10 +201,17 @@ def _load_pipeline_rows(
                     "experiment_name": row.get("experiment_name", ""),
                     "dataset": row.get("dataset", ""),
                     "model": row.get("model", ""),
+                    "num_layers": row.get("num_layers", ""),
+                    "hidden_channels": row.get("hidden_channels", ""),
+                    "seed": row.get("seed", ""),
                     "phase": row.get("phase", ""),
+                    "method": row.get("method", row.get("pruning_method", "")),
+                    "sparsity": row.get("sparsity", row.get("requested_sparsity", "")),
                     "pruning_method": row.get("pruning_method", ""),
                     "requested_sparsity": row.get("requested_sparsity", ""),
                     "achieved_sparsity": row.get("achieved_sparsity", ""),
+                    "config_hash": row.get("config_hash", ""),
+                    "run_dir": row.get("run_dir", ""),
                     "test_accuracy": row.get("test_accuracy", ""),
                     "test_macro_f1": row.get("test_macro_f1", ""),
                     "pipeline_csv_path": str(pipeline_csv_path),

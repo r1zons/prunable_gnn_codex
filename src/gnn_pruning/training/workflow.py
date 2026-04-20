@@ -149,6 +149,18 @@ def train_dense(
         output_dir_override=str(output_dir),
     )
     metrics["training"] = train_result.to_dict()
+    metrics["identity"] = {
+        "dataset": resolved.data.name,
+        "model": resolved.model.name,
+        "num_layers": int(resolved.model.num_layers),
+        "hidden_channels": int(resolved.model.hidden_channels),
+        "seed": int(resolved.run.seed),
+        "phase": "dense",
+        "sparsity": 0.0,
+        "method": "dense",
+        "config_hash": str(run_signature["config_hash"]),
+        "run_dir": str(output_dir),
+    }
     reporter.phase_metrics("dense", metrics)
 
     checkpoint_payload = {
@@ -296,6 +308,18 @@ def evaluate_dense_and_save(
     ckpt = Path(checkpoint_path).expanduser() if checkpoint_path else None
     reporter.info("Evaluating dense checkpoint...")
     metrics = evaluate_dense(config_path=config_path, checkpoint_path=ckpt, output_dir_override=str(output_dir))
+    metrics["identity"] = {
+        "dataset": resolved.data.name,
+        "model": resolved.model.name,
+        "num_layers": int(resolved.model.num_layers),
+        "hidden_channels": int(resolved.model.hidden_channels),
+        "seed": int(resolved.run.seed),
+        "phase": "dense_eval",
+        "sparsity": 0.0,
+        "method": "dense",
+        "config_hash": hashlib.sha256(json.dumps(resolved.to_dict(), sort_keys=True).encode("utf-8")).hexdigest(),
+        "run_dir": str(output_dir),
+    }
     reporter.phase_metrics("dense_eval", metrics)
     metrics_path = output_dir / "metrics_eval.json"
     _write_json(metrics, metrics_path)

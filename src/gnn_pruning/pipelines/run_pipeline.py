@@ -81,6 +81,8 @@ def run_pipeline(config_path: str, show_progress: bool = False) -> PipelineArtif
             metrics_path=eval_artifacts.metrics_path,
             config_path=config_out,
             split_path=train_artifacts.split_path,
+            config_hash=train_artifacts.config_hash,
+            run_dir=output_dir,
         )
     )
     _append_run_metadata(
@@ -92,6 +94,10 @@ def run_pipeline(config_path: str, show_progress: bool = False) -> PipelineArtif
             "num_layers": resolved.model.num_layers,
             "hidden_channels": resolved.model.hidden_channels,
             "seed": resolved.run.seed,
+            "method": "dense",
+            "sparsity": 0.0,
+            "config_hash": train_artifacts.config_hash,
+            "run_dir": str(output_dir),
             "split_hash": train_artifacts.split_hash,
             "dense_checkpoint_path": str(train_artifacts.checkpoint_path),
             "checkpoint_reused": train_artifacts.checkpoint_reused,
@@ -151,6 +157,8 @@ def run_pipeline(config_path: str, show_progress: bool = False) -> PipelineArtif
                     metrics_path=prune_artifacts.post_prune_metrics_path or prune_artifacts.pruning_metrics_path,
                     config_path=variant_config,
                     split_path=variant_dir / "splits.yaml",
+                    config_hash=train_artifacts.config_hash,
+                    run_dir=variant_dir,
                 )
             )
             _append_run_metadata(
@@ -162,6 +170,10 @@ def run_pipeline(config_path: str, show_progress: bool = False) -> PipelineArtif
                     "num_layers": resolved.model.num_layers,
                     "hidden_channels": resolved.model.hidden_channels,
                     "seed": resolved.run.seed,
+                    "method": method,
+                    "requested_sparsity": sparsity,
+                    "config_hash": train_artifacts.config_hash,
+                    "run_dir": str(variant_dir),
                     "split_hash": train_artifacts.split_hash,
                     "dense_checkpoint_path": str(train_artifacts.checkpoint_path),
                     "checkpoint_reused": train_artifacts.checkpoint_reused,
@@ -182,6 +194,8 @@ def run_pipeline(config_path: str, show_progress: bool = False) -> PipelineArtif
                     metrics_path=finetune_artifacts.post_finetune_metrics_path,
                     config_path=variant_config,
                     split_path=variant_dir / "splits.yaml",
+                    config_hash=train_artifacts.config_hash,
+                    run_dir=variant_dir,
                 )
             )
             _append_run_metadata(
@@ -193,6 +207,10 @@ def run_pipeline(config_path: str, show_progress: bool = False) -> PipelineArtif
                     "num_layers": resolved.model.num_layers,
                     "hidden_channels": resolved.model.hidden_channels,
                     "seed": resolved.run.seed,
+                    "method": method,
+                    "requested_sparsity": sparsity,
+                    "config_hash": train_artifacts.config_hash,
+                    "run_dir": str(variant_dir),
                     "split_hash": train_artifacts.split_hash,
                     "dense_checkpoint_path": str(train_artifacts.checkpoint_path),
                     "checkpoint_reused": train_artifacts.checkpoint_reused,
@@ -289,16 +307,24 @@ def _build_csv_row(
     metrics_path: Path,
     config_path: Path,
     split_path: Path,
+    config_hash: str,
+    run_dir: Path,
 ) -> Dict[str, Any]:
     return {
         "experiment_name": resolved.run.experiment_name,
         "dataset": resolved.data.name,
         "model": resolved.model.name,
+        "num_layers": resolved.model.num_layers,
+        "hidden_channels": resolved.model.hidden_channels,
         "seed": resolved.run.seed,
         "phase": phase,
+        "method": pruning_method,
+        "sparsity": requested_sparsity,
         "pruning_method": pruning_method,
         "requested_sparsity": requested_sparsity,
         "achieved_sparsity": achieved_sparsity,
+        "config_hash": config_hash,
+        "run_dir": str(run_dir),
         "train_accuracy": _metric(metrics, "train", "accuracy"),
         "train_macro_f1": _metric(metrics, "train", "macro_f1"),
         "val_accuracy": _metric(metrics, "val", "accuracy"),

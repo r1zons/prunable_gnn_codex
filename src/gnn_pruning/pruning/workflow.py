@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import hashlib
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Any, Dict
@@ -131,8 +132,17 @@ def prune_from_checkpoint(
     )
 
     pruning_metrics_path = output_dir / f"pruning_metrics_{method}.json"
+    identity_prune = _identity_payload(
+        resolved=resolved,
+        phase="prune",
+        method=method,
+        sparsity=target_sparsity,
+        run_dir=output_dir,
+    )
     with pruning_metrics_path.open("w", encoding="utf-8") as handle:
-        json.dump(asdict(plan), handle, indent=2)
+        payload = asdict(plan)
+        payload["identity"] = identity_prune
+        json.dump(payload, handle, indent=2)
 
     reporter.info("Evaluating dense checkpoint metrics...")
     dense_metrics = evaluate_dense(
@@ -150,6 +160,13 @@ def prune_from_checkpoint(
     )
     post_prune_metrics_path = output_dir / f"metrics_post_prune_{method}.json"
     with post_prune_metrics_path.open("w", encoding="utf-8") as handle:
+        post_prune_metrics["identity"] = _identity_payload(
+            resolved=resolved,
+            phase="post_prune",
+            method=method,
+            sparsity=target_sparsity,
+            run_dir=output_dir,
+        )
         json.dump(post_prune_metrics, handle, indent=2)
     reporter.phase_metrics("post_prune", post_prune_metrics)
 
@@ -287,6 +304,13 @@ def finetune_pruned_checkpoint(
     )
     pre_finetune_metrics_path = output_dir / "metrics_pruned_pre_finetune.json"
     with pre_finetune_metrics_path.open("w", encoding="utf-8") as handle:
+        pre_metrics["identity"] = _identity_payload(
+            resolved=resolved,
+            phase="pre_finetune",
+            method=str(checkpoint.get("pruning_plan", {}).get("name", "")),
+            sparsity=float(checkpoint.get("pruning_plan", {}).get("requested_sparsity", 0.0) or 0.0),
+            run_dir=output_dir,
+        )
         json.dump(pre_metrics, handle, indent=2)
     reporter.phase_metrics("pre_finetune", pre_metrics)
 
@@ -326,6 +350,13 @@ def finetune_pruned_checkpoint(
     post_metrics["finetune_training"] = train_result.to_dict()
     post_finetune_metrics_path = output_dir / "metrics_pruned_post_finetune.json"
     with post_finetune_metrics_path.open("w", encoding="utf-8") as handle:
+        post_metrics["identity"] = _identity_payload(
+            resolved=resolved,
+            phase="post_finetune",
+            method=str(checkpoint.get("pruning_plan", {}).get("name", "")),
+            sparsity=float(checkpoint.get("pruning_plan", {}).get("requested_sparsity", 0.0) or 0.0),
+            run_dir=output_dir,
+        )
         json.dump(post_metrics, handle, indent=2)
     reporter.phase_metrics("post_finetune", post_metrics)
 
@@ -517,3 +548,18 @@ def _load_dataset_for_config(resolved: Any) -> Any:
             getattr(resolved.data, "dblp_strategy", "author_homogeneous"),
         )
     return load_dataset(resolved.data.name, resolved.data.root)
+
+
+def _identity_payload(resolved: Any, phase: str, method: str, sparsity: float, run_dir: Path) -> Dict[str, Any]:
+    return {
+        "dataset": resolved.data.name,
+        "model": resolved.model.name,
+        "num_layers": int(resolved.model.num_layers),
+        "hidden_channels": int(resolved.model.hidden_channels),
+        "seed": int(resolved.run.seed),
+        "phase": phase,
+        "sparsity": float(sparsity),
+        "method": str(method),
+        "config_hash": hashlib.sha256(json.dumps(resolved.to_dict(), sort_keys=True).encode("utf-8")).hexdigest(),
+        "run_dir": str(run_dir),
+    }

@@ -11,7 +11,7 @@ from typing import Any, Dict, List
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from gnn_pruning.config import load_yaml
+from gnn_pruning.config import resolve_config
 from gnn_pruning.pipelines import run_pipeline
 
 
@@ -34,8 +34,7 @@ def main() -> int:
 
     merged_rows: List[Dict[str, Any]] = []
     for config_path in SWEEP_CONFIGS:
-        cfg = load_yaml(config_path)
-        model_cfg = cfg.get("model", {}) if isinstance(cfg.get("model", {}), dict) else {}
+        resolved = resolve_config(config_path)
         print(f"[run_flickr_graphsage_sweep] running {config_path}")
         artifacts = run_pipeline(config_path)
         rows = _read_pipeline_rows(artifacts.csv_path)
@@ -45,16 +44,18 @@ def main() -> int:
                 {
                     "dataset": row.get("dataset", ""),
                     "model": row.get("model", ""),
-                    "num_layers": model_cfg.get("num_layers", ""),
-                    "hidden_channels": model_cfg.get("hidden_channels", ""),
-                    "method": row.get("pruning_method", ""),
+                    "num_layers": resolved.model.num_layers,
+                    "hidden_channels": resolved.model.hidden_channels,
+                    "seed": row.get("seed", resolved.run.seed),
                     "phase": row.get("phase", ""),
-                    "sparsity": row.get("requested_sparsity", ""),
+                    "method": row.get("method", row.get("pruning_method", "")),
+                    "sparsity": row.get("sparsity", row.get("requested_sparsity", "")),
                     "test_accuracy": row.get("test_accuracy", ""),
                     "test_macro_f1": row.get("test_macro_f1", ""),
                     "inference_time_mean_sec": _ms_to_sec(row.get("inference_time_mean_ms", "")),
                     "parameter_count": row.get("parameter_count", ""),
                     "checkpoint_size_bytes": _checkpoint_size(checkpoint_path),
+                    "config_hash": row.get("config_hash", ""),
                     "run_dir": str(artifacts.output_dir),
                 }
             )

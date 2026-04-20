@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import csv
+import json
 import importlib
 from pathlib import Path
 
@@ -74,3 +75,23 @@ def test_run_pipeline_full_smoke_citeseer_graphsage_fast_debug(monkeypatch, tmp_
     assert phases.count("dense") == 1
     assert phases.count("post_prune") == 5
     assert phases.count("post_finetune") == 5
+
+    required_identity_columns = {
+        "dataset",
+        "model",
+        "num_layers",
+        "hidden_channels",
+        "seed",
+        "phase",
+        "sparsity",
+        "method",
+        "config_hash",
+        "run_dir",
+    }
+    assert required_identity_columns.issubset(set(rows[0].keys()))
+
+    dense_meta = json.loads((artifacts.output_dir / "run_metadata.json").read_text(encoding="utf-8"))
+    assert isinstance(dense_meta, list) and dense_meta
+    dense_identity = dense_meta[0]
+    for field in required_identity_columns:
+        assert field in dense_identity

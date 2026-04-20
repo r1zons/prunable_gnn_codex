@@ -39,6 +39,8 @@ def test_aggregate_suite_rows_computes_mean_std_ci95() -> None:
     assert len(aggregate) == 1
     row = aggregate[0]
     assert row["num_runs"] == 2
+    for field in ("num_layers", "hidden_channels", "seed", "method", "sparsity", "config_hash", "run_dir"):
+        assert field in row
     assert abs(float(row["test_accuracy_mean"]) - 0.7) < 1e-9
     assert row["test_accuracy_std"] != ""
     assert row["test_accuracy_ci95"] != ""
@@ -78,10 +80,17 @@ def test_suite_run_csv_schema(tmp_path: Path) -> None:
         "experiment_name",
         "dataset",
         "model",
+        "num_layers",
+        "hidden_channels",
+        "seed",
         "phase",
+        "method",
+        "sparsity",
         "pruning_method",
         "requested_sparsity",
         "achieved_sparsity",
+        "config_hash",
+        "run_dir",
         "test_accuracy",
         "test_macro_f1",
         "pipeline_csv_path",

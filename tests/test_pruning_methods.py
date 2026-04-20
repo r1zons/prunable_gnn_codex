@@ -114,6 +114,9 @@ def test_pruning_runs_end_to_end_on_small_model(monkeypatch, tmp_path: Path) -> 
     payload = json.loads(artifacts.pruning_metrics_path.read_text(encoding="utf-8"))
     assert payload["name"] == "global_magnitude"
     assert payload["target_sparsity"] == 0.5
+    assert "identity" in payload
+    for field in ("dataset", "model", "num_layers", "hidden_channels", "seed", "phase", "sparsity", "method", "config_hash", "run_dir"):
+        assert field in payload["identity"]
 
 
 def test_structured_mode_reduces_parameter_count() -> None:
