@@ -1,0 +1,16 @@
+base: base/default
+dataset: reddit
+model: gcn
+preset: fast_debug
+
+run:
+  experiment_name: presentation_reddit
+  output_dir: runs/presentation/reddit
+
+# Reddit can be expensive for local CPU runs.
+# Keep fast_debug preset by default and consider reducing training epochs further if needed.
+pruning:
+  methods: [random, global_magnitude]
+  sparsity_levels: [0.5, 0.9]
+  structured: true
+  finetune_epochs: 3
