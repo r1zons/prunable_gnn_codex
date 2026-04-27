@@ -1,0 +1,14 @@
+suite_name: extended_optional
+
+run:
+  num_runs: 5
+  base_seed: 42
+  output_dir: runs/suites/extended_optional
+
+experiments:
+  - configs/experiments/pipeline_citeseer_graphsage.yaml
+  - configs/experiments/pipeline_pubmed_gcn.yaml
+  - configs/experiments/presentation_flickr.yaml
+  - configs/experiments/presentation_reddit.yaml
+  - configs/experiments/diagnostic_gcn_pubmed.yaml
+  - configs/experiments/diagnostic_graphsage_pubmed.yaml

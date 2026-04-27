@@ -1,0 +1,14 @@
+base: base/default
+dataset: cora
+model: gcn
+preset: fast_debug
+
+run:
+  experiment_name: presentation_cora_gcn_global_magnitude_90
+  output_dir: runs/presentation/cora_gcn_global_magnitude_90
+
+pruning:
+  method: global_magnitude
+  target_sparsity: 0.9
+  structured: true
+  finetune_epochs: 10
