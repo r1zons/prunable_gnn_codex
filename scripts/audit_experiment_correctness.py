@@ -6,7 +6,7 @@ import json
 import sys
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Sequence
+from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
@@ -103,7 +103,7 @@ def _expected_signature(resolved: Any, config_hash: str) -> Dict[str, Any]:
     }
 
 
-def _checkpoint_compatibility(payload: Dict[str, Any], expected: Dict[str, Any]) -> tuple[bool, str]:
+def _checkpoint_compatibility(payload: Dict[str, Any], expected: Dict[str, Any]) -> Tuple[bool, str]:
     saved = payload.get("run_signature")
     if not isinstance(saved, dict):
         return False, "missing run_signature"
@@ -141,7 +141,7 @@ def _assert_multi_config_isolation(records: Iterable[AuditRecord]) -> None:
                 )
 
 
-def _collect_config_paths(config: Sequence[str] | None, configs: Sequence[str] | None) -> List[str]:
+def _collect_config_paths(config: Optional[Sequence[str]], configs: Optional[Sequence[str]]) -> List[str]:
     collected: List[str] = []
     if config:
         collected.extend(str(path) for path in config)
@@ -152,7 +152,7 @@ def _collect_config_paths(config: Sequence[str] | None, configs: Sequence[str] |
     return collected
 
 
-def main(argv: Sequence[str] | None = None) -> int:
+def main(argv: Optional[Sequence[str]] = None) -> int:
     parser = argparse.ArgumentParser(description="Audit experiment correctness assumptions.")
     parser.add_argument("--config", action="append", default=None, help="Single config path (can be repeated).")
     parser.add_argument("--configs", nargs="+", default=None, help="One or more config paths.")
