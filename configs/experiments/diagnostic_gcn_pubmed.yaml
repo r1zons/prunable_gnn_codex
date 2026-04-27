@@ -1,0 +1,14 @@
+base: base/default
+dataset: pubmed
+model: gcn
+preset: fast_debug
+
+run:
+  experiment_name: diagnostic_gcn_pubmed
+  output_dir: runs/diagnostic/gcn_pubmed
+
+pruning:
+  method: global_magnitude
+  target_sparsity: 0.9
+  structured: true
+  finetune_epochs: 5

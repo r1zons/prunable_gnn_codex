@@ -1,0 +1,26 @@
+base: base/default
+dataset: cora
+model: graphsage
+preset: fast_debug
+
+run:
+  experiment_name: audit_graphsage_cora_l3_h64
+  output_dir: runs/audit_graphsage_cora/l3_h64
+
+model:
+  name: graphsage
+  num_layers: 3
+  hidden_channels: 64
+
+training:
+  epochs: 5
+  early_stopping_patience: 3
+
+pruning:
+  methods: [random, global_magnitude]
+  sparsity_levels: [0.5]
+  structured: true
+  finetune_epochs: 2
+
+logging:
+  show_progress: true
