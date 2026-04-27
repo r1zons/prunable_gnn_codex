@@ -1,7 +1,5 @@
 """Lightweight correctness audit for experiment identity and checkpoint isolation."""
 
-from __future__ import annotations
-
 import argparse
 import hashlib
 import json
