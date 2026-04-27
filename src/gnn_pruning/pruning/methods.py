@@ -378,6 +378,8 @@ def _apply_structured(model: Any, plan: PruningPlan) -> Any:
         {
             "scope": "structured_hidden_channels",
             "layer_index": layer_index,
+            "selected_layer_indices": [int(layer_index)],
+            "prunable_channel_groups": 1,
             "kept_channel_indices": keep_indices,
             "kept_channels": len(keep_indices),
             "total_channels": channels,

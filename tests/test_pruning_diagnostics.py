@@ -169,6 +169,22 @@ def test_graphsage_pubmed_post_prune_behavior_is_recorded(patched_data, tmp_path
     assert "kept_channel_indices_per_layer" in diag
 
 
+def test_pruning_diagnostics_include_plan_channel_details(patched_data, tmp_path: Path) -> None:
+    ckpt = _make_checkpoint(tmp_path / "dense.pt", model_name="graphsage", hidden=16)
+    cfg = _make_config(tmp_path / "cfg.yaml", tmp_path / "run", "cora", "graphsage", "global_magnitude", 0.5)
+
+    prune_from_checkpoint(str(ckpt), str(cfg))
+    diag = json.loads((tmp_path / "run" / "pruning_diagnostics.json").read_text(encoding="utf-8"))
+
+    assert "selected_layer_indices" in diag
+    assert "requested_sparsity" in diag
+    assert "achieved_sparsity" in diag
+    assert "kept_channel_indices_per_layer" in diag
+    assert "dropped_channel_indices_per_layer" in diag
+    assert "kept_channels_per_layer" in diag
+    assert "dropped_channels_per_layer" in diag
+
+
 def test_method_outputs_are_not_reused_between_runs(patched_data, tmp_path: Path) -> None:
     ckpt = _make_checkpoint(tmp_path / "dense.pt", hidden=10)
     cfg_random = _make_config(tmp_path / "cfg_random.yaml", tmp_path / "random_run", "cora", "gcn", "random", 0.5)

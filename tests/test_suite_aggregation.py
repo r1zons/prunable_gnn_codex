@@ -99,6 +99,95 @@ def test_suite_run_csv_schema(tmp_path: Path) -> None:
     assert len(rows) == 1
 
 
+def test_suite_run_csv_rows_match_header_width(tmp_path: Path) -> None:
+    csv_path = write_suite_run_rows(
+        [
+            {
+                "suite_name": "default_small",
+                "run_index": 0,
+                "run_seed": 42,
+                "experiment_name": "pipeline_citeseer_graphsage",
+                "dataset": "citeseer",
+                "model": "graphsage",
+                "num_layers": 2,
+                "hidden_channels": 128,
+                "seed": 42,
+                "phase": "post_finetune",
+                "method": "global_magnitude",
+                "sparsity": 0.5,
+                "pruning_method": "global_magnitude",
+                "requested_sparsity": 0.5,
+                "achieved_sparsity": 0.5,
+                "config_hash": "abc123",
+                "run_dir": "runs/example",
+                "test_accuracy": 0.8,
+                "test_macro_f1": 0.79,
+                "pipeline_csv_path": "runs/example/pipeline_results.csv",
+            },
+            {
+                "suite_name": "default_small",
+                "run_index": 1,
+                "run_seed": 43,
+                "experiment_name": "pipeline_citeseer_graphsage",
+                "dataset": "citeseer",
+                "model": "graphsage",
+                "num_layers": 2,
+                "hidden_channels": 128,
+                "seed": 43,
+                "phase": "post_prune",
+                "method": "layerwise_magnitude",
+                "sparsity": 0.5,
+                "pruning_method": "layerwise_magnitude",
+                "requested_sparsity": 0.5,
+                "achieved_sparsity": 0.52,
+                "config_hash": "def456",
+                "run_dir": "runs/example2",
+                "test_accuracy": 0.74,
+                "test_macro_f1": 0.7,
+                "pipeline_csv_path": "runs/example2/pipeline_results.csv",
+            },
+        ],
+        tmp_path / "suite_runs.csv",
+    )
+    with csv_path.open("r", encoding="utf-8", newline="") as handle:
+        reader = csv.reader(handle)
+        rows = list(reader)
+    assert rows
+    header_len = len(rows[0])
+    assert header_len > 0
+    assert all(len(row) == header_len for row in rows[1:])
+
+
+def test_suite_run_csv_schema_mismatch_resets_file(tmp_path: Path) -> None:
+    csv_path = tmp_path / "suite_runs.csv"
+    csv_path.write_text("suite_name,phase,pruning_method\nold,post_prune,random\n", encoding="utf-8")
+    write_suite_run_rows(
+        [
+            {
+                "suite_name": "default_small",
+                "run_index": 0,
+                "run_seed": 42,
+                "experiment_name": "pipeline_citeseer_graphsage",
+                "dataset": "citeseer",
+                "model": "graphsage",
+                "phase": "dense",
+                "pruning_method": "dense",
+                "requested_sparsity": 0.0,
+                "achieved_sparsity": 0.0,
+                "test_accuracy": 0.75,
+                "test_macro_f1": 0.74,
+                "pipeline_csv_path": "runs/a/pipeline_results.csv",
+            }
+        ],
+        csv_path,
+    )
+    with csv_path.open("r", encoding="utf-8", newline="") as handle:
+        reader = csv.reader(handle)
+        rows = list(reader)
+    assert len(rows[0]) > 3
+    assert "run_index" in rows[0]
+
+
 def test_aggregate_separates_rows_by_dataset() -> None:
     rows = [
         {

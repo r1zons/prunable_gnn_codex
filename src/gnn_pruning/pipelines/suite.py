@@ -38,6 +38,12 @@ def run_suite(config_path: str, show_progress: bool = False) -> SuiteArtifacts:
 
     experiment_refs = _resolve_experiment_configs(suite_cfg)
     run_rows: List[Dict[str, Any]] = []
+    runs_csv_target = output_dir / "suite_runs.csv"
+    aggregate_csv_target = output_dir / "suite_aggregate.csv"
+    if runs_csv_target.exists():
+        runs_csv_target.unlink()
+    if aggregate_csv_target.exists():
+        aggregate_csv_target.unlink()
 
     total_jobs = max(1, num_runs * len(experiment_refs))
     job_index = 0
@@ -67,9 +73,9 @@ def run_suite(config_path: str, show_progress: bool = False) -> SuiteArtifacts:
                 )
             )
 
-    runs_csv_path = write_suite_run_rows(run_rows, output_dir / "suite_runs.csv")
+    runs_csv_path = write_suite_run_rows(run_rows, runs_csv_target)
     aggregate_rows = aggregate_suite_rows(run_rows)
-    aggregate_csv_path = write_suite_aggregate_rows(aggregate_rows, output_dir / "suite_aggregate.csv")
+    aggregate_csv_path = write_suite_aggregate_rows(aggregate_rows, aggregate_csv_target)
     return SuiteArtifacts(output_dir=output_dir, runs_csv_path=runs_csv_path, aggregate_csv_path=aggregate_csv_path)
 
 
@@ -90,6 +96,7 @@ def aggregate_suite_rows(rows: Sequence[Dict[str, Any]]) -> List[Dict[str, Any]]
             str(row.get("sparsity", "")),
             str(row.get("pruning_method", "")),
             str(row.get("requested_sparsity", "")),
+            str(row.get("achieved_sparsity", "")),
             str(row.get("config_hash", "")),
             str(row.get("run_dir", "")),
         )
@@ -110,6 +117,7 @@ def aggregate_suite_rows(rows: Sequence[Dict[str, Any]]) -> List[Dict[str, Any]]
             sparsity,
             pruning_method,
             requested_sparsity,
+            achieved_sparsity,
             config_hash,
             run_dir,
         ) = key
@@ -129,6 +137,7 @@ def aggregate_suite_rows(rows: Sequence[Dict[str, Any]]) -> List[Dict[str, Any]]
                 "sparsity": sparsity,
                 "pruning_method": pruning_method,
                 "requested_sparsity": requested_sparsity,
+                "achieved_sparsity": achieved_sparsity,
                 "config_hash": config_hash,
                 "run_dir": run_dir,
                 "num_runs": len(members),

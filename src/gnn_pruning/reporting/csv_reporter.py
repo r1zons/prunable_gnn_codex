@@ -98,6 +98,7 @@ SUITE_AGGREGATE_COLUMNS = [
     "sparsity",
     "pruning_method",
     "requested_sparsity",
+    "achieved_sparsity",
     "config_hash",
     "run_dir",
     "num_runs",
@@ -114,6 +115,7 @@ def write_csv_row(metrics: Mapping[str, object], csv_path: Union[str, Path]) -> 
     """Append one metrics row to CSV, creating schema header if needed."""
     target = Path(csv_path).expanduser()
     target.parent.mkdir(parents=True, exist_ok=True)
+    _ensure_schema_or_reset(target, DENSE_RESULTS_COLUMNS)
 
     row: Dict[str, object] = {column: metrics.get(column, "") for column in DENSE_RESULTS_COLUMNS}
     file_exists = target.exists()
@@ -136,6 +138,7 @@ def write_pipeline_csv_rows(rows: Sequence[Mapping[str, object]], csv_path: Unio
     """Append multiple pipeline rows to CSV, creating header if needed."""
     target = Path(csv_path).expanduser()
     target.parent.mkdir(parents=True, exist_ok=True)
+    _ensure_schema_or_reset(target, PIPELINE_RESULTS_COLUMNS)
     file_exists = target.exists()
 
     with target.open("a", encoding="utf-8", newline="") as handle:
@@ -162,6 +165,7 @@ def write_suite_aggregate_rows(rows: Sequence[Mapping[str, object]], csv_path: U
 def _write_rows(rows: Sequence[Mapping[str, object]], csv_path: Union[str, Path], columns: Sequence[str]) -> Path:
     target = Path(csv_path).expanduser()
     target.parent.mkdir(parents=True, exist_ok=True)
+    _ensure_schema_or_reset(target, columns)
     file_exists = target.exists()
 
     with target.open("a", encoding="utf-8", newline="") as handle:
@@ -172,3 +176,14 @@ def _write_rows(rows: Sequence[Mapping[str, object]], csv_path: Union[str, Path]
             serialized = {column: row.get(column, "") for column in columns}
             writer.writerow(serialized)
     return target
+
+
+def _ensure_schema_or_reset(target: Path, columns: Sequence[str]) -> None:
+    if not target.exists():
+        return
+    with target.open("r", encoding="utf-8", newline="") as handle:
+        reader = csv.reader(handle)
+        header = next(reader, [])
+    expected = list(columns)
+    if header != expected:
+        target.unlink()

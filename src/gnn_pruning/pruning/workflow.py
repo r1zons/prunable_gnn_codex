@@ -194,6 +194,16 @@ def prune_from_checkpoint(
         "loaded_checkpoint_path": str(Path(checkpoint_path).expanduser()),
     }
     _write_debug_artifact(output_dir, "prune", debug_payload)
+    layer_index = int(plan.details.get("layer_index", 0))
+    selected_layer_indices = [int(v) for v in plan.details.get("selected_layer_indices", [layer_index])]
+    kept_channel_indices = [int(v) for v in plan.details.get("kept_channel_indices", [])]
+    per_layer_kept = {str(layer_index): kept_channel_indices}
+    per_layer_dropped = {
+        str(layer_index): _dropped_indices(
+            dense_hidden_dims[layer_index] if len(dense_hidden_dims) > layer_index else 0,
+            kept_channel_indices,
+        )
+    }
     diagnostics_path = _write_pruning_diagnostics(
         output_dir=output_dir,
         payload={
@@ -201,6 +211,7 @@ def prune_from_checkpoint(
             "model": model_name,
             "method": method,
             "mode": "structured" if structured else "unstructured",
+            "selected_layer_indices": selected_layer_indices,
             "requested_sparsity": target_sparsity,
             "achieved_sparsity": plan.achieved_sparsity,
             "dense_hidden_dimensions": dense_hidden_dims,
@@ -209,13 +220,10 @@ def prune_from_checkpoint(
             "pruned_parameter_count": pruned_param_count,
             "dense_checkpoint_size": _file_size_bytes(Path(checkpoint_path).expanduser()),
             "pruned_checkpoint_size": _file_size_bytes(pruned_checkpoint_path),
-            "kept_channel_indices_per_layer": {str(plan.details.get("layer_index", 0)): list(plan.details.get("kept_channel_indices", []))},
-            "dropped_channel_indices_per_layer": {
-                str(plan.details.get("layer_index", 0)): _dropped_indices(
-                    dense_hidden_dims[0] if dense_hidden_dims else 0,
-                    list(plan.details.get("kept_channel_indices", [])),
-                )
-            },
+            "kept_channel_indices_per_layer": per_layer_kept,
+            "dropped_channel_indices_per_layer": per_layer_dropped,
+            "kept_channels_per_layer": {key: len(value) for key, value in per_layer_kept.items()},
+            "dropped_channels_per_layer": {key: len(value) for key, value in per_layer_dropped.items()},
             "metrics": {
                 "dense": dense_metrics,
                 "post_prune": post_prune_metrics,

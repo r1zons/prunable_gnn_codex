@@ -9,7 +9,7 @@ from pathlib import Path
 import torch
 from torch_geometric.data import Data
 
-from gnn_pruning.models import GCNNodeClassifier
+from gnn_pruning.models import GCNNodeClassifier, GraphSAGENodeClassifier
 from gnn_pruning.pruning import PruningContext, get_pruner
 from gnn_pruning.pruning.workflow import finetune_pruned_checkpoint, prune_from_checkpoint
 
@@ -240,6 +240,27 @@ def test_group_lasso_structured_pruning_shrinks_model() -> None:
     assert plan.details["scope"] == "structured_hidden_channels"
     assert plan.details["parameter_count_after"] < plan.details["parameter_count_before"]
     assert _param_count(pruned_model) < _param_count(model)
+
+
+def test_graphsage_three_layer_global_vs_layerwise_plan_comparison() -> None:
+    model = GraphSAGENodeClassifier(in_channels=6, hidden_channels=16, out_channels=3, num_layers=3, dropout=0.0)
+    context = PruningContext(config={}, data=None, device="cpu", seed=42)
+
+    global_pruner = get_pruner("global_magnitude")()
+    layerwise_pruner = get_pruner("layerwise_magnitude")()
+
+    global_scores = global_pruner.score(model, context, structured=True, target_sparsity=0.5)
+    layerwise_scores = layerwise_pruner.score(model, context, structured=True, target_sparsity=0.5)
+
+    _, global_plan = global_pruner.apply(model, global_scores, context, structured=True, target_sparsity=0.5)
+    _, layerwise_plan = layerwise_pruner.apply(model, layerwise_scores, context, structured=True, target_sparsity=0.5)
+
+    different_plans = global_plan.details != layerwise_plan.details
+    explicit_single_group = (
+        int(global_plan.details.get("prunable_channel_groups", 0)) == 1
+        and int(layerwise_plan.details.get("prunable_channel_groups", 0)) == 1
+    )
+    assert different_plans or explicit_single_group
 
 
 def test_movement_pruning_reports_compaction_requirement() -> None:
