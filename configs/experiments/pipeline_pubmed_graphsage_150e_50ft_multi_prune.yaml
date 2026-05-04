@@ -1,0 +1,36 @@
+base: base/default
+dataset: pubmed
+model: graphsage_l3_h192
+
+run:
+  experiment_name: pipeline_pubmed_graphsage_150e_50ft_multi_prune
+  output_dir: runs/pipeline/pubmed_graphsage_150e_50ft_multi_prune
+
+training:
+  epochs: 150
+  lr: 0.01
+  weight_decay: 0.0005
+  early_stopping_patience: 30
+
+pruning:
+  methods:
+    - random
+    - global_magnitude
+    - layerwise_magnitude
+    - snip
+    - grasp
+    - l1_threshold
+    - group_lasso
+    - movement
+    - hard_concrete_l0
+  sparsity_levels: [0.3, 0.5, 0.7]
+  structured: false
+  target_sparsity: 0.5
+  finetune_epochs: 50
+  reg_strength: 0.0001
+  movement_steps: 3
+  movement_lr: 0.01
+  gate_steps: 5
+  gate_lr: 0.01
+  l0_lambda: 0.001
+  gate_beta: 0.6666667

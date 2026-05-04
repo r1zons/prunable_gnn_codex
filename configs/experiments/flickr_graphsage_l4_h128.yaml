@@ -1,0 +1,23 @@
+base: base/default
+dataset: flickr
+model: graphsage
+preset: standard
+
+run:
+  experiment_name: flickr_graphsage_l4_h128
+  output_dir: runs/flickr_pruning_study/l4_h128
+
+model:
+  name: graphsage
+  num_layers: 4
+  hidden_channels: 128
+
+training:
+  epochs: 150
+  early_stopping_patience: 20
+
+pruning:
+  methods: [random, global_magnitude, layerwise_magnitude, adaptive_layerwise]
+  sparsity_levels: [0.3, 0.5, 0.7, 0.9]
+  structured: true
+  finetune_epochs: 50
