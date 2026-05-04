@@ -1,0 +1,14 @@
+base: base/default
+dataset: citeseer
+model: gcn
+preset: fast_debug
+
+run:
+  experiment_name: presentation_citeseer
+  output_dir: runs/presentation/citeseer
+
+pruning:
+  method: global_magnitude
+  target_sparsity: 0.9
+  structured: true
+  finetune_epochs: 5

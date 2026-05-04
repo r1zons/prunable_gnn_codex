@@ -1,0 +1,11 @@
+suite_name: adaptive_comparison_small
+
+run:
+  num_runs: 1
+  base_seed: 42
+  output_dir: runs/suites/adaptive_comparison_small
+
+experiments:
+  - configs/experiments/adaptive_graphsage_cora.yaml
+  - configs/experiments/adaptive_graphsage_citeseer.yaml
+  - configs/experiments/adaptive_graphsage_pubmed.yaml
