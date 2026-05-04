@@ -1,11 +1,11 @@
 base: base/default
-dataset: citeseer
+dataset: cora
 model: graphsage
 preset: standard
 
 run:
-  experiment_name: adaptive_graphsage_citeseer
-  output_dir: runs/adaptive_graphsage_citeseer
+  experiment_name: adaptive_graphsage_cora
+  output_dir: runs/adaptive_graphsage_cora
 
 model:
   name: graphsage
@@ -31,6 +31,3 @@ adaptive_pruning:
     alpha: 0.4
     beta: 0.2
     gamma: 0.4
-
-logging:
-  show_progress: true
