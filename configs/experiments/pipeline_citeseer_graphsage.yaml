@@ -1,0 +1,14 @@
+base: base/default
+dataset: citeseer
+model: graphsage
+preset: fast_debug
+
+run:
+  experiment_name: pipeline_citeseer_graphsage
+  output_dir: runs/pipeline/citeseer_graphsage
+
+pruning:
+  methods: [random, global_magnitude, layerwise_magnitude]
+  sparsity_levels: [0.1, 0.3, 0.5, 0.7, 0.9]
+  structured: true
+  finetune_epochs: 10

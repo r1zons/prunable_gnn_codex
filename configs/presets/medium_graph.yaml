@@ -1,0 +1,11 @@
+training:
+  epochs: 150
+  lr: 0.005
+  early_stopping_patience: 40
+run:
+  experiment_name: medium_graph
+
+dataset_overrides:
+  flickr:
+    training:
+      epochs: 120

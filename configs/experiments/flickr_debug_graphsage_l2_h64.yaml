@@ -1,0 +1,23 @@
+base: base/default
+dataset: flickr
+model: graphsage
+preset: fast_debug
+
+run:
+  experiment_name: flickr_debug_graphsage_l2_h64
+  output_dir: runs/flickr_debug/l2_h64
+
+model:
+  name: graphsage
+  num_layers: 2
+  hidden_channels: 64
+
+training:
+  epochs: 10
+  early_stopping_patience: 5
+
+pruning:
+  methods: [random, global_magnitude, layerwise_magnitude, adaptive_layerwise]
+  sparsity_levels: [0.3, 0.5, 0.7, 0.9]
+  structured: true
+  finetune_epochs: 5
