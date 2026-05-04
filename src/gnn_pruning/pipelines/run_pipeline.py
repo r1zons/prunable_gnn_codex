@@ -64,6 +64,9 @@ def run_pipeline(config_path: str, show_progress: bool = False) -> PipelineArtif
 
     raw_cfg = load_yaml(config_path)
     pruning_cfg = raw_cfg.get("pruning", {}) if isinstance(raw_cfg.get("pruning", {}), dict) else {}
+    finetune_enabled = bool(pruning_cfg.get("finetune_enabled", True))
+    finetune_epochs_cfg = int(pruning_cfg.get("finetune_epochs", 50))
+    skip_finetune = (not finetune_enabled) or finetune_epochs_cfg <= 0
     methods = _resolve_pruning_methods(pruning_cfg)
     sparsity_levels = _resolve_sparsity_levels(pruning_cfg)
 
@@ -135,16 +138,18 @@ def run_pipeline(config_path: str, show_progress: bool = False) -> PipelineArtif
                 progress_reporter=variant_reporter,
             )
             reporter.stage(4, 6, f"Post-prune evaluation done for {method}@{sparsity}")
-            finetune_artifacts = finetune_pruned_checkpoint(
-                checkpoint_path=str(prune_artifacts.pruned_checkpoint_path),
-                config_path=str(variant_config),
-                finetune_epochs=None,
-                progress_reporter=variant_reporter,
-            )
-            reporter.stage(5, 6, f"Post-finetune evaluation done for {method}@{sparsity}")
+            finetune_artifacts = None
+            if not skip_finetune:
+                finetune_artifacts = finetune_pruned_checkpoint(
+                    checkpoint_path=str(prune_artifacts.pruned_checkpoint_path),
+                    config_path=str(variant_config),
+                    finetune_epochs=None,
+                    progress_reporter=variant_reporter,
+                )
+                reporter.stage(5, 6, f"Post-finetune evaluation done for {method}@{sparsity}")
 
             prune_metrics = _read_json(prune_artifacts.post_prune_metrics_path) if prune_artifacts.post_prune_metrics_path else {}
-            finetune_metrics = _read_json(finetune_artifacts.post_finetune_metrics_path)
+            finetune_metrics = _read_json(finetune_artifacts.post_finetune_metrics_path) if finetune_artifacts else {}
             pruning_plan = _read_json(prune_artifacts.pruning_metrics_path)
 
             achieved_sparsity = float(pruning_plan.get("achieved_sparsity", sparsity))
@@ -189,46 +194,67 @@ def run_pipeline(config_path: str, show_progress: bool = False) -> PipelineArtif
                     "parameter_count": prune_metrics.get("benchmark", {}).get("parameter_count", ""),
                 },
             )
-            rows.append(
-                _build_csv_row(
-                    resolved=resolved,
-                    phase="post_finetune",
-                    metrics=finetune_metrics,
-                    pruning_method=method,
-                    requested_sparsity=sparsity,
-                    achieved_sparsity=achieved_sparsity,
-                    final_reward=adaptive_details.get("final_reward", ""),
-                    num_adaptive_steps=adaptive_details.get("num_adaptive_steps", ""),
-                    stop_reason=adaptive_details.get("stop_reason", ""),
-                    checkpoint_path=finetune_artifacts.post_finetune_checkpoint_path,
-                    metrics_path=finetune_artifacts.post_finetune_metrics_path,
-                    config_path=variant_config,
-                    split_path=variant_dir / "splits.yaml",
-                    config_hash=train_artifacts.config_hash,
-                    run_dir=variant_dir,
+            if finetune_artifacts:
+                rows.append(
+                    _build_csv_row(
+                        resolved=resolved,
+                        phase="post_finetune",
+                        metrics=finetune_metrics,
+                        pruning_method=method,
+                        requested_sparsity=sparsity,
+                        achieved_sparsity=achieved_sparsity,
+                        final_reward=adaptive_details.get("final_reward", ""),
+                        num_adaptive_steps=adaptive_details.get("num_adaptive_steps", ""),
+                        stop_reason=adaptive_details.get("stop_reason", ""),
+                        checkpoint_path=finetune_artifacts.post_finetune_checkpoint_path,
+                        metrics_path=finetune_artifacts.post_finetune_metrics_path,
+                        config_path=variant_config,
+                        split_path=variant_dir / "splits.yaml",
+                        config_hash=train_artifacts.config_hash,
+                        run_dir=variant_dir,
+                    )
                 )
-            )
-            _append_run_metadata(
-                output_dir=variant_dir,
-                payload={
-                    "phase": "post_finetune",
-                    "dataset": resolved.data.name,
-                    "model": resolved.model.name,
-                    "num_layers": resolved.model.num_layers,
-                    "hidden_channels": resolved.model.hidden_channels,
-                    "seed": resolved.run.seed,
-                    "method": method,
-                    "requested_sparsity": sparsity,
-                    "config_hash": train_artifacts.config_hash,
-                    "run_dir": str(variant_dir),
-                    "split_hash": train_artifacts.split_hash,
-                    "dense_checkpoint_path": str(train_artifacts.checkpoint_path),
-                    "checkpoint_reused": train_artifacts.checkpoint_reused,
-                    "pruning_method": method,
-                    "sparsity": sparsity,
-                    "parameter_count": finetune_metrics.get("benchmark", {}).get("parameter_count", ""),
-                },
-            )
+                _append_run_metadata(
+                    output_dir=variant_dir,
+                    payload={
+                        "phase": "post_finetune",
+                        "dataset": resolved.data.name,
+                        "model": resolved.model.name,
+                        "num_layers": resolved.model.num_layers,
+                        "hidden_channels": resolved.model.hidden_channels,
+                        "seed": resolved.run.seed,
+                        "method": method,
+                        "requested_sparsity": sparsity,
+                        "config_hash": train_artifacts.config_hash,
+                        "run_dir": str(variant_dir),
+                        "split_hash": train_artifacts.split_hash,
+                        "dense_checkpoint_path": str(train_artifacts.checkpoint_path),
+                        "checkpoint_reused": train_artifacts.checkpoint_reused,
+                        "pruning_method": method,
+                        "sparsity": sparsity,
+                        "parameter_count": finetune_metrics.get("benchmark", {}).get("parameter_count", ""),
+                    },
+                )
+            else:
+                rows.append(
+                    _build_csv_row(
+                        resolved=resolved,
+                        phase="skipped_finetune",
+                        metrics={},
+                        pruning_method=method,
+                        requested_sparsity=sparsity,
+                        achieved_sparsity=achieved_sparsity,
+                        final_reward=adaptive_details.get("final_reward", ""),
+                        num_adaptive_steps=adaptive_details.get("num_adaptive_steps", ""),
+                        stop_reason="finetune_disabled",
+                        checkpoint_path=prune_artifacts.pruned_checkpoint_path,
+                        metrics_path=prune_artifacts.post_prune_metrics_path or prune_artifacts.pruning_metrics_path,
+                        config_path=variant_config,
+                        split_path=variant_dir / "splits.yaml",
+                        config_hash=train_artifacts.config_hash,
+                        run_dir=variant_dir,
+                    )
+                )
             variant_summaries.append(
                 {
                     "method": method,
