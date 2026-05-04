@@ -83,6 +83,66 @@ def _structured_scores(model: Any, random: bool = False) -> torch.Tensor:
     raise TypeError("Unsupported model for structured pruning scores.")
 
 
+def _structured_scores_for_layer(model: Any, layer_index: int) -> torch.Tensor:
+    if not hasattr(model, "convs") or len(model.convs) < 2:
+        raise ValueError("Model does not expose hidden layers for structured pruning.")
+    if layer_index < 0 or layer_index >= len(model.convs) - 1:
+        raise ValueError("layer_index must target a hidden layer with a downstream layer.")
+
+    conv = model.convs[layer_index]
+    next_conv = model.convs[layer_index + 1]
+
+    if isinstance(model, GCNNodeClassifier):
+        left = conv.lin.weight.abs().sum(dim=1)
+        right = next_conv.lin.weight.abs().sum(dim=0)
+        return left + right
+    if isinstance(model, GraphSAGENodeClassifier):
+        left = conv.lin_l.weight.abs().sum(dim=1)
+        if getattr(conv, "root_weight", False):
+            left = left + conv.lin_r.weight.abs().sum(dim=1)
+        right = next_conv.lin_l.weight.abs().sum(dim=0)
+        if getattr(next_conv, "root_weight", False):
+            right = right + next_conv.lin_r.weight.abs().sum(dim=0)
+        return left + right
+    raise TypeError("Unsupported model for layer-wise structured scores.")
+
+
+def _adaptive_cfg(context: PruningContext) -> Dict[str, Any]:
+    config = context.config if isinstance(context.config, dict) else {}
+    payload = config.get("adaptive_pruning", {})
+    if not isinstance(payload, dict):
+        payload = {}
+    reward = payload.get("reward", {}) if isinstance(payload.get("reward", {}), dict) else {}
+    return {
+        "step_prune_ratio": float(payload.get("step_prune_ratio", 0.1)),
+        "max_steps": int(payload.get("max_steps", 10)),
+        "max_accuracy_drop": float(payload.get("max_accuracy_drop", 0.05)),
+        "min_channels_per_layer": int(payload.get("min_channels_per_layer", 4)),
+        "alpha": float(reward.get("alpha", 0.4)),
+        "beta": float(reward.get("beta", 0.2)),
+        "gamma": float(reward.get("gamma", 0.4)),
+    }
+
+
+def _validation_accuracy(model: Any, context: PruningContext) -> float:
+    if not isinstance(context.data, dict) or "data" not in context.data or "val_idx" not in context.data:
+        return 0.0
+    data = context.data["data"]
+    val_idx = context.data["val_idx"]
+    device = torch.device(context.device or "cpu")
+    model = model.to(device)
+    graph = data.to(device)
+    if not torch.is_tensor(val_idx):
+        val_idx = torch.tensor(val_idx, dtype=torch.long)
+    val_idx = val_idx.to(device=device, dtype=torch.long)
+    model.eval()
+    with torch.no_grad():
+        logits = model(graph)
+        pred = logits.argmax(dim=-1)
+        correct = (pred[val_idx] == graph.y[val_idx]).float().mean()
+    return float(correct.item())
+
+
 def _extract_training_batch(context: PruningContext) -> tuple[Any, torch.Tensor, torch.device]:
     """Extract graph data and train indices used for gradient saliency scoring."""
     if not isinstance(context.data, dict):
@@ -830,3 +890,175 @@ class HardConcretePruner(BasePruner):
         plan.pruning_time_sec = float(time.perf_counter() - start)
         plan.score_payload = None
         return pruned_model, plan
+
+
+@register_pruner
+class AdaptiveLayerWisePruner(BasePruner):
+    """Rule-based adaptive structural pruning with state/action/reward traces."""
+
+    name = "adaptive_layerwise"
+    category = "adaptive"
+    supports_unstructured = False
+    supports_structured = True
+
+    def score(self, model: Any, context: Any, **kwargs: Any) -> PruningPlan:
+        context = PruningContext.from_input(context)
+        target_sparsity = float(kwargs.get("target_sparsity", context.structure_target or 0.5))
+        payload = {"layer_scores": []}
+        for layer_index in range(max(0, len(getattr(model, "convs", [])) - 1)):
+            scores = _structured_scores_for_layer(model, layer_index=layer_index)
+            payload["layer_scores"].append(
+                {
+                    "layer_index": int(layer_index),
+                    "mean_importance": float(scores.mean().item()) if scores.numel() else 0.0,
+                    "min_importance": float(scores.min().item()) if scores.numel() else 0.0,
+                    "max_importance": float(scores.max().item()) if scores.numel() else 0.0,
+                    "num_channels": int(scores.numel()),
+                }
+            )
+        return _build_plan(self.name, self.category, target_sparsity, "structured", payload)
+
+    def apply(self, model: Any, pruning_plan: PruningPlan = None, context: Any = None, **kwargs: Any) -> Any:
+        plan, parsed_context = _extract_apply_inputs(pruning_plan, context, kwargs)
+        _sync_plan_from_kwargs(plan, kwargs)
+        start = time.perf_counter()
+        cfg = _adaptive_cfg(parsed_context)
+
+        current_model = copy.deepcopy(model)
+        initial_params = _parameter_count(current_model)
+        baseline_val = _validation_accuracy(current_model, parsed_context)
+        prev_val = baseline_val
+        trace = []
+        selected_layers = []
+        stop_reason = "max_steps_reached"
+        final_reward = 0.0
+
+        max_steps = max(1, int(cfg["max_steps"]))
+        for step in range(1, max_steps + 1):
+            layer_stats = []
+            valid_layers = []
+            min_selectable_layer = max(selected_layers) if selected_layers else 0
+            for layer_index in range(max(0, len(getattr(current_model, "convs", [])) - 1)):
+                scores = _structured_scores_for_layer(current_model, layer_index=layer_index)
+                width = int(scores.numel())
+                mean_importance = float(scores.mean().item()) if width else 0.0
+                layer_stats.append(
+                    {
+                        "layer_index": int(layer_index),
+                        "num_channels": width,
+                        "mean_importance": mean_importance,
+                        "min_importance": float(scores.min().item()) if width else 0.0,
+                        "max_importance": float(scores.max().item()) if width else 0.0,
+                    }
+                )
+                if layer_index >= min_selectable_layer and width > int(cfg["min_channels_per_layer"]):
+                    valid_layers.append((mean_importance, layer_index, scores))
+
+            if not valid_layers:
+                stop_reason = "no_valid_layer"
+                break
+
+            _, layer_index, scores = sorted(valid_layers, key=lambda item: item[0])[0]
+            width = int(scores.numel())
+            min_channels = int(cfg["min_channels_per_layer"])
+            prune_count = max(1, int(round(float(cfg["step_prune_ratio"]) * width)))
+            keep_count = max(min_channels, width - prune_count)
+            keep_count = min(keep_count, width - 1) if width > min_channels else width
+            if keep_count < min_channels or keep_count >= width:
+                stop_reason = "no_valid_layer"
+                break
+
+            _, keep_indices_tensor = torch.topk(scores, k=keep_count, largest=True)
+            keep_indices = sorted(int(idx) for idx in keep_indices_tensor.tolist())
+
+            params_before = _parameter_count(current_model)
+            sparsity_before = 1.0 - (params_before / max(initial_params, 1))
+            val_before = prev_val
+
+            current_model = structurally_prune_hidden_channels(current_model, layer_index=layer_index, keep_indices=keep_indices)
+
+            params_after = _parameter_count(current_model)
+            sparsity_after = 1.0 - (params_after / max(initial_params, 1))
+            val_after = _validation_accuracy(current_model, parsed_context)
+            accuracy_drop = max(0.0, baseline_val - val_after)
+            compression_gain = max(0.0, sparsity_after - sparsity_before)
+            speedup = 0.0
+            reward = (
+                float(cfg["alpha"]) * compression_gain
+                + float(cfg["beta"]) * speedup
+                - float(cfg["gamma"]) * accuracy_drop
+            )
+            final_reward = float(reward)
+            prev_val = val_after
+            selected_layers.append(int(layer_index))
+
+            trace.append(
+                {
+                    "step": int(step),
+                    "selected_layer": int(layer_index),
+                    "prune_ratio": float(cfg["step_prune_ratio"]),
+                    "num_channels_pruned": int(width - keep_count),
+                    "sparsity_before": float(sparsity_before),
+                    "sparsity_after": float(sparsity_after),
+                    "val_accuracy_before": float(val_before),
+                    "val_accuracy_after": float(val_after),
+                    "parameter_count_before": int(params_before),
+                    "parameter_count_after": int(params_after),
+                    "state": {
+                        "step": int(step),
+                        "current_sparsity": float(sparsity_after),
+                        "val_accuracy": float(val_after),
+                        "parameter_count": int(params_after),
+                        "layer_widths": [int(stat["num_channels"]) for stat in layer_stats],
+                        "layer_importance_stats": layer_stats,
+                    },
+                    "action": {
+                        "selected_layer": int(layer_index),
+                        "prune_ratio": float(cfg["step_prune_ratio"]),
+                        "num_channels_pruned": int(width - keep_count),
+                    },
+                    "reward": {
+                        "value": float(reward),
+                        "compression_gain": float(compression_gain),
+                        "speedup": float(speedup),
+                        "accuracy_drop": float(accuracy_drop),
+                        "final_reward": float(reward),
+                    },
+                }
+            )
+
+            if sparsity_after >= plan.requested_sparsity:
+                stop_reason = "target_sparsity_reached"
+                break
+            if accuracy_drop > float(cfg["max_accuracy_drop"]):
+                stop_reason = "max_accuracy_drop_exceeded"
+                break
+
+        if trace:
+            trace[-1]["stop_reason"] = stop_reason
+            plan.layer_index = int(trace[-1]["selected_layer"])
+            plan.target_units = []
+            plan.achieved_sparsity = float(trace[-1]["sparsity_after"])
+        else:
+            params = _parameter_count(current_model)
+            plan.achieved_sparsity = float(1.0 - (params / max(initial_params, 1)))
+
+        plan.details.update(
+            {
+                "mode": "structured",
+                "scope": "adaptive_layerwise_structured",
+                "adaptive_trace": trace,
+                "selected_layer_indices": selected_layers,
+                "prunable_channel_groups": max(1, len(getattr(model, "convs", [])) - 1),
+                "initial_val_accuracy": float(baseline_val),
+                "final_val_accuracy": float(prev_val),
+                "initial_parameter_count": int(initial_params),
+                "final_parameter_count": int(_parameter_count(current_model)),
+                "final_reward": float(final_reward),
+                "num_adaptive_steps": int(len(trace)),
+                "stop_reason": stop_reason,
+            }
+        )
+        plan.pruning_time_sec = float(time.perf_counter() - start)
+        plan.score_payload = None
+        return current_model, plan

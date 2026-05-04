@@ -29,6 +29,7 @@ class PruningArtifacts:
     pruning_metrics_path: Path
     post_prune_metrics_path: Path | None = None
     diagnostics_path: Path | None = None
+    adaptive_trace_path: Path | None = None
 
 
 @dataclass
@@ -88,8 +89,11 @@ def prune_from_checkpoint(
     indices = to_index_tensors(split, device=resolved.device.device)
 
     context = PruningContext(
-        config=resolved.to_dict(),
-        data={"data": data, "train_idx": indices["train"]},
+        config={
+            "resolved": resolved.to_dict(),
+            "adaptive_pruning": raw_cfg.get("adaptive_pruning", {}) if isinstance(raw_cfg.get("adaptive_pruning", {}), dict) else {},
+        },
+        data={"data": data, "train_idx": indices["train"], "val_idx": indices["val"]},
         device=resolved.device.device,
         seed=resolved.run.seed,
     )
@@ -143,6 +147,12 @@ def prune_from_checkpoint(
         payload = asdict(plan)
         payload["identity"] = identity_prune
         json.dump(payload, handle, indent=2)
+    adaptive_trace_path = None
+    adaptive_trace = plan.details.get("adaptive_trace", [])
+    if method == "adaptive_layerwise" and isinstance(adaptive_trace, list):
+        adaptive_trace_path = output_dir / "adaptive_trace.json"
+        with adaptive_trace_path.open("w", encoding="utf-8") as handle:
+            json.dump(adaptive_trace, handle, indent=2)
 
     reporter.info("Evaluating dense checkpoint metrics...")
     dense_metrics = evaluate_dense(
@@ -236,6 +246,7 @@ def prune_from_checkpoint(
         pruning_metrics_path=pruning_metrics_path,
         post_prune_metrics_path=post_prune_metrics_path,
         diagnostics_path=diagnostics_path,
+        adaptive_trace_path=adaptive_trace_path,
     )
 
 

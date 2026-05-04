@@ -77,6 +77,9 @@ def run_pipeline(config_path: str, show_progress: bool = False) -> PipelineArtif
             pruning_method="dense",
             requested_sparsity=0.0,
             achieved_sparsity=0.0,
+            final_reward="",
+            num_adaptive_steps="",
+            stop_reason="",
             checkpoint_path=train_artifacts.checkpoint_path,
             metrics_path=eval_artifacts.metrics_path,
             config_path=config_out,
@@ -145,6 +148,7 @@ def run_pipeline(config_path: str, show_progress: bool = False) -> PipelineArtif
             pruning_plan = _read_json(prune_artifacts.pruning_metrics_path)
 
             achieved_sparsity = float(pruning_plan.get("achieved_sparsity", sparsity))
+            adaptive_details = pruning_plan.get("details", {}) if isinstance(pruning_plan.get("details", {}), dict) else {}
             rows.append(
                 _build_csv_row(
                     resolved=resolved,
@@ -153,6 +157,9 @@ def run_pipeline(config_path: str, show_progress: bool = False) -> PipelineArtif
                     pruning_method=method,
                     requested_sparsity=sparsity,
                     achieved_sparsity=achieved_sparsity,
+                    final_reward=adaptive_details.get("final_reward", ""),
+                    num_adaptive_steps=adaptive_details.get("num_adaptive_steps", ""),
+                    stop_reason=adaptive_details.get("stop_reason", ""),
                     checkpoint_path=prune_artifacts.pruned_checkpoint_path,
                     metrics_path=prune_artifacts.post_prune_metrics_path or prune_artifacts.pruning_metrics_path,
                     config_path=variant_config,
@@ -190,6 +197,9 @@ def run_pipeline(config_path: str, show_progress: bool = False) -> PipelineArtif
                     pruning_method=method,
                     requested_sparsity=sparsity,
                     achieved_sparsity=achieved_sparsity,
+                    final_reward=adaptive_details.get("final_reward", ""),
+                    num_adaptive_steps=adaptive_details.get("num_adaptive_steps", ""),
+                    stop_reason=adaptive_details.get("stop_reason", ""),
                     checkpoint_path=finetune_artifacts.post_finetune_checkpoint_path,
                     metrics_path=finetune_artifacts.post_finetune_metrics_path,
                     config_path=variant_config,
@@ -303,6 +313,9 @@ def _build_csv_row(
     pruning_method: str,
     requested_sparsity: float,
     achieved_sparsity: float,
+    final_reward: Any,
+    num_adaptive_steps: Any,
+    stop_reason: Any,
     checkpoint_path: Path,
     metrics_path: Path,
     config_path: Path,
@@ -323,6 +336,9 @@ def _build_csv_row(
         "pruning_method": pruning_method,
         "requested_sparsity": requested_sparsity,
         "achieved_sparsity": achieved_sparsity,
+        "final_reward": final_reward,
+        "num_adaptive_steps": num_adaptive_steps,
+        "stop_reason": stop_reason,
         "config_hash": config_hash,
         "run_dir": str(run_dir),
         "train_accuracy": _metric(metrics, "train", "accuracy"),
