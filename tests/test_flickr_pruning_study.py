@@ -56,3 +56,11 @@ def test_postprune_only_config_resolves() -> None:
 def test_result_schema_contains_phase() -> None:
     assert "phase" in PIPELINE_RESULTS_COLUMNS
     assert {"dense", "post_prune", "post_finetune", "skipped_finetune"}
+
+
+def test_readiness_split_call_uses_keywords() -> None:
+    text = Path("scripts/check_flickr_readiness.py").read_text(encoding="utf-8")
+    assert "generate_exact_ratio_split(" in text
+    assert "num_nodes=num_nodes" in text
+    assert "seed=int(cfg.run.seed)" in text
+    assert "train_ratio=float(cfg.data.train_ratio)" in text

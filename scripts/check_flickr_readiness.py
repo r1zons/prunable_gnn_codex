@@ -3,6 +3,12 @@
 from __future__ import annotations
 
 from pathlib import Path
+import sys
+
+REPO_ROOT = Path(__file__).resolve().parents[1]
+SRC_DIR = REPO_ROOT / "src"
+if str(SRC_DIR) not in sys.path:
+    sys.path.insert(0, str(SRC_DIR))
 
 import torch
 
@@ -17,6 +23,16 @@ def _param_count(model: torch.nn.Module) -> int:
     return int(sum(p.numel() for p in model.parameters()))
 
 
+def _generate_split(cfg: object, num_nodes: int):
+    return generate_exact_ratio_split(
+        num_nodes=num_nodes,
+        seed=int(cfg.run.seed),
+        train_ratio=float(cfg.data.train_ratio),
+        val_ratio=float(cfg.data.val_ratio),
+        test_ratio=float(cfg.data.test_ratio),
+    )
+
+
 def main() -> int:
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"device={device}")
@@ -28,7 +44,7 @@ def main() -> int:
     print("dataset loaded: flickr")
     print(f"nodes={data.num_nodes} edges={data.edge_index.size(1)} features={data.num_features} classes={num_classes}")
 
-    split = generate_exact_ratio_split(data.num_nodes, cfg.data.train_ratio, cfg.data.val_ratio, cfg.data.test_ratio, seed=cfg.run.seed)
+    split = _generate_split(cfg=cfg, num_nodes=int(data.num_nodes))
     print(f"split sizes: train={len(split.train)} val={len(split.val)} test={len(split.test)}")
 
     model_cfgs = [(2, 64), (2, 128), (3, 128), (4, 128)]
