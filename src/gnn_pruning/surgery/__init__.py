@@ -1,5 +1,17 @@
 """Layer surgery subsystem."""
 
-from .structural import structurally_prune_hidden_channels, validate_structural_compression
+from .structural import (
+    FeasibilityResult,
+    can_apply_structural_prune,
+    structurally_prune_hidden_channels,
+    structurally_prune_hidden_channels_local,
+    validate_structural_compression,
+)
 
-__all__ = ["structurally_prune_hidden_channels", "validate_structural_compression"]
+__all__ = [
+    "FeasibilityResult",
+    "can_apply_structural_prune",
+    "structurally_prune_hidden_channels",
+    "structurally_prune_hidden_channels_local",
+    "validate_structural_compression",
+]

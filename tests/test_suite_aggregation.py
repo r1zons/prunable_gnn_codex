@@ -217,3 +217,43 @@ def test_aggregate_separates_rows_by_dataset() -> None:
     assert len(aggregate) == 2
     datasets = {row["dataset"] for row in aggregate}
     assert datasets == {"flickr", "reddit"}
+
+
+def test_suite_aggregation_preserves_timing_columns() -> None:
+    rows = [
+        {
+            "suite_name": "default_small",
+            "experiment_name": "pipeline_pubmed_graphsage",
+            "dataset": "pubmed",
+            "model": "graphsage",
+            "phase": "post_prune",
+            "pruning_method": "random",
+            "requested_sparsity": "0.7",
+            "test_accuracy": "0.80",
+            "test_macro_f1": "0.78",
+            "inference_time_mean_ms": "1.50",
+            "parameter_count": "1000",
+        },
+        {
+            "suite_name": "default_small",
+            "experiment_name": "pipeline_pubmed_graphsage",
+            "dataset": "pubmed",
+            "model": "graphsage",
+            "phase": "post_prune",
+            "pruning_method": "random",
+            "requested_sparsity": "0.7",
+            "test_accuracy": "0.70",
+            "test_macro_f1": "0.68",
+            "inference_time_mean_ms": "2.50",
+            "parameter_count": "800",
+        },
+    ]
+
+    aggregate = aggregate_suite_rows(rows)
+    assert len(aggregate) == 1
+    row = aggregate[0]
+    assert "inference_time_mean_ms_mean" in row
+    assert "inference_time_mean_ms_std" in row
+    assert "parameter_count_mean" in row
+    assert "parameter_count_std" in row
+    assert abs(float(row["inference_time_mean_ms_mean"]) - 2.0) < 1e-9

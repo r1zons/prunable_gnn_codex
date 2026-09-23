@@ -3,8 +3,8 @@ dataset: pubmed
 model: graphsage_l3_h192
 
 run:
-  experiment_name: pipeline_pubmed_graphsage_150e_50ft_multi_prune
-  output_dir: runs/pipeline/pubmed_graphsage_150e_50ft_multi_prune
+  experiment_name: pipeline_pubmed_graphsage_l2_64_150e_50ft_multi_prune
+  output_dir: runs/pipeline/pubmed_graphsage_l2_64_150e_50ft_multi_prune
 
 training:
   epochs: 150

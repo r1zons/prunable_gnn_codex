@@ -1,0 +1,39 @@
+base: base/default
+dataset: pubmed
+model: graphsage
+preset: fast_debug
+
+model:
+  name: graphsage
+  num_layers: 3
+  hidden_channels: 16
+
+run:
+  experiment_name: rl_comparison_pubmed_graphsage_l3_h16
+  output_dir: runs/rl_comparison_pubmed_graphsage_l3_h16
+  seed: 42
+
+device:
+  device: auto
+
+training:
+  epochs: 30
+  early_stopping_patience: 10
+
+pruning:
+  methods: [random, global_magnitude, layerwise_magnitude, snip, q_learning_tabular]
+  sparsity_levels: [0.7, 0.8]
+  structured: true
+  finetune_enabled: false
+
+q_learning:
+  allow_nonmonotonic_layer_order: true
+  structural_pruning_mode: local
+  episodes: 30
+  max_steps: 20
+  step_prune_ratios: [0.05, 0.10]
+  max_accuracy_drop: 0.05
+  reward:
+    alpha: 0.4
+    beta: 0.2
+    gamma: 0.4

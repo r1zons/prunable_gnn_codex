@@ -1,5 +1,5 @@
 model:
   name: graphsage
-  hidden_channels: 192
-  num_layers: 3
+  hidden_channels: 64
+  num_layers: 2
   dropout: 0.4

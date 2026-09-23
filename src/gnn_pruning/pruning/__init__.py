@@ -2,6 +2,7 @@
 
 from .base import BasePruner, PruningContext, PruningPlan
 from .methods import (
+    AdaptiveLayerWisePruner,
     GlobalMagnitudePruner,
     GraSPPruner,
     GroupLassoPruner,
@@ -9,6 +10,7 @@ from .methods import (
     L1ThresholdPruner,
     LayerWiseMagnitudePruner,
     MovementPruner,
+    TabularQLearningPruner,
     RandomPruner,
     SNIPPruner,
 )
@@ -26,6 +28,8 @@ __all__ = [
     "RandomPruner",
     "GlobalMagnitudePruner",
     "LayerWiseMagnitudePruner",
+    "AdaptiveLayerWisePruner",
+    "TabularQLearningPruner",
     "SNIPPruner",
     "GraSPPruner",
     "L1ThresholdPruner",

@@ -7,15 +7,19 @@ This module includes magnitude/random baselines and gradient-saliency pruners
 from __future__ import annotations
 
 import copy
+import json
 import math
+import random
 import time
-from typing import Any, Dict, Tuple
+from pathlib import Path
+from typing import Any, Dict, List, Tuple
 
 import torch
 from torch import nn
 
 from gnn_pruning.models import GCNNodeClassifier, GraphSAGENodeClassifier
-from gnn_pruning.surgery import structurally_prune_hidden_channels
+from gnn_pruning.rl import StructuralPruningEnv, action_key, select_action, state_key, update_q
+from gnn_pruning.surgery import can_apply_structural_prune, structurally_prune_hidden_channels
 
 from .base import BasePruner, PruningContext, PruningPlan
 from .registry import register_pruner
@@ -122,6 +126,268 @@ def _adaptive_cfg(context: PruningContext) -> Dict[str, Any]:
         "beta": float(reward.get("beta", 0.2)),
         "gamma": float(reward.get("gamma", 0.4)),
     }
+
+
+def _is_stop_action(action: Dict[str, Any]) -> bool:
+    return str(action.get("type", "")).strip().lower() == "stop"
+
+
+def _stop_action() -> Dict[str, str]:
+    return {"type": "stop"}
+
+
+def _valid_pruning_actions(
+    *,
+    model: Any,
+    actions: List[Dict[str, float]],
+    min_channels_per_layer: int,
+    pruned_layers: set[int],
+) -> List[Dict[str, float]]:
+    snapshot = _analyze_action_space(
+        model=model,
+        actions=actions,
+        min_channels_per_layer=min_channels_per_layer,
+        pruned_layers=pruned_layers,
+    )
+    return [dict(action) for action in snapshot["valid_actions"]]
+
+
+def _hidden_widths(model: Any) -> list[int]:
+    widths: list[int] = []
+    for conv in getattr(model, "convs", [])[:-1]:
+        if hasattr(conv, "out_channels"):
+            widths.append(int(conv.out_channels))
+    return widths
+
+
+def _analyze_action_space(
+    *,
+    model: Any,
+    actions: List[Dict[str, float]],
+    min_channels_per_layer: int,
+    pruned_layers: set[int],
+    allow_nonmonotonic_layer_order: bool = False,
+    structural_pruning_mode: str = "cascade",
+    max_examples: int = 5,
+) -> Dict[str, Any]:
+    reasons = {
+        "invalid_layer_index": 0,
+        "invalid_layer_order": 0,
+        "min_channels_per_layer": 0,
+        "score_width_mismatch": 0,
+        "invalid_keep_count": 0,
+        "keep_indices_out_of_bounds": 0,
+        "structural_feasibility_failed": 0,
+    }
+    valid: List[Dict[str, float]] = []
+    valid_by_layer: Dict[str, int] = {}
+    examples: List[Dict[str, Any]] = []
+    hidden_layers = max(0, len(getattr(model, "convs", [])) - 1)
+
+    def mark(reason: str, action: Dict[str, float]) -> None:
+        reasons[reason] = int(reasons.get(reason, 0)) + 1
+        if len(examples) < int(max_examples):
+            examples.append({"action": dict(action), "reason": reason})
+
+    for action in actions:
+        layer_index = int(action.get("layer_index", -1))
+        prune_ratio = float(action.get("prune_ratio", 0.0))
+        if layer_index < 0 or layer_index >= hidden_layers:
+            mark("invalid_layer_index", action)
+            continue
+        if (not allow_nonmonotonic_layer_order) and pruned_layers and layer_index < max(pruned_layers):
+            mark("invalid_layer_order", action)
+            continue
+
+        width = _hidden_width(model, layer_index=layer_index)
+        if width <= int(min_channels_per_layer):
+            mark("min_channels_per_layer", action)
+            continue
+
+        prune_count = max(1, int(round(prune_ratio * width)))
+        keep_count = max(int(min_channels_per_layer), width - prune_count)
+        keep_count = min(keep_count, width - 1) if width > int(min_channels_per_layer) else width
+        if keep_count <= 0 or keep_count < int(min_channels_per_layer) or keep_count >= width:
+            mark("invalid_keep_count", action)
+            continue
+
+        scores = _structured_scores_for_layer(model, layer_index=layer_index)
+        if int(scores.numel()) != int(width):
+            mark("score_width_mismatch", action)
+            continue
+
+        _, keep_idx_tensor = torch.topk(scores, k=keep_count, largest=True)
+        keep_indices = [int(index) for index in keep_idx_tensor.tolist()]
+        if not keep_indices or min(keep_indices) < 0 or max(keep_indices) >= width:
+            mark("keep_indices_out_of_bounds", action)
+            continue
+
+        feasibility = can_apply_structural_prune(
+            model,
+            layer_index=layer_index,
+            keep_indices=keep_indices,
+            min_channels_per_layer=int(min_channels_per_layer),
+            mode=str(structural_pruning_mode).strip().lower(),
+        )
+        if not feasibility.valid:
+            mark("structural_feasibility_failed", action)
+            if len(examples) <= int(max_examples):
+                examples[-1]["reason_detail"] = str(feasibility.reason)
+            continue
+
+        valid.append(dict(action))
+        key = str(layer_index)
+        valid_by_layer[key] = int(valid_by_layer.get(key, 0)) + 1
+
+    return {
+        "valid_actions": valid,
+        "total_candidate_actions": int(len(actions)),
+        "num_valid_actions": int(len(valid)),
+        "valid_actions_by_layer": valid_by_layer,
+        "filtered_actions_by_reason": reasons,
+        "filtered_action_examples": examples,
+        "hidden_widths_before": _hidden_widths(model),
+        "last_pruned_layer": int(max(pruned_layers)) if pruned_layers else -1,
+        "pruning_order_state": sorted(int(v) for v in pruned_layers),
+        "min_channels_per_layer": int(min_channels_per_layer),
+    }
+
+
+def _target_gap(*, target_sparsity: float, current_sparsity: float) -> float:
+    return float(max(0.0, float(target_sparsity) - float(current_sparsity)))
+
+
+def _current_rollout_metrics(env: StructuralPruningEnv) -> Tuple[float, float, float]:
+    current_params = _parameter_count(env.current_model)
+    current_sparsity = float(1.0 - (current_params / max(1, env.initial_param_count)))
+    current_val = env._validation_accuracy(env.current_model)  # type: ignore[attr-defined]
+    accuracy_drop = max(0.0, float(env.baseline_val_acc) - float(current_val))
+    target_gap = _target_gap(target_sparsity=float(env.target_sparsity), current_sparsity=current_sparsity)
+    return current_sparsity, float(accuracy_drop), float(target_gap)
+
+
+def _gap_penalty_factor(target_gap: float, terminal_cfg: Dict[str, Any]) -> Tuple[float, float, float]:
+    target_tolerance = float(terminal_cfg.get("target_tolerance", 0.05))
+    gap_scale = max(float(terminal_cfg.get("gap_scale", 0.25)), 1e-8)
+    effective_gap = max(0.0, float(target_gap) - float(target_tolerance))
+    severity = min(1.0, effective_gap / gap_scale)
+    factor = float(severity * severity)
+    return factor, float(target_tolerance), float(gap_scale)
+
+
+def _terminal_reward(
+    *,
+    stop_selected: bool,
+    achieved_sparsity: float,
+    accuracy_drop: float,
+    target_sparsity: float,
+    max_accuracy_drop: float,
+    stop_reason: str,
+    terminal_cfg: Dict[str, Any],
+) -> float:
+    target_reached_bonus = float(terminal_cfg.get("target_reached_bonus", 0.10))
+    accuracy_failure_penalty = float(
+        terminal_cfg.get("accuracy_failure_penalty", terminal_cfg.get("accuracy_exceeded_penalty", 0.10))
+    )
+    early_stop_max_penalty = float(
+        terminal_cfg.get("early_stop_max_penalty", terminal_cfg.get("stop_target_gap_penalty", 0.08))
+    )
+    no_valid_max_penalty = float(terminal_cfg.get("no_valid_max_penalty", 0.12))
+    stop_bonus = float(terminal_cfg.get("stop_bonus", 0.0))
+
+    reward = 0.0
+    target_gap = _target_gap(target_sparsity=target_sparsity, current_sparsity=achieved_sparsity)
+    gap_penalty_factor, target_tolerance, _ = _gap_penalty_factor(target_gap, terminal_cfg)
+    normalized_stop_reason = str(stop_reason).strip()
+
+    if target_gap <= 0.0 and accuracy_drop <= max_accuracy_drop:
+        reward += target_reached_bonus
+    if target_gap > 0.0 and accuracy_drop > max_accuracy_drop:
+        reward -= accuracy_failure_penalty
+    if normalized_stop_reason == "agent_stop" and target_gap > target_tolerance:
+        reward -= early_stop_max_penalty * gap_penalty_factor
+    if normalized_stop_reason == "no_valid_action" and target_gap > target_tolerance:
+        reward -= no_valid_max_penalty * gap_penalty_factor
+    if stop_selected and normalized_stop_reason == "agent_stop":
+        if target_gap <= target_tolerance and achieved_sparsity > 0.0 and accuracy_drop <= max_accuracy_drop:
+            reward += stop_bonus
+    return float(reward)
+
+
+def _enrich_trace_entries(trace: List[Dict[str, Any]], *, target_sparsity: float, terminal_cfg: Dict[str, Any]) -> None:
+    for entry in trace:
+        info = entry.get("info", {})
+        current_sparsity = float(info.get("current_sparsity", 0.0))
+        target_gap = _target_gap(target_sparsity=target_sparsity, current_sparsity=current_sparsity)
+        gap_penalty_factor, target_tolerance, gap_scale = _gap_penalty_factor(target_gap, terminal_cfg)
+        state = entry.get("state", {})
+        next_state = entry.get("next_state", {})
+        target_gap_bucket = int(next_state.get("target_gap_bucket", state.get("target_gap_bucket", 0)))
+        stop_reason = str(info.get("stop_reason", "")).strip()
+
+        entry["target_sparsity"] = float(target_sparsity)
+        entry["current_sparsity"] = float(current_sparsity)
+        entry["target_gap"] = float(target_gap)
+        entry["target_gap_bucket"] = int(target_gap_bucket)
+        entry["terminal_reward"] = float(entry.get("terminal_reward", 0.0))
+        entry["stop_selected"] = bool(entry.get("stop_selected", False))
+        entry["stop_reason"] = stop_reason
+        entry["gap_penalty_factor"] = float(gap_penalty_factor)
+        entry["target_tolerance"] = float(target_tolerance)
+        entry["gap_scale"] = float(gap_scale)
+        if isinstance(info, dict):
+            info.setdefault("target_sparsity", float(target_sparsity))
+            info.setdefault("current_sparsity", float(current_sparsity))
+            info.setdefault("target_gap", float(target_gap))
+            info.setdefault("target_gap_bucket", int(target_gap_bucket))
+            info.setdefault("gap_penalty_factor", float(gap_penalty_factor))
+            info.setdefault("target_tolerance", float(target_tolerance))
+            info.setdefault("gap_scale", float(gap_scale))
+            info.setdefault("stop_reason", stop_reason)
+
+
+def _diagnostic_step_fields(
+    *,
+    snapshot: Dict[str, Any],
+    current_sparsity: float,
+    target_sparsity: float,
+    target_gap: float,
+    stop_available: bool,
+) -> Dict[str, Any]:
+    return {
+        "hidden_widths_before": list(snapshot.get("hidden_widths_before", [])),
+        "min_channels_per_layer": int(snapshot.get("min_channels_per_layer", 0)),
+        "last_pruned_layer": int(snapshot.get("last_pruned_layer", -1)),
+        "pruning_order_state": list(snapshot.get("pruning_order_state", [])),
+        "total_candidate_actions": int(snapshot.get("total_candidate_actions", 0)),
+        "num_valid_actions": int(snapshot.get("num_valid_actions", 0)),
+        "valid_actions_by_layer": dict(snapshot.get("valid_actions_by_layer", {})),
+        "filtered_actions_by_reason": dict(snapshot.get("filtered_actions_by_reason", {})),
+        "filtered_action_examples": list(snapshot.get("filtered_action_examples", [])),
+        "stop_available": bool(stop_available),
+        "target_reached": bool(float(current_sparsity) >= float(target_sparsity)),
+        "current_sparsity": float(current_sparsity),
+        "target_sparsity": float(target_sparsity),
+        "target_gap": float(target_gap),
+    }
+
+
+def _aggregate_filter_reasons(entries: List[Dict[str, Any]]) -> Dict[str, int]:
+    aggregate: Dict[str, int] = {}
+    for entry in entries:
+        reasons = entry.get("filtered_actions_by_reason", {})
+        if not isinstance(reasons, dict):
+            continue
+        for key, value in reasons.items():
+            aggregate[key] = int(aggregate.get(key, 0)) + int(value)
+    return aggregate
+
+
+def _dominant_reason(reasons: Dict[str, int]) -> str:
+    if not reasons:
+        return ""
+    key, value = max(reasons.items(), key=lambda item: int(item[1]))
+    return str(key) if int(value) > 0 else ""
 
 
 def _validation_accuracy(model: Any, context: PruningContext) -> float:
@@ -1062,3 +1328,685 @@ class AdaptiveLayerWisePruner(BasePruner):
         plan.pruning_time_sec = float(time.perf_counter() - start)
         plan.score_payload = None
         return current_model, plan
+
+
+@register_pruner
+class TabularQLearningPruner(BasePruner):
+    """Minimal graph-aware tabular Q-learning structural pruner."""
+
+    name = "q_learning_tabular"
+    category = "adaptive"
+    supports_unstructured = False
+    supports_structured = True
+
+    def score(self, model: Any, context: Any, **kwargs: Any) -> PruningPlan:
+        parsed = PruningContext.from_input(context)
+        target_sparsity = float(kwargs.get("target_sparsity", parsed.structure_target or 0.5))
+        plan = _build_plan(self.name, self.category, target_sparsity, "structured", {"algorithm": "tabular_q_learning"})
+        plan.details.update({"mode": "structured", "scope": "q_learning_tabular_structured"})
+        return plan
+
+    def apply(self, model: Any, pruning_plan: PruningPlan = None, context: Any = None, **kwargs: Any) -> Any:
+        plan, parsed_context = _extract_apply_inputs(pruning_plan, context, kwargs)
+        _sync_plan_from_kwargs(plan, kwargs)
+        start = time.perf_counter()
+
+        if not isinstance(parsed_context.data, dict):
+            raise ValueError("q_learning_tabular requires context.data with graph and val_idx.")
+        data = parsed_context.data.get("data")
+        val_idx = parsed_context.data.get("val_idx")
+        if data is None or val_idx is None:
+            raise ValueError("q_learning_tabular requires context.data keys: data and val_idx.")
+
+        config = parsed_context.config if isinstance(parsed_context.config, dict) else {}
+        q_cfg = config.get("q_learning", {})
+        if not isinstance(q_cfg, dict):
+            q_cfg = {}
+
+        episodes = int(q_cfg.get("episodes", 20))
+        max_steps = int(q_cfg.get("max_steps", 8))
+        step_prune_ratios = [float(value) for value in q_cfg.get("step_prune_ratios", [0.05, 0.10])]
+        min_channels = int(q_cfg.get("min_channels_per_layer", 4))
+        max_accuracy_drop = float(q_cfg.get("max_accuracy_drop", 0.05))
+        alpha = float(q_cfg.get("alpha", 0.3))
+        gamma = float(q_cfg.get("gamma", 0.9))
+        epsilon_start = float(q_cfg.get("epsilon_start", 0.4))
+        epsilon_end = float(q_cfg.get("epsilon_end", 0.05))
+        epsilon_decay = float(q_cfg.get("epsilon_decay", 0.95))
+        reward = q_cfg.get("reward", {}) if isinstance(q_cfg.get("reward", {}), dict) else {}
+        reward_alpha = float(reward.get("alpha", 0.4))
+        reward_beta = float(reward.get("beta", 0.2))
+        reward_gamma = float(reward.get("gamma", 0.4))
+        allow_nonmonotonic_layer_order = bool(q_cfg.get("allow_nonmonotonic_layer_order", False))
+        structural_pruning_mode = str(q_cfg.get("structural_pruning_mode", "cascade")).strip().lower()
+        if structural_pruning_mode not in {"cascade", "local"}:
+            structural_pruning_mode = "cascade"
+        terminal_cfg = q_cfg.get("terminal_reward", {}) if isinstance(q_cfg.get("terminal_reward", {}), dict) else {}
+        buckets = q_cfg.get("state_buckets", {}) if isinstance(q_cfg.get("state_buckets", {}), dict) else {}
+        state_buckets = {
+            "num_nodes": [1000, 5000, 10000, 20000],
+            "num_edges": [5000, 25000, 50000, 100000],
+            "avg_degree": [2.0, 5.0, 10.0, 20.0],
+            "density": [0.0001, 0.0005, 0.001, 0.005],
+            "num_features": [100, 500, 1000, 2000],
+            "num_classes": [3, 5, 10, 20],
+            "current_sparsity": [0.1, 0.3, 0.5, 0.7, 0.9],
+            "target_gap": [0.05, 0.15, 0.30, 0.50],
+            "accuracy_drop": [0.01, 0.03, 0.05, 0.1, 0.2],
+            "remaining_channels": [0.2, 0.4, 0.6, 0.8],
+        }
+        for key, default_values in state_buckets.items():
+            values = buckets.get(key, default_values)
+            if isinstance(values, list) and values:
+                state_buckets[key] = [float(v) for v in values]
+
+        num_hidden_layers = max(0, len(getattr(model, "convs", [])) - 1)
+        pruning_actions = [
+            {"layer_index": int(layer_index), "prune_ratio": float(prune_ratio)}
+            for layer_index in range(num_hidden_layers)
+            for prune_ratio in step_prune_ratios
+        ]
+        if not pruning_actions:
+            raise ValueError("q_learning_tabular requires at least one hidden layer and one prune ratio action.")
+
+        env = StructuralPruningEnv(
+            model=model,
+            data=data,
+            val_idx=val_idx,
+            device=parsed_context.device or "cpu",
+            target_sparsity=float(plan.requested_sparsity),
+            min_channels_per_layer=min_channels,
+            max_steps=max_steps,
+            reward_alpha=reward_alpha,
+            reward_beta=reward_beta,
+            reward_gamma=reward_gamma,
+            state_buckets=state_buckets,
+            structural_pruning_mode=structural_pruning_mode,
+        )
+        rng = random.Random(parsed_context.seed)
+        q_table: Dict[str, Dict[str, float]] = {}
+        training_trace = []
+        deployment_trace = []
+        epsilon = epsilon_start
+        final_reward = 0.0
+        training_attempts = 0
+        training_valid_steps = 0
+        training_invalid_attempts = 0
+
+        # Phase A: Q-table training over reset episodes.
+        for episode in range(1, episodes + 1):
+            state = env.reset()
+            episode_pruned_layers: set[int] = set()
+            for step in range(1, max_steps + 1):
+                current_sparsity, current_accuracy_drop, current_target_gap = _current_rollout_metrics(env)
+                if current_sparsity >= float(plan.requested_sparsity):
+                    break
+                state_key_value = state_key(state)
+                snapshot = _analyze_action_space(
+                    model=env.current_model,
+                    actions=pruning_actions,
+                    min_channels_per_layer=min_channels,
+                    pruned_layers=episode_pruned_layers,
+                    allow_nonmonotonic_layer_order=allow_nonmonotonic_layer_order,
+                    structural_pruning_mode=structural_pruning_mode,
+                )
+                valid_pruning = [dict(action) for action in snapshot["valid_actions"]]
+                stop_allowed = float(current_sparsity) > 0.0
+                step_diag = _diagnostic_step_fields(
+                    snapshot=snapshot,
+                    current_sparsity=float(current_sparsity),
+                    target_sparsity=float(plan.requested_sparsity),
+                    target_gap=float(current_target_gap),
+                    stop_available=bool(stop_allowed),
+                )
+                if not valid_pruning:
+                    terminal_component = _terminal_reward(
+                        stop_selected=False,
+                        achieved_sparsity=float(current_sparsity),
+                        accuracy_drop=float(current_accuracy_drop),
+                        target_sparsity=float(plan.requested_sparsity),
+                        max_accuracy_drop=max_accuracy_drop,
+                        stop_reason="no_valid_action",
+                        terminal_cfg=terminal_cfg,
+                    )
+                    training_trace.append(
+                        {
+                            "phase": "training",
+                            "episode": int(episode),
+                            "step": int(step),
+                            "attempt": 1,
+                            "state": state,
+                            "action": {},
+                            "reward": float(terminal_component),
+                            "next_state": state,
+                            "done": True,
+                            "selected_from_valid_actions": True,
+                            "num_valid_actions": int(snapshot.get("num_valid_actions", 0)),
+                            "terminal_reward": float(terminal_component),
+                            "stop_selected": False,
+                            **step_diag,
+                            "info": {
+                                "stop_reason": "no_valid_action",
+                                "invalid_action_reason": "all_pruning_actions_filtered_out",
+                                "current_layer_width": 0,
+                                "num_keep": 0,
+                                "min_channels_per_layer": int(min_channels),
+                                "current_sparsity": float(current_sparsity),
+                                "accuracy_drop": float(current_accuracy_drop),
+                                "hidden_widths": list(step_diag["hidden_widths_before"]),
+                                "total_candidate_actions": int(step_diag["total_candidate_actions"]),
+                                "filtered_actions_by_reason": dict(step_diag["filtered_actions_by_reason"]),
+                                "filtered_action_examples": list(step_diag["filtered_action_examples"]),
+                                "last_pruned_layer": int(step_diag["last_pruned_layer"]),
+                                "stop_available": bool(step_diag["stop_available"]),
+                                "target_reached": bool(step_diag["target_reached"]),
+                            },
+                        }
+                    )
+                    final_reward = float(terminal_component)
+                    break
+
+                valid_actions: List[Dict[str, Any]] = [dict(action) for action in valid_pruning]
+                if stop_allowed:
+                    valid_actions.append(_stop_action())
+                selected_action = select_action(
+                    state_key_value=state_key_value,
+                    actions=valid_actions,
+                    q_table=q_table,
+                    epsilon=epsilon,
+                    rng=rng,
+                )
+                remaining_actions = [dict(action) for action in valid_actions if action_key(action) != action_key(selected_action)]
+                rng.shuffle(remaining_actions)
+                action_candidates = [dict(selected_action)] + remaining_actions
+
+                applied = False
+                for attempt_idx, action in enumerate(action_candidates, start=1):
+                    training_attempts += 1
+                    if _is_stop_action(action):
+                        terminal_component = _terminal_reward(
+                            stop_selected=True,
+                            achieved_sparsity=current_sparsity,
+                            accuracy_drop=current_accuracy_drop,
+                            target_sparsity=float(plan.requested_sparsity),
+                            max_accuracy_drop=max_accuracy_drop,
+                            stop_reason="agent_stop",
+                            terminal_cfg=terminal_cfg,
+                        )
+                        training_trace.append(
+                            {
+                                "phase": "training",
+                                "episode": int(episode),
+                                "step": int(step),
+                                "attempt": int(attempt_idx),
+                                "state": state,
+                                "action": action,
+                                "reward": float(terminal_component),
+                                "next_state": state,
+                                "done": True,
+                                "selected_from_valid_actions": True,
+                                "num_valid_actions": len(valid_actions),
+                                "terminal_reward": float(terminal_component),
+                                "stop_selected": True,
+                                **step_diag,
+                                "info": {
+                                    "stop_reason": "agent_stop",
+                                    "invalid_action_reason": "",
+                                    "current_layer_width": 0,
+                                    "num_keep": 0,
+                                    "min_channels_per_layer": int(min_channels),
+                                    "current_sparsity": float(current_sparsity),
+                                    "target_sparsity": float(plan.requested_sparsity),
+                                    "target_gap": float(current_target_gap),
+                                    "accuracy_drop": float(current_accuracy_drop),
+                                    "hidden_widths": list(step_diag["hidden_widths_before"]),
+                                },
+                            }
+                        )
+                        update_q(
+                            q_table=q_table,
+                            state_key_value=state_key_value,
+                            action_key_value=action_key(action),
+                            reward=float(terminal_component),
+                            next_state_key_value=state_key_value,
+                            alpha=alpha,
+                            gamma=gamma,
+                            terminal=True,
+                        )
+                        final_reward = float(terminal_component)
+                        training_valid_steps += 1
+                        applied = True
+                        break
+
+                    outcome = env.step(action)
+                    next_state = outcome.next_state
+                    info = dict(outcome.info)
+                    invalid_reason = str(info.get("invalid_action_reason", "")).strip()
+                    training_trace.append(
+                        {
+                            "phase": "training",
+                            "episode": int(episode),
+                            "step": int(step),
+                            "attempt": int(attempt_idx),
+                            "state": state,
+                            "action": action,
+                            "reward": float(outcome.reward),
+                            "next_state": next_state,
+                            "done": bool(outcome.done),
+                            "selected_from_valid_actions": True,
+                            "num_valid_actions": len(valid_actions),
+                            "terminal_reward": 0.0,
+                            "stop_selected": False,
+                            **step_diag,
+                            "info": info,
+                        }
+                    )
+                    if invalid_reason:
+                        training_invalid_attempts += 1
+                        continue
+
+                    accuracy_drop_value = float(info.get("accuracy_drop", 0.0))
+                    done = bool(outcome.done) or accuracy_drop_value > max_accuracy_drop
+                    if accuracy_drop_value > max_accuracy_drop:
+                        training_trace[-1]["done"] = True
+                        training_trace[-1]["info"]["stop_reason"] = "max_accuracy_drop_exceeded"
+                    terminal_component = 0.0
+                    if done:
+                        terminal_component = _terminal_reward(
+                            stop_selected=False,
+                            achieved_sparsity=float(info.get("current_sparsity", current_sparsity)),
+                            accuracy_drop=accuracy_drop_value,
+                            target_sparsity=float(plan.requested_sparsity),
+                            max_accuracy_drop=max_accuracy_drop,
+                            stop_reason=str(training_trace[-1]["info"].get("stop_reason", "")).strip(),
+                            terminal_cfg=terminal_cfg,
+                        )
+                        training_trace[-1]["terminal_reward"] = float(terminal_component)
+                    combined_reward = float(outcome.reward) + float(terminal_component)
+                    training_trace[-1]["reward"] = float(combined_reward)
+                    training_trace[-1]["hidden_widths_after"] = _hidden_widths(env.current_model)
+
+                    update_q(
+                        q_table=q_table,
+                        state_key_value=state_key_value,
+                        action_key_value=action_key(action),
+                        reward=float(combined_reward),
+                        next_state_key_value=state_key(next_state),
+                        alpha=alpha,
+                        gamma=gamma,
+                        terminal=bool(done),
+                    )
+                    final_reward = float(combined_reward)
+                    training_valid_steps += 1
+                    episode_pruned_layers.add(int(action.get("layer_index", -1)))
+                    state = next_state
+                    applied = True
+                    break
+
+                if not applied:
+                    terminal_component = _terminal_reward(
+                        stop_selected=False,
+                        achieved_sparsity=float(current_sparsity),
+                        accuracy_drop=float(current_accuracy_drop),
+                        target_sparsity=float(plan.requested_sparsity),
+                        max_accuracy_drop=max_accuracy_drop,
+                        stop_reason="no_valid_action",
+                        terminal_cfg=terminal_cfg,
+                    )
+                    training_trace.append(
+                        {
+                            "phase": "training",
+                            "episode": int(episode),
+                            "step": int(step),
+                            "attempt": int(len(action_candidates) + 1),
+                            "state": state,
+                            "action": {},
+                            "reward": float(terminal_component),
+                            "next_state": state,
+                            "done": True,
+                            "selected_from_valid_actions": True,
+                            "num_valid_actions": len(valid_actions),
+                            "terminal_reward": float(terminal_component),
+                            "stop_selected": False,
+                            **step_diag,
+                            "info": {
+                                "stop_reason": "no_valid_action",
+                                "invalid_action_reason": "all_actions_invalid_for_current_model_state",
+                                "current_layer_width": 0,
+                                "num_keep": 0,
+                                "min_channels_per_layer": int(min_channels),
+                                "current_sparsity": float(current_sparsity),
+                                "accuracy_drop": float(current_accuracy_drop),
+                                "hidden_widths": list(step_diag["hidden_widths_before"]),
+                                "total_candidate_actions": int(step_diag["total_candidate_actions"]),
+                                "filtered_actions_by_reason": dict(step_diag["filtered_actions_by_reason"]),
+                                "filtered_action_examples": list(step_diag["filtered_action_examples"]),
+                                "last_pruned_layer": int(step_diag["last_pruned_layer"]),
+                                "stop_available": bool(step_diag["stop_available"]),
+                                "target_reached": bool(step_diag["target_reached"]),
+                            },
+                        }
+                    )
+                    final_reward = float(terminal_component)
+                    break
+
+                if training_trace and training_trace[-1].get("done"):
+                    break
+            epsilon = max(epsilon_end, epsilon * epsilon_decay)
+
+        # Phase B: deterministic deployment rollout from dense reset.
+        deployment_state = env.reset()
+        deployment_steps = 0
+        deployment_invalid_attempts = 0
+        deployment_stop_reason = "max_steps_reached"
+        deployment_pruned_layers: set[int] = set()
+        for step in range(1, max_steps + 1):
+            current_sparsity, current_accuracy_drop, current_target_gap = _current_rollout_metrics(env)
+            if current_sparsity >= float(plan.requested_sparsity):
+                deployment_stop_reason = "target_sparsity_reached"
+                break
+            state_key_value = state_key(deployment_state)
+            snapshot = _analyze_action_space(
+                model=env.current_model,
+                actions=pruning_actions,
+                min_channels_per_layer=min_channels,
+                pruned_layers=deployment_pruned_layers,
+                allow_nonmonotonic_layer_order=allow_nonmonotonic_layer_order,
+                structural_pruning_mode=structural_pruning_mode,
+            )
+            valid_pruning = [dict(action) for action in snapshot["valid_actions"]]
+            stop_allowed = float(current_sparsity) > 0.0
+            step_diag = _diagnostic_step_fields(
+                snapshot=snapshot,
+                current_sparsity=float(current_sparsity),
+                target_sparsity=float(plan.requested_sparsity),
+                target_gap=float(current_target_gap),
+                stop_available=bool(stop_allowed),
+            )
+            if not valid_pruning:
+                deployment_stop_reason = "no_valid_action"
+                terminal_component = _terminal_reward(
+                    stop_selected=False,
+                    achieved_sparsity=float(current_sparsity),
+                    accuracy_drop=float(current_accuracy_drop),
+                    target_sparsity=float(plan.requested_sparsity),
+                    max_accuracy_drop=max_accuracy_drop,
+                    stop_reason="no_valid_action",
+                    terminal_cfg=terminal_cfg,
+                )
+                deployment_trace.append(
+                    {
+                        "phase": "deployment",
+                        "step": int(step),
+                        "attempt": 1,
+                        "state": deployment_state,
+                        "action": {},
+                        "reward": float(terminal_component),
+                        "next_state": deployment_state,
+                        "done": True,
+                        "selected_from_valid_actions": True,
+                        "num_valid_actions": int(snapshot.get("num_valid_actions", 0)),
+                        "terminal_reward": float(terminal_component),
+                        "stop_selected": False,
+                        **step_diag,
+                        "info": {
+                            "stop_reason": "no_valid_action",
+                            "invalid_action_reason": "all_pruning_actions_filtered_out",
+                            "current_layer_width": 0,
+                            "num_keep": 0,
+                            "min_channels_per_layer": int(min_channels),
+                            "current_sparsity": float(current_sparsity),
+                            "accuracy_drop": float(current_accuracy_drop),
+                            "hidden_widths": list(step_diag["hidden_widths_before"]),
+                            "total_candidate_actions": int(step_diag["total_candidate_actions"]),
+                            "filtered_actions_by_reason": dict(step_diag["filtered_actions_by_reason"]),
+                            "filtered_action_examples": list(step_diag["filtered_action_examples"]),
+                            "last_pruned_layer": int(step_diag["last_pruned_layer"]),
+                            "stop_available": bool(step_diag["stop_available"]),
+                            "target_reached": bool(step_diag["target_reached"]),
+                        },
+                    }
+                )
+                final_reward = float(terminal_component)
+                break
+
+            valid_actions: List[Dict[str, Any]] = sorted((dict(action) for action in valid_pruning), key=action_key)
+            if stop_allowed:
+                valid_actions.append(_stop_action())
+            selected_action = select_action(
+                state_key_value=state_key_value,
+                actions=valid_actions,
+                q_table=q_table,
+                epsilon=0.0,
+                rng=rng,
+            )
+            remaining_actions = [dict(action) for action in valid_actions if action_key(action) != action_key(selected_action)]
+            action_candidates = [dict(selected_action)] + remaining_actions
+
+            applied = False
+            for attempt_idx, action in enumerate(action_candidates, start=1):
+                if _is_stop_action(action):
+                    terminal_component = _terminal_reward(
+                        stop_selected=True,
+                        achieved_sparsity=current_sparsity,
+                        accuracy_drop=current_accuracy_drop,
+                        target_sparsity=float(plan.requested_sparsity),
+                        max_accuracy_drop=max_accuracy_drop,
+                        stop_reason="agent_stop",
+                        terminal_cfg=terminal_cfg,
+                    )
+                    deployment_trace.append(
+                        {
+                            "phase": "deployment",
+                            "step": int(step),
+                            "attempt": int(attempt_idx),
+                            "state": deployment_state,
+                            "action": action,
+                            "reward": float(terminal_component),
+                            "next_state": deployment_state,
+                            "done": True,
+                            "selected_from_valid_actions": True,
+                            "num_valid_actions": len(valid_actions),
+                            "terminal_reward": float(terminal_component),
+                            "stop_selected": True,
+                            **step_diag,
+                            "info": {
+                                "stop_reason": "agent_stop",
+                                "invalid_action_reason": "",
+                                "current_layer_width": 0,
+                                "num_keep": 0,
+                                "min_channels_per_layer": int(min_channels),
+                                "current_sparsity": float(current_sparsity),
+                                "target_sparsity": float(plan.requested_sparsity),
+                                "target_gap": float(current_target_gap),
+                                "accuracy_drop": float(current_accuracy_drop),
+                                "hidden_widths": list(step_diag["hidden_widths_before"]),
+                            },
+                        }
+                    )
+                    deployment_stop_reason = "agent_stop"
+                    final_reward = float(terminal_component)
+                    applied = True
+                    break
+
+                layer_idx = int(action.get("layer_index", -1))
+                outcome = env.step(action)
+                next_state = outcome.next_state
+                info = dict(outcome.info)
+                invalid_reason = str(info.get("invalid_action_reason", "")).strip()
+                deployment_trace.append(
+                    {
+                        "phase": "deployment",
+                        "step": int(step),
+                        "attempt": int(attempt_idx),
+                        "state": deployment_state,
+                        "action": action,
+                        "reward": float(outcome.reward),
+                        "next_state": next_state,
+                        "done": bool(outcome.done),
+                        "selected_from_valid_actions": True,
+                        "num_valid_actions": len(valid_actions),
+                        "terminal_reward": 0.0,
+                        "stop_selected": False,
+                        **step_diag,
+                        "info": info,
+                    }
+                )
+                if invalid_reason:
+                    deployment_invalid_attempts += 1
+                    continue
+
+                deployment_steps += 1
+                deployment_state = next_state
+                deployment_pruned_layers.add(layer_idx)
+                accuracy_drop_value = float(info.get("accuracy_drop", 0.0))
+                done = bool(outcome.done) or accuracy_drop_value > max_accuracy_drop
+                if accuracy_drop_value > max_accuracy_drop:
+                    deployment_trace[-1]["done"] = True
+                    deployment_trace[-1]["info"]["stop_reason"] = "max_accuracy_drop_exceeded"
+                    deployment_stop_reason = "max_accuracy_drop_exceeded"
+                else:
+                    deployment_stop_reason = str(info.get("stop_reason", deployment_stop_reason)) or deployment_stop_reason
+                terminal_component = 0.0
+                if done:
+                    terminal_component = _terminal_reward(
+                        stop_selected=False,
+                        achieved_sparsity=float(info.get("current_sparsity", current_sparsity)),
+                        accuracy_drop=accuracy_drop_value,
+                        target_sparsity=float(plan.requested_sparsity),
+                        max_accuracy_drop=max_accuracy_drop,
+                        stop_reason=str(deployment_trace[-1]["info"].get("stop_reason", "")).strip(),
+                        terminal_cfg=terminal_cfg,
+                    )
+                    deployment_trace[-1]["terminal_reward"] = float(terminal_component)
+                final_reward = float(outcome.reward) + float(terminal_component)
+                deployment_trace[-1]["reward"] = float(final_reward)
+                deployment_trace[-1]["hidden_widths_after"] = _hidden_widths(env.current_model)
+                applied = True
+                break
+
+            if not applied:
+                deployment_stop_reason = "no_valid_action"
+                terminal_component = _terminal_reward(
+                    stop_selected=False,
+                    achieved_sparsity=float(current_sparsity),
+                    accuracy_drop=float(current_accuracy_drop),
+                    target_sparsity=float(plan.requested_sparsity),
+                    max_accuracy_drop=max_accuracy_drop,
+                    stop_reason="no_valid_action",
+                    terminal_cfg=terminal_cfg,
+                )
+                deployment_trace.append(
+                    {
+                        "phase": "deployment",
+                        "step": int(step),
+                        "attempt": int(len(action_candidates) + 1),
+                        "state": deployment_state,
+                        "action": {},
+                        "reward": float(terminal_component),
+                        "next_state": deployment_state,
+                        "done": True,
+                        "selected_from_valid_actions": True,
+                        "num_valid_actions": len(valid_actions),
+                        "terminal_reward": float(terminal_component),
+                        "stop_selected": False,
+                        **step_diag,
+                        "info": {
+                            "stop_reason": "no_valid_action",
+                            "invalid_action_reason": "all_actions_invalid_for_current_model_state",
+                            "current_layer_width": 0,
+                            "num_keep": 0,
+                            "min_channels_per_layer": int(min_channels),
+                            "current_sparsity": float(current_sparsity),
+                            "accuracy_drop": float(current_accuracy_drop),
+                            "hidden_widths": list(step_diag["hidden_widths_before"]),
+                            "total_candidate_actions": int(step_diag["total_candidate_actions"]),
+                            "filtered_actions_by_reason": dict(step_diag["filtered_actions_by_reason"]),
+                            "filtered_action_examples": list(step_diag["filtered_action_examples"]),
+                            "last_pruned_layer": int(step_diag["last_pruned_layer"]),
+                            "stop_available": bool(step_diag["stop_available"]),
+                            "target_reached": bool(step_diag["target_reached"]),
+                        },
+                    }
+                )
+                final_reward = float(terminal_component)
+                break
+
+            if deployment_trace and deployment_trace[-1].get("done"):
+                break
+
+        _enrich_trace_entries(training_trace, target_sparsity=float(plan.requested_sparsity), terminal_cfg=terminal_cfg)
+        _enrich_trace_entries(deployment_trace, target_sparsity=float(plan.requested_sparsity), terminal_cfg=terminal_cfg)
+
+        output_dir_value = config.get("output_dir")
+        output_dir = Path(str(output_dir_value)).expanduser() if output_dir_value else None
+        q_table_path = None
+        rl_trace_path = None
+        deployment_trace_path = None
+        action_space_diagnostics_path = None
+        if output_dir is not None:
+            output_dir.mkdir(parents=True, exist_ok=True)
+            q_table_path = output_dir / "q_table.json"
+            rl_trace_path = output_dir / "rl_trace.json"
+            deployment_trace_path = output_dir / "deployment_trace.json"
+            with q_table_path.open("w", encoding="utf-8") as handle:
+                json.dump(q_table, handle, indent=2)
+            with rl_trace_path.open("w", encoding="utf-8") as handle:
+                json.dump(training_trace + deployment_trace, handle, indent=2)
+            with deployment_trace_path.open("w", encoding="utf-8") as handle:
+                json.dump(deployment_trace, handle, indent=2)
+
+        # Return deployment rollout model, not last training episode model.
+        final_model = copy.deepcopy(env.current_model)
+        plan.achieved_sparsity = float(1.0 - (_parameter_count(final_model) / max(1, _parameter_count(model))))
+        if output_dir is not None:
+            training_no_valid = [entry for entry in training_trace if str(entry.get("stop_reason", "")) == "no_valid_action"]
+            deployment_no_valid = [entry for entry in deployment_trace if str(entry.get("stop_reason", "")) == "no_valid_action"]
+            deployment_filter_reasons = _aggregate_filter_reasons(deployment_trace)
+            dominant_reason = _dominant_reason(deployment_filter_reasons)
+            action_space_diagnostics = {
+                "training": {
+                    "num_steps": int(len(training_trace)),
+                    "num_no_valid_action_terminations": int(len(training_no_valid)),
+                    "most_common_filter_reasons": _aggregate_filter_reasons(training_trace),
+                },
+                "deployment": {
+                    "num_steps": int(len(deployment_trace)),
+                    "num_no_valid_action_terminations": int(len(deployment_no_valid)),
+                    "most_common_filter_reasons": deployment_filter_reasons,
+                    "final_hidden_widths": _hidden_widths(final_model),
+                    "final_achieved_sparsity": float(plan.achieved_sparsity),
+                    "final_target_gap": float(_target_gap(target_sparsity=float(plan.requested_sparsity), current_sparsity=float(plan.achieved_sparsity))),
+                    "final_stop_reason": str(deployment_stop_reason),
+                    "invalid_layer_order_filtered_count": int(deployment_filter_reasons.get("invalid_layer_order", 0)),
+                    "min_channels_filtered_count": int(deployment_filter_reasons.get("min_channels_per_layer", 0)),
+                    "dominant_filter_reason": dominant_reason,
+                },
+            }
+            action_space_diagnostics_path = output_dir / "action_space_diagnostics.json"
+            with action_space_diagnostics_path.open("w", encoding="utf-8") as handle:
+                json.dump(action_space_diagnostics, handle, indent=2)
+        plan.details.update(
+            {
+                "mode": "structured",
+                "scope": "q_learning_tabular_structured",
+                "adaptive_trace": training_trace + deployment_trace,
+                "final_reward": float(final_reward),
+                "num_adaptive_steps": int(deployment_steps),
+                "stop_reason": deployment_stop_reason,
+                "q_table_path": str(q_table_path) if q_table_path is not None else "",
+                "rl_trace_path": str(rl_trace_path) if rl_trace_path is not None else "",
+                "deployment_trace_path": str(deployment_trace_path) if deployment_trace_path is not None else "",
+                "action_space_diagnostics_path": str(action_space_diagnostics_path) if action_space_diagnostics_path is not None else "",
+                "episodes": int(episodes),
+                "max_steps": int(max_steps),
+                "training_attempts": int(training_attempts),
+                "training_valid_steps": int(training_valid_steps),
+                "training_invalid_attempts": int(training_invalid_attempts),
+                "deployment_steps": int(deployment_steps),
+                "deployment_invalid_attempts": int(deployment_invalid_attempts),
+            }
+        )
+        plan.pruning_time_sec = float(time.perf_counter() - start)
+        plan.score_payload = None
+        return final_model, plan

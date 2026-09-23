@@ -129,6 +129,8 @@ def aggregate_suite_rows(rows: Sequence[Dict[str, Any]]) -> List[Dict[str, Any]]
         ) = key
         test_accuracy_values = _extract_numeric(members, "test_accuracy")
         test_macro_f1_values = _extract_numeric(members, "test_macro_f1")
+        inference_time_values = _extract_numeric(members, "inference_time_mean_ms")
+        parameter_count_values = _extract_numeric(members, "parameter_count")
         aggregate_rows.append(
             {
                 "suite_name": suite_name,
@@ -156,6 +158,10 @@ def aggregate_suite_rows(rows: Sequence[Dict[str, Any]]) -> List[Dict[str, Any]]
                 "test_macro_f1_mean": _safe_mean(test_macro_f1_values),
                 "test_macro_f1_std": _safe_std(test_macro_f1_values),
                 "test_macro_f1_ci95": _ci95(test_macro_f1_values),
+                "inference_time_mean_ms_mean": _safe_mean(inference_time_values),
+                "inference_time_mean_ms_std": _safe_std(inference_time_values),
+                "parameter_count_mean": _safe_mean(parameter_count_values),
+                "parameter_count_std": _safe_std(parameter_count_values),
             }
         )
     return aggregate_rows
@@ -235,6 +241,9 @@ def _load_pipeline_rows(
                     "run_dir": row.get("run_dir", ""),
                     "test_accuracy": row.get("test_accuracy", ""),
                     "test_macro_f1": row.get("test_macro_f1", ""),
+                    "inference_time_mean_ms": row.get("inference_time_mean_ms", ""),
+                    "inference_time_std_ms": row.get("inference_time_std_ms", ""),
+                    "parameter_count": row.get("parameter_count", ""),
                     "pipeline_csv_path": str(pipeline_csv_path),
                 }
             )

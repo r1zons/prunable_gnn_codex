@@ -3,13 +3,140 @@
 from __future__ import annotations
 
 import copy
-from typing import Any, Iterable, Sequence
+from dataclasses import dataclass
+from typing import Any, Dict, Iterable, Sequence
 
 import torch
 from torch import nn
 from torch_geometric.nn import GCNConv, SAGEConv
 
 from gnn_pruning.models import GCNNodeClassifier, GraphSAGENodeClassifier
+
+
+@dataclass
+class FeasibilityResult:
+    """Static feasibility check result for a structural prune action."""
+
+    valid: bool
+    reason: str
+    hidden_widths_before: list[int]
+    expected_hidden_widths_after: list[int]
+    selected_layer_width: int
+    keep_count: int
+    affected_layer_shapes: Dict[str, Any]
+
+
+def can_apply_structural_prune(
+    model: Any,
+    layer_index: int,
+    keep_indices: Sequence[int],
+    min_channels_per_layer: int = 1,
+    mode: str = "local",
+) -> FeasibilityResult:
+    """Check whether structural pruning can be safely applied without modifying model."""
+    hidden_widths_before = _hidden_widths(model)
+    selected_layer_width = hidden_widths_before[layer_index] if 0 <= layer_index < len(hidden_widths_before) else 0
+    normalized_keep = sorted(set(int(value) for value in keep_indices))
+    keep_count = int(len(normalized_keep))
+    affected = _affected_layer_shapes(model, layer_index=layer_index, keep_count=keep_count)
+
+    if not hasattr(model, "convs"):
+        return FeasibilityResult(
+            valid=False,
+            reason="missing_convs",
+            hidden_widths_before=hidden_widths_before,
+            expected_hidden_widths_after=list(hidden_widths_before),
+            selected_layer_width=selected_layer_width,
+            keep_count=keep_count,
+            affected_layer_shapes=affected,
+        )
+
+    convs = model.convs
+    if layer_index < 0 or layer_index >= len(convs) - 1:
+        return FeasibilityResult(
+            valid=False,
+            reason="invalid_layer_index",
+            hidden_widths_before=hidden_widths_before,
+            expected_hidden_widths_after=list(hidden_widths_before),
+            selected_layer_width=selected_layer_width,
+            keep_count=keep_count,
+            affected_layer_shapes=affected,
+        )
+
+    if mode not in {"local", "cascade"}:
+        return FeasibilityResult(
+            valid=False,
+            reason="unsupported_mode",
+            hidden_widths_before=hidden_widths_before,
+            expected_hidden_widths_after=list(hidden_widths_before),
+            selected_layer_width=selected_layer_width,
+            keep_count=keep_count,
+            affected_layer_shapes=affected,
+        )
+
+    if keep_count <= 0:
+        return FeasibilityResult(
+            valid=False,
+            reason="empty_keep_indices",
+            hidden_widths_before=hidden_widths_before,
+            expected_hidden_widths_after=list(hidden_widths_before),
+            selected_layer_width=selected_layer_width,
+            keep_count=keep_count,
+            affected_layer_shapes=affected,
+        )
+    if keep_count < int(min_channels_per_layer):
+        return FeasibilityResult(
+            valid=False,
+            reason="min_channels_violation",
+            hidden_widths_before=hidden_widths_before,
+            expected_hidden_widths_after=list(hidden_widths_before),
+            selected_layer_width=selected_layer_width,
+            keep_count=keep_count,
+            affected_layer_shapes=affected,
+        )
+
+    selected = convs[layer_index]
+    downstream = convs[layer_index + 1]
+    selected_out = _conv_out_channels(selected)
+    next_in = _conv_in_channels(downstream)
+    if selected_out != next_in:
+        return FeasibilityResult(
+            valid=False,
+            reason="adjacent_shape_mismatch",
+            hidden_widths_before=hidden_widths_before,
+            expected_hidden_widths_after=list(hidden_widths_before),
+            selected_layer_width=selected_layer_width,
+            keep_count=keep_count,
+            affected_layer_shapes=affected,
+        )
+
+    if min(normalized_keep) < 0 or max(normalized_keep) >= selected_out:
+        return FeasibilityResult(
+            valid=False,
+            reason="keep_indices_out_of_bounds",
+            hidden_widths_before=hidden_widths_before,
+            expected_hidden_widths_after=list(hidden_widths_before),
+            selected_layer_width=selected_layer_width,
+            keep_count=keep_count,
+            affected_layer_shapes=affected,
+        )
+
+    expected_hidden = list(hidden_widths_before)
+    if 0 <= layer_index < len(expected_hidden):
+        expected_hidden[layer_index] = int(keep_count)
+    if mode == "cascade":
+        for idx in range(layer_index + 1, len(expected_hidden)):
+            expected_hidden[idx] = int(keep_count)
+
+    return FeasibilityResult(
+        valid=True,
+        reason="ok",
+        hidden_widths_before=hidden_widths_before,
+        expected_hidden_widths_after=expected_hidden,
+        selected_layer_width=selected_out,
+        keep_count=keep_count,
+        affected_layer_shapes=affected,
+    )
 
 
 def structurally_prune_hidden_channels(model: Any, layer_index: int, keep_indices: Sequence[int]) -> Any:
@@ -39,6 +166,43 @@ def structurally_prune_hidden_channels(model: Any, layer_index: int, keep_indice
 
     if hasattr(pruned_model, "hidden_channels"):
         pruned_model.hidden_channels = int(kept.numel())
+
+    _validate_all_internal_shapes(pruned_model)
+    return pruned_model
+
+
+def structurally_prune_hidden_channels_local(model: Any, layer_index: int, keep_indices: Sequence[int]) -> Any:
+    """Structurally prune one hidden layer and immediate downstream input only."""
+    if not keep_indices:
+        raise ValueError("keep_indices must not be empty.")
+
+    kept = torch.tensor(sorted(set(int(i) for i in keep_indices)), dtype=torch.long)
+
+    pruned_model = copy.deepcopy(model)
+    if not hasattr(pruned_model, "convs"):
+        raise TypeError("Model does not expose `convs` layers required for structural surgery.")
+
+    convs = pruned_model.convs
+    if layer_index < 0 or layer_index >= len(convs) - 1:
+        raise ValueError("layer_index must target a hidden layer with a downstream layer.")
+
+    selected = convs[layer_index]
+    downstream = convs[layer_index + 1]
+    if _conv_out_channels(selected) != _conv_in_channels(downstream):
+        raise ValueError("Selected layer output channels must match downstream input channels.")
+    if kept.numel() <= 0:
+        raise ValueError("keep_indices must not be empty.")
+    if int(kept.min().item()) < 0 or int(kept.max().item()) >= _conv_out_channels(selected):
+        raise ValueError("keep_indices out of bounds for selected layer output width.")
+
+    if isinstance(pruned_model, GCNNodeClassifier):
+        convs[layer_index] = _rebuild_gcn_out(selected, kept)
+        convs[layer_index + 1] = _rebuild_gcn_in(downstream, kept)
+    elif isinstance(pruned_model, GraphSAGENodeClassifier):
+        convs[layer_index] = _rebuild_sage_out(selected, kept)
+        convs[layer_index + 1] = _rebuild_sage_in(downstream, kept)
+    else:
+        raise TypeError("Unsupported model type for structural hidden-channel pruning.")
 
     _validate_all_internal_shapes(pruned_model)
     return pruned_model
@@ -193,3 +357,30 @@ def _conv_in_channels(conv: Any) -> int:
 
 def _parameter_count(model: Any) -> int:
     return sum(parameter.numel() for parameter in model.parameters())
+
+
+def _hidden_widths(model: Any) -> list[int]:
+    if not hasattr(model, "convs"):
+        return []
+    widths: list[int] = []
+    for conv in model.convs[:-1]:
+        widths.append(_conv_out_channels(conv))
+    return widths
+
+
+def _affected_layer_shapes(model: Any, layer_index: int, keep_count: int) -> Dict[str, Any]:
+    if not hasattr(model, "convs"):
+        return {}
+    convs = model.convs
+    if layer_index < 0 or layer_index >= len(convs) - 1:
+        return {}
+    selected = convs[layer_index]
+    downstream = convs[layer_index + 1]
+    return {
+        "selected_layer_index": int(layer_index),
+        "selected_out_before": int(_conv_out_channels(selected)),
+        "selected_out_after": int(keep_count),
+        "downstream_layer_index": int(layer_index + 1),
+        "downstream_in_before": int(_conv_in_channels(downstream)),
+        "downstream_in_after": int(keep_count),
+    }

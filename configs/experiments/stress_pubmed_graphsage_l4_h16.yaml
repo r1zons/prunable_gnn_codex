@@ -1,0 +1,27 @@
+base: base/default
+dataset: pubmed
+model: graphsage
+preset: fast_debug
+
+model:
+  name: graphsage
+  num_layers: 4
+  hidden_channels: 16
+
+run:
+  experiment_name: stress_pubmed_graphsage_l4_h16
+  output_dir: runs/pubmed_stress_sweep/stress_pubmed_graphsage_l4_h16
+  seed: 42
+
+device:
+  device: auto
+
+training:
+  epochs: 30
+  early_stopping_patience: 10
+
+pruning:
+  methods: [random, global_magnitude, layerwise_magnitude, snip]
+  sparsity_levels: [0.5, 0.7, 0.8, 0.9, 0.95]
+  structured: true
+  finetune_enabled: false

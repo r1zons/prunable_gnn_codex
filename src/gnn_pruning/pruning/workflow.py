@@ -30,6 +30,8 @@ class PruningArtifacts:
     post_prune_metrics_path: Path | None = None
     diagnostics_path: Path | None = None
     adaptive_trace_path: Path | None = None
+    q_table_path: Path | None = None
+    rl_trace_path: Path | None = None
 
 
 @dataclass
@@ -92,6 +94,8 @@ def prune_from_checkpoint(
         config={
             "resolved": resolved.to_dict(),
             "adaptive_pruning": raw_cfg.get("adaptive_pruning", {}) if isinstance(raw_cfg.get("adaptive_pruning", {}), dict) else {},
+            "q_learning": raw_cfg.get("q_learning", {}) if isinstance(raw_cfg.get("q_learning", {}), dict) else {},
+            "output_dir": str(output_dir),
         },
         data={"data": data, "train_idx": indices["train"], "val_idx": indices["val"]},
         device=resolved.device.device,
@@ -153,6 +157,14 @@ def prune_from_checkpoint(
         adaptive_trace_path = output_dir / "adaptive_trace.json"
         with adaptive_trace_path.open("w", encoding="utf-8") as handle:
             json.dump(adaptive_trace, handle, indent=2)
+    q_table_path = None
+    q_table_path_raw = str(plan.details.get("q_table_path", "")).strip()
+    if q_table_path_raw:
+        q_table_path = Path(q_table_path_raw).expanduser()
+    rl_trace_path = None
+    rl_trace_path_raw = str(plan.details.get("rl_trace_path", "")).strip()
+    if rl_trace_path_raw:
+        rl_trace_path = Path(rl_trace_path_raw).expanduser()
 
     reporter.info("Evaluating dense checkpoint metrics...")
     dense_metrics = evaluate_dense(
@@ -247,6 +259,8 @@ def prune_from_checkpoint(
         post_prune_metrics_path=post_prune_metrics_path,
         diagnostics_path=diagnostics_path,
         adaptive_trace_path=adaptive_trace_path,
+        q_table_path=q_table_path,
+        rl_trace_path=rl_trace_path,
     )
 
 

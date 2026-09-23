@@ -1,0 +1,14 @@
+suite_name: pubmed_stress_sweep
+
+run:
+  num_runs: 1
+  base_seed: 42
+  output_dir: runs/pubmed_stress_sweep
+
+experiments:
+  - configs/experiments/stress_pubmed_graphsage_l2_h64.yaml
+  - configs/experiments/stress_pubmed_graphsage_l3_h32.yaml
+  - configs/experiments/stress_pubmed_graphsage_l3_h16.yaml
+  - configs/experiments/stress_pubmed_graphsage_l4_h16.yaml
+  - configs/experiments/stress_pubmed_gcn_l2_h64.yaml
+  - configs/experiments/stress_pubmed_gcn_l3_h32.yaml

@@ -1,0 +1,16 @@
+run:
+  experiment_name: fast_debug_graphsage
+
+dataset:
+  name: cora
+
+model:
+  name: graphsage
+  hidden_channels: 64
+  num_layers: 2
+  dropout: 0.5
+
+training:
+  epochs: 5
+  lr: 0.01
+  early_stopping_patience: 5

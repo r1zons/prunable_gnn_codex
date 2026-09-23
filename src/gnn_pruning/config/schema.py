@@ -6,6 +6,8 @@ from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
 
+import torch
+
 SUPPORTED_DBLP_STRATEGIES = ("author_homogeneous",)
 
 
@@ -89,6 +91,7 @@ class ExperimentConfig:
         device = DeviceConfig(**payload.get("device", {}))
         benchmark = BenchmarkConfig(**payload.get("benchmark", {}))
 
+        _normalize_device(device)
         _validate_split_ratios(data)
         _validate_positive_values(model, training)
         _validate_benchmark(benchmark)
@@ -137,6 +140,14 @@ def _validate_benchmark(benchmark: BenchmarkConfig) -> None:
         raise ValueError("benchmark.inference_warmup_passes must be >= 0.")
     if benchmark.inference_timed_passes <= 0:
         raise ValueError("benchmark.inference_timed_passes must be > 0.")
+
+
+def _normalize_device(device: DeviceConfig) -> None:
+    value = str(device.device).strip().lower()
+    if value == "auto":
+        device.device = "cuda" if torch.cuda.is_available() else "cpu"
+    elif value:
+        device.device = value
 
 
 def _validate_dblp(data: DataConfig) -> None:

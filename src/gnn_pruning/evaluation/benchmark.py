@@ -39,6 +39,8 @@ def measure_inference_time(
     return {
         "inference_time_mean_sec": float(mean(samples)),
         "inference_time_std_sec": float(pstdev(samples) if len(samples) > 1 else 0.0),
+        "inference_time_mean_ms": float(mean(samples) * 1000.0),
+        "inference_time_std_ms": float((pstdev(samples) if len(samples) > 1 else 0.0) * 1000.0),
         "inference_timed_passes": float(timed_passes),
         "inference_warmup_passes": float(warmup_passes),
     }

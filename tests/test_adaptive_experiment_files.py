@@ -84,7 +84,7 @@ def test_adaptive_debug_pipeline_smoke(monkeypatch, tmp_path: Path) -> None:
 
     artifacts = run_pipeline(str(cfg))
     assert artifacts.csv_path.exists()
-    trace_path = artifacts.output_dir / "adaptive_layerwise_s0_5000" / "adaptive_trace.json"
+    trace_path = artifacts.output_dir / "pruning" / "adaptive_layerwise" / "sparsity_0_5" / "adaptive_trace.json"
     assert trace_path.exists()
 
 

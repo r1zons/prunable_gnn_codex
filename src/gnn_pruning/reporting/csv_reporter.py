@@ -88,6 +88,9 @@ SUITE_RUN_COLUMNS = [
     "run_dir",
     "test_accuracy",
     "test_macro_f1",
+    "inference_time_mean_ms",
+    "inference_time_std_ms",
+    "parameter_count",
     "pipeline_csv_path",
 ]
 
@@ -117,6 +120,10 @@ SUITE_AGGREGATE_COLUMNS = [
     "test_macro_f1_mean",
     "test_macro_f1_std",
     "test_macro_f1_ci95",
+    "inference_time_mean_ms_mean",
+    "inference_time_mean_ms_std",
+    "parameter_count_mean",
+    "parameter_count_std",
 ]
 
 
