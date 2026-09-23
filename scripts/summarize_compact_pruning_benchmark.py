@@ -28,9 +28,10 @@ def main() -> int:
 
     enriched = _enrich_qlearning_diagnostics(rows)
     dense_baselines = _dense_accuracy_by_run(enriched)
+    dense_val_baselines = _dense_metric_by_run(enriched, "val_accuracy")
     _print_dense_baseline(enriched)
     _print_post_prune_table(enriched, dense_baselines)
-    _print_tradeoff_highlights(enriched, dense_baselines)
+    _print_tradeoff_highlights(enriched, dense_val_baselines)
     _print_qlearning_vs_static_near_target(enriched, dense_baselines)
     _print_seed_stats(enriched, dense_baselines)
     _print_warnings(enriched)
@@ -96,11 +97,18 @@ def _enrich_qlearning_diagnostics(rows: List[Dict[str, Any]]) -> List[Dict[str, 
 
 
 def _dense_accuracy_by_run(rows: Iterable[Mapping[str, Any]]) -> Dict[Tuple[str, str, str, str, str, str], float]:
+    return _dense_metric_by_run(rows, "test_accuracy")
+
+
+def _dense_metric_by_run(
+    rows: Iterable[Mapping[str, Any]],
+    metric: str,
+) -> Dict[Tuple[str, str, str, str, str, str], float]:
     dense: Dict[Tuple[str, str, str, str, str, str], float] = {}
     for row in rows:
         if str(row.get("phase", "")) != "dense":
             continue
-        value = _parse_float(row.get("test_accuracy"))
+        value = _parse_float(row.get(metric))
         if value is not None:
             dense[_run_instance_key(row)] = value
     return dense
@@ -216,13 +224,13 @@ def _print_tradeoff_highlights(
     rows: List[Mapping[str, Any]],
     dense_baselines: Mapping[Tuple[str, str, str, str, str, str], float],
 ) -> None:
-    print("\n=== Best Accuracy/Sparsity Trade-Off By Dataset/Model ===")
+    print("\n=== Validation-Selected Accuracy/Sparsity Trade-Off By Dataset/Model ===")
     grouped: Dict[Tuple[str, str, str, str], List[Tuple[float, float, Mapping[str, Any]]]] = defaultdict(list)
     for row in rows:
         if str(row.get("phase", "")) != "post_prune":
             continue
         achieved = _parse_float(row.get("achieved_sparsity"))
-        acc = _parse_float(row.get("test_accuracy"))
+        acc = _parse_float(row.get("val_accuracy"))
         if achieved is None or acc is None:
             continue
         dense = dense_baselines.get(_run_instance_key(row))
@@ -242,8 +250,8 @@ def _print_tradeoff_highlights(
         print(
             f"{key[0]:8s} {key[1]:10s} l{key[2]} h{key[3]:>3s} | "
             f"{str(row.get('pruning_method', '')):18s} req={row.get('requested_sparsity', '')} "
-            f"ach={row.get('achieved_sparsity', '')} acc={row.get('test_accuracy', '')} "
-            f"drop={best[0]:.4f}"
+            f"ach={row.get('achieved_sparsity', '')} val_acc={row.get('val_accuracy', '')} "
+            f"val_drop={best[0]:.4f} test_acc={row.get('test_accuracy', '')}"
         )
 
 
@@ -251,7 +259,7 @@ def _print_qlearning_vs_static_near_target(
     rows: List[Mapping[str, Any]],
     dense_baselines: Mapping[Tuple[str, str, str, str, str, str], float],
 ) -> None:
-    print("\n=== Q-Learning vs Static Near Achieved Sparsity ~0.7 ===")
+    print("\n=== Post-Hoc Test Comparison Near Achieved Sparsity ~0.7 (Descriptive Only) ===")
     near_low, near_high = 0.65, 0.75
     grouped: Dict[Tuple[str, str, str, str], Dict[str, List[float]]] = defaultdict(lambda: defaultdict(list))
     for row in rows:

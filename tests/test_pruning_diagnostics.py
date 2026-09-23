@@ -136,12 +136,16 @@ def test_reported_sparsity_matches_actual_model_shape(patched_data, tmp_path: Pa
     prune_from_checkpoint(str(ckpt), str(cfg))
     diag = json.loads((tmp_path / "run" / "pruning_diagnostics.json").read_text(encoding="utf-8"))
     requested = float(diag["requested_sparsity"])
-    dense = int(diag["dense_hidden_dimensions"][0])
-    pruned = int(diag["pruned_hidden_dimensions"][0])
+    dense = int(diag["dense_parameter_count"])
+    pruned = int(diag["pruned_parameter_count"])
     expected_achieved = 1.0 - (pruned / dense)
 
     assert abs(float(diag["achieved_sparsity"]) - expected_achieved) < 1e-6
-    assert requested >= expected_achieved
+    assert requested != expected_achieved
+
+    pruning_metrics = json.loads((tmp_path / "run" / "pruning_metrics_global_magnitude.json").read_text(encoding="utf-8"))
+    assert pruning_metrics["details"]["achieved_sparsity_definition"] == "parameter_count_reduction"
+    assert abs(float(pruning_metrics["details"]["achieved_channel_sparsity"]) - requested) < 1e-6
 
 
 def test_finetune_starts_from_pruned_checkpoint(patched_data, tmp_path: Path) -> None:

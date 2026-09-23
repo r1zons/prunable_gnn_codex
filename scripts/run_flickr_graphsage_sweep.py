@@ -50,6 +50,9 @@ def main() -> int:
                     "phase": row.get("phase", ""),
                     "method": row.get("method", row.get("pruning_method", "")),
                     "sparsity": row.get("sparsity", row.get("requested_sparsity", "")),
+                    "achieved_sparsity": row.get("achieved_sparsity", ""),
+                    "val_accuracy": row.get("val_accuracy", ""),
+                    "val_macro_f1": row.get("val_macro_f1", ""),
                     "test_accuracy": row.get("test_accuracy", ""),
                     "test_macro_f1": row.get("test_macro_f1", ""),
                     "inference_time_mean_sec": _ms_to_sec(row.get("inference_time_mean_ms", "")),
@@ -95,11 +98,19 @@ def _write_rows(rows: List[Dict[str, Any]], path: Path) -> None:
 
 
 def _write_best_summary(rows: List[Dict[str, Any]], path: Path) -> None:
-    post_finetune = [row for row in rows if row.get("phase") == "post_finetune"]
+    post_finetune = [
+        row
+        for row in rows
+        if row.get("phase") == "post_finetune" and row.get("val_accuracy") not in ("", None)
+    ]
     if not post_finetune:
         return
-    best = max(post_finetune, key=lambda row: float(row.get("test_accuracy", 0.0) or 0.0))
-    payload = {"best_post_finetune_accuracy": best}
+    best = max(post_finetune, key=lambda row: float(row.get("val_accuracy", 0.0) or 0.0))
+    payload = {
+        "selection_metric": "val_accuracy",
+        "validation_selected_post_finetune": best,
+        "note": "The selected row's test metrics are final descriptive results, not selection inputs.",
+    }
     with path.open("w", encoding="utf-8") as handle:
         json.dump(payload, handle, indent=2)
 

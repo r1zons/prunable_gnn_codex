@@ -6,7 +6,7 @@ import json
 import hashlib
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any, Dict, List, Union
 
 import torch
 
@@ -126,6 +126,11 @@ def prune_from_checkpoint(
                 "Structured pruning must reduce at least one hidden dimension, "
                 f"but got before={dense_hidden_dims}, after={pruned_hidden_dims}."
             )
+        prior_achieved = float(plan.achieved_sparsity)
+        plan.achieved_sparsity = float(1.0 - (pruned_param_count / max(1, dense_param_count)))
+        if str(plan.details.get("scope", "")) == "structured_hidden_channels":
+            plan.details.setdefault("achieved_channel_sparsity", prior_achieved)
+        plan.details["achieved_sparsity_definition"] = "parameter_count_reduction"
 
     pruned_checkpoint_path = output_dir / f"pruned_{method}.pt"
     torch.save(
@@ -499,22 +504,28 @@ def _model_config_from_model(model: torch.nn.Module, fallback: Dict[str, Any]) -
         conv0 = model.convs[0]
         conv_last = model.convs[-1]
         if hasattr(conv0, "lin") and hasattr(conv_last, "lin"):
+            hidden_widths = [int(conv.lin.weight.shape[0]) for conv in model.convs[:-1]]
             return {
                 "in_channels": int(conv0.lin.weight.shape[1]),
-                "hidden_channels": int(conv0.lin.weight.shape[0]),
+                "hidden_channels": _checkpoint_hidden_channels(hidden_widths),
                 "out_channels": int(conv_last.lin.weight.shape[0]),
                 "num_layers": int(len(model.convs)),
                 "dropout": float(getattr(model, "dropout", fallback.get("dropout", 0.0))),
             }
         if hasattr(conv0, "lin_l") and hasattr(conv_last, "lin_l"):
+            hidden_widths = [int(conv.lin_l.weight.shape[0]) for conv in model.convs[:-1]]
             return {
                 "in_channels": int(conv0.lin_l.weight.shape[1]),
-                "hidden_channels": int(conv0.lin_l.weight.shape[0]),
+                "hidden_channels": _checkpoint_hidden_channels(hidden_widths),
                 "out_channels": int(conv_last.lin_l.weight.shape[0]),
                 "num_layers": int(len(model.convs)),
                 "dropout": float(getattr(model, "dropout", fallback.get("dropout", 0.0))),
             }
     return dict(fallback)
+
+
+def _checkpoint_hidden_channels(widths: List[int]) -> Union[int, List[int]]:
+    return int(widths[0]) if len(set(widths)) == 1 else [int(width) for width in widths]
 
 
 def _parameter_count(model: torch.nn.Module) -> int:

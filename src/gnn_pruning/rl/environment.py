@@ -248,6 +248,7 @@ class StructuralPruningEnv:
         val_after = self._validation_accuracy(self.current_model)
         accuracy_drop = max(0.0, self.baseline_val_acc - val_after)
         compression_gain = max(0.0, current_sparsity_after - current_sparsity_before)
+        # This is a parameter-reduction proxy, not measured device latency.
         speed_proxy = compression_gain
         reward = (
             self.reward_alpha * compression_gain

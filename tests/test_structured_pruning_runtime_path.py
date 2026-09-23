@@ -10,8 +10,9 @@ from pathlib import Path
 import torch
 from torch_geometric.data import Data
 
-from gnn_pruning.models import GCNNodeClassifier
-from gnn_pruning.pruning.workflow import finetune_pruned_checkpoint, prune_from_checkpoint
+from gnn_pruning.models import GCNNodeClassifier, GraphSAGENodeClassifier
+from gnn_pruning.pruning.workflow import evaluate_pruned_checkpoint, finetune_pruned_checkpoint, prune_from_checkpoint
+from gnn_pruning.surgery import structurally_prune_hidden_channels_local
 
 
 def _dummy_dataset(num_nodes: int = 20, in_channels: int = 6, num_classes: int = 3):
@@ -158,3 +159,37 @@ def test_50_and_90_percent_structured_pruning_produce_different_model_sizes(monk
     p50 = _param_count_from_checkpoint(artifacts50.pruned_checkpoint_path)
     p90 = _param_count_from_checkpoint(artifacts90.pruned_checkpoint_path)
     assert p90 < p50
+
+
+def test_evaluate_pruned_reloads_nonuniform_graphsage_checkpoint(monkeypatch, tmp_path: Path) -> None:
+    training_workflow = importlib.import_module("gnn_pruning.training.workflow")
+    pruning_workflow = importlib.import_module("gnn_pruning.pruning.workflow")
+    monkeypatch.setattr(training_workflow, "load_dataset", lambda name, root: _dummy_dataset())
+    monkeypatch.setattr(pruning_workflow, "load_dataset", lambda name, root: _dummy_dataset())
+
+    model = GraphSAGENodeClassifier(in_channels=6, hidden_channels=8, out_channels=3, num_layers=3, dropout=0.0)
+    model = structurally_prune_hidden_channels_local(model, layer_index=1, keep_indices=[0, 1, 2, 3])
+    model = structurally_prune_hidden_channels_local(model, layer_index=0, keep_indices=[0, 1, 2, 3, 4, 5, 6])
+    checkpoint = tmp_path / "pruned_graphsage.pt"
+    torch.save(
+        {
+            "model_name": "graphsage",
+            "model_config": {
+                "in_channels": 6,
+                "hidden_channels": [7, 4],
+                "out_channels": 3,
+                "num_layers": 3,
+                "dropout": 0.0,
+            },
+            "model_state_dict": model.state_dict(),
+            "pruning_plan": {"mode": "structured"},
+        },
+        checkpoint,
+    )
+    config = _make_config(tmp_path / "cfg.yaml", tmp_path, method="random", sparsity=0.5)
+
+    artifacts = evaluate_pruned_checkpoint(str(checkpoint), str(config))
+
+    assert artifacts.metrics_path.exists()
+    metrics = json.loads(artifacts.metrics_path.read_text(encoding="utf-8"))
+    assert int(metrics["benchmark"]["parameter_count"]) == sum(parameter.numel() for parameter in model.parameters())

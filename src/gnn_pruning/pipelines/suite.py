@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 import csv
+import hashlib
+import json
 import math
+from collections import Counter
 from dataclasses import dataclass
 from pathlib import Path
 from statistics import mean, stdev
@@ -70,6 +73,7 @@ def run_suite(config_path: str, show_progress: bool = False) -> SuiteArtifacts:
                     run_index=run_index,
                     run_seed=run_seed,
                     pipeline_csv_path=pipeline_artifacts.csv_path,
+                    condition_id=_stable_condition_id(experiment_config),
                 )
             )
 
@@ -80,28 +84,24 @@ def run_suite(config_path: str, show_progress: bool = False) -> SuiteArtifacts:
 
 
 def aggregate_suite_rows(rows: Sequence[Dict[str, Any]]) -> List[Dict[str, Any]]:
-    """Aggregate run-level rows into mean/std/95% CI summaries."""
+    """Aggregate independent seeds by stable experimental condition."""
     grouped: Dict[Tuple[str, ...], List[Dict[str, Any]]] = {}
     for row in rows:
+        method = str(row.get("method", row.get("pruning_method", "")))
+        pruning_method = str(row.get("pruning_method", method))
+        requested_sparsity = str(row.get("requested_sparsity", row.get("sparsity", "")))
         key = (
             str(row.get("suite_name", "")),
+            str(row.get("condition_id", "")),
             str(row.get("experiment_name", "")),
             str(row.get("dataset", "")),
             str(row.get("model", "")),
             str(row.get("num_layers", "")),
             str(row.get("hidden_channels", "")),
-            str(row.get("seed", "")),
             str(row.get("phase", "")),
-            str(row.get("method", "")),
-            str(row.get("sparsity", "")),
-            str(row.get("pruning_method", "")),
-            str(row.get("requested_sparsity", "")),
-            str(row.get("achieved_sparsity", "")),
-            str(row.get("final_reward", "")),
-            str(row.get("num_adaptive_steps", "")),
-            str(row.get("stop_reason", "")),
-            str(row.get("config_hash", "")),
-            str(row.get("run_dir", "")),
+            method,
+            pruning_method,
+            requested_sparsity,
         )
         grouped.setdefault(key, []).append(row)
 
@@ -109,61 +109,67 @@ def aggregate_suite_rows(rows: Sequence[Dict[str, Any]]) -> List[Dict[str, Any]]
     for key, members in grouped.items():
         (
             suite_name,
+            condition_id,
             experiment_name,
             dataset,
             model,
             num_layers,
             hidden_channels,
-            seed,
             phase,
             method,
-            sparsity,
             pruning_method,
             requested_sparsity,
-            achieved_sparsity,
-            final_reward,
-            num_adaptive_steps,
-            stop_reason,
-            config_hash,
-            run_dir,
         ) = key
-        test_accuracy_values = _extract_numeric(members, "test_accuracy")
-        test_macro_f1_values = _extract_numeric(members, "test_macro_f1")
-        inference_time_values = _extract_numeric(members, "inference_time_mean_ms")
-        parameter_count_values = _extract_numeric(members, "parameter_count")
-        aggregate_rows.append(
-            {
-                "suite_name": suite_name,
-                "experiment_name": experiment_name,
-                "dataset": dataset,
-                "model": model,
-                "num_layers": num_layers,
-                "hidden_channels": hidden_channels,
-                "seed": seed,
-                "phase": phase,
-                "method": method,
-                "sparsity": sparsity,
-                "pruning_method": pruning_method,
-                "requested_sparsity": requested_sparsity,
-                "achieved_sparsity": achieved_sparsity,
-                "final_reward": final_reward,
-                "num_adaptive_steps": num_adaptive_steps,
-                "stop_reason": stop_reason,
-                "config_hash": config_hash,
-                "run_dir": run_dir,
-                "num_runs": len(members),
-                "test_accuracy_mean": _safe_mean(test_accuracy_values),
-                "test_accuracy_std": _safe_std(test_accuracy_values),
-                "test_accuracy_ci95": _ci95(test_accuracy_values),
-                "test_macro_f1_mean": _safe_mean(test_macro_f1_values),
-                "test_macro_f1_std": _safe_std(test_macro_f1_values),
-                "test_macro_f1_ci95": _ci95(test_macro_f1_values),
-                "inference_time_mean_ms_mean": _safe_mean(inference_time_values),
-                "inference_time_mean_ms_std": _safe_std(inference_time_values),
-                "parameter_count_mean": _safe_mean(parameter_count_values),
-                "parameter_count_std": _safe_std(parameter_count_values),
-            }
-        )
+        run_keys = _independent_run_keys(members)
+        num_runs = len(set(run_keys))
+        stop_reason_counts = Counter(str(row.get("stop_reason", "")).strip() for row in members)
+        stop_reason_counts.pop("", None)
+        row_out: Dict[str, Any] = {
+            "suite_name": suite_name,
+            "condition_id": condition_id,
+            "experiment_name": experiment_name,
+            "dataset": dataset,
+            "model": model,
+            "num_layers": num_layers,
+            "hidden_channels": hidden_channels,
+            "seed": "",
+            "seeds": json.dumps(_unique_values(members, "run_seed", fallback="seed")),
+            "phase": phase,
+            "method": method,
+            "sparsity": requested_sparsity,
+            "pruning_method": pruning_method,
+            "requested_sparsity": requested_sparsity,
+            "stop_reason": _single_value_or_blank(stop_reason_counts),
+            "stop_reason_counts": json.dumps(dict(sorted(stop_reason_counts.items())), sort_keys=True),
+            "config_hash": "",
+            "config_hashes": json.dumps(_unique_values(members, "config_hash")),
+            "run_dir": "",
+            "run_dirs": json.dumps(_unique_values(members, "run_dir")),
+            "num_observations": len(members),
+            "num_runs": num_runs,
+            "aggregation_status": "multi_run" if num_runs > 1 else "single_run",
+        }
+        for metric in (
+            "achieved_sparsity",
+            "final_reward",
+            "num_adaptive_steps",
+            "val_accuracy",
+            "val_macro_f1",
+            "test_accuracy",
+            "test_macro_f1",
+            "inference_time_mean_ms",
+            "parameter_count",
+        ):
+            values = _extract_per_run_numeric(members, metric, run_keys)
+            row_out[f"{metric}_mean"] = _safe_mean(values)
+            row_out[f"{metric}_std"] = _safe_std(values)
+            row_out[f"{metric}_ci95"] = _ci95(values)
+
+        # Keep legacy outcome columns useful without implying they are grouping identifiers.
+        row_out["achieved_sparsity"] = row_out["achieved_sparsity_mean"]
+        row_out["final_reward"] = row_out["final_reward_mean"]
+        row_out["num_adaptive_steps"] = row_out["num_adaptive_steps_mean"]
+        aggregate_rows.append(row_out)
     return aggregate_rows
 
 
@@ -179,7 +185,34 @@ def _ci95(values: Sequence[float]) -> float | str:
     if len(values) <= 1:
         return ""
     std = stdev(values)
-    return 1.96 * std / math.sqrt(len(values))
+    return _t_critical_95(len(values) - 1) * std / math.sqrt(len(values))
+
+
+def _t_critical_95(degrees_of_freedom: int) -> float:
+    """Return a two-sided 95% Student-t critical value without SciPy."""
+    table = {
+        1: 12.706,
+        2: 4.303,
+        3: 3.182,
+        4: 2.776,
+        5: 2.571,
+        6: 2.447,
+        7: 2.365,
+        8: 2.306,
+        9: 2.262,
+        10: 2.228,
+        12: 2.179,
+        15: 2.131,
+        20: 2.086,
+        25: 2.060,
+        30: 2.042,
+    }
+    if degrees_of_freedom in table:
+        return table[degrees_of_freedom]
+    lower_degrees = [df for df in table if df < degrees_of_freedom]
+    if lower_degrees and degrees_of_freedom <= 30:
+        return table[max(lower_degrees)]
+    return 1.96
 
 
 def _extract_numeric(rows: Iterable[Dict[str, Any]], key: str) -> List[float]:
@@ -190,6 +223,45 @@ def _extract_numeric(rows: Iterable[Dict[str, Any]], key: str) -> List[float]:
             continue
         values.append(float(value))
     return values
+
+
+def _independent_run_keys(rows: Sequence[Dict[str, Any]]) -> List[str]:
+    keys: List[str] = []
+    for index, row in enumerate(rows):
+        for field in ("run_seed", "seed", "run_index"):
+            value = row.get(field, "")
+            if value not in ("", None):
+                keys.append(f"{field}:{value}")
+                break
+        else:
+            keys.append(f"row:{index}")
+    return keys
+
+
+def _extract_per_run_numeric(
+    rows: Sequence[Dict[str, Any]],
+    key: str,
+    run_keys: Sequence[str],
+) -> List[float]:
+    by_run: Dict[str, List[float]] = {}
+    for row, run_key in zip(rows, run_keys):
+        values = _extract_numeric([row], key)
+        if values:
+            by_run.setdefault(run_key, []).extend(values)
+    return [mean(values) for values in by_run.values()]
+
+
+def _unique_values(rows: Sequence[Dict[str, Any]], key: str, fallback: str = "") -> List[str]:
+    values = {
+        str(row.get(key, row.get(fallback, ""))).strip()
+        for row in rows
+        if row.get(key, row.get(fallback, "")) not in ("", None)
+    }
+    return sorted(values)
+
+
+def _single_value_or_blank(counts: Counter[str]) -> str:
+    return next(iter(counts)) if len(counts) == 1 else ""
 
 
 def _resolve_experiment_configs(suite_cfg: Dict[str, Any]) -> List[str]:
@@ -208,11 +280,24 @@ def _build_run_config(source_config: str, destination: Path, run_seed: int, outp
     return destination
 
 
+def _stable_condition_id(config_path: str) -> str:
+    """Hash experiment settings while excluding seed- and path-specific run fields."""
+    payload = load_yaml(config_path)
+    normalized = json.loads(json.dumps(payload))
+    run_cfg = normalized.get("run")
+    if isinstance(run_cfg, dict):
+        run_cfg.pop("seed", None)
+        run_cfg.pop("output_dir", None)
+    serialized = json.dumps(normalized, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(serialized.encode("utf-8")).hexdigest()
+
+
 def _load_pipeline_rows(
     suite_name: str,
     run_index: int,
     run_seed: int,
     pipeline_csv_path: Path,
+    condition_id: str = "",
 ) -> List[Dict[str, Any]]:
     rows: List[Dict[str, Any]] = []
     with pipeline_csv_path.open("r", encoding="utf-8", newline="") as handle:
@@ -220,6 +305,7 @@ def _load_pipeline_rows(
             rows.append(
                 {
                     "suite_name": suite_name,
+                    "condition_id": condition_id,
                     "run_index": run_index,
                     "run_seed": run_seed,
                     "experiment_name": row.get("experiment_name", ""),
@@ -241,6 +327,8 @@ def _load_pipeline_rows(
                     "run_dir": row.get("run_dir", ""),
                     "test_accuracy": row.get("test_accuracy", ""),
                     "test_macro_f1": row.get("test_macro_f1", ""),
+                    "val_accuracy": row.get("val_accuracy", ""),
+                    "val_macro_f1": row.get("val_macro_f1", ""),
                     "inference_time_mean_ms": row.get("inference_time_mean_ms", ""),
                     "inference_time_std_ms": row.get("inference_time_std_ms", ""),
                     "parameter_count": row.get("parameter_count", ""),

@@ -1,77 +1,35 @@
 # ROADMAP.md
 
-## Phase 0: Setup
-- Create project structure
-- Add dependencies
-- Setup CLI
+## Implemented Foundation
 
-## Phase 1: Config System
-- YAML config loader
-- Presets
-- Config merging
+- Config layering and YAML-driven experiments.
+- PyG dataset registry, seeded exact-ratio splits, and explicit DBLP author projection.
+- GCN and GraphSAGE node classifiers.
+- Dense training with validation-loss early stopping, checkpointing, evaluation, timing, and memory metrics.
+- Structural channel pruning and layer reconstruction for GCN and GraphSAGE.
+- Dense -> prune -> post-prune -> optional post-finetune pipeline.
+- Repeated suites with independent seeds and aggregate CSV reporting.
+- Static/sensitivity pruners: random, global magnitude, layerwise magnitude, SNIP, GraSP, L1 threshold, group lasso, movement, and hard-concrete.
+- Adaptive layerwise pruning with trace artifacts.
+- Experimental tabular Q-learning with graph-aware bucketed state, feasible-action filtering, explicit stop action, training/deployment separation, local non-monotonic structural surgery, and diagnostics.
+- Compact benchmark configs plus collection, summary, and plotting scripts.
 
-## Phase 2: Data Layer
-- Dataset factory
-- Split generation
-- DBLP adapter placeholder
+## Stabilization Priorities
 
-## Phase 3: Models
-- GCN
-- GraphSAGE
-- Model registry
+1. Keep checkpoint/split fairness and seed aggregation covered by regression tests.
+2. Keep model selection and adaptive decisions validation-based; reserve test metrics for final descriptive reporting.
+3. Compare methods by achieved sparsity as well as requested sparsity.
+4. Validate structural checkpoint reload and post-finetune behavior for non-uniform hidden widths.
+5. Run controlled multi-seed studies before drawing scientific conclusions.
 
-## Phase 4: Training
-- Trainer
-- Evaluator (accuracy, F1)
-- Checkpointing
+## Deferred Infrastructure
 
-## Phase 5: Dense Pipeline
-- Full training pipeline
-- CLI command
+- Optional MLflow integration.
+- Additional model families such as GAT and GIN.
+- Subgraph/minibatch training for very large graphs.
+- Hardware-aware latency objectives based on measured latency rather than parameter-reduction proxies.
+- Input-graph sparsification, which is separate from the current model-channel pruning scope.
 
-## Phase 6: Benchmarking
-- Timing utilities
-- Memory metrics
+## Research Status
 
-## Phase 7: Pruning Abstraction
-- BasePruner
-- PruningPlan
-- Registry
-
-## Phase 8: Structural Pruning
-- Channel pruning
-- Layer surgery
-
-## Phase 9: Basic Pruners
-- Random
-- Global magnitude
-- Layer-wise magnitude
-
-## Phase 10: Full Pipeline
-- Train → Prune → Finetune → Evaluate
-
-## Phase 11: Multi-run Experiments
-- Repeated runs
-- Aggregation (mean/std)
-
-## Phase 12: MLflow
-- Logging
-- Artifacts
-
-## Phase 13: Advanced Pruners
-- SNIP
-- GraSP
-- L1 / Group Lasso
-- Movement
-- Hard-concrete
-
-## Phase 14: DBLP Adapter
-- Implement proper handling
-
-## Phase 15: Reporting
-- CSV tables
-- Summary reports
-
-## Final Goal
-- Clean, modular, extensible research framework
-- Ready for RL-based pruning integration
+The tabular Q-learning module is an experimental baseline, not a finalized thesis contribution. The final Master's thesis direction must be selected only after the audited infrastructure produces reproducible multi-seed evidence. DQN, PPO, and other new algorithms are intentionally outside the current cleanup scope.

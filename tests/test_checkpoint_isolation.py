@@ -71,11 +71,14 @@ def test_same_config_pruners_share_same_dense_checkpoint(monkeypatch, tmp_path: 
     run_pipeline(str(cfg))
 
     paths = []
+    split_hashes = []
     for method in ("random", "global_magnitude"):
         metadata_path = tmp_path / "run" / "pruning" / method / "sparsity_0_5" / "run_metadata.json"
         records = json.loads(metadata_path.read_text(encoding="utf-8"))
         paths.extend(record["dense_checkpoint_path"] for record in records)
+        split_hashes.extend(record["split_hash"] for record in records)
     assert len(set(paths)) == 1
+    assert len(set(split_hashes)) == 1
 
 
 def test_different_graphsage_architectures_do_not_share_dense_checkpoint(monkeypatch, tmp_path: Path) -> None:

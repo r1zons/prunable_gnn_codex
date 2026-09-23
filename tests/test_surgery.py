@@ -5,7 +5,8 @@ from __future__ import annotations
 import torch
 from torch_geometric.data import Data
 
-from gnn_pruning.models import GCNNodeClassifier, GraphSAGENodeClassifier
+from gnn_pruning.models import GCNNodeClassifier, GraphSAGENodeClassifier, build_model
+from gnn_pruning.pruning.workflow import _model_config_from_model
 from gnn_pruning.surgery import (
     can_apply_structural_prune,
     structurally_prune_hidden_channels,
@@ -153,3 +154,31 @@ def test_feasibility_reports_expected_widths_for_cascade_mode() -> None:
     )
     assert result.valid
     assert result.expected_hidden_widths_after == [4, 4]
+
+
+def test_nonuniform_graphsage_checkpoint_config_reloads() -> None:
+    model = GraphSAGENodeClassifier(in_channels=6, hidden_channels=8, out_channels=3, num_layers=3, dropout=0.0)
+    pruned = structurally_prune_hidden_channels_local(model, layer_index=1, keep_indices=[0, 1, 2, 3])
+    pruned = structurally_prune_hidden_channels_local(pruned, layer_index=0, keep_indices=[0, 1, 2, 3, 4, 5, 6])
+
+    config = _model_config_from_model(pruned, fallback={})
+    rebuilt = build_model("graphsage", **config)
+    rebuilt.load_state_dict(pruned.state_dict())
+
+    assert config["hidden_channels"] == [7, 4]
+    assert _hidden_widths(rebuilt) == [7, 4]
+    assert rebuilt(_tiny_graph()).shape == (10, 3)
+
+
+def test_nonuniform_gcn_checkpoint_config_reloads() -> None:
+    model = GCNNodeClassifier(in_channels=6, hidden_channels=8, out_channels=3, num_layers=3, dropout=0.0)
+    pruned = structurally_prune_hidden_channels_local(model, layer_index=1, keep_indices=[0, 1, 2, 3])
+    pruned = structurally_prune_hidden_channels_local(pruned, layer_index=0, keep_indices=[0, 1, 2, 3, 4, 5, 6])
+
+    config = _model_config_from_model(pruned, fallback={})
+    rebuilt = build_model("gcn", **config)
+    rebuilt.load_state_dict(pruned.state_dict())
+
+    assert config["hidden_channels"] == [7, 4]
+    assert _hidden_widths(rebuilt) == [7, 4]
+    assert rebuilt(_tiny_graph()).shape == (10, 3)

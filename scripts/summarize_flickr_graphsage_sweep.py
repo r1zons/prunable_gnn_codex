@@ -46,37 +46,50 @@ def _print_grouped(rows: List[Dict[str, Any]]) -> None:
     print("=== Flickr GraphSAGE Sweep (grouped) ===")
     for key, members in sorted(grouped.items()):
         acc = _safe_mean([_to_float(member.get("test_accuracy")) for member in members])
+        val_acc = _safe_mean([_to_float(member.get("val_accuracy")) for member in members])
         f1 = _safe_mean([_to_float(member.get("test_macro_f1")) for member in members])
+        achieved = _safe_mean([_to_float(member.get("achieved_sparsity")) for member in members])
         print(
             f"layers={key[0]} hidden={key[1]} method={key[2]} sparsity={key[3]} phase={key[4]} "
-            f"acc={acc:.4f} f1={f1:.4f}"
+            f"achieved={achieved:.4f} val_acc={val_acc:.4f} test_acc={acc:.4f} test_f1={f1:.4f}"
         )
 
 
 def _print_best(rows: List[Dict[str, Any]]) -> None:
-    post = [row for row in rows if row.get("phase") == "post_finetune"]
+    post = [
+        row
+        for row in rows
+        if row.get("phase") == "post_finetune" and row.get("val_accuracy") not in ("", None)
+    ]
     if not post:
-        print("No post_finetune rows found.")
+        print("No post_finetune rows with validation accuracy found; selection is unavailable.")
         return
-    best = max(post, key=lambda row: _to_float(row.get("test_accuracy")))
-    print("\n=== Best post_finetune accuracy ===")
+    best = max(post, key=lambda row: _to_float(row.get("val_accuracy")))
+    print("\n=== Validation-selected post_finetune row ===")
     print(best)
 
 
 def _print_tradeoff(rows: List[Dict[str, Any]]) -> None:
-    candidates = [row for row in rows if row.get("phase") == "post_finetune" and row.get("method") != "dense"]
+    candidates = [
+        row
+        for row in rows
+        if row.get("phase") == "post_finetune"
+        and row.get("method") != "dense"
+        and row.get("val_accuracy") not in ("", None)
+    ]
     if not candidates:
         print("No pruning candidates for tradeoff.")
         return
     best = max(
         candidates,
         key=lambda row: (
-            _to_float(row.get("test_accuracy")),
+            _to_float(row.get("val_accuracy")),
+            _to_float(row.get("achieved_sparsity")),
             -_to_float(row.get("checkpoint_size_bytes")),
             -_to_float(row.get("inference_time_mean_sec")),
         ),
     )
-    print("\n=== Best compression/speed tradeoff (heuristic) ===")
+    print("\n=== Validation-ranked compression tradeoff (heuristic) ===")
     print(best)
 
 

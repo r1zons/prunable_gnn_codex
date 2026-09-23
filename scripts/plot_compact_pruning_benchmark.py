@@ -235,7 +235,7 @@ def _plot_accuracy_vs_sparsity(agg: pd.DataFrame, dataset: str, out_dir: Path, i
             alpha=0.8,
             linewidth=1.0,
         )
-    ax.set_title(f"Accuracy vs Achieved Sparsity — {dataset}")
+    ax.set_title(f"Test Accuracy vs Achieved Sparsity — {dataset} (Post-hoc Descriptive)")
     ax.set_xlabel("Achieved sparsity")
     ax.set_ylabel("Test accuracy")
     ax.grid(alpha=0.25)
@@ -264,7 +264,7 @@ def _plot_accuracy_drop_vs_sparsity(agg: pd.DataFrame, dataset: str, out_dir: Pa
         )
     for budget in [0.03, 0.05, 0.07, 0.10]:
         ax.axhline(budget, color="gray", linestyle="--", linewidth=0.8, alpha=0.5)
-    ax.set_title(f"Accuracy Drop vs Achieved Sparsity — {dataset}")
+    ax.set_title(f"Test Accuracy Drop vs Achieved Sparsity — {dataset} (Post-hoc Descriptive)")
     ax.set_xlabel("Achieved sparsity")
     ax.set_ylabel("Accuracy drop")
     ax.grid(alpha=0.25)
@@ -306,7 +306,7 @@ def _plot_accuracy_drop_by_model_family(
                 linewidth=1.0,
                 alpha=0.8,
             )
-    ax.set_title(f"Accuracy Drop vs Achieved Sparsity — {dataset} {model_family}")
+    ax.set_title(f"Test Accuracy Drop vs Achieved Sparsity — {dataset} {model_family} (Post-hoc)")
     ax.set_xlabel("Achieved sparsity")
     ax.set_ylabel("Accuracy drop")
     ax.grid(alpha=0.25)
@@ -337,6 +337,7 @@ def _best_sparsity_under_budgets(raw_prune: pd.DataFrame, out_dir: Path, image_f
         .mean()
         .reset_index(name="mean_best_achieved_sparsity")
     )
+    summary["analysis_scope"] = "post_hoc_test_descriptive_not_for_selection"
     summary.to_csv(out_dir / "best_sparsity_under_accuracy_budget.csv", index=False)
 
     pivot = summary.pivot(index="budget", columns="method", values="mean_best_achieved_sparsity").fillna(0.0)
@@ -351,7 +352,7 @@ def _best_sparsity_under_budgets(raw_prune: pd.DataFrame, out_dir: Path, image_f
     ax.set_xticklabels([f"{float(v):.2f}" for v in pivot.index])
     ax.set_xlabel("Accuracy budget")
     ax.set_ylabel("Best achieved sparsity (mean)")
-    ax.set_title("Best Achieved Sparsity Under Accuracy Budgets")
+    ax.set_title("Achieved Sparsity Under Test-Accuracy Budgets (Post-hoc Descriptive)")
     ax.legend(fontsize=8)
     ax.grid(axis="y", alpha=0.25)
     _save(fig, out_dir, "best_sparsity_under_accuracy_budget", image_format, also_svg, dpi, created)
@@ -546,6 +547,7 @@ def _write_summaries(raw_prune: pd.DataFrame, out_dir: Path, created: List[Path]
         "mean_inference_time_mean_ms",
     ]
     overall["count_rows"] = raw_prune.groupby(["method", "requested_sparsity_unified", "max_accuracy_drop"], dropna=False).size().values
+    overall["analysis_scope"] = "post_hoc_test_descriptive_not_for_selection"
     overall_path = out_dir / "plot_summary_overall.csv"
     overall.to_csv(overall_path, index=False)
     created.append(overall_path)
@@ -579,6 +581,7 @@ def _write_summaries(raw_prune: pd.DataFrame, out_dir: Path, created: List[Path]
         ["dataset", "model", "num_layers", "hidden_channels", "method", "requested_sparsity_unified", "max_accuracy_drop"],
         dropna=False,
     ).size().values
+    by_group["analysis_scope"] = "post_hoc_test_descriptive_not_for_selection"
     by_path = out_dir / "plot_summary_by_dataset_model_method.csv"
     by_group.to_csv(by_path, index=False)
     created.append(by_path)
@@ -614,6 +617,7 @@ def _write_summaries(raw_prune: pd.DataFrame, out_dir: Path, created: List[Path]
             ["dataset", "model", "num_layers", "hidden_channels", "requested_sparsity_unified", "max_accuracy_drop", "stop_reason"],
             dropna=False,
         ).size().values
+        q_summary["analysis_scope"] = "post_hoc_test_descriptive_not_for_selection"
         q_path = out_dir / "qlearning_summary.csv"
         q_summary.to_csv(q_path, index=False)
         created.append(q_path)
@@ -669,6 +673,7 @@ def main(argv: Sequence[str] | None = None) -> int:
     _write_summaries(raw_prune, out_dir, created)
 
     print(f"[plot_compact_pruning_benchmark] wrote {len(created)} artifacts to {out_dir}")
+    print("[note] Accuracy trade-off plots are post-hoc descriptions of final test results, not configuration-selection evidence.")
     for path in sorted(created):
         print(f"- {path}")
     if not q_df.empty and (q_df["stop_reason"] == "max_accuracy_drop_exceeded").any():

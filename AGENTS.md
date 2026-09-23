@@ -23,7 +23,12 @@ The framework must support:
 - structural compression (NOT mask-only pruning)
 - post-pruning fine-tuning
 - benchmarking (accuracy, F1, sparsity, timing, memory)
-- CSV + MLflow reporting
+- CSV/JSON/Markdown reporting
+- repeated multi-seed suites
+- experimental tabular Q-learning pruning
+
+Current limitation:
+- MLflow integration is not implemented.
 
 ---
 
@@ -114,6 +119,12 @@ Pipeline:
    - fine-tune
    - evaluate again
 
+Selection rules:
+- dense/fine-tune early stopping uses validation loss
+- adaptive pruning and Q-learning use validation accuracy/drop
+- final test metrics are for reporting, not hyperparameter or winner selection
+- compare methods using achieved sparsity; requested sparsity alone is insufficient when a method stops early
+
 ---
 
 ### 7. Metrics (must be consistent)
@@ -126,7 +137,8 @@ Always report:
 
 #### Sparsity / compression
 - requested sparsity
-- achieved sparsity
+- achieved sparsity (parameter-count reduction for structured runs)
+- channel-pruning ratio as a separate diagnostic when relevant
 - parameter count
 - parameter bytes
 - checkpoint size
@@ -182,6 +194,9 @@ Minimum:
 - structural compression reduces parameters
 - checkpoint save/load
 - CSV schema
+- multi-seed aggregation
+- non-uniform structured checkpoint reload
+- Q-learning training/deployment reset semantics
 
 Use small datasets (Citeseer + fast_debug preset) for tests.
 
@@ -215,8 +230,8 @@ Each run must produce:
 - summary report
 
 MLflow:
-- must be optional (config flag)
-- must not break project if disabled
+- is deferred infrastructure
+- must remain optional if added later
 
 ---
 
@@ -237,7 +252,7 @@ MLflow:
 The code must make it easy to:
 - add new pruning methods
 - add new models (GAT, GIN)
-- integrate RL-based pruning later
+- extend the existing experimental RL module without coupling it to static pruners
 
 To achieve this:
 - use clear interfaces
@@ -269,6 +284,24 @@ Always ensure this works:
 
 Only after that:
 → expand features
+
+---
+
+### 18. Current Tabular Q-Learning Boundary
+
+- `q_learning_tabular` runs through the existing pruning pipeline.
+- Training episodes reset to the dense model; deployment resets again and uses the learned greedy policy.
+- RL decisions use validation indices, never test indices.
+- No fine-tuning occurs inside RL episodes.
+- Local structural mode may create different widths in different hidden layers; saved checkpoints must preserve those widths.
+- The current `speed_proxy` equals parameter-based compression gain. It is not measured latency and must not be described as hardware-aware.
+- The implementation is experimental and is not the finalized Master's thesis contribution.
+
+---
+
+### 19. Scope Boundary
+
+Structural pruning removes model channels and reduces model parameter count. It does not remove graph nodes or edges. Input-graph sparsification must be described and implemented as a separate capability if pursued later.
 
 ---
 

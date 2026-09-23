@@ -25,13 +25,14 @@ def main() -> int:
         return 1
 
     dense_map = _dense_baseline(rows)
+    dense_val_map = _dense_baseline(rows, metric="val_accuracy")
     _print_dense_baseline(dense_map)
     _print_post_prune_table(rows)
     _print_accuracy_drop(rows, dense_map)
     _print_achieved_sparsity(rows)
     _print_param_reduction(rows, dense_map)
     _print_inference_time(rows)
-    _print_highlights(rows, dense_map)
+    _print_highlights(rows, dense_val_map)
     return 0
 
 
@@ -48,12 +49,15 @@ def _arch_key(row: Dict[str, Any]) -> Tuple[str, str, str]:
     )
 
 
-def _dense_baseline(rows: List[Dict[str, Any]]) -> Dict[Tuple[str, str, str], float]:
+def _dense_baseline(
+    rows: List[Dict[str, Any]],
+    metric: str = "test_accuracy",
+) -> Dict[Tuple[str, str, str], float]:
     dense = {}
     for row in rows:
         if str(row.get("phase", "")) != "dense":
             continue
-        dense[_arch_key(row)] = _to_float(row.get("test_accuracy"))
+        dense[_arch_key(row)] = _to_float(row.get(metric))
     return dense
 
 
@@ -148,13 +152,13 @@ def _print_inference_time(rows: List[Dict[str, Any]]) -> None:
 
 
 def _print_highlights(rows: List[Dict[str, Any]], dense_map: Dict[Tuple[str, str, str], float]) -> None:
-    print("\n=== Candidate highlights ===")
+    print("\n=== Validation-based candidate highlights ===")
     grouped: Dict[Tuple[str, str, str], Dict[float, List[float]]] = defaultdict(lambda: defaultdict(list))
     for row in _post_prune_rows(rows):
         key = _arch_key(row)
         sparsity = round(_to_float(row.get("requested_sparsity")), 2)
         dense_acc = dense_map.get(key, 0.0)
-        drop = dense_acc - _to_float(row.get("test_accuracy"))
+        drop = dense_acc - _to_float(row.get("val_accuracy"))
         grouped[key][sparsity].append(drop)
 
     printed = 0

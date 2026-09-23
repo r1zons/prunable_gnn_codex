@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Sequence, Union
 
 import torch
 from torch import Tensor, nn
@@ -17,7 +17,7 @@ class GCNNodeClassifier(BaseNodeClassifier):
     def __init__(
         self,
         in_channels: int,
-        hidden_channels: int,
+        hidden_channels: Union[int, Sequence[int]],
         out_channels: int,
         num_layers: int,
         dropout: float,
@@ -27,11 +27,12 @@ class GCNNodeClassifier(BaseNodeClassifier):
             raise ValueError("GCN requires num_layers >= 2.")
 
         self.in_channels = int(in_channels)
-        self.hidden_channels = int(hidden_channels)
         self.out_channels = int(out_channels)
         self.num_layers = int(num_layers)
+        self.hidden_channel_dims = _normalize_hidden_channels(hidden_channels, self.num_layers)
+        self.hidden_channels = int(self.hidden_channel_dims[0])
 
-        dims: List[int] = [self.in_channels] + [self.hidden_channels] * (self.num_layers - 1) + [self.out_channels]
+        dims: List[int] = [self.in_channels] + self.hidden_channel_dims + [self.out_channels]
         self.convs = nn.ModuleList([
             GCNConv(dims[i], dims[i + 1]) for i in range(self.num_layers)
         ])
@@ -50,8 +51,24 @@ class GCNNodeClassifier(BaseNodeClassifier):
         return {
             "name": "gcn",
             "in_channels": self.in_channels,
-            "hidden_channels": self.hidden_channels,
+            "hidden_channels": _export_hidden_channels(self.hidden_channel_dims),
             "out_channels": self.out_channels,
             "num_layers": self.num_layers,
             "dropout": self.dropout,
         }
+
+
+def _normalize_hidden_channels(hidden_channels: Union[int, Sequence[int]], num_layers: int) -> List[int]:
+    if isinstance(hidden_channels, int):
+        widths = [int(hidden_channels)] * (num_layers - 1)
+    else:
+        widths = [int(width) for width in hidden_channels]
+    if len(widths) != num_layers - 1:
+        raise ValueError(f"Expected {num_layers - 1} hidden widths, got {len(widths)}.")
+    if any(width <= 0 for width in widths):
+        raise ValueError("All hidden channel widths must be positive.")
+    return widths
+
+
+def _export_hidden_channels(widths: Sequence[int]) -> Union[int, List[int]]:
+    return int(widths[0]) if len(set(widths)) == 1 else [int(width) for width in widths]

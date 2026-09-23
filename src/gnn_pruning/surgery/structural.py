@@ -164,9 +164,7 @@ def structurally_prune_hidden_channels(model: Any, layer_index: int, keep_indice
     else:
         raise TypeError("Unsupported model type for structural hidden-channel pruning.")
 
-    if hasattr(pruned_model, "hidden_channels"):
-        pruned_model.hidden_channels = int(kept.numel())
-
+    _sync_hidden_channel_metadata(pruned_model)
     _validate_all_internal_shapes(pruned_model)
     return pruned_model
 
@@ -204,8 +202,19 @@ def structurally_prune_hidden_channels_local(model: Any, layer_index: int, keep_
     else:
         raise TypeError("Unsupported model type for structural hidden-channel pruning.")
 
+    _sync_hidden_channel_metadata(pruned_model)
     _validate_all_internal_shapes(pruned_model)
     return pruned_model
+
+
+def _sync_hidden_channel_metadata(model: Any) -> None:
+    widths = _hidden_widths(model)
+    if not widths:
+        return
+    if hasattr(model, "hidden_channels"):
+        model.hidden_channels = int(widths[0])
+    if hasattr(model, "hidden_channel_dims"):
+        model.hidden_channel_dims = [int(width) for width in widths]
 
 
 def _cascade_hidden_prune_gcn(convs: Any, start_layer: int, keep: torch.Tensor) -> None:
