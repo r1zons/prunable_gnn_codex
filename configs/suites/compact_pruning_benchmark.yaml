@@ -1,0 +1,76 @@
+suite_name: compact_pruning_benchmark
+
+run:
+  num_runs: 3
+  base_seed: 42
+  output_dir: runs/compact_pruning_benchmark
+
+experiments:
+  # Cora static
+  - configs/experiments/compact_benchmark_cora_gcn_l2_h64_static.yaml
+  - configs/experiments/compact_benchmark_cora_gcn_l3_h32_static.yaml
+  - configs/experiments/compact_benchmark_cora_graphsage_l2_h64_static.yaml
+  - configs/experiments/compact_benchmark_cora_graphsage_l3_h16_static.yaml
+  - configs/experiments/compact_benchmark_cora_graphsage_l3_h32_static.yaml
+  # Cora q_learning_tabular
+  - configs/experiments/compact_benchmark_cora_gcn_l2_h64_qlearning_accdrop005.yaml
+  - configs/experiments/compact_benchmark_cora_gcn_l2_h64_qlearning_accdrop007.yaml
+  - configs/experiments/compact_benchmark_cora_gcn_l2_h64_qlearning_accdrop010.yaml
+  - configs/experiments/compact_benchmark_cora_gcn_l3_h32_qlearning_accdrop005.yaml
+  - configs/experiments/compact_benchmark_cora_gcn_l3_h32_qlearning_accdrop007.yaml
+  - configs/experiments/compact_benchmark_cora_gcn_l3_h32_qlearning_accdrop010.yaml
+  - configs/experiments/compact_benchmark_cora_graphsage_l2_h64_qlearning_accdrop005.yaml
+  - configs/experiments/compact_benchmark_cora_graphsage_l2_h64_qlearning_accdrop007.yaml
+  - configs/experiments/compact_benchmark_cora_graphsage_l2_h64_qlearning_accdrop010.yaml
+  - configs/experiments/compact_benchmark_cora_graphsage_l3_h16_qlearning_accdrop005.yaml
+  - configs/experiments/compact_benchmark_cora_graphsage_l3_h16_qlearning_accdrop007.yaml
+  - configs/experiments/compact_benchmark_cora_graphsage_l3_h16_qlearning_accdrop010.yaml
+  - configs/experiments/compact_benchmark_cora_graphsage_l3_h32_qlearning_accdrop005.yaml
+  - configs/experiments/compact_benchmark_cora_graphsage_l3_h32_qlearning_accdrop007.yaml
+  - configs/experiments/compact_benchmark_cora_graphsage_l3_h32_qlearning_accdrop010.yaml
+
+  # Citeseer static
+  - configs/experiments/compact_benchmark_citeseer_gcn_l2_h64_static.yaml
+  - configs/experiments/compact_benchmark_citeseer_gcn_l3_h32_static.yaml
+  - configs/experiments/compact_benchmark_citeseer_graphsage_l2_h64_static.yaml
+  - configs/experiments/compact_benchmark_citeseer_graphsage_l3_h16_static.yaml
+  - configs/experiments/compact_benchmark_citeseer_graphsage_l3_h32_static.yaml
+  # Citeseer q_learning_tabular
+  - configs/experiments/compact_benchmark_citeseer_gcn_l2_h64_qlearning_accdrop005.yaml
+  - configs/experiments/compact_benchmark_citeseer_gcn_l2_h64_qlearning_accdrop007.yaml
+  - configs/experiments/compact_benchmark_citeseer_gcn_l2_h64_qlearning_accdrop010.yaml
+  - configs/experiments/compact_benchmark_citeseer_gcn_l3_h32_qlearning_accdrop005.yaml
+  - configs/experiments/compact_benchmark_citeseer_gcn_l3_h32_qlearning_accdrop007.yaml
+  - configs/experiments/compact_benchmark_citeseer_gcn_l3_h32_qlearning_accdrop010.yaml
+  - configs/experiments/compact_benchmark_citeseer_graphsage_l2_h64_qlearning_accdrop005.yaml
+  - configs/experiments/compact_benchmark_citeseer_graphsage_l2_h64_qlearning_accdrop007.yaml
+  - configs/experiments/compact_benchmark_citeseer_graphsage_l2_h64_qlearning_accdrop010.yaml
+  - configs/experiments/compact_benchmark_citeseer_graphsage_l3_h16_qlearning_accdrop005.yaml
+  - configs/experiments/compact_benchmark_citeseer_graphsage_l3_h16_qlearning_accdrop007.yaml
+  - configs/experiments/compact_benchmark_citeseer_graphsage_l3_h16_qlearning_accdrop010.yaml
+  - configs/experiments/compact_benchmark_citeseer_graphsage_l3_h32_qlearning_accdrop005.yaml
+  - configs/experiments/compact_benchmark_citeseer_graphsage_l3_h32_qlearning_accdrop007.yaml
+  - configs/experiments/compact_benchmark_citeseer_graphsage_l3_h32_qlearning_accdrop010.yaml
+
+  # PubMed static
+  - configs/experiments/compact_benchmark_pubmed_gcn_l2_h64_static.yaml
+  - configs/experiments/compact_benchmark_pubmed_gcn_l3_h32_static.yaml
+  - configs/experiments/compact_benchmark_pubmed_graphsage_l2_h64_static.yaml
+  - configs/experiments/compact_benchmark_pubmed_graphsage_l3_h16_static.yaml
+  - configs/experiments/compact_benchmark_pubmed_graphsage_l3_h32_static.yaml
+  # PubMed q_learning_tabular
+  - configs/experiments/compact_benchmark_pubmed_gcn_l2_h64_qlearning_accdrop005.yaml
+  - configs/experiments/compact_benchmark_pubmed_gcn_l2_h64_qlearning_accdrop007.yaml
+  - configs/experiments/compact_benchmark_pubmed_gcn_l2_h64_qlearning_accdrop010.yaml
+  - configs/experiments/compact_benchmark_pubmed_gcn_l3_h32_qlearning_accdrop005.yaml
+  - configs/experiments/compact_benchmark_pubmed_gcn_l3_h32_qlearning_accdrop007.yaml
+  - configs/experiments/compact_benchmark_pubmed_gcn_l3_h32_qlearning_accdrop010.yaml
+  - configs/experiments/compact_benchmark_pubmed_graphsage_l2_h64_qlearning_accdrop005.yaml
+  - configs/experiments/compact_benchmark_pubmed_graphsage_l2_h64_qlearning_accdrop007.yaml
+  - configs/experiments/compact_benchmark_pubmed_graphsage_l2_h64_qlearning_accdrop010.yaml
+  - configs/experiments/compact_benchmark_pubmed_graphsage_l3_h16_qlearning_accdrop005.yaml
+  - configs/experiments/compact_benchmark_pubmed_graphsage_l3_h16_qlearning_accdrop007.yaml
+  - configs/experiments/compact_benchmark_pubmed_graphsage_l3_h16_qlearning_accdrop010.yaml
+  - configs/experiments/compact_benchmark_pubmed_graphsage_l3_h32_qlearning_accdrop005.yaml
+  - configs/experiments/compact_benchmark_pubmed_graphsage_l3_h32_qlearning_accdrop007.yaml
+  - configs/experiments/compact_benchmark_pubmed_graphsage_l3_h32_qlearning_accdrop010.yaml

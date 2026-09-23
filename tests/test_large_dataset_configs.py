@@ -222,3 +222,95 @@ def test_pubmed_rl_comparison_accdrop_sensitivity_configs_resolve() -> None:
         assert bool(q_learning.get("allow_nonmonotonic_layer_order", False)) is True
         assert str(q_learning.get("structural_pruning_mode", "")) == "local"
         assert float(q_learning.get("max_accuracy_drop", -1.0)) == expected_accdrop
+
+
+def _compact_benchmark_matrix() -> list[tuple[str, str, int, int]]:
+    datasets = ["cora", "citeseer", "pubmed"]
+    models = [
+        ("gcn", 2, 64),
+        ("gcn", 3, 32),
+        ("graphsage", 2, 64),
+        ("graphsage", 3, 16),
+        ("graphsage", 3, 32),
+    ]
+    return [(dataset, model, layers, hidden) for dataset in datasets for (model, layers, hidden) in models]
+
+
+def test_compact_benchmark_static_configs_resolve() -> None:
+    expected_grid = [0.1, 0.3, 0.5, 0.7, 0.8, 0.9]
+    for dataset, model, layers, hidden in _compact_benchmark_matrix():
+        path = f"configs/experiments/compact_benchmark_{dataset}_{model}_l{layers}_h{hidden}_static.yaml"
+        cfg = resolve_config(path)
+        raw = load_yaml(path)
+        pruning = raw.get("pruning", {})
+        assert cfg.data.name == dataset
+        assert cfg.model.name == model
+        assert cfg.model.num_layers == layers
+        assert cfg.model.hidden_channels == hidden
+        assert cfg.training.epochs == 30
+        assert cfg.training.early_stopping_patience == 10
+        assert cfg.device.device in {"cpu", "cuda"}
+        assert pruning.get("methods") == ["random", "global_magnitude", "layerwise_magnitude", "snip"]
+        assert pruning.get("sparsity_levels") == expected_grid
+        assert bool(pruning.get("structured", False)) is True
+        assert bool(pruning.get("finetune_enabled", True)) is False
+
+
+def test_compact_benchmark_qlearning_configs_resolve() -> None:
+    expected_grid = [0.1, 0.3, 0.5, 0.7, 0.8, 0.9]
+    seen_targets: set[float] = set()
+    seen_accdrops: set[float] = set()
+    for dataset, model, layers, hidden in _compact_benchmark_matrix():
+        for expected_accdrop, suffix in [(0.05, "005"), (0.07, "007"), (0.10, "010")]:
+            path = (
+                f"configs/experiments/compact_benchmark_{dataset}_{model}_l{layers}_h{hidden}"
+                f"_qlearning_accdrop{suffix}.yaml"
+            )
+            cfg = resolve_config(path)
+            raw = load_yaml(path)
+            pruning = raw.get("pruning", {})
+            q_learning = raw.get("q_learning", {})
+            assert cfg.data.name == dataset
+            assert cfg.model.name == model
+            assert cfg.model.num_layers == layers
+            assert cfg.model.hidden_channels == hidden
+            assert cfg.training.epochs == 30
+            assert cfg.training.early_stopping_patience == 10
+            assert cfg.device.device in {"cpu", "cuda"}
+            assert pruning.get("methods") == ["q_learning_tabular"]
+            assert pruning.get("sparsity_levels") == expected_grid
+            assert bool(pruning.get("structured", False)) is True
+            assert bool(pruning.get("finetune_enabled", True)) is False
+            assert bool(q_learning.get("allow_nonmonotonic_layer_order", False)) is True
+            assert str(q_learning.get("structural_pruning_mode", "")) == "local"
+            assert int(q_learning.get("episodes", 0)) == 30
+            assert int(q_learning.get("max_steps", 0)) == 20
+            assert q_learning.get("step_prune_ratios") == [0.05, 0.10]
+            assert float(q_learning.get("max_accuracy_drop", -1.0)) == expected_accdrop
+            seen_accdrops.add(float(q_learning.get("max_accuracy_drop", -1.0)))
+            seen_targets.update(float(v) for v in pruning.get("sparsity_levels", []))
+    assert seen_targets == set(expected_grid)
+    assert seen_accdrops == {0.05, 0.07, 0.10}
+
+
+def test_compact_benchmark_suite_config_resolves() -> None:
+    path = Path("configs/suites/compact_pruning_benchmark.yaml")
+    assert path.exists()
+    payload = load_yaml(path)
+    assert payload.get("suite_name") == "compact_pruning_benchmark"
+    run = payload.get("run", {})
+    assert int(run.get("num_runs", 0)) == 3
+    assert int(run.get("base_seed", 0)) == 42
+    experiments = payload.get("experiments", [])
+    assert isinstance(experiments, list)
+    assert len(experiments) == (3 * 5) + (3 * 5 * 3)
+    for experiment_path in experiments:
+        assert Path(str(experiment_path)).exists()
+
+
+def test_compact_benchmark_summary_script_exists() -> None:
+    script = Path("scripts/summarize_compact_pruning_benchmark.py")
+    assert script.exists()
+    spec = importlib.util.spec_from_file_location(script.stem, script)
+    assert spec is not None
+    assert spec.loader is not None

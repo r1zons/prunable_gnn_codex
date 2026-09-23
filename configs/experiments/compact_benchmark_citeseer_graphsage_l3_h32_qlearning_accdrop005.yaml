@@ -1,0 +1,35 @@
+base: base/default
+dataset: citeseer
+model: graphsage
+preset: fast_debug
+
+model:
+  name: graphsage
+  num_layers: 3
+  hidden_channels: 32
+
+run:
+  experiment_name: compact_benchmark_citeseer_graphsage_l3_h32_qlearning_accdrop005
+  output_dir: runs/compact_pruning_benchmark/compact_benchmark_citeseer_graphsage_l3_h32_qlearning_accdrop005
+  seed: 42
+
+device:
+  device: auto
+
+training:
+  epochs: 30
+  early_stopping_patience: 10
+
+pruning:
+  methods: [q_learning_tabular]
+  sparsity_levels: [0.1, 0.3, 0.5, 0.7, 0.8, 0.9]
+  structured: true
+  finetune_enabled: false
+
+q_learning:
+  allow_nonmonotonic_layer_order: true
+  structural_pruning_mode: local
+  episodes: 30
+  max_steps: 20
+  step_prune_ratios: [0.05, 0.10]
+  max_accuracy_drop: 0.05
