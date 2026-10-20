@@ -15,7 +15,7 @@ Target journal: «Современные информационные техно
 ## Immediate scientific work
 
 1. Recover the exact source artifacts/protocol behind course figures and the dense-model selection.
-2. Build a manuscript claim-to-evidence matrix from `../..//CLAIMS.md` and `../..//EVIDENCE.md` (canonical paths are `research/CLAIMS.md`, `research/EVIDENCE.md`).
+2. Build a manuscript claim-to-evidence matrix using `research/CLAIMS.md` and `research/EVIDENCE.md`.
 3. Identify a single supported main conclusion. Do not assume that “Q-learning beats baselines” has been established by statistical evidence.
 4. Only if a material evidence gap remains, design the **smallest possible** additional experiment and approve the cost first.
 5. Review current venue template, publication policies, abstract and reference requirements from the official site before finalizing.
