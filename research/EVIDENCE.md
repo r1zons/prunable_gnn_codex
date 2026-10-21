@@ -32,3 +32,15 @@ Each new run should be identifiable by:
 - full artifact locations, checksums where appropriate and analysis script/commit.
 
 Keep historical and post-audit runs separate. If raw data cannot be recovered, label the conclusion *historical* or rerun a **small, explicit** verification experiment; do not invent the missing run properties.
+
+## Local Codex audit received 2026-10-22
+
+The researcher supplied a read-only audit from a Codex session with local filesystem access: [summary](audits/2026-10-22_local-codex.md). Findings are **CODEX_REPORTED_LOCAL**, not independently verified in this GitHub repository. The full source CSVs and checkpoints remain local; the summary does not contain copies of private artifacts.
+
+- Historical full compact runs: seed 42 and seed 43 only; third seed 44 incomplete (39/60 pipelines, missing PubMed).
+- `exports/compact_pruning_benchmark_artifacts/combined_pipeline_results.csv` and `exports/compact_pruning_benchmark_plots/plot_summary_by_dataset_model_method.csv` support reconstruction of plotted historical results.
+- Historic metric definition conflict: static achieved sparsity (channel ratio) versus Q-learning achieved sparsity (parameter ratio). **Keep originals unchanged**, recompute derived tables.
+- No canonical independent `n>=3` repeat series yet. Original `RESEARCH_STATE.md` code SHA is an audited code reference, not necessarily the SHA of historical runs.
+- Older checkpoint metadata may not encode non-uniform widths and should not be represented as reliably reloadable artifacts.
+
+**Next artifact:** per-figure row/run manifest and compression-normalized historical reanalysis. It will determine whether a *small* new canonical benchmark is actually needed.
