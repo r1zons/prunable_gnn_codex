@@ -43,3 +43,13 @@ A fair and narrowly scoped experimental contribution is acceptable as an **edito
 ## Separate downstream paper
 
 ПаВТ-2027 is a possible later checkpoint on actual latency/compute behavior, potentially including a same-size compact GNN trained from scratch. Reusing the same prior result as a separate publication is not sufficient.
+
+## Urgent reassessment after local Codex audit (2026-10-22)
+
+The existing coursework comparison cannot currently support a headline of Q-learning superiority. Codex reports **only two complete seeds**, nonmatching historical definitions of achieved sparsity, Q-learning target misses, and non-equivalent static cascade versus RL local structural action spaces. See `research/audits/2026-10-22_local-codex.md`.
+
+**Priority for the November deadline**: first reanalyze historical CSV/JSON without rerunning, using `1 - P_pruned/P_dense` for *all* structural methods, per-seed reporting, validation-only feasibility and compression-matched comparison. Recover the actual architecture selection criterion and map each selected figure back to input artifacts. A 3–5-seed canonical subset is a conditional follow-up, not authorization for a full grid.
+
+**Avoid**: claiming a strict accuracy-loss guarantee (post-action checks can overshoot); presenting global vs layerwise magnitude as distinct structural baselines when identical; inferring RL-specific superiority from an experiment with different structural-surgery freedom; claiming measured latency was a trained objective.
+
+Immediate administrative checkpoint: confirm registration and manuscript submission rules directly with the conference organizers; researcher reported not registered as of 2026-10-21.
