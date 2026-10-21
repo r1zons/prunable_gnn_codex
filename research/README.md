@@ -5,10 +5,11 @@
 ## Reading order (mandatory)
 
 1. [`RESEARCH_STATE.md`](../RESEARCH_STATE.md) — detailed audited code scope, pinned SHA, limitations, open questions.
-2. [`CLAIMS.md`](CLAIMS.md) — scientific statements, confidence and evidence needed.
-3. [`EVIDENCE.md`](EVIDENCE.md) — historical coursework and experiment provenance.
-4. [`publications/sitito_2026/PLAN.md`](publications/sitito_2026/PLAN.md) — current paper's editorial and research tasks.
-5. [`AGENTS.md`](../AGENTS.md) — implementation instructions; [`ROADMAP.md`](../ROADMAP.md) — engineering roadmap.
+2. [`HISTORY.md`](HISTORY.md) — recovered research timeline and prior decisions (secondary historical context).
+3. [`CLAIMS.md`](CLAIMS.md) — scientific statements, confidence and evidence needed.
+4. [`EVIDENCE.md`](EVIDENCE.md) — historical coursework and experiment provenance.
+5. [`publications/sitito_2026/PLAN.md`](publications/sitito_2026/PLAN.md) — current paper's editorial and research tasks.
+6. [`AGENTS.md`](../AGENTS.md) — implementation instructions; [`ROADMAP.md`](../ROADMAP.md) — engineering roadmap.
 
 ## Research boundaries
 
