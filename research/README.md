@@ -41,3 +41,7 @@ Never silently promote a DOCUMENTED_HISTORICAL, USER_REPORTED or HYPOTHESIS item
 ## Updates
 
 Update `CLAIMS.md` and `EVIDENCE.md` when new supporting artifacts appear. Review changes in a branch/PR before merging. Keep large checkpoints, private material and raw logs outside the public Git repository, linking them with stable identifiers and (where useful) hashes. Do not rely on AI-chat memory as the canonical source.
+
+## Latest local evidence audit
+
+Read [the 2026-10-22 local Codex audit summary](audits/2026-10-22_local-codex.md) before drafting experimental conclusions. This is locally reported, not independently rerun; in particular, only two seeds are complete and old static/RL sparsity fields have different meanings.
