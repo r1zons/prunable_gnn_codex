@@ -6,13 +6,11 @@ Read [`METHOD_COMPATIBILITY.md`](METHOD_COMPATIBILITY.md) before execution. It r
 
 ## Before upload
 
-1. Review and commit the implementation changes.
-2. Push the documentation and implementation commits to `r1zons/prunable_gnn_codex` only after explicit approval.
-3. Replace `REPLACE_WITH_PUSHED_IMPLEMENTATION_COMMIT` in `prunable_gnn_pilot.ipynb` with the full 40-character implementation commit SHA.
-4. Commit and push that pin update.
-5. Verify that the pinned implementation commit is publicly fetchable from GitHub.
+1. Review the local documentation, implementation and notebook-pin commits.
+2. Push them to `r1zons/prunable_gnn_codex` only after explicit approval.
+3. Verify that implementation commit `e574f4043135b011e0f86163f5481b36947945d4` is publicly fetchable from GitHub.
 
-The notebook intentionally fails before cloning if the placeholder remains. It also verifies the checked-out SHA before invoking the pilot runner.
+The notebook is pinned to the implementation commit above and verifies the checked-out SHA before invoking the pilot runner. The later notebook-pin commit changes only launch documentation and the embedded SHA.
 
 ## Kaggle setup
 
