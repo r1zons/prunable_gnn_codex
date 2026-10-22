@@ -8,7 +8,7 @@ Read [`METHOD_COMPATIBILITY.md`](METHOD_COMPATIBILITY.md) before execution. It r
 
 1. Review the local documentation, implementation and notebook-pin commits.
 2. Push them to `r1zons/prunable_gnn_codex` only after explicit approval.
-3. Verify that implementation commit `e574f4043135b011e0f86163f5481b36947945d4` is publicly fetchable from GitHub.
+3. Verify that implementation commit `2846da87a12428f21d2d751c6e079d654b68c61d` is publicly fetchable from GitHub.
 
 The notebook is pinned to the implementation commit above and verifies the checked-out SHA before invoking the pilot runner. The later notebook-pin commit changes only launch documentation and the embedded SHA.
 
