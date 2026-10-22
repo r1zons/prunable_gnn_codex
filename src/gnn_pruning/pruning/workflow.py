@@ -93,6 +93,7 @@ def prune_from_checkpoint(
     context = PruningContext(
         config={
             "resolved": resolved.to_dict(),
+            "pruning": prune_cfg,
             "adaptive_pruning": raw_cfg.get("adaptive_pruning", {}) if isinstance(raw_cfg.get("adaptive_pruning", {}), dict) else {},
             "q_learning": raw_cfg.get("q_learning", {}) if isinstance(raw_cfg.get("q_learning", {}), dict) else {},
             "output_dir": str(output_dir),

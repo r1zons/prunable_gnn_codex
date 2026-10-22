@@ -1,0 +1,28 @@
+run:
+  seed: 101
+  output_dir: /kaggle/working/prunable_gnn_kaggle_pilot/unconfigured
+  experiment_name: kaggle_pilot_unconfigured
+
+data:
+  root: /kaggle/working/prunable_gnn_data
+  train_ratio: 0.6
+  val_ratio: 0.2
+  test_ratio: 0.2
+
+model:
+  hidden_channels: 32
+  num_layers: 3
+  dropout: 0.5
+
+training:
+  epochs: 500
+  lr: 0.01
+  weight_decay: 0.0005
+  early_stopping_patience: 50
+
+device:
+  device: auto
+
+benchmark:
+  inference_warmup_passes: 5
+  inference_timed_passes: 20
