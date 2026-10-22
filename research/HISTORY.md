@@ -62,3 +62,16 @@
 Use **Codex High locally** to inventory old results and trace for each coursework graph:
 `plot/paper figure → run directories → aggregation CSV(s) → seed rows → resolved config → dense checkpoint/split → Git commit/environment (when available)`.
 Report complete, partial and unrecoverable links; do not fabricate missing provenance. Then review the findings with the researcher and update `EVIDENCE.md` and `CLAIMS.md`. Only afterward decide whether any new experiments are needed.
+
+### 22 October 2026 — separate canonical Kaggle pilot approved
+
+- The local evidence audits found that the historical debug benchmark does not establish general Q-learning superiority: only seeds 42 and 43 are complete, dense training used a 30-epoch debug budget, historical sparsity definitions differ, and static/RL structural surgery capabilities are not equivalent.
+- The earlier instruction that a new benchmark was merely conditional is superseded by a narrow decision to prepare a **separate** canonical pilot. Historical artifacts remain unchanged and must never be pooled with the new estimates.
+- Pilot seed: 101. Datasets: Cora, CiteSeer and PubMed. Architectures: GCN and GraphSAGE with three layers and hidden width 32.
+- Candidate methods: Random, structured Global Magnitude, SNIP, GraSP, Group Lasso, Adaptive Layerwise and tabular Q-learning. Method compatibility and structural capability must be verified before execution.
+- Dense training may run for up to 500 epochs with validation-loss early stopping patience 50 and convergence diagnostics. Q-learning targets are 0.30 and 0.50 with validation accuracy-drop budget 0.07.
+- Kaggle Notebooks replace Google Colab for this experiment. The researcher manually starts every run; Codex must not start training, pruning, smoke tests or benchmarks without explicit permission.
+- Fine-tuning is disabled so the primary endpoint is raw post-prune behavior. The pilot is an execution/compatibility/runtime gate, not a one-seed winner-selection study. Extension to seeds 202 and 303 is conditional on seed 101 passing the protocol gate.
+- The only immediate publication objective is a scientifically defensible submission by the researcher-designated date 2026-11-02. Unrelated algorithms, HPC benchmarking and later papers are deferred.
+
+The complete prospective protocol is maintained in `research/experiments/kaggle_pilot_2026/PLAN.md`.

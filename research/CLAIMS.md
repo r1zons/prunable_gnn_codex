@@ -1,6 +1,6 @@
 # Scientific claims register
 
-**Status date:** 2026-10-20. Claims here are **not** interchangeable with publication-ready conclusions.
+**Status date:** 2026-10-22. Claims here are **not** interchangeable with publication-ready conclusions.
 
 | ID | Statement | Status | Source / why not yet final |
 | --- | --- | --- | --- |
@@ -40,3 +40,14 @@ See [local Codex audit summary](audits/2026-10-22_local-codex.md). Original loca
 - CL-007: structured static methods use cascade surgery whereas RL can use independent local widths. This design confounds causal attribution to *RL itself*. Historical global/layerwise magnitude are identical in compact structured mode.
 - **New CL-008 (CODEX_REPORTED_LOCAL):** Per-architecture/seed shared dense states and splits were checked by tensor/byte hashes across the two completed compact runs. Needs a reproducible manifest to transition to VERIFIED_EXPERIMENT.
 - **New CL-009 (CODEX_REPORTED_LOCAL):** Legacy metadata cannot reliably reload 322/540 non-uniform-width Q-learning checkpoints. Current audited serialization is different; historical metrics remain usable as historical evidence, without claiming checkpoint reloadability.
+
+## Current paper decisions — not empirical claims
+
+- The historical experiments do **not** establish general Q-learning superiority. They may be used as explicitly historical exploratory evidence only.
+- A new Kaggle benchmark will form a separate provenance group. Its estimates must never be pooled with the 30-epoch historical debug runs.
+- The pilot uses seed 101 only and cannot support a winner or uncertainty claim. Its purpose is execution, compatibility, convergence and runtime validation.
+- Any comparative result must use achieved parameter reduction computed from parameter counts. Requested target remains a separate field.
+- Configuration and protocol decisions use validation data only. Pilot test outputs must not be used to select a winning method or revise the protocol.
+- Differences in local versus cascade surgery, independent layer allocation, regularization/training requirements and stopping behavior must be reported as method capabilities, not hidden under a common method label.
+- No claim of strict accuracy-budget feasibility, measured-latency optimization, hardware awareness or general cross-dataset superiority is authorized.
+- The planned experiment is specified in [`experiments/kaggle_pilot_2026/PLAN.md`](experiments/kaggle_pilot_2026/PLAN.md); until artifacts exist it is a design decision, not evidence.

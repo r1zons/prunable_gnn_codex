@@ -1,6 +1,6 @@
 # SITITO / VMK MSU — first manuscript plan
 
-**Status:** draft research/editorial plan, 2026-10-20. **Goal:** submit in the November 2026 VMK MSU conference cycle *if* a defensible manuscript can be prepared in time; selection for the journal is **not** guaranteed.
+**Status:** active research/editorial plan, revised 2026-10-22. **Only immediate objective:** prepare a scientifically defensible submission by the researcher-designated target of **2026-11-02**. Selection for the journal is not guaranteed.
 
 Target journal: «Современные информационные технологии и ИТ-образование». Verify whether the manuscript is to be entered **via the conference** or as a **direct journal submission**, because templates/abstract requirements can differ.
 
@@ -14,11 +14,12 @@ Target journal: «Современные информационные техно
 
 ## Immediate scientific work
 
-1. Recover the exact source artifacts/protocol behind course figures and the dense-model selection.
-2. Build a manuscript claim-to-evidence matrix using `research/CLAIMS.md` and `research/EVIDENCE.md`.
-3. Identify a single supported main conclusion. Do not assume that “Q-learning beats baselines” has been established by statistical evidence.
-4. Only if a material evidence gap remains, design the **smallest possible** additional experiment and approve the cost first.
-5. Review current venue template, publication policies, abstract and reference requirements from the official site before finalizing.
+1. Preserve the historical audit and use it to constrain, not inflate, manuscript claims.
+2. Prepare the separate canonical pilot defined in [`../../experiments/kaggle_pilot_2026/PLAN.md`](../../experiments/kaggle_pilot_2026/PLAN.md).
+3. Run seed 101 only after configuration, compatibility, artifact and runtime checks are reviewed and the researcher manually starts the Kaggle Notebook.
+4. Freeze the protocol using validation evidence only; then extend to at least three complete seeds if the pilot passes.
+5. Build the manuscript claim-to-evidence matrix in parallel with experiment preparation. Do not assume that “Q-learning beats baselines” will be the conclusion.
+6. Review the current venue template, publication policies, abstract and reference requirements from the official site before finalizing.
 
 ## Intended paper positioning (provisional)
 
@@ -28,8 +29,8 @@ A fair and narrowly scoped experimental contribution is acceptable as an **edito
 
 ## Dates — verify official current guidance
 
-- Internal target: recover data and settle main conclusion by late October 2026.
-- Conference registration/final submission were previously discussed as around **2 / 9 November 2026**, respectively; **not a verified deadline in this repository**. Recheck official organizers' pages immediately.
+- Researcher-designated submission target: **2026-11-02**.
+- This date is a project decision, not independently verified organizer guidance. Recheck the official submission path, registration cutoff and manuscript deadline immediately.
 - Do not submit under deadline pressure if scientific claims cannot be supported.
 
 ## Completion criteria
@@ -40,16 +41,27 @@ A fair and narrowly scoped experimental contribution is acceptable as an **edito
 - Manuscript follows the current venue template and authorship requirements.
 - Scientific supervisor approves final submission.
 
-## Separate downstream paper
+## Deferred work
 
-ПаВТ-2027 is a possible later checkpoint on actual latency/compute behavior, potentially including a same-size compact GNN trained from scratch. Reusing the same prior result as a separate publication is not sufficient.
+Unrelated algorithm development, HPC benchmarking and later publication candidates are deferred until after the November submission effort. ПаВТ-2027 remains historical context only, not an active workstream.
 
 ## Urgent reassessment after local Codex audit (2026-10-22)
 
 The existing coursework comparison cannot currently support a headline of Q-learning superiority. Codex reports **only two complete seeds**, nonmatching historical definitions of achieved sparsity, Q-learning target misses, and non-equivalent static cascade versus RL local structural action spaces. See `research/audits/2026-10-22_local-codex.md`.
 
-**Priority for the November deadline**: first reanalyze historical CSV/JSON without rerunning, using `1 - P_pruned/P_dense` for *all* structural methods, per-seed reporting, validation-only feasibility and compression-matched comparison. Recover the actual architecture selection criterion and map each selected figure back to input artifacts. A 3–5-seed canonical subset is a conditional follow-up, not authorization for a full grid.
+**Priority for the November deadline**: preserve the historical reanalysis, then execute only the newly approved narrow canonical protocol. The new benchmark uses parameter-count reduction consistently, paired checkpoints/splits, validation-only decisions and explicit method-capability reporting. Its results remain separate from historical debug runs.
 
 **Avoid**: claiming a strict accuracy-loss guarantee (post-action checks can overshoot); presenting global vs layerwise magnitude as distinct structural baselines when identical; inferring RL-specific superiority from an experiment with different structural-surgery freedom; claiming measured latency was a trained objective.
 
 Immediate administrative checkpoint: confirm registration and manuscript submission rules directly with the conference organizers; researcher reported not registered as of 2026-10-21.
+
+## Canonical experiment gate
+
+- Platform: Kaggle Notebooks, manually started by the researcher.
+- Pilot: seed 101; Cora/CiteSeer/PubMed; GCN/GraphSAGE L3/H32; up to 500 dense epochs; patience 50.
+- Methods: Random, structured Global Magnitude, SNIP, GraSP, Group Lasso, Adaptive Layerwise and tabular Q-learning.
+- Q-learning: targets 0.30 and 0.50; validation accuracy-drop budget 0.07.
+- Fine-tuning: disabled; report raw post-prune behavior.
+- Decision rule: the pilot checks execution, compatibility, convergence, artifact completeness and runtime. It must not select a winner from test results.
+- Expansion: seeds 202 and 303 only after seed 101 passes the protocol gate and before publication-level comparative estimates are made.
+- Execution restriction: Codex must never start training, pruning, smoke tests or benchmarks without explicit user permission.

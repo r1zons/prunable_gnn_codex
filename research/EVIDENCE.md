@@ -20,6 +20,7 @@ This index records **what exists and how strongly it supports a claim**. It does
 | EXP-COURSE-03 | Dense-model preselection before pruning | Researcher's 2026-10-20 clarification | Search space, optimization/selection metric, train logs, selected run IDs and checkpoints |
 | EXP-COURSE-04 | Inference latency and parameter reduction | DOC-001 conclusion; DOC-002 supplementary slides | Raw timings, device, warm-up, synchronization, run-to-run variation and scope of timed operations |
 | EXP-FUTURE-01 | Pruned GNN vs compact GNN trained from scratch | Candidate for ПаВТ-2027 | Not executed; first define matched size, training budgets and inference measurement |
+| EXP-CANONICAL-01 | Separate Kaggle citation-graph pruning benchmark | [`experiments/kaggle_pilot_2026/PLAN.md`](experiments/kaggle_pilot_2026/PLAN.md) | **PLANNED, NOT EXECUTED.** Pilot seed 101 must pass compatibility, convergence, artifact and runtime checks before extension to at least three complete seeds. |
 
 ## Required provenance manifest for newly run experiments
 
@@ -43,4 +44,13 @@ The researcher supplied a read-only audit from a Codex session with local filesy
 - No canonical independent `n>=3` repeat series yet. Original `RESEARCH_STATE.md` code SHA is an audited code reference, not necessarily the SHA of historical runs.
 - Older checkpoint metadata may not encode non-uniform widths and should not be represented as reliably reloadable artifacts.
 
-**Next artifact:** per-figure row/run manifest and compression-normalized historical reanalysis. It will determine whether a *small* new canonical benchmark is actually needed.
+**Historical next-artifact decision:** per-figure row/run manifest and compression-normalized historical reanalysis were expected to determine whether a small canonical benchmark was needed. The subsequent 2026-10-22 decision below authorizes a separate narrow pilot; the provenance work remains required for any use of historical results.
+
+## Canonical benchmark decision received 2026-10-22
+
+The researcher authorized preparation of a new, separate Kaggle benchmark after reviewing the local audits. This supersedes the previous conditional wording about whether a canonical pilot is needed, but it does not change the status of historical evidence.
+
+- The prospective protocol is [`experiments/kaggle_pilot_2026/PLAN.md`](experiments/kaggle_pilot_2026/PLAN.md).
+- No result exists yet. Do not cite `EXP-CANONICAL-01` as empirical support.
+- Historical and canonical run IDs, directories, summaries and statistical estimates must remain separate.
+- The pilot's single seed is a technical/protocol check. Publication estimates require at least three complete seeds after the protocol is frozen.
