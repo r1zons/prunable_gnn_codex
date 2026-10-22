@@ -35,9 +35,11 @@ The notebook clones the pinned commit into `/kaggle/working/prunable_gnn_codex`,
 
 ## Retrieval
 
-Download `/kaggle/working/prunable_gnn_kaggle_pilot_results.zip` from the Notebook output after completion. Keep the archive unchanged and record its SHA-256 checksum before analysis.
+Download `/kaggle/working/prunable_gnn_kaggle_pilot_results.zip` and its `.sha256` file from the Notebook output after completion or failure. Clone, dependency, pipeline, and artifact-validation failures all trigger a best-effort archive of the logs and artifacts produced so far.
 
-The runner never overwrites a condition directory. A failed partial condition must be downloaded for diagnosis and then moved aside before a deliberate retry.
+The runner never overwrites a condition directory. A failed condition keeps completed variant artifacts and writes `failure.json`, `partial_results_inventory.csv`, and `artifact_manifest.csv` before returning an error. Download the partial archive for diagnosis, then move the failed condition aside before a deliberate retry.
+
+`validation_summary.csv` reports both requested and recomputed achieved parameter reduction. It labels a requested-target comparison `matched` only when the achieved-reduction span across methods is at most 0.025; otherwise it labels the comparison `unmatched` without invalidating or deleting any method result. A disagreement between a reported achieved reduction and `1 - pruned_parameters / dense_parameters` remains a fatal data-integrity error.
 
 ## Selection boundary
 

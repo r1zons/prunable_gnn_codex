@@ -31,6 +31,7 @@ REQUIRED_METHODS = (
     "q_learning_tabular",
 )
 REQUESTED_LEVELS = (0.3, 0.5)
+COMPRESSION_MATCH_TOLERANCE = 0.025
 PILOT_SEED = 101
 OUTPUT_ROOT = Path("/kaggle/working/prunable_gnn_kaggle_pilot")
 CONFIGS = {
@@ -235,22 +236,33 @@ def _run_condition(repo_root: Path, condition: str, commit: str) -> None:
             text=True,
         )
     if completed.returncode != 0:
-        _write_json(
-            condition_dir / "failure.json",
-            {
-                "condition": condition,
-                "git_commit": commit,
-                "return_code": completed.returncode,
-                "failed_at_utc": _utc_now(),
-                "log_path": str(log_path),
-            },
+        _record_condition_failure(
+            condition_dir=condition_dir,
+            condition=condition,
+            commit=commit,
+            phase="pipeline_execution",
+            error=f"Pipeline process exited with status {completed.returncode}",
+            return_code=completed.returncode,
+            log_path=log_path,
         )
         raise RuntimeError(f"Condition failed without being skipped: {condition}. See {log_path}")
 
-    rows = _validate_condition(condition_dir, condition)
-    _write_csv(condition_dir / "validation_summary.csv", rows)
-    convergence = _extract_convergence(condition_dir / "progress.log")
-    _write_csv(condition_dir / "dense_convergence.csv", convergence)
+    try:
+        rows = _validate_condition(condition_dir, condition)
+        _write_csv(condition_dir / "validation_summary.csv", rows)
+        convergence = _extract_convergence(condition_dir / "progress.log")
+        _write_csv(condition_dir / "dense_convergence.csv", convergence)
+    except Exception as exc:
+        _record_condition_failure(
+            condition_dir=condition_dir,
+            condition=condition,
+            commit=commit,
+            phase="artifact_validation",
+            error=f"{type(exc).__name__}: {exc}",
+            return_code=completed.returncode,
+            log_path=log_path,
+        )
+        raise
     _write_json(
         condition_dir / "condition_complete.json",
         {
@@ -334,6 +346,8 @@ def _validate_condition(condition_dir: Path, condition: str) -> List[Dict[str, A
                 "requested_sparsity": requested,
                 "request_semantics": CAPABILITIES[method]["request_semantics"],
                 "achieved_parameter_reduction": recomputed,
+                "requested_target_gap": recomputed - requested,
+                "requested_target_match": abs(recomputed - requested) <= COMPRESSION_MATCH_TOLERANCE,
                 "dense_parameter_count": dense_params,
                 "pruned_parameter_count": pruned_params,
                 "dense_val_accuracy": dense_val,
@@ -348,7 +362,77 @@ def _validate_condition(condition_dir: Path, condition: str) -> List[Dict[str, A
                 "metrics_path": row["metrics_path"],
             }
         )
-    return summaries
+    return _annotate_compression_matches(summaries)
+
+
+def _annotate_compression_matches(rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Label requested-target groups without rejecting valid method results."""
+    for requested in REQUESTED_LEVELS:
+        group = [row for row in rows if float(row["requested_sparsity"]) == requested]
+        if not group:
+            continue
+        achieved = [float(row["achieved_parameter_reduction"]) for row in group]
+        span = max(achieved) - min(achieved)
+        status = "matched" if span <= COMPRESSION_MATCH_TOLERANCE else "unmatched"
+        for row in group:
+            row["comparison_achieved_span"] = span
+            row["comparison_match_tolerance"] = COMPRESSION_MATCH_TOLERANCE
+            row["comparison_match_status"] = status
+    return rows
+
+
+def _record_condition_failure(
+    *,
+    condition_dir: Path,
+    condition: str,
+    commit: str,
+    phase: str,
+    error: str,
+    return_code: int,
+    log_path: Path,
+) -> None:
+    """Record a failed condition without discarding artifacts from completed variants."""
+    inventory = _partial_result_inventory(condition_dir)
+    _write_csv(condition_dir / "partial_results_inventory.csv", inventory)
+    _write_json(
+        condition_dir / "failure.json",
+        {
+            "condition": condition,
+            "git_commit": commit,
+            "failure_phase": phase,
+            "error": error,
+            "return_code": return_code,
+            "failed_at_utc": _utc_now(),
+            "log_path": str(log_path),
+            "preserved_variant_count": len(inventory),
+            "partial_results_inventory": str(condition_dir / "partial_results_inventory.csv"),
+        },
+    )
+    _write_artifact_manifest(OUTPUT_ROOT)
+
+
+def _partial_result_inventory(condition_dir: Path) -> List[Dict[str, Any]]:
+    """Inventory completed variant artifacts without interpreting incomplete results."""
+    rows: List[Dict[str, Any]] = []
+    pruning_root = condition_dir / "pruning"
+    for variant_dir in sorted(pruning_root.glob("*/sparsity_*")):
+        metrics = sorted(variant_dir.glob("metrics_post_prune*.json"))
+        pruning_metrics = sorted(variant_dir.glob("pruning_metrics_*.json"))
+        checkpoints = sorted(variant_dir.glob("pruned_*.pt"))
+        if not metrics and not pruning_metrics and not checkpoints:
+            continue
+        rows.append(
+            {
+                "method": variant_dir.parent.name,
+                "variant_dir": str(variant_dir),
+                "post_prune_metrics_present": bool(metrics),
+                "pruning_metrics_present": bool(pruning_metrics),
+                "pruned_checkpoint_present": bool(checkpoints),
+                "split_present": (variant_dir / "splits.yaml").exists(),
+                "progress_log_present": (variant_dir / "progress.log").exists(),
+            }
+        )
+    return rows
 
 
 def _extract_convergence(log_path: Path) -> List[Dict[str, Any]]:
