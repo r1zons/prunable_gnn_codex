@@ -1,0 +1,15 @@
+{
+  "machine": "ppc64le",
+  "python": "3.10.22 | packaged by conda-forge | (main, Oct  6 2026, 22:57:19) [GCC 14.4.0]",
+  "torch": "2.0.1",
+  "pyg": "2.4.0",
+  "numpy": "1.24.4",
+  "scipy": "1.10.1",
+  "pandas": "1.5.3",
+  "scikit_learn": "1.2.2",
+  "cuda_runtime": null,
+  "cuda_available": false,
+  "openmp_available": true,
+  "training_or_pruning_executed": false,
+  "torch_distribution": "2.0.1+polus.power8.1"
+}

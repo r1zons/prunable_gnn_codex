@@ -1,0 +1,27 @@
+#!/bin/bash
+# Dependency link diagnostic only; no scientific experiment.
+#BSUB -J gnn-gold-link
+#BSUB -q normal
+#BSUB -n 1
+#BSUB -W 0:10
+#BSUB -R "span[hosts=1]"
+#BSUB -o link-gold.%J.out
+#BSUB -e link-gold.%J.err
+set -euo pipefail
+task_root="$HOME/gnn-polus-20261023"
+source "$task_root/activate-polus.sh"
+cd "$task_root/sources/pytorch-v2.0.1/build"
+python - <<'PY'
+import os
+from pathlib import Path
+import subprocess
+
+commands = subprocess.check_output(['ninja', '-t', 'commands', 'lib/libtorch_cpu.so'], text=True)
+command = commands.strip().splitlines()[-1]
+if '-fuse-ld=gold' not in command or '-o lib/libtorch_cpu.so ' not in command:
+    raise SystemExit('Expected gold link command for torch_cpu')
+root = Path(os.environ['HOME']) / 'gnn-polus-20261023'
+(root / 'logs/torch-gold-link-command.txt').write_text(command + '\n')
+subprocess.run(command, shell=True, check=True)
+print('GOLD_LINK_OK')
+PY

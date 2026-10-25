@@ -1,0 +1,79 @@
+run:
+  seed: 101
+  output_dir: ${POLUS_TASK_ROOT}/results/pilot-cpu-101/seed_101/cora_gcn_l3_h32
+  experiment_name: polus_cpu_cora_gcn_l3_h32_seed101
+data:
+  root: ${POLUS_TASK_ROOT}/data
+  train_ratio: 0.6
+  val_ratio: 0.2
+  test_ratio: 0.2
+model:
+  hidden_channels: 32
+  num_layers: 3
+  dropout: 0.5
+  name: gcn
+training:
+  epochs: 500
+  lr: 0.01
+  weight_decay: 0.0005
+  early_stopping_patience: 50
+device:
+  device: cpu
+benchmark:
+  inference_warmup_passes: 5
+  inference_timed_passes: 20
+base: null
+dataset: cora
+pruning:
+  methods:
+  - random
+  - global_magnitude
+  - snip
+  - grasp
+  - group_lasso
+  - adaptive_layerwise
+  - q_learning_tabular
+  sparsity_levels:
+  - 0.3
+  - 0.5
+  structured: true
+  finetune_enabled: false
+  reg_strength: 0.0001
+adaptive_pruning:
+  step_prune_ratio: 0.1
+  max_steps: 10
+  max_accuracy_drop: 0.07
+  min_channels_per_layer: 4
+  reward:
+    alpha: 0.4
+    beta: 0.2
+    gamma: 0.4
+q_learning:
+  allow_nonmonotonic_layer_order: true
+  structural_pruning_mode: local
+  episodes: 30
+  max_steps: 20
+  step_prune_ratios:
+  - 0.05
+  - 0.1
+  min_channels_per_layer: 4
+  max_accuracy_drop: 0.07
+  alpha: 0.3
+  gamma: 0.9
+  epsilon_start: 0.4
+  epsilon_end: 0.05
+  epsilon_decay: 0.95
+  reward:
+    alpha: 0.4
+    beta: 0.2
+    gamma: 0.4
+  terminal_reward:
+    target_tolerance: 0.05
+    gap_scale: 0.25
+    early_stop_max_penalty: 0.08
+    no_valid_max_penalty: 0.12
+    target_reached_bonus: 0.1
+    accuracy_failure_penalty: 0.1
+    stop_bonus: 0.0
+logging:
+  show_progress: true

@@ -12,6 +12,7 @@ data/
 runs/
 exports/
 local_backups/
+research/local-overrides.yaml
 
 *.pt
 *.pth

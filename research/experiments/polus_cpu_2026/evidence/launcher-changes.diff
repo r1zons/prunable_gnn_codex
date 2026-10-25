@@ -1,0 +1,51 @@
+--- initial/prepare-gnn-pilot.py
++++ c4-v2/prepare-gnn-pilot.py
+@@ -8,6 +8,7 @@
+ import argparse
+ import hashlib
+ import importlib.util
++import inspect
+ import json
+ import os
+ from pathlib import Path
+@@ -37,6 +38,24 @@
+         else:
+             result[key] = value
+     return result
++
++
++def adapt_runner_log_directory(runner) -> None:
++    """Keep launcher logs outside the output directory until the pipeline creates it.
++
++    The pinned runner pre-creates the output, while run_pipeline(resume=False)
++    then chooses a suffixed directory. Only launcher filesystem orchestration
++    is adapted here; training, pruning and artifact validators stay unchanged.
++    """
++    source = inspect.getsource(runner._run_condition)
++    original = ('    condition_dir.mkdir(parents=True, exist_ok=False)\n'
++                '    log_path = condition_dir / "launcher.log"\n')
++    replacement = ('    log_dir = OUTPUT_ROOT / "launcher-logs"\n'
++                   '    log_dir.mkdir(parents=True, exist_ok=True)\n'
++                   '    log_path = log_dir / (condition + ".log")\n')
++    if source.count(original) != 1:
++        raise RuntimeError("Pinned runner log-directory code changed; review adapter")
++    exec(compile(source.replace(original, replacement), '<polus-launcher-adapter>', 'exec'), runner.__dict__)
+
+
+ def main() -> int:
+@@ -91,6 +110,7 @@
+         "python": sys.version,
+         "execution_requested": args.run,
+         "historical_or_kaggle_results_pooled": False,
++        "runner_log_directory_fix": "launcher-logs outside condition output; scientific pipeline unchanged",
+         "changed_fields": ["base flattened", "data.root", "run.output_dir", "run.experiment_name", "device.device"],
+     }
+     (config_dir / (args.condition + ".provenance.json")).write_text(json.dumps(manifest, indent=2))
+@@ -105,6 +125,7 @@
+         raise RuntimeError("Cannot load the existing pilot runner")
+     runner = importlib.util.module_from_spec(spec)
+     spec.loader.exec_module(runner)
++    adapt_runner_log_directory(runner)
+     runner.OUTPUT_ROOT = output
+     runner.CONFIGS = {args.condition: str(target)}
+     return runner.main([

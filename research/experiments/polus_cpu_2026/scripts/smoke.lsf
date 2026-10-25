@@ -1,0 +1,15 @@
+#!/bin/bash
+#BSUB -J polus-ai-smoke
+#BSUB -q short
+#BSUB -n 4
+#BSUB -W 0:10
+#BSUB -R "span[hosts=1]"
+#BSUB -gpu "num=1:mode=exclusive_process"
+#BSUB -o smoke.%J.out
+#BSUB -e smoke.%J.err
+set -euo pipefail
+cd "${LS_SUBCWD:?Submit from the polus-research directory}"
+export OMP_NUM_THREADS=4
+bash diagnose.sh
+export POLUS_CHECKPOINT="smoke-checkpoint.${LSB_JOBID}.pt"
+bash run-image.sh python smoke_train.py

@@ -1,0 +1,13 @@
+{
+  "upstream_prs": [
+    "https://github.com/pytorch/pytorch/pull/98511",
+    "https://github.com/pytorch/pytorch/pull/109886"
+  ],
+  "upstream_diff_sha256": {
+    "upstream-98511.diff": "0f6068739bf4ab04d06ae7706019df453619d88ac602dadaf68c09988caac95c",
+    "upstream-109886.diff": "02f9e712cd9c12c6b98088318ec70e2a97a2b202a075057aa41fc88ea0767239"
+  },
+  "backport_diff_sha256": "5682c75cb1c101f8b8bab9ee2990fcbaa7486166f83d0480337966741e6e5afc",
+  "adaptation": "Only helper include/type-declaration context differs from newer upstream; inserted code is copied verbatim from PR 109886.",
+  "portability_include": "Explicit <climits> for CHAR_BIT on the older PyTorch 2.0.1 include graph."
+}

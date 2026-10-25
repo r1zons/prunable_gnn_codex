@@ -1,0 +1,14 @@
+[
+  {
+    "url": "https://api.anaconda.org/release/conda-forge/pytorch/2.0.0",
+    "matches": []
+  },
+  {
+    "url": "https://api.anaconda.org/release/conda-forge/pytorch/2.0.1",
+    "error": "HTTP Error 404: Not Found"
+  },
+  {
+    "url": "https://api.anaconda.org/release/conda-forge/pytorch/2.1.0",
+    "matches": []
+  }
+]

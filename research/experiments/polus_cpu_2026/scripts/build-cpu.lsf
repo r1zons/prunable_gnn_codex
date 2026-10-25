@@ -1,0 +1,19 @@
+#!/bin/bash
+#BSUB -J gnn-torch-cpu-build
+#BSUB -q normal
+#BSUB -n 20
+#BSUB -W 3:00
+#BSUB -R "span[hosts=1]"
+#BSUB -o build-cpu.%J.out
+#BSUB -e build-cpu.%J.err
+set -euo pipefail
+export LC_ALL=C LANG=C
+task_root="$HOME/gnn-polus-20261023"
+set +u
+source /polusfs/modules/anaconda/anaconda3-2023.07-2/etc/profile.d/conda.sh
+conda activate "$task_root/env"
+set -u
+cd "$task_root"
+printf 'HOST=%s\nJOB=%s\n' "$(hostname)" "$LSB_JOBID"
+bash "$task_root/build-torch-cpu.sh" "$task_root/sources/pytorch-v2.0.1" \
+    > "$task_root/logs/torch-build.$LSB_JOBID.log" 2>&1

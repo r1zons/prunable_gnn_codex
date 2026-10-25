@@ -1,0 +1,12 @@
+{
+  "condition": "citeseer_graphsage_l3_h32",
+  "config": "${GNN_ARTIFACT_ROOT}/local-cpu-20261025/raw/configs/citeseer_graphsage_l3_h32_seed101.yaml",
+  "config_sha256": "69b5dffa459df5aa1d41e1427cc954918306c6a3e1af5fad09c082fb994fb46c",
+  "finished_at_utc": "2026-10-25T13:01:03.616216+00:00",
+  "log": "${GNN_ARTIFACT_ROOT}/local-cpu-20261025/raw/logs/citeseer_graphsage_l3_h32_seed101.launch.log",
+  "log_sha256": "921db29819fe7d703da87cfc64f382bc3eba5d9c63f529dec0ef5028f58fbf88",
+  "output_dir": "${GNN_ARTIFACT_ROOT}/local-cpu-20261025/raw/results/seed_101/citeseer_graphsage_l3_h32",
+  "return_code": 0,
+  "started_at_utc": "2026-10-25T12:55:51.018966+00:00",
+  "status": "completed"
+}
