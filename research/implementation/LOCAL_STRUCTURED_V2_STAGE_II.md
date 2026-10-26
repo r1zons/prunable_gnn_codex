@@ -17,4 +17,17 @@ GCN/SAGE, source/RNG preservation and rejection of nonfinite saliency.
 
 ## Green / review
 
-Pending. No training, fine-tuning, real dataset download or campaign is run.
+Red commit: `c49832c`. Unchanged tests: **21 passed in 17.69s**, exit0.
+The count oracle physically rebuilds all841 width pairs for GCN/SAGE, bias on/off.
+GraSP passed the analytic signed/bias-cross-Hessian/unused/stationary and GCN/SAGE
+finite-difference Hg checks in this CPU runtime. It remains conditional for any
+new platform/runtime; no empirical quality claim follows from mathematical gates.
+
+V1 command: same no-training subset as Stage I (test_models, test_surgery,
+test_pruning, test_graphsage_config_application and selected terminal/registry
+Q tests): **31 passed, 20 deselected in 4.18s**, exit0. `git diff --check` passed.
+Stage II core gate accepted by self-review: fixed dense rankings, original raw
+full-mask criterion, unique union/bias, all nearest ties and lexicographic ties,
+local seeded Random; no new optimization criterion, accuracy oracle or prefix
+optimization. Production integration/registry/CLI are Stage III work.
+No dense training, fine-tuning, real dataset download or campaign was run.
