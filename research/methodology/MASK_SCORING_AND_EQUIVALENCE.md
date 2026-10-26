@@ -1,6 +1,6 @@
 # Mask evaluation, prefix sums, and equivalence checks
 
-**Status:** DRAFT technical note; not an authorization to modify algorithms. Read with `LOCAL_STRUCTURED_V2_DRAFT.md`.
+**Status:** DRAFT technical note; not an authorization to modify algorithms. Read with the canonical `LOCAL_STRUCTURED_V2_SPEC.md`; the earlier `LOCAL_STRUCTURED_V2_DRAFT.md` is a historical ledger only.
 
 ## 1. What 'virtual evaluation' means
 
