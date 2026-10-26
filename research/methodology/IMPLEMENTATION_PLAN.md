@@ -24,3 +24,12 @@ Gate I проверяется по тестам и ручному чтению o
 решения — [SPEC §15](LOCAL_STRUCTURED_V2_SPEC.md#15-решения-после-аудита-и-оставшиеся-блокеры).
 Сначала завершается независимый этап I; затем gate и запись фактического результата
 в `research/implementation/LOCAL_STRUCTURED_V2_STAGE_I.md` и draft PR.
+
+## Фактический статус
+
+Этап I: CPU functional gate пройден на наблюдаемом окружении. Red: 40 failed,
+31 passed, 2 CUDA skipped (commit `5a28be3`); Green: 71 passed, 2 CUDA skipped;
+V1 subset: 31 passed. Python3.8 ниже package minimum3.10, CUDA/POLUS не проверены.
+Подробности: [отчёт этапа I](../implementation/LOCAL_STRUCTURED_V2_STAGE_I.md).
+Этапы II–III не начаты: открытые научные решения SPEC §15 не подменяются
+техническими defaults или рекомендациями аудитора.

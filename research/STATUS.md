@@ -11,7 +11,11 @@ Audit verified directly at `5c4259664dfb5ae05e84deadacfcdc9486abb7ca`; the local
 audit file has the identical Git blob `309cfcc5b56f6d141aa343cf5dd5a430e2a89cf2`.
 See [revised canonical specification](methodology/LOCAL_STRUCTURED_V2_SPEC.md)
 and [three-stage implementation plan](methodology/IMPLEMENTATION_PLAN.md).
-Stage I Local Surgery is authorized for synthetic pytest Red/Green checks.
+Stage I Local Surgery: Red **40 failed / 31 passed / 2 CUDA skipped**,
+then Green **71 passed / 2 CUDA skipped**; legacy subset **31 passed**.
+See [measured evidence and limitations](implementation/LOCAL_STRUCTURED_V2_STAGE_I.md).
+Observed runtime Python3.8.20 is below package minimum3.10; supported-runtime,
+CUDA and POLUS qualification remain pending.
 Stages II–III have unresolved scientific decisions (SPEC §15); no training,
 large experiments or platform execution is authorized. Historical evidence is unchanged.
 
