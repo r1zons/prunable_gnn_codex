@@ -1,0 +1,10 @@
+{
+  "python": "3.12.9 (main, Feb  4 2025, 14:38:38) [Clang 16.0.0 (clang-1600.0.26.6)]",
+  "executable": "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+  "torch": "2.2.2",
+  "pyg": "2.6.1",
+  "numpy": "1.26.4",
+  "platform": "macOS-15.6.1-x86_64-i386-64bit",
+  "threads": 2,
+  "cuda": false
+}

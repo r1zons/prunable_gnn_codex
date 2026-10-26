@@ -1,0 +1,38 @@
+base: base/default
+dataset: cora
+model:
+  name: gcn
+  num_layers: 3
+  hidden_channels: 32
+  dropout: 0.5
+run:
+  seed: 101
+  output_dir: /Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-smoke-20261027/outputs
+  experiment_name: diagnostic_smoke_only_not_paper
+device:
+  device: cpu
+pruning:
+  method: magnitude_local_v2
+  target_sparsity: 0.3
+  structured: true
+v2:
+  split_path: /Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_gcn_l3_h32/seed_101/cora_gcn_l3_h32/splits.yaml
+  checkpoint_sha256: 276b2ff0f7790a84afc2755e89d88f1a170865a4397e4355daf7552c7075c129
+  split_sha256: 59a0209a8e2a73a5e70a720d327f8c024d36d184a6d00be820ced0e1a3eb08bc
+  graph_sha256: 2b2bc996be89812f80ce7d09599dab983f804f87ddd37a09b3ce0b5689ec9a0d
+  target_sparsity_tolerance: 0.01
+  min_channels_per_layer: 4
+  max_steps: 3
+  episodes: 3
+  gamma: 0.9
+  alpha: 0.1
+  epsilon: 0.2
+  penalty_lambda: 2.0
+data:
+  root: /Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-smoke-20261027/verified_data
+smoke_test:
+  purpose: functional diagnostic only; NOT experimental hyperparameters or paper results
+  source_checkpoint_group: POLUS-CPU-101-C4-V2
+  execution_platform: local CPU
+  graph_provenance_file: /Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-smoke-20261027/graph_provenance.json
+  thread_limit: 2

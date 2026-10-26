@@ -1,0 +1,103 @@
+[
+  {
+    "group": "LOCAL-CPU-20261025",
+    "seed": 101,
+    "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-cpu-20261025/raw/results/seed_101/cora_gcn_l3_h32/dense_checkpoint.pt",
+    "split": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-cpu-20261025/raw/results/seed_101/cora_gcn_l3_h32/splits.yaml",
+    "checkpoint_sha256": "a41a765bc68611e4896398cc365d6775c3c0a75e363451a8c397cc93171510d6",
+    "split_sha256": "59a0209a8e2a73a5e70a720d327f8c024d36d184a6d00be820ced0e1a3eb08bc",
+    "signature": {
+      "dataset": "cora",
+      "model_name": "gcn",
+      "num_layers": 3,
+      "hidden_channels": 32,
+      "dropout": 0.5,
+      "seed": 101,
+      "split_hash": "942a10b128f7138e118b3f2e2f96eb87a62f856c10d82010ac995e40e2b4c675",
+      "config_hash": "45a90ca174efe35dd9fb281e42fe0cfea28c2f6bd20b262e59972f3f380735df"
+    },
+    "architecture": {
+      "in_channels": 1433,
+      "hidden_channels": 32,
+      "out_channels": 7,
+      "num_layers": 3,
+      "dropout": 0.5
+    }
+  },
+  {
+    "group": "LOCAL-CPU-20261025",
+    "seed": 202,
+    "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-cpu-20261025/raw/results/seed_202/cora_gcn_l3_h32/dense_checkpoint.pt",
+    "split": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-cpu-20261025/raw/results/seed_202/cora_gcn_l3_h32/splits.yaml",
+    "checkpoint_sha256": "9f5ea7d529e8483c707e6b42cceaee6aed4951f45b618cd4be29f5fb4da92560",
+    "split_sha256": "49a321f46233361046b6e9e82683a53b42661cc65115c6aa12bea0f8cde1f3b5",
+    "signature": {
+      "dataset": "cora",
+      "model_name": "gcn",
+      "num_layers": 3,
+      "hidden_channels": 32,
+      "dropout": 0.5,
+      "seed": 202,
+      "split_hash": "a83cd5d41bde21c87a7857b5723d74f5524e33a03761b10a4ed85c8b8a28cfa6",
+      "config_hash": "fd44f4c3c662331add2a7665b48c1061f54ed539d8b1aff03687530e250f2572"
+    },
+    "architecture": {
+      "in_channels": 1433,
+      "hidden_channels": 32,
+      "out_channels": 7,
+      "num_layers": 3,
+      "dropout": 0.5
+    }
+  },
+  {
+    "group": "LOCAL-CPU-20261025",
+    "seed": 303,
+    "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-cpu-20261025/raw/results/seed_303/cora_gcn_l3_h32/dense_checkpoint.pt",
+    "split": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-cpu-20261025/raw/results/seed_303/cora_gcn_l3_h32/splits.yaml",
+    "checkpoint_sha256": "0392a323cb2f988ba213018469f93ed444f384576c6187223c80b6f9ae1654d2",
+    "split_sha256": "17636e03caec45eadad286550ed528ea8fec1bfa0abb655ecddfd44d2e9ae4b0",
+    "signature": {
+      "dataset": "cora",
+      "model_name": "gcn",
+      "num_layers": 3,
+      "hidden_channels": 32,
+      "dropout": 0.5,
+      "seed": 303,
+      "split_hash": "a072af2334dac10232f867519cfb2882a8e783eebd91514325950f1d052e9859",
+      "config_hash": "866d9802fd2a0f407a2df0de3cdaad1bbe6a77cab28e89eb702e7bf7ac681a18"
+    },
+    "architecture": {
+      "in_channels": 1433,
+      "hidden_channels": 32,
+      "out_channels": 7,
+      "num_layers": 3,
+      "dropout": 0.5
+    }
+  },
+  {
+    "group": "POLUS-CPU-101-C4-V2",
+    "execution": "archived POLUS dense checkpoint; new smoke executes on local CPU",
+    "seed": 101,
+    "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_gcn_l3_h32/seed_101/cora_gcn_l3_h32/dense_checkpoint.pt",
+    "split": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_gcn_l3_h32/seed_101/cora_gcn_l3_h32/splits.yaml",
+    "checkpoint_sha256": "276b2ff0f7790a84afc2755e89d88f1a170865a4397e4355daf7552c7075c129",
+    "split_sha256": "59a0209a8e2a73a5e70a720d327f8c024d36d184a6d00be820ced0e1a3eb08bc",
+    "signature": {
+      "dataset": "cora",
+      "model_name": "gcn",
+      "num_layers": 3,
+      "hidden_channels": 32,
+      "dropout": 0.5,
+      "seed": 101,
+      "split_hash": "942a10b128f7138e118b3f2e2f96eb87a62f856c10d82010ac995e40e2b4c675",
+      "config_hash": "0aa773aea69a286e2a70cbb3d5466fe8e22f2c05bb9ec7dfb2ab6aa4449b7a3d"
+    },
+    "architecture": {
+      "in_channels": 1433,
+      "hidden_channels": 32,
+      "out_channels": 7,
+      "num_layers": 3,
+      "dropout": 0.5
+    }
+  }
+]

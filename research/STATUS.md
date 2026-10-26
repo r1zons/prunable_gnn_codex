@@ -2,13 +2,26 @@
 
 **Updated:** 2026-10-25
 
+## V2 Cora smoke update — 2026-10-27
+
+Authorized bounded real-data smoke at `e2389ca`: **6/6 CLI methods PASS** on local
+CPU using the archived POLUS seed101 GCN32/32 checkpoint and manifest-reconstructed
+original Cora edge ordering. **160 V2 passed / 2 CUDA skipped**; all checkpoints,
+metrics and adaptive/Q traces independently verified;28,628 prior files unchanged.
+No implementation fix, training, dataset download or campaign occurred.
+**GO for a bounded Cora CPU pilot with this frozen input**; diagnostic lambda2/max3/
+Q3 episodes are not approved research settings. Local checkpoint historical graph
+identity remains unverified; no contemporaneous processed graph hash exists for
+the selected POLUS run either, whose graph is reconstructed via recorded raw lineage.
+See [full smoke evidence](experiments/local_structured_v2_smoke_20261027/README.md).
+
 ## V2 implementation update — 2026-10-27
 
 Independent implementation audit follow-up: fixes on base `cf61c80` reject
 dense architecture/config mismatches, require an original-graph hash, and block
 legacy evaluate-pruned for V2 checkpoints. Python3.12.9: **160 V2 passed / 2 CUDA
 skipped; 39 selected V1 regressions passed**. See [fixes and measured evidence](implementation/LOCAL_STRUCTURED_V2_AUDIT_FIXES.md).
-This is not a new campaign; Cora smoke testing has not been run.
+This audit-fix entry predates the separate Cora smoke documented above.
 
 LOCAL-STRUCTURED-V2 is separate from the frozen V1 campaigns below.
 Implementation branch: `implementation/local-structured-v2-20261027`, based on

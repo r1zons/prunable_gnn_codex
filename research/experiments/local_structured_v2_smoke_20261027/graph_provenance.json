@@ -1,0 +1,157 @@
+{
+  "status": "reconstructed_from_recorded_training_raw_provenance",
+  "graph_tensor_sha256": "2b2bc996be89812f80ce7d09599dab983f804f87ddd37a09b3ce0b5689ec9a0d",
+  "raw_manifest": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex/research/experiments/polus_cpu_2026/evidence/raw-manifest.json",
+  "raw_manifest_sha256": "d9ab0d3e93d6148cb7a6c46f6c3d306513901dbb91cd56e71ff67fdfef5befa2",
+  "raw_files": [
+    {
+      "file": "planetoid/Cora/raw/ind.cora.x",
+      "url": "https://github.com/kimiyoung/planetoid/raw/master/data/ind.cora.x",
+      "bytes": 22119,
+      "sha256": "23cfa55d91c6f624233f5eb7b6e3f141f1bd2b2ae39608a63cf5d084bb27baab"
+    },
+    {
+      "file": "planetoid/Cora/raw/ind.cora.tx",
+      "url": "https://github.com/kimiyoung/planetoid/raw/master/data/ind.cora.tx",
+      "bytes": 148025,
+      "sha256": "b9afbaa4a400df991f6f02ef677e1e44da55ffc04801fd02f9e673987829226a"
+    },
+    {
+      "file": "planetoid/Cora/raw/ind.cora.allx",
+      "url": "https://github.com/kimiyoung/planetoid/raw/master/data/ind.cora.allx",
+      "bytes": 257305,
+      "sha256": "9419ba2f26f5c35243db64aba110e0f35a04851609e0dc5433450676ca6b8543"
+    },
+    {
+      "file": "planetoid/Cora/raw/ind.cora.y",
+      "url": "https://github.com/kimiyoung/planetoid/raw/master/data/ind.cora.y",
+      "bytes": 4054,
+      "sha256": "94465c14eb53e04ca262198dcbb2521ee8af60fb3f3d546cd6ca24a511b0e7d1"
+    },
+    {
+      "file": "planetoid/Cora/raw/ind.cora.ty",
+      "url": "https://github.com/kimiyoung/planetoid/raw/master/data/ind.cora.ty",
+      "bytes": 28135,
+      "sha256": "41f5ac76596a1699cc33f53084a2419e92961c42bb75f36fc38e616d348532ad"
+    },
+    {
+      "file": "planetoid/Cora/raw/ind.cora.ally",
+      "url": "https://github.com/kimiyoung/planetoid/raw/master/data/ind.cora.ally",
+      "bytes": 47959,
+      "sha256": "2b998f5cc7fedc86e7f97ca2498f47a1ffc1462c29e2d578b23bf3f62b6e7d71"
+    },
+    {
+      "file": "planetoid/Cora/raw/ind.cora.graph",
+      "url": "https://github.com/kimiyoung/planetoid/raw/master/data/ind.cora.graph",
+      "bytes": 59847,
+      "sha256": "58f13302f39dde8852dad6fe6d15b89b077b6d7f837626bce671ef80344b383d"
+    },
+    {
+      "file": "planetoid/Cora/raw/ind.cora.test.index",
+      "url": "https://github.com/kimiyoung/planetoid/raw/master/data/ind.cora.test.index",
+      "bytes": 5000,
+      "sha256": "297ce89af2b51a6a194181c7dbe1796c6a1cf9cd9349a88383b1b1e227867875"
+    }
+  ],
+  "source_archive_sha256": "b5d59fb06f5124f8f74123fd687c40206eb560ef22c29df91d19f50b951439c8",
+  "graph_shapes": {
+    "x": [
+      2708,
+      1433
+    ],
+    "y": [
+      2708
+    ],
+    "edge_index": [
+      2,
+      10556
+    ]
+  },
+  "reconstruction": "Independent Cora processing oracle matching original PyG2.4 Cora branch. PyG2.6.1 reproduces x/y and edge set, but column-sorts edges; PyG2.4 row-sorts. Isolated processed input explicitly preserves original row ordering. No transforms in historical factory.",
+  "sources": [
+    "https://raw.githubusercontent.com/pyg-team/pytorch_geometric/2.4.0/torch_geometric/io/planetoid.py",
+    "https://raw.githubusercontent.com/pyg-team/pytorch_geometric/2.4.0/torch_geometric/datasets/planetoid.py"
+  ],
+  "job_log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/logs/lsf/pilot-cpu.1598695.out",
+  "limitation": "No contemporaneous processed-tensor hash exists. POLUS provenance relies on archived verified raw manifest, hash-matched preparation/submit scripts, executed job/config lineage and deterministic reconstruction. Local checkpoint training-cache identity is not independently hash-attested; it is not selected.",
+  "selected": {
+    "group": "POLUS-CPU-101-C4-V2",
+    "execution": "archived POLUS dense checkpoint; new smoke executes on local CPU",
+    "seed": 101,
+    "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_gcn_l3_h32/seed_101/cora_gcn_l3_h32/dense_checkpoint.pt",
+    "split": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_gcn_l3_h32/seed_101/cora_gcn_l3_h32/splits.yaml",
+    "checkpoint_sha256": "276b2ff0f7790a84afc2755e89d88f1a170865a4397e4355daf7552c7075c129",
+    "split_sha256": "59a0209a8e2a73a5e70a720d327f8c024d36d184a6d00be820ced0e1a3eb08bc",
+    "signature": {
+      "dataset": "cora",
+      "model_name": "gcn",
+      "num_layers": 3,
+      "hidden_channels": 32,
+      "dropout": 0.5,
+      "seed": 101,
+      "split_hash": "942a10b128f7138e118b3f2e2f96eb87a62f856c10d82010ac995e40e2b4c675",
+      "config_hash": "0aa773aea69a286e2a70cbb3d5466fe8e22f2c05bb9ec7dfb2ab6aa4449b7a3d"
+    },
+    "architecture": {
+      "in_channels": 1433,
+      "hidden_channels": 32,
+      "out_channels": 7,
+      "num_layers": 3,
+      "dropout": 0.5
+    }
+  },
+  "dense_validation_recomputed": {
+    "accuracy": 0.8983364140480592,
+    "macro_f1": 0.8852755859531409
+  },
+  "historical_metrics_train": {
+    "train": {
+      "accuracy": 0.9298029556650246,
+      "macro_f1": 0.9215160258992897
+    },
+    "val": {
+      "accuracy": 0.8983364140480592,
+      "macro_f1": 0.8852755859531408
+    },
+    "test": {
+      "accuracy": 0.852670349907919,
+      "macro_f1": 0.8463369890613102
+    },
+    "benchmark": {
+      "inference_time_mean_sec": 0.00800864421762526,
+      "inference_time_std_sec": 0.0003748942223673025,
+      "inference_time_mean_ms": 8.00864421762526,
+      "inference_time_std_ms": 0.37489422236730247,
+      "inference_timed_passes": 20.0,
+      "inference_warmup_passes": 5.0,
+      "parameter_count": 47175.0,
+      "parameter_bytes": 188700.0,
+      "checkpoint_size_bytes": 0.0,
+      "cpu_memory_estimate_bytes": 15985464.0,
+      "cuda_peak_memory_bytes": 0.0
+    },
+    "training": {
+      "best_epoch": 24.0,
+      "epochs_ran": 75.0,
+      "best_val_loss": 0.33442118763923645,
+      "final_train_loss": 0.16582351922988892,
+      "final_val_loss": 0.41494324803352356
+    },
+    "identity": {
+      "dataset": "cora",
+      "model": "gcn",
+      "num_layers": 3,
+      "hidden_channels": 32,
+      "seed": 101,
+      "phase": "dense",
+      "sparsity": 0.0,
+      "method": "dense",
+      "config_hash": "0aa773aea69a286e2a70cbb3d5466fe8e22f2c05bb9ec7dfb2ab6aa4449b7a3d",
+      "run_dir": "/polusfs/home_edu/edu-cmc-skmodel26-623/edu-cmc-skmodel26-623-05/gnn-polus-20261023/results/pilot-cpu-101-c4-v2/jobs/cora_gcn_l3_h32/seed_101/cora_gcn_l3_h32"
+    }
+  },
+  "checkpoint_archive_sha256": "2b97d6923efa6cd8836830fdb7e13872c336da1700b514ab538118d47763fa62",
+  "checkpoint_job_manifest_verified_against_archive": "results/pilot-cpu-101-c4-v2/jobs/cora_gcn_l3_h32/artifact_manifest.csv",
+  "job_evidence_archive_sha256": "66a905939510edb50e1a64ae814069c91a052fb362e61c6d7fe3cd88ea83aa3f",
+  "archived_job_log_and_launcher_hashes_verified": true
+}

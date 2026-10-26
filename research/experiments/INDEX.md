@@ -1,5 +1,12 @@
 # Experiment campaign registry
 
+2026-10-27 bounded diagnostic: **LOCAL-STRUCTURED-V2-CORA-SMOKE-20261027** — six
+local CPU pruning runs from the archived POLUS seed101 checkpoint, with graph
+reconstructed from recorded raw provenance; not pooled with V1. All6 PASS;
+160 V2 tests passed/2 CUDA skips;28,628 old files unchanged. No implementation
+change or new training. [Evidence and limits](local_structured_v2_smoke_20261027/README.md).
+Raw group: `${GNN_ARTIFACT_ROOT}/local-structured-v2-smoke-20261027/`.
+
 2026-10-27 audit fixes are implementation-only: architecture rejection, mandatory
 graph pin and V2 protection from legacy split regeneration. Python3.12 synthetic
 verification:160 V2 passed/2 CUDA skipped;39 V1 regression passes.
@@ -9,7 +16,7 @@ verification:160 V2 passed/2 CUDA skipped;39 V1 regression passes.
 Implementation-only update (2026-10-27): LOCAL-STRUCTURED-V2 Stages I–III use synthetic
 pytest checks, not a new experiment campaign. See
 [implementation plan](../methodology/IMPLEMENTATION_PLAN.md). No V1 artifacts
-or registered campaign hashes are replaced; no V2 quality/timing result exists yet.
+or registered campaign hashes are replaced; no V2 quality/timing result existed at that stage (subsequent smoke above).
 
 `GNN_ARTIFACT_ROOT` defaults locally to the adjacent `../prunable_gnn_artifacts`. Raw artifacts are excluded from Git. Compact reports, summaries, configs and evidence live under `research/experiments/`.
 
