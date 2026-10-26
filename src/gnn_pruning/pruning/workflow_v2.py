@@ -68,6 +68,34 @@ def _validate_split(split, num_nodes):
         raise ValueError("Frozen split must be disjoint and cover the graph exactly.")
 
 
+def _hidden_widths(value, num_layers):
+    return [value] * (num_layers - 1) if isinstance(value, int) else list(value)
+
+
+def _validate_dense_architecture(checkpoint, declared):
+    """Reject a different dense experiment, even when state_dict loads strictly."""
+    architecture = checkpoint["model_config"]
+    for key in ("num_layers", "dropout", "in_channels", "out_channels"):
+        expected = getattr(declared, key)
+        if expected is not None and architecture.get(key) != expected:
+            raise ValueError(f"Frozen checkpoint architecture differs from config: {key}.")
+    widths = _hidden_widths(architecture["hidden_channels"], architecture["num_layers"])
+    if widths != _hidden_widths(declared.hidden_channels, declared.num_layers):
+        raise ValueError("Frozen checkpoint architecture differs from config: hidden_channels.")
+    # Older signatures may omit architecture fields; the required model_config
+    # still supplies them. If present, signature fields must agree with it.
+    signature = checkpoint.get("run_signature", {})
+    for key in ("num_layers", "dropout", "hidden_channels"):
+        if key not in signature:
+            continue
+        saved, actual = signature[key], architecture[key]
+        if key == "hidden_channels":
+            saved = _hidden_widths(saved, architecture["num_layers"])
+            actual = widths
+        if saved != actual:
+            raise ValueError(f"Frozen checkpoint architecture signature differs from model_config: {key}.")
+
+
 def prune_from_checkpoint_v2(checkpoint_path: str, config_path: str):
     """Prune a pinned checkpoint with frozen splits; never fit or generate a split."""
     from .workflow import PruningArtifacts
@@ -84,6 +112,10 @@ def prune_from_checkpoint_v2(checkpoint_path: str, config_path: str):
     for label, path in (("checkpoint", checkpoint_path), ("split", split_path)):
         if not path.is_file() or cfg.get(label+"_sha256") != _file_hash(path):
             raise ValueError(f"Frozen {label} hash missing or mismatched.")
+    expected_graph_hash = cfg.get("graph_sha256")
+    if (not isinstance(expected_graph_hash, str) or len(expected_graph_hash) != 64
+            or any(c not in "0123456789abcdef" for c in expected_graph_hash.lower())):
+        raise ValueError("Frozen graph hash v2.graph_sha256 is required (64 hexadecimal characters).")
     checkpoint = torch.load(checkpoint_path, map_location="cpu", weights_only=True)
     split = load_yaml(split_path)
     signature = checkpoint.get("run_signature", {})
@@ -95,6 +127,7 @@ def prune_from_checkpoint_v2(checkpoint_path: str, config_path: str):
         raise ValueError("Frozen checkpoint model/seed differs from config.")
     if checkpoint.get("model_name") != resolved.model.name:
         raise ValueError("Checkpoint model identity mismatch.")
+    _validate_dense_architecture(checkpoint, resolved.model)
     device = torch.device(resolved.device.device)
     model = build_model(checkpoint["model_name"], **checkpoint["model_config"])
     # Preserve tensor dtype when reconstructing a frozen checkpoint.
@@ -107,7 +140,7 @@ def prune_from_checkpoint_v2(checkpoint_path: str, config_path: str):
         raise ValueError("Graph feature dimension differs from checkpoint.")
     data.x = data.x.to(dtype=source_dtype)
     graph_hash = tensor_hash({"x": data.x, "edge_index": data.edge_index, "y": data.y})
-    if cfg.get("graph_sha256") and cfg["graph_sha256"] != graph_hash:
+    if expected_graph_hash.lower() != graph_hash:
         raise ValueError("Frozen graph tensor hash mismatch.")
     idx = {key: torch.tensor(value, dtype=torch.long, device=device) for key, value in split.items()}
     # Search receives no test labels. Full labels are used only after termination.
@@ -149,6 +182,7 @@ def prune_from_checkpoint_v2(checkpoint_path: str, config_path: str):
     provenance = {"protocol": "LOCAL-STRUCTURED-V2-R2", "method": method, "seed": resolved.run.seed,
                   "dataset": resolved.data.name, "checkpoint_sha256": _file_hash(checkpoint_path),
                   "dense_tensor_sha256": tensor_hash(model.state_dict()), "split_sha256": _file_hash(split_path),
+                  "dense_model_config": checkpoint["model_config"],
                   "split_indices": split, "config_sha256": config_hash(config_path),
                   "graph_tensor_sha256": graph_hash,
                   "python_version": platform.python_version(), "torch_version": str(torch.__version__),

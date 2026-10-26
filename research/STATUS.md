@@ -4,6 +4,12 @@
 
 ## V2 implementation update — 2026-10-27
 
+Independent implementation audit follow-up: fixes on base `cf61c80` reject
+dense architecture/config mismatches, require an original-graph hash, and block
+legacy evaluate-pruned for V2 checkpoints. Python3.12.9: **160 V2 passed / 2 CUDA
+skipped; 39 selected V1 regressions passed**. See [fixes and measured evidence](implementation/LOCAL_STRUCTURED_V2_AUDIT_FIXES.md).
+This is not a new campaign; Cora smoke testing has not been run.
+
 LOCAL-STRUCTURED-V2 is separate from the frozen V1 campaigns below.
 Implementation branch: `implementation/local-structured-v2-20261027`, based on
 research draft `9076b06` with consolidated V1 evidence `d422263` preserved by merge.

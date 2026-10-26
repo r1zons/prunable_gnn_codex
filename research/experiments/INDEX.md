@@ -1,5 +1,11 @@
 # Experiment campaign registry
 
+2026-10-27 audit fixes are implementation-only: architecture rejection, mandatory
+graph pin and V2 protection from legacy split regeneration. Python3.12 synthetic
+verification:160 V2 passed/2 CUDA skipped;39 V1 regression passes.
+[Evidence](../implementation/LOCAL_STRUCTURED_V2_AUDIT_FIXES.md); raw logs are a new
+`local-structured-v2-fixes-20261027` artifact group, not a real-data campaign.
+
 Implementation-only update (2026-10-27): LOCAL-STRUCTURED-V2 Stages I–III use synthetic
 pytest checks, not a new experiment campaign. See
 [implementation plan](../methodology/IMPLEMENTATION_PLAN.md). No V1 artifacts

@@ -18,7 +18,18 @@ against arbitrary/unpinned files. Freeze a dense checkpoint and its original
 `splits.yaml`, record SHA256 of both files, dataset/model/seed and the dense
 checkpoint's `run_signature.split_hash`. Relative split paths are resolved against
 the configuration file. Missing/mismatching hashes/identity/indices fail; a new
-split is never created. Optional `v2.graph_sha256` pins canonical graph tensor identity.
+split is never created. The declared model architecture (layer count, hidden
+widths, dropout and explicitly configured input/output sizes) must match the dense
+checkpoint. Scalar uniform widths and their equivalent repeated lists agree.
+Present architecture fields in the dense run signature must also match its payload.
+
+`v2.graph_sha256` is required. It must come from the original dense-training graph
+or a verified manifest for that graph, rather than being freshly approved from an
+arbitrary current cache. The hash uses `workflow_v2.tensor_hash` over `x`,
+`edge_index` and `y`, after casting `x` to the dense checkpoint's floating dtype.
+Checkpoint and split hashes alone do not identify graph tensors or node ordering.
+Older dense checkpoint formats remain loadable; they need this explicit graph pin
+in the V2 config. Verified source architecture is saved as `provenance.dense_model_config`.
 
 After a separately authorized experimental launch, the command is:
 
@@ -32,6 +43,9 @@ This is documentation, not a record of a campaign launch. Current user-selected
 conda `gnn_pruning` is Python3.8.20; package metadata still requires>=3.10. The
 unchanged Stage I suite also passed on temporary Python3.11.13 before that unwanted
 environment was removed. No conda environment or package metadata was upgraded.
+The later [audit fixes](../research/implementation/LOCAL_STRUCTURED_V2_AUDIT_FIXES.md)
+were verified in a separate temporary Python3.12.9 environment:160 V2 tests passed,
+2 CUDA skips and39 selected V1 regression passes.
 
 For adaptive methods, `v2.penalty_lambda` is mandatory, finite and nonnegative.
 Its scientific value is selected later by validation-only pilot; unit tests use
@@ -56,6 +70,10 @@ it preserves prior invocations and V1 artifacts. Outputs:
 - `config_snapshot.json`: full raw and resolved settings (pruning/RL settings are hashed);
 - `trace.json`: actual selected deployment transitions and Q episode resets/transitions;
 - `q_table.json`: sparse state/action rows (empty for static/Greedy).
+
+The legacy `evaluate-pruned` command rejects V2 checkpoints before entering its
+split-loading/generation path. Use the frozen-split dense/final metrics already
+saved in `metrics.json`; separate V2 reevaluation is not implemented.
 
 Test labels are erased from the graph given to search, and used for metrics only
 after termination. Nonfinite scores/validation values are errors. Zero saliency

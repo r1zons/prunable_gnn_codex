@@ -19,6 +19,7 @@ v2:
   split_path: FILL_PATH_RELATIVE_TO_THIS_CONFIG_OR_ABSOLUTE
   checkpoint_sha256: FILL_FROZEN_CHECKPOINT_SHA256
   split_sha256: FILL_FROZEN_SPLIT_FILE_SHA256
+  graph_sha256: FILL_ORIGINAL_DENSE_GRAPH_TENSOR_SHA256
   target_sparsity_tolerance: 0.01
   min_channels_per_layer: 4
   # Adaptive methods additionally require explicit penalty_lambda from the
