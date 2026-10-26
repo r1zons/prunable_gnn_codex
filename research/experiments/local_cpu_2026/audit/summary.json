@@ -1,0 +1,12 @@
+{
+  "budget_violations": 20,
+  "completed_dense_conditions": 18,
+  "completed_method_target_results": 252,
+  "failed_quality_check_results": 0,
+  "git_commit": "72293149d8fff186dd268789e7b8fea5848c9360",
+  "missing_dense_conditions": 0,
+  "missing_method_target_results": 0,
+  "planned_method_target_results": 252,
+  "reloadable_results": 252,
+  "target_matches_within_0_025": 162
+}

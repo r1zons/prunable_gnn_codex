@@ -1,0 +1,21 @@
+{
+  "platform": "polus_cpu",
+  "git_commit": "72293149d8fff186dd268789e7b8fea5848c9360",
+  "condition": "citeseer_gcn_l3_h32",
+  "config": "${POLUS_TASK_ROOT}/results/pilot-cpu-101/prepared-configs/citeseer_gcn_l3_h32.yaml",
+  "config_sha256": "df47d4b735471d035d519c35e413e305c80d44d63ad8ec7d897212cc43d3b095",
+  "source_config_sha256": "0ca02c2deedfaa34388629d08bfeb0bbcb84c635874ddb044263a1146d4e2b4a",
+  "source_base_sha256": "bd9d213306c0742766248604f11e0fb1e09f7ee8daccf93077b976dea2b4c59d",
+  "adapter_sha256": "a785b852d2a8c9a469439524bb555bae583952c6ee8fda4b5217397e4d76a429",
+  "machine": "ppc64le",
+  "python": "3.10.22 | packaged by conda-forge | (main, Oct  6 2026, 22:57:19) [GCC 14.4.0]",
+  "execution_requested": false,
+  "historical_or_kaggle_results_pooled": false,
+  "changed_fields": [
+    "base flattened",
+    "data.root",
+    "run.output_dir",
+    "run.experiment_name",
+    "device.device"
+  ]
+}

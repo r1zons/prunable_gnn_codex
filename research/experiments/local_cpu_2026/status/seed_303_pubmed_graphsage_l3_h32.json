@@ -1,0 +1,13 @@
+{
+  "condition": "pubmed_graphsage_l3_h32",
+  "config": "${GNN_ARTIFACT_ROOT}/local-cpu-20261025/raw/configs/pubmed_graphsage_l3_h32_seed303.yaml",
+  "config_sha256": "d0d6506d6f339dda6aed3d0488afe0ad95761e47829abd91e41a812a33786ead",
+  "finished_at_utc": "2026-10-25T13:39:45.698497+00:00",
+  "log": "${GNN_ARTIFACT_ROOT}/local-cpu-20261025/raw/logs/pubmed_graphsage_l3_h32_seed303.launch.log",
+  "log_sha256": "45a7e1bcb250b7f167c5f90c281e2065d917e325d31e8990d9f555daa5001a35",
+  "output_dir": "${GNN_ARTIFACT_ROOT}/local-cpu-20261025/raw/results/seed_303/pubmed_graphsage_l3_h32",
+  "return_code": 0,
+  "seed": 303,
+  "started_at_utc": "2026-10-25T13:31:47.988038+00:00",
+  "status": "completed"
+}

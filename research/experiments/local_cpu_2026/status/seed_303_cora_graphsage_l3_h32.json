@@ -1,0 +1,13 @@
+{
+  "condition": "cora_graphsage_l3_h32",
+  "config": "${GNN_ARTIFACT_ROOT}/local-cpu-20261025/raw/configs/cora_graphsage_l3_h32_seed303.yaml",
+  "config_sha256": "24e4f389702437eea60e16c3e8fc4bf3c91ec2df364ac214b88e97c7352ab6fe",
+  "finished_at_utc": "2026-10-25T13:25:27.954765+00:00",
+  "log": "${GNN_ARTIFACT_ROOT}/local-cpu-20261025/raw/logs/cora_graphsage_l3_h32_seed303.launch.log",
+  "log_sha256": "5918fdf3dc2eba211ed38e13db3a079a91fcf0d3e9e638775fec78cf7a8cf765",
+  "output_dir": "${GNN_ARTIFACT_ROOT}/local-cpu-20261025/raw/results/seed_303/cora_graphsage_l3_h32",
+  "return_code": 0,
+  "seed": 303,
+  "started_at_utc": "2026-10-25T13:23:33.731356+00:00",
+  "status": "completed"
+}

@@ -1,5 +1,7 @@
 # RESEARCH_STATE — GNN pruning Master's project
 
+> Historical research-state snapshot. For the current canonical checkout, completed 2026-10-24/25 campaigns, artifact locations and immediate publication work, read [`research/STATUS.md`](research/STATUS.md) and [`research/experiments/INDEX.md`](research/experiments/INDEX.md) first.
+
 **Document status:** `CODE SNAPSHOT FROZEN at audited commit; research protocol / empirical evidence OPEN`  
 **Prepared / revised:** 2026-09-23  
 **Repository:** https://github.com/r1zons/prunable_gnn_codex  

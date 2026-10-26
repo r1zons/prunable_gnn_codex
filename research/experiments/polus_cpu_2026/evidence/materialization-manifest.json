@@ -1,0 +1,32 @@
+[
+  {
+    "path": "third_party/ios-cmake",
+    "revision": "8abaed637d56f1337d6e1d2c4026e25c1eade724",
+    "archive_url": "https://codeload.github.com/Yangqing/ios-cmake/tar.gz/8abaed637d56f1337d6e1d2c4026e25c1eade724",
+    "archive_sha256": "25485cc56bbe0ad4e7453ec5e6b67f4943c9ca75dc3f6aa76a092003338d803c"
+  },
+  {
+    "path": "third_party/psimd",
+    "revision": "072586a71b55b7f8c584153d223e95687148a900",
+    "archive_url": "https://codeload.github.com/Maratyszcza/psimd/tar.gz/072586a71b55b7f8c584153d223e95687148a900",
+    "archive_sha256": "f6c4dab91ae9a03b3019e7cab0572743afd0e1b6e75b97fcca50259c737c924e"
+  },
+  {
+    "path": "third_party/python-enum",
+    "revision": "4cfedc426c4e2fc52e3f5c2b4297e15ed8d6b8c7",
+    "archive_url": "https://codeload.github.com/PeachPy/enum34/tar.gz/4cfedc426c4e2fc52e3f5c2b4297e15ed8d6b8c7",
+    "archive_sha256": "4fe3f5640686512dfa125dca7f8201a0318b6739fe3e9a516c37d9d7740af566"
+  },
+  {
+    "path": "third_party/QNNPACK",
+    "revision": "7d2a4e9931a82adc3814275b6219a03e24e36b4c",
+    "archive_url": "https://codeload.github.com/pytorch/QNNPACK/tar.gz/7d2a4e9931a82adc3814275b6219a03e24e36b4c",
+    "archive_sha256": "0d752bd75f46ce4d7c6f0a60b0d6c0e5918a7b4683c825284f8db3706dd24f76"
+  },
+  {
+    "path": "third_party/foxi",
+    "revision": "c278588e34e535f0bb8f00df3880d26928038cad",
+    "archive_url": "https://codeload.github.com/houseroad/foxi/tar.gz/c278588e34e535f0bb8f00df3880d26928038cad",
+    "archive_sha256": "52665aae3c7352a1fa68d017a87c825559c514072409e30753f36aa6eb0c7b4d"
+  }
+]

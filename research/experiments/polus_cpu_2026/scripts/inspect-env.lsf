@@ -1,0 +1,33 @@
+#!/bin/bash
+# Installs the built dependency and checks imports/configs/operator regression.
+# No GNN forward pass, training, pruning, or benchmark is invoked.
+#BSUB -J gnn-env-inspect
+#BSUB -q normal
+#BSUB -n 4
+#BSUB -W 0:10
+#BSUB -R "span[hosts=1]"
+#BSUB -o inspect-env.%J.out
+#BSUB -e inspect-env.%J.err
+set -euo pipefail
+task_root="$HOME/gnn-polus-20261023"
+source "$task_root/activate-polus.sh"
+cd "$task_root"
+bash install-and-inspect.sh > "logs/install-and-inspect.$LSB_JOBID.log" 2>&1
+python check-vsx-shifts.py > "logs/vsx-shift-regression.$LSB_JOBID.log" 2>&1
+python - <<'PY'
+import json
+import os
+from pathlib import Path
+
+payload = {
+    "status": "READY_FOR_MANUAL_PILOT",
+    "verification_job": os.environ["LSB_JOBID"],
+    "runtime": json.loads(Path("logs/runtime-versions.json").read_text()),
+    "vsx_regression": json.loads(Path("logs/vsx-shift-regression.json").read_text())["status"],
+    "wheel_sha256": Path("logs/torch-wheel.sha256").read_text().split()[0],
+    "research_commit": Path("logs/research-commit.txt").read_text().strip(),
+    "training_or_pruning_executed": False,
+}
+Path("logs/environment-ready.json").write_text(json.dumps(payload, indent=2))
+PY
+printf 'ENVIRONMENT_READY\n'

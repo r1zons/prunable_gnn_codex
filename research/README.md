@@ -4,13 +4,12 @@
 
 ## Reading order (mandatory)
 
-1. [`RESEARCH_STATE.md`](../RESEARCH_STATE.md) — detailed audited code scope, pinned SHA, limitations, open questions.
-2. [`HISTORY.md`](HISTORY.md) — recovered research timeline and prior decisions (secondary historical context).
-3. [`CLAIMS.md`](CLAIMS.md) — scientific statements, confidence and evidence needed.
-4. [`EVIDENCE.md`](EVIDENCE.md) — historical coursework and experiment provenance.
-5. [`publications/sitito_2026/PLAN.md`](publications/sitito_2026/PLAN.md) — current paper's editorial and research tasks.
-6. [`experiments/kaggle_pilot_2026/PLAN.md`](experiments/kaggle_pilot_2026/PLAN.md) — approved canonical pilot protocol and execution restrictions.
-7. [`AGENTS.md`](../AGENTS.md) — implementation instructions; [`ROADMAP.md`](../ROADMAP.md) — engineering roadmap.
+1. [`STATUS.md`](STATUS.md) — current canonical state, paths, results, caveats and next actions.
+2. [`experiments/INDEX.md`](experiments/INDEX.md) — campaign registry and artifact hashes.
+3. [`publications/sitito_2026/PLAN.md`](publications/sitito_2026/PLAN.md) — current paper's editorial and research tasks.
+4. [`CLAIMS.md`](CLAIMS.md) and [`EVIDENCE.md`](EVIDENCE.md) — claim/evidence discipline and historical provenance.
+5. [`RESEARCH_STATE.md`](../RESEARCH_STATE.md) and [`HISTORY.md`](HISTORY.md) — older audited code scope and timeline; retain as historical context where they conflict with `STATUS.md`.
+6. [`AGENTS.md`](../AGENTS.md) — implementation instructions; [`ROADMAP.md`](../ROADMAP.md) — engineering roadmap.
 
 ## Research boundaries
 
@@ -45,6 +44,6 @@ Update `CLAIMS.md` and `EVIDENCE.md` when new supporting artifacts appear. Revie
 
 ## Latest local evidence audit
 
-Read [the 2026-10-22 local Codex audit summary](audits/2026-10-22_local-codex.md) before drafting experimental conclusions. This is locally reported, not independently rerun; in particular, only two seeds are complete and old static/RL sparsity fields have different meanings.
+The earlier [2026-10-22 local Codex audit summary](audits/2026-10-22_local-codex.md) remains historical. It has been superseded for the canonical protocol by the completed [2026-10-25 local CPU audit](experiments/local_cpu_2026/audit/AUDIT_REPORT.md): 18 dense conditions and 252 method-target rows across seeds 101, 202 and 303.
 
-The subsequent decision to run a separate canonical Kaggle pilot is recorded in [the pilot plan](experiments/kaggle_pilot_2026/PLAN.md). It does not upgrade or replace the historical evidence.
+The reviewed Kaggle plan is preserved as the protocol source, but the completed local CPU and POLUS CPU campaigns remain separate executions. Read the registry before using either result set.

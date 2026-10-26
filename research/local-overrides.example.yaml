@@ -1,0 +1,9 @@
+# Copy to research/local-overrides.yaml only when a local tool needs these values.
+# The real file is ignored by Git. Do not commit usernames, keys, VPN profiles,
+# route addresses, passwords, or other host-specific access material.
+artifact_root: ../prunable_gnn_artifacts
+polus:
+  ssh_target: SET_IN_LOCAL_OVERRIDE
+  task_root: ~/gnn-polus-20261023
+  ipv4: SET_IN_LOCAL_OVERRIDE
+  local_gateway_ipv4: SET_IN_LOCAL_OVERRIDE
