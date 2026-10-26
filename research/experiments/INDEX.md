@@ -1,6 +1,6 @@
 # Experiment campaign registry
 
-Implementation-only update (2026-10-27): LOCAL-STRUCTURED-V2 Stage I uses synthetic
+Implementation-only update (2026-10-27): LOCAL-STRUCTURED-V2 Stages I–III use synthetic
 pytest checks, not a new experiment campaign. See
 [implementation plan](../methodology/IMPLEMENTATION_PLAN.md). No V1 artifacts
 or registered campaign hashes are replaced; no V2 quality/timing result exists yet.

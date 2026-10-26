@@ -1,0 +1,30 @@
+# Template only: fill frozen provenance hashes before a researcher-authorized run.
+base: base/default
+dataset: cora
+model:
+  name: gcn
+  num_layers: 3
+  hidden_channels: 32
+  dropout: 0.5
+run:
+  seed: 101
+  output_dir: runs/local_structured_v2
+device:
+  device: cpu
+pruning:
+  method: magnitude_local_v2
+  target_sparsity: 0.30
+  structured: true
+v2:
+  split_path: FILL_PATH_RELATIVE_TO_THIS_CONFIG_OR_ABSOLUTE
+  checkpoint_sha256: FILL_FROZEN_CHECKPOINT_SHA256
+  split_sha256: FILL_FROZEN_SPLIT_FILE_SHA256
+  target_sparsity_tolerance: 0.01
+  min_channels_per_layer: 4
+  # Adaptive methods additionally require explicit penalty_lambda from the
+  # validation-only pilot. No lambda is silently selected by this template.
+  max_steps: 20
+  episodes: 30
+  gamma: 0.9
+  alpha: 0.1
+  epsilon: 0.2

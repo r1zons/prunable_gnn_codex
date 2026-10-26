@@ -1,8 +1,9 @@
 # LOCAL-STRUCTURED-V2 methodology — audit workspace
 
 **Canonical document:** [LOCAL_STRUCTURED_V2_SPEC.md](LOCAL_STRUCTURED_V2_SPEC.md).
-Status (2026-10-27): audit read at `5c42596`; Stage I implementation authorized
-by the researcher. SPEC §15 R2 records final researcher decisions for Stages II–III (2026-10-27).
+Status (2026-10-27): audit read at `5c42596`; SPEC §15 R2 records final
+researcher decisions. Stages I–III are implemented with synthetic Test-First gates;
+see [prototype usage](../../docs/local_structured_v2.md). No campaign is authorized.
 See [three-stage Test-First plan](IMPLEMENTATION_PLAN.md).
 
 Read in order:
@@ -15,6 +16,5 @@ Read in order:
 
 Other historic evidence: `RESEARCH_STATE.md`, `research/README.md`, `research/experiments/kaggle_pilot_2026/PLAN.md`. The older Kaggle pilot is **not** the V2 execution environment. Do not silently edit historic evidence or run notebooks.
 
-Next: Stage I Red → Green and review gate. Stages II–III follow in order only
-after acceptance and resolution of scientific blockers. No training/campaigns
-are authorized by the implementation request.
+Next: independent audit of the prototype and pre-campaign runtime/provenance
+qualification. No dense training/campaign is authorized by this implementation request.

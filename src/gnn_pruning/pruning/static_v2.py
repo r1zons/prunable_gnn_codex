@@ -30,6 +30,8 @@ class StaticPlan:
     parameters_before: int
     parameters_after: int
     removed_score: float | None
+    candidate_count: int
+    eligible_candidate_count: int
 
 
 def parameter_count_for_widths(model, widths: Sequence[int]) -> int:
@@ -181,7 +183,7 @@ def plan_static(model, scores, criterion: str, target: float, tolerance: float =
             choices.append(((-score if criterion == "grasp" else score, *widths), widths, count, achieved, keeps, score))
         _, widths, count, achieved, keeps, selected_score = min(choices, key=lambda item: item[0])
     return StaticPlan(criterion, widths, keeps, target, float(achieved), float(abs(achieved-nominal)),
-                      abs(achieved-nominal) > eps, not bool(band), p0, count, selected_score)
+                      abs(achieved-nominal) > eps, not bool(band), p0, count, selected_score, len(candidates), len(eligible))
 
 
 def apply_static_plan(model, plan: StaticPlan):

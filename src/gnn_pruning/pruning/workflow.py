@@ -64,6 +64,9 @@ def prune_from_checkpoint(
     prune_cfg: Dict[str, Any] = raw_cfg.get("pruning", {}) if isinstance(raw_cfg.get("pruning", {}), dict) else {}
 
     method = str(prune_cfg.get("method", "random"))
+    from .workflow_v2 import V2_METHODS, prune_from_checkpoint_v2
+    if method in V2_METHODS:
+        return prune_from_checkpoint_v2(checkpoint_path, config_path)
     target_sparsity = float(prune_cfg.get("target_sparsity", 0.5))
     structured = bool(prune_cfg.get("structured", True))
 

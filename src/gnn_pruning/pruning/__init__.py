@@ -43,3 +43,6 @@ __all__ = [
     "evaluate_pruned_checkpoint",
     "finetune_pruned_checkpoint",
 ]
+
+# Register V2 alternatives separately; legacy classes remain unchanged.
+from . import registered_v2 as _registered_v2

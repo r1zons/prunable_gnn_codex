@@ -27,8 +27,16 @@ reward/STOP и Q state. Блокер доступа к содержимому с
 
 ## Фактический статус
 
-Этап I: CPU functional gate пройден на наблюдаемом окружении. Red: 40 failed,
-31 passed, 2 CUDA skipped (commit `5a28be3`); Green: 71 passed, 2 CUDA skipped;
-V1 subset: 31 passed. Python3.8 ниже package minimum3.10, CUDA/POLUS не проверены.
-Подробности: [отчёт этапа I](../implementation/LOCAL_STRUCTURED_V2_STAGE_I.md).
-Этапы II–III разрешены по SPEC §15 R2; выполнение продолжается последовательно.
+| Gate | Фактическое доказательство |
+|---|---|
+| I | Red commit5a28be3; Green71 passed/2 CUDA skipped. Дополнительно Python3.11.13:71/2; по выбору исследователя дальнейшая работа в conda gnn_pruning Python3.8.20 |
+| II | Red c49832c:21 failed; Green4df84c5:21 passed. V1 subset31 passed |
+| III | Red08e4fb8:21 failed; первоначальный Green21 passed, затем дополнительные edge/integration checks. Финальный общий V2 набор:127 passed/2 CUDA skipped; V1 regressions39 passed |
+
+Реализованы шесть V2 identifiers и отдельный checkpoint workflow через существующую
+команду prune. Отчёты: [I](../implementation/LOCAL_STRUCTURED_V2_STAGE_I.md),
+[II](../implementation/LOCAL_STRUCTURED_V2_STAGE_II.md),
+[III](../implementation/LOCAL_STRUCTURED_V2_STAGE_III.md).
+Пример config и границы применения: [prototype guide](../../docs/local_structured_v2.md).
+Следующий шаг — независимый аудит и отдельная подготовка кампании; обучение GNN,
+POLUS, большие эксперименты и CI в этой задаче не выполнялись.

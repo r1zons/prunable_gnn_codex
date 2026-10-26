@@ -21,8 +21,8 @@ METHODS = ["random_local_v2", "magnitude_local_v2", "snip_pt_local_v2", "grasp_p
            "adaptive_greedy_local_v2", "q_learning_local_v2"]
 
 
-def fixture_files(tmp_path, method):
-    model = make_model("gcn", torch.float32)
+def fixture_files(tmp_path, method, kind="gcn"):
+    model = make_model(kind, torch.float32)
     data = graph(torch.float32)
     data.y = torch.tensor([0, 1, 2, 0, 1, 2, 0])
     split = {"train": [0, 2, 4], "val": [1, 3], "test": [5, 6]}
@@ -32,9 +32,9 @@ def fixture_files(tmp_path, method):
     checkpoint = tmp_path/"dense.pt"
     cfg = model.export_architecture_config()
     cfg.pop("name")
-    torch.save({"model_name": "gcn", "model_config": cfg, "model_state_dict": model.state_dict(),
-                "run_signature": {"dataset": "cora", "model_name": "gcn", "seed": 101, "split_hash": split_hash}}, checkpoint)
-    config = {"dataset": "cora", "model": "gcn", "run": {"seed": 101, "output_dir": str(tmp_path/"out")},
+    torch.save({"model_name": kind, "model_config": cfg, "model_state_dict": model.state_dict(),
+                "run_signature": {"dataset": "cora", "model_name": kind, "seed": 101, "split_hash": split_hash}}, checkpoint)
+    config = {"dataset": "cora", "model": kind, "run": {"seed": 101, "output_dir": str(tmp_path/"out")},
               "pruning": {"method": method, "target_sparsity": 0.3, "structured": True},
               "v2": {"split_path": str(split_path), "checkpoint_sha256": hashlib.sha256(checkpoint.read_bytes()).hexdigest(),
                      "split_sha256": hashlib.sha256(split_path.read_bytes()).hexdigest(),
@@ -45,8 +45,9 @@ def fixture_files(tmp_path, method):
 
 
 @pytest.mark.parametrize("method", METHODS)
-def test_registry_and_existing_prune_command_routes_to_v2_frozen_provenance(tmp_path, monkeypatch, method):
-    model, data, checkpoint, path, cfg = fixture_files(tmp_path, method)
+@pytest.mark.parametrize("kind", ["gcn", "graphsage"])
+def test_registry_and_existing_prune_command_routes_to_v2_frozen_provenance(tmp_path, monkeypatch, method, kind):
+    model, data, checkpoint, path, cfg = fixture_files(tmp_path, method, kind)
     assert get_pruner(method)().supports_structured
     monkeypatch.setattr(workflow_v2, "load_dataset", lambda *args, **kwargs: [data])
     artifacts = prune_from_checkpoint(str(checkpoint), str(path))
@@ -85,3 +86,18 @@ def test_split_dataset_mismatch_not_silently_regenerated(tmp_path, monkeypatch):
     monkeypatch.setattr(workflow_v2, "load_dataset", lambda *a, **k: pytest.fail("Loaded mismatched dataset"))
     with pytest.raises(ValueError, match="dataset"):
         prune_from_checkpoint(str(checkpoint), str(path))
+
+
+def test_test_labels_do_not_influence_q_policy_or_final_model(tmp_path, monkeypatch):
+    _, data, checkpoint, path, _ = fixture_files(tmp_path, "q_learning_local_v2")
+    monkeypatch.setattr(workflow_v2, "load_dataset", lambda *a, **k: [data])
+    first = prune_from_checkpoint(str(checkpoint), str(path))
+    a = torch.load(first.pruned_checkpoint_path, weights_only=True)
+    data.y[[5, 6]] = torch.tensor([1, 2])
+    second = prune_from_checkpoint(str(checkpoint), str(path))
+    b = torch.load(second.pruned_checkpoint_path, weights_only=True)
+    assert_tensors(a["model_state_dict"], b["model_state_dict"])
+    assert a["original_kept_ids"] == b["original_kept_ids"]
+    assert Path(first.q_table_path).read_text() == Path(second.q_table_path).read_text()
+    assert first.pruned_checkpoint_path != second.pruned_checkpoint_path
+    assert first.pruned_checkpoint_path.exists()  # No overwrite on repeated invocation.

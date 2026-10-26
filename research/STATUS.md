@@ -14,7 +14,12 @@ and [three-stage implementation plan](methodology/IMPLEMENTATION_PLAN.md).
 Stage I Local Surgery: Red **40 failed / 31 passed / 2 CUDA skipped**,
 then Green **71 passed / 2 CUDA skipped**; legacy subset **31 passed**.
 See [measured evidence and limitations](implementation/LOCAL_STRUCTURED_V2_STAGE_I.md).
-R2 decisions are explicit in SPEC §15; Stages II–III are authorized sequentially.
+R2 decisions are explicit in SPEC §15. All three prototype stages completed
+sequential Test-First gates: II Red c49832c→Green4df84c5; III Red08e4fb8→Green.
+Final V2 suite: **127 passed / 2 CUDA skipped**, V1 no-fit regression subsets:
+**39 passed**. See [III report](implementation/LOCAL_STRUCTURED_V2_STAGE_III.md)
+and [prototype guide](../docs/local_structured_v2.md). Existing prune CLI routes
+six separate V2 identifiers; full checkpoint/split/config provenance is recorded.
 Stage I revalidated on Python3.11.13:71 passed/2 skipped, then on user-selected
 conda gnn_pruning (Python3.8.20):71 passed/2 skipped. The unnecessary temporary
 .venv was removed; conda environments unchanged. Subsequent work uses gnn_pruning.

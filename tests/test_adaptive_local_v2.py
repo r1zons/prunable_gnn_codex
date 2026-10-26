@@ -161,3 +161,37 @@ def test_q_episode_deployment_resets_sparse_stats_and_source_unchanged(kind):
                               max_steps=2, epsilon=0., alpha=1., seed=101)
     assert result.q_table == other.q_table
     assert_tensors(result.model.state_dict(), other.model.state_dict())
+
+
+@pytest.mark.parametrize("action", [(0, 1.0), (False, 1), (0, True), (0, 3), (2, 1)])
+def test_external_noninteger_or_unsupported_actions_are_rejected_without_mutation(action):
+    env = make_env()
+    before = {n: p.clone() for n, p in env.model.state_dict().items()}
+    with pytest.raises(ValueError):
+        env.step(action)
+    assert env.steps == 0 and not env.trace
+    assert_tensors(env.model.state_dict(), before)
+
+
+def test_initial_no_actions_pays_terminal_penalty_once_and_is_explicitly_unpruned():
+    from gnn_pruning.models import GCNNodeClassifier
+    model = GCNNodeClassifier(5, [4, 4], 3, num_layers=3, dropout=0.)
+    env = v2.LocalV2Env(model, accuracy, target=0.3, penalty_lambda=2.)
+    assert env.terminal and env.steps == 0
+    assert env.trace[-1]["terminal_reason"] == "no_valid_actions"
+    assert env.trace[-1]["terminal_penalty"] == pytest.approx(-2*(0.3-0.01))
+    assert len(env.trace) == 1
+    assert env.legal_actions() == []
+
+
+def test_exactly_twenty_successful_removals_then_forced_termination():
+    from gnn_pruning.models import GCNNodeClassifier
+    model = GCNNodeClassifier(5, 32, 3, num_layers=3, dropout=0.)
+    env = v2.LocalV2Env(model, accuracy, target=0.3, penalty_lambda=2.)
+    assert len(env.legal_actions()) == 8
+    for i in range(20):
+        _, _, done, info = env.step((0, 1))
+        assert done == (i == 19)
+    assert env.steps == 20 and env.model.hidden_channel_dims == [12, 32]
+    assert info["terminal_reason"] == "max_steps"
+    assert env.legal_actions() == []
