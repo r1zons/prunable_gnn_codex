@@ -1,5 +1,10 @@
 # Experiment campaign registry
 
+Implementation-only update (2026-10-27): LOCAL-STRUCTURED-V2 Stage I uses synthetic
+pytest checks, not a new experiment campaign. See
+[implementation plan](../methodology/IMPLEMENTATION_PLAN.md). No V1 artifacts
+or registered campaign hashes are replaced; no V2 quality/timing result exists yet.
+
 `GNN_ARTIFACT_ROOT` defaults locally to the adjacent `../prunable_gnn_artifacts`. Raw artifacts are excluded from Git. Compact reports, summaries, configs and evidence live under `research/experiments/`.
 
 | ID | Status | Platform / seeds | Scope | Canonical compact evidence | Raw evidence |

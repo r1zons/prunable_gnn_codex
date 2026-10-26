@@ -2,6 +2,19 @@
 
 **Updated:** 2026-10-25
 
+## V2 implementation update — 2026-10-27
+
+LOCAL-STRUCTURED-V2 is separate from the frozen V1 campaigns below.
+Implementation branch: `implementation/local-structured-v2-20261027`, based on
+research draft `9076b06` with consolidated V1 evidence `d422263` preserved by merge.
+Audit verified directly at `5c4259664dfb5ae05e84deadacfcdc9486abb7ca`; the local
+audit file has the identical Git blob `309cfcc5b56f6d141aa343cf5dd5a430e2a89cf2`.
+See [revised canonical specification](methodology/LOCAL_STRUCTURED_V2_SPEC.md)
+and [three-stage implementation plan](methodology/IMPLEMENTATION_PLAN.md).
+Stage I Local Surgery is authorized for synthetic pytest Red/Green checks.
+Stages II–III have unresolved scientific decisions (SPEC §15); no training,
+large experiments or platform execution is authorized. Historical evidence is unchanged.
+
 **Article target:** 2026-11-02 (researcher-designated; official venue path/deadline still requires confirmation)
 
 ## Start here

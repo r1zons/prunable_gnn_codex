@@ -1,6 +1,9 @@
 # LOCAL-STRUCTURED-V2 methodology — audit workspace
 
-**Canonical document:** [LOCAL_STRUCTURED_V2_SPEC.md](LOCAL_STRUCTURED_V2_SPEC.md). Status: ready for an **independent audit**, not approved for code implementation.
+**Canonical document:** [LOCAL_STRUCTURED_V2_SPEC.md](LOCAL_STRUCTURED_V2_SPEC.md).
+Status (2026-10-27): audit read at `5c42596`; Stage I implementation authorized
+by the researcher. Full methodology remains blocked on SPEC §15 decisions.
+See [three-stage Test-First plan](IMPLEMENTATION_PLAN.md).
 
 Read in order:
 
@@ -12,4 +15,6 @@ Read in order:
 
 Other historic evidence: `RESEARCH_STATE.md`, `research/README.md`, `research/experiments/kaggle_pilot_2026/PLAN.md`. The older Kaggle pilot is **not** the V2 execution environment. Do not silently edit historic evidence or run notebooks.
 
-Next: pin exact repository commit SHA, carry out independent audit in Work, review blockers, and seek user authorization **before any source-code changes or experiments**.
+Next: Stage I Red → Green and review gate. Stages II–III follow in order only
+after acceptance and resolution of scientific blockers. No training/campaigns
+are authorized by the implementation request.
