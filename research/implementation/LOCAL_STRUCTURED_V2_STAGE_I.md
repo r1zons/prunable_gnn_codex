@@ -85,3 +85,21 @@ Stage II: blocked on SPEC §15 C01/M01/M04/m01, including comparison domain,
 scoring/bias and Random rules. Stage III: blocked on Stage II and C02 return/STOP.
 The referenced chat returns assistant response placeholders, so missing approved
 scientific decisions have not been invented. Request for those decisions is pending.
+
+## Revalidation after R2 and environment correction
+
+2026-10-27: unchanged Stage I tests completed on CPython **3.11.13**, Torch2.2.2,
+PyG2.6.1, pytest8.3.5: **71 passed, 2 CUDA skipped in 2.96s** (exit0).
+That temporary .venv was created unnecessarily; after the researcher's correction
+it was removed, and no existing conda environment was modified. This is recorded
+as an actual completed check, not the environment selected for subsequent work.
+
+`conda run -n gnn_pruning python` resolves to
+`/usr/local/Caskroom/miniconda/base/envs/gnn_pruning/bin/python`, CPython **3.8.20**.
+All further commands use that interpreter per explicit user instruction. Revalidation:
+`python -m pytest tests/test_local_surgery_v2.py --tb=short -r fEs`: **71 passed,
+2 CUDA skipped in 3.75s**, exit0. The selected conda runtime still differs from
+package metadata>=3.10; no silent Python upgrade or metadata relaxation was made.
+
+Scientific blockers listed above are historical: the researcher explicitly resolved
+them in SPEC §15 R2. Stages II–III may proceed in sequence after this gate.

@@ -2,7 +2,7 @@
 
 **Canonical document:** [LOCAL_STRUCTURED_V2_SPEC.md](LOCAL_STRUCTURED_V2_SPEC.md).
 Status (2026-10-27): audit read at `5c42596`; Stage I implementation authorized
-by the researcher. Full methodology remains blocked on SPEC §15 decisions.
+by the researcher. SPEC §15 R2 records final researcher decisions for Stages II–III (2026-10-27).
 See [three-stage Test-First plan](IMPLEMENTATION_PLAN.md).
 
 Read in order:

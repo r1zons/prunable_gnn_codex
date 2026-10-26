@@ -14,10 +14,12 @@ and [three-stage implementation plan](methodology/IMPLEMENTATION_PLAN.md).
 Stage I Local Surgery: Red **40 failed / 31 passed / 2 CUDA skipped**,
 then Green **71 passed / 2 CUDA skipped**; legacy subset **31 passed**.
 See [measured evidence and limitations](implementation/LOCAL_STRUCTURED_V2_STAGE_I.md).
-Observed runtime Python3.8.20 is below package minimum3.10; supported-runtime,
-CUDA and POLUS qualification remain pending.
-Stages II–III have unresolved scientific decisions (SPEC §15); no training,
-large experiments or platform execution is authorized. Historical evidence is unchanged.
+R2 decisions are explicit in SPEC §15; Stages II–III are authorized sequentially.
+Stage I revalidated on Python3.11.13:71 passed/2 skipped, then on user-selected
+conda gnn_pruning (Python3.8.20):71 passed/2 skipped. The unnecessary temporary
+.venv was removed; conda environments unchanged. Subsequent work uses gnn_pruning.
+CUDA/POLUS remain unverified; no dense training, large experiment or server run
+is authorized. Tiny synthetic Q-policy unit tests are part of Stage III. Historical evidence is unchanged.
 
 **Article target:** 2026-11-02 (researcher-designated; official venue path/deadline still requires confirmation)
 

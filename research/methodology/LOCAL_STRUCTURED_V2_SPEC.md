@@ -3,7 +3,7 @@
 ## Спецификация экспериментального протокола
 
 **Дата исходной версии:** 26 октября 2026 г.; ревизия после аудита: 27 октября 2026 г.
-**Статус:** реализация этапа I (Local Surgery) разрешена прямым запросом исследователя; научный протокол этапов II–III ещё не заморожен.
+**Статус:** реализация этапа I (Local Surgery) разрешена прямым запросом исследователя; решения этапов II–III подтверждены исследователем 27 октября 2026 г. (ревизия R2).
 **Репозиторий:** r1zons/prunable_gnn_codex  
 **Приоритет:** воспроизводимая сравнительная статья, без расширения исследовательского объёма.
 
@@ -11,9 +11,9 @@
 Независимый аудит: `5c4259664dfb5ae05e84deadacfcdc9486abb7ca`,
 [неизменённый отчёт](../audits/2026-10-26_LOCAL_STRUCTURED_V2_INDEPENDENT_AUDIT.md).
 Эта ревизия сохраняет исходные исследовательские решения и уточняет границы реализации.
-Рекомендации аудитора не считаются автоматически утверждёнными решениями.
-Ответы ассистента в доступной копии исходного чата представлены ссылками-заглушками;
-их содержание не восстановлено по памяти. Открытые решения перечислены в §15.
+После диагностики доступа исследователь явно предоставил окончательные решения
+для этапов II–III. Они зафиксированы в §15 и имеют приоритет над открытыми
+вопросами исходной версии и рекомендациями аудита.
 Порядок работы и критерии приёмки: [IMPLEMENTATION_PLAN.md](IMPLEMENTATION_PLAN.md).
 
 ---
@@ -119,8 +119,10 @@ Dense-модель без прунинга является контрольно
 Аудит C01 установил: CiteSeer 30% ±1 п.п. недостижимо при a,b∈[4,32].
 Ближайшие пары (22,32) дают 31.189995% (GCN) и 31.194936% (SAGE).
 Это target violation, а не успешное попадание в допуск.
-Общий comparison domain статических и адаптивных методов остаётся блокером §15;
-§4.7 сам по себе его не решает.
+Принудительное выравнивание достигнутого сжатия не требуется. Статики используют
+band/fallback §4.7; адаптивные методы сохраняют собственный поиск и stopping.
+Достигнутое сжатие и отклонение — результаты законченных процедур. Нельзя заявлять
+превосходство при одинаковом фактическом сжатии на основе только общей цели.
 
 ## 4. Статические методы
 
@@ -191,7 +193,8 @@ $$q_i=|w_i g_i|,\qquad g_i=\frac{\partial\mathcal L_{\mathrm{train}}}{\partial w
 
 В отличие от оригинального SNIP, оценки рассчитываются после предварительного обучения модели и используются для структурного удаления целых скрытых каналов.
 
-Должны быть зафиксированы способ формирования train batch, режим dropout и правила обработки нулевых градиентов.
+Операционный контракт scoring зафиксирован в §15: полный transductive граф,
+CE mean только на train-node labels, eval/dropout-off с включённым autograd.
 
 ### 4.5. GraSP-based post-training pruning
 
@@ -436,7 +439,7 @@ seeds 202/303 не превращают его в третье независи�
 
 Если оптимизация префиксными суммами реализуется, она дополнительно проверяется сравнением с прямым вычислением score.
 
-## 11. Открытые вопросы
+## 11. Исходные открытые вопросы (статус см. ревизию R2 в §15)
 
 | Вопрос | Способ закрытия |
 |---|---|
@@ -503,23 +506,82 @@ seeds 202/303 не превращают его в третье независи�
 Он не разрешает обучение или большие эксперименты и не закрывает неизвестные
 решения из недоступных ответов чата. Для этапов II–III действуют блокеры ниже.
 
-## 15. Решения после аудита и оставшиеся блокеры
+## 15. Утверждённая ревизия R2 — 27 октября 2026
 
-| Finding | Ревизия / статус | Gate |
-|---|---|---|
-| C01, M01 | Недостижимость CiteSeer30 признана; band-search и nearest fallback §4.7 сохранены как исходное предложение. Выбор общего nearest shell либо free trade-off с запретом matched claim ещё не подтверждён | До этапа II |
-| C02, M05 | R=0.6Δs−0.4D и symmetric penalty сохраняются; accuracy задаётся долями 0…1. Не определены γ, STOP0, учёт STOP в horizon, discount/момент P, исчерпывающие terminal reasons и validation-only бюджет λ | До этапа III |
-| M04 | Физический count включает bias. Выбор saliency bias, train batch/loss, dropout, unused/zero gradients, finite scores и deterministic ties ещё требует явного контракта; предложения аудитора не объявлены утверждёнными | До scoring этапа II |
-| C03 | GraSP условный; signed Hg и направление уточнены. Исключение разрешено исходным протоколом при непрохождении gate | До включения GraSP |
-| M02, M07 | Причинный RL claim снят; описательная интерпретация, pilot отдельно от confirmation; бюджет поиска сообщается | Analysis plan до кампании |
-| M03 | V2 Bellman max должен учитывать только next legal actions, unvisited legal=0, terminal bootstrap=0. State version включает exact widths, signed deviation, remaining steps; bucket state остаётся approximate heuristic | Этап III tests |
-| M06 | Полный config/hash, dense checkpoint/hash, split indices/hash, original kept IDs и V2 method identity обязательны. Legacy pipeline не считается реализацией этого контракта | Этап III integration |
-| M08, m02 | §2.1 фиксирует независимые tensor/count/logit/reload oracles и пределы архитектур; CPU gate проверяется первым | Этап I |
-| M09 | Local/POLUS размещение, manifests и supported runtime ещё не заморожены. Сохранённые V1 environments не сертифицируют V2 | До кампании |
-| m01 | Равномерность по width pairs и условно по subsets — исходное предложение; это не равномерность по всем маскам. Seed derivation и ties открыты | До Random этапа II |
-| m03 | Для bidirected edge entries среднее число соседей = E_entries/N с явной self-loop policy; legacy state не переинтерпретируется | Этап III state |
+Прямое сообщение исследователя закрывает блокеры этапов II–III. Алгоритмы не
+перестраиваются; последующие технические defaults не являются новыми критериями.
 
-Реализация этапа I не зависит от выбора comparison domain, λ или STOP.
-При отсутствии подтверждения решений этапы II–III отмечаются BLOCKED,
-а этап I доводится до проверяемого результата. Протокол не объявляется полностью
-утверждённым только потому, что физическая операция прошла pytest.
+### 15.1. Static search и сравнение
+
+Общие nominal targets 0.30/0.50, tolerance 0.01. Для статиков: все пары ширин
+от min4 до dense width; importance один раз на dense. По каждому hidden слою
+ранжирование учитывает входящие/исходящие веса и удаляемый bias. Magnitude
+`abs(w)`, SNIP `abs(w*g)`; все исчезающие координаты полной маски считаются
+ровно один раз. Output bias не исчезает. Сохраняются каналы с наибольшим score,
+при равенстве — меньший original channel ID. Для каждой пары строится одна
+prefix mask; из band выбирается минимальная удаляемая сумма. Равные полные
+scores разрешаются лексикографически по паре ширин (h1,h2).
+Если band пуст, сначала все ближайшие достижимые пары (включая ties), затем
+тот же критерий метода. Ни accuracy oracle, ни normalization по числу удалённых
+параметров не добавляются. Random равномерен по допустимым width pairs и условно
+по subsets, без saliency/validation oracle. RNG локален (seed из config), порядок
+pairs лексикографический; одинаковые seed/model/target воспроизводят выбор.
+
+Scoring включает все weight/bias tensors модели. SNIP/GraSP используют полную
+графовую структуру и mean cross entropy только на train indices; dropout отключён,
+weight decay в scoring loss не добавляется. Рабочая копия, исходные параметры,
+режимы, gradients и RNG сохраняются. Unused gradients считаются нулевыми;
+нулевые saliency допустимы, degeneracy регистрируется; NaN/Inf отклоняются.
+GraSP: g=grad(L,W,create_graph=True), Hg=grad(sum(g*stop_gradient(g)),W),
+q=-w*Hg signed. Удаляемая сумма максимизируется; channel keep ranking — от меньшего
+signed deletion score к большему. Включение условно до analytic/finite-difference,
+orientation и union tests. Непрохождение gate не заменяется эвристикой.
+
+Адаптивным методам не добавляется обязательное target-hit или новый budget filter.
+Финальные achieved sparsity/gap — результаты; сравнение описывает законченные
+процедуры, без заявления о matched-compression превосходстве или causal RL effect.
+
+### 15.2. Reward, STOP и horizon
+
+R_t=0.6Δs−0.4 max(0,A_dense,val−A_t,val), accuracy в долях [0,1].
+P(s)=−λ max(0,abs(s−target)−eps), λ обязателен в adaptive config (unit tests задают
+его явно); validation-only pilot выбирает λ позднее, без test feedback.
+Gamma Q=0.9. STOP доступен только после первого успешного удаления, независимо
+от target; STOP-transition имеет reward только P. Максимум20 успешных удалений;
+STOP этот счётчик не увеличивает. Invalid actions не меняют model/counter/RNG.
+P применяется ровно один раз на терминальной transition: STOP, max_steps,
+no_valid_actions, либо у Greedy target_reached. Старых V1 bonuses нет.
+Q не останавливается автоматически на target или accuracy-drop.
+Greedy оценивает все legal кандидаты по R + P, если кандидат терминальный;
+останавливается при s>=target−eps, max_steps или отсутствии удаления.
+При совпадении причин приоритет: max_steps, no_valid_actions, Greedy target_reached.
+На изначально минимальной архитектуре без legal удаления допустим исходный
+terminal no_valid_actions, без нарушения счётчика и без попытки surgery.
+
+Полный discounted return Q — сумма gamma^j reward_j по transitions, включая
+STOP. Если последний pruning step терминален, P включён в его reward, иначе
+STOP выдаёт P на следующей transition. На STOP повторный accuracy cost не взимается.
+Это сохраняет path dependence R и soft target preference; гарантии hit нет.
+
+### 15.3. Q state/update и отчётность
+
+State version v2 содержит exact hidden widths, remaining successful-deletion
+horizon и accuracy/drop bucket. Signed target deviation вычисляется из widths,
+P0 и target, записывается для диагностики. Graph остаётся фиксирован в одном run.
+Без retained-channel signature это approximate aggregated-state heuristic,
+без Markov/convergence гарантии. Next maximum — только по legal actions с
+unvisited legal Q=0; terminal bootstrap=0. Отслеживаются уникальные visited states,
+число сохранённых Q entries и доля незаполненных legal state-action cells.
+Каждый episode и greedy deployment начинается с frozen dense checkpoint;
+reported model — actual final, без best-intermediate substitution.
+
+### 15.4. Технический gate и provenance
+
+Этап I повторно проверяется на Python>=3.10 до II. Этапы II–III — Test-First,
+отдельные Red/Green commits, V1 regressions и synthetic integration без fit.
+Полный config, architecture/tensor/checkpoint/split hashes, indices, original kept
+IDs, method V2 identity, seed, trajectories/cost counters сохраняются. Test labels
+недоступны scoring/reward/search. No fine-tuning. Отдельный V2 workflow не должен
+создавать новые split при несовпадении provenance. V1 API/results сохраняются.
+CUDA/POLUS и campaign placement требуют отдельных runtime gates перед кампанией;
+никакая новая кампания, установка на сервер или большое обучение здесь не запускаются.
