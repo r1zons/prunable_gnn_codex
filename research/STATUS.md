@@ -1,6 +1,20 @@
 # Canonical GNN pruning research status
 
-**Updated:** 2026-10-25
+**Updated:** 2026-10-27
+
+## V2 Cora functional matrix completed — 2026-10-27
+
+Authorized extension at `11ab841`: **18/18 new runs PASS** (GCN50, GraphSAGE30/50,
+six methods each); **24/24** functional cells with the unchanged earlier GCN30
+smoke. Both frozen POLUS seed101 checkpoints are linked independently to archived
+raw-input/job provenance and reuse the verified original Cora graph ordering.
+**160 V2 tests passed / 2 CUDA skipped**; all physical models, saved metrics,
+adaptive transitions and Q tables independently verified; **28,699** prior files
+unchanged. No implementation fix, GNN training, tuning or inference benchmark.
+**GO to a separately scoped validation-only Q-learning pilot** with these pinned
+inputs. Lambda2/max3/3 episodes remain diagnostic; target misses are reported
+algorithm outcomes. No pilot or broader campaign was executed here.
+See [matrix evidence and exact artifact index](experiments/local_structured_v2_cora_matrix_20261027/README.md).
 
 ## V2 Cora smoke update — 2026-10-27
 

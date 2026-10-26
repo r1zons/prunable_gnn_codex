@@ -1,5 +1,13 @@
 # Experiment campaign registry
 
+**LOCAL-STRUCTURED-V2-CORA-MATRIX-20261027** — completed diagnostic extension:
+18 new CPU runs (GCN50, GraphSAGE30/50, six methods each), **18/18 PASS**; with six
+reused GCN30 cells the matrix is **24/24**, without repeating GCN30. Frozen POLUS
+seed101 inputs with original row-sorted Cora provenance. **160 V2 passed / 2 CUDA
+skipped**;28,699 prior files unchanged; no code fix or tuning. GO to a separately
+scoped validation-only Q pilot. [Evidence](local_structured_v2_cora_matrix_20261027/README.md).
+Raw group: `${GNN_ARTIFACT_ROOT}/local-structured-v2-cora-matrix-20261027/`.
+
 2026-10-27 bounded diagnostic: **LOCAL-STRUCTURED-V2-CORA-SMOKE-20261027** — six
 local CPU pruning runs from the archived POLUS seed101 checkpoint, with graph
 reconstructed from recorded raw provenance; not pooled with V1. All6 PASS;
