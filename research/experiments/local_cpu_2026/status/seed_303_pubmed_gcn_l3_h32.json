@@ -1,0 +1,13 @@
+{
+  "condition": "pubmed_gcn_l3_h32",
+  "config": "${GNN_ARTIFACT_ROOT}/local-cpu-20261025/raw/configs/pubmed_gcn_l3_h32_seed303.yaml",
+  "config_sha256": "3fbbcc4eb455c51fc6d5cfe6b7b86d5c35d048dd1709ab22d7a003ebce2597b1",
+  "finished_at_utc": "2026-10-25T13:33:52.241134+00:00",
+  "log": "${GNN_ARTIFACT_ROOT}/local-cpu-20261025/raw/logs/pubmed_gcn_l3_h32_seed303.launch.log",
+  "log_sha256": "d8db44445b18a05b17230f3cc7f09e5badc86fa84fca8d761410bf58fcb0ac61",
+  "output_dir": "${GNN_ARTIFACT_ROOT}/local-cpu-20261025/raw/results/seed_303/pubmed_gcn_l3_h32",
+  "return_code": 0,
+  "seed": 303,
+  "started_at_utc": "2026-10-25T13:30:24.806255+00:00",
+  "status": "completed"
+}

@@ -1,0 +1,186 @@
+{
+  "status": "PASS",
+  "runs": [
+    {
+      "method": "magnitude_local_v2",
+      "model": "GCN [32,32]",
+      "seed": 101,
+      "target": 0.3,
+      "achieved": 0.2901960784313725,
+      "validation_accuracy": 0.8743068391866913,
+      "validation_macro_f1": 0.8417494932176935,
+      "terminal_reason": "static_plan_complete",
+      "elapsed_seconds": 4.51827702508308,
+      "status": "PASS",
+      "parameters_after": 33485,
+      "widths": [
+        23,
+        16
+      ],
+      "statistics": {},
+      "artifacts": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-smoke-20261027/outputs/local_structured_v2/magnitude_local_v2/target_0.3/aeda1fa0d41d",
+      "hashes": {
+        "pruned.pt": "ffbfd32aa2720f4b5e51de13077bf78c360205c1a51b26252cab3933d3ebda52",
+        "metrics.json": "42c404c831b1d4c37bd0285ee605177b6d4f42ce8adb036d5bec3ea298aa902c",
+        "trace.json": "9eaf6f5e94f5b2089032ca08cea54fe7ec069760710e0332a0334068af1d4d3e",
+        "q_table.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "config_snapshot.json": "ac34e74edb19777ddaebb21c75aa6f42ec88d8dac631a3dd59ba71b1b9c30587"
+      }
+    },
+    {
+      "method": "snip_pt_local_v2",
+      "model": "GCN [32,32]",
+      "seed": 101,
+      "target": 0.3,
+      "achieved": 0.2901960784313725,
+      "validation_accuracy": 0.7966728280961183,
+      "validation_macro_f1": 0.6855312586855291,
+      "terminal_reason": "static_plan_complete",
+      "elapsed_seconds": 4.309121731901541,
+      "status": "PASS",
+      "parameters_after": 33485,
+      "widths": [
+        23,
+        16
+      ],
+      "statistics": {},
+      "artifacts": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-smoke-20261027/outputs/local_structured_v2/snip_pt_local_v2/target_0.3/1933cda61d37",
+      "hashes": {
+        "pruned.pt": "b60ba214ad6ef869f392e4b9c5ce3b408df832263ffdc2263913ca883df064b7",
+        "metrics.json": "2f08c7f7102c4a2017d804103c0d97d99c238a81f23bc951f71531b8f0c46230",
+        "trace.json": "9eaf6f5e94f5b2089032ca08cea54fe7ec069760710e0332a0334068af1d4d3e",
+        "q_table.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "config_snapshot.json": "b3f27a92d11df77ea1f93d9031463f58b09f9580249b2123d9200cab6af449a6"
+      }
+    },
+    {
+      "method": "adaptive_greedy_local_v2",
+      "model": "GCN [32,32]",
+      "seed": 101,
+      "target": 0.3,
+      "achieved": 0.31075781664016955,
+      "validation_accuracy": 0.88909426987061,
+      "validation_macro_f1": 0.8766826280399573,
+      "terminal_reason": "target_reached",
+      "elapsed_seconds": 4.406165478983894,
+      "status": "PASS",
+      "parameters_after": 32515,
+      "widths": [
+        22,
+        32
+      ],
+      "statistics": {
+        "candidate_evaluations": 16,
+        "validation_evaluations": 17,
+        "scoring_seconds": 0.014113242155872285,
+        "surgery_seconds": 0.04237034067045897,
+        "terminal_reason": "target_reached"
+      },
+      "artifacts": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-smoke-20261027/outputs/local_structured_v2/adaptive_greedy_local_v2/target_0.3/b6ce93b48435",
+      "hashes": {
+        "pruned.pt": "77f73496302561bbf559b725405c2b4a22044b9df44a3c785ff1b58293c769db",
+        "metrics.json": "3e6873c9724b028910d8b93391eb3765db6b092c3d9e47a8e0e1b70d1d4b0956",
+        "trace.json": "68cab9737ce3f16559291e51a48cd30483946f49f370763c019de45b78399337",
+        "q_table.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "config_snapshot.json": "760e503356a603321f2fc3387ce4879e803518ba3fd490416678b5333cb240a3"
+      }
+    },
+    {
+      "method": "q_learning_local_v2",
+      "model": "GCN [32,32]",
+      "seed": 101,
+      "target": 0.3,
+      "achieved": 0.18645468998410175,
+      "validation_accuracy": 0.9001848428835489,
+      "validation_macro_f1": 0.8796561888220452,
+      "terminal_reason": "max_steps",
+      "elapsed_seconds": 4.522079222020693,
+      "status": "PASS",
+      "parameters_after": 38379,
+      "widths": [
+        26,
+        32
+      ],
+      "statistics": {
+        "unique_states": 7,
+        "q_entries": 5,
+        "legal_state_action_slots": 26,
+        "q_table_sparsity": 0.8076923076923077,
+        "episodes": 3,
+        "validation_evaluations": 14,
+        "scoring_seconds": 0.009214749094098806,
+        "surgery_seconds": 0.027309219120070338,
+        "terminal_reason": "max_steps",
+        "state_version": "local_v2",
+        "state_limitation": "aggregated heuristic; no retained-channel signature or MDP guarantee"
+      },
+      "artifacts": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-smoke-20261027/outputs/local_structured_v2/q_learning_local_v2/target_0.3/e63322e857a8",
+      "hashes": {
+        "pruned.pt": "cb9b28b82e114b5c95753a725a946d4ca8f04c85f32e12bc3dc3efdee2819afa",
+        "metrics.json": "7df2ffdb7a634c521fc2b13163adf1ff89ebcf19ae125c12b3dfb94d85922b46",
+        "trace.json": "062400e2c70390c421557416ba1e8a2491a0c6c6e52591f56e70a108a819a33a",
+        "q_table.json": "c3d4cf40b6dbcec7c92d215a308157896427995899a861ba286a34a6e31e532f",
+        "config_snapshot.json": "287f7dc5642a2704691abdc941a824b50f1d55e8024013bc84cde22d7cd93b95"
+      }
+    },
+    {
+      "method": "random_local_v2",
+      "model": "GCN [32,32]",
+      "seed": 101,
+      "target": 0.3,
+      "achieved": 0.29216746157922624,
+      "validation_accuracy": 0.8724584103512015,
+      "validation_macro_f1": 0.8521873708365054,
+      "terminal_reason": "static_plan_complete",
+      "elapsed_seconds": 4.6009713530074805,
+      "status": "PASS",
+      "parameters_after": 33392,
+      "widths": [
+        23,
+        13
+      ],
+      "statistics": {},
+      "artifacts": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-smoke-20261027/outputs/local_structured_v2/random_local_v2/target_0.3/19bd1f141a66",
+      "hashes": {
+        "pruned.pt": "d36f2b79725652591a1fe42b8fdde37aa38bf89aecebf1efc44addfd56de07b3",
+        "metrics.json": "cb52e905322fde8e0e01e00c2c280575831f7704f47c23010676cf540de88fee",
+        "trace.json": "9eaf6f5e94f5b2089032ca08cea54fe7ec069760710e0332a0334068af1d4d3e",
+        "q_table.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "config_snapshot.json": "4f3407cca3847bd82507a3c7860d99c6d457e6d08509f112d7d3e482b9db371b"
+      }
+    },
+    {
+      "method": "grasp_pt_local_v2",
+      "model": "GCN [32,32]",
+      "seed": 101,
+      "target": 0.3,
+      "achieved": 0.2915103338632751,
+      "validation_accuracy": 0.45471349353049906,
+      "validation_macro_f1": 0.2984115004492363,
+      "terminal_reason": "static_plan_complete",
+      "elapsed_seconds": 4.617379228002392,
+      "status": "PASS",
+      "parameters_after": 33423,
+      "widths": [
+        23,
+        14
+      ],
+      "statistics": {},
+      "artifacts": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-smoke-20261027/outputs/local_structured_v2/grasp_pt_local_v2/target_0.3/7a050e79fcad",
+      "hashes": {
+        "pruned.pt": "588c4cfce1b787d778ed6e377b31659c6d8b717d095cb3ca45d7af1a6247247f",
+        "metrics.json": "58c9ed3e1d3af641059439f92f4e76647a526169f5cd18c70ed570050cdce1f2",
+        "trace.json": "9eaf6f5e94f5b2089032ca08cea54fe7ec069760710e0332a0334068af1d4d3e",
+        "q_table.json": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "config_snapshot.json": "effe9763e5ffe1085c1168478f5ffbb5b7721410d3025a2fb5fec13c48df5306"
+      }
+    }
+  ],
+  "protected_files_verified": 28628,
+  "prior_artifacts_modified": [],
+  "test_label_isolation": "workflow_v2 masks all test labels to -1 before score/plan/apply; only train_idx and validation callback enter search. Passed synthetic permutation regression in full V2 suite; saved full-test metrics are post-termination reporting only.",
+  "limitations": [
+    "No original contemporaneous graph tensor digest: graph reconstructed from archived manifest and executed raw-input preparation lineage.",
+    "No latency benchmark, CUDA test or research hyperparameter approval."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "cuda_available": false,
+  "git_commit": "72293149d8fff186dd268789e7b8fea5848c9360",
+  "git_status_porcelain": "",
+  "launch_processes_max": 2,
+  "mps_available": false,
+  "platform": "macOS-10.16-x86_64-i386-64bit",
+  "python": "3.8.20 (default, Oct  3 2024, 10:25:41) \n[Clang 14.0.6 ]",
+  "tests": "82 passed in 10.11s",
+  "threads_per_process": 2,
+  "torch": "2.2.2",
+  "torch_geometric": "2.6.1",
+  "torch_threads_detected": 6
+}

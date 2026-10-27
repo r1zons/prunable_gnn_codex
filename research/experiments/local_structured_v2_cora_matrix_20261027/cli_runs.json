@@ -1,0 +1,542 @@
+[
+  {
+    "run_id": "gcn_seed101_target50_random_local_v2",
+    "model": "gcn",
+    "method": "random_local_v2",
+    "seed": 101,
+    "target_sparsity": 0.5,
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "-m",
+      "gnn_pruning",
+      "prune",
+      "--checkpoint",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_gcn_l3_h32/seed_101/cora_gcn_l3_h32/dense_checkpoint.pt",
+      "--config",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/gcn_seed101_target50_random_local_v2.yaml"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "cli_seconds": 5.9990883430000395,
+    "config": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/gcn_seed101_target50_random_local_v2.yaml",
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/logs/gcn_seed101_target50_random_local_v2.log",
+    "artifact_dir": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/gcn/local_structured_v2/random_local_v2/target_0.5/6b76c54e6145"
+  },
+  {
+    "run_id": "gcn_seed101_target50_magnitude_local_v2",
+    "model": "gcn",
+    "method": "magnitude_local_v2",
+    "seed": 101,
+    "target_sparsity": 0.5,
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "-m",
+      "gnn_pruning",
+      "prune",
+      "--checkpoint",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_gcn_l3_h32/seed_101/cora_gcn_l3_h32/dense_checkpoint.pt",
+      "--config",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/gcn_seed101_target50_magnitude_local_v2.yaml"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "cli_seconds": 4.384259196929634,
+    "config": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/gcn_seed101_target50_magnitude_local_v2.yaml",
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/logs/gcn_seed101_target50_magnitude_local_v2.log",
+    "artifact_dir": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/gcn/local_structured_v2/magnitude_local_v2/target_0.5/f8e810a2dc55"
+  },
+  {
+    "run_id": "gcn_seed101_target50_snip_pt_local_v2",
+    "model": "gcn",
+    "method": "snip_pt_local_v2",
+    "seed": 101,
+    "target_sparsity": 0.5,
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "-m",
+      "gnn_pruning",
+      "prune",
+      "--checkpoint",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_gcn_l3_h32/seed_101/cora_gcn_l3_h32/dense_checkpoint.pt",
+      "--config",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/gcn_seed101_target50_snip_pt_local_v2.yaml"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "cli_seconds": 4.505654918961227,
+    "config": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/gcn_seed101_target50_snip_pt_local_v2.yaml",
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/logs/gcn_seed101_target50_snip_pt_local_v2.log",
+    "artifact_dir": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/gcn/local_structured_v2/snip_pt_local_v2/target_0.5/731e97a3b5bb"
+  },
+  {
+    "run_id": "gcn_seed101_target50_grasp_pt_local_v2",
+    "model": "gcn",
+    "method": "grasp_pt_local_v2",
+    "seed": 101,
+    "target_sparsity": 0.5,
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "-m",
+      "gnn_pruning",
+      "prune",
+      "--checkpoint",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_gcn_l3_h32/seed_101/cora_gcn_l3_h32/dense_checkpoint.pt",
+      "--config",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/gcn_seed101_target50_grasp_pt_local_v2.yaml"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "cli_seconds": 4.319584246026352,
+    "config": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/gcn_seed101_target50_grasp_pt_local_v2.yaml",
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/logs/gcn_seed101_target50_grasp_pt_local_v2.log",
+    "artifact_dir": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/gcn/local_structured_v2/grasp_pt_local_v2/target_0.5/213ef48a70be"
+  },
+  {
+    "run_id": "gcn_seed101_target50_adaptive_greedy_local_v2",
+    "model": "gcn",
+    "method": "adaptive_greedy_local_v2",
+    "seed": 101,
+    "target_sparsity": 0.5,
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "-m",
+      "gnn_pruning",
+      "prune",
+      "--checkpoint",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_gcn_l3_h32/seed_101/cora_gcn_l3_h32/dense_checkpoint.pt",
+      "--config",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/gcn_seed101_target50_adaptive_greedy_local_v2.yaml"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "cli_seconds": 4.8726282509742305,
+    "config": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/gcn_seed101_target50_adaptive_greedy_local_v2.yaml",
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/logs/gcn_seed101_target50_adaptive_greedy_local_v2.log",
+    "artifact_dir": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/gcn/local_structured_v2/adaptive_greedy_local_v2/target_0.5/9cc9ebb0a7de"
+  },
+  {
+    "run_id": "gcn_seed101_target50_q_learning_local_v2",
+    "model": "gcn",
+    "method": "q_learning_local_v2",
+    "seed": 101,
+    "target_sparsity": 0.5,
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "-m",
+      "gnn_pruning",
+      "prune",
+      "--checkpoint",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_gcn_l3_h32/seed_101/cora_gcn_l3_h32/dense_checkpoint.pt",
+      "--config",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/gcn_seed101_target50_q_learning_local_v2.yaml"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "cli_seconds": 4.841540063964203,
+    "config": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/gcn_seed101_target50_q_learning_local_v2.yaml",
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/logs/gcn_seed101_target50_q_learning_local_v2.log",
+    "artifact_dir": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/gcn/local_structured_v2/q_learning_local_v2/target_0.5/1e0f37ecb786"
+  },
+  {
+    "run_id": "graphsage_seed101_target30_random_local_v2",
+    "model": "graphsage",
+    "method": "random_local_v2",
+    "seed": 101,
+    "target_sparsity": 0.3,
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "-m",
+      "gnn_pruning",
+      "prune",
+      "--checkpoint",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_graphsage_l3_h32/seed_101/cora_graphsage_l3_h32/dense_checkpoint.pt",
+      "--config",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/graphsage_seed101_target30_random_local_v2.yaml"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "cli_seconds": 4.478804053971544,
+    "config": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/graphsage_seed101_target30_random_local_v2.yaml",
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/logs/graphsage_seed101_target30_random_local_v2.log",
+    "artifact_dir": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/graphsage/local_structured_v2/random_local_v2/target_0.3/3adc893c21ec"
+  },
+  {
+    "run_id": "graphsage_seed101_target30_magnitude_local_v2",
+    "model": "graphsage",
+    "method": "magnitude_local_v2",
+    "seed": 101,
+    "target_sparsity": 0.3,
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "-m",
+      "gnn_pruning",
+      "prune",
+      "--checkpoint",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_graphsage_l3_h32/seed_101/cora_graphsage_l3_h32/dense_checkpoint.pt",
+      "--config",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/graphsage_seed101_target30_magnitude_local_v2.yaml"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "cli_seconds": 4.538160003023222,
+    "config": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/graphsage_seed101_target30_magnitude_local_v2.yaml",
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/logs/graphsage_seed101_target30_magnitude_local_v2.log",
+    "artifact_dir": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/graphsage/local_structured_v2/magnitude_local_v2/target_0.3/c46bdadce8c9"
+  },
+  {
+    "run_id": "graphsage_seed101_target30_snip_pt_local_v2",
+    "model": "graphsage",
+    "method": "snip_pt_local_v2",
+    "seed": 101,
+    "target_sparsity": 0.3,
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "-m",
+      "gnn_pruning",
+      "prune",
+      "--checkpoint",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_graphsage_l3_h32/seed_101/cora_graphsage_l3_h32/dense_checkpoint.pt",
+      "--config",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/graphsage_seed101_target30_snip_pt_local_v2.yaml"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "cli_seconds": 4.5961623679613695,
+    "config": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/graphsage_seed101_target30_snip_pt_local_v2.yaml",
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/logs/graphsage_seed101_target30_snip_pt_local_v2.log",
+    "artifact_dir": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/graphsage/local_structured_v2/snip_pt_local_v2/target_0.3/06f21516f784"
+  },
+  {
+    "run_id": "graphsage_seed101_target30_grasp_pt_local_v2",
+    "model": "graphsage",
+    "method": "grasp_pt_local_v2",
+    "seed": 101,
+    "target_sparsity": 0.3,
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "-m",
+      "gnn_pruning",
+      "prune",
+      "--checkpoint",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_graphsage_l3_h32/seed_101/cora_graphsage_l3_h32/dense_checkpoint.pt",
+      "--config",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/graphsage_seed101_target30_grasp_pt_local_v2.yaml"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "cli_seconds": 4.700026230071671,
+    "config": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/graphsage_seed101_target30_grasp_pt_local_v2.yaml",
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/logs/graphsage_seed101_target30_grasp_pt_local_v2.log",
+    "artifact_dir": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/graphsage/local_structured_v2/grasp_pt_local_v2/target_0.3/32af1ef135e5"
+  },
+  {
+    "run_id": "graphsage_seed101_target30_adaptive_greedy_local_v2",
+    "model": "graphsage",
+    "method": "adaptive_greedy_local_v2",
+    "seed": 101,
+    "target_sparsity": 0.3,
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "-m",
+      "gnn_pruning",
+      "prune",
+      "--checkpoint",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_graphsage_l3_h32/seed_101/cora_graphsage_l3_h32/dense_checkpoint.pt",
+      "--config",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/graphsage_seed101_target30_adaptive_greedy_local_v2.yaml"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "cli_seconds": 5.058129144948907,
+    "config": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/graphsage_seed101_target30_adaptive_greedy_local_v2.yaml",
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/logs/graphsage_seed101_target30_adaptive_greedy_local_v2.log",
+    "artifact_dir": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/graphsage/local_structured_v2/adaptive_greedy_local_v2/target_0.3/6d16b9e11aa9"
+  },
+  {
+    "run_id": "graphsage_seed101_target30_q_learning_local_v2",
+    "model": "graphsage",
+    "method": "q_learning_local_v2",
+    "seed": 101,
+    "target_sparsity": 0.3,
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "-m",
+      "gnn_pruning",
+      "prune",
+      "--checkpoint",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_graphsage_l3_h32/seed_101/cora_graphsage_l3_h32/dense_checkpoint.pt",
+      "--config",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/graphsage_seed101_target30_q_learning_local_v2.yaml"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "cli_seconds": 5.432384223095141,
+    "config": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/graphsage_seed101_target30_q_learning_local_v2.yaml",
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/logs/graphsage_seed101_target30_q_learning_local_v2.log",
+    "artifact_dir": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/graphsage/local_structured_v2/q_learning_local_v2/target_0.3/3fc750c09a3f"
+  },
+  {
+    "run_id": "graphsage_seed101_target50_random_local_v2",
+    "model": "graphsage",
+    "method": "random_local_v2",
+    "seed": 101,
+    "target_sparsity": 0.5,
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "-m",
+      "gnn_pruning",
+      "prune",
+      "--checkpoint",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_graphsage_l3_h32/seed_101/cora_graphsage_l3_h32/dense_checkpoint.pt",
+      "--config",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/graphsage_seed101_target50_random_local_v2.yaml"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "cli_seconds": 4.404844415024854,
+    "config": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/graphsage_seed101_target50_random_local_v2.yaml",
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/logs/graphsage_seed101_target50_random_local_v2.log",
+    "artifact_dir": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/graphsage/local_structured_v2/random_local_v2/target_0.5/bb1ce2953c31"
+  },
+  {
+    "run_id": "graphsage_seed101_target50_magnitude_local_v2",
+    "model": "graphsage",
+    "method": "magnitude_local_v2",
+    "seed": 101,
+    "target_sparsity": 0.5,
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "-m",
+      "gnn_pruning",
+      "prune",
+      "--checkpoint",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_graphsage_l3_h32/seed_101/cora_graphsage_l3_h32/dense_checkpoint.pt",
+      "--config",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/graphsage_seed101_target50_magnitude_local_v2.yaml"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "cli_seconds": 4.804280113079585,
+    "config": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/graphsage_seed101_target50_magnitude_local_v2.yaml",
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/logs/graphsage_seed101_target50_magnitude_local_v2.log",
+    "artifact_dir": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/graphsage/local_structured_v2/magnitude_local_v2/target_0.5/c11668637f49"
+  },
+  {
+    "run_id": "graphsage_seed101_target50_snip_pt_local_v2",
+    "model": "graphsage",
+    "method": "snip_pt_local_v2",
+    "seed": 101,
+    "target_sparsity": 0.5,
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "-m",
+      "gnn_pruning",
+      "prune",
+      "--checkpoint",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_graphsage_l3_h32/seed_101/cora_graphsage_l3_h32/dense_checkpoint.pt",
+      "--config",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/graphsage_seed101_target50_snip_pt_local_v2.yaml"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "cli_seconds": 4.649826314998791,
+    "config": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/graphsage_seed101_target50_snip_pt_local_v2.yaml",
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/logs/graphsage_seed101_target50_snip_pt_local_v2.log",
+    "artifact_dir": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/graphsage/local_structured_v2/snip_pt_local_v2/target_0.5/4938250e1ff8"
+  },
+  {
+    "run_id": "graphsage_seed101_target50_grasp_pt_local_v2",
+    "model": "graphsage",
+    "method": "grasp_pt_local_v2",
+    "seed": 101,
+    "target_sparsity": 0.5,
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "-m",
+      "gnn_pruning",
+      "prune",
+      "--checkpoint",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_graphsage_l3_h32/seed_101/cora_graphsage_l3_h32/dense_checkpoint.pt",
+      "--config",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/graphsage_seed101_target50_grasp_pt_local_v2.yaml"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "cli_seconds": 4.684423477970995,
+    "config": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/graphsage_seed101_target50_grasp_pt_local_v2.yaml",
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/logs/graphsage_seed101_target50_grasp_pt_local_v2.log",
+    "artifact_dir": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/graphsage/local_structured_v2/grasp_pt_local_v2/target_0.5/d1207a660180"
+  },
+  {
+    "run_id": "graphsage_seed101_target50_adaptive_greedy_local_v2",
+    "model": "graphsage",
+    "method": "adaptive_greedy_local_v2",
+    "seed": 101,
+    "target_sparsity": 0.5,
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "-m",
+      "gnn_pruning",
+      "prune",
+      "--checkpoint",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_graphsage_l3_h32/seed_101/cora_graphsage_l3_h32/dense_checkpoint.pt",
+      "--config",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/graphsage_seed101_target50_adaptive_greedy_local_v2.yaml"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "cli_seconds": 5.173756452975795,
+    "config": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/graphsage_seed101_target50_adaptive_greedy_local_v2.yaml",
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/logs/graphsage_seed101_target50_adaptive_greedy_local_v2.log",
+    "artifact_dir": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/graphsage/local_structured_v2/adaptive_greedy_local_v2/target_0.5/ac596aed6913"
+  },
+  {
+    "run_id": "graphsage_seed101_target50_q_learning_local_v2",
+    "model": "graphsage",
+    "method": "q_learning_local_v2",
+    "seed": 101,
+    "target_sparsity": 0.5,
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "-m",
+      "gnn_pruning",
+      "prune",
+      "--checkpoint",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_graphsage_l3_h32/seed_101/cora_graphsage_l3_h32/dense_checkpoint.pt",
+      "--config",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/graphsage_seed101_target50_q_learning_local_v2.yaml"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "cli_seconds": 5.315426853951067,
+    "config": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/configs/graphsage_seed101_target50_q_learning_local_v2.yaml",
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/logs/graphsage_seed101_target50_q_learning_local_v2.log",
+    "artifact_dir": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/graphsage/local_structured_v2/q_learning_local_v2/target_0.5/e1e864c6f315"
+  }
+]

@@ -1,0 +1,358 @@
+[
+  {
+    "run_id": "gcn_target30_episodes30_lambda2",
+    "phase": "a30",
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/pilot_runner.py",
+      "q",
+      "--model",
+      "gcn",
+      "--target",
+      "0.3",
+      "--episodes",
+      "30",
+      "--penalty-lambda",
+      "2"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "elapsed_seconds": 9.406058517983183,
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/logs/gcn_target30_episodes30_lambda2.log"
+  },
+  {
+    "run_id": "gcn_target50_episodes30_lambda2",
+    "phase": "a30",
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/pilot_runner.py",
+      "q",
+      "--model",
+      "gcn",
+      "--target",
+      "0.5",
+      "--episodes",
+      "30",
+      "--penalty-lambda",
+      "2"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "elapsed_seconds": 8.974566290038638,
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/logs/gcn_target50_episodes30_lambda2.log"
+  },
+  {
+    "run_id": "graphsage_target30_episodes30_lambda2",
+    "phase": "a30",
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/pilot_runner.py",
+      "q",
+      "--model",
+      "graphsage",
+      "--target",
+      "0.3",
+      "--episodes",
+      "30",
+      "--penalty-lambda",
+      "2"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "elapsed_seconds": 27.90554616402369,
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/logs/graphsage_target30_episodes30_lambda2.log"
+  },
+  {
+    "run_id": "graphsage_target50_episodes30_lambda2",
+    "phase": "a30",
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/pilot_runner.py",
+      "q",
+      "--model",
+      "graphsage",
+      "--target",
+      "0.5",
+      "--episodes",
+      "30",
+      "--penalty-lambda",
+      "2"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "elapsed_seconds": 26.940342360991053,
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/logs/graphsage_target50_episodes30_lambda2.log"
+  },
+  {
+    "run_id": "random_80",
+    "phase": "random",
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/pilot_runner.py",
+      "random"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "elapsed_seconds": 13.189902843092568,
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/logs/random_80.log"
+  },
+  {
+    "run_id": "gcn_target30_episodes100_lambda2",
+    "phase": "a100",
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/pilot_runner.py",
+      "q",
+      "--model",
+      "gcn",
+      "--target",
+      "0.3",
+      "--episodes",
+      "100",
+      "--penalty-lambda",
+      "2"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "elapsed_seconds": 24.151137065025978,
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/logs/gcn_target30_episodes100_lambda2.log"
+  },
+  {
+    "run_id": "gcn_target50_episodes100_lambda2",
+    "phase": "a100",
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/pilot_runner.py",
+      "q",
+      "--model",
+      "gcn",
+      "--target",
+      "0.5",
+      "--episodes",
+      "100",
+      "--penalty-lambda",
+      "2"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "elapsed_seconds": 21.11569160199724,
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/logs/gcn_target50_episodes100_lambda2.log"
+  },
+  {
+    "run_id": "graphsage_target30_episodes100_lambda2",
+    "phase": "a100",
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/pilot_runner.py",
+      "q",
+      "--model",
+      "graphsage",
+      "--target",
+      "0.3",
+      "--episodes",
+      "100",
+      "--penalty-lambda",
+      "2"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "elapsed_seconds": 75.64400586299598,
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/logs/graphsage_target30_episodes100_lambda2.log"
+  },
+  {
+    "run_id": "graphsage_target50_episodes100_lambda2",
+    "phase": "a100",
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/pilot_runner.py",
+      "q",
+      "--model",
+      "graphsage",
+      "--target",
+      "0.5",
+      "--episodes",
+      "100",
+      "--penalty-lambda",
+      "2"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "elapsed_seconds": 80.59265439491719,
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/logs/graphsage_target50_episodes100_lambda2.log"
+  },
+  {
+    "run_id": "gcn_target30_episodes100_lambda0.5",
+    "phase": "b",
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/pilot_runner.py",
+      "q",
+      "--model",
+      "gcn",
+      "--target",
+      "0.3",
+      "--episodes",
+      "100",
+      "--penalty-lambda",
+      "0.5"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "elapsed_seconds": 22.584041850059293,
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/logs/gcn_target30_episodes100_lambda0.5.log"
+  },
+  {
+    "run_id": "gcn_target30_episodes100_lambda5",
+    "phase": "b",
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/pilot_runner.py",
+      "q",
+      "--model",
+      "gcn",
+      "--target",
+      "0.3",
+      "--episodes",
+      "100",
+      "--penalty-lambda",
+      "5.0"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "elapsed_seconds": 20.78862706408836,
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/logs/gcn_target30_episodes100_lambda5.log"
+  },
+  {
+    "run_id": "graphsage_target50_episodes100_lambda0.5",
+    "phase": "b",
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/pilot_runner.py",
+      "q",
+      "--model",
+      "graphsage",
+      "--target",
+      "0.5",
+      "--episodes",
+      "100",
+      "--penalty-lambda",
+      "0.5"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "elapsed_seconds": 83.94926964794286,
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/logs/graphsage_target50_episodes100_lambda0.5.log"
+  },
+  {
+    "run_id": "graphsage_target50_episodes100_lambda5",
+    "phase": "b",
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/pilot_runner.py",
+      "q",
+      "--model",
+      "graphsage",
+      "--target",
+      "0.5",
+      "--episodes",
+      "100",
+      "--penalty-lambda",
+      "5.0"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONPATH": "src",
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "exit_code": 0,
+    "elapsed_seconds": 79.42082517594099,
+    "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/logs/graphsage_target50_episodes100_lambda5.log"
+  }
+]

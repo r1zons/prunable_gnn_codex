@@ -1,0 +1,13 @@
+{
+  "condition": "cora_gcn_l3_h32",
+  "config": "${GNN_ARTIFACT_ROOT}/local-cpu-20261025/raw/configs/cora_gcn_l3_h32_seed303.yaml",
+  "config_sha256": "4ba61bd695bbd8e99a0b1d530393b86d790abaa23bd33718e7563fa75288ca24",
+  "finished_at_utc": "2026-10-25T13:23:33.712771+00:00",
+  "log": "${GNN_ARTIFACT_ROOT}/local-cpu-20261025/raw/logs/cora_gcn_l3_h32_seed303.launch.log",
+  "log_sha256": "665c6c789d94433466fef63fbfa3cef20156e90b9d55c073fd670d8b3236c411",
+  "output_dir": "${GNN_ARTIFACT_ROOT}/local-cpu-20261025/raw/results/seed_303/cora_gcn_l3_h32",
+  "return_code": 0,
+  "seed": 303,
+  "started_at_utc": "2026-10-25T13:22:51.357774+00:00",
+  "status": "completed"
+}

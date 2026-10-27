@@ -1,0 +1,89 @@
+{
+  "generated_at_utc": "2026-10-23T21:28:56.712335+00:00",
+  "git_commit": "72293149d8fff186dd268789e7b8fea5848c9360",
+  "platform": "polus_cpu",
+  "campaign": "pilot-cpu-101-c4-v2",
+  "seed": 101,
+  "required_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+  "all_conditions_complete": true,
+  "complete_conditions": 6,
+  "expected_conditions": 6,
+  "post_prune_rows_present": 84,
+  "expected_post_prune_rows": 84,
+  "test_results_used_for_selection": false,
+  "historical_results_pooled": false,
+  "conditions": [
+    {
+      "condition": "cora_gcn_l3_h32",
+      "job_id": "1598695",
+      "required_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "status": "COMPLETE",
+      "execution_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "job_walltime_sec": 93.0,
+      "lsf_status": "DONE",
+      "elapsed_sec": 45.06872295960784,
+      "post_prune_rows": 14,
+      "validation_csv_sha256": "c731dbc12339e8c4a0dca337f72c15a6468981c0fc7ce061763c6e1c81c3bd6c"
+    },
+    {
+      "condition": "cora_graphsage_l3_h32",
+      "job_id": "1598696",
+      "required_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "status": "COMPLETE",
+      "execution_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "job_walltime_sec": 125.0,
+      "lsf_status": "DONE",
+      "elapsed_sec": 77.96849983092397,
+      "post_prune_rows": 14,
+      "validation_csv_sha256": "fe937efdb5627312f2cfe621148ba5b3b802731ebd905fed565962eb8c854960"
+    },
+    {
+      "condition": "citeseer_gcn_l3_h32",
+      "job_id": "1598697",
+      "required_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "status": "COMPLETE",
+      "execution_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "job_walltime_sec": 123.0,
+      "lsf_status": "DONE",
+      "elapsed_sec": 75.44925464969128,
+      "post_prune_rows": 14,
+      "validation_csv_sha256": "bb62f963f8d672495d00ef4afea8cec73a3ba81b055d33e73fe003d7ed47927c"
+    },
+    {
+      "condition": "citeseer_graphsage_l3_h32",
+      "job_id": "1598698",
+      "required_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "status": "COMPLETE",
+      "execution_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "job_walltime_sec": 202.0,
+      "lsf_status": "DONE",
+      "elapsed_sec": 154.1130411438644,
+      "post_prune_rows": 14,
+      "validation_csv_sha256": "65ab667d4cc4e03ed464f87c7a937836fbb80996f555a14e659aecd62a074458"
+    },
+    {
+      "condition": "pubmed_gcn_l3_h32",
+      "job_id": "1598699",
+      "required_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "status": "COMPLETE",
+      "execution_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "job_walltime_sec": 266.0,
+      "lsf_status": "DONE",
+      "elapsed_sec": 217.11683542095125,
+      "post_prune_rows": 14,
+      "validation_csv_sha256": "22bb8a351848bb0c01d790c78d812004fa1a707017352881c723a0fe323d5729"
+    },
+    {
+      "condition": "pubmed_graphsage_l3_h32",
+      "job_id": "1598700",
+      "required_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "status": "COMPLETE",
+      "execution_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "job_walltime_sec": 297.0,
+      "lsf_status": "DONE",
+      "elapsed_sec": 250.28722163289785,
+      "post_prune_rows": 14,
+      "validation_csv_sha256": "a3ee20925aa41dd5c82db8790c0f62439cc4201272e842d968aaa5d8f0765743"
+    }
+  ]
+}

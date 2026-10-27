@@ -1,0 +1,11 @@
+{'name': 'adaptive_layerwise', 'category': 'adaptive', 'supports_unstructured': False, 'supports_structured': True}
+{'name': 'global_magnitude', 'category': 'magnitude', 'supports_unstructured': True, 'supports_structured': True}
+{'name': 'grasp', 'category': 'gradient_saliency', 'supports_unstructured': True, 'supports_structured': True}
+{'name': 'group_lasso', 'category': 'regularization', 'supports_unstructured': False, 'supports_structured': True}
+{'name': 'hard_concrete_l0', 'category': 'learnable', 'supports_unstructured': True, 'supports_structured': False}
+{'name': 'l1_threshold', 'category': 'regularization', 'supports_unstructured': True, 'supports_structured': False}
+{'name': 'layerwise_magnitude', 'category': 'magnitude', 'supports_unstructured': True, 'supports_structured': True}
+{'name': 'movement', 'category': 'learnable', 'supports_unstructured': True, 'supports_structured': False}
+{'name': 'q_learning_tabular', 'category': 'adaptive', 'supports_unstructured': False, 'supports_structured': True}
+{'name': 'random', 'category': 'random', 'supports_unstructured': True, 'supports_structured': True}
+{'name': 'snip', 'category': 'gradient_saliency', 'supports_unstructured': True, 'supports_structured': True}

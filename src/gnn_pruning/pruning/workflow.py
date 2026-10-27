@@ -64,6 +64,9 @@ def prune_from_checkpoint(
     prune_cfg: Dict[str, Any] = raw_cfg.get("pruning", {}) if isinstance(raw_cfg.get("pruning", {}), dict) else {}
 
     method = str(prune_cfg.get("method", "random"))
+    from .workflow_v2 import V2_METHODS, prune_from_checkpoint_v2
+    if method in V2_METHODS:
+        return prune_from_checkpoint_v2(checkpoint_path, config_path)
     target_sparsity = float(prune_cfg.get("target_sparsity", 0.5))
     structured = bool(prune_cfg.get("structured", True))
 
@@ -277,6 +280,11 @@ def evaluate_pruned_checkpoint(checkpoint_path: str, config_path: str) -> Pruned
         raise FileNotFoundError(f"Pruned checkpoint not found: {checkpoint}")
     output_dir = checkpoint.parent
     payload = _load_pruned_checkpoint_payload(checkpoint, resolve_config(config_path).device.device)
+    from .workflow_v2 import V2_METHODS
+    if (payload.get("method") in V2_METHODS
+            or (payload.get("provenance") or {}).get("protocol") == "LOCAL-STRUCTURED-V2-R2"):
+        raise ValueError("V2 checkpoints cannot use evaluate-pruned; "
+                         "use the frozen-split metrics.json produced by V2 prune.")
     model = build_model(payload["model_name"], **payload["model_config"])
     model.load_state_dict(payload["model_state_dict"])
     split = _load_or_create_split(config_path=config_path, output_dir=output_dir)

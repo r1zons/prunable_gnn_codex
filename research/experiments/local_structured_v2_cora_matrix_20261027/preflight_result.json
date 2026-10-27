@@ -1,0 +1,10 @@
+{
+  "status": "PASS",
+  "selected_models": [
+    "gcn",
+    "graphsage"
+  ],
+  "graph_sha256": "2b2bc996be89812f80ce7d09599dab983f804f87ddd37a09b3ce0b5689ec9a0d",
+  "protected_files": 28699,
+  "previous_gcn30_not_rerun": true
+}

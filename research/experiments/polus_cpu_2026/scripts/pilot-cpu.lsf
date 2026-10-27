@@ -1,0 +1,59 @@
+#!/bin/bash
+# Researcher submits this file manually after environment setup is complete.
+#BSUB -J gnn-pilot-cpu-101
+#BSUB -q normal
+#BSUB -n 4
+#BSUB -W 03:00
+#BSUB -R "span[hosts=1]"
+#BSUB -m polus-c4-ib.bmc.hpc.cs.msu.ru
+#BSUB -x
+#BSUB -o logs/lsf/pilot-cpu.%J.out
+#BSUB -e logs/lsf/pilot-cpu.%J.err
+set -euo pipefail
+# LSF must allocate a compute node before any environment/model code is used.
+if [[ ! "${LSB_JOBID:-}" =~ ^[0-9]+$ ]]; then
+    echo 'Submit with bash submit-pilot.sh; direct execution outside LSF is forbidden.' >&2
+    exit 1
+fi
+if [[ "${LSB_QUEUE:-}" != normal || "${LSB_DJOB_NUMPROC:-}" != 4 ]]; then
+    echo 'Expected an LSF normal allocation with exactly four CPU slots.' >&2
+    exit 1
+fi
+compute_host="$(hostname -s)"
+case "$compute_host" in
+    polus-c4|polus-c4-ib) ;;
+    *) echo "Refusing training outside polus-c4: $compute_host" >&2; exit 1 ;;
+esac
+task_root="$HOME/gnn-polus-20261023"
+source "$task_root/activate-polus.sh"
+cd "$task_root"
+if [ ! -s logs/environment-ready.json ]; then
+    echo 'Environment verification has not completed; inspect setup logs first.' >&2
+    exit 1
+fi
+campaign="${POLUS_CAMPAIGN:-pilot-cpu-101-c4-v2}"
+[[ "$campaign" =~ ^[a-zA-Z0-9][a-zA-Z0-9_-]*$ ]] || exit 1
+condition="${POLUS_CONDITION:-cora_gcn_l3_h32}"
+case "$condition" in
+    cora_gcn_l3_h32|cora_graphsage_l3_h32|citeseer_gcn_l3_h32|citeseer_graphsage_l3_h32|pubmed_gcn_l3_h32|pubmed_graphsage_l3_h32) ;;
+    *) echo 'Unknown pilot condition.' >&2; exit 1 ;;
+esac
+job_root="$task_root/results/$campaign/jobs/$condition"
+data_root="$task_root/data-by-condition/$campaign/$condition"
+submission_root="$task_root/submissions/$campaign/$condition"
+[[ -s "$submission_root/prepare-gnn-pilot.py" && -s "$data_root/raw-manifest.json" ]] || {
+    echo 'Use submit-pilot.sh to prepare immutable launcher and isolated raw data first.' >&2
+    exit 1
+}
+(cd "$submission_root" && sha256sum -c launcher.sha256)
+printf 'JOB=%s\nHOST=%s\nQUEUE=%s\nSLOTS=%s\nCONDITION=%s\nLSB_HOSTS=%s\n' \
+    "$LSB_JOBID" "$compute_host" "$LSB_QUEUE" "$LSB_DJOB_NUMPROC" "$condition" "${LSB_HOSTS:-}"
+export PYTHONUNBUFFERED=1
+python -m pip freeze > "logs/pip-freeze.$LSB_JOBID.txt"
+conda list --explicit > "logs/conda-explicit.$LSB_JOBID.txt"
+python "$submission_root/prepare-gnn-pilot.py" \
+    --repo-root "$task_root/repo" \
+    --expected-commit 72293149d8fff186dd268789e7b8fea5848c9360 \
+    --output-root "$job_root" \
+    --data-root "$data_root" \
+    --condition "$condition" --run

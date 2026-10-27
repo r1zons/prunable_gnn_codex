@@ -1,0 +1,18 @@
+{
+  "kind": "gcn",
+  "target": 0.5,
+  "episodes": 100,
+  "penalty_lambda": 2.0,
+  "max_steps": 20,
+  "min_channels": 4,
+  "tolerance": 0.01,
+  "gamma": 0.9,
+  "alpha": 0.1,
+  "epsilon": 0.2,
+  "policy_seed": 101,
+  "checkpoint_training_seed": 101,
+  "device": "cpu",
+  "threads": 2,
+  "label_access": "validation_only",
+  "input_provenance": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/provenance.json"
+}

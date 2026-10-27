@@ -1,0 +1,32 @@
+{
+  "n_per_condition": 20,
+  "mask_seeds": [
+    1000,
+    1001,
+    1002,
+    1003,
+    1004,
+    1005,
+    1006,
+    1007,
+    1008,
+    1009,
+    1010,
+    1011,
+    1012,
+    1013,
+    1014,
+    1015,
+    1016,
+    1017,
+    1018,
+    1019
+  ],
+  "strong_threshold": "validation accuracy >= previous same-condition Magnitude",
+  "weak_threshold": "validation accuracy <= previous same-condition Magnitude minus 0.10",
+  "original_tail_definition": "outside empirical p10-p90; descriptive, not a significance test",
+  "sd": "sample standard deviation, ddof=1",
+  "quantiles": "NumPy linear interpolation",
+  "width_variance": "descriptive between/within exact-width group sums of squares; not causal and unstable with sparse groups",
+  "test_metric_access": false
+}

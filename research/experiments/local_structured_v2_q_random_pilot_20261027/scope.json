@@ -1,0 +1,40 @@
+{
+  "purpose": "validation-only Q-learning budget/lambda and Random mask diagnostics",
+  "tested_sha": "f110c5d1c57bd34afb5ad76e17415ec09ce64e9f",
+  "phase_a": {
+    "episodes": [
+      30,
+      100
+    ],
+    "lambda": 2.0,
+    "max_steps": 20
+  },
+  "phase_b": "Only affected conditions if Phase A warrants lambda0.5/5 at100episodes",
+  "phase_c": {
+    "mask_seeds": [
+      1000,
+      1001,
+      1002,
+      1003,
+      1004,
+      1005,
+      1006,
+      1007,
+      1008,
+      1009,
+      1010,
+      1011,
+      1012,
+      1013,
+      1014,
+      1015,
+      1016,
+      1017,
+      1018,
+      1019
+    ],
+    "frozen_training_seed": 101
+  },
+  "test_metrics": "unavailable to standalone runner; no test reporting or analysis",
+  "research_hyperparameters_selected": false
+}

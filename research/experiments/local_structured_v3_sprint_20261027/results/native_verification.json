@@ -1,0 +1,211 @@
+{
+  "status": "PASS",
+  "runs": [
+    {
+      "run_id": "polus-cora-gcn-t30-fixed_probe_v3-p101",
+      "accuracy": 0.8909426987060998,
+      "macro_f1": 0.8745782807349892,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-gcn-t30-greedy_reachable_v3-p101",
+      "accuracy": 0.8632162661737524,
+      "macro_f1": 0.8318651551739614,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-gcn-t30-q_conservative_v3-p101",
+      "accuracy": 0.8983364140480592,
+      "macro_f1": 0.8829115640304056,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-gcn-t30-q_random_ties_v3-p101",
+      "accuracy": 0.5767097966728281,
+      "macro_f1": 0.37424907311038885,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-gcn-t30-q_reachable_v3-p101",
+      "accuracy": 0.8632162661737524,
+      "macro_f1": 0.8318651551739614,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-gcn-t30-q_stop_exact_v3-p101",
+      "accuracy": 0.3807763401109057,
+      "macro_f1": 0.14457512693763916,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-gcn-t30-q_target_stop_v3-p101",
+      "accuracy": 0.88909426987061,
+      "macro_f1": 0.8766826280399573,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-gcn-t30-r2_reference-p101",
+      "accuracy": 0.3512014787430684,
+      "macro_f1": 0.14599491519969104,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-gcn-t30-random_reachable_v3-p101",
+      "accuracy": 0.8632162661737524,
+      "macro_f1": 0.8318651551739614,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-gcn-t50-greedy_reachable_v3-p101",
+      "accuracy": 0.8133086876155268,
+      "macro_f1": 0.7281384607473356,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-gcn-t50-q_conservative_v3-p101",
+      "accuracy": 0.8983364140480592,
+      "macro_f1": 0.8829115640304056,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-gcn-t50-q_random_ties_v3-p101",
+      "accuracy": 0.5767097966728281,
+      "macro_f1": 0.37424907311038885,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-gcn-t50-q_reachable_v3-p101",
+      "accuracy": 0.8133086876155268,
+      "macro_f1": 0.7281384607473356,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-gcn-t50-q_stop_exact_v3-p101",
+      "accuracy": 0.3807763401109057,
+      "macro_f1": 0.14457512693763916,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-gcn-t50-q_target_stop_v3-p101",
+      "accuracy": 0.8133086876155268,
+      "macro_f1": 0.7281384607473356,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-gcn-t50-r2_reference-p101",
+      "accuracy": 0.3512014787430684,
+      "macro_f1": 0.14599491519969104,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-gcn-t50-random_reachable_v3-p101",
+      "accuracy": 0.6266173752310537,
+      "macro_f1": 0.44895180622794273,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-graphsage-t30-fixed_probe_v3-p101",
+      "accuracy": 0.8743068391866913,
+      "macro_f1": 0.8554899406250215,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-graphsage-t30-greedy_reachable_v3-p101",
+      "accuracy": 0.7948243992606284,
+      "macro_f1": 0.728744700525179,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-graphsage-t30-q_conservative_v3-p101",
+      "accuracy": 0.8835489833641405,
+      "macro_f1": 0.8671309679426918,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-graphsage-t30-q_random_ties_v3-p101",
+      "accuracy": 0.34750462107208874,
+      "macro_f1": 0.13408198970475624,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-graphsage-t30-q_reachable_v3-p101",
+      "accuracy": 0.7689463955637708,
+      "macro_f1": 0.6864252818734757,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-graphsage-t30-q_stop_exact_v3-p101",
+      "accuracy": 0.3974121996303142,
+      "macro_f1": 0.19229021826799256,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-graphsage-t30-q_target_stop_v3-p101",
+      "accuracy": 0.866913123844732,
+      "macro_f1": 0.845847533315619,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-graphsage-t30-r2_reference-p101",
+      "accuracy": 0.5878003696857671,
+      "macro_f1": 0.3490969063954194,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-graphsage-t30-random_reachable_v3-p101",
+      "accuracy": 0.7948243992606284,
+      "macro_f1": 0.728744700525179,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-graphsage-t50-greedy_reachable_v3-p101",
+      "accuracy": 0.8484288354898336,
+      "macro_f1": 0.8248977986350985,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-graphsage-t50-q_conservative_v3-p101",
+      "accuracy": 0.8835489833641405,
+      "macro_f1": 0.8671309679426918,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-graphsage-t50-q_random_ties_v3-p101",
+      "accuracy": 0.34750462107208874,
+      "macro_f1": 0.13408198970475624,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-graphsage-t50-q_reachable_v3-p101",
+      "accuracy": 0.8484288354898336,
+      "macro_f1": 0.8248977986350985,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-graphsage-t50-q_stop_exact_v3-p101",
+      "accuracy": 0.3974121996303142,
+      "macro_f1": 0.19229021826799256,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-graphsage-t50-q_target_stop_v3-p101",
+      "accuracy": 0.8484288354898336,
+      "macro_f1": 0.8248977986350985,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-graphsage-t50-r2_reference-p101",
+      "accuracy": 0.5878003696857671,
+      "macro_f1": 0.3490969063954194,
+      "status": "PASS"
+    },
+    {
+      "run_id": "polus-cora-graphsage-t50-random_reachable_v3-p101",
+      "accuracy": 0.7264325323475046,
+      "macro_f1": 0.5701647183818181,
+      "status": "PASS"
+    }
+  ],
+  "threads": 1,
+  "purpose": "Independent reload/forward on original POWER8 stack; no new search or timing."
+}

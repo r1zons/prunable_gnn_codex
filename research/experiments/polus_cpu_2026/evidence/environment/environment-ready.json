@@ -1,0 +1,28 @@
+{
+  "status": "READY_FOR_MANUAL_PILOT",
+  "verification_job": "1598496",
+  "runtime": {
+    "machine": "ppc64le",
+    "python": "3.10.22 | packaged by conda-forge | (main, Oct  6 2026, 22:57:19) [GCC 14.4.0]",
+    "torch": "2.0.1",
+    "pyg": "2.4.0",
+    "numpy": "1.24.4",
+    "scipy": "1.10.1",
+    "pandas": "1.5.3",
+    "scikit_learn": "1.2.2",
+    "cuda_runtime": null,
+    "cuda_available": false,
+    "openmp_available": true,
+    "training_or_pruning_executed": false,
+    "torch_distribution": "2.0.1+polus.power8.1"
+  },
+  "vsx_regression": "PASS",
+  "wheel_sha256": "30660e31f8c88159461ea647b2f175bdd23e501cad19b3a464fb451ddec8b830",
+  "research_commit": "72293149d8fff186dd268789e7b8fea5848c9360",
+  "training_or_pruning_executed": false,
+  "build_job": "1598495",
+  "torch_source_commit": "e9ebda29d87ce0916ab08c06ab26fd3766a870e5",
+  "source_patch_sha256": "5682c75cb1c101f8b8bab9ee2990fcbaa7486166f83d0480337966741e6e5afc",
+  "resolved_config_count": 6,
+  "pip_check": "No broken requirements found."
+}

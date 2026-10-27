@@ -1,0 +1,517 @@
+[
+  {
+    "url": "https://api.anaconda.org/release/conda-forge/pytorch/2.0.0",
+    "keys": [
+      "distributions"
+    ],
+    "example": [
+      {
+        "attrs": {
+          "arch": "x86_64",
+          "build": "cpu_generic_py310h21fa2ab_2",
+          "build_number": 2,
+          "constrains": [
+            "pytorch-cpu ==2.0.0",
+            "pytorch-gpu ==99999999"
+          ],
+          "depends": [
+            "__glibc >=2.17,<3.0.a0",
+            "_openmp_mutex >=4.5",
+            "filelock",
+            "jinja2",
+            "libcblas >=3.9.0,<4.0a0",
+            "libgcc-ng >=12",
+            "liblapack >=3.9.0,<4.0a0",
+            "libprotobuf >=4.23.4,<4.23.5.0a0",
+            "libstdcxx-ng >=12",
+            "libuv >=1.46.0,<2.0a0",
+            "networkx",
+            "nomkl",
+            "numpy >=1.22.4,<2.0a0",
+            "python >=3.10,<3.11.0a0",
+            "python_abi 3.10.* *_cp310",
+            "sleef >=3.5.1,<4.0a0",
+            "sympy",
+            "typing_extensions"
+          ],
+          "has_prefix": true,
+          "license": "BSD-3-Clause",
+          "license_family": "BSD",
+          "machine": "x86_64",
+          "operatingsystem": "linux",
+          "platform": "linux",
+          "subdir": "linux-64",
+          "target-triplet": "x86_64-any-linux",
+          "timestamp": 1694503674845
+        },
+        "basename": "linux-64/pytorch-2.0.0-cpu_generic_py310h21fa2ab_2.conda",
+        "dependencies": [
+          "depends"
+        ],
+        "description": null,
+        "distribution_type": "conda",
+        "download_url": "//api.anaconda.org/download/conda-forge/pytorch/2.0.0/linux-64/pytorch-2.0.0-cpu_generic_py310h21fa2ab_2.conda",
+        "full_name": "conda-forge/pytorch/2.0.0/linux-64/pytorch-2.0.0-cpu_generic_py310h21fa2ab_2.conda",
+        "labels": [
+          "main"
+        ],
+        "md5": "34c7c0d835be73d4beea6141277d1985",
+        "ndownloads": 6973,
+        "owner": "conda-forge",
+        "sha256": "5cbcbb5c1609aac519f4bfe1e8a092ce6331b2777adb3e71b644d96a886d4ee6",
+        "size": 70793186,
+        "type": "conda",
+        "upload_time": "2023-09-12 07:32:40.736000+00:00",
+        "version": "2.0.0"
+      }
+    ],
+    "ppc": []
+  },
+  {
+    "url": "https://api.anaconda.org/release/conda-forge/pytorch/2.5.1",
+    "keys": [
+      "distributions"
+    ],
+    "example": [
+      {
+        "attrs": {
+          "arch": "x86_64",
+          "build": "cpu_generic_py310_h063203a_17",
+          "build_number": 17,
+          "constrains": [
+            "pytorch-cpu 2.5.1",
+            "pytorch-gpu <0.0a0"
+          ],
+          "depends": [
+            "__glibc >=2.17,<3.0.a0",
+            "_openmp_mutex * *_llvm",
+            "_openmp_mutex >=4.5",
+            "filelock",
+            "fsspec",
+            "jinja2",
+            "libabseil * cxx17*",
+            "libabseil >=20250127.1,<20250128.0a0",
+            "libcblas >=3.9.0,<4.0a0",
+            "libgcc >=13",
+            "liblapack >=3.9.0,<4.0a0",
+            "libprotobuf >=5.29.3,<5.29.4.0a0",
+            "libstdcxx >=13",
+            "libtorch 2.5.1 cpu_generic_h60a9f50_17",
+            "libuv >=1.50.0,<2.0a0",
+            "libzlib >=1.3.1,<2.0a0",
+            "llvm-openmp >=20.1.2",
+            "networkx",
+            "nomkl",
+            "numpy >=1.19,<3",
+            "pybind11",
+            "python >=3.10,<3.11.0a0",
+            "python_abi 3.10.* *_cp310",
+            "setuptools <76",
+            "sleef >=3.8,<4.0a0",
+            "sympy >=1.13.1,!=1.13.2",
+            "typing_extensions"
+          ],
+          "has_prefix": true,
+          "license": "BSD-3-Clause",
+          "license_family": "BSD",
+          "machine": "x86_64",
+          "operatingsystem": "linux",
+          "platform": "linux",
+          "subdir": "linux-64",
+          "target-triplet": "x86_64-any-linux",
+          "timestamp": 1744330138753
+        },
+        "basename": "linux-64/pytorch-2.5.1-cpu_generic_py310_h063203a_17.conda",
+        "dependencies": [
+          "depends"
+        ],
+        "description": null,
+        "distribution_type": "conda",
+        "download_url": "//api.anaconda.org/download/conda-forge/pytorch/2.5.1/linux-64/pytorch-2.5.1-cpu_generic_py310_h063203a_17.conda",
+        "full_name": "conda-forge/pytorch/2.5.1/linux-64/pytorch-2.5.1-cpu_generic_py310_h063203a_17.conda",
+        "labels": [
+          "main"
+        ],
+        "md5": "d795710c8eb41355ab21d968ac1a0d46",
+        "ndownloads": 3001,
+        "owner": "conda-forge",
+        "sha256": "f7b4434d1ada4ed2bd1d3d192806043881651fe516f1d229148fb0694f6a4120",
+        "size": 23733064,
+        "type": "conda",
+        "upload_time": "2025-04-11 01:22:11.940000+00:00",
+        "version": "2.5.1"
+      }
+    ],
+    "ppc": []
+  },
+  {
+    "url": "https://api.anaconda.org/release/anaconda/pytorch/1.13.1",
+    "keys": [
+      "distributions"
+    ],
+    "example": [
+      {
+        "attrs": {
+          "arch": "x86_64",
+          "build": "cpu_py310h92724a6_0",
+          "build_number": 0,
+          "depends": [
+            "_openmp_mutex",
+            "blas * openblas",
+            "cffi",
+            "future",
+            "libgcc-ng >=11.2.0",
+            "libgomp",
+            "libopenblas",
+            "libprotobuf >=3.20.3,<3.21.0a0",
+            "libstdcxx-ng >=11.2.0",
+            "ninja",
+            "numpy >=1.21,<2",
+            "pybind11-abi ==4",
+            "python >=3.10,<3.11.0a0",
+            "pyyaml",
+            "typing-extensions"
+          ],
+          "license": "BSD-3-Clause",
+          "license_family": "BSD",
+          "md5": "35ba6c2e947489e789b5ea85ea1fd4c2",
+          "name": "pytorch",
+          "platform": "linux",
+          "sha256": "e784de6f90aeecacd1e8ae3add539fb1e327dcca99d0004eb49cb3231da294ce",
+          "size": 56046624,
+          "source_url": "https://repo.anaconda.com/pkgs/main/linux-64/pytorch-1.13.1-cpu_py310h92724a6_0.conda",
+          "subdir": "linux-64",
+          "timestamp": 1681845027660,
+          "version": "1.13.1"
+        },
+        "basename": "linux-64/pytorch-1.13.1-cpu_py310h92724a6_0.conda",
+        "dependencies": [],
+        "description": null,
+        "distribution_type": "conda",
+        "download_url": "//api.anaconda.org/download/anaconda/pytorch/1.13.1/linux-64/pytorch-1.13.1-cpu_py310h92724a6_0.conda",
+        "full_name": "anaconda/pytorch/1.13.1/linux-64/pytorch-1.13.1-cpu_py310h92724a6_0.conda",
+        "labels": [
+          "main"
+        ],
+        "md5": "35ba6c2e947489e789b5ea85ea1fd4c2",
+        "ndownloads": 8,
+        "owner": "anaconda",
+        "sha256": "e784de6f90aeecacd1e8ae3add539fb1e327dcca99d0004eb49cb3231da294ce",
+        "size": 56046624,
+        "type": "conda",
+        "upload_time": "2026-09-01 00:55:53.256000+00:00",
+        "version": "1.13.1"
+      }
+    ],
+    "ppc": [
+      {
+        "attrs": {
+          "arch": "ppc64le",
+          "build": "cpu_py310hc26b713_0",
+          "build_number": 0,
+          "depends": [
+            "_openmp_mutex",
+            "cffi",
+            "future",
+            "libgcc-ng >=8.2.0",
+            "libopenblas",
+            "libprotobuf >=3.20.3,<3.21.0a0",
+            "libstdcxx-ng >=8.2.0",
+            "ninja",
+            "numpy >=1.21,<2",
+            "pybind11-abi ==4",
+            "python >=3.10,<3.11.0a0",
+            "pyyaml",
+            "typing-extensions"
+          ],
+          "license": "BSD-3-Clause",
+          "license_family": "BSD",
+          "md5": "557754a2ca41b8afd83e9063826caa83",
+          "name": "pytorch",
+          "platform": "linux",
+          "sha256": "bf9aedee0ae63876c25ddf44103ac5ba8dd918fe5b08a782a0585ff7ef3bc372",
+          "size": 48198508,
+          "source_url": "https://repo.anaconda.com/pkgs/main/linux-ppc64le/pytorch-1.13.1-cpu_py310hc26b713_0.conda",
+          "subdir": "linux-ppc64le",
+          "timestamp": 1681846105221,
+          "version": "1.13.1"
+        },
+        "basename": "linux-ppc64le/pytorch-1.13.1-cpu_py310hc26b713_0.conda",
+        "dependencies": [],
+        "description": null,
+        "distribution_type": "conda",
+        "download_url": "//api.anaconda.org/download/anaconda/pytorch/1.13.1/linux-ppc64le/pytorch-1.13.1-cpu_py310hc26b713_0.conda",
+        "full_name": "anaconda/pytorch/1.13.1/linux-ppc64le/pytorch-1.13.1-cpu_py310hc26b713_0.conda",
+        "labels": [
+          "main"
+        ],
+        "md5": "557754a2ca41b8afd83e9063826caa83",
+        "ndownloads": 9,
+        "owner": "anaconda",
+        "sha256": "bf9aedee0ae63876c25ddf44103ac5ba8dd918fe5b08a782a0585ff7ef3bc372",
+        "size": 48198508,
+        "type": "conda",
+        "upload_time": "2026-09-01 12:05:08.066000+00:00",
+        "version": "1.13.1"
+      },
+      {
+        "attrs": {
+          "arch": "ppc64le",
+          "build": "cpu_py310hc26b713_0",
+          "build_number": 0,
+          "depends": [
+            "_openmp_mutex",
+            "cffi",
+            "future",
+            "libgcc-ng >=8.2.0",
+            "libopenblas",
+            "libprotobuf >=3.20.3,<3.21.0a0",
+            "libstdcxx-ng >=8.2.0",
+            "ninja",
+            "numpy >=1.21,<2",
+            "pybind11-abi ==4",
+            "python >=3.10,<3.11.0a0",
+            "pyyaml",
+            "typing-extensions"
+          ],
+          "license": "BSD-3-Clause",
+          "license_family": "BSD",
+          "md5": "cd732ae03a0ad5e9b67d0bf09738025c",
+          "name": "pytorch",
+          "platform": "linux",
+          "sha256": "389bfd845c43d88b034ab0a9da08413336862e794ce58db1d4ed11c7c5bf05ab",
+          "size": 51185375,
+          "source_url": "http://repo.continuum.io/pkgs/main/linux-ppc64le/pytorch-1.13.1-cpu_py310hc26b713_0.tar.bz2",
+          "subdir": "linux-ppc64le",
+          "timestamp": 1681846105221,
+          "version": "1.13.1"
+        },
+        "basename": "linux-ppc64le/pytorch-1.13.1-cpu_py310hc26b713_0.tar.bz2",
+        "dependencies": [],
+        "description": null,
+        "distribution_type": "conda",
+        "download_url": "//api.anaconda.org/download/anaconda/pytorch/1.13.1/linux-ppc64le/pytorch-1.13.1-cpu_py310hc26b713_0.tar.bz2",
+        "full_name": "anaconda/pytorch/1.13.1/linux-ppc64le/pytorch-1.13.1-cpu_py310hc26b713_0.tar.bz2",
+        "labels": [
+          "main"
+        ],
+        "md5": "cd732ae03a0ad5e9b67d0bf09738025c",
+        "ndownloads": 5,
+        "owner": "anaconda",
+        "sha256": "389bfd845c43d88b034ab0a9da08413336862e794ce58db1d4ed11c7c5bf05ab",
+        "size": 51185375,
+        "type": "conda",
+        "upload_time": "2026-05-21 11:34:58.282000+00:00",
+        "version": "1.13.1"
+      },
+      {
+        "attrs": {
+          "arch": "ppc64le",
+          "build": "cpu_py38hc26b713_0",
+          "build_number": 0,
+          "depends": [
+            "_openmp_mutex",
+            "cffi",
+            "future",
+            "libgcc-ng >=8.2.0",
+            "libopenblas",
+            "libprotobuf >=3.20.3,<3.21.0a0",
+            "libstdcxx-ng >=8.2.0",
+            "ninja",
+            "numpy >=1.19,<2",
+            "pybind11-abi ==4",
+            "python >=3.8,<3.9.0a0",
+            "pyyaml",
+            "typing-extensions"
+          ],
+          "license": "BSD-3-Clause",
+          "license_family": "BSD",
+          "md5": "c71e4b263de3bc82bfc51359b5e7eead",
+          "name": "pytorch",
+          "platform": "linux",
+          "sha256": "3053b5c9384c1f77133214c2d564ca52d8b47e18d18c8eae3c372da347226b64",
+          "size": 48092634,
+          "source_url": "https://repo.anaconda.com/pkgs/main/linux-ppc64le/pytorch-1.13.1-cpu_py38hc26b713_0.conda",
+          "subdir": "linux-ppc64le",
+          "timestamp": 1681841664624,
+          "version": "1.13.1"
+        },
+        "basename": "linux-ppc64le/pytorch-1.13.1-cpu_py38hc26b713_0.conda",
+        "dependencies": [],
+        "description": null,
+        "distribution_type": "conda",
+        "download_url": "//api.anaconda.org/download/anaconda/pytorch/1.13.1/linux-ppc64le/pytorch-1.13.1-cpu_py38hc26b713_0.conda",
+        "full_name": "anaconda/pytorch/1.13.1/linux-ppc64le/pytorch-1.13.1-cpu_py38hc26b713_0.conda",
+        "labels": [
+          "main"
+        ],
+        "md5": "c71e4b263de3bc82bfc51359b5e7eead",
+        "ndownloads": 8,
+        "owner": "anaconda",
+        "sha256": "3053b5c9384c1f77133214c2d564ca52d8b47e18d18c8eae3c372da347226b64",
+        "size": 48092634,
+        "type": "conda",
+        "upload_time": "2026-09-01 12:05:08.339000+00:00",
+        "version": "1.13.1"
+      },
+      {
+        "attrs": {
+          "arch": "ppc64le",
+          "build": "cpu_py38hc26b713_0",
+          "build_number": 0,
+          "depends": [
+            "_openmp_mutex",
+            "cffi",
+            "future",
+            "libgcc-ng >=8.2.0",
+            "libopenblas",
+            "libprotobuf >=3.20.3,<3.21.0a0",
+            "libstdcxx-ng >=8.2.0",
+            "ninja",
+            "numpy >=1.19,<2",
+            "pybind11-abi ==4",
+            "python >=3.8,<3.9.0a0",
+            "pyyaml",
+            "typing-extensions"
+          ],
+          "license": "BSD-3-Clause",
+          "license_family": "BSD",
+          "md5": "d6fe07a82dd9ae53688012dd7c95ff1c",
+          "name": "pytorch",
+          "platform": "linux",
+          "sha256": "561dade2ca553b1aa6fc791a64495718af88ed7aa65334c346d7ec042264f90f",
+          "size": 51106147,
+          "source_url": "http://repo.continuum.io/pkgs/main/linux-ppc64le/pytorch-1.13.1-cpu_py38hc26b713_0.tar.bz2",
+          "subdir": "linux-ppc64le",
+          "timestamp": 1681841664624,
+          "version": "1.13.1"
+        },
+        "basename": "linux-ppc64le/pytorch-1.13.1-cpu_py38hc26b713_0.tar.bz2",
+        "dependencies": [],
+        "description": null,
+        "distribution_type": "conda",
+        "download_url": "//api.anaconda.org/download/anaconda/pytorch/1.13.1/linux-ppc64le/pytorch-1.13.1-cpu_py38hc26b713_0.tar.bz2",
+        "full_name": "anaconda/pytorch/1.13.1/linux-ppc64le/pytorch-1.13.1-cpu_py38hc26b713_0.tar.bz2",
+        "labels": [
+          "main"
+        ],
+        "md5": "d6fe07a82dd9ae53688012dd7c95ff1c",
+        "ndownloads": 6,
+        "owner": "anaconda",
+        "sha256": "561dade2ca553b1aa6fc791a64495718af88ed7aa65334c346d7ec042264f90f",
+        "size": 51106147,
+        "type": "conda",
+        "upload_time": "2026-05-21 11:35:01.012000+00:00",
+        "version": "1.13.1"
+      },
+      {
+        "attrs": {
+          "arch": "ppc64le",
+          "build": "cpu_py39hc26b713_0",
+          "build_number": 0,
+          "depends": [
+            "_openmp_mutex",
+            "cffi",
+            "future",
+            "libgcc-ng >=8.2.0",
+            "libopenblas",
+            "libprotobuf >=3.20.3,<3.21.0a0",
+            "libstdcxx-ng >=8.2.0",
+            "ninja",
+            "numpy >=1.19,<2",
+            "pybind11-abi ==4",
+            "python >=3.9,<3.10.0a0",
+            "pyyaml",
+            "typing-extensions"
+          ],
+          "license": "BSD-3-Clause",
+          "license_family": "BSD",
+          "md5": "a5832e0f35110882c41216824f97b19c",
+          "name": "pytorch",
+          "platform": "linux",
+          "sha256": "647afc94a86f6f596c7fad629a1ac5903644d9b0b6a22d73cd1304e16e3452b6",
+          "size": 48100447,
+          "source_url": "https://repo.anaconda.com/pkgs/main/linux-ppc64le/pytorch-1.13.1-cpu_py39hc26b713_0.conda",
+          "subdir": "linux-ppc64le",
+          "timestamp": 1681850482849,
+          "version": "1.13.1"
+        },
+        "basename": "linux-ppc64le/pytorch-1.13.1-cpu_py39hc26b713_0.conda",
+        "dependencies": [],
+        "description": null,
+        "distribution_type": "conda",
+        "download_url": "//api.anaconda.org/download/anaconda/pytorch/1.13.1/linux-ppc64le/pytorch-1.13.1-cpu_py39hc26b713_0.conda",
+        "full_name": "anaconda/pytorch/1.13.1/linux-ppc64le/pytorch-1.13.1-cpu_py39hc26b713_0.conda",
+        "labels": [
+          "main"
+        ],
+        "md5": "a5832e0f35110882c41216824f97b19c",
+        "ndownloads": 8,
+        "owner": "anaconda",
+        "sha256": "647afc94a86f6f596c7fad629a1ac5903644d9b0b6a22d73cd1304e16e3452b6",
+        "size": 48100447,
+        "type": "conda",
+        "upload_time": "2026-09-01 12:05:10.798000+00:00",
+        "version": "1.13.1"
+      },
+      {
+        "attrs": {
+          "arch": "ppc64le",
+          "build": "cpu_py39hc26b713_0",
+          "build_number": 0,
+          "depends": [
+            "_openmp_mutex",
+            "cffi",
+            "future",
+            "libgcc-ng >=8.2.0",
+            "libopenblas",
+            "libprotobuf >=3.20.3,<3.21.0a0",
+            "libstdcxx-ng >=8.2.0",
+            "ninja",
+            "numpy >=1.19,<2",
+            "pybind11-abi ==4",
+            "python >=3.9,<3.10.0a0",
+            "pyyaml",
+            "typing-extensions"
+          ],
+          "license": "BSD-3-Clause",
+          "license_family": "BSD",
+          "md5": "60d86ce39e8ce0adab6f04d905acda89",
+          "name": "pytorch",
+          "platform": "linux",
+          "sha256": "999bfc3b608e24851d0f4c61081e6bb635df750564d707c0e1cde7a6a4c29c56",
+          "size": 51100803,
+          "source_url": "http://repo.continuum.io/pkgs/main/linux-ppc64le/pytorch-1.13.1-cpu_py39hc26b713_0.tar.bz2",
+          "subdir": "linux-ppc64le",
+          "timestamp": 1681850482849,
+          "version": "1.13.1"
+        },
+        "basename": "linux-ppc64le/pytorch-1.13.1-cpu_py39hc26b713_0.tar.bz2",
+        "dependencies": [],
+        "description": null,
+        "distribution_type": "conda",
+        "download_url": "//api.anaconda.org/download/anaconda/pytorch/1.13.1/linux-ppc64le/pytorch-1.13.1-cpu_py39hc26b713_0.tar.bz2",
+        "full_name": "anaconda/pytorch/1.13.1/linux-ppc64le/pytorch-1.13.1-cpu_py39hc26b713_0.tar.bz2",
+        "labels": [
+          "main"
+        ],
+        "md5": "60d86ce39e8ce0adab6f04d905acda89",
+        "ndownloads": 5,
+        "owner": "anaconda",
+        "sha256": "999bfc3b608e24851d0f4c61081e6bb635df750564d707c0e1cde7a6a4c29c56",
+        "size": 51100803,
+        "type": "conda",
+        "upload_time": "2026-05-21 11:35:08.252000+00:00",
+        "version": "1.13.1"
+      }
+    ]
+  },
+  {
+    "url": "https://raw.githubusercontent.com/pytorch/pytorch/v2.0.1/cmake/Modules/FindVSX.cmake",
+    "text": "\nIF(CMAKE_SYSTEM_NAME MATCHES \"Linux\")\n  message(\"-- <FindVSX>\")\n  EXEC_PROGRAM(LD_SHOW_AUXV=1 ARGS \"/bin/true\" OUTPUT_VARIABLE bintrue)\n  if(bintrue MATCHES \"AT_PLATFORM:[ \\\\t\\\\n\\\\r]*([a-zA-Z0-9_]+)[ \\\\t\\\\n\\\\r]*\")\n    if(CMAKE_MATCH_COUNT GREATER 0)\n      string(TOLOWER ${CMAKE_MATCH_1} platform)\n      if(${platform} MATCHES \"^power\")\n        message(\"-- POWER Platform: ${platform}\")\n        SET(POWER_COMP TRUE CACHE BOOL \"power \")\n        SET(CXX_VSX_FLAGS  \"${CXX_VSX_FLAGS} -mcpu=${platform} -mtune=${platform}\" )\n      endif()\n    endif()\n  endif()\n  SET(VSX_CODE \" #include <altivec.h>\n      int main() {\n      float __attribute__((aligned(16))) vptr_y[8]   = { 1.0f,2.f,3.f,4.f,4.f,3.f,2.f,1.f };\n      __vector float v_result = vec_add(vec_vsx_ld(0, vptr_y), vec_vsx_ld(16, vptr_y));\n      return 0;\n      }\")\n  #check_cxx_compiler_flag(-mvsx vsx_flag)\n  SET(CMAKE_REQUIRED_FLAGS_SAVE ${CMAKE_REQUIRED_FLAGS})\n  SET(CMAKE_REQUIRED_FLAGS \"-mvsx\")\n  CHECK_C_SOURCE_COMPILES(\"${VSX_CODE}\"  C_VSX_FOUND)\n  CHECK_CXX_SOURCE_COMPILES(\"${VSX_CODE}\"  CXX_VSX_FOUND)\n  SET(CMAKE_REQUIRED_FLAGS ${CMAKE_REQUIRED_FLAGS_SAVE})\n  if(CXX_VSX_FOUND)\n    message(\"-- VSX flag was set.\")\n    SET(CXX_VSX_FLAGS  \"${CXX_VSX_FLAGS} -mvsx\" )\n  elseif(POWER_COMP)\n    message(WARNING \"-- VSX flag was not set.\")\n  endif()\n  message(\"-- </FindVSX>\")\nendif()\n"
+  },
+  {
+    "url": "https://raw.githubusercontent.com/pytorch/pytorch/v2.0.1/CMakeLists.txt",
+    "text": "# check and set CMAKE_CXX_STANDARD\nstring(FIND \"${CMAKE_CXX_FLAGS}\" \"-std=c++\" env_cxx_standard)\nif(env_cxx_standard GREATER -1)\nset(CMAKE_CXX_STANDARD 17 CACHE STRING \"The C++ standard whose features are requested to build this target.\")\n    set(CXX_STANDARD_REQUIRED ON)\n    # Please note this is required in order to ensure compatibility between gcc 9 and gcc 7\n# https://software.intel.com/en-us/articles/symbol-lookup-error-when-linking-intel-mkl-with-gcc-on-ubuntu\n# ---[ Set link flag, handle additional deps for gcc 4.8 and above\nif(CMAKE_COMPILER_IS_GNUCXX AND CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 4.8.0 AND NOT ANDROID)\n  message(STATUS \"GCC ${CMAKE_CXX_COMPILER_VERSION}: Adding gcc and gcc_s libs to link line\")\n  list(APPEND Caffe2_DEPENDENCY_LIBS gcc_s gcc)\n  if(CMAKE_COMPILER_IS_GNUCXX AND NOT (CMAKE_CXX_COMPILER_VERSION VERSION_LESS 7.0.0))\n  if(CMAKE_COMPILER_IS_GNUCXX)\n    # Suppress \"The ABI for passing parameters with 64-byte alignment has changed in GCC 4.6\"\n  if(NOT CMAKE_COMPILER_IS_GNUCXX OR GCC_VERSION VERSION_GREATER_EQUAL 9.2)\n    # Prior to GCC 9.2, this warning misfires when a method is\n    # https://gcc.gnu.org/bugzilla/show_bug.cgi?id=78010\n      if(NOT \"${LD_VERSION}\" MATCHES \"GNU gold\")\n  # These flags are not available in GCC-4.8.5. Set only when using clang.\n  # Compared against https://gcc.gnu.org/onlinedocs/gcc-4.8.5/gcc/Option-Summary.html\n    OR(CMAKE_COMPILER_IS_GNUCXX\n  if(\"${CMAKE_CXX_COMPILER_ID}\" STREQUAL \"GNU\")\n  if(CMAKE_COMPILER_IS_GNUCXX)"
+  }
+]

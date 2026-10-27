@@ -1,0 +1,34 @@
+[
+  {
+    "model": "gcn",
+    "episodes": 30,
+    "common_q_states": 301,
+    "different_greedy_choices": 0,
+    "max_common_q_difference": 0.10840000000000002,
+    "deployment_actions_equal": true
+  },
+  {
+    "model": "gcn",
+    "episodes": 100,
+    "common_q_states": 867,
+    "different_greedy_choices": 0,
+    "max_common_q_difference": 0.10840000000000002,
+    "deployment_actions_equal": true
+  },
+  {
+    "model": "graphsage",
+    "episodes": 30,
+    "common_q_states": 294,
+    "different_greedy_choices": 0,
+    "max_common_q_difference": 0.10840000000000002,
+    "deployment_actions_equal": true
+  },
+  {
+    "model": "graphsage",
+    "episodes": 100,
+    "common_q_states": 824,
+    "different_greedy_choices": 0,
+    "max_common_q_difference": 0.10840000000000002,
+    "deployment_actions_equal": true
+  }
+]

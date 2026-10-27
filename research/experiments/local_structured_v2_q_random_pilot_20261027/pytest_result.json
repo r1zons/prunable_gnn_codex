@@ -1,0 +1,32 @@
+{
+  "command": [
+    "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+    "-m",
+    "pytest",
+    "tests/test_local_surgery_v2.py",
+    "tests/test_static_local_v2.py",
+    "tests/test_adaptive_local_v2.py",
+    "tests/test_local_v2_integration.py",
+    "-p",
+    "no:cacheprovider",
+    "--basetemp=/private/tmp/local-v2-q-random-pilot-pytest-20261027",
+    "--tb=short",
+    "-r",
+    "fEs"
+  ],
+  "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+  "environment": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONPATH": "src",
+    "OMP_NUM_THREADS": "2",
+    "MKL_NUM_THREADS": "2",
+    "OPENBLAS_NUM_THREADS": "2"
+  },
+  "passed": 160,
+  "skipped": 2,
+  "warnings": 39,
+  "seconds": 24.39,
+  "exit_code": 0,
+  "raw_log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/pytest-v2.log",
+  "skip_reason": "Two CUDA preservation checks; CUDA unavailable"
+}

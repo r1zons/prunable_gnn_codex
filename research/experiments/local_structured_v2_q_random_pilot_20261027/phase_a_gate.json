@@ -1,0 +1,12 @@
+{
+  "observed_30_episode_search_seconds": {
+    "gcn_target30_episodes30_lambda2": 5.2639885019743815,
+    "graphsage_target30_episodes30_lambda2": 23.687922882963903,
+    "graphsage_target50_episodes30_lambda2": 22.707861055037938,
+    "gcn_target50_episodes30_lambda2": 5.03238558198791
+  },
+  "linear_estimate_100_episode_total_search_seconds": 188.97386007321379,
+  "per_run_external_timeout_seconds": 300,
+  "proceed_100": true,
+  "reason": "Four 30-episode runs succeeded; approximate total 100-episode search cost is bounded to a few minutes, within the requested pilot. Decisions use cost and compression/termination only, never test metrics."
+}

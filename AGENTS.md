@@ -1,5 +1,18 @@
 # AGENTS.md
 
+## Canonical workspace and mandatory reading
+
+- The only canonical checkout is `/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex`.
+- Start every research task by reading `research/STATUS.md` and `research/experiments/INDEX.md`.
+- Do not create another clone or copy of the repository. Use a topical Git branch in this checkout, or an adjacent Git worktree when isolation is explicitly useful.
+- Keep raw checkpoints, raw logs, environment bundles, wheels, and archives under the adjacent external artifact root documented in `research/STATUS.md`; never add them to Git.
+- Do not rerun a completed campaign merely to recreate files. Check the campaign registry and its hashes first.
+- Never delete or rewrite archived evidence. Add a new provenance group for a corrected or extended experiment.
+- Local CPU, POLUS CPU, Kaggle, historical/debug, and unrelated HPC-course results are separate provenance groups. Never pool them silently.
+- POLUS seed 101 repeats the same experimental seed used locally; it is not a fourth independent seed.
+- POLUS access values belong in a local ignored override or the user's existing SSH/network configuration, never in tracked files.
+- No training, pruning, LSF submission, server environment update, push, or merge without explicit user authorization.
+
 ## Project Overview
 
 This project is a modular research framework for benchmarking pruning methods on Graph Neural Networks (GNNs), using PyTorch Geometric.

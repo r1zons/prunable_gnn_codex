@@ -1,0 +1,21 @@
+{
+  "platform": "polus_cpu",
+  "git_commit": "72293149d8fff186dd268789e7b8fea5848c9360",
+  "condition": "cora_graphsage_l3_h32",
+  "config": "${POLUS_TASK_ROOT}/results/pilot-cpu-101/prepared-configs/cora_graphsage_l3_h32.yaml",
+  "config_sha256": "fd82a37bdff5c0e068a1c9ff136c9b34a5cbd414d2bd371fb656e55db3134b87",
+  "source_config_sha256": "def3aa58b2ef084e38e53b21b3f00a06d69d6d36fa532c2485785f3becceb764",
+  "source_base_sha256": "bd9d213306c0742766248604f11e0fb1e09f7ee8daccf93077b976dea2b4c59d",
+  "adapter_sha256": "a785b852d2a8c9a469439524bb555bae583952c6ee8fda4b5217397e4d76a429",
+  "machine": "ppc64le",
+  "python": "3.10.22 | packaged by conda-forge | (main, Oct  6 2026, 22:57:19) [GCC 14.4.0]",
+  "execution_requested": false,
+  "historical_or_kaggle_results_pooled": false,
+  "changed_fields": [
+    "base flattened",
+    "data.root",
+    "run.output_dir",
+    "run.experiment_name",
+    "device.device"
+  ]
+}
