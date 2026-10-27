@@ -1,11 +1,15 @@
 # Experiment campaign registry
 
-**LOCAL-STRUCTURED-V3-SPRINT-20261027** — researcher-authorized launch-only V3
-ablations. Intended local96 tasks +2 fixed probes; bounded remote paired subset32
-tasks +2 probes,4 LSF C4 jobs, subject to runtime/compatibility gates. Separate
+**LOCAL-STRUCTURED-V3-SPRINT-20261027** — completed V3 sprint, followed by a separately
+authorized primary collection. Local96 tasks +2 fixed probes; remote paired subset32
+tasks +2 probes,4 LSF C4 jobs DONE;132/132 physical checkpoints verified. Separate
 source/input/seed/platform IDs; no R2/V1 changes. [Protocol and launch metadata](local_structured_v3_sprint_20261027/README.md).
 Raw group: `${GNN_ARTIFACT_ROOT}/local-structured-v3-sprint-20261027/`.
-Submission attempted: local ACCEPTED (98 tasks), POLUS ACCEPTED (34 tasks in four planned jobs). [Actual PID and LSF acceptance receipt](local_structured_v3_sprint_20261027/launch_receipt.json); no monitoring/results collection.
+Launch-only session ended without monitoring: [original acceptance receipt](local_structured_v3_sprint_20261027/launch_receipt.json).
+Primary processing:9,600 episodes/110,830 transitions/75,467 Q entries verified;
+34 paired platform runs match actions/weights. Reachability guarantees target hits;
+added Q value over Greedy unproven. [Report and compact tables](local_structured_v3_sprint_20261027/results/REPORT.md).
+Collected raw snapshot: `${GNN_ARTIFACT_ROOT}/local-structured-v3-collection-20261027T054655Z/`.
 
 **LOCAL-STRUCTURED-V2-Q-RANDOM-PILOT-20261027** — bounded validation-only diagnostic:
 8 Q30/100-episode budget runs +4 representative lambda checks;80 Random masks

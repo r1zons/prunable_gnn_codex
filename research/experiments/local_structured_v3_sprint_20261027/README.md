@@ -1,5 +1,9 @@
 # V3 Q-learning ablation sprint — launch protocol
 
+**Subsequent collection completed, separately authorized 2026-10-27:**98 local
+and34 POLUS runs verified; [primary report and compact evidence](results/REPORT.md).
+The launch-only boundary below records the scope of the earlier submission stage.
+
 Researcher-authorized bounded sprint, 2026-10-27, starting from
 `3925278d5824f35a7f0256c68b75da9b586030a0`.
 This task implements/validates and submits jobs only. After both platform
@@ -149,3 +153,41 @@ local98-task manifest and all four remote condition manifests pass dry-run.
 manifest hashes with remote access prefixes replaced by documented variables.
 No full experimental task was run synchronously; only short technical smoke
 checks have executed before submission. Final acceptance is in launch_receipt.json.
+
+## Subsequent primary collection
+
+The researcher later explicitly requested collection and primary processing.
+All98 local tasks and34 POLUS tasks finished; jobs1602237–1602240 are DONE.
+No scientific invocation, retraining, pruning search or benchmark was repeated.
+New offline audit checks all recorded hashes, physical projection/reload, exact
+counts/target band,9,600 episodes,110,830 transitions and75,467 Q entries.34 native
+POWER8 forward/reload/validation checks also pass.11 collector tests exercise
+independent reachability/Bellman equations and reject corrupted evidence.
+
+The original893 local-batch files remain unchanged.352 remote files were archived,
+transferred and individually hash-verified. New collection root:
+`${GNN_ARTIFACT_ROOT}/local-structured-v3-collection-20261027T054655Z/`.
+Full per-episode rows remain external; compact20-episode blocks, individual runs,
+grouped statistics, paired platforms and verification metadata are tracked under
+`results/`. Platforms and training/policy seeds are never pooled.
+
+Reproduce offline processing in the existing environment, from repository root,
+using a fresh output directory and the original local batch plus downloaded snapshot:
+
+```bash
+PYTHONPATH=src python research/experiments/local_structured_v3_sprint_20261027/scripts/collect_results.py \
+  --local "${GNN_ARTIFACT_ROOT}/local-structured-v3-sprint-20261027/local-batch-final" \
+  --remote "${V3_COLLECTION_ROOT}/polus/polus-batch-final" \
+  --collection "${V3_COLLECTION_ROOT}" \
+  --output "${V3_COLLECTION_ROOT}/reprocessed"
+
+PYTHONPATH=src python research/experiments/local_structured_v3_sprint_20261027/scripts/prepare_report.py \
+  --processed "${V3_COLLECTION_ROOT}/reprocessed" \
+  --collection "${V3_COLLECTION_ROOT}" \
+  --output "${V3_COLLECTION_ROOT}/compact-report"
+```
+
+Set `V3_COLLECTION_ROOT` to the collection directory above. The report packager
+also uses its preserved transfer/native-verification/test receipts and original
+LSF logs. It does not reconnect or submit jobs. Paths and hashes are indexed in
+[results/artifact_index.json](results/artifact_index.json).

@@ -2,6 +2,25 @@
 
 **Updated:** 2026-10-27
 
+## V3 primary collection and processing — 2026-10-27
+
+Researcher authorized a subsequent collection/processing stage after the completed
+launch-only session. **98/98 local and34/34 POLUS runs verified** at executable
+source `7e2c760`; all four LSF jobs DONE.132 physical checkpoints,9,600 training
+episodes,110,830 transitions and75,467 Q entries audited;34 additional native
+POWER8 reload/metric checks PASS.11 collector tests passed. Original893 local-batch
+files unchanged;352 remote files transferred and hash-verified. No new experiment,
+algorithm change, fine-tuning or test-set evaluation.
+
+Exact-reachability Q/Random/Greedy each hit12/12 local targets; H4a6/12,
+R2/H1/H2/H3 each0/12. Constrained Q matches Greedy quality at50% and has lower mean
+validation accuracy at30% across three policy seeds; added learning value remains
+unproven. All34 paired platform runs match actions/retained IDs/checkpoint tensors;
+fixed forward differences are small with no argmax disagreement. Platforms and
+policy seeds remain separate; one frozen training checkpoint per model.
+See [primary report and compact data](experiments/local_structured_v3_sprint_20261027/results/REPORT.md).
+External collection: `${GNN_ARTIFACT_ROOT}/local-structured-v3-collection-20261027T054655Z/`.
+
 ## V3 ablation sprint submission — 2026-10-27
 
 Researcher explicitly authorized isolated H1/H2/H3/H4a/H4b variants and constrained
@@ -10,8 +29,8 @@ bounded POLUS C4 batch. R2 remains a direct unchanged reference. Exact width/hor
 reachability is label-free; no H5 extension. Independent V3/execution tests and R2
 regressions pass. Runtime/smoke and submission gates are recorded under
 [the sprint protocol](experiments/local_structured_v3_sprint_20261027/README.md).
-This session must end after submission attempts/receipts; no result monitoring,
-analysis, tables or follow-up experiment round is authorized in this session.
+The launch-only session ended after submission attempts/receipts without monitoring
+or analysis. Subsequent collection was separately authorized as recorded above.
 
 Submission receipt: local **ACCEPTED**, PID `8440`,98 tasks; POLUS **ACCEPTED**, accepted LSF IDs `1602237, 1602238, 1602239, 1602240`,34 paired tasks. See [launch_receipt.json](experiments/local_structured_v3_sprint_20261027/launch_receipt.json). Acceptance records are preserved; no full-batch outcomes were collected or monitored.
 

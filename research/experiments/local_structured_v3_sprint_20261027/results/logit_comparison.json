@@ -1,0 +1,58 @@
+[
+  {
+    "model": "gcn",
+    "tensor": "dense_logits.pt",
+    "shape": [
+      2708,
+      7
+    ],
+    "exact_equal": false,
+    "max_abs_difference": 3.814697265625e-06,
+    "mean_abs_difference": 1.43426305498906e-07,
+    "all_nodes_argmax_disagreements": 0,
+    "validation_argmax_disagreements": 0,
+    "allclose_rtol_1e5_atol_1e6": true
+  },
+  {
+    "model": "gcn",
+    "tensor": "fixed_pruned_logits.pt",
+    "shape": [
+      2708,
+      7
+    ],
+    "exact_equal": false,
+    "max_abs_difference": 3.814697265625e-06,
+    "mean_abs_difference": 1.8992513162174873e-07,
+    "all_nodes_argmax_disagreements": 0,
+    "validation_argmax_disagreements": 0,
+    "allclose_rtol_1e5_atol_1e6": true
+  },
+  {
+    "model": "graphsage",
+    "tensor": "dense_logits.pt",
+    "shape": [
+      2708,
+      7
+    ],
+    "exact_equal": false,
+    "max_abs_difference": 2.86102294921875e-06,
+    "mean_abs_difference": 2.2289346190973447e-07,
+    "all_nodes_argmax_disagreements": 0,
+    "validation_argmax_disagreements": 0,
+    "allclose_rtol_1e5_atol_1e6": true
+  },
+  {
+    "model": "graphsage",
+    "tensor": "fixed_pruned_logits.pt",
+    "shape": [
+      2708,
+      7
+    ],
+    "exact_equal": false,
+    "max_abs_difference": 3.814697265625e-06,
+    "mean_abs_difference": 2.465801287598879e-07,
+    "all_nodes_argmax_disagreements": 0,
+    "validation_argmax_disagreements": 0,
+    "allclose_rtol_1e5_atol_1e6": true
+  }
+]

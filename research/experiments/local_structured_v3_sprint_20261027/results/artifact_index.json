@@ -1,0 +1,109 @@
+{
+  "collection_root": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v3-collection-20261027T054655Z",
+  "processed_root": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v3-collection-20261027T054655Z/processed-verified",
+  "local_original_root": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v3-sprint-20261027/local-batch-final",
+  "local_batch_finished": {
+    "finished": true,
+    "all_completed": true,
+    "completed_tasks": 98,
+    "failed_tasks": 0,
+    "source_commit": "7e2c760e988b605e305615dea147236e8b0c59a3"
+  },
+  "local_launch_utc": "2026-10-27T03:58:15.085336+00:00",
+  "local_finished_mtime_utc": "2026-10-27T04:24:22.614649+00:00",
+  "local_approx_wall_seconds": 1567.529313,
+  "local_wall_method": "Detached launch receipt timestamp to original batch.finished.json filesystem mtime; approximate, not search-only timing.",
+  "polus_snapshot_root": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v3-collection-20261027T054655Z/polus/polus-batch-final",
+  "polus_remote_archive": "${POLUS_TASK_ROOT}/results/v3-collection-20261027T054722Z/polus-results.tar.gz",
+  "polus_archive": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v3-collection-20261027T054655Z/polus-results.tar.gz",
+  "polus_archive_sha256": "21f502e2dba14fdb928187e8e3ea8480d4063ab65686c99bfe8b99a66d419ffc",
+  "polus_archive_bytes": 6447920,
+  "polus_original_files_verified": 352,
+  "polus_jobs": [
+    {
+      "condition": "gcn-t30",
+      "job_id": 1602237,
+      "status": "DONE",
+      "run_seconds": 180.0,
+      "started_at_cluster_time": "Tue Oct 27 06:58:50 2026",
+      "terminated_at_cluster_time": "Tue Oct 27 07:01:50 2026",
+      "lsf_stdout_sha256": "b8932b711c8e38eacdc4f0c2257478edff86d005d69f367f97f8d11204cee685",
+      "batch": {
+        "finished": true,
+        "all_completed": true,
+        "completed_tasks": 9,
+        "failed_tasks": 0,
+        "source_commit": "7e2c760e988b605e305615dea147236e8b0c59a3"
+      }
+    },
+    {
+      "condition": "gcn-t50",
+      "job_id": 1602238,
+      "status": "DONE",
+      "run_seconds": 165.0,
+      "started_at_cluster_time": "Tue Oct 27 07:01:50 2026",
+      "terminated_at_cluster_time": "Tue Oct 27 07:04:35 2026",
+      "lsf_stdout_sha256": "9d444a016bbd62781628d1cf37138d073f73e0f0559e38ba6d17ac180e2fb4a4",
+      "batch": {
+        "finished": true,
+        "all_completed": true,
+        "completed_tasks": 8,
+        "failed_tasks": 0,
+        "source_commit": "7e2c760e988b605e305615dea147236e8b0c59a3"
+      }
+    },
+    {
+      "condition": "graphsage-t30",
+      "job_id": 1602239,
+      "status": "DONE",
+      "run_seconds": 267.0,
+      "started_at_cluster_time": "Tue Oct 27 07:04:35 2026",
+      "terminated_at_cluster_time": "Tue Oct 27 07:09:02 2026",
+      "lsf_stdout_sha256": "72aefbf5b9d8a7e9c8e3898446749ccde4f29a8c50ff990c7153a1b864f7d5b6",
+      "batch": {
+        "finished": true,
+        "all_completed": true,
+        "completed_tasks": 9,
+        "failed_tasks": 0,
+        "source_commit": "7e2c760e988b605e305615dea147236e8b0c59a3"
+      }
+    },
+    {
+      "condition": "graphsage-t50",
+      "job_id": 1602240,
+      "status": "DONE",
+      "run_seconds": 248.0,
+      "started_at_cluster_time": "Tue Oct 27 07:09:02 2026",
+      "terminated_at_cluster_time": "Tue Oct 27 07:13:10 2026",
+      "lsf_stdout_sha256": "b5ea7f94355eb53fc9e122c0b303f340f32b36d9549009dc56a6a95b034c1191",
+      "batch": {
+        "finished": true,
+        "all_completed": true,
+        "completed_tasks": 8,
+        "failed_tasks": 0,
+        "source_commit": "7e2c760e988b605e305615dea147236e8b0c59a3"
+      }
+    }
+  ],
+  "per_episode_rows": {
+    "path": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v3-collection-20261027T054655Z/processed-verified/episodes.csv",
+    "rows": 9600,
+    "sha256": "262a4cb6241dd2630ad6ffa497e2b33ec531f3f5070dac158b545f92dcc8b5e6"
+  },
+  "original_local_inventory": {
+    "path": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v3-collection-20261027T054655Z/local-inventory.json",
+    "sha256": "164fcf53193d75ed5e0258236a8c40cc5ef36b304ba59aee52e8e897dcd65af7",
+    "files": 893
+  },
+  "polus_inventory": {
+    "path": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v3-collection-20261027T054655Z/polus/collection/inventory.json",
+    "sha256": "5a400233329397539c36f5f96b185b369cbc61ff3206ff20a6fedd99f76539f9"
+  },
+  "collector_test_log": {
+    "path": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v3-collection-20261027T054655Z/collector-tests.log",
+    "sha256": "74d92ecdc05c2b697812ad63c3cf426c158521743e81a29b1b1bf9c769f63a85",
+    "result": "11 passed"
+  },
+  "collector_sha256": "ded487c09570dca4c11f359e37a8b44f3b3f1d46bcbf3fecd3dd42206a8d41ea",
+  "report_generator_sha256": "ff2a642f167dde7ccc4b9c0619b8d06d8f8f934e4fae9ecd25c32dd09ba72620"
+}

@@ -1,0 +1,39 @@
+{
+  "source_commit": "7e2c760e988b605e305615dea147236e8b0c59a3",
+  "local_artifact_root": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v3-sprint-20261027/local-batch-final",
+  "remote_snapshot_root": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v3-collection-20261027T054655Z/polus/polus-batch-final",
+  "input_manifest": {
+    "training_seed": 101,
+    "dataset": "cora",
+    "source_provenance_ref": "research/experiments/local_structured_v2_cora_matrix_20261027/provenance.json",
+    "source_provenance_sha256": "06240cb02225bd2cfe8e3710f70811f6ebc8871b3fc56fbe19d3a7538277e727",
+    "graph_tensor_sha256": "2b2bc996be89812f80ce7d09599dab983f804f87ddd37a09b3ce0b5689ec9a0d",
+    "graph": {
+      "file": "graph_tensors.pt",
+      "sha256": "4202270306b85ac367d22b483fb9b2041af1a4085a732356f8714df1e6053596"
+    },
+    "models": {
+      "gcn": {
+        "file": "gcn.pt",
+        "sha256": "276b2ff0f7790a84afc2755e89d88f1a170865a4397e4355daf7552c7075c129",
+        "tensor_sha256": "a2bbe3d0ce85cafbbadb2a47b80806735b6d1de1aedbc1e35c8693bc499cb258"
+      },
+      "graphsage": {
+        "file": "graphsage.pt",
+        "sha256": "09b289dcbaddc1afb1c3660f7fa5d60fb1109c3c3059bdae14d8c4de03034774",
+        "tensor_sha256": "3671d5b11887b1a299f1237d2b66e6763ef2da65b759d9aec1d5b01063cc902e"
+      }
+    },
+    "split": {
+      "file": "splits.yaml",
+      "sha256": "59a0209a8e2a73a5e70a720d327f8c024d36d184a6d00be820ced0e1a3eb08bc"
+    }
+  },
+  "local_inventory_sha256": "164fcf53193d75ed5e0258236a8c40cc5ef36b304ba59aee52e8e897dcd65af7",
+  "polus_inventory_sha256": "5a400233329397539c36f5f96b185b369cbc61ff3206ff20a6fedd99f76539f9",
+  "archive_sha256": "21f502e2dba14fdb928187e8e3ea8480d4063ab65686c99bfe8b99a66d419ffc",
+  "policy_seed_interpretation": "Three local policy seeds share training checkpoint seed101; POLUS seed101 is a paired platform repeat, not an independent fourth seed.",
+  "inference_interpretation": "Existing per-run 5-warmup/20-pass timings only; local tasks ran concurrently, library/thread/host load differ; no isolated hardware benchmark.",
+  "label_boundary": "Validation only; no test-set evaluation or selection.",
+  "preflight_excluded": true
+}
