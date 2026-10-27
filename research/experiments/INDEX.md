@@ -1,5 +1,12 @@
 # Experiment campaign registry
 
+**LOCAL-STRUCTURED-V3-SPRINT-20261027** — researcher-authorized launch-only V3
+ablations. Intended local96 tasks +2 fixed probes; bounded remote paired subset32
+tasks +2 probes,4 LSF C4 jobs, subject to runtime/compatibility gates. Separate
+source/input/seed/platform IDs; no R2/V1 changes. [Protocol and launch metadata](local_structured_v3_sprint_20261027/README.md).
+Raw group: `${GNN_ARTIFACT_ROOT}/local-structured-v3-sprint-20261027/`.
+No full jobs submitted at preparation stage; final receipt records acceptance.
+
 **LOCAL-STRUCTURED-V2-Q-RANDOM-PILOT-20261027** — bounded validation-only diagnostic:
 8 Q30/100-episode budget runs +4 representative lambda checks;80 Random masks
 (seed1000–1019 per condition), all on frozen Cora dense seed101.92 physical models

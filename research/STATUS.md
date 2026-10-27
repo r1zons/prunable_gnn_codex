@@ -2,6 +2,17 @@
 
 **Updated:** 2026-10-27
 
+## V3 ablation sprint preparation — 2026-10-27
+
+Researcher explicitly authorized isolated H1/H2/H3/H4a/H4b variants and constrained
+Random/Greedy controls, pinned frozen Cora inputs, local detached execution and a
+bounded POLUS C4 batch. R2 remains a direct unchanged reference. Exact width/horizon
+reachability is label-free; no H5 extension. Independent V3/execution tests and R2
+regressions pass. Runtime/smoke and submission gates are recorded under
+[the sprint protocol](experiments/local_structured_v3_sprint_20261027/README.md).
+This session must end after submission attempts/receipts; no result monitoring,
+analysis, tables or follow-up experiment round is authorized in this session.
+
 ## V2 validation-only Q / Random pilot — 2026-10-27
 
 Completed on core `f110c5d`:8 Q budget conditions +4 targeted lambda conditions,

@@ -1,0 +1,33 @@
+{
+  "status": "PASS",
+  "R2_source_files_changed": false,
+  "checks": {
+    "tests-all-final.log": {
+      "summary": "198 passed, 2 skipped, 39 warnings in 32.80s",
+      "sha256": "a3c8554f1b62487d4126e3380300c689df9bffd4384f06544bd068e3b63f8f3a",
+      "raw_path": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v3-sprint-20261027/tests-all-final.log"
+    },
+    "tests-v3-execution-final.log": {
+      "summary": "38 passed, 39 warnings in 10.13s",
+      "sha256": "d19fc860836ed928df6ad76ca5f2041f936b7292d3b0a5416e3a6a73e289e0be",
+      "raw_path": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v3-sprint-20261027/tests-v3-execution-final.log"
+    }
+  },
+  "network": "Researcher-restored POLUS host route verified against current physical gateway before SSH. Existing research environment/queue/node recovered; access values remain private.",
+  "local_resources": {
+    "physical_cores": 6,
+    "logical_cores": 12,
+    "RAM_GiB": 16,
+    "planned_workers": 2,
+    "threads_per_worker": 2
+  },
+  "remote_environment": {
+    "python": "3.10.22",
+    "torch": "2.0.1",
+    "pyg": "2.4.0",
+    "machine": "ppc64le",
+    "queue": "normal",
+    "slots": 4,
+    "node": "polus-c4"
+  }
+}

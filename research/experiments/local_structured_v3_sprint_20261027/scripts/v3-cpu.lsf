@@ -1,0 +1,21 @@
+#!/bin/bash
+# Adapted from the successfully executed 2026-10-24 pilot-cpu.lsf.
+#BSUB -q normal
+#BSUB -n 4
+#BSUB -W 03:00
+#BSUB -R "span[hosts=1]"
+#BSUB -m polus-c4-ib.bmc.hpc.cs.msu.ru
+#BSUB -x
+#BSUB -o logs/lsf/v3-cpu.%J.out
+#BSUB -e logs/lsf/v3-cpu.%J.err
+set -euo pipefail
+[[ "${LSB_JOBID:-}" =~ ^[0-9]+$ && "${LSB_QUEUE:-}" == normal && "${LSB_DJOB_NUMPROC:-}" == 4 ]] || exit 1
+case "$(hostname -s)" in polus-c4|polus-c4-ib) ;; *) exit 1 ;; esac
+source "$HOME/gnn-polus-20261023/activate-polus.sh"
+: "${V3_SOURCE:?}" "${V3_MANIFEST:?}" "${V3_SUBMISSION:?}"
+cd "$V3_SUBMISSION"
+sha256sum -c launcher.sha256
+cd "$V3_SOURCE"
+export PYTHONPATH="$V3_SOURCE/src" PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+python -m gnn_pruning.experiments.v3_sprint batch --manifest "$V3_MANIFEST"
