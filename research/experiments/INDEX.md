@@ -1,5 +1,14 @@
 # Experiment campaign registry
 
+**LOCAL-STRUCTURED-V2-Q-RANDOM-PILOT-20261027** — bounded validation-only diagnostic:
+8 Q30/100-episode budget runs +4 representative lambda checks;80 Random masks
+(seed1000–1019 per condition), all on frozen Cora dense seed101.92 physical models
+verified;920 Q episodes replayed;28,841 old files unchanged. **Q REQUIRES ALGORITHM
+REVIEW; Random ADEQUATE as repeated-mask baseline**. No production/R2 change,
+research hyperparameter selection, test-metric analysis or broader campaign.
+[Evidence](local_structured_v2_q_random_pilot_20261027/README.md). Raw group:
+`${GNN_ARTIFACT_ROOT}/local-structured-v2-q-random-pilot-20261027/`.
+
 **LOCAL-STRUCTURED-V2-CORA-MATRIX-20261027** — completed diagnostic extension:
 18 new CPU runs (GCN50, GraphSAGE30/50, six methods each), **18/18 PASS**; with six
 reused GCN30 cells the matrix is **24/24**, without repeating GCN30. Frozen POLUS

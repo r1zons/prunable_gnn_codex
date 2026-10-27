@@ -1,0 +1,20 @@
+{
+  "affected_conditions": [
+    {
+      "model": "gcn",
+      "target": 0.3
+    },
+    {
+      "model": "graphsage",
+      "target": 0.5
+    }
+  ],
+  "all_phase_a_conditions_miss_target": true,
+  "reason": "Bounded representative sensitivity: GCN30 covers max_steps overcompression; GraphSAGE50 covers off-target STOP. Within each model Phase A deploys the same architecture for both targets. Two additional lambda values per representative condition (four runs), rather than automatically expanding to every model/target. Selection is based on stopping/compression mechanisms, not validation quality or test data. No inference to untested model/target/lambda cells and no final research hyperparameter choice.",
+  "episodes": 100,
+  "max_steps": 20,
+  "lambda_values": [
+    0.5,
+    5.0
+  ]
+}

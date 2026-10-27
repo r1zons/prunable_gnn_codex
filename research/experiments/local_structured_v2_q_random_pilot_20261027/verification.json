@@ -1,0 +1,655 @@
+{
+  "status": "PASS",
+  "physical_checkpoints_verified": 92,
+  "checkpoints": [
+    {
+      "kind": "q_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/q_runs/gcn_target30_episodes100_lambda0.5/pruned.pt",
+      "checkpoint_sha256": "2fa46fcd06fbfc779ecee60368dc430ff069ded3ea516ee4e164d5a721b304d4",
+      "status": "PASS"
+    },
+    {
+      "kind": "q_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/q_runs/gcn_target30_episodes100_lambda2/pruned.pt",
+      "checkpoint_sha256": "6e8fcc98a1c0566676bda1aecbcb31fa7145ef8f0b537177e7d797c192ae1f82",
+      "status": "PASS"
+    },
+    {
+      "kind": "q_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/q_runs/gcn_target30_episodes100_lambda5/pruned.pt",
+      "checkpoint_sha256": "21d14f568f98cfa41af1802d7496c85cc2bf7ebd6ca4925770d1852d4f4308cf",
+      "status": "PASS"
+    },
+    {
+      "kind": "q_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/q_runs/gcn_target30_episodes30_lambda2/pruned.pt",
+      "checkpoint_sha256": "b5c8882ba2c99f5d5caa427890987e82b480c95995ff90a14839c6d79f5fc874",
+      "status": "PASS"
+    },
+    {
+      "kind": "q_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/q_runs/gcn_target50_episodes100_lambda2/pruned.pt",
+      "checkpoint_sha256": "effdc99df7c86144dbf25fcbf080e256f5abfa796af6ca07b923a51d56094793",
+      "status": "PASS"
+    },
+    {
+      "kind": "q_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/q_runs/gcn_target50_episodes30_lambda2/pruned.pt",
+      "checkpoint_sha256": "a47a0e77a74f0cf14290eec522283aabbadd073caf5dfbd30a3fbdc50e5b2a96",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target30_mask1000/pruned.pt",
+      "checkpoint_sha256": "8af2ab7fb837c2d5adb729dddeaa1f395afe797efe613ecd5b3400035668872e",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target30_mask1001/pruned.pt",
+      "checkpoint_sha256": "0ebc0514cab76c5a648ed7c3cc7f9403925262bdbd8f74288c5b9a23e4e51857",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target30_mask1002/pruned.pt",
+      "checkpoint_sha256": "803342167e4d349c3160ac3afb49d863dd6dbed378c500b5efd864bcbfabed0a",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target30_mask1003/pruned.pt",
+      "checkpoint_sha256": "7c104b4ec1dc688fd4531f5cbc25c366053218d7455d508e61f75a7910e146d9",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target30_mask1004/pruned.pt",
+      "checkpoint_sha256": "469bbaa11ce65cb81af0791fffaffc526ee4eb2c8f1c21547796926b9570b106",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target30_mask1005/pruned.pt",
+      "checkpoint_sha256": "161e2ca19d5fed9f79e04bb1686a7df1a7bbb49946ec8e71d9feb07887280ab9",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target30_mask1006/pruned.pt",
+      "checkpoint_sha256": "c4050f8832fa1a63dfea89036cf060c5b1934709fef55075a3e80c1fa56971df",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target30_mask1007/pruned.pt",
+      "checkpoint_sha256": "018d0481327eb4240ff278d7efee8be411e11e33258673a65de3df327405056e",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target30_mask1008/pruned.pt",
+      "checkpoint_sha256": "60f68a10a1079498ecdc7bbcc42090e09b6f312ae14aca3a93bcdd05bb852091",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target30_mask1009/pruned.pt",
+      "checkpoint_sha256": "0999795cd782c5fa46fee96de8f0472a1a68ea678de668f9280ca186e22f20b9",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target30_mask1010/pruned.pt",
+      "checkpoint_sha256": "22f6cd6b92c7acb797162535d9c865556b9361cccb93f0d4e3e54ec2de97fae8",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target30_mask1011/pruned.pt",
+      "checkpoint_sha256": "84626576f7e4c82a301d2c164b4e06a0f0cf224e039e1561c5366444e3ca795d",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target30_mask1012/pruned.pt",
+      "checkpoint_sha256": "ba4fc1a768f613a1d7709a2bec5bd6e4c41ff28e6bc72426c4ae4501b440c94f",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target30_mask1013/pruned.pt",
+      "checkpoint_sha256": "3e3daeb36a838fbfe276fd4a79939bfc8737dca79dc36353e05c6d6abb8a2b8c",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target30_mask1014/pruned.pt",
+      "checkpoint_sha256": "d8ce530aef3d075cba3c39f0ef0ad89d6e9ecc53e21923168f95fb3243f6156f",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target30_mask1015/pruned.pt",
+      "checkpoint_sha256": "76cd340d7d24da7354fcab3a8af80a77896716431683af1a97796f99c86adee1",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target30_mask1016/pruned.pt",
+      "checkpoint_sha256": "bc8fefd23cceba2aa035605da6182eeeb0c3abdac0797915ae30679aa4367506",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target30_mask1017/pruned.pt",
+      "checkpoint_sha256": "4168f584e457aae2310c0ac067a89b4cfe09e2e8837cfdfb8e7bd1fd65639ad0",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target30_mask1018/pruned.pt",
+      "checkpoint_sha256": "36233a5df91b5e1f9278d2f6fd37217415a3e21f810704e816489a0f3f38dc88",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target30_mask1019/pruned.pt",
+      "checkpoint_sha256": "90c3f9294d7283d926ff1643671c507ef38a856421a972f3451bba076be6b804",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target50_mask1000/pruned.pt",
+      "checkpoint_sha256": "70865d13fd5c1f1fca980c7a90c2dcbc12993681dd54b0f387df0fc3ddd36f76",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target50_mask1001/pruned.pt",
+      "checkpoint_sha256": "4f6c3b79049584dfdd11e198374303b1419720ad0a8336f1f3cf512c4b95c74b",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target50_mask1002/pruned.pt",
+      "checkpoint_sha256": "4205b15c32ce6f1682110dc192b73974e136776b0d324280bd16d812d6845ae4",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target50_mask1003/pruned.pt",
+      "checkpoint_sha256": "cd7f7f504dff2afcedc30db50ef71a112a322d2dd91b6df4cc9902832cf41757",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target50_mask1004/pruned.pt",
+      "checkpoint_sha256": "355b0592e4a22d4f2d141830614400df865498211d274e52fc9302d0bc3d3692",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target50_mask1005/pruned.pt",
+      "checkpoint_sha256": "8e7bdebe50c3e4334b4d8c3e8637b3594a36f0a08e92844a1e9d8ced498fc6f7",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target50_mask1006/pruned.pt",
+      "checkpoint_sha256": "6d42a9b9d17a14fd404faf323841bd43e5b1534b194c1e46418b84a60af94753",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target50_mask1007/pruned.pt",
+      "checkpoint_sha256": "6f86ea673b30acf1684bc7afb098ee9dc7bf6d8dd851d966a6271b1b4ad35883",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target50_mask1008/pruned.pt",
+      "checkpoint_sha256": "2804a42384e3079004108b893e4eaa6353f79d480938fb504557a100eb9fe7f7",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target50_mask1009/pruned.pt",
+      "checkpoint_sha256": "56c170e95ed7dec124556b23139e1ac734a86b68cd6efccc39ab3b8c5da788ac",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target50_mask1010/pruned.pt",
+      "checkpoint_sha256": "92ce007535842f601ae936a741db244fd0aa1da381733a2b868a3c4e7403876d",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target50_mask1011/pruned.pt",
+      "checkpoint_sha256": "2a755db74a57ae2922c59dbb06b86d5b618d22f26fef3f119e2f8a572b72463f",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target50_mask1012/pruned.pt",
+      "checkpoint_sha256": "07e919a9515f033f17fe624e2db851999e5616d3b73d6c04207326f5410be805",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target50_mask1013/pruned.pt",
+      "checkpoint_sha256": "3b856bddac55aaf1b4ee7c88726a5035b260e639f4294d77de400c61b11c72c4",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target50_mask1014/pruned.pt",
+      "checkpoint_sha256": "7737def6d6920165a307cf61d927b99340dd31c72b539ef6f5425b3e5a1f77dc",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target50_mask1015/pruned.pt",
+      "checkpoint_sha256": "be382bd05e97de5f2bd7317f4aa94ee198133ff60a3d0529e047323347e6a663",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target50_mask1016/pruned.pt",
+      "checkpoint_sha256": "6c1e5533d996ff5ef55d3eaf05d2886378c3e95f35d2549b7297c5d4e3e3466c",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target50_mask1017/pruned.pt",
+      "checkpoint_sha256": "71ebaed652a8d056ab892e1d0384c1a4bcd9566693ec43d319253e35176ceb19",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target50_mask1018/pruned.pt",
+      "checkpoint_sha256": "1e655f943c5825da4535a0745f36262f6b8ae22d2a05ec7fb30866189aa4f696",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "gcn",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/gcn_target50_mask1019/pruned.pt",
+      "checkpoint_sha256": "dcd84a88f1e93f94babb2b5ac4bc4bf11703ac3bbf6b632ef5d6e8217f599366",
+      "status": "PASS"
+    },
+    {
+      "kind": "q_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/q_runs/graphsage_target30_episodes100_lambda2/pruned.pt",
+      "checkpoint_sha256": "7a11925b3ecc57e3c216310aeb494ff4818478baed41808c58764f8ae54ceef3",
+      "status": "PASS"
+    },
+    {
+      "kind": "q_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/q_runs/graphsage_target30_episodes30_lambda2/pruned.pt",
+      "checkpoint_sha256": "472da730cdb0a2cd5b48214ed128277357de993f1acd19e6e7fc783b75fce347",
+      "status": "PASS"
+    },
+    {
+      "kind": "q_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/q_runs/graphsage_target50_episodes100_lambda0.5/pruned.pt",
+      "checkpoint_sha256": "ab2396fb4e0c5a6a4d664170d013c7b026e66db35de689d6109bb5b70e2cab9c",
+      "status": "PASS"
+    },
+    {
+      "kind": "q_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/q_runs/graphsage_target50_episodes100_lambda2/pruned.pt",
+      "checkpoint_sha256": "ac18097b4a4d3c2556d85e18dbf1a3b2b3921f21a69483054afe91591a585fe7",
+      "status": "PASS"
+    },
+    {
+      "kind": "q_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/q_runs/graphsage_target50_episodes100_lambda5/pruned.pt",
+      "checkpoint_sha256": "5da0a860bbed99a6261a658ef79696c4721865d7e8a3f9d78b3b9332475434e4",
+      "status": "PASS"
+    },
+    {
+      "kind": "q_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/q_runs/graphsage_target50_episodes30_lambda2/pruned.pt",
+      "checkpoint_sha256": "05c699ba7f95e88c9dab0353123a2d1f3f8f47676411b7ef210203c956eab3ff",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target30_mask1000/pruned.pt",
+      "checkpoint_sha256": "824e784da9df6c0e660844dd4b29cdc29ee4ed450da5f7be2fe124f941d38b36",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target30_mask1001/pruned.pt",
+      "checkpoint_sha256": "ba539e191477e18196442c8225471cad722d5724e371e216a5c174b9b2f6915b",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target30_mask1002/pruned.pt",
+      "checkpoint_sha256": "33e5b7b34ad847e717ddf807d3d1ba1a4c73d88e43a5fe804030df106ee313fc",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target30_mask1003/pruned.pt",
+      "checkpoint_sha256": "c3d399e2d2c7976f92a406c95478a9ecc528ddeddf5aab6eb84d9ec88e15c731",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target30_mask1004/pruned.pt",
+      "checkpoint_sha256": "4db7cbb656043559ec66c88bf65b5ffdf39ac344d86d480d089a0a06b8557563",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target30_mask1005/pruned.pt",
+      "checkpoint_sha256": "365e4ddfcb7928749caa13cae8170da8042d20dc682d3d8fb9609f9ce204f738",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target30_mask1006/pruned.pt",
+      "checkpoint_sha256": "bc1be45e7ce2aa3032002946ef014f5a8bf5075eff4e3bd517725abda69c199d",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target30_mask1007/pruned.pt",
+      "checkpoint_sha256": "4757f901e317a299755c799d34083660c9c833184de41986bd560e9986ca16bb",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target30_mask1008/pruned.pt",
+      "checkpoint_sha256": "8807764479a8e0f6293b5fd18acedfb94d8f485eeac82e5bfd1ad98b1f5e1938",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target30_mask1009/pruned.pt",
+      "checkpoint_sha256": "5ccd274943ed21b707a15df8f3cb7f9392e17eaf40e29b122482a5dd4639f2e1",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target30_mask1010/pruned.pt",
+      "checkpoint_sha256": "6de1184397e48062e794c2d3f546200d70a86843ae823e4f706c71fc17cae18a",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target30_mask1011/pruned.pt",
+      "checkpoint_sha256": "f0b9d20752c8a05caa1681e12fbb6719770b8a0d9ec0221f21be9c0ec56a5501",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target30_mask1012/pruned.pt",
+      "checkpoint_sha256": "155486f1a2a345ef99d079113572db22db681dfccf795ff51bea05cf5e9df025",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target30_mask1013/pruned.pt",
+      "checkpoint_sha256": "3761ef7213b50f020342ce8e90a143176a2ee7579f61cc9fa44cc00e197989f0",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target30_mask1014/pruned.pt",
+      "checkpoint_sha256": "d9cb04818fbdc69b8b73fbb58b4ec51bcf86bd4f5589f4719b204b9a53d60dd9",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target30_mask1015/pruned.pt",
+      "checkpoint_sha256": "fb8320f109a4127483868614de7c7e5fdb87792b5c27fa3b3d70cbe3716fbace",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target30_mask1016/pruned.pt",
+      "checkpoint_sha256": "c730bcdaa3970a2264d2d8946334e2734c82239baeca12dc4119918f4ff48bf7",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target30_mask1017/pruned.pt",
+      "checkpoint_sha256": "c0fbdf1d563355b627ffdd882eccb7ef94b7c163d5673e28eb127316a3a2f29f",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target30_mask1018/pruned.pt",
+      "checkpoint_sha256": "748c3a2cd8c05d2c86f4754b477b9e15352a6331f4950f648a65ce29a6181b43",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target30_mask1019/pruned.pt",
+      "checkpoint_sha256": "5430a2355f6ff3b26855810f2b9bbfa392e7dc0a8e2cea91bee6c02db69cad22",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target50_mask1000/pruned.pt",
+      "checkpoint_sha256": "51917c113010eab636152d0476663847c33e0549ba941bfd43f51b3bfc047bca",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target50_mask1001/pruned.pt",
+      "checkpoint_sha256": "3523fe5f5bdbc650c1c3148c1abb47d354876638c9ed3f4959055c2aeef76243",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target50_mask1002/pruned.pt",
+      "checkpoint_sha256": "e54130fe2c4453ccd01c253cdab021592eb7ae70b70f0fd755aa3faa20f1c78c",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target50_mask1003/pruned.pt",
+      "checkpoint_sha256": "aa66161f6b4fced27df669d59fdb59228bedbb863f35866c769ff6bf8b107af4",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target50_mask1004/pruned.pt",
+      "checkpoint_sha256": "e3e469251f3731b9a0fa9edcab0b792bb7daabb3d84f8787c8dbeae30e47246f",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target50_mask1005/pruned.pt",
+      "checkpoint_sha256": "0d2081abf9ecd44d99931a991ebbf07eb2973193e59f2a56d4625bdfe0cf9cb0",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target50_mask1006/pruned.pt",
+      "checkpoint_sha256": "a3050a79020a18bec11a518bf372ed9cdf04b2eb922ed29f81f4e7120979052b",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target50_mask1007/pruned.pt",
+      "checkpoint_sha256": "e73559ec2ee979e06ffb914c4bb23b4e644e6bb39ad61bd6ebdfdd0c1c2b6a4b",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target50_mask1008/pruned.pt",
+      "checkpoint_sha256": "e733ec9b6dd16136ec4da6dd8f3c314fd8763cafd7f7e9b4f68b308d73f7a8a6",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target50_mask1009/pruned.pt",
+      "checkpoint_sha256": "afe7fd7df67ad4d352fcb521052fdc32c6595410bede4a522e08edde66e6feee",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target50_mask1010/pruned.pt",
+      "checkpoint_sha256": "2ef2f995c9749d57d9d59214710f283e9192a903ce0ed23197dfcd759a9249ef",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target50_mask1011/pruned.pt",
+      "checkpoint_sha256": "e9d15980d4c6ca5ccf747f6f66e0aa6a721a9a3d62bd3021cbbaedd2ae4df471",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target50_mask1012/pruned.pt",
+      "checkpoint_sha256": "fbe2d46a7cdb23f04acbb2dac9fb33b2e73561f5c18846cd1bd0f1535d7494b6",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target50_mask1013/pruned.pt",
+      "checkpoint_sha256": "3c3cf632055c22622fd5192e6dceb1cbca6f9ee3060a988ac0c8e9bed7417d54",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target50_mask1014/pruned.pt",
+      "checkpoint_sha256": "ede127fbae8af6afb0652d7ee3fb05ada472236c2b62c59c277817fa81cabb39",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target50_mask1015/pruned.pt",
+      "checkpoint_sha256": "9189d57bbc5bf22d191a6e6c87e8f0ed70481a33e42778511af9a8607bc28efb",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target50_mask1016/pruned.pt",
+      "checkpoint_sha256": "48abdf4e52b7d9204aa764dd8aa0d83bc7f834aab8d8a1077c94608597eab95f",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target50_mask1017/pruned.pt",
+      "checkpoint_sha256": "fb558f2a7847a5884518d9465afe2979dcdf55f1c83f10c4e85c54ef1163f1bd",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target50_mask1018/pruned.pt",
+      "checkpoint_sha256": "cdab3488acd54c257f35302ff1d0145bf82c02a6677cfc4b4beea546cd751df8",
+      "status": "PASS"
+    },
+    {
+      "kind": "random_runs",
+      "model": "graphsage",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/random_runs/graphsage_target50_mask1019/pruned.pt",
+      "checkpoint_sha256": "284bbe6bc01cd9c600546a557b4ecc9616b3628f7f96889e4eed6416a9cbfb22",
+      "status": "PASS"
+    }
+  ],
+  "protected_files_verified": 28841,
+  "previous_artifacts_modified": [],
+  "validation_only": true,
+  "labels_outside_validation": -1,
+  "scope": "Strict reload, independent dense tensor slicing, finite full graph forward, parameter counts, actual compression, validation accuracy and macro-F1, frozen source/split/graph pins. All Q RNG/reward/penalty/Bellman/counter checks are replayed separately in summarize.py."
+}

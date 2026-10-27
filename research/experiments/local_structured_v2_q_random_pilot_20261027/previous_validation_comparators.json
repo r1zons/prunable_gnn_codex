@@ -1,0 +1,170 @@
+[
+  {
+    "model": "gcn",
+    "method": "random_local_v2",
+    "target_sparsity": "0.3",
+    "achieved_sparsity": "0.29216746157922624",
+    "validation_accuracy": "0.8724584103512015",
+    "validation_macro_f1": "0.8521873708365054",
+    "search_seconds": "0.03793863800819963",
+    "hidden_widths": [
+      23,
+      13
+    ],
+    "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-smoke-20261027/outputs/local_structured_v2/random_local_v2/target_0.3/19bd1f141a66/pruned.pt"
+  },
+  {
+    "model": "gcn",
+    "method": "magnitude_local_v2",
+    "target_sparsity": "0.3",
+    "achieved_sparsity": "0.2901960784313725",
+    "validation_accuracy": "0.8743068391866913",
+    "validation_macro_f1": "0.8417494932176935",
+    "search_seconds": "0.05685278901364654",
+    "hidden_widths": [
+      23,
+      16
+    ],
+    "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-smoke-20261027/outputs/local_structured_v2/magnitude_local_v2/target_0.3/aeda1fa0d41d/pruned.pt"
+  },
+  {
+    "model": "gcn",
+    "method": "adaptive_greedy_local_v2",
+    "target_sparsity": "0.3",
+    "achieved_sparsity": "0.31075781664016955",
+    "validation_accuracy": "0.88909426987061",
+    "validation_macro_f1": "0.8766826280399573",
+    "search_seconds": "0.17259237810503691",
+    "hidden_widths": [
+      22,
+      32
+    ],
+    "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-smoke-20261027/outputs/local_structured_v2/adaptive_greedy_local_v2/target_0.3/b6ce93b48435/pruned.pt"
+  },
+  {
+    "model": "gcn",
+    "method": "random_local_v2",
+    "target_sparsity": "0.5",
+    "achieved_sparsity": "0.500773714891362",
+    "validation_accuracy": "0.8133086876155268",
+    "validation_macro_f1": "0.7760093864441816",
+    "search_seconds": "0.035624885000288486",
+    "hidden_widths": [
+      16,
+      25
+    ],
+    "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/gcn/local_structured_v2/random_local_v2/target_0.5/6b76c54e6145/pruned.pt"
+  },
+  {
+    "model": "gcn",
+    "method": "magnitude_local_v2",
+    "target_sparsity": "0.5",
+    "achieved_sparsity": "0.4972125066242713",
+    "validation_accuracy": "0.8133086876155268",
+    "validation_macro_f1": "0.7281384607473358",
+    "search_seconds": "0.06625923293177038",
+    "hidden_widths": [
+      16,
+      32
+    ],
+    "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/gcn/local_structured_v2/magnitude_local_v2/target_0.5/f8e810a2dc55/pruned.pt"
+  },
+  {
+    "model": "gcn",
+    "method": "adaptive_greedy_local_v2",
+    "target_sparsity": "0.5",
+    "achieved_sparsity": "0.4972125066242713",
+    "validation_accuracy": "0.8133086876155268",
+    "validation_macro_f1": "0.7281384607473358",
+    "search_seconds": "0.2631873900536448",
+    "hidden_widths": [
+      16,
+      32
+    ],
+    "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/gcn/local_structured_v2/adaptive_greedy_local_v2/target_0.5/9cc9ebb0a7de/pruned.pt"
+  },
+  {
+    "model": "graphsage",
+    "method": "random_local_v2",
+    "target_sparsity": "0.3",
+    "achieved_sparsity": "0.2920904973535994",
+    "validation_accuracy": "0.6432532347504621",
+    "validation_macro_f1": "0.6775737640308691",
+    "search_seconds": "0.035899091977626085",
+    "hidden_widths": [
+      23,
+      13
+    ],
+    "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/graphsage/local_structured_v2/random_local_v2/target_0.3/3adc893c21ec/pruned.pt"
+  },
+  {
+    "model": "graphsage",
+    "method": "magnitude_local_v2",
+    "target_sparsity": "0.3",
+    "achieved_sparsity": "0.29014945003659354",
+    "validation_accuracy": "0.8133086876155268",
+    "validation_macro_f1": "0.7581551731158802",
+    "search_seconds": "0.06089710211381316",
+    "hidden_widths": [
+      23,
+      16
+    ],
+    "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/graphsage/local_structured_v2/magnitude_local_v2/target_0.3/c46bdadce8c9/pruned.pt"
+  },
+  {
+    "model": "graphsage",
+    "method": "adaptive_greedy_local_v2",
+    "target_sparsity": "0.3",
+    "achieved_sparsity": "0.31088577519914296",
+    "validation_accuracy": "0.866913123844732",
+    "validation_macro_f1": "0.8458475333156191",
+    "search_seconds": "0.6732147030998021",
+    "hidden_widths": [
+      22,
+      32
+    ],
+    "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/graphsage/local_structured_v2/adaptive_greedy_local_v2/target_0.3/6d16b9e11aa9/pruned.pt"
+  },
+  {
+    "model": "graphsage",
+    "method": "random_local_v2",
+    "target_sparsity": "0.5",
+    "achieved_sparsity": "0.5009068827628634",
+    "validation_accuracy": "0.8151571164510166",
+    "validation_macro_f1": "0.7732716399575914",
+    "search_seconds": "0.036670239991508424",
+    "hidden_widths": [
+      16,
+      25
+    ],
+    "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/graphsage/local_structured_v2/random_local_v2/target_0.5/bb1ce2953c31/pruned.pt"
+  },
+  {
+    "model": "graphsage",
+    "method": "magnitude_local_v2",
+    "target_sparsity": "0.5",
+    "achieved_sparsity": "0.4974172403186288",
+    "validation_accuracy": "0.8484288354898336",
+    "validation_macro_f1": "0.8248977986350986",
+    "search_seconds": "0.12362523504998535",
+    "hidden_widths": [
+      16,
+      32
+    ],
+    "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/graphsage/local_structured_v2/magnitude_local_v2/target_0.5/c11668637f49/pruned.pt"
+  },
+  {
+    "model": "graphsage",
+    "method": "adaptive_greedy_local_v2",
+    "target_sparsity": "0.5",
+    "achieved_sparsity": "0.4974172403186288",
+    "validation_accuracy": "0.8484288354898336",
+    "validation_macro_f1": "0.8248977986350986",
+    "search_seconds": "0.7142947430256754",
+    "hidden_widths": [
+      16,
+      32
+    ],
+    "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/graphsage/local_structured_v2/adaptive_greedy_local_v2/target_0.5/ac596aed6913/pruned.pt"
+  }
+]

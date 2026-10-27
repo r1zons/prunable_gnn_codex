@@ -2,6 +2,20 @@
 
 **Updated:** 2026-10-27
 
+## V2 validation-only Q / Random pilot — 2026-10-27
+
+Completed on core `f110c5d`:8 Q budget conditions +4 targeted lambda conditions,
+80 Random masks;92 physical checkpoints and920 episode traces verified. **Q:
+REQUIRES ALGORITHM REVIEW**;100 episodes/max20 still overcompress strongly and
+representative lambda0.5/2/5 checks do not change deployment. Sparse unvisited-Q0
+choices, delayed terminal credit and state aliasing are documented; no core/R2
+change applied. **Random: ADEQUATE as a repeated-mask baseline**, with large
+mask/width variability; favorable single masks do not represent the mean.
+Validation labels only; no final scientific settings chosen.160 V2 tests passed,
+2 CUDA skips;28,841 prior files unchanged. Functional24-cell GO remains a technical
+gate, not scientific qualification of the learned policy.
+See [pilot evidence and next-step recommendation](experiments/local_structured_v2_q_random_pilot_20261027/README.md).
+
 ## V2 Cora functional matrix completed — 2026-10-27
 
 Authorized extension at `11ab841`: **18/18 new runs PASS** (GCN50, GraphSAGE30/50,

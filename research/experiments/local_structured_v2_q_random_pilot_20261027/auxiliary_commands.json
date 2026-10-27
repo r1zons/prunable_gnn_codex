@@ -1,0 +1,91 @@
+[
+  {
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/preflight.py"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONPATH": "src",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "purpose": "preflight.py"
+  },
+  {
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/check_observer.py"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONPATH": "src",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "purpose": "check_observer.py"
+  },
+  {
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/summarize.py"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONPATH": "src",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "purpose": "summarize.py"
+  },
+  {
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/verify_outputs.py"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONPATH": "src",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "purpose": "verify_outputs.py"
+  },
+  {
+    "command": [
+      "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/objective_witness.py"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "PYTHONPATH": "src",
+      "OMP_NUM_THREADS": "2",
+      "MKL_NUM_THREADS": "2",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "purpose": "objective_witness.py"
+  },
+  {
+    "command": [
+      "/usr/local/Caskroom/miniconda/base/envs/gnn_pruning/bin/python",
+      "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-q-random-pilot-20261027/plot_pilot.py"
+    ],
+    "cwd": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+    "environment": {
+      "PYTHONDONTWRITEBYTECODE": "1",
+      "MPLCONFIGDIR": "/private/tmp/gnn-pilot-mpl-cache",
+      "XDG_CACHE_HOME": "/private/tmp/gnn-pilot-cache",
+      "OPENBLAS_NUM_THREADS": "2"
+    },
+    "purpose": "Plot CSVs only; existing Python3.8/Matplotlib3.7.5, no model or dataset access"
+  }
+]

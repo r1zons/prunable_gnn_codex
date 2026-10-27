@@ -1,0 +1,142 @@
+[
+  {
+    "model": "gcn",
+    "target_sparsity": 0.3,
+    "source_trace": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-smoke-20261027/outputs/local_structured_v2/adaptive_greedy_local_v2/target_0.3/b6ce93b48435/trace.json",
+    "actions": [
+      "prune:0:8",
+      "prune:0:2",
+      "stop"
+    ],
+    "final_hidden_widths": [
+      22,
+      32
+    ],
+    "final_compression": 0.31075781664016955,
+    "final_validation_accuracy": 0.8890942931175232,
+    "q_compatible_rewards": [
+      0.14546690502530632,
+      0.0335940910348452,
+      -0.0015156332803391188
+    ],
+    "q_discounted_return": 0.17447392399959233,
+    "comparisons": [
+      {
+        "q_run": "gcn_target30_episodes100_lambda2",
+        "q_deployed_discounted_return": -0.7833146969843088,
+        "witness_minus_q": 0.957788620983901
+      },
+      {
+        "q_run": "gcn_target30_episodes30_lambda2",
+        "q_deployed_discounted_return": -0.41255602525033797,
+        "witness_minus_q": 0.5870299492499302
+      }
+    ],
+    "scope": "A feasible action-sequence witness computed from previously verified validation traces, under unchanged Q reward/STOP semantics with horizon20 and lambda2. Not a matched-compression algorithm-superiority claim; no new pruning/model evaluation."
+  },
+  {
+    "model": "gcn",
+    "target_sparsity": 0.5,
+    "source_trace": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/gcn/local_structured_v2/adaptive_greedy_local_v2/target_0.5/9cc9ebb0a7de/trace.json",
+    "actions": [
+      "prune:0:8",
+      "prune:0:8",
+      "stop"
+    ],
+    "final_hidden_widths": [
+      16,
+      32
+    ],
+    "final_compression": 0.4972125066242713,
+    "final_validation_accuracy": 0.8133087158203125,
+    "q_compatible_rewards": [
+      0.14546690502530632,
+      0.11515267410642196,
+      -0.0
+    ],
+    "q_discounted_return": 0.2491043117210861,
+    "comparisons": [
+      {
+        "q_run": "gcn_target50_episodes100_lambda2",
+        "q_deployed_discounted_return": -0.729280628277389,
+        "witness_minus_q": 0.9783849399984752
+      },
+      {
+        "q_run": "gcn_target50_episodes30_lambda2",
+        "q_deployed_discounted_return": -0.35852195654341823,
+        "witness_minus_q": 0.6076262682645044
+      }
+    ],
+    "scope": "A feasible action-sequence witness computed from previously verified validation traces, under unchanged Q reward/STOP semantics with horizon20 and lambda2. Not a matched-compression algorithm-superiority claim; no new pruning/model evaluation."
+  },
+  {
+    "model": "graphsage",
+    "target_sparsity": 0.3,
+    "source_trace": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/graphsage/local_structured_v2/adaptive_greedy_local_v2/target_0.3/6d16b9e11aa9/trace.json",
+    "actions": [
+      "prune:0:8",
+      "prune:0:2",
+      "stop"
+    ],
+    "final_hidden_widths": [
+      22,
+      32
+    ],
+    "final_compression": 0.31088577519914296,
+    "final_validation_accuracy": 0.8669131398200989,
+    "q_compatible_rewards": [
+      0.14922517209558864,
+      0.030651958955598798,
+      -0.0017715503982859322
+    ],
+    "q_discounted_return": 0.17537697933301596,
+    "comparisons": [
+      {
+        "q_run": "graphsage_target30_episodes100_lambda2",
+        "q_deployed_discounted_return": -0.2573703654104733,
+        "witness_minus_q": 0.4327473447434893
+      },
+      {
+        "q_run": "graphsage_target30_episodes30_lambda2",
+        "q_deployed_discounted_return": -0.2124128767947007,
+        "witness_minus_q": 0.38778985612771666
+      }
+    ],
+    "scope": "A feasible action-sequence witness computed from previously verified validation traces, under unchanged Q reward/STOP semantics with horizon20 and lambda2. Not a matched-compression algorithm-superiority claim; no new pruning/model evaluation."
+  },
+  {
+    "model": "graphsage",
+    "target_sparsity": 0.5,
+    "source_trace": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-cora-matrix-20261027/outputs/graphsage/local_structured_v2/adaptive_greedy_local_v2/target_0.5/ac596aed6913/trace.json",
+    "actions": [
+      "prune:0:8",
+      "prune:0:8",
+      "stop"
+    ],
+    "final_hidden_widths": [
+      16,
+      32
+    ],
+    "final_compression": 0.4974172403186288,
+    "final_validation_accuracy": 0.8484288454055786,
+    "q_compatible_rewards": [
+      0.14922517209558864,
+      0.13517712026148218,
+      -0.0
+    ],
+    "q_discounted_return": 0.2708845803309226,
+    "comparisons": [
+      {
+        "q_run": "graphsage_target50_episodes100_lambda2",
+        "q_deployed_discounted_return": -0.06605160541047332,
+        "witness_minus_q": 0.33693618574139594
+      },
+      {
+        "q_run": "graphsage_target50_episodes30_lambda2",
+        "q_deployed_discounted_return": -0.15837880808778096,
+        "witness_minus_q": 0.4292633884187036
+      }
+    ],
+    "scope": "A feasible action-sequence witness computed from previously verified validation traces, under unchanged Q reward/STOP semantics with horizon20 and lambda2. Not a matched-compression algorithm-superiority claim; no new pruning/model evaluation."
+  }
+]

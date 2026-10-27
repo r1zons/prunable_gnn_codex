@@ -1,0 +1,20 @@
+{
+  "python": "3.12.9 (main, Feb  4 2025, 14:38:38) [Clang 16.0.0 (clang-1600.0.26.6)]",
+  "executable": "/private/tmp/gnn-v2-validation-py312-20261027/bin/python",
+  "torch": "2.2.2",
+  "pyg": "2.6.1",
+  "pytest": "8.3.5",
+  "numpy": "1.26.4",
+  "platform": "macOS-15.6.1-x86_64-i386-64bit",
+  "threads": 2,
+  "cuda_available": false,
+  "git_sha": "f110c5d1c57bd34afb5ad76e17415ec09ce64e9f",
+  "git_branch": "implementation/local-structured-v2-20261027",
+  "environment": {
+    "PYTHONPATH": "src",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "OMP_NUM_THREADS": "2",
+    "MKL_NUM_THREADS": "2",
+    "OPENBLAS_NUM_THREADS": "2"
+  }
+}
