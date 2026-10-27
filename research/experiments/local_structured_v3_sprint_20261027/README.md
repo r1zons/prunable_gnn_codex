@@ -132,3 +132,20 @@ Raw files: adjacent `${GNN_ARTIFACT_ROOT}/local-structured-v3-sprint-20261027/` 
 Exact config/manifests, preflight records and immutable launcher snapshots are
 indexed there. `launch_receipt.json` will contain acceptance/PID/job IDs and log
 locations; it is a submission record, not a result-completion claim.
+
+## Final pre-submission gate
+
+Pinned executable source: `7e2c760e988b605e305615dea147236e8b0c59a3`.
+**200 tests passed /2 CUDA skips**;18 local real-Cora variant/probe checks passed,
+and both frozen direct forward/surgery/reload checks passed on the existing
+POWER8 environment at the same final source. The16 tiny synthetic variant
+compatibility checks used unchanged ablation code before the guard-only update.
+The original remote repo stays at72293149; V3 uses its own clean worktree.
+
+All34 paired algorithm/input identities match across platform configs. The full
+local98-task manifest and all four remote condition manifests pass dry-run.
+[launch_gate.json](launch_gate.json) records measured gate costs and resource bounds;
+[configuration_index.json](configuration_index.json) records exact configs and
+manifest hashes with remote access prefixes replaced by documented variables.
+No full experimental task was run synchronously; only short technical smoke
+checks have executed before submission. Final acceptance is in launch_receipt.json.
