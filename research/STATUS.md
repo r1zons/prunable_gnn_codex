@@ -2,7 +2,7 @@
 
 **Updated:** 2026-10-27
 
-## V3 ablation sprint preparation — 2026-10-27
+## V3 ablation sprint submission — 2026-10-27
 
 Researcher explicitly authorized isolated H1/H2/H3/H4a/H4b variants and constrained
 Random/Greedy controls, pinned frozen Cora inputs, local detached execution and a
@@ -12,6 +12,8 @@ regressions pass. Runtime/smoke and submission gates are recorded under
 [the sprint protocol](experiments/local_structured_v3_sprint_20261027/README.md).
 This session must end after submission attempts/receipts; no result monitoring,
 analysis, tables or follow-up experiment round is authorized in this session.
+
+Submission receipt: local **ACCEPTED**, PID `8440`,98 tasks; POLUS **ACCEPTED**, accepted LSF IDs `1602237, 1602238, 1602239, 1602240`,34 paired tasks. See [launch_receipt.json](experiments/local_structured_v3_sprint_20261027/launch_receipt.json). Acceptance records are preserved; no full-batch outcomes were collected or monitored.
 
 ## V2 validation-only Q / Random pilot — 2026-10-27
 

@@ -5,7 +5,7 @@ ablations. Intended local96 tasks +2 fixed probes; bounded remote paired subset3
 tasks +2 probes,4 LSF C4 jobs, subject to runtime/compatibility gates. Separate
 source/input/seed/platform IDs; no R2/V1 changes. [Protocol and launch metadata](local_structured_v3_sprint_20261027/README.md).
 Raw group: `${GNN_ARTIFACT_ROOT}/local-structured-v3-sprint-20261027/`.
-No full jobs submitted at preparation stage; final receipt records acceptance.
+Submission attempted: local ACCEPTED (98 tasks), POLUS ACCEPTED (34 tasks in four planned jobs). [Actual PID and LSF acceptance receipt](local_structured_v3_sprint_20261027/launch_receipt.json); no monitoring/results collection.
 
 **LOCAL-STRUCTURED-V2-Q-RANDOM-PILOT-20261027** — bounded validation-only diagnostic:
 8 Q30/100-episode budget runs +4 representative lambda checks;80 Random masks
