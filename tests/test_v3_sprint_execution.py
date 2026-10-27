@@ -87,3 +87,18 @@ m.launch([sys.executable,'-c',sys.argv[2]],Path(sys.argv[3]),Path(sys.argv[4]),P
     r=json.loads(receipt.read_text());assert r['status']=='ACCEPTED' and r['session_id']==r['pid']
     spec=importlib.util.spec_from_file_location('launch',module);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
     with pytest.raises(FileExistsError):m.launch([],receipt,tmp_path/'duplicate.log',tmp_path,{})
+
+
+def test_resume_rejects_completed_task_with_changed_configuration(tmp_path,monkeypatch):
+    cfg=config(tmp_path);path=tmp_path/'config.json';path.write_text(json.dumps(cfg))
+    root=tmp_path/'batch';status=root/'status/test.json';status.parent.mkdir(parents=True)
+    status.write_text(json.dumps(dict(status='completed',source_commit=cfg['source_commit'],config_sha256='different',output=str(tmp_path/'old'),hashes={})))
+    monkeypatch.setattr(sprint,'validate_manifest',lambda _:dict(artifact_root=str(root),workers=1,source_commit=cfg['source_commit'],tasks=[dict(config=str(path))]))
+    with pytest.raises(RuntimeError,match='configuration differs'):sprint.run_batch('unused',resume=True)
+
+
+def test_recorded_provenance_hash_is_bound_to_declared_graph(tmp_path,monkeypatch):
+    reference=tmp_path/'record.json';reference.write_text(json.dumps(dict(graph_tensor_sha256='a'*64,selected={'gcn':dict(checkpoint_sha256='b'*64,split_sha256='c'*64,dense_tensor_sha256='d'*64)})))
+    manifest=dict(source_provenance_ref='record.json',source_provenance_sha256=sprint.file_hash(reference),graph_tensor_sha256='e'*64,models={'gcn':dict(file='dense.pt',sha256='b'*64,tensor_sha256='d'*64)},graph=dict(file='graph.pt',sha256='f'*64),split=dict(file='splits.yaml',sha256='c'*64))
+    path=tmp_path/'manifest.json';path.write_text(json.dumps(manifest));monkeypatch.setattr(sprint,'REPO',tmp_path)
+    with pytest.raises(ValueError,match='Original graph provenance pin differs'):sprint.load_frozen(path,'gcn')

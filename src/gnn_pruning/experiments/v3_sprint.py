@@ -60,6 +60,14 @@ def load_frozen(input_manifest, model_name):
     if 'source_provenance_ref' in manifest:
         if file_hash(REPO/manifest['source_provenance_ref'])!=manifest['source_provenance_sha256']:
             raise ValueError('Recorded original graph provenance changed.')
+        original=json.loads((REPO/manifest['source_provenance_ref']).read_text())
+        if manifest['graph_tensor_sha256']!=original['graph_tensor_sha256']:
+            raise ValueError('Original graph provenance pin differs.')
+        selected=original['selected'][model_name]
+        if (entry['sha256']!=selected['checkpoint_sha256']
+                or entry['tensor_sha256']!=selected['dense_tensor_sha256']
+                or manifest['split']['sha256']!=selected['split_sha256']):
+            raise ValueError('Original checkpoint/split provenance pins differ.')
     for item in (manifest['graph'], manifest['split'], entry):
         if file_hash(root/item['file']) != item['sha256']:
             raise ValueError('Frozen input file hash mismatch.')
@@ -210,7 +218,7 @@ def run_task(cfg):
     write_json(output/'metrics.json',report);write_json(output/'config.json',cfg)
     write_json(output/'trace.json',dict(deployment=trace,training=training));write_json(output/'q_table.json',qtable)
     record=dict(status='completed',run_id=cfg['run_id'],source_commit=cfg['source_commit'],
-                algorithm_identity_sha256=identity,output=str(output),
+                algorithm_identity_sha256=identity,config_sha256=_json_hash(cfg),output=str(output),
                 hashes={p.name:file_hash(p) for p in output.iterdir() if p.is_file()})
     write_json(output/'completed.json',record)
     return record
@@ -219,6 +227,8 @@ def run_task(cfg):
 def validate_manifest(path):
     manifest=json.loads(Path(path).read_text());check_source(manifest['source_commit'])
     if manifest['workers'] not in (1,2):raise ValueError('Bounded parallelism required.')
+    if 'source_provenance_ref' not in json.loads(Path(manifest['input_manifest']).read_text()):
+        raise ValueError('Scientific batch requires original recorded graph provenance.')
     tasks=manifest['tasks'];seen=set()
     for task in tasks:
         cfg=json.loads(Path(task['config']).read_text());validate_task(cfg)
@@ -257,6 +267,7 @@ def run_batch(path,resume=False):
             old=json.loads(status.read_text())
             if old.get('status')=='completed':
                 if old['source_commit']!=cfg['source_commit']:raise RuntimeError('Completed source differs.')
+                if old.get('config_sha256')!=_json_hash(cfg):raise RuntimeError('Completed configuration differs.')
                 for name,digest in old['hashes'].items():
                     if file_hash(Path(old['output'])/name)!=digest:raise RuntimeError('Completed evidence changed.')
                 return True
