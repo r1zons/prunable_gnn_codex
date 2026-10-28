@@ -1,0 +1,17 @@
+{
+  "engine": "XeLaTeX (TeX Live 2026)",
+  "bibliography": "BibTeX / unsrtnat",
+  "pages": 11,
+  "errors": 0,
+  "unresolved_citations": false,
+  "overfull_boxes": 0,
+  "underfull_warnings": 11,
+  "commands": [
+    "xelatex -interaction=nonstopmode -halt-on-error main.tex",
+    "bibtex main",
+    "xelatex -interaction=nonstopmode -halt-on-error main.tex",
+    "xelatex -interaction=nonstopmode -halt-on-error main.tex"
+  ],
+  "primary_reading_pdf": "manuscript_reading.pdf exported from DOCX",
+  "new_research_runs": 0
+}

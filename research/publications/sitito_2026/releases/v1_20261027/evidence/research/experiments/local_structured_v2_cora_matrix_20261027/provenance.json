@@ -1,0 +1,255 @@
+{
+  "protocol": "LOCAL-STRUCTURED-V2-R2",
+  "previous_evidence_commit": "11ab841b4960d9591dd13feb240b7b7e5639c6a3",
+  "previous_graph_provenance_file": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-smoke-20261027/graph_provenance.json",
+  "previous_graph_provenance_sha256": "5aac9d13f2b280e1d335c738636f44e3c84661c8ea8585501d52f9e999b0cf6c",
+  "graph_tensor_sha256": "2b2bc996be89812f80ce7d09599dab983f804f87ddd37a09b3ce0b5689ec9a0d",
+  "data_root": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-smoke-20261027/verified_data",
+  "processed_cache": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-structured-v2-smoke-20261027/verified_data/planetoid/Cora/processed/data.pt",
+  "processed_cache_sha256": "7449c091f060648c48c46d7d092246b56d22f4c66ae2bcfff0cf1f8dd01d8c29",
+  "raw_files": [
+    {
+      "file": "planetoid/Cora/raw/ind.cora.x",
+      "url": "https://github.com/kimiyoung/planetoid/raw/master/data/ind.cora.x",
+      "bytes": 22119,
+      "sha256": "23cfa55d91c6f624233f5eb7b6e3f141f1bd2b2ae39608a63cf5d084bb27baab"
+    },
+    {
+      "file": "planetoid/Cora/raw/ind.cora.tx",
+      "url": "https://github.com/kimiyoung/planetoid/raw/master/data/ind.cora.tx",
+      "bytes": 148025,
+      "sha256": "b9afbaa4a400df991f6f02ef677e1e44da55ffc04801fd02f9e673987829226a"
+    },
+    {
+      "file": "planetoid/Cora/raw/ind.cora.allx",
+      "url": "https://github.com/kimiyoung/planetoid/raw/master/data/ind.cora.allx",
+      "bytes": 257305,
+      "sha256": "9419ba2f26f5c35243db64aba110e0f35a04851609e0dc5433450676ca6b8543"
+    },
+    {
+      "file": "planetoid/Cora/raw/ind.cora.y",
+      "url": "https://github.com/kimiyoung/planetoid/raw/master/data/ind.cora.y",
+      "bytes": 4054,
+      "sha256": "94465c14eb53e04ca262198dcbb2521ee8af60fb3f3d546cd6ca24a511b0e7d1"
+    },
+    {
+      "file": "planetoid/Cora/raw/ind.cora.ty",
+      "url": "https://github.com/kimiyoung/planetoid/raw/master/data/ind.cora.ty",
+      "bytes": 28135,
+      "sha256": "41f5ac76596a1699cc33f53084a2419e92961c42bb75f36fc38e616d348532ad"
+    },
+    {
+      "file": "planetoid/Cora/raw/ind.cora.ally",
+      "url": "https://github.com/kimiyoung/planetoid/raw/master/data/ind.cora.ally",
+      "bytes": 47959,
+      "sha256": "2b998f5cc7fedc86e7f97ca2498f47a1ffc1462c29e2d578b23bf3f62b6e7d71"
+    },
+    {
+      "file": "planetoid/Cora/raw/ind.cora.graph",
+      "url": "https://github.com/kimiyoung/planetoid/raw/master/data/ind.cora.graph",
+      "bytes": 59847,
+      "sha256": "58f13302f39dde8852dad6fe6d15b89b077b6d7f837626bce671ef80344b383d"
+    },
+    {
+      "file": "planetoid/Cora/raw/ind.cora.test.index",
+      "url": "https://github.com/kimiyoung/planetoid/raw/master/data/ind.cora.test.index",
+      "bytes": 5000,
+      "sha256": "297ce89af2b51a6a194181c7dbe1796c6a1cf9cd9349a88383b1b1e227867875"
+    }
+  ],
+  "input_archives": {
+    "results": {
+      "path": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/archives/pilot-cpu-101-c4-v2-results.tar.gz",
+      "sha256": "2b97d6923efa6cd8836830fdb7e13872c336da1700b514ab538118d47763fa62"
+    },
+    "evidence": {
+      "path": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/archives/pilot-cpu-101-c4-v2-evidence.tar.gz",
+      "sha256": "66a905939510edb50e1a64ae814069c91a052fb362e61c6d7fe3cd88ea83aa3f"
+    }
+  },
+  "source_archive": {
+    "path": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-environment-20261023/polus-research.zip",
+    "sha256": "b5d59fb06f5124f8f74123fd687c40206eb560ef22c29df91d19f50b951439c8"
+  },
+  "selected": {
+    "gcn": {
+      "model": "gcn",
+      "group": "POLUS-CPU-101-C4-V2",
+      "seed": 101,
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_gcn_l3_h32/seed_101/cora_gcn_l3_h32/dense_checkpoint.pt",
+      "checkpoint_sha256": "276b2ff0f7790a84afc2755e89d88f1a170865a4397e4355daf7552c7075c129",
+      "split": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_gcn_l3_h32/seed_101/cora_gcn_l3_h32/splits.yaml",
+      "split_sha256": "59a0209a8e2a73a5e70a720d327f8c024d36d184a6d00be820ced0e1a3eb08bc",
+      "split_indices_sha256": "942a10b128f7138e118b3f2e2f96eb87a62f856c10d82010ac995e40e2b4c675",
+      "model_config": {
+        "in_channels": 1433,
+        "hidden_channels": 32,
+        "out_channels": 7,
+        "num_layers": 3,
+        "dropout": 0.5
+      },
+      "run_signature": {
+        "dataset": "cora",
+        "model_name": "gcn",
+        "num_layers": 3,
+        "hidden_channels": 32,
+        "dropout": 0.5,
+        "seed": 101,
+        "split_hash": "942a10b128f7138e118b3f2e2f96eb87a62f856c10d82010ac995e40e2b4c675",
+        "config_hash": "0aa773aea69a286e2a70cbb3d5466fe8e22f2c05bb9ec7dfb2ab6aa4449b7a3d"
+      },
+      "dense_tensor_sha256": "a2bbe3d0ce85cafbbadb2a47b80806735b6d1de1aedbc1e35c8693bc499cb258",
+      "dense_parameters": 47175,
+      "dense_validation_metrics": {
+        "accuracy": 0.8983364140480592,
+        "macro_f1": 0.8852755859531409
+      },
+      "historical_validation_metrics": {
+        "accuracy": 0.8983364140480592,
+        "macro_f1": 0.8852755859531408
+      },
+      "training_environment": {
+        "captured_at_utc": "2026-10-23T21:09:51.975335+00:00",
+        "cuda_available": false,
+        "cuda_device": null,
+        "cuda_version": null,
+        "git_commit": "72293149d8fff186dd268789e7b8fea5848c9360",
+        "kaggle_kernel_run_type": "",
+        "platform": "Linux-3.10.0-693.el7.ppc64le-ppc64le-with-glibc2.17",
+        "python": "3.10.22 | packaged by conda-forge | (main, Oct  6 2026, 22:57:19) [GCC 14.4.0]",
+        "torch": "2.0.1",
+        "torch_geometric": "2.4.0"
+      },
+      "historical_job_id": 1598695,
+      "job_log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/logs/lsf/pilot-cpu.1598695.out",
+      "prepared_config": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_gcn_l3_h32/prepared-configs/cora_gcn_l3_h32.yaml",
+      "prepared_config_sha256": "2d0e0f0b86ef5117f05d0e9f0c8f7c911e4c7b0a3ee22b4b4410c45ba4d37767",
+      "job_manifest": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_gcn_l3_h32/artifact_manifest.csv",
+      "job_manifest_sha256": "2c2633f3e00b4cbd7e81d2721fab4850e48065b59a6766938827f775abda9e0e"
+    },
+    "graphsage": {
+      "model": "graphsage",
+      "group": "POLUS-CPU-101-C4-V2",
+      "seed": 101,
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_graphsage_l3_h32/seed_101/cora_graphsage_l3_h32/dense_checkpoint.pt",
+      "checkpoint_sha256": "09b289dcbaddc1afb1c3660f7fa5d60fb1109c3c3059bdae14d8c4de03034774",
+      "split": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_graphsage_l3_h32/seed_101/cora_graphsage_l3_h32/splits.yaml",
+      "split_sha256": "59a0209a8e2a73a5e70a720d327f8c024d36d184a6d00be820ced0e1a3eb08bc",
+      "split_indices_sha256": "942a10b128f7138e118b3f2e2f96eb87a62f856c10d82010ac995e40e2b4c675",
+      "model_config": {
+        "in_channels": 1433,
+        "hidden_channels": 32,
+        "out_channels": 7,
+        "num_layers": 3,
+        "dropout": 0.5
+      },
+      "run_signature": {
+        "dataset": "cora",
+        "model_name": "graphsage",
+        "num_layers": 3,
+        "hidden_channels": 32,
+        "dropout": 0.5,
+        "seed": 101,
+        "split_hash": "942a10b128f7138e118b3f2e2f96eb87a62f856c10d82010ac995e40e2b4c675",
+        "config_hash": "4fe749334a68b8c40ba4ca2e0a33edf3a7cf0ff2dedd49fcad1edc616218df69"
+      },
+      "dense_tensor_sha256": "3671d5b11887b1a299f1237d2b66e6763ef2da65b759d9aec1d5b01063cc902e",
+      "dense_parameters": 94279,
+      "dense_validation_metrics": {
+        "accuracy": 0.8835489833641405,
+        "macro_f1": 0.8671309679426918
+      },
+      "historical_validation_metrics": {
+        "accuracy": 0.8835489833641405,
+        "macro_f1": 0.867130967942692
+      },
+      "training_environment": {
+        "captured_at_utc": "2026-10-23T21:11:24.654925+00:00",
+        "cuda_available": false,
+        "cuda_device": null,
+        "cuda_version": null,
+        "git_commit": "72293149d8fff186dd268789e7b8fea5848c9360",
+        "kaggle_kernel_run_type": "",
+        "platform": "Linux-3.10.0-693.el7.ppc64le-ppc64le-with-glibc2.17",
+        "python": "3.10.22 | packaged by conda-forge | (main, Oct  6 2026, 22:57:19) [GCC 14.4.0]",
+        "torch": "2.0.1",
+        "torch_geometric": "2.4.0"
+      },
+      "historical_job_id": 1598696,
+      "job_log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/logs/lsf/pilot-cpu.1598696.out",
+      "prepared_config": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_graphsage_l3_h32/prepared-configs/cora_graphsage_l3_h32.yaml",
+      "prepared_config_sha256": "dc33490541dca9c4801599ee68de56e186188c5e762d034a3e66361ee174f7f2",
+      "job_manifest": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-pilot-20261024/raw/results/pilot-cpu-101-c4-v2/jobs/cora_graphsage_l3_h32/artifact_manifest.csv",
+      "job_manifest_sha256": "07c47ad3b9bf104e0e9ec695ff5c9e292246cdee9b71ec31670914b202e1023f"
+    }
+  },
+  "local_checkpoint_inventory": [
+    {
+      "model": "gcn",
+      "seed": 101,
+      "group": "LOCAL-CPU-20261025",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-cpu-20261025/raw/results/seed_101/cora_gcn_l3_h32/dense_checkpoint.pt",
+      "checkpoint_sha256": "a41a765bc68611e4896398cc365d6775c3c0a75e363451a8c397cc93171510d6",
+      "split": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-cpu-20261025/raw/results/seed_101/cora_gcn_l3_h32/splits.yaml",
+      "split_sha256": "59a0209a8e2a73a5e70a720d327f8c024d36d184a6d00be820ced0e1a3eb08bc",
+      "selected": false,
+      "reason": "Historical graph identity not independently hash-attested. Do not infer it from the current local cache."
+    },
+    {
+      "model": "gcn",
+      "seed": 202,
+      "group": "LOCAL-CPU-20261025",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-cpu-20261025/raw/results/seed_202/cora_gcn_l3_h32/dense_checkpoint.pt",
+      "checkpoint_sha256": "9f5ea7d529e8483c707e6b42cceaee6aed4951f45b618cd4be29f5fb4da92560",
+      "split": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-cpu-20261025/raw/results/seed_202/cora_gcn_l3_h32/splits.yaml",
+      "split_sha256": "49a321f46233361046b6e9e82683a53b42661cc65115c6aa12bea0f8cde1f3b5",
+      "selected": false,
+      "reason": "Historical graph identity not independently hash-attested. Do not infer it from the current local cache."
+    },
+    {
+      "model": "gcn",
+      "seed": 303,
+      "group": "LOCAL-CPU-20261025",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-cpu-20261025/raw/results/seed_303/cora_gcn_l3_h32/dense_checkpoint.pt",
+      "checkpoint_sha256": "0392a323cb2f988ba213018469f93ed444f384576c6187223c80b6f9ae1654d2",
+      "split": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-cpu-20261025/raw/results/seed_303/cora_gcn_l3_h32/splits.yaml",
+      "split_sha256": "17636e03caec45eadad286550ed528ea8fec1bfa0abb655ecddfd44d2e9ae4b0",
+      "selected": false,
+      "reason": "Historical graph identity not independently hash-attested. Do not infer it from the current local cache."
+    },
+    {
+      "model": "graphsage",
+      "seed": 101,
+      "group": "LOCAL-CPU-20261025",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-cpu-20261025/raw/results/seed_101/cora_graphsage_l3_h32/dense_checkpoint.pt",
+      "checkpoint_sha256": "e9c653ed2bc558da57d4a88216450c2f59f4bcdef634bee37c732da7e4cb6a30",
+      "split": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-cpu-20261025/raw/results/seed_101/cora_graphsage_l3_h32/splits.yaml",
+      "split_sha256": "59a0209a8e2a73a5e70a720d327f8c024d36d184a6d00be820ced0e1a3eb08bc",
+      "selected": false,
+      "reason": "Historical graph identity not independently hash-attested. Do not infer it from the current local cache."
+    },
+    {
+      "model": "graphsage",
+      "seed": 202,
+      "group": "LOCAL-CPU-20261025",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-cpu-20261025/raw/results/seed_202/cora_graphsage_l3_h32/dense_checkpoint.pt",
+      "checkpoint_sha256": "b4bdeda34cf190d1dd30e95a970b26cdb602f98e02445159aae1919afbcccd5e",
+      "split": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-cpu-20261025/raw/results/seed_202/cora_graphsage_l3_h32/splits.yaml",
+      "split_sha256": "49a321f46233361046b6e9e82683a53b42661cc65115c6aa12bea0f8cde1f3b5",
+      "selected": false,
+      "reason": "Historical graph identity not independently hash-attested. Do not infer it from the current local cache."
+    },
+    {
+      "model": "graphsage",
+      "seed": 303,
+      "group": "LOCAL-CPU-20261025",
+      "checkpoint": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-cpu-20261025/raw/results/seed_303/cora_graphsage_l3_h32/dense_checkpoint.pt",
+      "checkpoint_sha256": "353da6b5e137993799aba862041b1a39bbd4272b2e6e43354842a0ca41a95a04",
+      "split": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/local-cpu-20261025/raw/results/seed_303/cora_graphsage_l3_h32/splits.yaml",
+      "split_sha256": "17636e03caec45eadad286550ed528ea8fec1bfa0abb655ecddfd44d2e9ae4b0",
+      "selected": false,
+      "reason": "Historical graph identity not independently hash-attested. Do not infer it from the current local cache."
+    }
+  ],
+  "limitation": "No contemporaneous processed tensor hash was recorded at dense training. Reuses manifest-backed reconstruction of original PyG2.4 row ordering; each selected checkpoint is independently linked via archived job/config/input preparation lineage. Not an arbitrary current-cache approval."
+}

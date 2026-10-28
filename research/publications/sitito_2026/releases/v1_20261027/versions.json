@@ -1,0 +1,11 @@
+{
+  "checked_date": "2026-10-27",
+  "main_head": "72293149d8fff186dd268789e7b8fea5848c9360",
+  "pr_number": 48,
+  "pr_draft": true,
+  "pr_head": "34e8ca89599b56ef14bb404527b6a72d6b26d403",
+  "v3_executable_source": "7e2c760e988b605e305615dea147236e8b0c59a3",
+  "observed_via": "GitHub connector get_pr_info and branches/main; canonical checkout HEAD; all copied files match git show pinned head",
+  "src_diff_v3_to_pr_head": "empty",
+  "repository_mutations": false
+}

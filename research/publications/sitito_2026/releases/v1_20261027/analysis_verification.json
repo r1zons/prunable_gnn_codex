@@ -1,0 +1,24 @@
+{
+  "date": "2026-10-27",
+  "research_runs_executed": 0,
+  "models_loaded": 0,
+  "head": "34e8ca89599b56ef14bb404527b6a72d6b26d403",
+  "v3_executable_sha": "7e2c760e988b605e305615dea147236e8b0c59a3",
+  "source_files_checked": 29,
+  "v3_rows_checked": 132,
+  "local_method_rows": 96,
+  "summary_groups_recomputed": 32,
+  "random_masks_recomputed": 80,
+  "paired_platform_rows": 34,
+  "archived_verification_not_rerun": {
+    "status": "PASS",
+    "verified_training_episodes": 9600,
+    "verified_transitions": 110830,
+    "verified_q_entries": 75467
+  },
+  "historical_tables_read_separately": {
+    "research/experiments/local_cpu_2026/audit/aggregate_by_condition_method_target.csv": 84,
+    "research/experiments/local_cpu_2026/audit/condition_matrix.csv": 18,
+    "research/experiments/polus_cpu_2026/evidence/pilot_validation_summary.csv": 84
+  }
+}

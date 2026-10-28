@@ -1,6 +1,19 @@
 # Canonical GNN pruning research status
 
-**Updated:** 2026-10-27
+**Updated:** 2026-10-28
+
+## SITITO manuscript v1 frozen for GitHub — 2026-10-28
+
+The researcher explicitly authorized versioning and publishing the completed
+27 October manuscript bundle. A byte-identical snapshot is preserved under
+`research/publications/sitito_2026/releases/v1_20261027/`; navigation and status:
+[manuscript releases](publications/sitito_2026/RELEASES.md).
+DOCX/DOC/PDF, LaTeX/BibTeX, figures, exact result tables, claim/source hashes,
+official-requirement audit and submission checklist are included. The manuscript
+is ready for scientific editing; author/declaration placeholders and official
+template/direct-journal-rule verification remain open. Source pins, validation-only
+claims and single-checkpoint limits are preserved. No new scientific experiment,
+model loading, POLUS operation or changes to archived evidence occurred.
 
 ## V3 primary collection and processing — 2026-10-27
 
