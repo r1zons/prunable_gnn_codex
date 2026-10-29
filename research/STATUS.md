@@ -2,6 +2,19 @@
 
 **Updated:** 2026-10-29
 
+## V4 raw results collected — 2026-10-29
+
+All92 primary tasks completed (84 Q +8 Greedy),23/23 in each LSF job1607753–1607756;
+all four LSF logs report successful completion. A new remote snapshot was downloaded
+after recovering access for the researcher's current physical network. Archive
+SHA256,1,285 file hashes,92 completed-marker output hashes and launch-manifest/source
+identity were checked. No scientific aggregation/interpretation, model re-execution
+or new experiment occurred. Raw collection is separate from the original campaign.
+See [collection receipt and artifact locations](experiments/polus_v4_diagnostic_20261029/collection/README.md).
+External root: `${GNN_ARTIFACT_ROOT}/polus-v4-collection-20261029T111126Z/`.
+Primary scientific verification/analysis remains pending; earlier launch receipts
+are preserved unchanged.
+
 ## V4 controlled POLUS diagnostic submitted — 2026-10-29
 
 Separate branch/worktree `research/v4-tabular-diagnostic-20261029`, executable source

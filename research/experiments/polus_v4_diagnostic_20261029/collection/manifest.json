@@ -1,0 +1,13 @@
+{
+  "source_commit": "61e693440b53d3cac3136600f3208a73c02492db",
+  "files": {
+    "collection_receipt.json": {
+      "bytes": 3150,
+      "sha256": "06a301b4e33e8c7db483dc68eed93b53ad9a3c08247c96e93c23cd1b53217563"
+    },
+    "README.md": {
+      "bytes": 1754,
+      "sha256": "a0ca98efaa8c788a4645ba6048acb5affd11cb630c77f10b17d0ff799fe1cb6e"
+    }
+  }
+}

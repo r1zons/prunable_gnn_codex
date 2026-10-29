@@ -1,0 +1,91 @@
+{
+  "status": "COLLECTED_HASH_VERIFIED",
+  "source_commit": "61e693440b53d3cac3136600f3208a73c02492db",
+  "completed_tasks": 92,
+  "q_tasks": 84,
+  "greedy_tasks": 8,
+  "groups": [
+    {
+      "condition": "gcn-t30",
+      "job_id": 1607753,
+      "expected": 23,
+      "completed": 23,
+      "failed": 0,
+      "running": 0,
+      "not_started": 0,
+      "batch_finished": {
+        "finished": true,
+        "all_completed": true,
+        "completed_tasks": 23,
+        "failed_tasks": 0,
+        "source_commit": "61e693440b53d3cac3136600f3208a73c02492db"
+      },
+      "lsf_success": true
+    },
+    {
+      "condition": "gcn-t50",
+      "job_id": 1607754,
+      "expected": 23,
+      "completed": 23,
+      "failed": 0,
+      "running": 0,
+      "not_started": 0,
+      "batch_finished": {
+        "finished": true,
+        "all_completed": true,
+        "completed_tasks": 23,
+        "failed_tasks": 0,
+        "source_commit": "61e693440b53d3cac3136600f3208a73c02492db"
+      },
+      "lsf_success": true
+    },
+    {
+      "condition": "graphsage-t30",
+      "job_id": 1607755,
+      "expected": 23,
+      "completed": 23,
+      "failed": 0,
+      "running": 0,
+      "not_started": 0,
+      "batch_finished": {
+        "finished": true,
+        "all_completed": true,
+        "completed_tasks": 23,
+        "failed_tasks": 0,
+        "source_commit": "61e693440b53d3cac3136600f3208a73c02492db"
+      },
+      "lsf_success": true
+    },
+    {
+      "condition": "graphsage-t50",
+      "job_id": 1607756,
+      "expected": 23,
+      "completed": 23,
+      "failed": 0,
+      "running": 0,
+      "not_started": 0,
+      "batch_finished": {
+        "finished": true,
+        "all_completed": true,
+        "completed_tasks": 23,
+        "failed_tasks": 0,
+        "source_commit": "61e693440b53d3cac3136600f3208a73c02492db"
+      },
+      "lsf_success": true
+    }
+  ],
+  "observed_utc": "2026-10-29T11:14:56.445816+00:00",
+  "local_collection_root": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-v4-collection-20261029T111126Z",
+  "local_extracted_root": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-v4-collection-20261029T111126Z/polus",
+  "remote_snapshot": "${POLUS_TASK_ROOT}/results/polus-v4-collection-20261029T111126Z",
+  "archive_sha256": "d80ea49be02c5e08ec7169a323b91c368875e4b42fab5dbeffb655ffca468704",
+  "archive_bytes": 35212652,
+  "archive_path": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-v4-collection-20261029T111126Z/v4-primary-results.tar.gz",
+  "verified_files": 1285,
+  "inventory_sha256": "64f6b446dcd36f831c3f7064f64f7b9e5639fc014eb06f2280e4566f1640ca8f",
+  "data_processing": "Transfer/hash/completion verification only; models and Q policies have not been re-executed or scientifically analysed.",
+  "network_recovery": "Current physical gateway verified; obsolete POLUS host exception replaced by researcher using sudo. Private route snapshots remain outside Git.",
+  "uncompressed_bytes": 426127828,
+  "scientific_analysis_performed": false,
+  "models_reexecuted": false
+}

@@ -1,6 +1,8 @@
 # Experiment campaign registry
 
-**POLUS-V4-DIAGNOSTIC-20261029** — submitted, scientific outcomes not yet collected.
+**POLUS-V4-DIAGNOSTIC-20261029** — completed;92/92 raw results collected and
+hash-verified (1,285 inventory files). Scientific processing/interpretation pending.
+All four LSF jobs report success,23/23 tasks each.
 84 new Q tasks (seven single-factor variants, four model/target cells, three policy
 seeds) +8 deterministic menu-matched Greedy controls; accepted LSF1607753–1607756.
 251 tests/2 CUDA skips;36 local real-data gate cells;36/36 native capacity cells
@@ -10,6 +12,8 @@ minutes plus15-minute gate =250 aggregate minutes. Executable source61e6934;
 V1/V2/V3 evidence and SITITO manuscript unchanged. [Protocol and receipts](polus_v4_diagnostic_20261029/README.md).
 Raw roots: `${GNN_ARTIFACT_ROOT}/polus-v4-diagnostic-20261029/` and
 `${POLUS_TASK_ROOT}/results/polus-v4-diagnostic-20261029/` (main outputs under `campaign-primary/`).
+New collected snapshot:`${GNN_ARTIFACT_ROOT}/polus-v4-collection-20261029T111126Z/`.
+[Collection receipt and locations](polus_v4_diagnostic_20261029/collection/README.md).
 
 **LOCAL-STRUCTURED-V3-SPRINT-20261027** — completed V3 sprint, followed by a separately
 authorized primary collection. Local96 tasks +2 fixed probes; remote paired subset32
