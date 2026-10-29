@@ -55,7 +55,8 @@ def validate_manifest(path):
     """All manifest and frozen-input gates precede execution/submission."""
     manifest=json.loads(Path(path).read_text());check_source(manifest['source_commit'])
     subprocess.run(['git','-C',str(REPO),'diff','--quiet',manifest['source_commit'],'--',EVIDENCE+'/scripts'],check=True)
-    if manifest['workers']!=1 or not 0<manifest['wall_budget_seconds']<=4200:raise ValueError('Job resource bound changed.')
+    if (manifest['workers']!=1 or not 0<manifest['lsf_wall_minutes']<=180
+            or not 0<manifest['wall_budget_seconds']<manifest['lsf_wall_minutes']*60):raise ValueError('Job resource bound changed.')
     configs=[];seen=set()
     for task in manifest['tasks']:
         cfg=json.loads(Path(task['config']).read_text());validate_task(cfg)

@@ -3,6 +3,7 @@ from dataclasses import asdict
 import argparse
 import hashlib
 import json
+import math
 from pathlib import Path
 from gnn_pruning.pruning.experimental_v4 import PLANS,Q_VARIANTS,GREEDY_VARIANTS
 
@@ -11,7 +12,7 @@ CAMPAIGN_WALL_MINUTES=70
 AGGREGATE_LIMIT_MINUTES=300
 
 
-def prepare(root,inputs,source,stage='campaign',extension=False,threads=4):
+def prepare(root,inputs,source,stage='campaign',extension=False,threads=4,job_wall_minutes=None):
     """92 primary tasks or148 with uniform two-seed extension;36 capacity tasks."""
     root=Path(root).resolve();root.mkdir(parents=True,exist_ok=False)
     purpose='capacity' if stage=='capacity' else 'smoke' if stage=='smoke' else 'campaign'
@@ -33,11 +34,12 @@ def prepare(root,inputs,source,stage='campaign',extension=False,threads=4):
                     task=dict(config=str(path),config_sha256=hashlib.sha256(path.read_bytes()).hexdigest())
                     tasks.append(task);groups[name].append(task)
     manifests={}
-    wall=CAMPAIGN_WALL_MINUTES*60-120 if purpose=='campaign' else PREFLIGHT_WALL_MINUTES*60-90
     for name,subset in [('all',tasks),*groups.items()]:
+        minutes=(job_wall_minutes.get(name,max(job_wall_minutes.values())) if job_wall_minutes else CAMPAIGN_WALL_MINUTES) if purpose=='campaign' else PREFLIGHT_WALL_MINUTES
+        wall=minutes*60-(120 if purpose=='campaign' else 90)
         path=root/f'manifest-{name}.json'
         payload=dict(source_commit=source,input_manifest=str(Path(inputs).resolve()),workers=1,
-                     artifact_root=str(root/'execution'/name),wall_budget_seconds=wall,tasks=subset)
+                     artifact_root=str(root/'execution'/name),wall_budget_seconds=wall,lsf_wall_minutes=minutes,tasks=subset)
         path.write_text(json.dumps(payload,indent=2));manifests[name]=str(path)
     return dict(root=str(root),tasks=len(tasks),q_tasks=sum(not PLANS[json.loads(Path(t['config']).read_text())['variant']].greedy for t in tasks),
                 greedy_tasks=8,extension=extension,manifests=manifests)
@@ -63,15 +65,22 @@ def capacity_decision(samples,accepted_preflight_wall_minutes=15):
             primary_raw=sum((1 if greedy else 3)*e['unpadded_seconds'] for greedy,e in costs)
             extended_raw=sum((1 if greedy else 5)*e['unpadded_seconds'] for greedy,e in costs)
             groups[f'{kind}-t{round(100*target)}']=dict(primary_planning_seconds=primary,extended_planning_seconds=extended,
-                primary_unpadded_seconds=primary_raw,extended_unpadded_seconds=extended_raw)
-    hard_bound=accepted_preflight_wall_minutes+4*CAMPAIGN_WALL_MINUTES
-    primary_fits=hard_bound<=300 and all(g['primary_planning_seconds']<=.8*(70*60-120) for g in groups.values())
-    extension_fits=primary_fits and all(g['extended_planning_seconds']<=.8*(70*60-120) for g in groups.values())
+                primary_unpadded_seconds=primary_raw,extended_unpadded_seconds=extended_raw,
+                primary_lsf_wall_minutes=math.ceil(primary/(.8*60)+2),
+                extended_lsf_wall_minutes=math.ceil(extended/(.8*60)+2))
+    primary_bound=accepted_preflight_wall_minutes+sum(g['primary_lsf_wall_minutes'] for g in groups.values())
+    extended_bound=accepted_preflight_wall_minutes+sum(g['extended_lsf_wall_minutes'] for g in groups.values())
+    primary_fits=primary_bound<=300 and all(g['primary_lsf_wall_minutes']<=180 for g in groups.values())
+    extension_fits=primary_fits and extended_bound<=300 and all(g['extended_lsf_wall_minutes']<=180 for g in groups.values())
+    for group in groups.values():group['selected_lsf_wall_minutes']=group['extended_lsf_wall_minutes'] if extension_fits else group['primary_lsf_wall_minutes']
+    hard_bound=extended_bound if extension_fits else primary_bound
     return dict(status='PASS' if primary_fits else 'BLOCKED_CAPACITY',primary_fits=primary_fits,extension_selected=extension_fits,
         primary_policy_seeds=[101,5001,5002],optional_predeclared_seeds=[5003,5004],extension_variants=list(Q_VARIANTS),
         extension_rule='Both seeds added to every one of the seven new Q variants in every model/target cell, or none.',
         campaign_tasks=148 if extension_fits else 92,hard_aggregate_wall_limit_minutes=hard_bound,
-        preflight_reserved_wall_minutes=accepted_preflight_wall_minutes,campaign_jobs=4,campaign_wall_minutes_each=70,
+        preflight_reserved_wall_minutes=accepted_preflight_wall_minutes,campaign_jobs=4,
+        campaign_wall_minutes={k:g['selected_lsf_wall_minutes'] for k,g in groups.items()},
+        primary_reserved_minutes=primary_bound,extended_reserved_minutes=extended_bound,
         maximum_budget_minutes=300,planning_safety_factor=2,job_headroom_fraction=.2,groups=groups,
         inputs_used='Search time, actual worker wall time, planned episode budgets and resource bounds only; no accuracy.',
         target_note='4–5h is a planning target, never artificial idle time or authorization for extra scientific conditions.')

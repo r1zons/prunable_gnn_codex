@@ -43,7 +43,21 @@ def test_capacity_decision_ignores_accuracy_and_is_all_or_none():
     assert a==b and a['extension_selected'] and a['campaign_tasks']==148
     slow=[dict(s,search_seconds=150.,worker_wall_seconds=160.) for s in samples]
     assert not prepare.capacity_decision(slow)['primary_fits']
-    assert not prepare.capacity_decision(samples,30)['primary_fits']
+    assert not prepare.capacity_decision(samples,300)['primary_fits']
+
+
+def test_asymmetric_costs_reallocate_job_limits_without_dropping_conditions():
+    samples=[]
+    for kind in ('gcn','graphsage'):
+        for target in (.3,.5):
+            for variant in (*Q_VARIANTS,*GREEDY_VARIANTS):
+                search=15. if kind=='graphsage' else 6.
+                samples.append(dict(model=kind,target=target,variant=variant,episodes=0 if PLANS[variant].greedy else 30,
+                                    search_seconds=search,worker_wall_seconds=search+3))
+    decision=module('prepare_campaign').capacity_decision(samples)
+    assert decision['primary_fits'] and not decision['extension_selected'] and decision['campaign_tasks']==92
+    assert sum(decision['campaign_wall_minutes'].values())+15==decision['hard_aggregate_wall_limit_minutes']<=300
+    for g in decision['groups'].values():assert g['primary_planning_seconds']<=.8*(g['selected_lsf_wall_minutes']*60-120)
 
 
 @pytest.mark.parametrize('field,value',[('tolerance',.02),('minimum',3),('max_steps',21),('training_seed',5001),('episodes',300)])

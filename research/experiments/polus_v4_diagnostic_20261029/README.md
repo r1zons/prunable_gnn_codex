@@ -105,18 +105,37 @@ matrix; extend uniformly only if the complete148-task matrix also fits. Otherwis
 omit the extension or block an unsafe primary matrix, rather than submit a partial
 scientific selection. All36 capacity cells must be present and completed.
 
-Four main jobs, one per model/target, each have70-minute LSF limits and one worker
-with four Torch threads. Batch software stops120s before its LSF limit; each task
-has a maximum1800s timeout, further reduced by remaining job budget. Including
-the15-minute preflight, aggregate requested active LSF wall time is295 minutes,
-strictly below300. An INTENT ledger reserves even ambiguous submissions; repeated
-preflights would consume budget and require a new capacity calculation. Queue
+Four main jobs, one per model/target, each have one worker with four Torch threads.
+Resource limits are allocated from the COST of the complete groups:
+`ceil(group_planning_seconds/(0.8*60)+2)` LSF minutes per job. This preserves20%
+headroom and120s batch/LSF separation. Each job must stay within the current
+normal queue180-minute limit, and all requested job limits PLUS every preflight
+INTENT must sum to at most300 minutes. Each task has a maximum1800s timeout,
+further reduced by remaining job budget. An INTENT ledger reserves even ambiguous
+submissions; repeated preflights consume budget. Queue
 waiting is separate, not counted as active job time. Exclusive C4 reserves the
 whole host as in V3 even though the scientific process requests four CPU tasks.
 
 The requested4–5h is a capacity-planning target, not permission to pad idle time,
 repeat identical runs or add methods. Measured expected time and conservative
 planning allowance are recorded separately; actual active time may be lower.
+
+The first resource layout used equal70-minute jobs. All36 capacity cells passed,
+but this layout rejected the complete primary matrix because one GraphSAGE cell
+needed75 minutes with the fixed safety/headroom rules, despite ample aggregate
+capacity. The resource-only correction distributes limits across groups without
+changing any scientific condition, timing estimate, safety factor or headroom.
+Its primary limits are47/45/75/68 minutes, plus15-minute preflight =250 minutes.
+Uniform extension needs396 reserved minutes and is therefore skipped in ALL cells.
+The earlier BLOCKED_CAPACITY receipt is retained unchanged outside Git. No main
+job was accepted before this resource correction; this is not a retry of an
+ambiguous bsub response.
+
+Capacity data at source `a363861` are reused after proving byte-identical
+scientific algorithm and identical task-execution AST at the corrected source.
+Only resource validation/planning/submission handling changes. New-source tests
+and a short native V3-compatibility gate run again; full capacity searches and V3
+baseline experiments are not repeated.
 
 ## Verification, execution and outputs
 

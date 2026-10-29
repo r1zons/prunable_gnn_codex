@@ -13,7 +13,6 @@ def submit(root,source,config_root,taskroot,activation_sha,stage,decision=None,d
         if directive not in text:raise ValueError('Validated LSF resource directive missing.')
     if hashlib.sha256((Path(taskroot)/'activate-polus.sh').read_bytes()).hexdigest()!=activation_sha:raise ValueError('Activation changed.')
     names=('all',) if stage=='capacity' else ('gcn-t30','gcn-t50','graphsage-t30','graphsage-t50')
-    wall=15 if stage=='capacity' else 70
     if stage=='campaign':
         if decision is None or decision['status']!='PASS' or not decision['primary_fits']:raise ValueError('Capacity gate required.')
     plans=[]
@@ -21,24 +20,30 @@ def submit(root,source,config_root,taskroot,activation_sha,stage,decision=None,d
         manifest=config_root/f'manifest-{name}.json';m=validate_manifest(manifest)
         claim=root/'submissions'/(stage+'-'+name)
         if claim.exists():raise RuntimeError('Existing claim; do not duplicate accepted or ambiguous jobs.')
-        plans.append((name,manifest,m,claim))
+        wall=15 if stage=='capacity' else m['lsf_wall_minutes']
+        if not 0<wall<=180:raise ValueError('Per-job queue wall limit exceeded.')
+        if stage=='campaign' and wall!=decision['campaign_wall_minutes'][name]:raise ValueError('Resource decision/manifest mismatch.')
+        plans.append((name,manifest,m,claim,wall))
     previous=list((root/'submissions').glob('*/intent.json'))
     reserved=sum(json.loads(p.read_text())['wall_minutes'] for p in previous)
-    if reserved+wall*len(plans)>300:raise ValueError('Strict aggregate active LSF wall budget exceeded.')
-    if stage=='campaign' and sum(len(m['tasks']) for _,_,m,_ in plans)!=decision['campaign_tasks']:raise ValueError('Decision/matrix mismatch.')
-    result=dict(stage=stage,jobs=[],reserved_wall_minutes_before=reserved,requested_wall_minutes=wall*len(plans),
-                hard_aggregate_wall_minutes=reserved+wall*len(plans),queue_waiting='Excluded from active-job budget; inspect scheduler timestamps later.')
+    requested=sum(wall for *_,wall in plans)
+    if reserved+requested>300:raise ValueError('Strict aggregate active LSF wall budget exceeded.')
+    if stage=='campaign' and sum(len(m['tasks']) for _,_,m,_,_ in plans)!=decision['campaign_tasks']:raise ValueError('Decision/matrix mismatch.')
+    result=dict(stage=stage,jobs=[],reserved_wall_minutes_before=reserved,requested_wall_minutes=requested,
+                hard_aggregate_wall_minutes=reserved+requested,queue_waiting='Excluded from active-job budget; inspect scheduler timestamps later.')
     if dry_run:return dict(result,dry_run=True,conditions=list(names))
     (root/'logs/lsf').mkdir(parents=True,exist_ok=True)
-    for name,manifest,m,claim in plans:
+    for name,manifest,m,claim,wall in plans:
         claim.mkdir(parents=True)
         intent=dict(stage=stage,condition=name,wall_minutes=wall,source_commit=m['source_commit'],
                     manifest=str(manifest),manifest_sha256=hashlib.sha256(manifest.read_bytes()).hexdigest(),created_unix=time.time())
         (claim/'intent.json').write_text(json.dumps(intent,indent=2));(claim/'status').write_text('INTENT\n')
-        shutil.copy2(launcher,claim/'v4-cpu.lsf');(claim/'launcher.sha256').write_text(hashlib.sha256((claim/'v4-cpu.lsf').read_bytes()).hexdigest()+'  v4-cpu.lsf\n')
+        wall_string=f'{wall//60:02}:{wall%60:02}'
+        (claim/'v4-cpu.lsf').write_text(text.replace('#BSUB -W 01:10','#BSUB -W '+wall_string))
+        (claim/'launcher.sha256').write_text(hashlib.sha256((claim/'v4-cpu.lsf').read_bytes()).hexdigest()+'  v4-cpu.lsf\n')
         env=dict(os.environ,V4_TASK_ROOT=str(taskroot),V4_ACTIVATION_SHA=activation_sha,V4_SOURCE=str(source),
                  V4_MANIFEST=str(manifest),V4_SUBMISSION=str(claim),V4_PREFLIGHT='1' if stage=='capacity' else '0',V4_INPUTS=m['input_manifest'])
-        command=['bsub','-W','00:15' if stage=='capacity' else '01:10','-J','v4-'+stage+'-'+name]
+        command=['bsub','-W',wall_string,'-J','v4-'+stage+'-'+name]
         response=subprocess.run(command,input=(claim/'v4-cpu.lsf').read_text(),text=True,capture_output=True,cwd=root,env=env)
         (claim/'response.txt').write_text(response.stdout+response.stderr)
         match=re.search(r'Job <(\d+)> is submitted',response.stdout)

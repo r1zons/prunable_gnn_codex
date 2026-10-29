@@ -1,16 +1,17 @@
 {
   "status": "PASS",
-  "passed": 250,
+  "passed": 251,
   "skipped": 2,
   "skip_reason": "CUDA unavailable",
-  "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-v4-diagnostic-20261029/tests-final.log",
-  "log_sha256": "f8676a25822f61e80050ad92bf3dec9faee5a2c29d697b5987209edec729bdb3",
-  "new_v4_tests": 39,
+  "log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-v4-diagnostic-20261029/tests-resource-corrected.log",
+  "log_sha256": "4fb5523b4460ec5bfdc934bee8023c0f1ad2379e507f8258a43f7a03ef725e48",
+  "new_v4_tests": 40,
   "scope": "Local Surgery/V2/V3 regressions, V3 collection, V4 algorithm/execution/budget/submission tests",
   "environment": {
     "python": "3.12.9",
     "torch": "2.2.2",
     "pyg": "2.6.1"
   },
-  "parent_commit": "70854ce"
+  "parent_commit": "70854ce",
+  "resource_only_correction": true
 }
