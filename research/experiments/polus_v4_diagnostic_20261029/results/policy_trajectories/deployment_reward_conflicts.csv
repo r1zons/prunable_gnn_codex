@@ -1,0 +1,4 @@
+run_id,model,target,variant,policy_seed,state,action,observations,masks,exact_conflict,material_conflict,reward_min,reward_max,within_mask_material_conflicts
+polus-v4-graphsage-t30-q_v4_300-p5002,graphsage,0.3,q_v4_300,5002,"[""local_v2"",[23,22],11,84,false]",prune:1:1,8,2,True,True,-0.015877969621376664,-0.0114417389618918,0
+polus-v4-graphsage-t30-q_v4_incremental_drop-p101,graphsage,0.3,q_v4_incremental_drop,101,"[""local_v2"",[23,22],8,84,false]",prune:1:1,5,2,True,True,-0.0010905340897604532,0.005563799978537889,0
+polus-v4-graphsage-t30-q_v4_incremental_drop-p101,graphsage,0.3,q_v4_incremental_drop,101,"[""local_v2"",[23,27],10,86,false]",prune:1:1,2,2,True,True,-0.004048021196083695,-0.0025692776429220732,0

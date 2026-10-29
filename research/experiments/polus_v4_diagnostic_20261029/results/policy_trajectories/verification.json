@@ -1,0 +1,541 @@
+{
+  "status": "PASS",
+  "primary_q_runs": 84,
+  "primary_new_greedy_runs": 8,
+  "reused_native_greedy_runs": 4,
+  "deployment_steps": 803,
+  "training_decisions": 136118,
+  "archive_sha256": "d80ea49be02c5e08ec7169a323b91c368875e4b42fab5dbeffb655ffca468704",
+  "inventory_files_rehashed": 1285,
+  "prior_files_sha256": {
+    "REPORT.md": "e2adb9d3882983c53762d5c1cd72992bba6ad7057ed9b9650009f7c5ce2937e7",
+    "runs.csv": "d92d257e06cea12764e647c73bed6e0616cc9292f3f8a0751767b251cc6d2f8e",
+    "runs.json": "719c4fd788839aed37fd436b50a2059ceb63413e1876891443a505759ec5741f",
+    "deployment_decisions.csv": "f416aebef8499799d3c79f8bfe85b7c789d680a5e42f4bbdb01c77d96b7ba4bf",
+    "reward_and_exploration.csv": "18ef712bb50bce7869342b52a5eae59c35e19cc38df138b1c55e7588c8a67ba5",
+    "analysis_manifest.json": "265a6a513292cd12d57557914f054aade603421f76512b34093792a8abf839bd"
+  },
+  "audit_script_sha256": "096d73cc3a0308a1db5de165a5f06a8787a6b9d2a78215864d04baa8ff202881",
+  "original_scientific_source": "61e693440b53d3cac3136600f3208a73c02492db",
+  "runs": [
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_300-p101",
+      "status": "PASS",
+      "transitions": 2625,
+      "snapshots": 5
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_300-p5001",
+      "status": "PASS",
+      "transitions": 2924,
+      "snapshots": 5
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_300-p5002",
+      "status": "PASS",
+      "transitions": 3490,
+      "snapshots": 5
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_decay300-p101",
+      "status": "PASS",
+      "transitions": 3317,
+      "snapshots": 5
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_decay300-p5001",
+      "status": "PASS",
+      "transitions": 2711,
+      "snapshots": 5
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_decay300-p5002",
+      "status": "PASS",
+      "transitions": 2623,
+      "snapshots": 5
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_gamma0-p101",
+      "status": "PASS",
+      "transitions": 867,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_gamma0-p5001",
+      "status": "PASS",
+      "transitions": 1001,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_gamma0-p5002",
+      "status": "PASS",
+      "transitions": 1034,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_incremental_drop-p101",
+      "status": "PASS",
+      "transitions": 1034,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_incremental_drop-p5001",
+      "status": "PASS",
+      "transitions": 1378,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_incremental_drop-p5002",
+      "status": "PASS",
+      "transitions": 1483,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_menu12-p101",
+      "status": "PASS",
+      "transitions": 1926,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_menu12-p5001",
+      "status": "PASS",
+      "transitions": 1858,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_menu12-p5002",
+      "status": "PASS",
+      "transitions": 1932,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_percent-p101",
+      "status": "PASS",
+      "transitions": 1144,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_percent-p5001",
+      "status": "PASS",
+      "transitions": 1139,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_percent-p5002",
+      "status": "PASS",
+      "transitions": 1127,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_random_ties-p101",
+      "status": "PASS",
+      "transitions": 720,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_random_ties-p5001",
+      "status": "PASS",
+      "transitions": 1082,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_random_ties-p5002",
+      "status": "PASS",
+      "transitions": 1036,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_300-p101",
+      "status": "PASS",
+      "transitions": 2710,
+      "snapshots": 5
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_300-p5001",
+      "status": "PASS",
+      "transitions": 2735,
+      "snapshots": 5
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_300-p5002",
+      "status": "PASS",
+      "transitions": 2416,
+      "snapshots": 5
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_decay300-p101",
+      "status": "PASS",
+      "transitions": 2519,
+      "snapshots": 5
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_decay300-p5001",
+      "status": "PASS",
+      "transitions": 1557,
+      "snapshots": 5
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_decay300-p5002",
+      "status": "PASS",
+      "transitions": 1944,
+      "snapshots": 5
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_gamma0-p101",
+      "status": "PASS",
+      "transitions": 896,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_gamma0-p5001",
+      "status": "PASS",
+      "transitions": 1019,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_gamma0-p5002",
+      "status": "PASS",
+      "transitions": 851,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_incremental_drop-p101",
+      "status": "PASS",
+      "transitions": 1019,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_incremental_drop-p5001",
+      "status": "PASS",
+      "transitions": 1087,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_incremental_drop-p5002",
+      "status": "PASS",
+      "transitions": 1035,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_menu12-p101",
+      "status": "PASS",
+      "transitions": 1606,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_menu12-p5001",
+      "status": "PASS",
+      "transitions": 1550,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_menu12-p5002",
+      "status": "PASS",
+      "transitions": 1534,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_percent-p101",
+      "status": "PASS",
+      "transitions": 951,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_percent-p5001",
+      "status": "PASS",
+      "transitions": 959,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_percent-p5002",
+      "status": "PASS",
+      "transitions": 1030,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_random_ties-p101",
+      "status": "PASS",
+      "transitions": 441,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_random_ties-p5001",
+      "status": "PASS",
+      "transitions": 975,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_random_ties-p5002",
+      "status": "PASS",
+      "transitions": 974,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_300-p101",
+      "status": "PASS",
+      "transitions": 3348,
+      "snapshots": 5
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_300-p5001",
+      "status": "PASS",
+      "transitions": 3458,
+      "snapshots": 5
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_300-p5002",
+      "status": "PASS",
+      "transitions": 3566,
+      "snapshots": 5
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_decay300-p101",
+      "status": "PASS",
+      "transitions": 3317,
+      "snapshots": 5
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_decay300-p5001",
+      "status": "PASS",
+      "transitions": 2772,
+      "snapshots": 5
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_decay300-p5002",
+      "status": "PASS",
+      "transitions": 2629,
+      "snapshots": 5
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_gamma0-p101",
+      "status": "PASS",
+      "transitions": 1160,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_gamma0-p5001",
+      "status": "PASS",
+      "transitions": 994,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_gamma0-p5002",
+      "status": "PASS",
+      "transitions": 1148,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_incremental_drop-p101",
+      "status": "PASS",
+      "transitions": 1369,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_incremental_drop-p5001",
+      "status": "PASS",
+      "transitions": 1376,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_incremental_drop-p5002",
+      "status": "PASS",
+      "transitions": 1444,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_menu12-p101",
+      "status": "PASS",
+      "transitions": 1922,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_menu12-p5001",
+      "status": "PASS",
+      "transitions": 1873,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_menu12-p5002",
+      "status": "PASS",
+      "transitions": 1912,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_percent-p101",
+      "status": "PASS",
+      "transitions": 1168,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_percent-p5001",
+      "status": "PASS",
+      "transitions": 1148,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_percent-p5002",
+      "status": "PASS",
+      "transitions": 1121,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_random_ties-p101",
+      "status": "PASS",
+      "transitions": 809,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_random_ties-p5001",
+      "status": "PASS",
+      "transitions": 923,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_random_ties-p5002",
+      "status": "PASS",
+      "transitions": 1069,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_300-p101",
+      "status": "PASS",
+      "transitions": 3134,
+      "snapshots": 5
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_300-p5001",
+      "status": "PASS",
+      "transitions": 2642,
+      "snapshots": 5
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_300-p5002",
+      "status": "PASS",
+      "transitions": 3107,
+      "snapshots": 5
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_decay300-p101",
+      "status": "PASS",
+      "transitions": 2676,
+      "snapshots": 5
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_decay300-p5001",
+      "status": "PASS",
+      "transitions": 2055,
+      "snapshots": 5
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_decay300-p5002",
+      "status": "PASS",
+      "transitions": 1913,
+      "snapshots": 5
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_gamma0-p101",
+      "status": "PASS",
+      "transitions": 1073,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_gamma0-p5001",
+      "status": "PASS",
+      "transitions": 919,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_gamma0-p5002",
+      "status": "PASS",
+      "transitions": 986,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_incremental_drop-p101",
+      "status": "PASS",
+      "transitions": 1002,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_incremental_drop-p5001",
+      "status": "PASS",
+      "transitions": 979,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_incremental_drop-p5002",
+      "status": "PASS",
+      "transitions": 1040,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_menu12-p101",
+      "status": "PASS",
+      "transitions": 1653,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_menu12-p5001",
+      "status": "PASS",
+      "transitions": 1613,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_menu12-p5002",
+      "status": "PASS",
+      "transitions": 1607,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_percent-p101",
+      "status": "PASS",
+      "transitions": 1122,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_percent-p5001",
+      "status": "PASS",
+      "transitions": 997,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_percent-p5002",
+      "status": "PASS",
+      "transitions": 1050,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_random_ties-p101",
+      "status": "PASS",
+      "transitions": 613,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_random_ties-p5001",
+      "status": "PASS",
+      "transitions": 959,
+      "snapshots": 3
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_random_ties-p5002",
+      "status": "PASS",
+      "transitions": 996,
+      "snapshots": 3
+    }
+  ],
+  "external_indexes": {
+    "training_states.csv": {
+      "sha256": "8b45eb3332df6f5ae252640bbe0d6ebedc0bdf911405760dc8d2f8cac74191d9",
+      "bytes": 8029510
+    },
+    "training_state_actions.csv": {
+      "sha256": "6281cb6e33f3919daf556d9461b0fa2ec3bf2c268c1c30c4c65262450257d381",
+      "bytes": 7832436
+    }
+  },
+  "external_root": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-v4-trajectories-20261029T144000Z/final",
+  "reward_conflict_absolute_tolerance": 1e-10,
+  "no_model_evaluation": true,
+  "no_new_experiment": true,
+  "no_algorithm_change": true
+}

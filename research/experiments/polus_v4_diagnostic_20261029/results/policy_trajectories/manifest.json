@@ -1,0 +1,94 @@
+{
+  "status": "PASS",
+  "base_branch": "research/v4-tabular-diagnostic-20261029",
+  "base_commit": "26632ab71beffd62955eca3b939139b9d9df367a",
+  "scientific_source": "61e693440b53d3cac3136600f3208a73c02492db",
+  "archive_sha256": "d80ea49be02c5e08ec7169a323b91c368875e4b42fab5dbeffb655ffca468704",
+  "primary_q_policies": 84,
+  "deployment_decisions": 803,
+  "training_decisions": 136118,
+  "summary_groups": 28,
+  "offline_diagnostic_tests": 11,
+  "figures_visually_reviewed": 2,
+  "original_inventory_files_unchanged": 1285,
+  "earlier_analysis_unchanged": true,
+  "new_experiments": false,
+  "algorithms_changed": false,
+  "replay_log_sha256": "669de0a6132bef37d219cc040be7bc307df2ec6e588e316b1236be9727728e3c",
+  "tests_log_sha256": "1a01a8077a207215f09216fe1f77289f84d951a5afa16308a641b01403826ade",
+  "external_root": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-v4-trajectories-20261029T144000Z",
+  "files": {
+    "REPORT.md": {
+      "sha256": "dd9949723d4a8545c58fe8a37228b1c1c6c4d24d7da52c2e6c6a69cc59f0706f",
+      "bytes": 20760
+    },
+    "case_study.json": {
+      "sha256": "e2bdb3a0bd9fe26902c2b1d0de5bbdb1d32422c0e1936aaf669072371cdd359d",
+      "bytes": 59660
+    },
+    "case_terminal_updates.csv": {
+      "sha256": "d874fedd17ad9ff25bf6265f1e7b85d9adb7c128c793d20ccd42e30782e071c6",
+      "bytes": 1259
+    },
+    "deployment_alias_states.csv": {
+      "sha256": "bbfc38d5ae7319e3c21a6334b99cf83f1d1256d032d39e5b80626737e057b1d3",
+      "bytes": 10813
+    },
+    "deployment_reward_conflicts.csv": {
+      "sha256": "3d933905edd3c3a9c6766911c88ab7807bff597a896891fd62c8cc87cc97eb50",
+      "bytes": 723
+    },
+    "deployment_steps.csv": {
+      "sha256": "3371573dff49a436176cf75fb1cc48fb3a1ee609bc42173897a302675752fdcd",
+      "bytes": 1359175
+    },
+    "figure_runtime.json": {
+      "sha256": "19d7a934a2db60cfdda5aa74afa9d1009046799364a4b2affbee33c7f3c8abb9",
+      "bytes": 104
+    },
+    "figures/cross_run_diagnostics.png": {
+      "sha256": "ec48fa28a4206a8765ec5d6d74b6e3f84998c931558537267de3788f5bf08a43",
+      "bytes": 235436
+    },
+    "figures/cross_run_diagnostics.svg": {
+      "sha256": "83fe15497b30abf2db93285fdeb741c30dcbe05f8a350337ec259d5c42ab4909",
+      "bytes": 129804
+    },
+    "figures/paired_trajectory.png": {
+      "sha256": "e630d22f25f83c03e3321cb5e53b75645fb83fee5bf248ce9d3a88fbc6c54778",
+      "bytes": 266252
+    },
+    "figures/paired_trajectory.svg": {
+      "sha256": "eb60bec32d662bfed34dbec020a059a12e50c0f961c1e18ccc26852cda99d232",
+      "bytes": 109510
+    },
+    "run_diagnostics.csv": {
+      "sha256": "6a4bd929e52390f2a4cf105c879e1b7a0408df91f41d37bfdd7955f1e43d6d36",
+      "bytes": 137372
+    },
+    "summary.csv": {
+      "sha256": "ae65b2317128de84a48b8cd42b6379cf2c19fd1034affd5925284df8ada32f8c",
+      "bytes": 7921
+    },
+    "tools/analyze.py": {
+      "sha256": "0fa19c19338e240baf32f1ea5fd5d9461c234314fb0e9eefbd40f9923116c0fd",
+      "bytes": 21032
+    },
+    "tools/package.py": {
+      "sha256": "3a008b73238c4a02c39ec6854b9d11326d2d8d27d4f94717d64b89eec8e681a5",
+      "bytes": 3925
+    },
+    "tools/plot.py": {
+      "sha256": "98d47db018d52de1893d93b71ef55805c0339e13904676d746a19c392d9276b3",
+      "bytes": 5888
+    },
+    "tools/test_analysis.py": {
+      "sha256": "2b9ed055f7f6906290742c2dca5de488d0f153ff13e45c4e82293b7ccc710233",
+      "bytes": 5990
+    },
+    "verification.json": {
+      "sha256": "f387b3fa06768564580ce782d583ea66cab747e61f67c7f448d833f5653c4a5e",
+      "bytes": 13737
+    }
+  }
+}
