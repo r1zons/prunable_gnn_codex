@@ -1,0 +1,7 @@
+{
+  "python": "3.8.20 (default, Oct  3 2024, 10:25:41) \n[Clang 14.0.6 ]",
+  "executable": "/usr/local/Caskroom/miniconda/base/envs/gnn_pruning/bin/python",
+  "matplotlib": "3.7.5",
+  "numpy": "1.24.3",
+  "purpose": "Read verified derived data only; no model/dataset/search access."
+}

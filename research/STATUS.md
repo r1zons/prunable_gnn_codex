@@ -2,6 +2,30 @@
 
 **Updated:** 2026-10-29
 
+## V4 offline verification and controlled analysis — 2026-10-29
+
+All92 primary results and20 historical references independently verified from the
+existing archive:13,200 primary episodes,137,000 transitions and magnitude choices,
+44,474 final Q entries,300 policy snapshots;112 physical models reload/project
+correctly and their validation accuracy/F1 recompute.10 offline audit tests passed.
+Original1,285 collection files and launch evidence hashes remain unchanged. No new
+training, pruning search, rollout, timing experiment or algorithm/manuscript edit.
+
+All92 models reach the exact band, enforced by reachability;89 stop at target_band,
+three menu12 runs reach it on max_steps20. Menu12 Q ties matched Greedy in12/12
+comparisons while costing44–56x more search. More episodes, decay, incremental
+reward and gamma0 show no uniform quality advantage across cells. Some small D/F
+gains coexist with different compression/widths. Controlled A/B/D/E/F comparisons
+use native POLUS seed101 only; C versus B uses three native paired seeds. Local
+V3 seeds5001/5002 remain cross-platform references, never pooled as native controls.
+One frozen training checkpoint per model; validation-only, no final winner claim.
+
+See [verified V4 report, tables and figures](experiments/polus_v4_diagnostic_20261029/results/REPORT.md).
+Analysis root: `${GNN_ARTIFACT_ROOT}/polus-v4-analysis-20261029T112436Z/`.
+Primary active LSF time67.72min (76.80min including capacity), below250min reserved;
+queue waiting is reported separately. Raw traces and full per-episode rows remain
+external; compact verified analysis is versioned on the existing V4 branch.
+
 ## V4 raw results collected — 2026-10-29
 
 All92 primary tasks completed (84 Q +8 Greedy),23/23 in each LSF job1607753–1607756;

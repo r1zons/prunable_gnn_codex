@@ -1,0 +1,18 @@
+{
+  "source_commit": "61e693440b53d3cac3136600f3208a73c02492db",
+  "processed_root": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-v4-analysis-20261029T112436Z/processed-final",
+  "analysis_root": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-v4-analysis-20261029T112436Z",
+  "audit_log_sha256": "657752d947d1d5e5d469eb0072bd1f84484e20ce13e592968883b4b682b697d1",
+  "test_log_sha256": "a60f10b0067155bc3d1def0919777a4552ddc08907e9245d547f4d6684f1bab4",
+  "offline_tests": 10,
+  "external_episode_rows": {
+    "path": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-v4-analysis-20261029T112436Z/processed-final/episodes.csv",
+    "rows": 13200,
+    "sha256": "6ce05766de337ab3ff381be03a3d688d8a715f56e282b893750151b72b3eda89"
+  },
+  "verification_script_sha256": "096d73cc3a0308a1db5de165a5f06a8787a6b9d2a78215864d04baa8ff202881",
+  "report_script_sha256": "b583053ae54358c018f88904d2d4eee624d4f2e358db9e0ab26724ade07b57ad",
+  "plot_script_sha256": "2380adf3d2f54f1f2f500a2375b88375f7e6eeb53a03dc74d6be6c88577be7ec",
+  "new_experiments": false,
+  "algorithms_modified": false
+}

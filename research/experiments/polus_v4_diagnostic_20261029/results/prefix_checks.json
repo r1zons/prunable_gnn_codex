@@ -1,0 +1,178 @@
+[
+  {
+    "model": "gcn",
+    "target": 0.3,
+    "policy_seed": 101,
+    "baseline_platform": "local",
+    "baseline_run_id": "local-cora-gcn-t30-q_reachable_v3-p101",
+    "v4_run_id": "polus-v4-gcn-t30-q_v4_300-p101",
+    "same_first100_training_trace": true,
+    "same_q_keys": true,
+    "max_abs_q_difference": 0.0
+  },
+  {
+    "model": "gcn",
+    "target": 0.3,
+    "policy_seed": 5001,
+    "baseline_platform": "local",
+    "baseline_run_id": "local-cora-gcn-t30-q_reachable_v3-p5001",
+    "v4_run_id": "polus-v4-gcn-t30-q_v4_300-p5001",
+    "same_first100_training_trace": true,
+    "same_q_keys": true,
+    "max_abs_q_difference": 0.0
+  },
+  {
+    "model": "gcn",
+    "target": 0.3,
+    "policy_seed": 5002,
+    "baseline_platform": "local",
+    "baseline_run_id": "local-cora-gcn-t30-q_reachable_v3-p5002",
+    "v4_run_id": "polus-v4-gcn-t30-q_v4_300-p5002",
+    "same_first100_training_trace": true,
+    "same_q_keys": true,
+    "max_abs_q_difference": 0.0
+  },
+  {
+    "model": "gcn",
+    "target": 0.5,
+    "policy_seed": 101,
+    "baseline_platform": "local",
+    "baseline_run_id": "local-cora-gcn-t50-q_reachable_v3-p101",
+    "v4_run_id": "polus-v4-gcn-t50-q_v4_300-p101",
+    "same_first100_training_trace": true,
+    "same_q_keys": true,
+    "max_abs_q_difference": 0.0
+  },
+  {
+    "model": "gcn",
+    "target": 0.5,
+    "policy_seed": 5001,
+    "baseline_platform": "local",
+    "baseline_run_id": "local-cora-gcn-t50-q_reachable_v3-p5001",
+    "v4_run_id": "polus-v4-gcn-t50-q_v4_300-p5001",
+    "same_first100_training_trace": true,
+    "same_q_keys": true,
+    "max_abs_q_difference": 0.0
+  },
+  {
+    "model": "gcn",
+    "target": 0.5,
+    "policy_seed": 5002,
+    "baseline_platform": "local",
+    "baseline_run_id": "local-cora-gcn-t50-q_reachable_v3-p5002",
+    "v4_run_id": "polus-v4-gcn-t50-q_v4_300-p5002",
+    "same_first100_training_trace": true,
+    "same_q_keys": true,
+    "max_abs_q_difference": 0.0
+  },
+  {
+    "model": "graphsage",
+    "target": 0.3,
+    "policy_seed": 101,
+    "baseline_platform": "local",
+    "baseline_run_id": "local-cora-graphsage-t30-q_reachable_v3-p101",
+    "v4_run_id": "polus-v4-graphsage-t30-q_v4_300-p101",
+    "same_first100_training_trace": true,
+    "same_q_keys": true,
+    "max_abs_q_difference": 0.0
+  },
+  {
+    "model": "graphsage",
+    "target": 0.3,
+    "policy_seed": 5001,
+    "baseline_platform": "local",
+    "baseline_run_id": "local-cora-graphsage-t30-q_reachable_v3-p5001",
+    "v4_run_id": "polus-v4-graphsage-t30-q_v4_300-p5001",
+    "same_first100_training_trace": true,
+    "same_q_keys": true,
+    "max_abs_q_difference": 0.0
+  },
+  {
+    "model": "graphsage",
+    "target": 0.3,
+    "policy_seed": 5002,
+    "baseline_platform": "local",
+    "baseline_run_id": "local-cora-graphsage-t30-q_reachable_v3-p5002",
+    "v4_run_id": "polus-v4-graphsage-t30-q_v4_300-p5002",
+    "same_first100_training_trace": true,
+    "same_q_keys": true,
+    "max_abs_q_difference": 0.0
+  },
+  {
+    "model": "graphsage",
+    "target": 0.5,
+    "policy_seed": 101,
+    "baseline_platform": "local",
+    "baseline_run_id": "local-cora-graphsage-t50-q_reachable_v3-p101",
+    "v4_run_id": "polus-v4-graphsage-t50-q_v4_300-p101",
+    "same_first100_training_trace": true,
+    "same_q_keys": true,
+    "max_abs_q_difference": 0.0
+  },
+  {
+    "model": "graphsage",
+    "target": 0.5,
+    "policy_seed": 5001,
+    "baseline_platform": "local",
+    "baseline_run_id": "local-cora-graphsage-t50-q_reachable_v3-p5001",
+    "v4_run_id": "polus-v4-graphsage-t50-q_v4_300-p5001",
+    "same_first100_training_trace": true,
+    "same_q_keys": true,
+    "max_abs_q_difference": 0.0
+  },
+  {
+    "model": "graphsage",
+    "target": 0.5,
+    "policy_seed": 5002,
+    "baseline_platform": "local",
+    "baseline_run_id": "local-cora-graphsage-t50-q_reachable_v3-p5002",
+    "v4_run_id": "polus-v4-graphsage-t50-q_v4_300-p5002",
+    "same_first100_training_trace": true,
+    "same_q_keys": true,
+    "max_abs_q_difference": 0.0
+  },
+  {
+    "model": "gcn",
+    "target": 0.3,
+    "policy_seed": 101,
+    "baseline_platform": "polus",
+    "baseline_run_id": "polus-cora-gcn-t30-q_reachable_v3-p101",
+    "v4_run_id": "polus-v4-gcn-t30-q_v4_300-p101",
+    "same_first100_training_trace": true,
+    "same_q_keys": true,
+    "max_abs_q_difference": 0.0
+  },
+  {
+    "model": "gcn",
+    "target": 0.5,
+    "policy_seed": 101,
+    "baseline_platform": "polus",
+    "baseline_run_id": "polus-cora-gcn-t50-q_reachable_v3-p101",
+    "v4_run_id": "polus-v4-gcn-t50-q_v4_300-p101",
+    "same_first100_training_trace": true,
+    "same_q_keys": true,
+    "max_abs_q_difference": 0.0
+  },
+  {
+    "model": "graphsage",
+    "target": 0.3,
+    "policy_seed": 101,
+    "baseline_platform": "polus",
+    "baseline_run_id": "polus-cora-graphsage-t30-q_reachable_v3-p101",
+    "v4_run_id": "polus-v4-graphsage-t30-q_v4_300-p101",
+    "same_first100_training_trace": true,
+    "same_q_keys": true,
+    "max_abs_q_difference": 0.0
+  },
+  {
+    "model": "graphsage",
+    "target": 0.5,
+    "policy_seed": 101,
+    "baseline_platform": "polus",
+    "baseline_run_id": "polus-cora-graphsage-t50-q_reachable_v3-p101",
+    "v4_run_id": "polus-v4-graphsage-t50-q_v4_300-p101",
+    "same_first100_training_trace": true,
+    "same_q_keys": true,
+    "max_abs_q_difference": 0.0
+  }
+]

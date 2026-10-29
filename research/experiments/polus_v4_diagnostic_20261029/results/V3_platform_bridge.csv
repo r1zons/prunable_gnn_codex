@@ -1,0 +1,5 @@
+contrast,scope,model,target,policy_seed,treatment,control,treatment_run_id,control_run_id,treatment_platform,control_platform,accuracy_delta_pp,f1_delta_pp,compression_delta_pp,same_widths,same_retained_ids,search_ratio,evaluations_ratio,coverage_delta
+V3_platform_bridge,V3_seed101_platform_bridge,gcn,0.3,101,q_reachable_v3,q_reachable_v3,polus-cora-gcn-t30-q_reachable_v3-p101,local-cora-gcn-t30-q_reachable_v3-p101,polus,local,0.0,-1.1102230246251565e-14,0.0,True,True,,1.0,0.0
+V3_platform_bridge,V3_seed101_platform_bridge,gcn,0.5,101,q_reachable_v3,q_reachable_v3,polus-cora-gcn-t50-q_reachable_v3-p101,local-cora-gcn-t50-q_reachable_v3-p101,polus,local,0.0,0.0,0.0,True,True,,1.0,0.0
+V3_platform_bridge,V3_seed101_platform_bridge,graphsage,0.3,101,q_reachable_v3,q_reachable_v3,polus-cora-graphsage-t30-q_reachable_v3-p101,local-cora-graphsage-t30-q_reachable_v3-p101,polus,local,0.0,0.0,0.0,True,True,,1.0,0.0
+V3_platform_bridge,V3_seed101_platform_bridge,graphsage,0.5,101,q_reachable_v3,q_reachable_v3,polus-cora-graphsage-t50-q_reachable_v3-p101,local-cora-graphsage-t50-q_reachable_v3-p101,polus,local,0.0,0.0,0.0,True,True,,1.0,0.0

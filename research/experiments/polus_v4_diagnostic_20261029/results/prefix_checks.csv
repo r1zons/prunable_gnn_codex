@@ -1,0 +1,17 @@
+model,target,policy_seed,baseline_platform,baseline_run_id,v4_run_id,same_first100_training_trace,same_q_keys,max_abs_q_difference
+gcn,0.3,101,local,local-cora-gcn-t30-q_reachable_v3-p101,polus-v4-gcn-t30-q_v4_300-p101,True,True,0.0
+gcn,0.3,5001,local,local-cora-gcn-t30-q_reachable_v3-p5001,polus-v4-gcn-t30-q_v4_300-p5001,True,True,0.0
+gcn,0.3,5002,local,local-cora-gcn-t30-q_reachable_v3-p5002,polus-v4-gcn-t30-q_v4_300-p5002,True,True,0.0
+gcn,0.5,101,local,local-cora-gcn-t50-q_reachable_v3-p101,polus-v4-gcn-t50-q_v4_300-p101,True,True,0.0
+gcn,0.5,5001,local,local-cora-gcn-t50-q_reachable_v3-p5001,polus-v4-gcn-t50-q_v4_300-p5001,True,True,0.0
+gcn,0.5,5002,local,local-cora-gcn-t50-q_reachable_v3-p5002,polus-v4-gcn-t50-q_v4_300-p5002,True,True,0.0
+graphsage,0.3,101,local,local-cora-graphsage-t30-q_reachable_v3-p101,polus-v4-graphsage-t30-q_v4_300-p101,True,True,0.0
+graphsage,0.3,5001,local,local-cora-graphsage-t30-q_reachable_v3-p5001,polus-v4-graphsage-t30-q_v4_300-p5001,True,True,0.0
+graphsage,0.3,5002,local,local-cora-graphsage-t30-q_reachable_v3-p5002,polus-v4-graphsage-t30-q_v4_300-p5002,True,True,0.0
+graphsage,0.5,101,local,local-cora-graphsage-t50-q_reachable_v3-p101,polus-v4-graphsage-t50-q_v4_300-p101,True,True,0.0
+graphsage,0.5,5001,local,local-cora-graphsage-t50-q_reachable_v3-p5001,polus-v4-graphsage-t50-q_v4_300-p5001,True,True,0.0
+graphsage,0.5,5002,local,local-cora-graphsage-t50-q_reachable_v3-p5002,polus-v4-graphsage-t50-q_v4_300-p5002,True,True,0.0
+gcn,0.3,101,polus,polus-cora-gcn-t30-q_reachable_v3-p101,polus-v4-gcn-t30-q_v4_300-p101,True,True,0.0
+gcn,0.5,101,polus,polus-cora-gcn-t50-q_reachable_v3-p101,polus-v4-gcn-t50-q_v4_300-p101,True,True,0.0
+graphsage,0.3,101,polus,polus-cora-graphsage-t30-q_reachable_v3-p101,polus-v4-graphsage-t30-q_v4_300-p101,True,True,0.0
+graphsage,0.5,101,polus,polus-cora-graphsage-t50-q_reachable_v3-p101,polus-v4-graphsage-t50-q_v4_300-p101,True,True,0.0

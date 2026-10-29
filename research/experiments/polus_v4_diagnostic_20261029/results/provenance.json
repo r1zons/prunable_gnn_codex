@@ -1,0 +1,38 @@
+{
+  "archive": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-v4-collection-20261029T111126Z/v4-primary-results.tar.gz",
+  "archive_sha256": "d80ea49be02c5e08ec7169a323b91c368875e4b42fab5dbeffb655ffca468704",
+  "inventory_sha256": "64f6b446dcd36f831c3f7064f64f7b9e5639fc014eb06f2280e4566f1640ca8f",
+  "source_commit": "61e693440b53d3cac3136600f3208a73c02492db",
+  "analysis_script_sha256": "096d73cc3a0308a1db5de165a5f06a8787a6b9d2a78215864d04baa8ff202881",
+  "baseline_reference_index_sha256": "2e119011eda2a8e4561bd2ab26c5b50c71775679a1d48f88b5b896ef39af3744",
+  "input_manifest_sha256": "3e37eb54f550df8ee18cce8b948e038abd09fb548a140dbca1c8890b8829a43a",
+  "episode_rows_external": "episodes.csv retained in external processed directory; compact25-episode blocks tracked.",
+  "inputs": {
+    "training_seed": 101,
+    "dataset": "cora",
+    "source_provenance_ref": "research/experiments/local_structured_v2_cora_matrix_20261027/provenance.json",
+    "source_provenance_sha256": "06240cb02225bd2cfe8e3710f70811f6ebc8871b3fc56fbe19d3a7538277e727",
+    "graph_tensor_sha256": "2b2bc996be89812f80ce7d09599dab983f804f87ddd37a09b3ce0b5689ec9a0d",
+    "graph": {
+      "file": "graph_tensors.pt",
+      "sha256": "4202270306b85ac367d22b483fb9b2041af1a4085a732356f8714df1e6053596"
+    },
+    "models": {
+      "gcn": {
+        "file": "gcn.pt",
+        "sha256": "276b2ff0f7790a84afc2755e89d88f1a170865a4397e4355daf7552c7075c129",
+        "tensor_sha256": "a2bbe3d0ce85cafbbadb2a47b80806735b6d1de1aedbc1e35c8693bc499cb258"
+      },
+      "graphsage": {
+        "file": "graphsage.pt",
+        "sha256": "09b289dcbaddc1afb1c3660f7fa5d60fb1109c3c3059bdae14d8c4de03034774",
+        "tensor_sha256": "3671d5b11887b1a299f1237d2b66e6763ef2da65b759d9aec1d5b01063cc902e"
+      }
+    },
+    "split": {
+      "file": "splits.yaml",
+      "sha256": "59a0209a8e2a73a5e70a720d327f8c024d36d184a6d00be820ced0e1a3eb08bc"
+    }
+  },
+  "scope": "Offline validation-only audit/analysis; no training, pruning search, fine-tuning, new experiment or remote execution."
+}

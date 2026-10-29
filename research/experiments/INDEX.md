@@ -1,7 +1,12 @@
 # Experiment campaign registry
 
-**POLUS-V4-DIAGNOSTIC-20261029** — completed;92/92 raw results collected and
-hash-verified (1,285 inventory files). Scientific processing/interpretation pending.
+**POLUS-V4-DIAGNOSTIC-20261029** — completed;92/92 results independently verified
+and analysed (13,200 episodes/137,000 transitions/44,474 Q entries/300 snapshots).
+All1,285 source inventory files unchanged;10 audit tests pass. [Verified report,
+tables and four figures](polus_v4_diagnostic_20261029/results/REPORT.md).
+Menu12 Q ties matched Greedy quality in12/12 cases at44–56x search cost. Other
+factors have heterogeneous effects; native historical baseline n=1 (seed101),
+C-vs-B native paired n=3. Local V3 references remain separate; no general winner.
 All four LSF jobs report success,23/23 tasks each.
 84 new Q tasks (seven single-factor variants, four model/target cells, three policy
 seeds) +8 deterministic menu-matched Greedy controls; accepted LSF1607753–1607756.
