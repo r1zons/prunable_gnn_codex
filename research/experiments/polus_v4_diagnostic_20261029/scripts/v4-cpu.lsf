@@ -1,0 +1,25 @@
+#!/bin/bash
+# Adapted from frozen V3: normal, four CPU tasks, one exclusive C4 host.
+#BSUB -q normal
+#BSUB -n 4
+#BSUB -W 01:10
+#BSUB -R "span[hosts=1]"
+#BSUB -m polus-c4-ib.bmc.hpc.cs.msu.ru
+#BSUB -x
+#BSUB -o logs/lsf/v4-cpu.%J.out
+#BSUB -e logs/lsf/v4-cpu.%J.err
+set -euo pipefail
+[[ "${LSB_JOBID:-}" =~ ^[0-9]+$ && "${LSB_QUEUE:-}" == normal && "${LSB_DJOB_NUMPROC:-}" == 4 ]] || exit 1
+case "$(hostname -s)" in polus-c4|polus-c4-ib) ;; *) exit 1 ;; esac
+: "${V4_TASK_ROOT:?}" "${V4_ACTIVATION_SHA:?}" "${V4_SOURCE:?}" "${V4_MANIFEST:?}" "${V4_SUBMISSION:?}"
+printf '%s  %s\n' "$V4_ACTIVATION_SHA" "$V4_TASK_ROOT/activate-polus.sh" | sha256sum -c -
+source "$V4_TASK_ROOT/activate-polus.sh"
+cd "$V4_SUBMISSION"
+sha256sum -c launcher.sha256
+cd "$V4_SOURCE"
+export PYTHONPATH="$V4_SOURCE/src" PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
+export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4
+if [[ "${V4_PREFLIGHT:-0}" == 1 ]]; then
+  python -m gnn_pruning.experiments.v4_campaign compatibility --inputs "$V4_INPUTS" > "$V4_SUBMISSION/compatibility.json"
+fi
+python -m gnn_pruning.experiments.v4_campaign batch --manifest "$V4_MANIFEST"
