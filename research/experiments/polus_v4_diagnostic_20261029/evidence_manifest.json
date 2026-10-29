@@ -1,0 +1,98 @@
+{
+  "source_commit": "61e693440b53d3cac3136600f3208a73c02492db",
+  "capacity_source_commit": "a3638614d41771a6d6ebe596d6dd6fab60634a00",
+  "files": {
+    "research/experiments/polus_v4_diagnostic_20261029/README.md": {
+      "sha256": "4478a7a65d18c0ddd6715dc75f7b14cb075f9dcd176d89231360c35831f513f3",
+      "bytes": 13722
+    },
+    "research/experiments/polus_v4_diagnostic_20261029/capacity_decision.json": {
+      "sha256": "898de7bcdce6d2ca5550e8cf97ab47e863acee6d618cbe762dec08ddeec2df42",
+      "bytes": 2611
+    },
+    "research/experiments/polus_v4_diagnostic_20261029/capacity_reuse_proof.json": {
+      "sha256": "2786dfe249592b7331bf8aa07c83a13dca61ab76c5c3a52ac39499c0f4462ac6",
+      "bytes": 409
+    },
+    "research/experiments/polus_v4_diagnostic_20261029/capacity_samples.json": {
+      "sha256": "e305f1cb814a1edd6fcdcd54d6e407c135e537a3d1d307a4ffbd913b37a0d3a3",
+      "bytes": 6868
+    },
+    "research/experiments/polus_v4_diagnostic_20261029/capacity_submission.json": {
+      "sha256": "674690605cc2aa17f9c450b7364a5b3ca966d1bd26793218ea6c3bccba3365ec",
+      "bytes": 3333
+    },
+    "research/experiments/polus_v4_diagnostic_20261029/capacity_timing.json": {
+      "sha256": "a60d3ddd58f9d81395f2172274cce8e25eb1ba8d795d1ca502c9a5a334a024ac",
+      "bytes": 472
+    },
+    "research/experiments/polus_v4_diagnostic_20261029/configuration_index.json": {
+      "sha256": "6531b5755653120d37c56ff4280a4ec786d26987ee6ce8519dae9c5aeb2519df",
+      "bytes": 93724
+    },
+    "research/experiments/polus_v4_diagnostic_20261029/launch_gate.json": {
+      "sha256": "ba777af6e244435531ce134e44afa8f66bbcf9efae065277e709b5c6163c77e4",
+      "bytes": 1617
+    },
+    "research/experiments/polus_v4_diagnostic_20261029/launch_receipt.json": {
+      "sha256": "5ea942e808b50aca22f55da3c8bc8bf5dbcdd4a729c141e4a647251a68a9d01d",
+      "bytes": 10224
+    },
+    "research/experiments/polus_v4_diagnostic_20261029/local_gate.json": {
+      "sha256": "13a8d5848464b6d9c8eaacdbbbd02b6a34dee9a7eb1f232a8bf44f77310b4f44",
+      "bytes": 14572
+    },
+    "research/experiments/polus_v4_diagnostic_20261029/reference_replay.json": {
+      "sha256": "664d1def131cd4eee34037a216bc6d94d2dfb3c86c8c2176b40f330b0e777edc",
+      "bytes": 5406
+    },
+    "research/experiments/polus_v4_diagnostic_20261029/remote_gate.json": {
+      "sha256": "5d5d01418ef662f4e7de5649c0dc0ae3215168a2f359585ae871a8b76cb353d9",
+      "bytes": 7986
+    },
+    "research/experiments/polus_v4_diagnostic_20261029/reused_baselines.json": {
+      "sha256": "2e119011eda2a8e4561bd2ab26c5b50c71775679a1d48f88b5b896ef39af3744",
+      "bytes": 12703
+    },
+    "research/experiments/polus_v4_diagnostic_20261029/scripts/preflight_local.py": {
+      "sha256": "709e83113d0e03306d17c17324d21bb3b70441d8759555249a2616de23c2f003",
+      "bytes": 3779
+    },
+    "research/experiments/polus_v4_diagnostic_20261029/scripts/prepare_campaign.py": {
+      "sha256": "7a78b61c486ca8cfda53a25e8a50e0240d8927db7b512569cc674d93da23609e",
+      "bytes": 7091
+    },
+    "research/experiments/polus_v4_diagnostic_20261029/scripts/submit_polus.py": {
+      "sha256": "5397bd3577a8ff2136f0db7518e380763185e90e87efe254e8c417a641d1fa22",
+      "bytes": 5644
+    },
+    "research/experiments/polus_v4_diagnostic_20261029/scripts/v4-cpu.lsf": {
+      "sha256": "0d39ada79ae1808a6f80e9a676dfda426517c4b6d82d0ee4fa03e745a53c21f8",
+      "bytes": 1147
+    },
+    "research/experiments/polus_v4_diagnostic_20261029/source_pin.json": {
+      "sha256": "047f1d28c622ddf3d73a6abd290c3b19052b41c05115af7348532ead1ffeb78d",
+      "bytes": 1462
+    },
+    "research/experiments/polus_v4_diagnostic_20261029/unit_gate.json": {
+      "sha256": "25a2b0de23ddec8bc316031bad9d4f383ceaab42370cccfeac332477b90b9542",
+      "bytes": 617
+    },
+    "src/gnn_pruning/pruning/experimental_v4.py": {
+      "sha256": "c0efb64e79ad68ac47e72785cb1dd4e8b764d00493274f2c0a5b2a3aba97f4a3",
+      "bytes": 11538
+    },
+    "src/gnn_pruning/experiments/v4_campaign.py": {
+      "sha256": "6a211907655817b0cf027cd95ab8c157a1f52282f721ed750a20d7d23eb1d8ac",
+      "bytes": 13724
+    },
+    "tests/test_experimental_v4.py": {
+      "sha256": "a6b7078a4920060aaa49d04858413c9c5fc03b5c0d7c5a2006bc0a89cb4e6b4c",
+      "bytes": 7447
+    },
+    "tests/test_v4_campaign.py": {
+      "sha256": "1d975fc7a6931655815d8f789d7487606cabb0567f1fec24076657d2fef45b6a",
+      "bytes": 8256
+    }
+  }
+}

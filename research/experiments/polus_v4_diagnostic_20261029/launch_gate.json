@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "source_commit": "61e693440b53d3cac3136600f3208a73c02492db",
+  "capacity_source_commit": "a3638614d41771a6d6ebe596d6dd6fab60634a00",
+  "unit_tests": {
+    "passed": 251,
+    "skipped": 2
+  },
+  "local_gate": "local_gate.json",
+  "reference_replay": "reference_replay.json",
+  "capacity_gate": "remote_gate.json",
+  "scientific_algorithm_identical_to_capacity": true,
+  "unchanged_execution_functions": [
+    "run_task",
+    "run_batch",
+    "compatibility",
+    "scientific_identity",
+    "validate_task"
+  ],
+  "native_current_source_compatibility_conditions": 4,
+  "frozen_input_manifest_sha256": "3e37eb54f550df8ee18cce8b948e038abd09fb548a140dbca1c8890b8829a43a",
+  "native_environment": {
+    "activation_sha256": "ac464bbf980c499281c31ccb018b0e9e172a00df6c1b12627d3f075c45121fce",
+    "python": "3.10.22 | packaged by conda-forge | (main, Oct  6 2026, 22:57:19) [GCC 14.4.0]",
+    "torch": "2.0.1",
+    "pyg": "2.4.0",
+    "machine": "ppc64le",
+    "input_manifest_sha256": "3e37eb54f550df8ee18cce8b948e038abd09fb548a140dbca1c8890b8829a43a",
+    "git_version": "git version 2.56.0",
+    "historical_repo_sha": "72293149d8fff186dd268789e7b8fea5848c9360"
+  },
+  "storage": {
+    "free_bytes": 172498995904512,
+    "total_bytes": 288043252580352,
+    "required_reserve_bytes": 5368709120,
+    "space_gate": true
+  },
+  "capacity_decision": "capacity_decision.json",
+  "all_92_tasks_validated_before_any_primary_bsub": true,
+  "optional_extension_skipped_uniformly": true,
+  "independent_historical_raw_files_unchanged": 101,
+  "active_lsf_budget_minutes": 250,
+  "max_allowed_minutes": 300
+}

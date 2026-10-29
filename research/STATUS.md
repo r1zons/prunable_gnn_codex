@@ -1,6 +1,34 @@
 # Canonical GNN pruning research status
 
-**Updated:** 2026-10-28
+**Updated:** 2026-10-29
+
+## V4 controlled POLUS diagnostic submitted — 2026-10-29
+
+Separate branch/worktree `research/v4-tabular-diagnostic-20261029`, executable source
+`61e693440b53d3cac3136600f3208a73c02492db`. **84 new Q tasks +8 deterministic Greedy
+controls accepted**, LSF jobs1607753–1607756. This records submission, not completed
+scientific results. No primary-job outcomes have been collected or interpreted.
+
+251 tests passed/2 CUDA skips;36 local real-Cora smoke/control cells and four V3
+reference comparisons PASS. Capacity job1607752 completed36/36 technical cells;
+16 existing V3 baselines/1,600 stored episodes replay exactly through V4 without
+new forward/search. Capacity source `a363861` remains separately identified;
+resource-only correction preserves the scientific algorithm byte-for-byte and
+the task-execution AST, with another four native new-source reference checks PASS.
+
+Cost-only allocation:47/45/75/68-minute main job limits +15-minute capacity limit
+=250 minutes aggregate, below300. Uniform optional seeds5003/5004 are skipped
+in every Q variant:396-minute reservation would exceed the bound. Full primary
+matrix retained; no accuracy-based scope change. Initial equal-wall capacity block
+was resolved before any main acceptance. Queue waiting is recorded separately.
+
+V1/V2/V3 source/evidence,101 selected historical raw files and SITITO manuscript
+unchanged. No training/fine-tuning, environment/package/network/credential changes.
+Baseline platform labels retained; only V3 POLUS seed101 is a matched remote
+baseline, while local5001/5002 remain separate developmental references.
+See [V4 protocol, gates and acceptance receipts](experiments/polus_v4_diagnostic_20261029/README.md).
+External local root: `${GNN_ARTIFACT_ROOT}/polus-v4-diagnostic-20261029/`;
+remote: `${POLUS_TASK_ROOT}/results/polus-v4-diagnostic-20261029/`.
 
 ## SITITO manuscript v1 frozen for GitHub — 2026-10-28
 

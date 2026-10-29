@@ -1,0 +1,290 @@
+[
+  {
+    "model": "gcn",
+    "target": 0.3,
+    "variant": "greedy_v4_menu12",
+    "episodes": 0,
+    "search_seconds": 0.6345222005620599,
+    "worker_wall_seconds": 7.273612097837031
+  },
+  {
+    "model": "gcn",
+    "target": 0.3,
+    "variant": "greedy_v4_percent",
+    "episodes": 0,
+    "search_seconds": 0.40031357295811176,
+    "worker_wall_seconds": 6.822971713729203
+  },
+  {
+    "model": "gcn",
+    "target": 0.3,
+    "variant": "q_v4_300",
+    "episodes": 30,
+    "search_seconds": 6.261994317173958,
+    "worker_wall_seconds": 13.082205472514033
+  },
+  {
+    "model": "gcn",
+    "target": 0.3,
+    "variant": "q_v4_decay300",
+    "episodes": 30,
+    "search_seconds": 6.819389091804624,
+    "worker_wall_seconds": 13.887761811725795
+  },
+  {
+    "model": "gcn",
+    "target": 0.3,
+    "variant": "q_v4_gamma0",
+    "episodes": 30,
+    "search_seconds": 5.955407447181642,
+    "worker_wall_seconds": 12.7830775026232
+  },
+  {
+    "model": "gcn",
+    "target": 0.3,
+    "variant": "q_v4_incremental_drop",
+    "episodes": 30,
+    "search_seconds": 5.949700967408717,
+    "worker_wall_seconds": 12.785500241443515
+  },
+  {
+    "model": "gcn",
+    "target": 0.3,
+    "variant": "q_v4_menu12",
+    "episodes": 30,
+    "search_seconds": 9.891071062535048,
+    "worker_wall_seconds": 17.13996111601591
+  },
+  {
+    "model": "gcn",
+    "target": 0.3,
+    "variant": "q_v4_percent",
+    "episodes": 30,
+    "search_seconds": 6.001764715649188,
+    "worker_wall_seconds": 13.433628849685192
+  },
+  {
+    "model": "gcn",
+    "target": 0.3,
+    "variant": "q_v4_random_ties",
+    "episodes": 30,
+    "search_seconds": 4.0812575640156865,
+    "worker_wall_seconds": 10.929739852435887
+  },
+  {
+    "model": "gcn",
+    "target": 0.5,
+    "variant": "greedy_v4_menu12",
+    "episodes": 0,
+    "search_seconds": 0.49545854702591896,
+    "worker_wall_seconds": 7.323861611075699
+  },
+  {
+    "model": "gcn",
+    "target": 0.5,
+    "variant": "greedy_v4_percent",
+    "episodes": 0,
+    "search_seconds": 0.36448509246110916,
+    "worker_wall_seconds": 6.822840598411858
+  },
+  {
+    "model": "gcn",
+    "target": 0.5,
+    "variant": "q_v4_300",
+    "episodes": 30,
+    "search_seconds": 6.339395569637418,
+    "worker_wall_seconds": 13.530687734484673
+  },
+  {
+    "model": "gcn",
+    "target": 0.5,
+    "variant": "q_v4_decay300",
+    "episodes": 30,
+    "search_seconds": 6.521314442157745,
+    "worker_wall_seconds": 13.537377374246716
+  },
+  {
+    "model": "gcn",
+    "target": 0.5,
+    "variant": "q_v4_gamma0",
+    "episodes": 30,
+    "search_seconds": 6.43165984749794,
+    "worker_wall_seconds": 13.68407635204494
+  },
+  {
+    "model": "gcn",
+    "target": 0.5,
+    "variant": "q_v4_incremental_drop",
+    "episodes": 30,
+    "search_seconds": 6.840739411301911,
+    "worker_wall_seconds": 14.081332931295037
+  },
+  {
+    "model": "gcn",
+    "target": 0.5,
+    "variant": "q_v4_menu12",
+    "episodes": 30,
+    "search_seconds": 8.247200791724026,
+    "worker_wall_seconds": 15.282867112196982
+  },
+  {
+    "model": "gcn",
+    "target": 0.5,
+    "variant": "q_v4_percent",
+    "episodes": 30,
+    "search_seconds": 5.006029089912772,
+    "worker_wall_seconds": 11.929042065516114
+  },
+  {
+    "model": "gcn",
+    "target": 0.5,
+    "variant": "q_v4_random_ties",
+    "episodes": 30,
+    "search_seconds": 2.6224334435537457,
+    "worker_wall_seconds": 9.577336645685136
+  },
+  {
+    "model": "graphsage",
+    "target": 0.3,
+    "variant": "greedy_v4_menu12",
+    "episodes": 0,
+    "search_seconds": 1.1559957256540656,
+    "worker_wall_seconds": 7.774285454303026
+  },
+  {
+    "model": "graphsage",
+    "target": 0.3,
+    "variant": "greedy_v4_percent",
+    "episodes": 0,
+    "search_seconds": 0.719147409312427,
+    "worker_wall_seconds": 7.3241613591089845
+  },
+  {
+    "model": "graphsage",
+    "target": 0.3,
+    "variant": "q_v4_300",
+    "episodes": 30,
+    "search_seconds": 12.539064674638212,
+    "worker_wall_seconds": 19.40248607750982
+  },
+  {
+    "model": "graphsage",
+    "target": 0.3,
+    "variant": "q_v4_decay300",
+    "episodes": 30,
+    "search_seconds": 12.614897179417312,
+    "worker_wall_seconds": 19.642239057458937
+  },
+  {
+    "model": "graphsage",
+    "target": 0.3,
+    "variant": "q_v4_gamma0",
+    "episodes": 30,
+    "search_seconds": 12.701237455010414,
+    "worker_wall_seconds": 19.800876872614026
+  },
+  {
+    "model": "graphsage",
+    "target": 0.3,
+    "variant": "q_v4_incremental_drop",
+    "episodes": 30,
+    "search_seconds": 14.00552614312619,
+    "worker_wall_seconds": 20.744182388298213
+  },
+  {
+    "model": "graphsage",
+    "target": 0.3,
+    "variant": "q_v4_menu12",
+    "episodes": 30,
+    "search_seconds": 17.442960207350552,
+    "worker_wall_seconds": 24.24408348556608
+  },
+  {
+    "model": "graphsage",
+    "target": 0.3,
+    "variant": "q_v4_percent",
+    "episodes": 30,
+    "search_seconds": 11.1415531700477,
+    "worker_wall_seconds": 17.93608543742448
+  },
+  {
+    "model": "graphsage",
+    "target": 0.3,
+    "variant": "q_v4_random_ties",
+    "episodes": 30,
+    "search_seconds": 7.947293924167752,
+    "worker_wall_seconds": 14.990084727294743
+  },
+  {
+    "model": "graphsage",
+    "target": 0.5,
+    "variant": "greedy_v4_menu12",
+    "episodes": 0,
+    "search_seconds": 0.9028948349878192,
+    "worker_wall_seconds": 7.974534384906292
+  },
+  {
+    "model": "graphsage",
+    "target": 0.5,
+    "variant": "greedy_v4_percent",
+    "episodes": 0,
+    "search_seconds": 0.6909706545993686,
+    "worker_wall_seconds": 7.223561936989427
+  },
+  {
+    "model": "graphsage",
+    "target": 0.5,
+    "variant": "q_v4_300",
+    "episodes": 30,
+    "search_seconds": 11.722933147102594,
+    "worker_wall_seconds": 18.59876245073974
+  },
+  {
+    "model": "graphsage",
+    "target": 0.5,
+    "variant": "q_v4_decay300",
+    "episodes": 30,
+    "search_seconds": 10.30594218429178,
+    "worker_wall_seconds": 17.245124000124633
+  },
+  {
+    "model": "graphsage",
+    "target": 0.5,
+    "variant": "q_v4_gamma0",
+    "episodes": 30,
+    "search_seconds": 12.011970082297921,
+    "worker_wall_seconds": 18.900344874709845
+  },
+  {
+    "model": "graphsage",
+    "target": 0.5,
+    "variant": "q_v4_incremental_drop",
+    "episodes": 30,
+    "search_seconds": 11.662090835161507,
+    "worker_wall_seconds": 18.902333511970937
+  },
+  {
+    "model": "graphsage",
+    "target": 0.5,
+    "variant": "q_v4_menu12",
+    "episodes": 30,
+    "search_seconds": 16.091305918060243,
+    "worker_wall_seconds": 23.29259078577161
+  },
+  {
+    "model": "graphsage",
+    "target": 0.5,
+    "variant": "q_v4_percent",
+    "episodes": 30,
+    "search_seconds": 10.669885084964335,
+    "worker_wall_seconds": 17.287115462124348
+  },
+  {
+    "model": "graphsage",
+    "target": 0.5,
+    "variant": "q_v4_random_ties",
+    "episodes": 30,
+    "search_seconds": 6.646717589348555,
+    "worker_wall_seconds": 13.687479892745614
+  }
+]

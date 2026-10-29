@@ -1,0 +1,227 @@
+{
+  "status": "PASS",
+  "source_commit": "61e693440b53d3cac3136600f3208a73c02492db",
+  "capacity_source_commit": "a3638614d41771a6d6ebe596d6dd6fab60634a00",
+  "compatibility": {
+    "status": "PASS",
+    "checks": [
+      {
+        "model": "gcn",
+        "target": 0.3,
+        "episodes": 2,
+        "status": "PASS"
+      },
+      {
+        "model": "gcn",
+        "target": 0.5,
+        "episodes": 2,
+        "status": "PASS"
+      },
+      {
+        "model": "graphsage",
+        "target": 0.3,
+        "episodes": 2,
+        "status": "PASS"
+      },
+      {
+        "model": "graphsage",
+        "target": 0.5,
+        "episodes": 2,
+        "status": "PASS"
+      }
+    ]
+  },
+  "capacity_verified_outputs": [
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_300-p101",
+      "status": "PASS",
+      "completed_sha256": "31906f5ac0697739ad8a9a87ab3bfb37a7fc0e63d819cf2ee4e1b681f788aee2"
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_random_ties-p101",
+      "status": "PASS",
+      "completed_sha256": "547fc6b07c9a838befa1c22af3e34e6b6ae91d05554709577b492eb95d374ed1"
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_menu12-p101",
+      "status": "PASS",
+      "completed_sha256": "2f0777aba1883a3026d0e54c36d04d0a9b0db72fa57b887d255646ef2e8a67c6"
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_gamma0-p101",
+      "status": "PASS",
+      "completed_sha256": "54fc094b91e3e19eb08281fd129af1d5b11ce8dea7ef50da0394cd4b17ed52c1"
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_gamma0-p101",
+      "status": "PASS",
+      "completed_sha256": "50867a52e0fbdfd5d71ec2a55bb71d88c853793611dccf973544203ee76b4c8e"
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-greedy_v4_percent-p101",
+      "status": "PASS",
+      "completed_sha256": "aea2213b62c8c976247d6fabc1c68d7ede1ed89ec8a9e23c9bce98b263258041"
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-greedy_v4_percent-p101",
+      "status": "PASS",
+      "completed_sha256": "c076adea93ac6968b3c47f8491e68737513fe797d241a7d26895d5871116c0e9"
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_random_ties-p101",
+      "status": "PASS",
+      "completed_sha256": "b9cc83d190815b1406b50353a5f0feb4880c576bf1a2cf3dd1ed092bfd317893"
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-greedy_v4_menu12-p101",
+      "status": "PASS",
+      "completed_sha256": "c22519d9354f48ea44f81e132ec171e6e12be2df7f6f6d32f403c54536bc2983"
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-greedy_v4_menu12-p101",
+      "status": "PASS",
+      "completed_sha256": "d8a15c66c6431513b617eb5bf18dffa5732f243ffd7c647bfd97a957a93d7c21"
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_decay300-p101",
+      "status": "PASS",
+      "completed_sha256": "773bff6a932dd7fd4241f4a04db331925900bfa9b201e2554e8550dc61ceb9ed"
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_incremental_drop-p101",
+      "status": "PASS",
+      "completed_sha256": "84d72fe8b021503cbb9143a0fd2028f5a8c3962d13521158cbb23dd9ff539dbf"
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_decay300-p101",
+      "status": "PASS",
+      "completed_sha256": "e957df95c2850cf96ea415ca7ab6bdccdc20fef9731b50405549c2bfa43192c0"
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_random_ties-p101",
+      "status": "PASS",
+      "completed_sha256": "c8f80ba3b98b3560283a2f3fd349c93dfa4ffdbb8f4bc83ce60ee7ebb1a24dc7"
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_incremental_drop-p101",
+      "status": "PASS",
+      "completed_sha256": "ff06d81cc964d3f592c6cc266ea4956229f1983c707a381973fddcb16aa4e7cb"
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_menu12-p101",
+      "status": "PASS",
+      "completed_sha256": "8557395d31ac453af808a49e67e5b2961a1346ff5d93c3e98db575986171905a"
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-greedy_v4_percent-p101",
+      "status": "PASS",
+      "completed_sha256": "e4cba063572a5adbeba83b10df9c6e8807cf11cf18bf58a33ca0f7a85738c575"
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_gamma0-p101",
+      "status": "PASS",
+      "completed_sha256": "636321e8eacf6d5985ed2e71467911d340879564bbade185543c175846e8ad80"
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_300-p101",
+      "status": "PASS",
+      "completed_sha256": "5586a7d0b6d82b23116f11af4c86b645cd808d35a6e71ec68a73c1010f0d5bef"
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_menu12-p101",
+      "status": "PASS",
+      "completed_sha256": "4336c73e452eb71fdc29f1532c78e0e69522f90a2900ccc5770cc71df515dce2"
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_decay300-p101",
+      "status": "PASS",
+      "completed_sha256": "06827f0ae9b21216be89abd1ffd3af964a18f06bfbeb14a501645e71edf03918"
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_decay300-p101",
+      "status": "PASS",
+      "completed_sha256": "7089fb0258bfed2f6cb2a17f30dcbe3a4cba496444ec6b14909378a831127cc7"
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-greedy_v4_menu12-p101",
+      "status": "PASS",
+      "completed_sha256": "2ed1a430dae69459975be02976ded7b36003ae5aca9e9606e1039820495217e3"
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_incremental_drop-p101",
+      "status": "PASS",
+      "completed_sha256": "128793b9f6214d656b965f2c2ad655b0cbae0c56e2971128be7dda65b1c2ede6"
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-q_v4_percent-p101",
+      "status": "PASS",
+      "completed_sha256": "c79b988bb84ec5b1c9b524ec011091bb78704b7865cbc9a44a123d2fbc2fa078"
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_percent-p101",
+      "status": "PASS",
+      "completed_sha256": "7aaaf59c79e2e3aca6064ef3071d93367638abb46cc70580894c538a444ab70b"
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_menu12-p101",
+      "status": "PASS",
+      "completed_sha256": "b31c80d331579946e7219967bc113ddcfbd105cc9d919c2c392140e916c4d5dd"
+    },
+    {
+      "run_id": "polus-v4-graphsage-t30-greedy_v4_percent-p101",
+      "status": "PASS",
+      "completed_sha256": "4a3dfea57140e87028ea38dd7177c6a08a0698299b89535c1644c1b7397869e9"
+    },
+    {
+      "run_id": "polus-v4-graphsage-t50-q_v4_300-p101",
+      "status": "PASS",
+      "completed_sha256": "043f84854ee8aebc3bc657daf48f065b95f9bf0ad9774f62a0c44340af1594a8"
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_300-p101",
+      "status": "PASS",
+      "completed_sha256": "d32e43b831214e608966d31d6bbd30b5ab7f1ff1b6205a81a509b4f6a3678189"
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_incremental_drop-p101",
+      "status": "PASS",
+      "completed_sha256": "8bef30e25ca54e34d3c999df66817febd22cd4e37d663c4756bd76700e687274"
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_percent-p101",
+      "status": "PASS",
+      "completed_sha256": "08a59630e4b74c83c2cf9c5fb1bf6b5a0b66f4dc5446aad31b25205976cee183"
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-q_v4_random_ties-p101",
+      "status": "PASS",
+      "completed_sha256": "0a437b474b27e812c3a247e9a73abd3300227b8034f7daebc4648b971ed16e21"
+    },
+    {
+      "run_id": "polus-v4-gcn-t50-greedy_v4_menu12-p101",
+      "status": "PASS",
+      "completed_sha256": "9a694d42e57d68e01c8a6ce8179e984e85d226b5f5161c6d832ba23ae3b8297a"
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_gamma0-p101",
+      "status": "PASS",
+      "completed_sha256": "712690e27c7149cbc0c3497774c0f18886427dfaf8b5277809bb4aa6c657103a"
+    },
+    {
+      "run_id": "polus-v4-gcn-t30-q_v4_percent-p101",
+      "status": "PASS",
+      "completed_sha256": "79c8e80491f4b12e02beb0cb4e09f730b60040839f92594f62a1469698c11bfb"
+    }
+  ],
+  "scientific_algorithm_sha256": "c0efb64e79ad68ac47e72785cb1dd4e8b764d00493274f2c0a5b2a3aba97f4a3",
+  "unchanged_execution_functions": [
+    "run_task",
+    "run_batch",
+    "compatibility",
+    "scientific_identity",
+    "validate_task"
+  ],
+  "source_worktree_clean": true,
+  "activation_sha256": "ac464bbf980c499281c31ccb018b0e9e172a00df6c1b12627d3f075c45121fce",
+  "input_manifest_sha256": "3e37eb54f550df8ee18cce8b948e038abd09fb548a140dbca1c8890b8829a43a"
+}

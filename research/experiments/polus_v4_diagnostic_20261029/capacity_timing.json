@@ -1,0 +1,11 @@
+{
+  "job_id": 1607752,
+  "status": "DONE",
+  "submitted_intent_utc": "2026-10-29T02:51:25.765253+00:00",
+  "started_moscow": "2026-10-29T05:54:51+03:00",
+  "terminated_moscow": "2026-10-29T06:03:56+03:00",
+  "queue_wait_approx_seconds": 205.234747,
+  "active_wall_seconds": 545.0,
+  "queue_method": "LSF start minus pre-bsub INTENT; includes brief submission overhead.",
+  "primary_queue_wait": "Not observed; main job status/outcomes were not queried after acceptance."
+}

@@ -1,0 +1,13 @@
+{
+  "capacity_source": "a3638614d41771a6d6ebe596d6dd6fab60634a00",
+  "scientific_algorithm_sha256": "c0efb64e79ad68ac47e72785cb1dd4e8b764d00493274f2c0a5b2a3aba97f4a3",
+  "unchanged_functions": [
+    "run_task",
+    "run_batch",
+    "compatibility",
+    "scientific_identity",
+    "validate_task"
+  ],
+  "resource_only_correction": true,
+  "campaign_source_commit": "61e693440b53d3cac3136600f3208a73c02492db"
+}

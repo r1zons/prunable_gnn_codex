@@ -166,3 +166,60 @@ and `${POLUS_TASK_ROOT}/results/polus-v4-diagnostic-20261029/`. Only implementat
 tests, config/gate indexes and acceptance receipts are versioned. After the main
 submissions, report accepted versus blocked conditions and exit without claiming
 scientific findings or waiting for the campaign to finish.
+
+## Actual acceptance — primary matrix
+
+Executable source: `61e693440b53d3cac3136600f3208a73c02492db`.
+Capacity source: `a3638614d41771a6d6ebe596d6dd6fab60634a00`; the resource correction
+is documented above and in [capacity_reuse_proof.json](capacity_reuse_proof.json).
+
+**Submitted84 Q +8 Greedy tasks; primary completion not queried.**
+
+| Condition | LSF job ID | Tasks | LSF wall limit, min |
+|---|---:|---:|---:|
+| GCN30 |1607753|23|47|
+| GCN50 |1607754|23|45|
+| GraphSAGE30 |1607755|23|75|
+| GraphSAGE50 |1607756|23|68|
+
+Optional seeds5003/5004 are skipped uniformly (56 Q tasks) because the conservative
+extended reservation would be396 minutes. The92-task primary reservation is235
+minutes plus15-minute capacity gate =250 minutes. Unpadded measured-cost projection
+is approximately90 minutes; doubled planning estimate is180 minutes before
+headroom/rounding. These estimates are distinct from limits and actual completion.
+The approved matrix is not expanded merely to consume the remaining allowance.
+
+**Completed technical gates:**251 tests passed/2 CUDA skips;36 local real-Cora
+smoke/control cells;four local and four original-source native V3 reference checks;
+four corrected-source native reference checks;36 capacity cells in job1607752.
+Additionally all16 historical V3 baseline runs/1,600 stored episodes replay through
+the new action selection and Bellman updates with exact final Q tables, without
+new search or forward. This is technical verification, not new scientific results.
+
+The capacity job waited approximately205s before starting and used545s active wall
+time according to LSF. [capacity_timing.json](capacity_timing.json) keeps its clock
+method and main queue-wait status separate. Main queue waiting and scientific
+outcomes have not been queried after acceptance.
+
+Navigation:
+
+- [launch_receipt.json](launch_receipt.json):actual bsub responses/IDs, run IDs,
+  source, logs, resource limits and skipped conditions.
+- [configuration_index.json](configuration_index.json):all92 exact configurations
+  and manifest hashes, access prefixes replaced with `${POLUS_TASK_ROOT}`.
+- [launch_gate.json](launch_gate.json), [unit_gate.json](unit_gate.json),
+  [local_gate.json](local_gate.json), [remote_gate.json](remote_gate.json).
+- [capacity_decision.json](capacity_decision.json) and
+  [capacity_samples.json](capacity_samples.json):time-only projections and uniform
+  extension decision. No validation-accuracy field is used in the decision.
+- [reused_baselines.json](reused_baselines.json) and
+  [reference_replay.json](reference_replay.json):existing baseline provenance and
+  replay evidence; preserve local/POLUS distinction.
+- [source_pin.json](source_pin.json), [evidence_manifest.json](evidence_manifest.json).
+
+Main raw outputs: `${POLUS_TASK_ROOT}/results/polus-v4-diagnostic-20261029/campaign-primary/`.
+Persistent LSF logs: `${POLUS_TASK_ROOT}/results/polus-v4-diagnostic-20261029/logs/lsf/v4-cpu.<JOBID>.out/.err`.
+Immutable per-job INTENT/ACCEPTED receipts are under `submissions/campaign-<condition>/`.
+Historical V4 preflight worktree remains at `worktrees/v4-diagnostic-20261029`;
+the corrected main source uses `worktrees/v4-primary-20261029`. Neither changes
+the original POLUS repo or V3 worktree.

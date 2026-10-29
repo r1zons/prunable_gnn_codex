@@ -1,0 +1,21 @@
+{
+  "source_commit": "61e693440b53d3cac3136600f3208a73c02492db",
+  "branch": "research/v4-tabular-diagnostic-20261029",
+  "source_files": {
+    "src/gnn_pruning/pruning/experimental_v4.py": "c0efb64e79ad68ac47e72785cb1dd4e8b764d00493274f2c0a5b2a3aba97f4a3",
+    "src/gnn_pruning/experiments/v4_campaign.py": "6a211907655817b0cf027cd95ab8c157a1f52282f721ed750a20d7d23eb1d8ac",
+    "research/experiments/polus_v4_diagnostic_20261029/scripts/preflight_local.py": "709e83113d0e03306d17c17324d21bb3b70441d8759555249a2616de23c2f003",
+    "research/experiments/polus_v4_diagnostic_20261029/scripts/prepare_campaign.py": "7a78b61c486ca8cfda53a25e8a50e0240d8927db7b512569cc674d93da23609e",
+    "research/experiments/polus_v4_diagnostic_20261029/scripts/submit_polus.py": "5397bd3577a8ff2136f0db7518e380763185e90e87efe254e8c417a641d1fa22",
+    "research/experiments/polus_v4_diagnostic_20261029/scripts/v4-cpu.lsf": "0d39ada79ae1808a6f80e9a676dfda426517c4b6d82d0ee4fa03e745a53c21f8"
+  },
+  "historical_parent": "70854ce",
+  "immutable_prefixes": [
+    "research/publications",
+    "research/experiments/local_structured_v3_sprint_20261027",
+    "research/experiments/local_structured_v2_q_random_pilot_20261027"
+  ],
+  "local_worktree": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_v4_20261029",
+  "remote_worktree": "${POLUS_TASK_ROOT}/worktrees/v4-primary-20261029",
+  "capacity_source_commit": "a3638614d41771a6d6ebe596d6dd6fab60634a00"
+}

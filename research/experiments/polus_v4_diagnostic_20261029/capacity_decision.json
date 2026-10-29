@@ -1,0 +1,79 @@
+{
+  "status": "PASS",
+  "primary_fits": true,
+  "extension_selected": false,
+  "primary_policy_seeds": [
+    101,
+    5001,
+    5002
+  ],
+  "optional_predeclared_seeds": [
+    5003,
+    5004
+  ],
+  "extension_variants": [
+    "q_v4_menu12",
+    "q_v4_percent",
+    "q_v4_300",
+    "q_v4_decay300",
+    "q_v4_random_ties",
+    "q_v4_incremental_drop",
+    "q_v4_gamma0"
+  ],
+  "extension_rule": "Both seeds added to every one of the seven new Q variants in every model/target cell, or none.",
+  "campaign_tasks": 92,
+  "hard_aggregate_wall_limit_minutes": 250,
+  "preflight_reserved_wall_minutes": 15,
+  "campaign_jobs": 4,
+  "campaign_wall_minutes": {
+    "gcn-t30": 47,
+    "gcn-t50": 45,
+    "graphsage-t30": 75,
+    "graphsage-t50": 68
+  },
+  "primary_reserved_minutes": 250,
+  "extended_reserved_minutes": 396,
+  "maximum_budget_minutes": 300,
+  "planning_safety_factor": 2,
+  "job_headroom_fraction": 0.2,
+  "groups": {
+    "gcn-t30": {
+      "primary_planning_seconds": 2114.536711221561,
+      "extended_planning_seconds": 3482.848071004574,
+      "primary_unpadded_seconds": 1057.2683556107804,
+      "extended_unpadded_seconds": 1741.424035502287,
+      "primary_lsf_wall_minutes": 47,
+      "extended_lsf_wall_minutes": 75,
+      "selected_lsf_wall_minutes": 47
+    },
+    "gcn-t50": {
+      "primary_planning_seconds": 2046.3237396664917,
+      "extended_planning_seconds": 3369.392974591503,
+      "primary_unpadded_seconds": 1023.1618698332459,
+      "extended_unpadded_seconds": 1684.6964872957515,
+      "primary_lsf_wall_minutes": 45,
+      "extended_lsf_wall_minutes": 73,
+      "selected_lsf_wall_minutes": 45
+    },
+    "graphsage-t30": {
+      "primary_planning_seconds": 3467.7594155073166,
+      "extended_planning_seconds": 5737.098834998905,
+      "primary_unpadded_seconds": 1733.8797077536583,
+      "extended_unpadded_seconds": 2868.5494174994524,
+      "primary_lsf_wall_minutes": 75,
+      "extended_lsf_wall_minutes": 122,
+      "selected_lsf_wall_minutes": 75
+    },
+    "graphsage-t50": {
+      "primary_planning_seconds": 3156.559641059488,
+      "extended_planning_seconds": 5218.80758111303,
+      "primary_unpadded_seconds": 1578.279820529744,
+      "extended_unpadded_seconds": 2609.403790556515,
+      "primary_lsf_wall_minutes": 68,
+      "extended_lsf_wall_minutes": 111,
+      "selected_lsf_wall_minutes": 68
+    }
+  },
+  "inputs_used": "Search time, actual worker wall time, planned episode budgets and resource bounds only; no accuracy.",
+  "target_note": "4\u20135h is a planning target, never artificial idle time or authorization for extra scientific conditions."
+}
