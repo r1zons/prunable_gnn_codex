@@ -1,0 +1,11 @@
+{
+  "python": "3.12.9",
+  "matplotlib": "3.9.4",
+  "numpy": "1.26.4",
+  "formats": [
+    "PDF vector",
+    "PNG250dpi"
+  ],
+  "uncertainty": "sample SD n=3, not CI",
+  "new_model_execution": false
+}

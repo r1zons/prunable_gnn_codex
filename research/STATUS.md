@@ -2,6 +2,40 @@
 
 **Updated:** 2026-10-31
 
+## Complete POLUS campaign: offline scientific analysis — 2026-10-31
+
+All **252 audited observations** retained, including 160 warnings, six infeasible
+outcomes and 96 outside-band results. All 1,226 raw-file hashes rechecked; no new
+model execution, timing, server access or experiment. Paired inference is limited
+to descriptive means/sample SD and directions across **three dense training/split
+seeds per dataset/model/target**; repeated targets and Q episodes add no replicas.
+
+Greedy/Lookahead masks and tensors match **35/36**, action sequences **34/36**;
+Lookahead median search ratio **7.38×**. The PubMed/GCN/202/50% exception gains
+**4.286 pp accuracy / 4.155 pp macro-F1**, with **0.931 pp more compression** and
+**11.69× search**; SNIP in that case has slightly better quality, less compression
+and lower cost. Static Magnitude duplicates all **18/18 Greedy 50% masks** at lower
+search cost. Existing Lookahead previews at identical concrete parents corroborate
+all **72 Greedy choices**, extending the earlier audit without altering it.
+
+Native V2 Q ends at `max_steps` in **36/36**, mean compression **87.441%**;
+all 18 target pairs share final masks/actions despite different Q tables.
+**466/720 choices use unseen Q values** and STOP ties for maximum in **452/684**
+legal states. Sparse coverage, delayed credit and aliasing are distinguished from
+causally identified explanations. No general adaptive/planning superiority or
+matched-compression Q quality claim is supported.
+
+**19 focused analysis tests PASS / 0 FAIL / 0 SKIPPED**; two table generations
+yield 12 byte-identical files. Four reports, 756 individual paired contrasts,
+84 method cells, eight PDF/PNG figures and exact hashes are compactly versioned.
+[Scientific report](experiments/polus_complete_pruning_20261031/analysis_20261031/SCIENTIFIC_ANALYSIS.md),
+[case study](experiments/polus_complete_pruning_20261031/analysis_20261031/LOOKAHEAD_CASE_STUDY.md),
+[Q diagnostics](experiments/polus_complete_pruning_20261031/analysis_20261031/Q_LEARNING_DIAGNOSTICS.md),
+[reproduction and manifest](experiments/polus_complete_pruning_20261031/analysis_20261031/README.md).
+Branch: `analysis/polus-complete-scientific-20261031`, based on audit `8f24513`.
+Raw analysis logs: `${GNN_ARTIFACT_ROOT}/polus-complete-scientific-analysis-20261031T121639Z/`.
+Historical evidence, algorithms and manuscript unchanged; no push or merge.
+
 ## Complete POLUS campaign collected and independently audited — 2026-10-31
 
 **18/18 dense models and252/252 condition results collected/core-verified**;

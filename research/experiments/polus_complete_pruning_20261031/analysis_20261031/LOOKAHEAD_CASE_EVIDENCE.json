@@ -1,0 +1,611 @@
+{
+  "comparison": {
+    "dataset": "pubmed",
+    "architecture": "gcn",
+    "condition_id": "pubmed-gcn-s202",
+    "dense_training_seed": 202,
+    "requested_compression": 0.5,
+    "method_a": "adaptive_greedy",
+    "method_b": "lookahead_depth2",
+    "run_a": "pubmed-gcn-s202-adaptive_greedy-t50",
+    "run_b": "pubmed-gcn-s202-lookahead_depth2-t50",
+    "accuracy_a": 0.8123256403753487,
+    "accuracy_b": 0.8551864062896272,
+    "macro_f1_a": 0.8024594766011699,
+    "macro_f1_b": 0.844009704857262,
+    "delta_accuracy_pp": 4.286076591427845,
+    "delta_macro_f1_pp": 4.155022825609212,
+    "compression_a": 0.4961889800430558,
+    "compression_b": 0.5054983417699423,
+    "delta_compression_pp": 0.9309361726886567,
+    "parameters_a": 8659.0,
+    "parameters_b": 8499.0,
+    "same_parameter_count": false,
+    "widths_a": [
+      16,
+      32
+    ],
+    "widths_b": [
+      16,
+      24
+    ],
+    "same_widths": false,
+    "same_retained_mask": false,
+    "symmetric_channel_difference": 8,
+    "search_a_seconds": 0.6582514848560095,
+    "search_b_seconds": 7.695857783779502,
+    "search_ratio_b_over_a": 11.691364107538545,
+    "validation_evaluations_a": 17.0,
+    "validation_evaluations_b": 185.0,
+    "validation_evaluation_ratio": 10.882352941176471,
+    "candidate_evaluations_a": 16.0,
+    "candidate_evaluations_b": 184.0,
+    "candidate_evaluation_ratio": 11.5,
+    "physically_pruned_a": true,
+    "physically_pruned_b": true,
+    "both_in_band": true,
+    "audit_a": "WARNING",
+    "audit_b": "PASS",
+    "dense_checkpoint_sha256": "f2892e7628bcd2d238644aa455c9009c83a5ef750730b555d8cc3332201747de",
+    "split_sha256": "efa6ca920de6c8f42681bbf235ef2068638d31def3bf44a713630188b020ff6c",
+    "comparison_scope": "unequal_achieved_compression"
+  },
+  "shared_state": [
+    "local_v2",
+    [
+      24,
+      32
+    ],
+    19,
+    87,
+    false
+  ],
+  "shared_parent": [
+    [
+      0,
+      1,
+      3,
+      6,
+      7,
+      8,
+      10,
+      11,
+      12,
+      14,
+      16,
+      17,
+      18,
+      20,
+      21,
+      22,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ]
+  ],
+  "best_paths_by_first_action": {
+    "prune:0:1": {
+      "actions": [
+        "prune:0:1",
+        "prune:0:8"
+      ],
+      "rewards": [
+        0.018607086751614554,
+        0.0806737259996702
+      ],
+      "score": 0.09121344015131773,
+      "terminal": true,
+      "terminal_reason": "target_reached"
+    },
+    "prune:0:2": {
+      "actions": [
+        "prune:0:2",
+        "prune:0:4"
+      ],
+      "rewards": [
+        0.03721417350322918,
+        0.07016764010490806
+      ],
+      "score": 0.10036504959764644,
+      "terminal": false,
+      "terminal_reason": null
+    },
+    "prune:0:4": {
+      "actions": [
+        "prune:0:4",
+        "prune:0:4"
+      ],
+      "rewards": [
+        0.07422545279564292,
+        0.049574187651294774
+      ],
+      "score": 0.11884222168180822,
+      "terminal": true,
+      "terminal_reason": "target_reached"
+    },
+    "prune:0:8": {
+      "actions": [
+        "prune:0:8"
+      ],
+      "rewards": [
+        0.12400253465775313
+      ],
+      "score": 0.12400253465775313,
+      "terminal": true,
+      "terminal_reason": "target_reached"
+    },
+    "prune:1:1": {
+      "actions": [
+        "prune:1:1",
+        "prune:0:8"
+      ],
+      "rewards": [
+        0.0009774829813230745,
+        0.12372325380594654
+      ],
+      "score": 0.11232841140667496,
+      "terminal": true,
+      "terminal_reason": "target_reached"
+    },
+    "prune:1:2": {
+      "actions": [
+        "prune:1:2",
+        "prune:0:8"
+      ],
+      "rewards": [
+        0.001954965962646149,
+        0.12344397295413997
+      ],
+      "score": 0.11305454162137213,
+      "terminal": true,
+      "terminal_reason": "target_reached"
+    },
+    "prune:1:4": {
+      "actions": [
+        "prune:1:4",
+        "prune:0:8"
+      ],
+      "rewards": [
+        0.003909931925292365,
+        0.12288541125052677
+      ],
+      "score": 0.11450680205076645,
+      "terminal": true,
+      "terminal_reason": "target_reached"
+    },
+    "prune:1:8": {
+      "actions": [
+        "prune:1:8",
+        "prune:0:8"
+      ],
+      "rewards": [
+        0.006805416638365491,
+        0.13891258639676712
+      ],
+      "score": 0.13182674439545589,
+      "terminal": true,
+      "terminal_reason": "target_reached"
+    }
+  },
+  "first_decision_original_best_path": [
+    "prune:0:8",
+    "prune:0:8"
+  ],
+  "greedy_trace": [
+    {
+      "action": "prune:0:8",
+      "successful_deletions": 1,
+      "widths_before": [
+        32,
+        32
+      ],
+      "widths_after": [
+        24,
+        32
+      ],
+      "sparsity": 0.24809449002152795,
+      "signed_target_deviation": -0.25190550997847205,
+      "validation_accuracy": 0.8744610548019409,
+      "accuracy_drop": 0.0,
+      "reward": 0.14885669401291676,
+      "terminal_penalty": 0.0,
+      "terminal_reason": null,
+      "original_kept_ids": [
+        [
+          0,
+          1,
+          3,
+          6,
+          7,
+          8,
+          10,
+          11,
+          12,
+          14,
+          16,
+          17,
+          18,
+          20,
+          21,
+          22,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31
+        ]
+      ]
+    },
+    {
+      "action": "prune:0:8",
+      "successful_deletions": 2,
+      "widths_before": [
+        24,
+        32
+      ],
+      "widths_after": [
+        16,
+        32
+      ],
+      "sparsity": 0.4961889800430558,
+      "signed_target_deviation": -0.003811019956944217,
+      "validation_accuracy": 0.812325656414032,
+      "accuracy_drop": 0.062135398387908936,
+      "reward": 0.12400253465775313,
+      "terminal_penalty": -0.0,
+      "terminal_reason": "target_reached",
+      "original_kept_ids": [
+        [
+          0,
+          3,
+          7,
+          10,
+          11,
+          14,
+          17,
+          18,
+          20,
+          21,
+          22,
+          24,
+          25,
+          26,
+          29,
+          31
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31
+        ]
+      ]
+    }
+  ],
+  "lookahead_trace": [
+    {
+      "action": "prune:0:8",
+      "successful_deletions": 1,
+      "widths_before": [
+        32,
+        32
+      ],
+      "widths_after": [
+        24,
+        32
+      ],
+      "sparsity": 0.24809449002152795,
+      "signed_target_deviation": -0.25190550997847205,
+      "validation_accuracy": 0.8744610548019409,
+      "accuracy_drop": 0.0,
+      "reward": 0.14885669401291676,
+      "terminal_penalty": 0.0,
+      "terminal_reason": null,
+      "original_kept_ids": [
+        [
+          0,
+          1,
+          3,
+          6,
+          7,
+          8,
+          10,
+          11,
+          12,
+          14,
+          16,
+          17,
+          18,
+          20,
+          21,
+          22,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31
+        ]
+      ]
+    },
+    {
+      "action": "prune:1:8",
+      "successful_deletions": 2,
+      "widths_before": [
+        24,
+        32
+      ],
+      "widths_after": [
+        24,
+        24
+      ],
+      "sparsity": 0.26112759643916916,
+      "signed_target_deviation": -0.23887240356083084,
+      "validation_accuracy": 0.8719249367713928,
+      "accuracy_drop": 0.0025361180305480957,
+      "reward": 0.006805416638365491,
+      "terminal_penalty": 0.0,
+      "terminal_reason": null,
+      "original_kept_ids": [
+        [
+          0,
+          1,
+          3,
+          6,
+          7,
+          8,
+          10,
+          11,
+          12,
+          14,
+          16,
+          17,
+          18,
+          20,
+          21,
+          22,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          19,
+          20,
+          21,
+          22,
+          25,
+          27,
+          28,
+          30
+        ]
+      ]
+    },
+    {
+      "action": "prune:0:8",
+      "successful_deletions": 3,
+      "widths_before": [
+        24,
+        24
+      ],
+      "widths_after": [
+        16,
+        24
+      ],
+      "sparsity": 0.5054983417699423,
+      "signed_target_deviation": 0.00549834176994235,
+      "validation_accuracy": 0.855186402797699,
+      "accuracy_drop": 0.019274652004241943,
+      "reward": 0.13891258639676712,
+      "terminal_penalty": -0.0,
+      "terminal_reason": "target_reached",
+      "original_kept_ids": [
+        [
+          0,
+          3,
+          7,
+          10,
+          11,
+          14,
+          17,
+          18,
+          20,
+          21,
+          22,
+          24,
+          25,
+          26,
+          29,
+          31
+        ],
+        [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          19,
+          20,
+          21,
+          22,
+          25,
+          27,
+          28,
+          30
+        ]
+      ]
+    }
+  ],
+  "case_selection": "case requested explicitly by user; selected from validation/mask diagnostics, not test outcomes"
+}

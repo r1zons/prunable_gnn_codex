@@ -1,5 +1,24 @@
 # Experiment campaign registry
 
+**POLUS-COMPLETE-SCIENTIFIC-ANALYSIS-20261031** — offline analysis of all 252
+audited outcomes, no new experiment or historical pooling. Three paired dense
+training/split seeds per stratum; sample SD, seed directions, actual compression
+and measured native search cost. Lookahead matches Greedy masks/tensors 35/36 at
+median 7.38× search; exceptional PubMed/GCN/202/50% gain +4.286 pp accuracy comes
+with +0.931 pp compression and 11.69× search. Magnitude matches Greedy 18/18 at
+50%. Recorded Lookahead previews corroborate all 72 Greedy decisions at identical
+concrete parents. Native V2 Q: 36/36 horizon exhaustion, 87.441% mean compression,
+466/720 unseen-value selections; no matched 30/50% quality comparison justified.
+19 focused tests PASS / 0 FAIL / 0 SKIPPED; 12 deterministic core output files.
+[Main analysis](polus_complete_pruning_20261031/analysis_20261031/SCIENTIFIC_ANALYSIS.md),
+[Lookahead case](polus_complete_pruning_20261031/analysis_20261031/LOOKAHEAD_CASE_STUDY.md),
+[Q mechanisms](polus_complete_pruning_20261031/analysis_20261031/Q_LEARNING_DIAGNOSTICS.md),
+[H1–H4](polus_complete_pruning_20261031/analysis_20261031/HYPOTHESIS_EVALUATION.md),
+[tables, figures and reproduction](polus_complete_pruning_20261031/analysis_20261031/README.md).
+Source `55d0fc2`, audited base `8f24513`; local branch
+`analysis/polus-complete-scientific-20261031`. No manuscript edit, push or merge.
+External logs: `${GNN_ARTIFACT_ROOT}/polus-complete-scientific-analysis-20261031T121639Z/`.
+
 **POLUS-COMPLETE-COLLECTION-20261031** — completed collection/independent audit,
 source55d0fc2:18 dense/252 result sets,55 jobs DONE,1,226 files hash/size verified,
 270 strict reload/projection/frozen-metric checks.92 PASS/160 WARNING/0 FAIL;

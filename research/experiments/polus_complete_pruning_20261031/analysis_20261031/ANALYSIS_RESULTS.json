@@ -1,0 +1,221 @@
+{
+  "validation": {
+    "observations": 252,
+    "dense_checkpoints": 18,
+    "independent_seeds_per_cell": 3,
+    "raw_files_reverified": 1226,
+    "statuses": {
+      "WARNING": 160,
+      "PASS": 92
+    },
+    "physically_pruned": 246,
+    "outside_band": 96,
+    "original_population_unchanged": true
+  },
+  "greedy_lookahead": {
+    "pairs": 36,
+    "same_masks": 35,
+    "same_sequences": 34,
+    "search_ratio_descriptive_over_36": {
+      "n": 36,
+      "mean": 7.568268730374552,
+      "sd": 0.8743279677958607,
+      "median": 7.381702376221613,
+      "min": 6.637285472920423,
+      "max": 11.691364107538545
+    },
+    "candidate_ratio_descriptive_over_36": {
+      "n": 36,
+      "mean": 7.625,
+      "sd": 0.8313070603401781,
+      "median": 8.0,
+      "min": 7.0,
+      "max": 11.5
+    },
+    "bridges": {
+      "n": 72,
+      "corroborated": 72,
+      "depth2_parent": 36
+    }
+  },
+  "q": {
+    "compression": {
+      "n": 36,
+      "mean": 0.8744066371004066,
+      "sd": 0.0011589619707792855,
+      "median": 0.8743584283042115,
+      "min": 0.8724318246905461,
+      "max": 0.8770804792024951
+    },
+    "deployments": 36,
+    "deployment_steps": 720,
+    "stop_reasons": {
+      "max_steps": 36
+    },
+    "training_episode_terminal": {
+      "agent_stop": 404,
+      "max_steps": 674,
+      "no_valid_actions": 2
+    },
+    "ever_in_symmetric_band": 4,
+    "target_pairs": [
+      {
+        "condition_id": "citeseer-gcn-s101",
+        "same_mask": true,
+        "same_action_sequence": true,
+        "same_final_quality": true,
+        "same_q_table": false,
+        "terminal_penalty_difference_t50_minus_t30": 0.40000000000000013
+      },
+      {
+        "condition_id": "citeseer-gcn-s202",
+        "same_mask": true,
+        "same_action_sequence": true,
+        "same_final_quality": true,
+        "same_q_table": false,
+        "terminal_penalty_difference_t50_minus_t30": 0.3999999999999999
+      },
+      {
+        "condition_id": "citeseer-gcn-s303",
+        "same_mask": true,
+        "same_action_sequence": true,
+        "same_final_quality": true,
+        "same_q_table": false,
+        "terminal_penalty_difference_t50_minus_t30": 0.3999999999999999
+      },
+      {
+        "condition_id": "citeseer-graphsage-s101",
+        "same_mask": true,
+        "same_action_sequence": true,
+        "same_final_quality": true,
+        "same_q_table": false,
+        "terminal_penalty_difference_t50_minus_t30": 0.40000000000000013
+      },
+      {
+        "condition_id": "citeseer-graphsage-s202",
+        "same_mask": true,
+        "same_action_sequence": true,
+        "same_final_quality": true,
+        "same_q_table": false,
+        "terminal_penalty_difference_t50_minus_t30": 0.3999999999999999
+      },
+      {
+        "condition_id": "citeseer-graphsage-s303",
+        "same_mask": true,
+        "same_action_sequence": true,
+        "same_final_quality": true,
+        "same_q_table": false,
+        "terminal_penalty_difference_t50_minus_t30": 0.3999999999999999
+      },
+      {
+        "condition_id": "cora-gcn-s101",
+        "same_mask": true,
+        "same_action_sequence": true,
+        "same_final_quality": true,
+        "same_q_table": false,
+        "terminal_penalty_difference_t50_minus_t30": 0.3999999999999999
+      },
+      {
+        "condition_id": "cora-gcn-s202",
+        "same_mask": true,
+        "same_action_sequence": true,
+        "same_final_quality": true,
+        "same_q_table": false,
+        "terminal_penalty_difference_t50_minus_t30": 0.40000000000000013
+      },
+      {
+        "condition_id": "cora-gcn-s303",
+        "same_mask": true,
+        "same_action_sequence": true,
+        "same_final_quality": true,
+        "same_q_table": false,
+        "terminal_penalty_difference_t50_minus_t30": 0.3999999999999999
+      },
+      {
+        "condition_id": "cora-graphsage-s101",
+        "same_mask": true,
+        "same_action_sequence": true,
+        "same_final_quality": true,
+        "same_q_table": false,
+        "terminal_penalty_difference_t50_minus_t30": 0.40000000000000013
+      },
+      {
+        "condition_id": "cora-graphsage-s202",
+        "same_mask": true,
+        "same_action_sequence": true,
+        "same_final_quality": true,
+        "same_q_table": false,
+        "terminal_penalty_difference_t50_minus_t30": 0.3999999999999999
+      },
+      {
+        "condition_id": "cora-graphsage-s303",
+        "same_mask": true,
+        "same_action_sequence": true,
+        "same_final_quality": true,
+        "same_q_table": false,
+        "terminal_penalty_difference_t50_minus_t30": 0.3999999999999999
+      },
+      {
+        "condition_id": "pubmed-gcn-s101",
+        "same_mask": true,
+        "same_action_sequence": true,
+        "same_final_quality": true,
+        "same_q_table": false,
+        "terminal_penalty_difference_t50_minus_t30": 0.3999999999999999
+      },
+      {
+        "condition_id": "pubmed-gcn-s202",
+        "same_mask": true,
+        "same_action_sequence": true,
+        "same_final_quality": true,
+        "same_q_table": false,
+        "terminal_penalty_difference_t50_minus_t30": 0.40000000000000013
+      },
+      {
+        "condition_id": "pubmed-gcn-s303",
+        "same_mask": true,
+        "same_action_sequence": true,
+        "same_final_quality": true,
+        "same_q_table": false,
+        "terminal_penalty_difference_t50_minus_t30": 0.3999999999999999
+      },
+      {
+        "condition_id": "pubmed-graphsage-s101",
+        "same_mask": true,
+        "same_action_sequence": true,
+        "same_final_quality": true,
+        "same_q_table": false,
+        "terminal_penalty_difference_t50_minus_t30": 0.40000000000000013
+      },
+      {
+        "condition_id": "pubmed-graphsage-s202",
+        "same_mask": true,
+        "same_action_sequence": true,
+        "same_final_quality": true,
+        "same_q_table": false,
+        "terminal_penalty_difference_t50_minus_t30": 0.3999999999999999
+      },
+      {
+        "condition_id": "pubmed-graphsage-s303",
+        "same_mask": true,
+        "same_action_sequence": true,
+        "same_final_quality": true,
+        "same_q_table": false,
+        "terminal_penalty_difference_t50_minus_t30": 0.3999999999999999
+      }
+    ],
+    "selected_unseen": 466,
+    "unseen_state": 328,
+    "stop_legal": 684,
+    "stop_tied_maximum": 452,
+    "stop_known": 78,
+    "unseen_over_negative": 138,
+    "selected_learned_positive": 248
+  },
+  "analysis_units": "n=3 independently trained dense checkpoints within each dataset/model/target; repeated targets and policy episodes are not independent",
+  "uncertainty": "sample SD only; no confidence intervals or hypothesis tests",
+  "new_training": false,
+  "new_pruning": false,
+  "new_inference": false,
+  "new_timing": false
+}

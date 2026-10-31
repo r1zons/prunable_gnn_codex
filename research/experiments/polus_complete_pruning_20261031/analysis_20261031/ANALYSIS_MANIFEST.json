@@ -1,0 +1,816 @@
+{
+  "schema": "polus-offline-scientific-analysis-v1",
+  "date": "2026-10-31",
+  "branch": "analysis/polus-complete-scientific-20261031",
+  "audited_start_commit": "8f24513da09c0291a562fbb31a688da2698671b9",
+  "experimental_source_commit": "55d0fc242b543c5725276144bd8e970eedc48ecd",
+  "analysis_commit": "Git commit containing this manifest; code pinned below to avoid self-reference",
+  "population": {
+    "observations": 252,
+    "dense_checkpoints": 18,
+    "independent_seeds_per_cell": 3,
+    "raw_files_reverified": 1226,
+    "statuses": {
+      "WARNING": 160,
+      "PASS": 92
+    },
+    "physically_pruned": 246,
+    "outside_band": 96,
+    "original_population_unchanged": true
+  },
+  "csv_rows": {
+    "PAIRED_COMPARISONS.csv": 756,
+    "PAIRED_SUMMARY.csv": 252,
+    "METHOD_SUMMARY.csv": 84,
+    "PARETO_DIAGNOSTICS.csv": 252,
+    "GREEDY_LOOKAHEAD_TRAJECTORIES.csv": 36,
+    "GREEDY_PREVIEW_BRIDGE.csv": 72,
+    "Q_RUN_DIAGNOSTICS.csv": 36,
+    "Q_DEPLOYMENT_DECISIONS.csv": 720,
+    "Q_EPISODE_SUMMARY.csv": 1080,
+    "Q_TARGET_PAIR_CHECK.csv": 18
+  },
+  "independent_unit": "3 paired dense training/split seeds per dataset/model/target",
+  "dense_input_identities": {
+    "cora-gcn-s101": {
+      "dataset": "cora",
+      "architecture": "gcn",
+      "dense_training_seed": 101,
+      "dense_checkpoint_sha256": "81803d670bb09b7c1c269c5391a1adc2d5a906ef3374b734f9ee568d3c67658c",
+      "dense_tensor_sha256": "a2bbe3d0ce85cafbbadb2a47b80806735b6d1de1aedbc1e35c8693bc499cb258",
+      "graph_tensor_sha256": "2b2bc996be89812f80ce7d09599dab983f804f87ddd37a09b3ce0b5689ec9a0d",
+      "split_sha256": "942a10b128f7138e118b3f2e2f96eb87a62f856c10d82010ac995e40e2b4c675",
+      "dense_origin_source_commit": "72293149d8fff186dd268789e7b8fea5848c9360"
+    },
+    "cora-gcn-s202": {
+      "dataset": "cora",
+      "architecture": "gcn",
+      "dense_training_seed": 202,
+      "dense_checkpoint_sha256": "4a4dd8c5036cb157ef8825e86bc652a3fa6de5bb0be9d7ab2625203b4d3256d4",
+      "dense_tensor_sha256": "21868e23850bd645b27edc5df59fbd0728740810589246b13eca5a293e9b7660",
+      "graph_tensor_sha256": "2b2bc996be89812f80ce7d09599dab983f804f87ddd37a09b3ce0b5689ec9a0d",
+      "split_sha256": "a83cd5d41bde21c87a7857b5723d74f5524e33a03761b10a4ed85c8b8a28cfa6",
+      "dense_origin_source_commit": "55d0fc242b543c5725276144bd8e970eedc48ecd"
+    },
+    "cora-gcn-s303": {
+      "dataset": "cora",
+      "architecture": "gcn",
+      "dense_training_seed": 303,
+      "dense_checkpoint_sha256": "19b23a85f232c83c3425b7138cde2f287e6a042cb8f1b03363b999d1a64cd376",
+      "dense_tensor_sha256": "ecbb7099b39f0d1d85b706ccadcd3619b6a11262e985cc81d95940dd4f535bf3",
+      "graph_tensor_sha256": "2b2bc996be89812f80ce7d09599dab983f804f87ddd37a09b3ce0b5689ec9a0d",
+      "split_sha256": "a072af2334dac10232f867519cfb2882a8e783eebd91514325950f1d052e9859",
+      "dense_origin_source_commit": "55d0fc242b543c5725276144bd8e970eedc48ecd"
+    },
+    "cora-graphsage-s101": {
+      "dataset": "cora",
+      "architecture": "graphsage",
+      "dense_training_seed": 101,
+      "dense_checkpoint_sha256": "34aafa561bdbd9fdd42698dbcfd634c066ecf5b2499bc051d063aad306cc6a6c",
+      "dense_tensor_sha256": "3671d5b11887b1a299f1237d2b66e6763ef2da65b759d9aec1d5b01063cc902e",
+      "graph_tensor_sha256": "2b2bc996be89812f80ce7d09599dab983f804f87ddd37a09b3ce0b5689ec9a0d",
+      "split_sha256": "942a10b128f7138e118b3f2e2f96eb87a62f856c10d82010ac995e40e2b4c675",
+      "dense_origin_source_commit": "72293149d8fff186dd268789e7b8fea5848c9360"
+    },
+    "cora-graphsage-s202": {
+      "dataset": "cora",
+      "architecture": "graphsage",
+      "dense_training_seed": 202,
+      "dense_checkpoint_sha256": "29db9b49a32b28ed7091957e1e58ed45a7fa4ba706d8a51e01119ae19c8e9224",
+      "dense_tensor_sha256": "9c03a6b69b44cce64e1e195da9228e989ce7f28aa3b66b7c35a5f110500e0531",
+      "graph_tensor_sha256": "2b2bc996be89812f80ce7d09599dab983f804f87ddd37a09b3ce0b5689ec9a0d",
+      "split_sha256": "a83cd5d41bde21c87a7857b5723d74f5524e33a03761b10a4ed85c8b8a28cfa6",
+      "dense_origin_source_commit": "55d0fc242b543c5725276144bd8e970eedc48ecd"
+    },
+    "cora-graphsage-s303": {
+      "dataset": "cora",
+      "architecture": "graphsage",
+      "dense_training_seed": 303,
+      "dense_checkpoint_sha256": "9fc4c3d1fe847b8f03cb3f41c617c5b6897c552604367e0081d8577bd8490354",
+      "dense_tensor_sha256": "4318685bc8eb97604b6753d302c0e0de6c36b93a9d801a94d44133921950965b",
+      "graph_tensor_sha256": "2b2bc996be89812f80ce7d09599dab983f804f87ddd37a09b3ce0b5689ec9a0d",
+      "split_sha256": "a072af2334dac10232f867519cfb2882a8e783eebd91514325950f1d052e9859",
+      "dense_origin_source_commit": "55d0fc242b543c5725276144bd8e970eedc48ecd"
+    },
+    "citeseer-gcn-s101": {
+      "dataset": "citeseer",
+      "architecture": "gcn",
+      "dense_training_seed": 101,
+      "dense_checkpoint_sha256": "7ba82ac84f30a669e72eff894a1ec35ebd008efa9c2e476164ff4e1bdc819e31",
+      "dense_tensor_sha256": "ba00cf77e6b6d09550d5c93034b49a4761efd5d2101e1bbf565a063ab57efcf5",
+      "graph_tensor_sha256": "37f2bfcadeec6d98a9d5ac9cca0276e7d885169ca388e80af12f3e19293805d6",
+      "split_sha256": "c7ea7dfc203703cdf75c09ffe71559f348a1968f609b205d9ec08faa7e82f779",
+      "dense_origin_source_commit": "72293149d8fff186dd268789e7b8fea5848c9360"
+    },
+    "citeseer-gcn-s202": {
+      "dataset": "citeseer",
+      "architecture": "gcn",
+      "dense_training_seed": 202,
+      "dense_checkpoint_sha256": "f1c2ade7595be35c73ac237c25149522fb905603b471aa6ad372806ffd64f1ba",
+      "dense_tensor_sha256": "d8778f1efc8368e6d8dc55c930aaadb65b8f3a95c6c7020330b1b2910aa659fd",
+      "graph_tensor_sha256": "37f2bfcadeec6d98a9d5ac9cca0276e7d885169ca388e80af12f3e19293805d6",
+      "split_sha256": "efd32b10a2532caef16d56291609e8d909fe6a6bdaf378e16e3a4d4e1b70da82",
+      "dense_origin_source_commit": "55d0fc242b543c5725276144bd8e970eedc48ecd"
+    },
+    "citeseer-gcn-s303": {
+      "dataset": "citeseer",
+      "architecture": "gcn",
+      "dense_training_seed": 303,
+      "dense_checkpoint_sha256": "9f30558454ad5676597cbd18b3165a37fb54aa6fcfb2f07f9470ace15d88a82c",
+      "dense_tensor_sha256": "71211f76ffd179fc601c652bddc7eba673ee28c7fbfbf93b8b895443cf167ea0",
+      "graph_tensor_sha256": "37f2bfcadeec6d98a9d5ac9cca0276e7d885169ca388e80af12f3e19293805d6",
+      "split_sha256": "a59f75b815dc61d6bfa3dadadb610d149916e08fad7db2991a0e8739a86f2f1a",
+      "dense_origin_source_commit": "55d0fc242b543c5725276144bd8e970eedc48ecd"
+    },
+    "citeseer-graphsage-s101": {
+      "dataset": "citeseer",
+      "architecture": "graphsage",
+      "dense_training_seed": 101,
+      "dense_checkpoint_sha256": "72614abd209e7c8bdcaced680dee4439abe8b2fd2895198af76151b06be301f2",
+      "dense_tensor_sha256": "17a1c3790928b10b8152fb0844b974e53cce04ebf5936a98746ae45ff0c12004",
+      "graph_tensor_sha256": "37f2bfcadeec6d98a9d5ac9cca0276e7d885169ca388e80af12f3e19293805d6",
+      "split_sha256": "c7ea7dfc203703cdf75c09ffe71559f348a1968f609b205d9ec08faa7e82f779",
+      "dense_origin_source_commit": "72293149d8fff186dd268789e7b8fea5848c9360"
+    },
+    "citeseer-graphsage-s202": {
+      "dataset": "citeseer",
+      "architecture": "graphsage",
+      "dense_training_seed": 202,
+      "dense_checkpoint_sha256": "871baf2ac692a0416e0dad4c260102bb0a91b7cd33efeb43cf963982727df197",
+      "dense_tensor_sha256": "7ab9112afbf2e773b0fc7cb1c29f7bd1494f6f5813605929be35e81119043efd",
+      "graph_tensor_sha256": "37f2bfcadeec6d98a9d5ac9cca0276e7d885169ca388e80af12f3e19293805d6",
+      "split_sha256": "efd32b10a2532caef16d56291609e8d909fe6a6bdaf378e16e3a4d4e1b70da82",
+      "dense_origin_source_commit": "55d0fc242b543c5725276144bd8e970eedc48ecd"
+    },
+    "citeseer-graphsage-s303": {
+      "dataset": "citeseer",
+      "architecture": "graphsage",
+      "dense_training_seed": 303,
+      "dense_checkpoint_sha256": "a48b1ca33e11c06c9c7c121c2253ad52d365bacb5510447452fdea687e9814be",
+      "dense_tensor_sha256": "c1227bf452eedb55626a704373d571b1d780c7b796c821b210bdc02db39e7511",
+      "graph_tensor_sha256": "37f2bfcadeec6d98a9d5ac9cca0276e7d885169ca388e80af12f3e19293805d6",
+      "split_sha256": "a59f75b815dc61d6bfa3dadadb610d149916e08fad7db2991a0e8739a86f2f1a",
+      "dense_origin_source_commit": "55d0fc242b543c5725276144bd8e970eedc48ecd"
+    },
+    "pubmed-gcn-s101": {
+      "dataset": "pubmed",
+      "architecture": "gcn",
+      "dense_training_seed": 101,
+      "dense_checkpoint_sha256": "b722eabd80de6b10dd36b39bc65e2f708b3a96af418ef36fa2f7ea59ffe362bb",
+      "dense_tensor_sha256": "22fdb4f5f4abf3b97dfe48ee4aa70b362d8c2688f05c8f084a64c663b14130bc",
+      "graph_tensor_sha256": "a7b27f3fe7a300f75814d36de9d3c85b6b2922a67955a63931e2ae712e6cc4f8",
+      "split_sha256": "5a2d64b485e129ddc6ee81df157dc6b5e1c7a07009c6965426fcbdfcf018b358",
+      "dense_origin_source_commit": "72293149d8fff186dd268789e7b8fea5848c9360"
+    },
+    "pubmed-gcn-s202": {
+      "dataset": "pubmed",
+      "architecture": "gcn",
+      "dense_training_seed": 202,
+      "dense_checkpoint_sha256": "f2892e7628bcd2d238644aa455c9009c83a5ef750730b555d8cc3332201747de",
+      "dense_tensor_sha256": "8dbcc832a395598dc0b3edd190c149418e70001274338aec62df33b4afafdcb4",
+      "graph_tensor_sha256": "a7b27f3fe7a300f75814d36de9d3c85b6b2922a67955a63931e2ae712e6cc4f8",
+      "split_sha256": "efa6ca920de6c8f42681bbf235ef2068638d31def3bf44a713630188b020ff6c",
+      "dense_origin_source_commit": "55d0fc242b543c5725276144bd8e970eedc48ecd"
+    },
+    "pubmed-gcn-s303": {
+      "dataset": "pubmed",
+      "architecture": "gcn",
+      "dense_training_seed": 303,
+      "dense_checkpoint_sha256": "7ab737514da4a0b8597559e2eb5e7310b81a11bc2e53fdd06bd292baebeb3732",
+      "dense_tensor_sha256": "975eb8a0be8d4dc1b230da9da172c0aee3e52da7d95ea8f52ca5e82fc1f76c2a",
+      "graph_tensor_sha256": "a7b27f3fe7a300f75814d36de9d3c85b6b2922a67955a63931e2ae712e6cc4f8",
+      "split_sha256": "1acbff4d5e84c3cc091a467ed8d589179d48ad68824cfade059a2c1e43327552",
+      "dense_origin_source_commit": "55d0fc242b543c5725276144bd8e970eedc48ecd"
+    },
+    "pubmed-graphsage-s101": {
+      "dataset": "pubmed",
+      "architecture": "graphsage",
+      "dense_training_seed": 101,
+      "dense_checkpoint_sha256": "41aa2e23234c3a72f3829b20172dd2fd63bd7bab22b97cefc9bbde602447dfcf",
+      "dense_tensor_sha256": "60c6f4fbb1b48cead344e23e1af42d2cdb58269dfcd46e9caee3adf0d6066854",
+      "graph_tensor_sha256": "a7b27f3fe7a300f75814d36de9d3c85b6b2922a67955a63931e2ae712e6cc4f8",
+      "split_sha256": "5a2d64b485e129ddc6ee81df157dc6b5e1c7a07009c6965426fcbdfcf018b358",
+      "dense_origin_source_commit": "72293149d8fff186dd268789e7b8fea5848c9360"
+    },
+    "pubmed-graphsage-s202": {
+      "dataset": "pubmed",
+      "architecture": "graphsage",
+      "dense_training_seed": 202,
+      "dense_checkpoint_sha256": "78a738c3c07f3b557ed119fe756a085a92c84750a405e2d2dbd2c1c2059d35bb",
+      "dense_tensor_sha256": "2c5d78d2cc213b4915a811a6283488fb782ace559f7ae10e25f42953b9a5a456",
+      "graph_tensor_sha256": "a7b27f3fe7a300f75814d36de9d3c85b6b2922a67955a63931e2ae712e6cc4f8",
+      "split_sha256": "efa6ca920de6c8f42681bbf235ef2068638d31def3bf44a713630188b020ff6c",
+      "dense_origin_source_commit": "55d0fc242b543c5725276144bd8e970eedc48ecd"
+    },
+    "pubmed-graphsage-s303": {
+      "dataset": "pubmed",
+      "architecture": "graphsage",
+      "dense_training_seed": 303,
+      "dense_checkpoint_sha256": "5593536ba21fdbf3e10d13541f403a237e2e754a7cd7ec51e050ee89eb239920",
+      "dense_tensor_sha256": "260bd832a9c0fd05fe1c12f4a080a80f166517d5f7d4ba323297f7d7b4ceec44",
+      "graph_tensor_sha256": "a7b27f3fe7a300f75814d36de9d3c85b6b2922a67955a63931e2ae712e6cc4f8",
+      "split_sha256": "1acbff4d5e84c3cc091a467ed8d589179d48ad68824cfade059a2c1e43327552",
+      "dense_origin_source_commit": "55d0fc242b543c5725276144bd8e970eedc48ecd"
+    }
+  },
+  "primary_inputs": {
+    "research/experiments/polus_complete_pruning_20261031/collection/AUDIT_REPORT.md": {
+      "sha256": "e6fc24f3b56089b580521fb04ebf8087a6ced86edf5d22c05aae7f073583a99f",
+      "bytes": 12886
+    },
+    "research/experiments/polus_complete_pruning_20261031/collection/COLLECTION_REPORT.md": {
+      "sha256": "a6d5655c21e801f1c2706d8e33de9771e3ea119d28493d3837a8b847b1ffc7fe",
+      "bytes": 5229
+    },
+    "research/experiments/polus_complete_pruning_20261031/collection/artifact_manifest.csv": {
+      "sha256": "9178fb0362cc4db11ea0219a155d527776b5fbc32c261407f6dc06c85f638907",
+      "bytes": 249066
+    },
+    "research/experiments/polus_complete_pruning_20261031/collection/audit.json": {
+      "sha256": "1996e2075fb6464552c5eec7cd137ccdd94da13b46a240b9e8e411e84ac5c367",
+      "bytes": 887663
+    },
+    "research/experiments/polus_complete_pruning_20261031/collection/audit_runs.csv": {
+      "sha256": "4be9e640b7c37da8adb1dd2038214455784a828bd086135f97cd1b0f2b26a03f",
+      "bytes": 343129
+    },
+    "research/experiments/polus_complete_pruning_20261031/collection/collection_receipt.json": {
+      "sha256": "b51305caa405ac5dad0c4a2436c3671c994dc42817812a519187f97f3cddc914",
+      "bytes": 1925
+    },
+    "research/experiments/polus_complete_pruning_20261031/collection/deliverable_hashes.json": {
+      "sha256": "1acc15b81967f7e6f229f5e7644d32434bae9726e09a150efcef6ca70d54afc2",
+      "bytes": 2535
+    },
+    "research/experiments/polus_complete_pruning_20261031/collection/dense_audit.csv": {
+      "sha256": "527d665f8b5d26c0c91f17ecd5f4787817706d5e82a56c002d1b8ae6df795ab4",
+      "bytes": 9118
+    },
+    "research/experiments/polus_complete_pruning_20261031/collection/figures/accuracy_compression.png": {
+      "sha256": "7270132bd606f3210f775afa63fc4df0af8c159dd33177b022df0f76a116d81b",
+      "bytes": 240587
+    },
+    "research/experiments/polus_complete_pruning_20261031/collection/figures/coverage.png": {
+      "sha256": "3cc829a81d5d4af4c67c584700471804255e2fa668db394787e068bb5b75406d",
+      "bytes": 130133
+    },
+    "research/experiments/polus_complete_pruning_20261031/collection/figures/f1_compression.png": {
+      "sha256": "f8e72295a07b02f83128b1004c553577fa2dafb5569d4bc51fcd79d504eba5af",
+      "bytes": 242433
+    },
+    "research/experiments/polus_complete_pruning_20261031/collection/figures/quality_search_cost.png": {
+      "sha256": "d26fee174b41888ea768bafa49babd49e24f7d9946d96abe2662c0a36a2d9b14",
+      "bytes": 222481
+    },
+    "research/experiments/polus_complete_pruning_20261031/collection/job_status.csv": {
+      "sha256": "1f568ca0de5bbb2ac42eea73f320f0cf374efebe31a56509754734695180e84b",
+      "bytes": 6953
+    },
+    "research/experiments/polus_complete_pruning_20261031/collection/resources.json": {
+      "sha256": "51c2ed96af2503462063c0bde8a7111435ef2d2b2d3b3aeb884fe4d5bd24153c",
+      "bytes": 498
+    },
+    "research/experiments/polus_complete_pruning_20261031/collection/scripts/plot_verified.py": {
+      "sha256": "3992c852737076b7eaa05f8f2c2c1cbd0f9d8c22a972b4af721ce357587e5493",
+      "bytes": 5244
+    },
+    "research/experiments/polus_complete_pruning_20261031/collection/scripts/report_verified.py": {
+      "sha256": "1cf6c8211954afc2f1ee064bb4ec4ae3f3003b94e5dffc2f010b17f02d337e9a",
+      "bytes": 26737
+    },
+    "research/experiments/polus_complete_pruning_20261031/collection/summary.csv": {
+      "sha256": "6b9c3df67c171278520cc39d67e725dc8d9ddd474620ce43375561ba75a477a0",
+      "bytes": 41221
+    },
+    "research/experiments/polus_complete_pruning_20261031/collection/tests.json": {
+      "sha256": "eeefe70bc6d73b2bbbb06868a0c864886020867f04d86cd4f1ae4afac212edd3",
+      "bytes": 1301
+    },
+    "research/experiments/polus_complete_pruning_20261031/collection/unresolved_issues.json": {
+      "sha256": "1c53e475412545686132a98a978531e19a7246e535e99f8abff81e4c30af2ab6",
+      "bytes": 3670
+    },
+    "research/experiments/polus_complete_pruning_20261031/collection/verified_results.csv": {
+      "sha256": "4be9e640b7c37da8adb1dd2038214455784a828bd086135f97cd1b0f2b26a03f",
+      "bytes": 343129
+    }
+  },
+  "context_only_inputs": {
+    "research/experiments/local_structured_v2_q_random_pilot_20261027/README.md": {
+      "sha256": "bf4f6f404dcefdcc5965a5d9badb9e64037d74656293118a81ed6ac807b3ca67",
+      "bytes": 20442
+    },
+    "research/experiments/local_structured_v3_sprint_20261027/results/REPORT.md": {
+      "sha256": "eee2058c98e5bd63871f08d6167e0e23a83e5ff56f9af773d7232bcc82df5952",
+      "bytes": 16286
+    },
+    "research/experiments/polus_v4_diagnostic_20261029/results/REPORT.md": {
+      "sha256": "e2adb9d3882983c53762d5c1cd72992bba6ad7057ed9b9650009f7c5ce2937e7",
+      "bytes": 22319
+    }
+  },
+  "historical_rows_pooled": 0,
+  "raw_anchors": {
+    "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-complete-collection-20261031T110939Z/source-55d0fc242b543c5725276144bd8e970eedc48ecd.tar.gz": {
+      "sha256": "7ef42db5eeddd3403157c7a2cb534c990bffd09bafe315a19614f6586aff59b6",
+      "bytes": 6430417
+    },
+    "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-complete-collection-20261031T110939Z/raw/protocol.json": {
+      "sha256": "5e400a59c27fe98506f16eb0055098de780edd26f0b209695be3a397f1edf256",
+      "bytes": 1179
+    },
+    "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-complete-collection-20261031T110939Z/raw/inputs/manifest.json": {
+      "sha256": "414fbd317890e12c3be85fbe3bc21b8e09326662a8b66b6de5305b8a9fab265f",
+      "bytes": 1462
+    },
+    "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-complete-collection-20261031T110939Z/raw/submission-evidence-20261031T021106Z.tar.gz": {
+      "sha256": "42171aac9656c2b4225150842068cec7e643d396c111d366e0aebc2252ecec94",
+      "bytes": 191005
+    }
+  },
+  "raw_inventory": {
+    "path": "research/experiments/polus_complete_pruning_20261031/collection/artifact_manifest.csv",
+    "sha256": "9178fb0362cc4db11ea0219a155d527776b5fbc32c261407f6dc06c85f638907",
+    "files": 1226,
+    "bytes": 213152398,
+    "reverification": "all file sizes and SHA256 rechecked in this analysis"
+  },
+  "raw_run_report_hashes": {
+    "cora-gcn-s101-static_random-t30": "6b7499c11993cec287d654b2e4d7c6daac2dab0aef9f938b543eec6b9ace67f0",
+    "cora-gcn-s101-static_random-t50": "47a22be31ce7cafb9dd9d49803af7d910b0469e115c0a2a48b5dd766d96d5f1c",
+    "cora-gcn-s101-static_magnitude-t30": "9b7620c32810e30d479660674fe62839b8a79257c74a094fbb315a93fb3ab13f",
+    "cora-gcn-s101-static_magnitude-t50": "4da3363d00d38f81a25a0a47b67bac3ba26e09bb063700defca6d24290738547",
+    "cora-gcn-s101-static_snip-t30": "0400d0981d876706242c5a067bdc8852b163d3cc879d601a384376043879fdb3",
+    "cora-gcn-s101-static_snip-t50": "649962d212b2003a803b7a8efa7920749773aca22b0f8f0102d7a60c8e240356",
+    "cora-gcn-s101-sequential_random-t30": "d1d87ea624a4e4ae1a6272a8a251efb02d5cbf296061bd7009a719fdab2549c9",
+    "cora-gcn-s101-sequential_random-t50": "192a8e0d6a431328152c29dfc73d00320ca8c0871c0e46e4c50a8853769e7697",
+    "cora-gcn-s101-adaptive_greedy-t30": "92cfc5fd8b68d7a2a8d4476d3f65dc5ecaeef573f5520d57e98391a4690f732e",
+    "cora-gcn-s101-adaptive_greedy-t50": "6b64d65f7decaeb2831bfca4757ace7404d5102660860f03b5e9cb7f028fcf08",
+    "cora-gcn-s101-lookahead_depth2-t30": "f7246d9dc200d1746b7821f792c445c4ba21ae9690ec014273455d81412a2b3a",
+    "cora-gcn-s101-lookahead_depth2-t50": "59df643bf1498cec1d5ac4e3b8739bacf90a007cbaaab1abc5cffebff5a4de33",
+    "cora-gcn-s101-tabular_q-t30": "12e0ab467529f107d68ff6ea14b17b01b565190dc01c119d221ea760d5cf6fdc",
+    "cora-gcn-s101-tabular_q-t50": "78d04c46b07a5943d9e8fe9f1c83213bf4a82aaa813bdd668cd86469ac62361b",
+    "cora-gcn-s202-static_random-t30": "90e5923d299509d4d5e0513952bd597775615f57df43745e3f2710da14fc17a4",
+    "cora-gcn-s202-static_random-t50": "245e311010e93206dc3202223378c0c7990d244a98b37f6902cdeef01f319fc3",
+    "cora-gcn-s202-static_magnitude-t30": "3b521e8001b895ccfd791de6c785578daa0ca06e819606a5280461abb6ebcd3f",
+    "cora-gcn-s202-static_magnitude-t50": "0add756d8e2d77b1aa53b2aa2108de48e7131bf064193e644dcce9fd463d6a80",
+    "cora-gcn-s202-static_snip-t30": "7b1c791a5cb4dfc166423d9721cb93896e1989897df656a14355e8bd711f658c",
+    "cora-gcn-s202-static_snip-t50": "be149e7e4ce589e1c23d34e76bf3b50e0fa542a94de4929af194f75994cdc011",
+    "cora-gcn-s202-sequential_random-t30": "ad262233b7d317f3fe22cee494805d2ad1f80e85e874a041fa34cefc0ee7d815",
+    "cora-gcn-s202-sequential_random-t50": "a748a96413454fbc99ee09ac22ee786fb476d922765bbadc1fb763006fbb7dd2",
+    "cora-gcn-s202-adaptive_greedy-t30": "6a40acc552410e16b9a2f16f181b9d99aaa323c2f0a5d4dc2d5959c9bfc80fa2",
+    "cora-gcn-s202-adaptive_greedy-t50": "9e6d6e1ee6cc80f961ee154dad7715acf21ad9cb66ad8fb641870589f55cb2aa",
+    "cora-gcn-s202-lookahead_depth2-t30": "0f183647ed3e870d9aa1000afedf8608edc0908742d4ca235f3e0c6f4f4f1085",
+    "cora-gcn-s202-lookahead_depth2-t50": "a8375c3c55f8cbd7295eeffe5cbe48f17780e20161504caf51348f71878cb7b3",
+    "cora-gcn-s202-tabular_q-t30": "3865ec094fd43f7f571c7dfab3c9116308653665e49dcccf3c881f65a9de030d",
+    "cora-gcn-s202-tabular_q-t50": "194b74551057c0ed7bea63c2c7e704e5bab43b064797c5e8d397caba6787d2cc",
+    "cora-gcn-s303-static_random-t30": "0fe35ae4bfc208e290acef9eeef1465fd75963d3fbe36a9be1a856b16284a397",
+    "cora-gcn-s303-static_random-t50": "d7a028f9833b47596c9fd4ac73bf6babbe03a4286d4d61ad648e22c65726cc2c",
+    "cora-gcn-s303-static_magnitude-t30": "59eeed79f151188af840b046361744dddd29806700870014c7a32754a2f94d07",
+    "cora-gcn-s303-static_magnitude-t50": "78dc3215ba9c3f3c23c0b6bb1a7016c1d77cc28a9e85464cade33729035695c4",
+    "cora-gcn-s303-static_snip-t30": "1c393664f592ecfd9b84cc5fc4bf7f1ba1bdca26d524560d869edf37b050dcb5",
+    "cora-gcn-s303-static_snip-t50": "1b4ed9f034ffa3a44294a592ec59a9a1a5e19cd2eb19ad5abfda6c7f3197451d",
+    "cora-gcn-s303-sequential_random-t30": "a00f8eae48672f92273c78f27d9dfb921d2adfd0609bc948f4b4c9c5998588b7",
+    "cora-gcn-s303-sequential_random-t50": "4f465ee1a133dca86e73fe4aef56e4663c93d3ecfd3ec6fc5c6cc62fc0828c0c",
+    "cora-gcn-s303-adaptive_greedy-t30": "06ed9bde89d0f66c5913b5efaa5d58e49e9f63ec1229ab4b8633ee16de9596be",
+    "cora-gcn-s303-adaptive_greedy-t50": "38af71f2e9f3f6f03ecc6f3691ea12dbb8352c83691797c04e6ef180700dbc43",
+    "cora-gcn-s303-lookahead_depth2-t30": "6bead836e15894a90024abd18ff8b32fe5ce4d06bd7067cff584cfacdb361c0a",
+    "cora-gcn-s303-lookahead_depth2-t50": "51fa2742c52c1d2f5e7ad02a2b50fa4a6f0993fa6ff382d62b49c3b54a654e18",
+    "cora-gcn-s303-tabular_q-t30": "078873366455399836031330f27712ef8bfc72ca09819b2364336468a981a1ba",
+    "cora-gcn-s303-tabular_q-t50": "417c81bb0f25db5049386e58e50fccd170954648013a625a50572aaf52005176",
+    "cora-graphsage-s101-static_random-t30": "8094126a01836b7fb901446f8841bd78ab5bb94bc460b96216f63a87c1c00b9c",
+    "cora-graphsage-s101-static_random-t50": "6d93a6894c3d8a75578ccb2b9be0db99249c667c5161fa38507e63c16267da2a",
+    "cora-graphsage-s101-static_magnitude-t30": "c32405e2958cd1b2edd6e2db2120dfba6e9cce97e8838f2524cd12085a35231c",
+    "cora-graphsage-s101-static_magnitude-t50": "89b9e3ca3e4fa6ea619aa08b45deb315d090cb46d1fdcc17f2579537817fc8a9",
+    "cora-graphsage-s101-static_snip-t30": "2cb8127e58518cb974582d3b9544074338a384e998fba3249eedfeee1053b6fb",
+    "cora-graphsage-s101-static_snip-t50": "e03048c9b826b72b21863808ac06e8dff3561a6d2cc26f5f6128b154fe24a108",
+    "cora-graphsage-s101-sequential_random-t30": "820da73cb038958645e18a4058ec2e6f73b115d05d39a9853eb79c95f04ff691",
+    "cora-graphsage-s101-sequential_random-t50": "5651278ef07d2303a0888221728f15e1d73c52d1542f88dbb70b00360b26cb7a",
+    "cora-graphsage-s101-adaptive_greedy-t30": "66f06c203ebb0b86ff91d13241168fc8a58cc04c43e8a54fc8da27aa65db05fe",
+    "cora-graphsage-s101-adaptive_greedy-t50": "af59d80fd3775d2d08e663c91c8699fbd1850fa652f1310f297fb16b7f9afeca",
+    "cora-graphsage-s101-lookahead_depth2-t30": "e7c0eafc2c2149696c8e98f397e7a32584e57db56d236b6587d63d571eee8869",
+    "cora-graphsage-s101-lookahead_depth2-t50": "c2857d3084897ce9daa9d4b0f42dd7cb133a7c289c7c68ee30579d29b4affc8a",
+    "cora-graphsage-s101-tabular_q-t30": "181fd30476b287b06ec1e7c83c3ecdc56639d66f503d3948e43feccf2c997996",
+    "cora-graphsage-s101-tabular_q-t50": "739a7df2f734a6fc547c2195b9f111c65f26072bd2c1058095e2b471211ad982",
+    "cora-graphsage-s202-static_random-t30": "d8f18a78b7fc625ae202dd89aa8cb4fd9ee21cc89d8b96381789917d872b292b",
+    "cora-graphsage-s202-static_random-t50": "7b0f156e45763cc9a080f8dcefc7b1b4317f2e73064f6f02429c7adef9dba83e",
+    "cora-graphsage-s202-static_magnitude-t30": "b307be8a2b30dffc2a4d4fa34c13016bc9d6083f0c408d8eaaba4733b9aafa24",
+    "cora-graphsage-s202-static_magnitude-t50": "c29494c3d0812fee96d4db31f14ee5f9df046cf4449a58a5b8f8f259e5ebbfbc",
+    "cora-graphsage-s202-static_snip-t30": "5c29dc409d19ad21fd1db042d7a7d376035c3f97e0823ccd9a9971dbc6816add",
+    "cora-graphsage-s202-static_snip-t50": "01441c2679c68eb3d4c7ad088a0bc2005b855f7a5d06df29e66dc2d4d1e4f54e",
+    "cora-graphsage-s202-sequential_random-t30": "904f78a23c57298de831609ec35d72579725bded5b981179aa2624f2c7308919",
+    "cora-graphsage-s202-sequential_random-t50": "7bcb1f13c650ab7e26f9c7976c2a47906e0209965b1add0487918aafa61261a7",
+    "cora-graphsage-s202-adaptive_greedy-t30": "7187360438c23ae15210d64e629d30dd4aedf81002ea4cca676b80b660489c56",
+    "cora-graphsage-s202-adaptive_greedy-t50": "902d84f074a90f6a48ff9b6071b2c281f770eb3236297b5310a77db7f28c412b",
+    "cora-graphsage-s202-lookahead_depth2-t30": "e5fb91ed53585b1555334c090f500ff95fe1f249d980d75772d5971370a26d05",
+    "cora-graphsage-s202-lookahead_depth2-t50": "e30652c08fb5d277a2a2f858d751b9d1e7a32bf7ad6fd7f86968c70915bcbd58",
+    "cora-graphsage-s202-tabular_q-t30": "67ae06ea3fe990463df208c87c4426d34ed0625e393e047a33db24504caeb5ee",
+    "cora-graphsage-s202-tabular_q-t50": "f4ee7bab1594573debb4c86a4122ec3c68126a112665513ef9c9ad23b39814fe",
+    "cora-graphsage-s303-static_random-t30": "90c71368390c25f2abfb932769546296dde9d54ef44aef13dfca5bf3aec2e462",
+    "cora-graphsage-s303-static_random-t50": "298b57cdac30f6a6b29d9c6016216995c5297aeb8f319b5a56c6b20feaeaefe7",
+    "cora-graphsage-s303-static_magnitude-t30": "2ab02200ef7ca35e72205b576a98accb5e2ffea42bd29a2222821fbff27cd224",
+    "cora-graphsage-s303-static_magnitude-t50": "16ca282f232aa151529e7e2bffe4e22dd0abbfb1c57abf2250584fa233e168d4",
+    "cora-graphsage-s303-static_snip-t30": "bd47b752cb31b4863b7c121394757ee0a69a62db4b1f76d3c1b84eba06369f61",
+    "cora-graphsage-s303-static_snip-t50": "81e2f8048d6a713b1be2f1f93799da8be867ee1e796fb3847320abda44b52574",
+    "cora-graphsage-s303-sequential_random-t30": "6f7cfb3d1f724a818c841d91577e125e44720964140b435b7f50ee449c9b5676",
+    "cora-graphsage-s303-sequential_random-t50": "0c7c8707cf051ccb57b8488da672ee68683d00c4d1bc21c366c846c812d9e41c",
+    "cora-graphsage-s303-adaptive_greedy-t30": "3f0fd5db0314c56372f5530d84acfece071cb410843c69317aeba2d3820861c9",
+    "cora-graphsage-s303-adaptive_greedy-t50": "88efb23ad53085255626543e62b63b4e91306366bd9c81c417cb04a10f282e2b",
+    "cora-graphsage-s303-lookahead_depth2-t30": "37b287979e8a347364379b4fd3b738ab2ed9620fa88a7b634ac1db002c0759ff",
+    "cora-graphsage-s303-lookahead_depth2-t50": "1005119850556866c05eba39f1e7a732072aa9753a681abd4ab3b93443254b78",
+    "cora-graphsage-s303-tabular_q-t30": "e89d4f046a0565c4d4544ab734df2efcd13fa9c5aa09edf2d2dcc800ad197cfb",
+    "cora-graphsage-s303-tabular_q-t50": "414e9fbff8e3c2425024756bff9c2cc6c693c7ed252ac10da8fe3f437c7b302b",
+    "citeseer-gcn-s101-static_random-t30": "206ed955dd82f3ca0ee966eb9f24f906001e9a7ed13a64df94760f28dfa95de4",
+    "citeseer-gcn-s101-static_random-t50": "215dea1c2e6d4afd08acf8ecd3f8875b9f04e78673f4dc788acf7248a6dadb9a",
+    "citeseer-gcn-s101-static_magnitude-t30": "c71759282122be49c7f0f1a6a304ad1514254b28a9b40af21c2464ade7ceb86c",
+    "citeseer-gcn-s101-static_magnitude-t50": "49ba08aabffa7616751efffd9041d2231d1842ecf2b509b4a6b2c2c77ccde998",
+    "citeseer-gcn-s101-static_snip-t30": "c089f21bf5096fcb9ba72666be83acc4eff275d557aaddfc583e85c59759d8e9",
+    "citeseer-gcn-s101-static_snip-t50": "6f18c3cee4b8d30b209757471dc0390228fb9c9b30956ee06fdffac520b7e610",
+    "citeseer-gcn-s101-sequential_random-t30": "7e5c1dd41724728ecac214f1977b75a4a1644918faea7a12b840700e9f1e9d3b",
+    "citeseer-gcn-s101-sequential_random-t50": "19b7f85d40746a4229a5d4896e2e411b81d948a4ca0dd80b8a592c78c8c9f34f",
+    "citeseer-gcn-s101-adaptive_greedy-t30": "b3d8afb6a5e8c831c76b941810dcbd96895b96328ac1e6021fb6738d4dd78c55",
+    "citeseer-gcn-s101-adaptive_greedy-t50": "d0c87410db710726d3268ccffdb4008cf7043d29d404275f4b23dffe82066e01",
+    "citeseer-gcn-s101-lookahead_depth2-t30": "39b20b325e338fb827746ce255b64628dbd5f7860f0207f884b00ecc498f7d52",
+    "citeseer-gcn-s101-lookahead_depth2-t50": "a9ad22e810676bb036020b76f3f19b9cc142fb67ca01aaca7cefb2da806afd53",
+    "citeseer-gcn-s101-tabular_q-t30": "594bfa8cbf34533169708e68daf62e03428ef81f42eef8e8a0fa19e12cc7786b",
+    "citeseer-gcn-s101-tabular_q-t50": "0b2426810a22c61b328946c53063268889aab4d3cf228e4bf68e8ee236bcad4d",
+    "citeseer-gcn-s202-static_random-t30": "5dd20a77d8994c4d72daaa587521d4f9939c248f95ead7dc5363014a14d447f8",
+    "citeseer-gcn-s202-static_random-t50": "b397cf8864265f86e6cee4eda03eecc3b0c5659f510e7c28764933d04d8e3e8a",
+    "citeseer-gcn-s202-static_magnitude-t30": "0f241e982e4678493f5f597b5f4f46bb1f08da58b45393ae22142d4d3c1cb21e",
+    "citeseer-gcn-s202-static_magnitude-t50": "7dea0d2e020fb6c096d1e556e3f5e25ced9a9fda51409d72bcfe92c0529fa1f6",
+    "citeseer-gcn-s202-static_snip-t30": "3b8def812f859825bdfc6a238a340bc85c1329facdb13966cb60f6081ecaea91",
+    "citeseer-gcn-s202-static_snip-t50": "5e41e46f6b24d638f2fd11f3c62e13c0d5462757a8e4d53212aa5b10fb203a6d",
+    "citeseer-gcn-s202-sequential_random-t30": "30448137a79c79fe17f51e53fa2f4c30e73b21dd654422aaf7e79a80e620e904",
+    "citeseer-gcn-s202-sequential_random-t50": "1b0336d8173d25b0417369412139ddc78a82bc05b30d122504aa9bbc836c8097",
+    "citeseer-gcn-s202-adaptive_greedy-t30": "9ea17e02c81689e76035d55a8ae1113d8dac0cae421383e269554f8c5db6b2ba",
+    "citeseer-gcn-s202-adaptive_greedy-t50": "7646f0262a7ec4ea039bff1814eda7f9990334fdb9e101f408bd338778e79ace",
+    "citeseer-gcn-s202-lookahead_depth2-t30": "121f80ed2169c4429fdc9ff0950c5d2cda21fda552ef09378e0dfea58f09e7c1",
+    "citeseer-gcn-s202-lookahead_depth2-t50": "6845e532c5dddd5295916b9cffacddadb5473e08244310de0df6b8ae8283bf2e",
+    "citeseer-gcn-s202-tabular_q-t30": "6bf24b3ef22256ffb3a9c5777b557a7d9f7f0b563d7ff9b65b70b61d422cf7da",
+    "citeseer-gcn-s202-tabular_q-t50": "44669858de8aa5ffa494ae626542c04c81070657a20208393911664080cdde29",
+    "citeseer-gcn-s303-static_random-t30": "4812bd263839505e8cedf87d6816fa9f980f1cf5e3fa1ac4554f84ec79bd0058",
+    "citeseer-gcn-s303-static_random-t50": "81aba17ef1bebfb3d41209c859d6ebd99b54e7bd843a552c5263f54a9e32fa5c",
+    "citeseer-gcn-s303-static_magnitude-t30": "bb3df170045c43ae3596b7fcd89e53f38a12bc8aba645492b694a1f60c08e92f",
+    "citeseer-gcn-s303-static_magnitude-t50": "54770a7b3ee7f1964c5626bc788fd66f2bd8c3f963d9dfeb35b862c73a2c41ae",
+    "citeseer-gcn-s303-static_snip-t30": "579450bd213333e2fb12aff7d1eae2cf802312d91e5151c83e4205da09bc1add",
+    "citeseer-gcn-s303-static_snip-t50": "8d8f1ef184ceb020e1a30e5f2974d79c782cd2fb255ffb5b06615896e6a53228",
+    "citeseer-gcn-s303-sequential_random-t30": "e611d9cccc75b309d784afd47bab083334a9f29bcc177e2aee2b9ca540357290",
+    "citeseer-gcn-s303-sequential_random-t50": "7c8329d397a255bd220845a77e948281437e39fbb5dbad225e71b33e905370e4",
+    "citeseer-gcn-s303-adaptive_greedy-t30": "3a3448c18a66043012ae5fbe03f5596e14d490ce7816a3d1ec1afb56ffc8c5e4",
+    "citeseer-gcn-s303-adaptive_greedy-t50": "b3671010542e6b4f1a5477e5692fb77d4aa9db5d451656cf6959e25985e29c2c",
+    "citeseer-gcn-s303-lookahead_depth2-t30": "47023aae6bd99a6547b0e49f368da957fe61aa8bc7c346fbe2a3e193ff569291",
+    "citeseer-gcn-s303-lookahead_depth2-t50": "9a58fe81e071956b4e75505380d1ad631d2363b90260a3d1b10195f487850e8b",
+    "citeseer-gcn-s303-tabular_q-t30": "d3d7996ee606ab0883bd307547a67c1b3ddfd698713128d310b44f6c4dedc118",
+    "citeseer-gcn-s303-tabular_q-t50": "15fdf4e474f4be865ffab23ae7af87914208250ad576c28ad1663640581b20f4",
+    "citeseer-graphsage-s101-static_random-t30": "967f7e99b28edf4da5856605a75044af5393d11a3d70a61162962565f5beb426",
+    "citeseer-graphsage-s101-static_random-t50": "bf56d17328b28042594394e3cc3bb5f3e0867da6da58fd31aff63adf114b8a76",
+    "citeseer-graphsage-s101-static_magnitude-t30": "f7b768ae13dc5d5ca4e43b98a148fe3ad6eced6ad9e68fc14a31a6b2b82deae2",
+    "citeseer-graphsage-s101-static_magnitude-t50": "f83ba6f8dbca3e46adbab831a5985b706ac33e651ecd87a61fb811bbc0a29384",
+    "citeseer-graphsage-s101-static_snip-t30": "e60aab3755baebf15451d9fad2565ee090d8fb83832ac8c622b4a58097a12552",
+    "citeseer-graphsage-s101-static_snip-t50": "c857492a11a1f72849a8b06996acf41e0b5d464e0a2c4a84150c9e9d1deea73b",
+    "citeseer-graphsage-s101-sequential_random-t30": "e8640b090a874ec5e5677eb2cf72d1e75152bc84a7982c2ebf339c405d2ba8de",
+    "citeseer-graphsage-s101-sequential_random-t50": "ae1c6538d7f33add6f7a9cb4e631987111411144dffc899fb09c1392704f1643",
+    "citeseer-graphsage-s101-adaptive_greedy-t30": "8b674b52ad7e25928a50a4973224b1cb0e59eaeacfa9793e0ddf9432c1165251",
+    "citeseer-graphsage-s101-adaptive_greedy-t50": "5a9c876b816baa45f7d9063754cf6b72f8037cbd8c5d123ada3357eb3dc023b6",
+    "citeseer-graphsage-s101-lookahead_depth2-t30": "70c690c2169009af0d25f3ed05ccb7aaf8867eedfef71c7395bd978e3f09ff8d",
+    "citeseer-graphsage-s101-lookahead_depth2-t50": "bc7b42c8f26e56036c8b4124b6008b58cbc0cde1d8613451a3c78cecd9f05160",
+    "citeseer-graphsage-s101-tabular_q-t30": "1f5ba51a078c6f3fb743da19d63bc91be2aae10c3c97fcb0bb95594fa0142b88",
+    "citeseer-graphsage-s101-tabular_q-t50": "863536bdc33755e48974f3e7bd1050e7e4f5b31f75d988263774042dd902bf02",
+    "citeseer-graphsage-s202-static_random-t30": "d0e669b272514284b96a7ea7ad6b0678d633cc455dd7d5cc0cc234b91cf2fa7f",
+    "citeseer-graphsage-s202-static_random-t50": "d3bda87b6063da4a0aead61e2844c481272a7df375b82051ecf16cfcfc67f7d9",
+    "citeseer-graphsage-s202-static_magnitude-t30": "99c5e61fbef89a0e6e0507e5fcf0803616f3f44c36be9ae728ade9d7a4a9e4ad",
+    "citeseer-graphsage-s202-static_magnitude-t50": "1e2d037f1d630f573cf9b9c09c84feedee28081aa0ca08f03f2c8d5829301c1d",
+    "citeseer-graphsage-s202-static_snip-t30": "502a27e4eb58b89fa5c7c01d04582849d438067fde155bce7a7b875711029381",
+    "citeseer-graphsage-s202-static_snip-t50": "44b400892463767793bab8f799da675b0273d1bd8cc84e60869f0d83a4161056",
+    "citeseer-graphsage-s202-sequential_random-t30": "676f9a1f03b49b3867dec87e26614d1ec16e548733d65c095b7b93f5df511778",
+    "citeseer-graphsage-s202-sequential_random-t50": "9f17ebafb9a897018216082603ead7573fdea38f98e67128a4a26f0800edf86e",
+    "citeseer-graphsage-s202-adaptive_greedy-t30": "bba66d86d7cbe72cea438b192e351377ab301e19a0bbc1ae135f43c3c8242c9d",
+    "citeseer-graphsage-s202-adaptive_greedy-t50": "ce52184134b09c0b70616190462b2aa597d850312947d38fa322e4ecc73511c3",
+    "citeseer-graphsage-s202-lookahead_depth2-t30": "b86120e77c1cd914f0867f3310f69f6226fd57638f44ffa0058370970659fdb6",
+    "citeseer-graphsage-s202-lookahead_depth2-t50": "cd5d8b39bfa137b66336d59f7807dc43cffe36ce6524d866bdb9dcc8be455cb7",
+    "citeseer-graphsage-s202-tabular_q-t30": "a913bd71dfbe873d9c578664fe57f3d58f96aee7fa6b5649808a2783fccc0db0",
+    "citeseer-graphsage-s202-tabular_q-t50": "1aa35be213bda26b07ea5950d2eac17954f481474c836758b4e4b94492afd81f",
+    "citeseer-graphsage-s303-static_random-t30": "8868eb7345519ba7bdbb76673bc692b1c70b4c6cbe2724d11cbfbe9f5a34f5a7",
+    "citeseer-graphsage-s303-static_random-t50": "40a2c09da1ea8e1d93b289616872defe4325a9c9a0df993a6a0968067d09fc98",
+    "citeseer-graphsage-s303-static_magnitude-t30": "cdbd389687dc89546c92489ac92721cd6a3f9f6c04518e24b1ed039bb3cef188",
+    "citeseer-graphsage-s303-static_magnitude-t50": "deb8aa593638db0d4614766629afde4b6f0cb197723f843cd05c93a3d33067f1",
+    "citeseer-graphsage-s303-static_snip-t30": "eb23d1347f00e931808d2e32d94c723e3cb12fa6ac34ecaf9136ab6ed75c35a9",
+    "citeseer-graphsage-s303-static_snip-t50": "c4d717c9d2604ccfbb168ec60166cfc9f6114d5bd9e214c0d7e3c984a8d083f8",
+    "citeseer-graphsage-s303-sequential_random-t30": "d9aded2d88745279a0c64eb7dddbcc88eff565cdbf89a54b01ea81dccf4bacd3",
+    "citeseer-graphsage-s303-sequential_random-t50": "7b0f06d3864c2640844aa1f0a8c2a4c130d6d4723689f5b5d297640e40330d94",
+    "citeseer-graphsage-s303-adaptive_greedy-t30": "d548cf7fac7a35eedf7625ed369fe807b3521b5e2da9a4285d050c708ff2c984",
+    "citeseer-graphsage-s303-adaptive_greedy-t50": "e23d2dc63953aeac2776251b8999ff41c3338fb3be939384050df4f92a4e035a",
+    "citeseer-graphsage-s303-lookahead_depth2-t30": "c77530c73feda3960dc47b5e868cf145ccf1f384ee0494b4d1d81ad6f7a3c659",
+    "citeseer-graphsage-s303-lookahead_depth2-t50": "8b81642dd8d75da4996c6fef62d439ed4e65e6e89b8fcfb61f18c3d497a82513",
+    "citeseer-graphsage-s303-tabular_q-t30": "df33a6b96ddf1b4a64d6dfc5616b0cb6c3d0840f834c1f3c73c81f7cbe2957bd",
+    "citeseer-graphsage-s303-tabular_q-t50": "a2826b00627719acad30f7dbfda706af9765e81f83c16c5b044be953ffceeb75",
+    "pubmed-gcn-s101-static_random-t30": "3dec5a0f549823b7405cd16d5318d6045004857f46e417ff812d06c60ebde695",
+    "pubmed-gcn-s101-static_random-t50": "45363ae26939688b949fd7cada450cf0aef73fa0a8df8479e729578ad5293e10",
+    "pubmed-gcn-s101-static_magnitude-t30": "be1913440da1f014b589f0e278e273021298899a9b0083625900e3350e0bc282",
+    "pubmed-gcn-s101-static_magnitude-t50": "bbe796752cd9c28cc9b4a22976865bdc4eb5a8a90f3ea387b7c6632854ae158b",
+    "pubmed-gcn-s101-static_snip-t30": "9fd5677b3c52d17f194cefc5577e0d0d285ad8eace7204fd718d938230030c2a",
+    "pubmed-gcn-s101-static_snip-t50": "f0b90f5014a59ffaffd283d782af6c6f25c17b307ab0661f64d02c1853a71d28",
+    "pubmed-gcn-s101-sequential_random-t30": "d41e69912e6354acfc0d7f4e142128face7da46bec49c96a50b50251f74394cb",
+    "pubmed-gcn-s101-sequential_random-t50": "c2a1a3ac9355687495438fb963550307059c5da7a970c054a96d0e182008cd94",
+    "pubmed-gcn-s101-adaptive_greedy-t30": "d342ac49209436f5d50e14945567f216b88fbb8594807eabeb520815ab3ac5f4",
+    "pubmed-gcn-s101-adaptive_greedy-t50": "442f4b7f2b20750a30b30e238ce8b528ffc31c2ebcbf3a6e860274d53fdb783c",
+    "pubmed-gcn-s101-lookahead_depth2-t30": "716901c5547f5ca6adcc55108ab377cf545792cf5c0afc94be2a231db4322520",
+    "pubmed-gcn-s101-lookahead_depth2-t50": "a63d1ce7372d596e3a42dd4ee11eb0a3e372bc54fc6d073ee045ec902713f080",
+    "pubmed-gcn-s101-tabular_q-t30": "6944828c14c536525115d57d4d2e7dd77db05d3b56d03c3b55450636a8a7ecbd",
+    "pubmed-gcn-s101-tabular_q-t50": "8ac21e1dff6cd545fb43d5c2b8715cb36f8da0c3079171a85d7908cd2d682df9",
+    "pubmed-gcn-s202-static_random-t30": "2cf5f1305eba1c160c3d89bc12b1183fea47150fd03be2915f18dc3c6aea1349",
+    "pubmed-gcn-s202-static_random-t50": "8a7fc52d0cf0b2f6040bcb7afb50be74c8864b027b772e1556a4203ddda456f1",
+    "pubmed-gcn-s202-static_magnitude-t30": "9d7187b32eebbccc264e5f6d7c623ec47b5de8edeb0d0d6dc0c47cdd3b5027eb",
+    "pubmed-gcn-s202-static_magnitude-t50": "c725728c3968d139da15133497e2a55852b033f89e664d47db3ea7ae30bfcaac",
+    "pubmed-gcn-s202-static_snip-t30": "dcfd6d74f142014f19d14891cdbda0ff6196b0aac8d2a2c3f66e24f5e7de7dab",
+    "pubmed-gcn-s202-static_snip-t50": "3e770c3af67ce5812cb38de7a3c26a0d0bbaa13caf892868745fe3616ace0614",
+    "pubmed-gcn-s202-sequential_random-t30": "d3f7458d7cc2cd5ee1dc9a1619f1a8e0d46ae4552cdccb72cdc4e1e62042f632",
+    "pubmed-gcn-s202-sequential_random-t50": "e6d985dcabadb485e81e29e95c07766068ce101b456c109440dd67ade7400966",
+    "pubmed-gcn-s202-adaptive_greedy-t30": "71400930aa5d26efb313dd5cc0bde3453393ca6b5638c5359ea4abdf51122dd2",
+    "pubmed-gcn-s202-adaptive_greedy-t50": "d65633c4755c4a9d5dfe422fa5f6432e088bc4ac7e79199890b5e1f0f5afbc5b",
+    "pubmed-gcn-s202-lookahead_depth2-t30": "e835042fef6b843a69ef22d271310581686a90f3c0d17be740e5de172a487c9c",
+    "pubmed-gcn-s202-lookahead_depth2-t50": "6826a8c9fb09274a16cd229b5eb62cedec40dc372d17c6dd079540732dab224c",
+    "pubmed-gcn-s202-tabular_q-t30": "88193dd52c33da785f283b695e686cb75acf9a9f2b2424e14f833eac2c88f995",
+    "pubmed-gcn-s202-tabular_q-t50": "1af30f91d3675a665f968644f1631903a90c5beebcdbcb584aeba038088ac661",
+    "pubmed-gcn-s303-static_random-t30": "68338cfcdd176720cab8bca088943d52e3ef462917f56df9f9a93f87539bf776",
+    "pubmed-gcn-s303-static_random-t50": "8b2aa2fa8607fb5110a7b8db62f6f90b7c22412ab253813a4fc542874770068d",
+    "pubmed-gcn-s303-static_magnitude-t30": "5483a16b33e1b9efecf2f035d48ec78bec1e7d1cc889095ff8433eec380c38be",
+    "pubmed-gcn-s303-static_magnitude-t50": "85301dcd118c87972142e95ccaa307b1ae1a37dd16cd1eb40afe7bac283231af",
+    "pubmed-gcn-s303-static_snip-t30": "cb4b34383ec7cfd3912f1e42c01e9ec703636e7a2a24b41af5084898f9d85831",
+    "pubmed-gcn-s303-static_snip-t50": "08be6b57d88930dd0321eaca1141306c23949559b0f70f7d60f31949c18b3f3e",
+    "pubmed-gcn-s303-sequential_random-t30": "6e8b117998a5783559fc3ee34dd44584b086c9284e0bb651ba99344f1b1884b6",
+    "pubmed-gcn-s303-sequential_random-t50": "2d8b839b02b4689c4d0ac80ff469245c473989e48821e0b94d3695c7147cec8b",
+    "pubmed-gcn-s303-adaptive_greedy-t30": "f969e431e0e8c48a22723c5f7bbab6c743526971a054330645320a870c61bba3",
+    "pubmed-gcn-s303-adaptive_greedy-t50": "49d5deb82387254ad26ca0687eb2697c51662a5e5a9ec6bb834991cf8bf606e2",
+    "pubmed-gcn-s303-lookahead_depth2-t30": "7d6fbe4056e72f4788c870e18f6a6c863e51fef2694757824c80ef3b53f8b0f7",
+    "pubmed-gcn-s303-lookahead_depth2-t50": "f5e3e179112b713445beb5b3e820f855af66f2fcd8759592d5d805cd1fe3bdaf",
+    "pubmed-gcn-s303-tabular_q-t30": "a7ced96b25eb3d1b3dfa90ed6eb49596f19c182b17459e1bbcc14d69cd1037da",
+    "pubmed-gcn-s303-tabular_q-t50": "713585c622255c197b2216d1b7f78a19c418f1c6e79f2bf75a036f65b08e7b6e",
+    "pubmed-graphsage-s101-static_random-t30": "ad8542c4574aca58e3150743fdef62e13802ca08bdb348481f13225e0ea8df31",
+    "pubmed-graphsage-s101-static_random-t50": "fc2468a3dca7c0d5e9ad8da1d9f1e2647f1d42b6af05ff3052c9262963370a68",
+    "pubmed-graphsage-s101-static_magnitude-t30": "6e1bb8f52778671215ab37be1eb5ff1fe85a3f098e9f83545cb87f19d9d9ca10",
+    "pubmed-graphsage-s101-static_magnitude-t50": "b789069c04af38e2e8d7dbc72f9788750c03cf6fa3d55de66fa2003da2cc6283",
+    "pubmed-graphsage-s101-static_snip-t30": "ccffd21cc78869342af1fc0c6c9da2b7af5dfd14921b163afa2f00c587023975",
+    "pubmed-graphsage-s101-static_snip-t50": "755a5e4298d698394b91145d59dbb53268d15d23ab269e708178d6279b126902",
+    "pubmed-graphsage-s101-sequential_random-t30": "387a4da51167703ad574926f5598420d305d1305fe285e6408701690c9672486",
+    "pubmed-graphsage-s101-sequential_random-t50": "bb0e86810624d057af9c0f2a427f8d4ebeff45617b516960c9caee44ac9c3cd8",
+    "pubmed-graphsage-s101-adaptive_greedy-t30": "6f99142040929dc5e5264540814a99c9513c273b46c7652e2893a51c6ddca24f",
+    "pubmed-graphsage-s101-adaptive_greedy-t50": "e40b9a1ac434c40a17d864a0a65d6c858d8f04297df88f929aee01b8ad72c393",
+    "pubmed-graphsage-s101-lookahead_depth2-t30": "b82feaab5cb0b49a3c583e8213513d137d337a5e0b22ae15c7712015bedc6795",
+    "pubmed-graphsage-s101-lookahead_depth2-t50": "ae376d23a497e137f21a62118e4d87aed113053a15542cbb4e7f735d137c5ec2",
+    "pubmed-graphsage-s101-tabular_q-t30": "443979b32f41e85c14c40f7aac68f74f92bb71b55006bc7178c54423e0f5ae3c",
+    "pubmed-graphsage-s101-tabular_q-t50": "9e1a70fe74aab95487956b8fbbf85fb282d5e0a809b1b3d484f3e0dbe44d0552",
+    "pubmed-graphsage-s202-static_random-t30": "7da687837f9feac0171dc6da655dccdef40c113a94a334e44bfb07e09e3f2b99",
+    "pubmed-graphsage-s202-static_random-t50": "bc699f602b5b551d3ad6a8063e53beb5a09653896d824c656a0d039a379c087b",
+    "pubmed-graphsage-s202-static_magnitude-t30": "29ea46579944f6cab460978b846893ebc722a0a378181841cb3d4100e95b7334",
+    "pubmed-graphsage-s202-static_magnitude-t50": "751a9377def0fc8ac3bd77d6f75b35612e7c35c78626c40623c389f06048ae32",
+    "pubmed-graphsage-s202-static_snip-t30": "bf9d81015d51e532c2ce8c5c55e025a069f9296ea2c53fdc6a581c967789d643",
+    "pubmed-graphsage-s202-static_snip-t50": "64765cc081fc42ce85413e79b2b266c8a14e28dd5ac09b80d3da1e0e593fcd5c",
+    "pubmed-graphsage-s202-sequential_random-t30": "1a883556518188a995e3e1169b2c717171485d6da4cf5e3791f5245115fde339",
+    "pubmed-graphsage-s202-sequential_random-t50": "297e044ca821b0a018e91f7318d64f76c81b5499cd8514eeb559c1c3a6db936c",
+    "pubmed-graphsage-s202-adaptive_greedy-t30": "d4fd85c7ff2e8e6cc022ddde3e01f79d570212c68b0a0b563b4cdbff39b23493",
+    "pubmed-graphsage-s202-adaptive_greedy-t50": "61d141131ebecb00d0f9858b749d262aa91173861b946ed34c8d0bd90cb763f4",
+    "pubmed-graphsage-s202-lookahead_depth2-t30": "5ad1fa409247e635f75349fd971dbfe0329d7a81d8673a290ef397bec877277d",
+    "pubmed-graphsage-s202-lookahead_depth2-t50": "e97f441c7766b60af7d85cf46e8116a5a8fd6f3ada32be9b83ef2ee6ab65baa5",
+    "pubmed-graphsage-s202-tabular_q-t30": "587df8e9d9237c97a5bc619c98c8cab8b9ddca6f1eb789a25aae7eb6271b97e4",
+    "pubmed-graphsage-s202-tabular_q-t50": "1c292cb6b6b45607eaeda1f64e3e0cf2eca3e55637bbf54fe2b8851d06f5ac7e",
+    "pubmed-graphsage-s303-static_random-t30": "26fcf998c9a40dfb90adefb7b6ac6421d90a15c01a8a5f1f668aa07253bcc40b",
+    "pubmed-graphsage-s303-static_random-t50": "f98a5151f9951c4c42cbb82184d6b9c86d386c083c7f5e0b1b432802a98383b3",
+    "pubmed-graphsage-s303-static_magnitude-t30": "2f0facc8aec3eb69870bac6433117cac9321ebb13e08840181d3e8c841acc017",
+    "pubmed-graphsage-s303-static_magnitude-t50": "8c4e630f8df4e03fca7a183debb70a1a847f88d0a608633329815fa1335c75bf",
+    "pubmed-graphsage-s303-static_snip-t30": "59a2c6f9a9b0f23d52ab7be98c494f5ec55a2ce846df06eb83fe857ca059344b",
+    "pubmed-graphsage-s303-static_snip-t50": "51169d2e5754c665bf5a5d708114728179109690b2b0945285e01868279e7f8a",
+    "pubmed-graphsage-s303-sequential_random-t30": "69add03ac8567558fa9ad58417f526b0bdfd3fe85b8b9ba4f312b73ba7e269fb",
+    "pubmed-graphsage-s303-sequential_random-t50": "903c632f1b0b0fcee8675ed31c3ab1739e6c1f1cbba85d94e90c79d5d352525e",
+    "pubmed-graphsage-s303-adaptive_greedy-t30": "406967cc282732300e3e630888e75de0f1dfb04d001d80b43afa214c23fae78e",
+    "pubmed-graphsage-s303-adaptive_greedy-t50": "9293775d9d2772d5da1ad8b933072187cb00b761bdf3043b568400960129a1dd",
+    "pubmed-graphsage-s303-lookahead_depth2-t30": "18c9f9f005441014538074c047388b387cb10bbb0da6f8f5cf9b14f4e8e40122",
+    "pubmed-graphsage-s303-lookahead_depth2-t50": "2af24376c3386afb2a9f0a11ab02f2f0f626c849b0b5aabde002a4d4b9d94b20",
+    "pubmed-graphsage-s303-tabular_q-t30": "f3b747d3134fe679eb585e96b3b504da489ccf5fcaa367cfbc2df51e25119202",
+    "pubmed-graphsage-s303-tabular_q-t50": "dfc42685c5d5f0e6f1f051ff0d7f04c92c34b76696cbc65890be662477f9023b"
+  },
+  "analysis_code": {
+    "src/gnn_pruning/experiments/complete_scientific.py": {
+      "sha256": "0b20d6218b3671dace24547d3e8ad86cc96b28344f99559c645f542c113d9985",
+      "bytes": 30026
+    },
+    "tests/test_complete_scientific.py": {
+      "sha256": "9ed72eea263b26aa60210d7969e3605242b65f233ccb6e42fe374f954e0b014a",
+      "bytes": 7756
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/scripts/figures.py": {
+      "sha256": "51a85fc139768ace2eb9a57267dbe0e2d52b0df5797ca772d92ab6e6a65db87c",
+      "bytes": 13026
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/scripts/manifest.py": {
+      "sha256": "593d484d709e14b1d5fa3e68047b49df3dcc2ddf19cc41d3e296d92c869e37f1",
+      "bytes": 7033
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/scripts/reports.py": {
+      "sha256": "9ce784d492535b8b8f50f01e6e3997172c953948d857d35c7826ca09ae40f063",
+      "bytes": 41064
+    }
+  },
+  "outputs": {
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/ANALYSIS_RESULTS.json": {
+      "sha256": "a32ca1629734ff4b63acdb78a92ec7f5b7be69e0c38279debb2c5245a1fb8a36",
+      "bytes": 6755
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/FIGURES/01_accuracy_achieved_compression.pdf": {
+      "sha256": "856087ee8740816c43457a85657d6a0fbfa4761d2501e41a787b12bf348bb746",
+      "bytes": 65052
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/FIGURES/01_accuracy_achieved_compression.png": {
+      "sha256": "67191b7744d5a5f28cac2dc2a7feded2c06fc5eff1b6fefbabd5aeed958fb950",
+      "bytes": 296114
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/FIGURES/02_macro_f1_achieved_compression.pdf": {
+      "sha256": "f07e00b3adc02f0cb555a345f5cdf62cb8f9fa8fc31f2b767006ea716d6d4663",
+      "bytes": 65625
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/FIGURES/02_macro_f1_achieved_compression.png": {
+      "sha256": "9534fe351104437e34c7a62ade9d51aa99921a432ae63f453c50fdb9622b859f",
+      "bytes": 299895
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/FIGURES/03_quality_change_search_cost.pdf": {
+      "sha256": "b0087f713cf793650b5d9cb51367f40ad56f082f0c0a6292ce834bedf10f1494",
+      "bytes": 68928
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/FIGURES/03_quality_change_search_cost.png": {
+      "sha256": "4595a3aee8a33c5e352d57631d8df46b47d9f93605c80634a51246011c34b2df",
+      "bytes": 294039
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/FIGURES/04_greedy_lookahead_paired_quality.pdf": {
+      "sha256": "8c629b6a542fdc378ce517e42b8f82330c93613741f565b7d4afca433913f710",
+      "bytes": 24614
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/FIGURES/04_greedy_lookahead_paired_quality.png": {
+      "sha256": "af840c2a1ffebd5edda66fd362a4fa51b8db005866c47ba4a618749666338498",
+      "bytes": 206386
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/FIGURES/05_lookahead_cost_ratios.pdf": {
+      "sha256": "ba88c1cdeb6a79c5e86cf2eaac0fb72067b4db0d3a0defdde883982d82da4ef5",
+      "bytes": 25848
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/FIGURES/05_lookahead_cost_ratios.png": {
+      "sha256": "9a2d71a98d09b5db4bab3a0d3b9bda0cf298540245d2b1633962bc2863b15a34",
+      "bytes": 223527
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/FIGURES/06_method_performance_and_compression.pdf": {
+      "sha256": "33ab6413307c48d3147e12c6f353eaff7bd47fdb8ef440e8e4ad1d1ae3b46271",
+      "bytes": 34902
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/FIGURES/06_method_performance_and_compression.png": {
+      "sha256": "67493cb6784d4d68233a904ab8e337622c48b4db4a03d794365be6c84ca3ec3b",
+      "bytes": 544080
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/FIGURES/07_q_compression_stopping_coverage.pdf": {
+      "sha256": "fd8e677bae94f9597a225005b30ce1b711687818a2a187463011f370bc7721fa",
+      "bytes": 29640
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/FIGURES/07_q_compression_stopping_coverage.png": {
+      "sha256": "5f1c8c461d46b077c91d43450d9ac455d561b3df24527eaf2837fa63d65b3996",
+      "bytes": 197142
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/FIGURES/08_lookahead_recorded_case.pdf": {
+      "sha256": "106b9580e48543ad56cb6f7554d43576cf73a53d550df576dfd85c0c67cf3ddb",
+      "bytes": 26268
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/FIGURES/08_lookahead_recorded_case.png": {
+      "sha256": "f6fb94f84a1a4bfb5986fbbe3a089fe547bd01086caae15c963a8701dc156bfe",
+      "bytes": 207583
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/FIGURES/ENVIRONMENT.json": {
+      "sha256": "d412bae455e3e2b524947ea03c8dca99bfacecebc8715c019a603c27ae3be7e5",
+      "bytes": 198
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/GREEDY_LOOKAHEAD_TRAJECTORIES.csv": {
+      "sha256": "48ab598ea7d215f2a863999e04f7d0db6d7367e24e889ad73d866fe1cb8167ec",
+      "bytes": 5661
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/GREEDY_PREVIEW_BRIDGE.csv": {
+      "sha256": "82910285b5247460279d7f658829167a1386afc392de93dd6726dde8fbe49c54",
+      "bytes": 9780
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/HYPOTHESIS_EVALUATION.md": {
+      "sha256": "13e8cef677b1c8016fe72c1606f87a473abe24547fd331d631626326f0943c90",
+      "bytes": 5872
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/LOOKAHEAD_CASE_EVIDENCE.json": {
+      "sha256": "fed1640d3a7a5d6eb8008f41a7fa0bac8ef4d89e2306674d980a483d74bcae02",
+      "bytes": 11093
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/LOOKAHEAD_CASE_STUDY.md": {
+      "sha256": "199307521cca876833c6101f61b893e712b8323d7031e2f8fba16573a3b7c124",
+      "bytes": 4799
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/METHOD_SUMMARY.csv": {
+      "sha256": "46e8d73fe99c8afeec5eb9acadf94df27305257c77763890ebc401fae289ba12",
+      "bytes": 106434
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/PAIRED_COMPARISONS.csv": {
+      "sha256": "83e89fe746c0fd0abe6e1045dc8a2cca1901e20c7bc0f8a106fbbb784c4d4018",
+      "bytes": 479813
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/PAIRED_SUMMARY.csv": {
+      "sha256": "68b7cdd50637366b483605444e7f78e7036ca8666808df729fa2c699d178ac17",
+      "bytes": 116948
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/PARETO_DIAGNOSTICS.csv": {
+      "sha256": "ca4a26cbe2d1d4ff4d533f7769c9c8e7c8ed0c6344d71a80147e122b27638e33",
+      "bytes": 40831
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/Q_DEPLOYMENT_DECISIONS.csv": {
+      "sha256": "dbd1b0099e8bfde6db250e90448d9da20ee6e5f337698e88d681fcecfacda812",
+      "bytes": 234968
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/Q_EPISODE_SUMMARY.csv": {
+      "sha256": "f1572f6e02282a1d4acd416a46f169c0177c8ae40998d1dabf74bd4af756a757",
+      "bytes": 187060
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/Q_LEARNING_DIAGNOSTICS.md": {
+      "sha256": "a1ce2cb90d9d52e68908db0b3e244d8840655798414c2b84307120589acb8002",
+      "bytes": 7708
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/Q_RUN_DIAGNOSTICS.csv": {
+      "sha256": "30195c527e20ff73672f261ad6f7a5801c14eee483ed2727c97a26885dd72c5f",
+      "bytes": 9891
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/Q_TARGET_PAIR_CHECK.csv": {
+      "sha256": "31f23a047ddceb22e4515181b5226fd51f93e0ca8089b464cb63d4c621b65f0d",
+      "bytes": 1205
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/README.md": {
+      "sha256": "fb2dbfb56ccadaf1cc6ca341c6329c8adb2945b58a5cf86f8484a0a06d097ae7",
+      "bytes": 5044
+    },
+    "research/experiments/polus_complete_pruning_20261031/analysis_20261031/SCIENTIFIC_ANALYSIS.md": {
+      "sha256": "a65d1d9b96d533026a687cb020bfe996e628f3ebbe3f3bb8915654548137bb4f",
+      "bytes": 21507
+    }
+  },
+  "tests": {
+    "PASS": 19,
+    "FAIL": 0,
+    "SKIPPED": 0,
+    "command": "PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m pytest tests/test_complete_scientific.py -ra",
+    "runtime": "Python 3.12.9",
+    "external_log": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-complete-scientific-analysis-20261031T121639Z/focused-tests-release.log",
+    "log_hash": {
+      "sha256": "9c511475dbf6bbb82ad1a58e3462558c20521d8494c6aaf462c78769305a945e",
+      "bytes": 99
+    },
+    "full_suite_run_in_this_task": false
+  },
+  "determinism": {
+    "independent_table_generations": 2,
+    "byte_identical_files": {
+      "ANALYSIS_RESULTS.json": "a32ca1629734ff4b63acdb78a92ec7f5b7be69e0c38279debb2c5245a1fb8a36",
+      "GREEDY_LOOKAHEAD_TRAJECTORIES.csv": "48ab598ea7d215f2a863999e04f7d0db6d7367e24e889ad73d866fe1cb8167ec",
+      "GREEDY_PREVIEW_BRIDGE.csv": "82910285b5247460279d7f658829167a1386afc392de93dd6726dde8fbe49c54",
+      "LOOKAHEAD_CASE_EVIDENCE.json": "fed1640d3a7a5d6eb8008f41a7fa0bac8ef4d89e2306674d980a483d74bcae02",
+      "METHOD_SUMMARY.csv": "46e8d73fe99c8afeec5eb9acadf94df27305257c77763890ebc401fae289ba12",
+      "PAIRED_COMPARISONS.csv": "83e89fe746c0fd0abe6e1045dc8a2cca1901e20c7bc0f8a106fbbb784c4d4018",
+      "PAIRED_SUMMARY.csv": "68b7cdd50637366b483605444e7f78e7036ca8666808df729fa2c699d178ac17",
+      "PARETO_DIAGNOSTICS.csv": "ca4a26cbe2d1d4ff4d533f7769c9c8e7c8ed0c6344d71a80147e122b27638e33",
+      "Q_DEPLOYMENT_DECISIONS.csv": "dbd1b0099e8bfde6db250e90448d9da20ee6e5f337698e88d681fcecfacda812",
+      "Q_EPISODE_SUMMARY.csv": "f1572f6e02282a1d4acd416a46f169c0177c8ae40998d1dabf74bd4af756a757",
+      "Q_RUN_DIAGNOSTICS.csv": "30195c527e20ff73672f261ad6f7a5801c14eee483ed2727c97a26885dd72c5f",
+      "Q_TARGET_PAIR_CHECK.csv": "31f23a047ddceb22e4515181b5226fd51f93e0ca8089b464cb63d4c621b65f0d"
+    },
+    "first": "../prunable_gnn_artifacts/polus-complete-scientific-analysis-20261031T121639Z/final-tables",
+    "second": "../prunable_gnn_artifacts/polus-complete-scientific-analysis-20261031T121639Z/release-tables"
+  },
+  "runtime": {
+    "tables_and_tests": "Python 3.12.9",
+    "reports": "Python 3.14.3",
+    "manifest": "Python 3.12.9",
+    "figures": {
+      "python": "3.12.9",
+      "matplotlib": "3.9.4",
+      "numpy": "1.26.4",
+      "formats": [
+        "PDF vector",
+        "PNG250dpi"
+      ],
+      "uncertainty": "sample SD n=3, not CI",
+      "new_model_execution": false
+    }
+  },
+  "external_analysis_root": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-complete-scientific-analysis-20261031T121639Z",
+  "raw_root": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/polus-complete-collection-20261031T110939Z/raw",
+  "constraints": {
+    "new_training": false,
+    "new_pruning": false,
+    "new_inference": false,
+    "new_model_timing": false,
+    "new_jobs": false,
+    "server_access": false,
+    "algorithm_edits": false,
+    "historical_evidence_edits": false,
+    "manuscript_edits": false,
+    "test_based_selection": false,
+    "push": false,
+    "merge": false
+  }
+}
