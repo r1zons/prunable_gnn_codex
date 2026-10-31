@@ -1,0 +1,27 @@
+{
+  "local_full": {
+    "passed": 547,
+    "failed": 0,
+    "skipped": 6,
+    "log": "tests/full-pytest-03.log",
+    "sha256": "81fad1587c1262a65cf919c251512bf027272f0fc36991bf23f98da7dc2a8184"
+  },
+  "local_focused": {
+    "passed": 20,
+    "failed": 0,
+    "skipped": 0,
+    "log": "tests/focused-03.log",
+    "sha256": "5a612c52bf344c89faf39816d9630855d4180bae67b52663063c3d1417a58a50"
+  },
+  "skips": [
+    "2 CUDA device-preservation tests: CUDA unavailable",
+    "4 opt-in archived Cora Lookahead checks: not enabled in this invocation"
+  ],
+  "raw_log_root": "${GNN_ARTIFACT_ROOT}/polus-complete-pruning-20261031/",
+  "native_inputs": {
+    "verified_graphs": 3,
+    "verified_historical_checkpoints": 6,
+    "archive_bytes_verified": true,
+    "validation_reproduced": true
+  }
+}

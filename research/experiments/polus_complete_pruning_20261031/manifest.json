@@ -1,0 +1,2817 @@
+{
+  "status": "PLANNED_NOT_SUBMITTED",
+  "source_base_commit": "376610cdba94e62c98d658f60c12a4091702bf42",
+  "source_pin": "Exact executable commit and input manifest SHA are filled into the immutable deployment protocol before bsub.",
+  "protocol_sha256": "a037c5e587b9b1b54858ca2c61957050b0070742463bfb43e8c3f477a0f93e6c",
+  "conditions": [
+    {
+      "id": "cora-gcn-s101",
+      "dataset": "cora",
+      "model": "gcn",
+      "seed": 101,
+      "pilot": true,
+      "runs": [
+        {
+          "id": "cora-gcn-s101-static_random-t30",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-gcn-s101-static_random-t50",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-gcn-s101-static_magnitude-t30",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-gcn-s101-static_magnitude-t50",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-gcn-s101-static_snip-t30",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-gcn-s101-static_snip-t50",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-gcn-s101-sequential_random-t30",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-gcn-s101-sequential_random-t50",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-gcn-s101-adaptive_greedy-t30",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-gcn-s101-adaptive_greedy-t50",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-gcn-s101-lookahead_depth2-t30",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-gcn-s101-lookahead_depth2-t50",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-gcn-s101-tabular_q-t30",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-gcn-s101-tabular_q-t50",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        }
+      ]
+    },
+    {
+      "id": "cora-gcn-s202",
+      "dataset": "cora",
+      "model": "gcn",
+      "seed": 202,
+      "pilot": false,
+      "runs": [
+        {
+          "id": "cora-gcn-s202-static_random-t30",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-gcn-s202-static_random-t50",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-gcn-s202-static_magnitude-t30",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-gcn-s202-static_magnitude-t50",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-gcn-s202-static_snip-t30",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-gcn-s202-static_snip-t50",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-gcn-s202-sequential_random-t30",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-gcn-s202-sequential_random-t50",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-gcn-s202-adaptive_greedy-t30",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-gcn-s202-adaptive_greedy-t50",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-gcn-s202-lookahead_depth2-t30",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-gcn-s202-lookahead_depth2-t50",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-gcn-s202-tabular_q-t30",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-gcn-s202-tabular_q-t50",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        }
+      ]
+    },
+    {
+      "id": "cora-gcn-s303",
+      "dataset": "cora",
+      "model": "gcn",
+      "seed": 303,
+      "pilot": false,
+      "runs": [
+        {
+          "id": "cora-gcn-s303-static_random-t30",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-gcn-s303-static_random-t50",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-gcn-s303-static_magnitude-t30",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-gcn-s303-static_magnitude-t50",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-gcn-s303-static_snip-t30",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-gcn-s303-static_snip-t50",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-gcn-s303-sequential_random-t30",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-gcn-s303-sequential_random-t50",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-gcn-s303-adaptive_greedy-t30",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-gcn-s303-adaptive_greedy-t50",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-gcn-s303-lookahead_depth2-t30",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-gcn-s303-lookahead_depth2-t50",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-gcn-s303-tabular_q-t30",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-gcn-s303-tabular_q-t50",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        }
+      ]
+    },
+    {
+      "id": "cora-graphsage-s101",
+      "dataset": "cora",
+      "model": "graphsage",
+      "seed": 101,
+      "pilot": true,
+      "runs": [
+        {
+          "id": "cora-graphsage-s101-static_random-t30",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-graphsage-s101-static_random-t50",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-graphsage-s101-static_magnitude-t30",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-graphsage-s101-static_magnitude-t50",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-graphsage-s101-static_snip-t30",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-graphsage-s101-static_snip-t50",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-graphsage-s101-sequential_random-t30",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-graphsage-s101-sequential_random-t50",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-graphsage-s101-adaptive_greedy-t30",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-graphsage-s101-adaptive_greedy-t50",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-graphsage-s101-lookahead_depth2-t30",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-graphsage-s101-lookahead_depth2-t50",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-graphsage-s101-tabular_q-t30",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "cora-graphsage-s101-tabular_q-t50",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        }
+      ]
+    },
+    {
+      "id": "cora-graphsage-s202",
+      "dataset": "cora",
+      "model": "graphsage",
+      "seed": 202,
+      "pilot": false,
+      "runs": [
+        {
+          "id": "cora-graphsage-s202-static_random-t30",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-graphsage-s202-static_random-t50",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-graphsage-s202-static_magnitude-t30",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-graphsage-s202-static_magnitude-t50",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-graphsage-s202-static_snip-t30",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-graphsage-s202-static_snip-t50",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-graphsage-s202-sequential_random-t30",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-graphsage-s202-sequential_random-t50",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-graphsage-s202-adaptive_greedy-t30",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-graphsage-s202-adaptive_greedy-t50",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-graphsage-s202-lookahead_depth2-t30",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-graphsage-s202-lookahead_depth2-t50",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-graphsage-s202-tabular_q-t30",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "cora-graphsage-s202-tabular_q-t50",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        }
+      ]
+    },
+    {
+      "id": "cora-graphsage-s303",
+      "dataset": "cora",
+      "model": "graphsage",
+      "seed": 303,
+      "pilot": false,
+      "runs": [
+        {
+          "id": "cora-graphsage-s303-static_random-t30",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-graphsage-s303-static_random-t50",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-graphsage-s303-static_magnitude-t30",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-graphsage-s303-static_magnitude-t50",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-graphsage-s303-static_snip-t30",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-graphsage-s303-static_snip-t50",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-graphsage-s303-sequential_random-t30",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-graphsage-s303-sequential_random-t50",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-graphsage-s303-adaptive_greedy-t30",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-graphsage-s303-adaptive_greedy-t50",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-graphsage-s303-lookahead_depth2-t30",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-graphsage-s303-lookahead_depth2-t50",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-graphsage-s303-tabular_q-t30",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "cora-graphsage-s303-tabular_q-t50",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        }
+      ]
+    },
+    {
+      "id": "citeseer-gcn-s101",
+      "dataset": "citeseer",
+      "model": "gcn",
+      "seed": 101,
+      "pilot": false,
+      "runs": [
+        {
+          "id": "citeseer-gcn-s101-static_random-t30",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-gcn-s101-static_random-t50",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-gcn-s101-static_magnitude-t30",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-gcn-s101-static_magnitude-t50",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-gcn-s101-static_snip-t30",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-gcn-s101-static_snip-t50",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-gcn-s101-sequential_random-t30",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-gcn-s101-sequential_random-t50",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-gcn-s101-adaptive_greedy-t30",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-gcn-s101-adaptive_greedy-t50",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-gcn-s101-lookahead_depth2-t30",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-gcn-s101-lookahead_depth2-t50",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-gcn-s101-tabular_q-t30",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-gcn-s101-tabular_q-t50",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        }
+      ]
+    },
+    {
+      "id": "citeseer-gcn-s202",
+      "dataset": "citeseer",
+      "model": "gcn",
+      "seed": 202,
+      "pilot": false,
+      "runs": [
+        {
+          "id": "citeseer-gcn-s202-static_random-t30",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-gcn-s202-static_random-t50",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-gcn-s202-static_magnitude-t30",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-gcn-s202-static_magnitude-t50",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-gcn-s202-static_snip-t30",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-gcn-s202-static_snip-t50",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-gcn-s202-sequential_random-t30",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-gcn-s202-sequential_random-t50",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-gcn-s202-adaptive_greedy-t30",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-gcn-s202-adaptive_greedy-t50",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-gcn-s202-lookahead_depth2-t30",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-gcn-s202-lookahead_depth2-t50",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-gcn-s202-tabular_q-t30",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-gcn-s202-tabular_q-t50",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        }
+      ]
+    },
+    {
+      "id": "citeseer-gcn-s303",
+      "dataset": "citeseer",
+      "model": "gcn",
+      "seed": 303,
+      "pilot": false,
+      "runs": [
+        {
+          "id": "citeseer-gcn-s303-static_random-t30",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-gcn-s303-static_random-t50",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-gcn-s303-static_magnitude-t30",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-gcn-s303-static_magnitude-t50",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-gcn-s303-static_snip-t30",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-gcn-s303-static_snip-t50",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-gcn-s303-sequential_random-t30",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-gcn-s303-sequential_random-t50",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-gcn-s303-adaptive_greedy-t30",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-gcn-s303-adaptive_greedy-t50",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-gcn-s303-lookahead_depth2-t30",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-gcn-s303-lookahead_depth2-t50",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-gcn-s303-tabular_q-t30",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-gcn-s303-tabular_q-t50",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        }
+      ]
+    },
+    {
+      "id": "citeseer-graphsage-s101",
+      "dataset": "citeseer",
+      "model": "graphsage",
+      "seed": 101,
+      "pilot": false,
+      "runs": [
+        {
+          "id": "citeseer-graphsage-s101-static_random-t30",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-graphsage-s101-static_random-t50",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-graphsage-s101-static_magnitude-t30",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-graphsage-s101-static_magnitude-t50",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-graphsage-s101-static_snip-t30",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-graphsage-s101-static_snip-t50",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-graphsage-s101-sequential_random-t30",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-graphsage-s101-sequential_random-t50",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-graphsage-s101-adaptive_greedy-t30",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-graphsage-s101-adaptive_greedy-t50",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-graphsage-s101-lookahead_depth2-t30",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-graphsage-s101-lookahead_depth2-t50",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-graphsage-s101-tabular_q-t30",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "citeseer-graphsage-s101-tabular_q-t50",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        }
+      ]
+    },
+    {
+      "id": "citeseer-graphsage-s202",
+      "dataset": "citeseer",
+      "model": "graphsage",
+      "seed": 202,
+      "pilot": false,
+      "runs": [
+        {
+          "id": "citeseer-graphsage-s202-static_random-t30",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-graphsage-s202-static_random-t50",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-graphsage-s202-static_magnitude-t30",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-graphsage-s202-static_magnitude-t50",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-graphsage-s202-static_snip-t30",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-graphsage-s202-static_snip-t50",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-graphsage-s202-sequential_random-t30",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-graphsage-s202-sequential_random-t50",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-graphsage-s202-adaptive_greedy-t30",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-graphsage-s202-adaptive_greedy-t50",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-graphsage-s202-lookahead_depth2-t30",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-graphsage-s202-lookahead_depth2-t50",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-graphsage-s202-tabular_q-t30",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "citeseer-graphsage-s202-tabular_q-t50",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        }
+      ]
+    },
+    {
+      "id": "citeseer-graphsage-s303",
+      "dataset": "citeseer",
+      "model": "graphsage",
+      "seed": 303,
+      "pilot": false,
+      "runs": [
+        {
+          "id": "citeseer-graphsage-s303-static_random-t30",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-graphsage-s303-static_random-t50",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-graphsage-s303-static_magnitude-t30",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-graphsage-s303-static_magnitude-t50",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-graphsage-s303-static_snip-t30",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-graphsage-s303-static_snip-t50",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-graphsage-s303-sequential_random-t30",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-graphsage-s303-sequential_random-t50",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-graphsage-s303-adaptive_greedy-t30",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-graphsage-s303-adaptive_greedy-t50",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-graphsage-s303-lookahead_depth2-t30",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-graphsage-s303-lookahead_depth2-t50",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-graphsage-s303-tabular_q-t30",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "citeseer-graphsage-s303-tabular_q-t50",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        }
+      ]
+    },
+    {
+      "id": "pubmed-gcn-s101",
+      "dataset": "pubmed",
+      "model": "gcn",
+      "seed": 101,
+      "pilot": false,
+      "runs": [
+        {
+          "id": "pubmed-gcn-s101-static_random-t30",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-gcn-s101-static_random-t50",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-gcn-s101-static_magnitude-t30",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-gcn-s101-static_magnitude-t50",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-gcn-s101-static_snip-t30",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-gcn-s101-static_snip-t50",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-gcn-s101-sequential_random-t30",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-gcn-s101-sequential_random-t50",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-gcn-s101-adaptive_greedy-t30",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-gcn-s101-adaptive_greedy-t50",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-gcn-s101-lookahead_depth2-t30",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-gcn-s101-lookahead_depth2-t50",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-gcn-s101-tabular_q-t30",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-gcn-s101-tabular_q-t50",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        }
+      ]
+    },
+    {
+      "id": "pubmed-gcn-s202",
+      "dataset": "pubmed",
+      "model": "gcn",
+      "seed": 202,
+      "pilot": false,
+      "runs": [
+        {
+          "id": "pubmed-gcn-s202-static_random-t30",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-gcn-s202-static_random-t50",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-gcn-s202-static_magnitude-t30",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-gcn-s202-static_magnitude-t50",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-gcn-s202-static_snip-t30",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-gcn-s202-static_snip-t50",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-gcn-s202-sequential_random-t30",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-gcn-s202-sequential_random-t50",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-gcn-s202-adaptive_greedy-t30",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-gcn-s202-adaptive_greedy-t50",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-gcn-s202-lookahead_depth2-t30",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-gcn-s202-lookahead_depth2-t50",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-gcn-s202-tabular_q-t30",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-gcn-s202-tabular_q-t50",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        }
+      ]
+    },
+    {
+      "id": "pubmed-gcn-s303",
+      "dataset": "pubmed",
+      "model": "gcn",
+      "seed": 303,
+      "pilot": false,
+      "runs": [
+        {
+          "id": "pubmed-gcn-s303-static_random-t30",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-gcn-s303-static_random-t50",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-gcn-s303-static_magnitude-t30",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-gcn-s303-static_magnitude-t50",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-gcn-s303-static_snip-t30",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-gcn-s303-static_snip-t50",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-gcn-s303-sequential_random-t30",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-gcn-s303-sequential_random-t50",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-gcn-s303-adaptive_greedy-t30",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-gcn-s303-adaptive_greedy-t50",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-gcn-s303-lookahead_depth2-t30",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-gcn-s303-lookahead_depth2-t50",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-gcn-s303-tabular_q-t30",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-gcn-s303-tabular_q-t50",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        }
+      ]
+    },
+    {
+      "id": "pubmed-graphsage-s101",
+      "dataset": "pubmed",
+      "model": "graphsage",
+      "seed": 101,
+      "pilot": false,
+      "runs": [
+        {
+          "id": "pubmed-graphsage-s101-static_random-t30",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-graphsage-s101-static_random-t50",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-graphsage-s101-static_magnitude-t30",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-graphsage-s101-static_magnitude-t50",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-graphsage-s101-static_snip-t30",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-graphsage-s101-static_snip-t50",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-graphsage-s101-sequential_random-t30",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-graphsage-s101-sequential_random-t50",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-graphsage-s101-adaptive_greedy-t30",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-graphsage-s101-adaptive_greedy-t50",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-graphsage-s101-lookahead_depth2-t30",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-graphsage-s101-lookahead_depth2-t50",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.5,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-graphsage-s101-tabular_q-t30",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.3,
+          "policy_seed": 101
+        },
+        {
+          "id": "pubmed-graphsage-s101-tabular_q-t50",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.5,
+          "policy_seed": 101
+        }
+      ]
+    },
+    {
+      "id": "pubmed-graphsage-s202",
+      "dataset": "pubmed",
+      "model": "graphsage",
+      "seed": 202,
+      "pilot": false,
+      "runs": [
+        {
+          "id": "pubmed-graphsage-s202-static_random-t30",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-graphsage-s202-static_random-t50",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-graphsage-s202-static_magnitude-t30",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-graphsage-s202-static_magnitude-t50",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-graphsage-s202-static_snip-t30",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-graphsage-s202-static_snip-t50",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-graphsage-s202-sequential_random-t30",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-graphsage-s202-sequential_random-t50",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-graphsage-s202-adaptive_greedy-t30",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-graphsage-s202-adaptive_greedy-t50",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-graphsage-s202-lookahead_depth2-t30",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-graphsage-s202-lookahead_depth2-t50",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.5,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-graphsage-s202-tabular_q-t30",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.3,
+          "policy_seed": 202
+        },
+        {
+          "id": "pubmed-graphsage-s202-tabular_q-t50",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.5,
+          "policy_seed": 202
+        }
+      ]
+    },
+    {
+      "id": "pubmed-graphsage-s303",
+      "dataset": "pubmed",
+      "model": "graphsage",
+      "seed": 303,
+      "pilot": false,
+      "runs": [
+        {
+          "id": "pubmed-graphsage-s303-static_random-t30",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-graphsage-s303-static_random-t50",
+          "method": "static_random",
+          "implementation": "random_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-graphsage-s303-static_magnitude-t30",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-graphsage-s303-static_magnitude-t50",
+          "method": "static_magnitude",
+          "implementation": "magnitude_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-graphsage-s303-static_snip-t30",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-graphsage-s303-static_snip-t50",
+          "method": "static_snip",
+          "implementation": "snip_pt_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-graphsage-s303-sequential_random-t30",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-graphsage-s303-sequential_random-t50",
+          "method": "sequential_random",
+          "implementation": "random_reachable_v3",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-graphsage-s303-adaptive_greedy-t30",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-graphsage-s303-adaptive_greedy-t50",
+          "method": "adaptive_greedy",
+          "implementation": "adaptive_greedy_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-graphsage-s303-lookahead_depth2-t30",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-graphsage-s303-lookahead_depth2-t50",
+          "method": "lookahead_depth2",
+          "implementation": "lookahead_local_v4",
+          "target": 0.5,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-graphsage-s303-tabular_q-t30",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.3,
+          "policy_seed": 303
+        },
+        {
+          "id": "pubmed-graphsage-s303-tabular_q-t50",
+          "method": "tabular_q",
+          "implementation": "q_learning_local_v2",
+          "target": 0.5,
+          "policy_seed": 303
+        }
+      ]
+    }
+  ],
+  "jobs": [
+    {
+      "id": "train-cora-gcn-s101",
+      "stage": "train",
+      "condition": "cora-gcn-s101",
+      "dependencies": [],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "validate-cora-gcn-s101",
+      "stage": "validate",
+      "condition": "cora-gcn-s101",
+      "dependencies": [
+        "train-cora-gcn-s101"
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "prune-cora-gcn-s101",
+      "stage": "prune",
+      "condition": "cora-gcn-s101",
+      "dependencies": [
+        "validate-cora-gcn-s101"
+      ],
+      "resources": {
+        "wall_minutes": 20,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "train-cora-graphsage-s101",
+      "stage": "train",
+      "condition": "cora-graphsage-s101",
+      "dependencies": [],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "validate-cora-graphsage-s101",
+      "stage": "validate",
+      "condition": "cora-graphsage-s101",
+      "dependencies": [
+        "train-cora-graphsage-s101"
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "prune-cora-graphsage-s101",
+      "stage": "prune",
+      "condition": "cora-graphsage-s101",
+      "dependencies": [
+        "validate-cora-graphsage-s101"
+      ],
+      "resources": {
+        "wall_minutes": 20,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "pilot-gate",
+      "stage": "gate",
+      "dependencies": [
+        "prune-cora-gcn-s101",
+        "prune-cora-graphsage-s101"
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "train-cora-gcn-s202",
+      "stage": "train",
+      "condition": "cora-gcn-s202",
+      "dependencies": [
+        "pilot-gate"
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "validate-cora-gcn-s202",
+      "stage": "validate",
+      "condition": "cora-gcn-s202",
+      "dependencies": [
+        "train-cora-gcn-s202"
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "prune-cora-gcn-s202",
+      "stage": "prune",
+      "condition": "cora-gcn-s202",
+      "dependencies": [
+        "validate-cora-gcn-s202"
+      ],
+      "resources": {
+        "wall_minutes": 20,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "train-cora-gcn-s303",
+      "stage": "train",
+      "condition": "cora-gcn-s303",
+      "dependencies": [
+        "pilot-gate"
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "validate-cora-gcn-s303",
+      "stage": "validate",
+      "condition": "cora-gcn-s303",
+      "dependencies": [
+        "train-cora-gcn-s303"
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "prune-cora-gcn-s303",
+      "stage": "prune",
+      "condition": "cora-gcn-s303",
+      "dependencies": [
+        "validate-cora-gcn-s303"
+      ],
+      "resources": {
+        "wall_minutes": 20,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "train-cora-graphsage-s202",
+      "stage": "train",
+      "condition": "cora-graphsage-s202",
+      "dependencies": [
+        "pilot-gate"
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "validate-cora-graphsage-s202",
+      "stage": "validate",
+      "condition": "cora-graphsage-s202",
+      "dependencies": [
+        "train-cora-graphsage-s202"
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "prune-cora-graphsage-s202",
+      "stage": "prune",
+      "condition": "cora-graphsage-s202",
+      "dependencies": [
+        "validate-cora-graphsage-s202"
+      ],
+      "resources": {
+        "wall_minutes": 20,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "train-cora-graphsage-s303",
+      "stage": "train",
+      "condition": "cora-graphsage-s303",
+      "dependencies": [
+        "pilot-gate"
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "validate-cora-graphsage-s303",
+      "stage": "validate",
+      "condition": "cora-graphsage-s303",
+      "dependencies": [
+        "train-cora-graphsage-s303"
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "prune-cora-graphsage-s303",
+      "stage": "prune",
+      "condition": "cora-graphsage-s303",
+      "dependencies": [
+        "validate-cora-graphsage-s303"
+      ],
+      "resources": {
+        "wall_minutes": 20,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "train-citeseer-gcn-s101",
+      "stage": "train",
+      "condition": "citeseer-gcn-s101",
+      "dependencies": [
+        "pilot-gate"
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "validate-citeseer-gcn-s101",
+      "stage": "validate",
+      "condition": "citeseer-gcn-s101",
+      "dependencies": [
+        "train-citeseer-gcn-s101"
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "prune-citeseer-gcn-s101",
+      "stage": "prune",
+      "condition": "citeseer-gcn-s101",
+      "dependencies": [
+        "validate-citeseer-gcn-s101"
+      ],
+      "resources": {
+        "wall_minutes": 30,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "train-citeseer-gcn-s202",
+      "stage": "train",
+      "condition": "citeseer-gcn-s202",
+      "dependencies": [
+        "pilot-gate"
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "validate-citeseer-gcn-s202",
+      "stage": "validate",
+      "condition": "citeseer-gcn-s202",
+      "dependencies": [
+        "train-citeseer-gcn-s202"
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "prune-citeseer-gcn-s202",
+      "stage": "prune",
+      "condition": "citeseer-gcn-s202",
+      "dependencies": [
+        "validate-citeseer-gcn-s202"
+      ],
+      "resources": {
+        "wall_minutes": 30,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "train-citeseer-gcn-s303",
+      "stage": "train",
+      "condition": "citeseer-gcn-s303",
+      "dependencies": [
+        "pilot-gate"
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "validate-citeseer-gcn-s303",
+      "stage": "validate",
+      "condition": "citeseer-gcn-s303",
+      "dependencies": [
+        "train-citeseer-gcn-s303"
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "prune-citeseer-gcn-s303",
+      "stage": "prune",
+      "condition": "citeseer-gcn-s303",
+      "dependencies": [
+        "validate-citeseer-gcn-s303"
+      ],
+      "resources": {
+        "wall_minutes": 30,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "train-citeseer-graphsage-s101",
+      "stage": "train",
+      "condition": "citeseer-graphsage-s101",
+      "dependencies": [
+        "pilot-gate"
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "validate-citeseer-graphsage-s101",
+      "stage": "validate",
+      "condition": "citeseer-graphsage-s101",
+      "dependencies": [
+        "train-citeseer-graphsage-s101"
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "prune-citeseer-graphsage-s101",
+      "stage": "prune",
+      "condition": "citeseer-graphsage-s101",
+      "dependencies": [
+        "validate-citeseer-graphsage-s101"
+      ],
+      "resources": {
+        "wall_minutes": 30,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "train-citeseer-graphsage-s202",
+      "stage": "train",
+      "condition": "citeseer-graphsage-s202",
+      "dependencies": [
+        "pilot-gate"
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "validate-citeseer-graphsage-s202",
+      "stage": "validate",
+      "condition": "citeseer-graphsage-s202",
+      "dependencies": [
+        "train-citeseer-graphsage-s202"
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "prune-citeseer-graphsage-s202",
+      "stage": "prune",
+      "condition": "citeseer-graphsage-s202",
+      "dependencies": [
+        "validate-citeseer-graphsage-s202"
+      ],
+      "resources": {
+        "wall_minutes": 30,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "train-citeseer-graphsage-s303",
+      "stage": "train",
+      "condition": "citeseer-graphsage-s303",
+      "dependencies": [
+        "pilot-gate"
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "validate-citeseer-graphsage-s303",
+      "stage": "validate",
+      "condition": "citeseer-graphsage-s303",
+      "dependencies": [
+        "train-citeseer-graphsage-s303"
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "prune-citeseer-graphsage-s303",
+      "stage": "prune",
+      "condition": "citeseer-graphsage-s303",
+      "dependencies": [
+        "validate-citeseer-graphsage-s303"
+      ],
+      "resources": {
+        "wall_minutes": 30,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "train-pubmed-gcn-s101",
+      "stage": "train",
+      "condition": "pubmed-gcn-s101",
+      "dependencies": [
+        "pilot-gate"
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "validate-pubmed-gcn-s101",
+      "stage": "validate",
+      "condition": "pubmed-gcn-s101",
+      "dependencies": [
+        "train-pubmed-gcn-s101"
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "prune-pubmed-gcn-s101",
+      "stage": "prune",
+      "condition": "pubmed-gcn-s101",
+      "dependencies": [
+        "validate-pubmed-gcn-s101"
+      ],
+      "resources": {
+        "wall_minutes": 45,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "train-pubmed-gcn-s202",
+      "stage": "train",
+      "condition": "pubmed-gcn-s202",
+      "dependencies": [
+        "pilot-gate"
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "validate-pubmed-gcn-s202",
+      "stage": "validate",
+      "condition": "pubmed-gcn-s202",
+      "dependencies": [
+        "train-pubmed-gcn-s202"
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "prune-pubmed-gcn-s202",
+      "stage": "prune",
+      "condition": "pubmed-gcn-s202",
+      "dependencies": [
+        "validate-pubmed-gcn-s202"
+      ],
+      "resources": {
+        "wall_minutes": 45,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "train-pubmed-gcn-s303",
+      "stage": "train",
+      "condition": "pubmed-gcn-s303",
+      "dependencies": [
+        "pilot-gate"
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "validate-pubmed-gcn-s303",
+      "stage": "validate",
+      "condition": "pubmed-gcn-s303",
+      "dependencies": [
+        "train-pubmed-gcn-s303"
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "prune-pubmed-gcn-s303",
+      "stage": "prune",
+      "condition": "pubmed-gcn-s303",
+      "dependencies": [
+        "validate-pubmed-gcn-s303"
+      ],
+      "resources": {
+        "wall_minutes": 45,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "train-pubmed-graphsage-s101",
+      "stage": "train",
+      "condition": "pubmed-graphsage-s101",
+      "dependencies": [
+        "pilot-gate"
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "validate-pubmed-graphsage-s101",
+      "stage": "validate",
+      "condition": "pubmed-graphsage-s101",
+      "dependencies": [
+        "train-pubmed-graphsage-s101"
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "prune-pubmed-graphsage-s101",
+      "stage": "prune",
+      "condition": "pubmed-graphsage-s101",
+      "dependencies": [
+        "validate-pubmed-graphsage-s101"
+      ],
+      "resources": {
+        "wall_minutes": 45,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "train-pubmed-graphsage-s202",
+      "stage": "train",
+      "condition": "pubmed-graphsage-s202",
+      "dependencies": [
+        "pilot-gate"
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "validate-pubmed-graphsage-s202",
+      "stage": "validate",
+      "condition": "pubmed-graphsage-s202",
+      "dependencies": [
+        "train-pubmed-graphsage-s202"
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "prune-pubmed-graphsage-s202",
+      "stage": "prune",
+      "condition": "pubmed-graphsage-s202",
+      "dependencies": [
+        "validate-pubmed-graphsage-s202"
+      ],
+      "resources": {
+        "wall_minutes": 45,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "train-pubmed-graphsage-s303",
+      "stage": "train",
+      "condition": "pubmed-graphsage-s303",
+      "dependencies": [
+        "pilot-gate"
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "validate-pubmed-graphsage-s303",
+      "stage": "validate",
+      "condition": "pubmed-graphsage-s303",
+      "dependencies": [
+        "train-pubmed-graphsage-s303"
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    },
+    {
+      "id": "prune-pubmed-graphsage-s303",
+      "stage": "prune",
+      "condition": "pubmed-graphsage-s303",
+      "dependencies": [
+        "validate-pubmed-graphsage-s303"
+      ],
+      "resources": {
+        "wall_minutes": 45,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      }
+    }
+  ],
+  "planned_dense_conditions": 18,
+  "planned_new_training": 12,
+  "verified_reuse": 6,
+  "planned_pruning_tasks": 252,
+  "requested_active_wall_minutes": 845
+}

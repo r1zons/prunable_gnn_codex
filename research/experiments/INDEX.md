@@ -1,5 +1,12 @@
 # Experiment campaign registry
 
+**POLUS-COMPLETE-PRUNING-20261031** — preflight, not submitted. Cora/CiteSeer/
+PubMed × GCN/GraphSAGE × dense101/202/303,3layers/hidden32,500epochs/patience50,
+60/20/20;18 dense conditions and252 runs across seven existing method packages.
+Six native seed101 checkpoints verified for reuse;12 new fits planned. Separate
+55-node training/validation/pilot-gated pruning DAG; no historical overwrite,
+Questions/Flickr/OGB, fine-tuning, push or merge. [Protocol, identities and bounds](polus_complete_pruning_20261031/README.md).
+
 **QUESTIONS-LOCAL-READINESS-20261031** — completed integration/readiness check,
 not a full experiment matrix. Native HeterophilousGraphDataset; generated60/20/20
 primary split kept separate from ten official50/25/25 folds. GCN/GraphSAGE,3layers,

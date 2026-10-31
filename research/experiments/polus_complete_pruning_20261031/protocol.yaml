@@ -1,0 +1,34 @@
+datasets: [cora, citeseer, pubmed]
+models: [gcn, graphsage]
+dense_seeds: [101, 202, 303]
+targets: [0.3, 0.5]
+architecture:
+  num_layers: 3
+  hidden_channels: 32
+  dropout: 0.5
+training:
+  lr: 0.01
+  weight_decay: 0.0005
+  max_epochs: 500
+  early_stopping_patience: 50
+adaptive:
+  penalty_lambda: 2.0
+  max_steps: 20
+  min_channels: 4
+  tolerance: 0.01
+q_learning:
+  episodes: 30
+  alpha: 0.1
+  gamma: 0.9
+  epsilon: 0.2
+benchmark:
+  warmup_passes: 5
+  timed_passes: 20
+methods:
+  static_random: random_local_v2
+  static_magnitude: magnitude_local_v2
+  static_snip: snip_pt_local_v2
+  sequential_random: random_reachable_v3
+  adaptive_greedy: adaptive_greedy_local_v2
+  lookahead_depth2: lookahead_local_v4
+  tabular_q: q_learning_local_v2

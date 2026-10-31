@@ -2,6 +2,16 @@
 
 **Updated:** 2026-10-31
 
+## Complete POLUS campaign preparation — 2026-10-31
+
+A separately authorized 18-dense/252-pruning campaign is in preflight on branch
+`campaign/complete-pruning-20261031`; no Questions, Flickr or OGB. Current SSH
+access recovered, native activation/runtime and scheduler limits verified;
+six archived seed101 checkpoints independently match the frozen archive and
+reproduce validation metrics. Twelve new fits are planned for seeds202/303.
+Historical algorithms/controllers remain unchanged. See [protocol and gates](experiments/polus_complete_pruning_20261031/README.md).
+This preparation entry does not establish LSF submission or experiment completion.
+
 ## Questions dataset integration and limited readiness — 2026-10-31
 
 Native PyG Questions integrated and locally validated:48,921 nodes,301 features,
