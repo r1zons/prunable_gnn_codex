@@ -1,0 +1,53 @@
+{
+  "dataset": "flickr",
+  "nodes": 89250,
+  "features": 500,
+  "classes": 7,
+  "directed_entries": 899756,
+  "undirected_pairs": 449878,
+  "self_loops": 0,
+  "preprocessing": "raw float32 conversion; no feature normalization; no reverse-edge append",
+  "source_processed_sha256": "05e353934a365c3574b7d458a18412dddc8ba3637d93da5ea1835dedae5e43cd",
+  "raw_files": {
+    "adj_full.npz": "6740dc59750ef52a8fa18f73fc495332fa6f0ece8576c1db7196539b9adaca5f",
+    "class_map.json": "2d61641459b53870e279be2e141363a5bf8b5e11e6b7aace32553734422fe4f3",
+    "feats.npy": "6f9b6a19d0b9abc8afb82150e9e703149f19c9fb5687f4eb0abcec93b1172e1e",
+    "role.json": "0435cfbd69918fa1f8ec30a6fc2494a32e46734d56c9a796c5ecc1288a88a6b3"
+  },
+  "original_tensor_sha256": "73b72fba3fb9b5515a0682f0b35acf367ed78f7058e663b36a0ea672afe162cd",
+  "training_tensor_sha256": "8c867c5982f1b3a43e2324ff70e91a64971d660dcada8744fbdd69b19a3c174c",
+  "graph_file_sha256": "6b3414ddddabaa10a7a9c0547bcaca22e58b72ee1e933126e8d38943eb0c6da8",
+  "split_sha256": "d32c089a6dde1bce1b014715fa503dde4b881925d71b6339a12b8f945892a429",
+  "split_file_sha256": "3e164d5ad723c5f5916cd302fc8e11ae63b39d4d26a786ecb057de5179a8c401",
+  "split_seed": 101,
+  "split_protocol": "generated_exact_ratio_60_20_20",
+  "official_splits_used": false,
+  "split_counts": {
+    "train": 53550,
+    "val": 17850,
+    "test": 17850
+  },
+  "class_counts": {
+    "train": [
+      3193,
+      5072,
+      3805,
+      2992,
+      13773,
+      2104,
+      22611
+    ],
+    "val": [
+      1023,
+      1652,
+      1320,
+      946,
+      4563,
+      682,
+      7664
+    ]
+  },
+  "test_labels_masked": true,
+  "heldout_labels_quarantined_sha256": "0ea24cc75795c2ec7b33f0d67dce128ab426c42c3accd88b8697e5856fcb1043",
+  "historical_graph_pin_limit": "New freeze of recovered cache; historical execution graph hashes were absent."
+}

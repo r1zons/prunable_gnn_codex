@@ -26,8 +26,8 @@ def collect(login: str,remote: str,output: Path):
     (output/'scheduler.json').write_text(json.dumps(statuses,indent=2))
     archive=remote+'/collection-results.tar.gz'
     # A new archive is created once, never overwriting source/raw run files.
-    checksum=ssh('set -e; test ! -e '+q(archive)+'; tar -czf '+q(archive)+' -C '+q(remote)+
-                 ' inputs runs protocol.json source-files.json source-files.sha256 submissions logs acceptance-research-jobs.json capacity.json research-jobs.json; sha256sum '+q(archive)).split()[0]
+    checksum=ssh('set -e; cd '+q(remote)+'; test ! -e '+q(archive)+'; tar -czf '+q(archive)+
+                 ' inputs runs protocol.json source-files.json source-files.sha256 submissions logs acceptance-research-jobs.json capacity.json research-jobs.json submission-tools-* source-*.tar.gz preflight-evidence.tar.gz; sha256sum '+q(archive)).split()[0]
     subprocess.run(['scp',login+':'+archive,str(output/'results.tar.gz')],check=True)
     actual=hashlib.sha256((output/'results.tar.gz').read_bytes()).hexdigest()
     if actual!=checksum:raise ValueError('Transferred archive checksum differs.')

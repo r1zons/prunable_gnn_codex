@@ -1,0 +1,37 @@
+{
+  "campaign_id": "FLICKR-DENSE-SWEEP-20261031",
+  "dataset": "flickr",
+  "models": [
+    "gcn",
+    "graphsage"
+  ],
+  "layers": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "widths": [
+    32,
+    64,
+    128,
+    256
+  ],
+  "seed": 101,
+  "split_seed": 101,
+  "split_protocol": "generated_exact_ratio_60_20_20",
+  "dropout": 0.5,
+  "threads": 4,
+  "training": {
+    "lr": 0.001,
+    "weight_decay": 0.0005,
+    "max_epochs": 500,
+    "early_stopping_patience": 50
+  },
+  "optimizer": "Adam",
+  "selection": "validation_loss_checkpoint_then_validation_accuracy_macro_f1_architecture_review",
+  "normalization": "none",
+  "test_evaluation": "deferred_until_architecture_selection_is_finalized",
+  "source_commit": "3995c6057f3460005b44bc57d98c6d5e7df7f9e2",
+  "input_manifest_sha256": "49fe4e78f123be7905dd3b473327620ab16494ec0af0088d203991b43fb8f30c"
+}

@@ -1,5 +1,21 @@
 # Experiment campaign registry
 
+**FLICKR-DENSE-SWEEP-20261031** — **SUBMITTED32/32, ACCEPTED LSF1611757–1611788**.
+No research completion/status monitoring or result collection after acceptance.
+GCN/GraphSAGE × layers2/3/4/5 × hidden32/64/128/256, seed101, common frozen60/20/20,
+Adam LR0.001/dropout0.5/WD0.0005/500epochs/patience50; no pruning/fine-tuning/reuse,
+test labels absent from uploaded inputs.12 large C4 jobs,20 unbound;4threads,
+exclusive/single host,180min and12/13GiB. Native preflight3 jobs1611753–1611755 DONE,
+18 short fits/reloads verified; max5/256 C4 GCN6.876s/epoch andSAGE8.151s/epoch.
+26 focused PASS; full630 PASS/0 FAIL/6 skips. Source3995c60, schedulerfd99853.
+[Submission report and later commands](flickr_dense_sweep_20261031/SUBMISSION_REPORT.md),
+[manifest](flickr_dense_sweep_20261031/JOB_MANIFEST.csv),
+[protocol](flickr_dense_sweep_20261031/PLAN.md),
+[provenance](flickr_dense_sweep_20261031/PROVENANCE.json).
+Raw:`${GNN_ARTIFACT_ROOT}/flickr-dense-sweep-20261031/`;
+remote:`${POLUS_TASK_ROOT}/results/flickr-dense-sweep-20261031/`.
+No historical pooling, manuscript edit, additional seeds, push or merge.
+
 **POLUS-COMPLETE-SCIENTIFIC-ANALYSIS-20261031** — offline analysis of all 252
 audited outcomes, no new experiment or historical pooling. Three paired dense
 training/split seeds per stratum; sample SD, seed directions, actual compression

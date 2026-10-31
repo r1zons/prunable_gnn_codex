@@ -1,0 +1,297 @@
+{
+  "research_jobs": 32,
+  "accepted": 32,
+  "blocked": 0,
+  "rejected": 0,
+  "unresolved": 0,
+  "receipts": [
+    {
+      "condition_id": "flickr-gcn-l2-h32-s101",
+      "job_id": 1611757,
+      "response_sha256": "ee2f6ec25fea5bc7869733c30055e55b543be1e0550e32aa56547cff60bc0ac6",
+      "intent_sha256": "0329fa18b942f2c1da73849b713c35d6d27b4608f238822a8a6ff34a96c59b19",
+      "receipt_sha256": "f62f8f41d064df740808caa25147870ed7c2ea5d69de500907e92546007115f3",
+      "launcher_sha256": "73f2435d5dcd312d8216769f3a41cc0553d76211fbccda1749bd74a64ea03289",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-gcn-l2-h64-s101",
+      "job_id": 1611758,
+      "response_sha256": "057fae63e3769b8a535d277e37922b230606e2bffe3dd7fe7245bede3c04122f",
+      "intent_sha256": "4a055bff4cf4a8fe23ce9c6615f057c503e736ae17d360c14a92adc2ecb753d1",
+      "receipt_sha256": "01935be91a4af39cd4ad320ed3a370b70c1ba6d8e00614c5f8b49211bf81433e",
+      "launcher_sha256": "48120a69661ae60455a22bf326e0cb17d63d4610dbfc11b126ae2e9e9feb6b16",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-gcn-l2-h128-s101",
+      "job_id": 1611759,
+      "response_sha256": "89a9e815866495ab7da8e74ce6bdbe974796d8b316b23a8e2ee1efc96df8ac65",
+      "intent_sha256": "ef889db7810d446fa05b1e2262f3307ac3a0e77785888e1d0764a3dd4081789d",
+      "receipt_sha256": "229600901da276c78cfc2b21848d56a636cad68e7b643f3da11b7ffa61ea7cea",
+      "launcher_sha256": "9a237f623f1bccabcdd8423a7b4f9e9f7e3813ea1a688e1e5c8dbab9d6ae6e54",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-gcn-l2-h256-s101",
+      "job_id": 1611760,
+      "response_sha256": "f86595a9a625b385c07d8fcb6ddbda42d858ff806cb3d695cf7c1a2604afcb00",
+      "intent_sha256": "6952d7814ca9ad321572ed61b05ced460c34722d76fe08eddf4fe7cd531e2daf",
+      "receipt_sha256": "1b74ea89673cc99b3beb2ae2e9a1ad6ca6fe42e62d0a9035380436aa3b68c7db",
+      "launcher_sha256": "20c81a9c6411325cd678da33e15867a8297f1f573d26b988497d0ce411b7576f",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-gcn-l3-h32-s101",
+      "job_id": 1611761,
+      "response_sha256": "f92b8219c5d9b30c01911c19b23c6ee861df975f1bec798e2488109a3587f0d3",
+      "intent_sha256": "83b5ee76bbd1c2ba1341846d29c906577da43ef771f28af0a8d5da756edb1300",
+      "receipt_sha256": "47d87edaa809114fdc6e48f63e7656f07935342b3ec132ec77ba40f90ca03389",
+      "launcher_sha256": "f0580a2a581c2a6446d1dec0c6ba1f37e2634b84bb6d777be68aabead5aaee85",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-gcn-l3-h64-s101",
+      "job_id": 1611762,
+      "response_sha256": "ec24de2d61d4edb204cc02f4859b9281a089a919f565bb7060c40ff8aa7f04ea",
+      "intent_sha256": "1d3e42bfb353beae1e58a198ae9fd2611a990fb5b22ab5a3658d0dd59f0b1793",
+      "receipt_sha256": "303a1a2a451c9eb45bc0babea9c441059c2d0e836e6e395edd61e9f4e2104acd",
+      "launcher_sha256": "7c59639791c9e79bb6c860939469c3763821e4599e68d65f3650a8866fb6ef91",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-gcn-l3-h128-s101",
+      "job_id": 1611763,
+      "response_sha256": "aeb9a42d4e003701c5c87251886f88f03a035855559be50b83313e0791e0ce08",
+      "intent_sha256": "4326d9547e84614d56c1c8a2758b8cf1d3bd234227a0ed93089cbad3adfbe9d0",
+      "receipt_sha256": "2a60d90ad263b5e392058d5440b8605c05f8664546944bf561778540695123cd",
+      "launcher_sha256": "58f31f2a047b04873d61988f85bcd30e13f06d5afdb6104ab4b1c196e938550b",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-gcn-l3-h256-s101",
+      "job_id": 1611764,
+      "response_sha256": "48cbdc2df14961afef0634c2500338b57a08754f488f30dc2fb880d279614851",
+      "intent_sha256": "2d0cba8c5e54d44fec323a3cdd91690bdf56466072dfd9eeface434a920e12c9",
+      "receipt_sha256": "cf3e0cf3c149e02c90abb40bb3bb9938b03e1f9cf0ebc48775f548f55272b25c",
+      "launcher_sha256": "c2fec247916cd5ee26571ad3d268390c910cd21618b03c7829d980b0caffaca7",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-gcn-l4-h32-s101",
+      "job_id": 1611765,
+      "response_sha256": "dcadd08d186832e1c6b21d42e5b68511965dcf999a133687cf6dc3a26379ce63",
+      "intent_sha256": "996571964ec350447aa424d69b100ddfa807ba546bc7bbcb7d9bb64626517719",
+      "receipt_sha256": "7667f09d3a808046bd37b2b66496849f0ab5c586c0bdfc947e741067abba6a8f",
+      "launcher_sha256": "c6d14bb72ec052242c95583af9d309d798b2df720c2cd8410e97e53fd7294ee0",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-gcn-l4-h64-s101",
+      "job_id": 1611766,
+      "response_sha256": "23fc6c663ff8901d292b0bd973efaf450e06611dcc9309b02b994a793aaaa7a7",
+      "intent_sha256": "9c28a4770ca7d583f3aca58ee634a53aa681f5a1c73ca9a1603d8abfcd1472cf",
+      "receipt_sha256": "6a1241fc2b7786813080709904f92b621dbab6a0407a3cf0a1ca03c68a5c38be",
+      "launcher_sha256": "55c8ae5e6a71d3c5b0a47c512fc67e9c853677e29b0f3cd37242f0a39b8899d4",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-gcn-l4-h128-s101",
+      "job_id": 1611767,
+      "response_sha256": "2e8e78f72d5391078bbfb3135c6a6a9546622506d6eee8efba3b8dc68ef6154b",
+      "intent_sha256": "510e8444638fe7ec3620129a00cddfb8000dd2f15d52f6ea01b8ed3afbc5a792",
+      "receipt_sha256": "7f33e75afd41ad552f04c9fabd51b89a63350ec95984d6ea047d16599842aec9",
+      "launcher_sha256": "d88369fe96dba2624daff8da72f282f09b6708a6ee61282f06ee57c68f05b2fe",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-gcn-l4-h256-s101",
+      "job_id": 1611768,
+      "response_sha256": "675ee4e0b2c68a843435f744e30296e2ddbd74db457ee8ee543ccc2de37d2fb3",
+      "intent_sha256": "50068fed89b2d29a29df13e706d760491c8afcb67e191f4d3224634096a0c3ee",
+      "receipt_sha256": "ca0631defcb62efb7a920b3545bd09daee4c337672b70af3cc20e95546fdc666",
+      "launcher_sha256": "34708b5dc446d442ef8d1de178ccd52ea4e761c92e61bc49ab02cbdaf9305fff",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-gcn-l5-h32-s101",
+      "job_id": 1611769,
+      "response_sha256": "c9d18d1944acbf0792015cd07cf1f3b9092147d0d56cd4131fafa90c61975e0d",
+      "intent_sha256": "f5b8c4596554272e3ce53790d2f09f9d262f276818b84564e3875f540fc5c22a",
+      "receipt_sha256": "02c48228161e43700c7e3b0041ba32c54b297dc41d501c6a74e10da7a8c0cca7",
+      "launcher_sha256": "0a2e38f5e46bff2aad0173d5afb580172e490d8d7cfbc4c32a771158c7c5918c",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-gcn-l5-h64-s101",
+      "job_id": 1611770,
+      "response_sha256": "8fca523d0fe5327db5c9e1bfbdb60d33697045c04e15ff4d31d484e21de9169f",
+      "intent_sha256": "f26d8a181764fefc725c52b81ebc6dec1668f7245efb2b4f836b819aaaef961a",
+      "receipt_sha256": "38d927084d51e920c7d8a6a006e1d22e3e9201c2adaa340d621a569a1dfff788",
+      "launcher_sha256": "3825ae9daf8cb277b84382cda5fd10c53db4def9e0a59698e47f7304cbded984",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-gcn-l5-h128-s101",
+      "job_id": 1611771,
+      "response_sha256": "b57e4932045fa5bc687d8ec21f7a644818946224f8fde77fafe52042d9ac7b2e",
+      "intent_sha256": "f0a1eae89231381fcbbc3709fce7a764137fa896b6b6c79f113acb4772ba8fa3",
+      "receipt_sha256": "0e957c5100c449adeb923f020893e214087951f692e74a8c624323f98aa37180",
+      "launcher_sha256": "41d206a191ca0134715decd7f292b5749dce6b929173ea9f79592561fcaecf55",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-gcn-l5-h256-s101",
+      "job_id": 1611772,
+      "response_sha256": "4a756a6a711f9046d84341cb861ff2cbac74290a5112de49c751eb87fc64d707",
+      "intent_sha256": "7c52828f0fa38d5b207a5385934a8b6304d6c80ffb67d7bd83fefe6f242669b3",
+      "receipt_sha256": "8bfa34f0878dd64a29de5ccad97ed6f112aeaae8fa6a92b815658e55d1344010",
+      "launcher_sha256": "bab8bdb6c9be31b382ea9218776497653d1a4b253c453d71d3ac71b218a2d81e",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-graphsage-l2-h32-s101",
+      "job_id": 1611773,
+      "response_sha256": "7ce8f785ce71e1d0e81ee70ea83b12b8077c76f1caf73244f513a05765010cf2",
+      "intent_sha256": "5a64bd3bbb9c6e8007ce1d6ccac9def55e2512c88580978dd1981f0cf5e3d426",
+      "receipt_sha256": "7ef1e81d5b43e6d63e7adb89c04b004cd44d1d7630c2941fdee61381b34f7dd9",
+      "launcher_sha256": "7b8d2aa8ef10e7e06a46a1906fc4f44e83a7a538a793c80b55d7b7a2719c0cec",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-graphsage-l2-h64-s101",
+      "job_id": 1611774,
+      "response_sha256": "e28784e0dbdcf9bb4d8b471084cf0ddf9d790663cc598f25a6af08006f61dfa1",
+      "intent_sha256": "930c8ec266ecaa437a669cd86bc1b1134b5efd4a4771cacf1634e739ac289d8a",
+      "receipt_sha256": "82c85bb7784c78ed06ee6041df40862a487c83971527af7b7bad72c2e3d46b24",
+      "launcher_sha256": "99709f96f8bb3d7567f56aed4cbaa0ca8bc53f0bdb63de6ac755f3699f576c7c",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-graphsage-l2-h128-s101",
+      "job_id": 1611775,
+      "response_sha256": "5163cddaf0b5ee57dd42210e2ff7c3c8eaafb25c0ab0989cf5e34b311975649c",
+      "intent_sha256": "5f5856562c93546dc63deea3eeba9a2584792aeacfd794dc29d69c796391718a",
+      "receipt_sha256": "ce938a0f8c577312f924d0bf9237e31dd1b3524185041291eb57375e76bcaa31",
+      "launcher_sha256": "6195980d84e331a6a5832edb105422b24ca8111033422aa6411e2d48df57042e",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-graphsage-l2-h256-s101",
+      "job_id": 1611776,
+      "response_sha256": "a1567bc8b29cfcfa50c85c274b7b3533d779d2d1ff111fb7ad205ce90e3a565e",
+      "intent_sha256": "a60bf960a524b6c56350acbeb7902e0ed1895ef50e78c1b20001dbbb92cfea20",
+      "receipt_sha256": "1993e87fe69485508e26115511aee758f1b9fa2dc0b12c21ba4d1a8730b732da",
+      "launcher_sha256": "df8d77cbc5d178d7dc089a28a8484a491280ebc8220d7406da7de0026754d701",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-graphsage-l3-h32-s101",
+      "job_id": 1611777,
+      "response_sha256": "a6323df587b980890bf945fe27ecef7d5755b6468221e1dc37d0809def8d18c7",
+      "intent_sha256": "73bacbbdd3c0b22b11e1cbee4729fedc49a473773e070b63770f1ee487565a8a",
+      "receipt_sha256": "1d6511242c47296aaa1cdfcd69389cb9435c1545d5b9fa9a25e65f7fbe0e4e06",
+      "launcher_sha256": "7f76ddcf0017a93adbe6727f66788a4b1ee90ca0e53090bf97a2e2465a18583c",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-graphsage-l3-h64-s101",
+      "job_id": 1611778,
+      "response_sha256": "960356249d832cb6dd9075de44b363dd91d930c4e217c9506f6e0bfc64ed3175",
+      "intent_sha256": "e5d9b980ade86ff42076a3dd17f560cf951c66fde19d8e4828d87122bef6d63d",
+      "receipt_sha256": "7bc9398b8fdc9ab05744c8092a83fbee79b85936b75ec546ea1199a9f710c3bc",
+      "launcher_sha256": "53a2602de7e92b72906560f5b21d978d681311bb915817614c87f823331fc9b4",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-graphsage-l3-h128-s101",
+      "job_id": 1611779,
+      "response_sha256": "4c3780eaee4f5a5ed86625347982cd8486fd530b39b0ebfc8e086ff991e25fa9",
+      "intent_sha256": "e12fca960ebf1786ef687bd35a2ec61895fb38823e88ac46f071994d35c99cec",
+      "receipt_sha256": "5c4ccd09159481b58959f91fc188f149b3f5ce9920fbca1305a01dbd0c4c3d8b",
+      "launcher_sha256": "f26e9bc7ff2789ff075e59c68b79fd024abaa12dd30b1e8946ce8ba67927b8ac",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-graphsage-l3-h256-s101",
+      "job_id": 1611780,
+      "response_sha256": "0361737855448177f868bd183514dadfdb04c5db2f26fae1ad73710c2c50f167",
+      "intent_sha256": "548c65f35d66cdec47efe0332ba0c5320c4a5cfe69a83c65bb8c843e6702c2d4",
+      "receipt_sha256": "ef3aff88d37455ab8873ca424d348308f41c874278d5b416dee7bd3af7525bdc",
+      "launcher_sha256": "08e639b5b7d0cd929b7295c7ae16808eb53c5ce9e2fa5bf0a6bb51d4270243d4",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h32-s101",
+      "job_id": 1611781,
+      "response_sha256": "7f483e094c5f37db3d2ba8086cde6a8a0749ce65c3c3dbcab1600f9215adfc4d",
+      "intent_sha256": "3704a16882ecba214f8f7a759a8fa438d50bb0f35fd6d15d7f6157a4c6008eaf",
+      "receipt_sha256": "621c45bdf5560f2a644f7c9b5eeb551ad52f3e7000f0da6f4933dd75621ee38a",
+      "launcher_sha256": "97e4dc6ca1fedc61b1ea5bc9df7e5ef18301308d0b2c18fa0b6b140b04b2937f",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h64-s101",
+      "job_id": 1611782,
+      "response_sha256": "dd0aa3a31603827609841db7b88cf007176f3a8857fd19fbd1349204bc45de5a",
+      "intent_sha256": "d78c22d83c886f57d9c6523456c459c4f0f239efd0dfa60ab4c0a0dce81d5817",
+      "receipt_sha256": "7aadc7df1186b37b2a3e03f7863358a505bd93ad78cdc1fb37232515694d88fe",
+      "launcher_sha256": "830d8e254f4d4745c94b00d8598b1aeee57814a97392e35d3cde8de421c1dcde",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h128-s101",
+      "job_id": 1611783,
+      "response_sha256": "03278b5d901cf8f53169636d8f4fcc0ebb8bb309cedab953457f8e4542d8e9a5",
+      "intent_sha256": "8ee40e16a585c5dd2bac5cca1dc02b930ea376d72267549f8c08d31bdfe29d58",
+      "receipt_sha256": "3d0dbfef2eba75f8e8ecde0be1ee1c54c4a1adf92f4761bc9ca7a6fff9371492",
+      "launcher_sha256": "9c9b33262e88780510b87f6b159c67834f0dbe6c836fe90dce9e1d3870b983ba",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h256-s101",
+      "job_id": 1611784,
+      "response_sha256": "1f4a85417985793266aaeb8952ef1fc69e7adae25176e55c8d0c3568f89b63f4",
+      "intent_sha256": "b2a0566903930c240527d6ee641b927503a65b4ba3ec862c5b957d5d7263c8f3",
+      "receipt_sha256": "f61c0e76641ad4a499b415c5a42e451c480f1566a1620f9b4753b12ac12e3856",
+      "launcher_sha256": "fe20100ba44fd390c3b186a4cdefbb5aaefd4ef4e2e64a18e1e25be0a41aaf86",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-graphsage-l5-h32-s101",
+      "job_id": 1611785,
+      "response_sha256": "e8593a7ef9186729dae8937ff181e3ec5eb90d89e663175b47520b6fb247e5a4",
+      "intent_sha256": "66316a597ae696d1136e6fb9c6ae751fc53e9e637c289ef4a7ad76e7416d5511",
+      "receipt_sha256": "91ec740744926c1296b65b0e2d793f9e8ff91ff722a28a166de0def2798d6f6d",
+      "launcher_sha256": "2ad813d675aecb075c8fe27bc60b854eb56923c39645f61c42043749f10618cf",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-graphsage-l5-h64-s101",
+      "job_id": 1611786,
+      "response_sha256": "6ec8406a5b99b55c12b900a823fdc0912a05571200a2883d4530d3c40ac4ec96",
+      "intent_sha256": "4d1df5150d7a2c1fa92f137c94c811068ba5606253f9aef15fd8dd1c6b52e172",
+      "receipt_sha256": "aaef54e8754909babdc4292eb696d924c1dbd1157cc115ae03695cc464fafeb4",
+      "launcher_sha256": "0b297135ecd1ac10569b1d37e753cf506410926056586c45c02fe9f782c39587",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-graphsage-l5-h128-s101",
+      "job_id": 1611787,
+      "response_sha256": "42a039404b2a7ca0bc3c9770a0f06572032a0b215d2b8a7a3a3f2d890796faa6",
+      "intent_sha256": "6c288022ae02f76c10f8925b7605fd3a392e2ae05b135b92892a2412879274e5",
+      "receipt_sha256": "aa9c094b0f297d34e7631f13afe89b662c31e7762880fda505f0a56f43b5bfc9",
+      "launcher_sha256": "ff97e835976b892e87e4ae6381b7216b64e66bac0483b290cdcad025940346d1",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    },
+    {
+      "condition_id": "flickr-graphsage-l5-h256-s101",
+      "job_id": 1611788,
+      "response_sha256": "e477a44764a19acf7aa7259b3cf11f156f6b49f3261d237a03ab86844e3c033c",
+      "intent_sha256": "cd524561f91f8e293542ec019f41a64984b453a1151900bc1fa4240cfefeb0c6",
+      "receipt_sha256": "c490b29ed1e4c22fc4c9c767b7210990cd91c72b25c3b8c58b7866e91a9a5b79",
+      "launcher_sha256": "248f0dea77160cee79207f97f56cdaab6068d7ae37146ad9034357543eeb750c",
+      "submission_tool_sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+    }
+  ]
+}

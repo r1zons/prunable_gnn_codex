@@ -32,6 +32,12 @@ train/validation only. The proposed finalist set is not a finalized selection.
 Held-out evaluation requires a later explicit selection decision; it is not
 automatically executed. No test metric is a tuning or selection input.
 
+This is a **full-batch transductive** protocol: features and edges of all nodes
+remain in the frozen graph, while held-out labels are absent. It is not an
+inductive GraphSAINT benchmark. Training-loss curves use dropout-on train mode;
+validation-loss curves use eval mode, and final train/validation metrics describe
+the restored best checkpoint rather than the last dropout-on training iterate.
+
 ## Native technical gate, separate from research
 
 Three host-specific normal-queue jobs, one each on the available C2/C3/C4, each run

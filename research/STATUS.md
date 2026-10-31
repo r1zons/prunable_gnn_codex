@@ -2,6 +2,30 @@
 
 **Updated:** 2026-10-31
 
+## Full Flickr Dense sweep accepted — 2026-10-31
+
+**32/32 independent research jobs ACCEPTED, LSF1611757–1611788**: GCN/GraphSAGE,
+depths2/3/4/5, widths32/64/128/256, seed101, one frozen generated60/20/20 split.
+Common Adam LR0.001, dropout0.5, weight decay0.0005,500epochs/patience50,
+validation-loss best checkpoint. Test labels masked before upload; no pruning,
+fine-tuning, checkpoint reuse or test-based selection. Research running/completed
+states not queried after acceptance; no scientific outputs collected.
+
+Three separate technical jobs1611753–1611755 DONE,18/18 short native fits/reloads
+verified on C2/C3/C4. Maximum5/256 on C4: GCN6.876s/epoch,3.530GiB peak RSS;
+GraphSAGE8.151s/epoch,3.038GiB.12 large jobs C4,20 unbound per researcher steering;
+all4threads/single-host/exclusive,180min,12/13GiB requests. Measured full-budget
+safety projection max122.67min; aggregate500-epoch fit estimate11.45–13.75job-hours,
+queue separate. Equal reported CPU factors/clocks do not identify a frequency cause.
+
+26 focused PASS; full630 PASS/0 FAIL/6 explicit skips. Immutable training source
+`3995c60`, separately pinned scheduling revision `fd99853`; algorithms, historical
+evidence and manuscript unchanged. No push/merge. [Submission report, exact IDs,
+provenance and later collection commands](experiments/flickr_dense_sweep_20261031/SUBMISSION_REPORT.md),
+[32-row manifest](experiments/flickr_dense_sweep_20261031/JOB_MANIFEST.csv).
+Raw:`${GNN_ARTIFACT_ROOT}/flickr-dense-sweep-20261031/` and
+`${POLUS_TASK_ROOT}/results/flickr-dense-sweep-20261031/`.
+
 ## Complete POLUS campaign: offline scientific analysis — 2026-10-31
 
 All **252 audited observations** retained, including 160 warnings, six infeasible

@@ -1,0 +1,98 @@
+{
+  "source_commit": "3995c6057f3460005b44bc57d98c6d5e7df7f9e2",
+  "orchestration_commit": "fd998538237c2fcc7bc96761d4e12ea4246333d7",
+  "scientific_training_code_unchanged": {
+    "src/gnn_pruning/experiments/flickr_dense.py": "053b7cade91b5a5ff4aed07450866c46e4e95bc30efb4e40cffb42cfd37fa1e2",
+    "src/gnn_pruning/models/gcn.py": "a0e20de75e8b7f0e6e4b25e191fb97801cd19215ad10e055d8a5495e5b45b2a4",
+    "src/gnn_pruning/models/graphsage.py": "de5e92e92c82fdd0b5e1579a33654588a2e949718bd92e7c14dd446260e11b4b",
+    "src/gnn_pruning/training/trainer.py": "02823f788552bdec26ac95977435b9abbb2fbb588726d42f967dc41b02686433",
+    "src/gnn_pruning/utils/seed.py": "c757befbcbb440cc74eb5ded5049aa320db477b123d5dd07302005325c678e81"
+  },
+  "source_archive_sha256": "85758a8f1769e6c18b3e3efc7d73bcf53d23734ec7aa897e06053c4506b31ad1",
+  "protocol_file_sha256": "e3c7f8d1fac073d56aeb3e8821588c2ce72d3cd377dab933bd7b9e2d1606b2b0",
+  "protocol_canonical_sha256": "5349925a94def0c3336c5879f83d7b1969fa40ae6b038b05e5614a73f8194387",
+  "input_manifest_sha256": "49fe4e78f123be7905dd3b473327620ab16494ec0af0088d203991b43fb8f30c",
+  "input_manifest": {
+    "dataset": "flickr",
+    "nodes": 89250,
+    "features": 500,
+    "classes": 7,
+    "directed_entries": 899756,
+    "undirected_pairs": 449878,
+    "self_loops": 0,
+    "preprocessing": "raw float32 conversion; no feature normalization; no reverse-edge append",
+    "source_processed_sha256": "05e353934a365c3574b7d458a18412dddc8ba3637d93da5ea1835dedae5e43cd",
+    "raw_files": {
+      "adj_full.npz": "6740dc59750ef52a8fa18f73fc495332fa6f0ece8576c1db7196539b9adaca5f",
+      "class_map.json": "2d61641459b53870e279be2e141363a5bf8b5e11e6b7aace32553734422fe4f3",
+      "feats.npy": "6f9b6a19d0b9abc8afb82150e9e703149f19c9fb5687f4eb0abcec93b1172e1e",
+      "role.json": "0435cfbd69918fa1f8ec30a6fc2494a32e46734d56c9a796c5ecc1288a88a6b3"
+    },
+    "original_tensor_sha256": "73b72fba3fb9b5515a0682f0b35acf367ed78f7058e663b36a0ea672afe162cd",
+    "training_tensor_sha256": "8c867c5982f1b3a43e2324ff70e91a64971d660dcada8744fbdd69b19a3c174c",
+    "graph_file_sha256": "6b3414ddddabaa10a7a9c0547bcaca22e58b72ee1e933126e8d38943eb0c6da8",
+    "split_sha256": "d32c089a6dde1bce1b014715fa503dde4b881925d71b6339a12b8f945892a429",
+    "split_file_sha256": "3e164d5ad723c5f5916cd302fc8e11ae63b39d4d26a786ecb057de5179a8c401",
+    "split_seed": 101,
+    "split_protocol": "generated_exact_ratio_60_20_20",
+    "official_splits_used": false,
+    "split_counts": {
+      "train": 53550,
+      "val": 17850,
+      "test": 17850
+    },
+    "class_counts": {
+      "train": [
+        3193,
+        5072,
+        3805,
+        2992,
+        13773,
+        2104,
+        22611
+      ],
+      "val": [
+        1023,
+        1652,
+        1320,
+        946,
+        4563,
+        682,
+        7664
+      ]
+    },
+    "test_labels_masked": true,
+    "heldout_labels_quarantined_sha256": "0ea24cc75795c2ec7b33f0d67dce128ab426c42c3accd88b8697e5856fcb1043",
+    "historical_graph_pin_limit": "New freeze of recovered cache; historical execution graph hashes were absent."
+  },
+  "activation_sha256": "ac464bbf980c499281c31ccb018b0e9e172a00df6c1b12627d3f075c45121fce",
+  "orchestration_tools": {
+    "flickr_lsf.py": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a",
+    "check_capacity.py": "300d17b63dcb0589ae04dea5383791e5d5662c30939ea16469a9e71301a7f2c6"
+  },
+  "preflight_archive_sha256": "7651b7a7a74ac4fd2e68407b4725b2d6f9e0f48eb10cb2c5fd6015451933aeae",
+  "acceptance_archive_sha256": "4b78c020f606d64add1c7e3bb6bc8117ce782edcfa49694d3cb42d25d3fa1bb5",
+  "test_logs": {
+    "focused-03.log": "36f7f389dfbe2067948b2f01a7fc4871411371ac6585e08325681f996e432591",
+    "full-05.log": "c63db999920832a9caa3cbe5083f7726626af11552fae85479483ff699622afb"
+  },
+  "tests": {
+    "focused_PASS": 26,
+    "focused_FAIL": 0,
+    "focused_SKIPPED": 0,
+    "full_PASS": 630,
+    "full_FAIL": 0,
+    "full_SKIPPED": 6,
+    "skips": "2 CUDA-unavailable and4 opt-in archived-Cora gates"
+  },
+  "research_outcomes_collected": false,
+  "post_submission_scheduler_status_queried": false,
+  "raw_local": "${GNN_ARTIFACT_ROOT}/flickr-dense-sweep-20261031/",
+  "raw_remote": "${POLUS_TASK_ROOT}/results/flickr-dense-sweep-20261031/",
+  "native_environment": {
+    "python": "3.10.22",
+    "torch": "2.0.1",
+    "pyg": "2.4.0"
+  },
+  "analysis_revision": "Git commit containing the final submission report; no circular self-hash"
+}
