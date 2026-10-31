@@ -1,6 +1,19 @@
 # Canonical GNN pruning research status
 
-**Updated:** 2026-10-29
+**Updated:** 2026-10-31
+
+## Questions dataset integration and limited readiness — 2026-10-31
+
+Native PyG Questions integrated and locally validated:48,921 nodes,301 features,
+153,540 undirected edges ->307,080 unique reciprocal entries; ten official50/25/25
+folds preserved. Primary protocol remains generated60/20/20, seed101. Two fixed
+3-layer hidden32 CPU baselines completed with unchanged training/early stopping;
+GCN val accuracy/F1/AUC=96.770%/.4918/.5694, GraphSAGE=96.821%/.5075/.7514.
+GCN predicts no positives; GraphSAGE recalls5/316. Physical one-channel smokes and
+strict reload pass for both. Focused32 PASS; full527 PASS/0 FAIL/6 explicit skips.
+**Data integration GO; Questions full POLUS quality campaign NO-GO at these
+baselines pending convergence/imbalance protocol.** No tuning, remote jobs or
+algorithm/history/manuscript changes. [Report and provenance](experiments/questions_readiness_20261031/REPORT.md).
 
 ## V4 offline verification and controlled analysis — 2026-10-29
 

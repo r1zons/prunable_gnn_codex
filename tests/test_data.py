@@ -23,6 +23,7 @@ def test_supported_dataset_names_are_configured() -> None:
         "cora",
         "citeseer",
         "pubmed",
+        "questions",
         "texas",
         "cornell",
         "wisconsin",

@@ -16,6 +16,7 @@ def get_supported_datasets() -> Dict[str, str]:
         "cora": "planetoid",
         "citeseer": "planetoid",
         "pubmed": "planetoid",
+        "questions": "heterophilous",
         "texas": "webkb",
         "cornell": "webkb",
         "wisconsin": "webkb",
@@ -39,6 +40,8 @@ def get_dataset_loader(name: str) -> DatasetLoader:
 
     if family == "planetoid":
         return lambda root: _load_planetoid(root, key)
+    if family == "heterophilous":
+        return _load_questions
     if family == "webkb":
         return lambda root: _load_webkb(root, key)
     if family == "actor":
@@ -80,6 +83,16 @@ def _load_planetoid(root: Union[str, Path], name: str) -> Any:
 def _load_webkb(root: Union[str, Path], name: str) -> Any:
     module = _require_pyg()
     return module.WebKB(root=str(Path(root) / "webkb"), name=name.capitalize())
+
+
+def _load_questions(root: Union[str, Path]) -> Any:
+    from .questions import validate_questions_graph
+    module = _require_pyg()
+    # PyG already applies to_undirected/coalesce. Never append reverse edges here.
+    dataset = module.HeterophilousGraphDataset(
+        root=str(Path(root) / "heterophilous"), name="Questions")
+    dataset.metadata = validate_questions_graph(dataset[0])
+    return dataset
 
 
 def _load_actor(root: Union[str, Path]) -> Any:

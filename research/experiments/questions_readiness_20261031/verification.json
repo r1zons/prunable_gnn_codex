@@ -1,0 +1,152 @@
+{
+  "date": "2026-10-31",
+  "base_commit": "2e116c46184f4b07cffd3b07db86e926fb24cfda",
+  "branch": "implementation/questions-readiness-20261031",
+  "canonical_checkout": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+  "counts": {
+    "focused": {
+      "PASS": 32,
+      "FAIL": 0,
+      "SKIPPED": 0
+    },
+    "full": {
+      "PASS": 527,
+      "FAIL": 0,
+      "SKIPPED": 6
+    },
+    "new_questions_cases": {
+      "PASS": 25,
+      "FAIL": 0,
+      "SKIPPED": 0
+    },
+    "pilot_workers": {
+      "PASS": 2,
+      "FAIL": 0
+    },
+    "physical_smokes": {
+      "PASS": 2,
+      "FAIL": 0
+    }
+  },
+  "skips": [
+    {
+      "name": "test_cuda_device_and_logits[gcn]",
+      "reason": "CUDA unavailable; device preservation unverified on GPU"
+    },
+    {
+      "name": "test_cuda_device_and_logits[graphsage]",
+      "reason": "CUDA unavailable; device preservation unverified on GPU"
+    },
+    {
+      "name": "test_real_frozen_cora_depth_one_matches_native_greedy[0.3-gcn]",
+      "reason": "Archived Cora gate not enabled: set GNN_LOOKAHEAD_CORA_MANIFEST to verified offline inputs"
+    },
+    {
+      "name": "test_real_frozen_cora_depth_one_matches_native_greedy[0.3-graphsage]",
+      "reason": "Archived Cora gate not enabled: set GNN_LOOKAHEAD_CORA_MANIFEST to verified offline inputs"
+    },
+    {
+      "name": "test_real_frozen_cora_depth_one_matches_native_greedy[0.5-gcn]",
+      "reason": "Archived Cora gate not enabled: set GNN_LOOKAHEAD_CORA_MANIFEST to verified offline inputs"
+    },
+    {
+      "name": "test_real_frozen_cora_depth_one_matches_native_greedy[0.5-graphsage]",
+      "reason": "Archived Cora gate not enabled: set GNN_LOOKAHEAD_CORA_MANIFEST to verified offline inputs"
+    }
+  ],
+  "environment": {
+    "torch": "2.2.2",
+    "torch-geometric": "2.6.1",
+    "numpy": "1.26.4",
+    "scikit-learn": "1.4.1.post1",
+    "pytest": "8.3.5"
+  },
+  "warning_count": 39,
+  "warning_origin": "Existing Torch JIT Python3.12 AST deprecations",
+  "raw_artifacts": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/questions-readiness-20261031",
+  "logs": {
+    "focused-initial.log": {
+      "sha256": "8bf70b619a47624ebdbd662f8a82927169cd66b0fb1c1a9a21ac5dbf6a8e2dd0",
+      "bytes": 1010
+    },
+    "full.log": {
+      "sha256": "7e61ce05cf22ede14b79cb79bb057b090729657e0088f6b550249b76c1499405",
+      "bytes": 2069
+    },
+    "full.xml": {
+      "sha256": "19eefdfd6b2fee3e5c6878646ea452bf38206df1c0d3d66298bf3a4861e11686",
+      "bytes": 73811
+    },
+    "prepare.log": {
+      "sha256": "7761bcb56815168c0ad33cab09d18188d2773ecee7e8398167c826f335104ba2",
+      "bytes": 2138
+    },
+    "gcn.log": {
+      "sha256": "83cba28c40a1ba3623d1d106f616a54b2b1140a8f7c0f0374ae74a5f4ba821e5",
+      "bytes": 12296
+    },
+    "graphsage.log": {
+      "sha256": "e70dc198137b183851166777863d1bfa0fce0ea6320f37de4e484ddeea7e05c7",
+      "bytes": 12457
+    }
+  },
+  "source_files": {
+    "src/gnn_pruning/data/factory.py": "5c380f1307444a35ff0ba276b5f9974c441c6affa1f842bd93a02fbeb1966cfa",
+    "src/gnn_pruning/data/questions.py": "1a27fb6d9e97046566dd6dda9905649b2ab9713389863da52b1d2ad1c26a5173",
+    "src/gnn_pruning/experiments/questions_readiness.py": "33439c10a0a55b5edaa7f9cacf84b1fb1150a13fe3ca0ab34cb4edf4120f3640",
+    "configs/datasets/questions.yaml": "681e25e0a4ad017832519260e02117ce6510f958c8e3c3ed9e520eff627a8e1b",
+    "tests/test_data.py": "d90572def4e832d31762e4f15e7c46a37a7769c9b86d97939b59cda79c641697",
+    "tests/test_questions.py": "ec245b40dd2ed03b48acd76cb994e1408a1f1155b83bc5d830a35cb9dc6a65dd",
+    "docs/questions.md": "b086e2ae32bf8d9660c56a2e57fccfde795bf49963cb69bf8a628c0f3ec8fcfe",
+    "research/STATUS.md": "a4a6efa46e05078a4e4467fa82d7932001ed24ac750908b11367796139ae25b5",
+    "research/experiments/INDEX.md": "6f3953e2e7e4879fb049a904f49edd916752e3736e0298bef01a8098127e56e2",
+    "research/experiments/questions_readiness_20261031/REPORT.md": "7b7cbd00592db5c9eff2b1d82d18e1ac00cbe0d14d1f7776ffda783b025a0eb5",
+    "research/experiments/questions_readiness_20261031/readiness.json": "ee66efb0b35ea05542e725b4c40928f3fa046493e8021b633e933d4573311ad6"
+  },
+  "protected_files": {
+    "src/gnn_pruning/pruning/adaptive_v2.py": "164285ec9c51e8181bd65d2d353f21cbdead8302ca7b8e4d6be55d98b57cc038",
+    "src/gnn_pruning/pruning/experimental_v3.py": "3d9a974cf40c7904805cc05b8d37415cc77cc905b01e4205db4f727f71af9213",
+    "src/gnn_pruning/pruning/experimental_v4.py": "c0efb64e79ad68ac47e72785cb1dd4e8b764d00493274f2c0a5b2a3aba97f4a3",
+    "src/gnn_pruning/pruning/lookahead.py": "b61652a6e908cf2af0603cc6401d2699701e0a50babf0e2246a405ba90511e8f",
+    "src/gnn_pruning/pruning/registered_lookahead.py": "c5f5f803b7964c22b004bd2fa8adefe5ffd2765bc308cf273b1f9fe842f1424d",
+    "src/gnn_pruning/pruning/workflow_v2.py": "4203f667d719416e7e082e76cc085142d065e27a16e2f88c94b1cf2fed844dfa",
+    "src/gnn_pruning/pruning/static_v2.py": "abfde03e27ea99f838a480c55f13fc8764a9c2b423cb8e201c68dba4aa4ed397",
+    "src/gnn_pruning/surgery/local_v2.py": "6288b6f888680c318b5a0047af4408bce137aceb0063de0379da2f04ad68c059",
+    "src/gnn_pruning/training/trainer.py": "02823f788552bdec26ac95977435b9abbb2fbb588726d42f967dc41b02686433",
+    "src/gnn_pruning/training/workflow.py": "b812047a60e73b5cc0371642b19ef8fb8365e97f8a82e9c005b394c05c76cd96",
+    "src/gnn_pruning/data/splits.py": "a7a8dffdb0ccc905f44b77abe36b0bd2ea1fae135c72b06709f8061f0522f6a8",
+    "docs/lookahead.md": "95a11080177b76329ac36858996ec1ca51d9cfaad41c32d8ec59a7a97708403f"
+  },
+  "worker_artifacts": {
+    "gcn": {
+      "config.yaml": "3f7cfe283870bcb6693fbe9165f0fd029a9bca71fb2e5b520824ccbe65b83432",
+      "resolved.yaml": "fbb0e6da56bd7d9ecf04f6cf456eccbac77d0ca052e3a727fde6d6395499093d",
+      "epochs.jsonl": "99c8318651b46a7494bbe026d61ea0517382540874bd9e395141ee5c40b487da",
+      "report.json": "1339bdc93a4732ea706e64aad35520a495b92e81cfc403c1da1fc6772935720e",
+      "dense_checkpoint.pt": "63912dd6c33162b14cc6b0b5ab23f896c9eead40875c0dd182e60d58c3342a37",
+      "smoke.json": "cf58eea46ddbd992bb290d29c33421a3ee29d5c467371d1c4a057166f8f59e87",
+      "smoke_pruned.pt": "2ec9ec1bf6f32d2cabc7f732a4d8189dc6c82432893fdf1bb7f86d675f76aab3"
+    },
+    "graphsage": {
+      "config.yaml": "5f1619c99eb6f5e016c436ce764b7d7b02c3f64f29cad26eb6d240da91dc0d84",
+      "resolved.yaml": "de4fc033292de3bd1f0c33eab26a4ea8a5e99035c881a2d7222b225989a0eda1",
+      "epochs.jsonl": "06d059a647f3f0c4bd68873795bed75a1e5404a73df20dd1dfea796963fbf85a",
+      "report.json": "03b36e9f6d424ca80234defe97f30795d8892bd231ec2d1e17ee92a77e22f608",
+      "dense_checkpoint.pt": "6a2fdec8c63ee1ba4b906672963ce490c126b2ffb1d165f3b9793fa53ac67074",
+      "smoke.json": "8c18277c8fb5dfa6cd06e6069a721a8bbc2d7fefcce3d95f61b7892d4fb6cf88",
+      "smoke_pruned.pt": "b35a667169645d8015e7a3bc44104d287dd225b90f6002653b688a513220d87d"
+    }
+  },
+  "input_manifest_sha256": "7e75f4b8bdf09cf10909e7d942fcd8942d1447e469b9408e03ae4f47848734c3",
+  "raw_sha256": "757ebd772bab1475c4dd951ca9e364400c6db161656cff9d21780ee874cf3074",
+  "graph_tensor_sha256": "c40938061c9f64d15143609a83538292afee38528ba4a887c59456a141a45b2e",
+  "split_sha256": "21d0e032536fe8b1c59485d292905ea5dae2f8a4283737f79f2256fd0441d0c1",
+  "pilot_implementation_note": "Executed once per model from base2e116c4 with new source files pinned by hashes; no implementation code changed after execution",
+  "all_history_results_and_manuscript_unchanged": true,
+  "push_or_merge": false,
+  "polus_operations": false,
+  "supplemental_metrics_do_not_select_model": true,
+  "training_or_pruning_algorithm_changes": false,
+  "proposed_alternatives_executed": false,
+  "full_campaign": false
+}

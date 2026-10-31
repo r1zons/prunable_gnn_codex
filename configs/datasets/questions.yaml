@@ -1,0 +1,7 @@
+data:
+  name: questions
+  # Primary cross-dataset protocol: generated exact-ratio split, NOT official folds.
+  # Official train/val/test masks remain available as [nodes,10] provenance only.
+  train_ratio: 0.6
+  val_ratio: 0.2
+  test_ratio: 0.2

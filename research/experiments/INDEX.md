@@ -1,5 +1,17 @@
 # Experiment campaign registry
 
+**QUESTIONS-LOCAL-READINESS-20261031** — completed integration/readiness check,
+not a full experiment matrix. Native HeterophilousGraphDataset; generated60/20/20
+primary split kept separate from ten official50/25/25 folds. GCN/GraphSAGE,3layers,
+hidden32, seed101, original200-epoch/patience50 training; validation-only reporting,
+one physical channel-removal smoke each. Focused32 PASS; full527 PASS/0 FAIL/6 skips.
+Data/software GO; full Questions POLUS quality campaign NO-GO: severe imbalance,
+minority collapse/very low recall at fixed argmax, convergence not established.
+[Readiness report, resource observations and hashes](questions_readiness_20261031/REPORT.md).
+Raw root: `${GNN_ARTIFACT_ROOT}/questions-readiness-20261031/`.
+No wider fit, reward/algorithm edit, historical-result change or POLUS operation.
+
+
 **POLUS-V4-DIAGNOSTIC-20261029** — completed;92/92 results independently verified
 and analysed (13,200 episodes/137,000 transitions/44,474 Q entries/300 snapshots).
 All1,285 source inventory files unchanged;10 audit tests pass. [Verified report,
