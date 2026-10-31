@@ -56,8 +56,8 @@ def command(job: dict, root: Path) -> list[str]:
     r=job['resources']
     if not 1 <= r['wall_minutes'] <= 180 or r['slots']!=4 or r['memory_mb']<8192:
         raise ValueError('Unsafe LSF resource request.')
-    return ['bsub','-q','normal','-n','4','-W',str(r['wall_minutes']),'-x',
-            '-m',r['host_preferences'],'-R','span[hosts=1]',
+    hosts=['-m',r['host_preferences']] if r.get('host_preferences') else []
+    return ['bsub','-q','normal','-n','4','-W',str(r['wall_minutes']),'-x',*hosts,'-R','span[hosts=1]',
             '-R',f'rusage[mem={r["memory_mb"]}]','-M',str(r['memory_mb']),
             '-J','flickr-'+job['id'],'-o',str(root/'logs'/(job['id']+'.%J.out')),
             '-e',str(root/'logs'/(job['id']+'.%J.err'))]
@@ -69,19 +69,18 @@ def research_jobs(protocol: dict, capacity: dict) -> list[dict]:
         raise ValueError('Native resource/common-LR acceptance gate missing.')
     if time.time()-capacity['checked_unix'] > 3600 or capacity['source_commit']!=protocol['source_commit']:
         raise ValueError('Stale or different-source capacity evidence.')
-    fast,slow=capacity['full_performance_hosts'],capacity['reduced_frequency_host']
-    if len(fast)!=2 or slow in fast or len(set(fast+[slow]))!=3:
-        raise ValueError('Three distinct verified execution hosts required.')
+    hosts=capacity['verified_hosts'];c4=capacity['c4_host']
+    if len(set(hosts))!=3 or c4 not in hosts:
+        raise ValueError('Three verified compute hosts, including C4, required.')
     jobs=[]
     for condition in matrix(protocol):
         estimates=capacity['conditions'][condition['id']]
-        expensive=condition['layers']>=4 and condition['width']>=128
-        eligible=fast if expensive else fast+[slow]
-        eligible=[h for h in eligible if estimates[h]['safe_500_epoch_seconds'] <= 175*60]
-        if not eligible:
+        expensive=condition['width']==256 or (condition['layers']>=4 and condition['width']>=128)
+        eligible=[c4] if expensive else hosts
+        if any(estimates[h]['safe_500_epoch_seconds'] > 175*60 for h in eligible):
             raise ValueError('No host safely fits unchanged500-epoch budget: '+condition['id'])
-        # Small jobs prefer the slow node, but can backfill either fast node.
-        preferences=' '.join(h+('+'+str(10 if h==slow else 5)) for h in eligible)
+        # Researcher's explicit clarification: large on C4, all others unbound.
+        preferences=c4 if expensive else None
         memory=max(estimates[h]['memory_mb'] for h in eligible)
         jobs.append(dict(id=condition['id'],stage='research',condition=condition['id'],dependencies=[],
                          resources=dict(slots=4,memory_mb=memory,wall_minutes=180,
@@ -107,7 +106,8 @@ def submit(jobs: list[dict],root: Path,source: Path,taskroot: Path,protocol_path
         script=launcher(root,source,taskroot,protocol_path,activation_sha,job)
         (claim/'launcher.sh').write_text(script)
         intent=dict(status='INTENT',job=job,source_commit=protocol['source_commit'],
-                    protocol_sha256=sha(protocol_path),launcher_sha256=sha(claim/'launcher.sh'),created_unix=time.time())
+                    protocol_sha256=sha(protocol_path),launcher_sha256=sha(claim/'launcher.sh'),
+                    submission_tool_sha256=sha(Path(__file__)),created_unix=time.time())
         write(claim/'intent.json',intent)
         try:
             response=runner(command(job,root),input=script,text=True,capture_output=True,timeout=30)

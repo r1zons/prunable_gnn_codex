@@ -60,9 +60,13 @@ single host and exclusive allocation. Exclusivity bounds this campaign to at mos
 one job per available eligible node, not a promise of three concurrent jobs.
 Fairshare/other users/current availability remain LSF decisions.
 
-The most expensive4/5-layer128/256 conditions use verified full-performance nodes.
-Other conditions prefer the reduced-frequency node where the measured full-budget
-wall gate permits it, retaining fast-node eligibility to avoid avoidable delay.
+The researcher subsequently clarified scheduling: **large jobs on C4; all others
+without host binding**. Large means width256 at any depth, plus4/5-layer width128
+(12 conditions). The remaining20 can run wherever normal/LSF permits. No frequency
+classification or smart distribution is required. LSF reports identical CPU factors
+and native frequency interfaces report4023MHz on all three; this does not establish
+the cause of measured performance differences. The full-budget wall gate is checked
+on C4 for large jobs and on all three verified hosts for unbound jobs.
 All32 retain distinct identities/checkpoints/directories. Every bsub has immutable
 INTENT, response and ACCEPTED/UNRESOLVED receipts; ambiguous responses are never
 retried. Existing claims stop duplicate submission on restart.

@@ -41,29 +41,32 @@ def check(root: Path, protocol: dict, output: Path):
         if len(hosts)!=1 or not frequencies:raise ValueError('Missing unambiguous actual-host/CPU-clock evidence.')
         host=hosts.pop();reports[host]=group;clock[host]=statistics.median(frequencies)
     if len(reports)!=3:raise ValueError('All three compute nodes require completed preflight.')
-    ordered=sorted(clock,key=clock.get);slow=ordered[0];fast=ordered[1:]
-    if min(clock[h] for h in fast)/clock[slow] < 1.15:
-        raise ValueError('Measured clocks do not identify one reduced-frequency node; do not infer from equal scheduler CPU factors.')
-    if max(clock[h] for h in fast)/min(clock[h] for h in fast)>1.25:
-        raise ValueError('Two comparable full-performance nodes not established.')
+    c4=next(h for h in reports if h.startswith('polus-c4-'))
     conditions={}
     for condition in matrix(protocol):
         predictions={}
         for host,group in reports.items():
             model=condition['model'];small=group[model+'-small-lr0p001'];maximum=group[model+'-maximum']
             actual=work(model,condition['layers'],condition['width'])
-            epoch=max(small['epoch_seconds_max']*actual/work(model,2,64),
-                      maximum['epoch_seconds_max']*actual/work(model,5,256))
+            # Affine interpolation retains fixed small-graph/aggregation overhead;
+            # at the measured maximum use its actual cost, not a small-case extrapolation.
+            small_work,max_work=work(model,2,64),work(model,5,256)
+            slope=max(0.,maximum['epoch_seconds_max']-small['epoch_seconds_max'])/(max_work-small_work)
+            epoch=max(small['epoch_seconds_max']*min(1.,actual/small_work),
+                      small['epoch_seconds_max']+slope*(actual-small_work))
             memory=math.ceil((max(small['peak_process_rss_bytes'],maximum['peak_process_rss_bytes'])*3+2*1024**3)/1024**2/1024)*1024
             predictions[host]=dict(projected_epoch_seconds=epoch,safe_500_epoch_seconds=epoch*500*1.75+120,
-                                   memory_mb=max(8192,memory),projection='max of native small/maximum work-scaled observed maxima; 1.75 wall margin +120s')
+                                   memory_mb=max(8192,memory),projection='native small/maximum affine cost; exact maximum anchored to its observed max;1.75 wall margin+120s')
         conditions[condition['id']]=predictions
     capacity=dict(status='PASS',source_commit=protocol['source_commit'],checked_unix=time.time(),common_lr=.001,
-                  full_performance_hosts=fast,reduced_frequency_host=slow,measured_clock_mhz=clock,
-                  scheduler_cpu_factor_limitation='LSF advertises250 for all; host identities/allocations from LSF, frequency classification from native /proc under technical jobs.',
+                  verified_hosts=sorted(reports),c4_host=c4,measured_clock_mhz=clock,
+                  scheduler_cpu_factor_limitation='LSF advertises250 and native interfaces4023MHz for all; reduced-frequency cause not independently established.',
+                  scheduling_rule='Researcher clarified: large jobs C4; remaining jobs no host binding; no frequency classification or smart host allocation.',
                   lr_rule='Common0.001 predeclared from historical instability;0.01 comparisons diagnostic only, no per-architecture/test tuning.',
                   evidence=evidence,conditions=conditions,accuracy_used_for_feasibility=False)
     jobs=research_jobs(protocol,capacity)
+    from gnn_pruning.experiments.flickr_dense import sha
+    capacity['capacity_tool_sha256']=sha(Path(__file__))
     write(output,capacity);write(output.with_name('research-jobs.json'),jobs)
     print(json.dumps(dict(status='PASS',hosts=clock,research_jobs=len(jobs),max_memory_mb=max(j['resources']['memory_mb'] for j in jobs))))
 

@@ -127,7 +127,7 @@ def test_failure_keeps_partial_learning_curve(tmp_path,monkeypatch):
 
 def capacity():
     return dict(status='PASS',common_lr=.001,checked_unix=time.time(),source_commit='a'*40,
-                full_performance_hosts=['fast1','fast2'],reduced_frequency_host='slow',
+                verified_hosts=['fast1','fast2','slow'],c4_host='fast1',
                 conditions={r['id']:{h:dict(safe_500_epoch_seconds=3600,memory_mb=16384)
                                     for h in ('fast1','fast2','slow')} for r in d.matrix(protocol())})
 
@@ -137,10 +137,12 @@ def test_all32_independent_jobs_with_bounded_host_eligibility():
     assert len(jobs)==32 and all(j['dependencies']==[] for j in jobs)
     for job in jobs:
         r=next(r for r in d.matrix(protocol()) if r['id']==job['condition'])
-        if r['layers']>=4 and r['width']>=128:assert 'slow' not in job['resources']['eligible_hosts']
-        else:assert 'slow+10' in job['resources']['host_preferences']
+        expensive=r['width']==256 or (r['layers']>=4 and r['width']>=128)
+        if expensive:assert job['resources']['eligible_hosts']==['fast1']
+        else:assert job['resources']['host_preferences'] is None
         command=l.command(job,Path('/fresh'))
         assert '-x' in command and '-w' not in command and '180' in command
+        assert ('-m' in command)==expensive
 
 
 def test_insufficient_wall_capacity_blocks_instead_of_shortening_epochs():
