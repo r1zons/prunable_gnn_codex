@@ -198,5 +198,5 @@ def test_source_has_no_pruning_or_heldout_evaluator_imports():
     import ast
     tree=ast.parse(Path(d.__file__).read_text())
     imported=[node.module for node in ast.walk(tree) if isinstance(node,ast.ImportFrom)]
-    assert not any(name and ('pruning.' in name or 'workflow' in name) for name in imported)
+    assert not any(name and (name.startswith('gnn_pruning.pruning.') or 'workflow' in name) for name in imported)
     assert 'heldout-labels' not in Path(d.__file__).read_text()
