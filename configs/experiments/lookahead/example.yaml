@@ -1,0 +1,29 @@
+# Inert template: supply independently verified frozen inputs before any run.
+base: base/default
+dataset: cora  # Also supports citeseer and pubmed through the frozen workflow.
+model:
+  name: gcn  # gcn or graphsage; two hidden layers, no fine-tuning in search.
+  num_layers: 3
+  hidden_channels: 32
+  dropout: 0.5
+run:
+  seed: 101
+  output_dir: runs/lookahead
+device:
+  device: cpu
+pruning:
+  method: lookahead_local_v4
+  structured: true
+  target_sparsity: 0.30
+v2:
+  split_path: FILL_FROZEN_SPLIT_PATH
+  checkpoint_sha256: FILL_FROZEN_CHECKPOINT_SHA256
+  split_sha256: FILL_FROZEN_SPLIT_SHA256
+  graph_sha256: FILL_FROZEN_GRAPH_TENSOR_SHA256
+  penalty_lambda: 2.0
+  min_channels_per_layer: 4
+  max_steps: 20
+  target_sparsity_tolerance: 0.01
+lookahead:
+  depth: 2  # 1 is the exact constrained-Greedy correctness reference.
+  gamma: 0.9

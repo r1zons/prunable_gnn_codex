@@ -30,6 +30,7 @@ __all__ = [
     "LayerWiseMagnitudePruner",
     "AdaptiveLayerWisePruner",
     "TabularQLearningPruner",
+    "LookaheadLocalV4Pruner",
     "SNIPPruner",
     "GraSPPruner",
     "L1ThresholdPruner",
@@ -46,3 +47,4 @@ __all__ = [
 
 # Register V2 alternatives separately; legacy classes remain unchanged.
 from . import registered_v2 as _registered_v2
+from .registered_lookahead import LookaheadLocalV4Pruner

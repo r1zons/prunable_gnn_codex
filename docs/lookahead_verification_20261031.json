@@ -1,0 +1,73 @@
+{
+  "date": "2026-10-31",
+  "branch": "implementation/lookahead-depth2-20261031",
+  "base_commit": "f4a615eda552f760558cdd7f0f98b26b710ff44f",
+  "scope": "Implementation, synthetic pytest and documentation only",
+  "focused": {
+    "passed": 43,
+    "skipped": 0
+  },
+  "full_suite": {
+    "passed": 492,
+    "skipped": 2,
+    "warnings": 39,
+    "skip_reason": "CUDA unavailable; existing device-preservation tests unverified on GPU"
+  },
+  "warnings": "Existing Torch JIT Python 3.12 ast.Str/s deprecations",
+  "environment": {
+    "python": "3.12.9",
+    "packages": {
+      "torch": "2.2.2",
+      "torch-geometric": "2.6.1",
+      "pytest": "8.3.5",
+      "numpy": "1.26.4",
+      "matplotlib": "3.9.4"
+    },
+    "cuda_available": false
+  },
+  "test_dependency_scope": "Plotting supplements only in external test-deps; installed environments unchanged",
+  "external_test_artifacts": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/lookahead-implementation-20261031",
+  "logs": {
+    "focused-release.log": {
+      "sha256": "c50fbfda132f613858fb8aa005267de1e26804f73eb98f05e89acb05030e4172",
+      "bytes": 1010
+    },
+    "full-release.log": {
+      "sha256": "8cf5983784b9be740852707c9f6a659d771b31423f5b331a37339fedf034d70a",
+      "bytes": 1698
+    },
+    "test-deps.log": {
+      "sha256": "fba2c57a7a918349e2b1f8bece6f831fd53bda54f614c8d76b301bc4d46295d7",
+      "bytes": 1769
+    }
+  },
+  "files": {
+    "src/gnn_pruning/pruning/lookahead.py": "9fcaefaeacee183ad17fce27cfc59488602f48200ce42802bba2dfc90a1ae3c7",
+    "src/gnn_pruning/pruning/registered_lookahead.py": "858f1b2363850baf3f94ead060c24e755c10cb3aa3cae06dddaa7b791a89e40b",
+    "src/gnn_pruning/pruning/__init__.py": "db5d769494ef35355c01c5575afdc1c82d8b6dc2c51f3cc7932ed700897d1cd0",
+    "src/gnn_pruning/pruning/workflow_v2.py": "19f2bc0b5f4851a8119e53e6e0b65c8005ab3b0f92d29acd2fb4e608704ed0ca",
+    "tests/test_lookahead.py": "b12c2ae2b8d88982c5454b9478dca8a8adc7adaa953d6356714d9722bbf7d4d3",
+    "tests/test_lookahead_integration.py": "b59db9206bb311fe85b08229dc9922e30df0a0ba46ad715812f2a2727a64b056",
+    "configs/experiments/lookahead/example.yaml": "6640a33763bd2eeb4f2690926cd3f7c791d3c0909ebd7d35c654a7f2f27044f3",
+    "docs/lookahead.md": "e2f410674c231226924b05d5739e9e24c2269c326ae0bfdf9117bf991aae4967"
+  },
+  "protected_algorithm_hashes": {
+    "src/gnn_pruning/pruning/adaptive_v2.py": "164285ec9c51e8181bd65d2d353f21cbdead8302ca7b8e4d6be55d98b57cc038",
+    "src/gnn_pruning/pruning/experimental_v3.py": "3d9a974cf40c7904805cc05b8d37415cc77cc905b01e4205db4f727f71af9213",
+    "src/gnn_pruning/pruning/experimental_v4.py": "c0efb64e79ad68ac47e72785cb1dd4e8b764d00493274f2c0a5b2a3aba97f4a3",
+    "src/gnn_pruning/pruning/static_v2.py": "abfde03e27ea99f838a480c55f13fc8764a9c2b423cb8e201c68dba4aa4ed397",
+    "src/gnn_pruning/surgery/local_v2.py": "6288b6f888680c318b5a0047af4408bce137aceb0063de0379da2f04ad68c059"
+  },
+  "historical_research_tree_unchanged": true,
+  "v4_archive_sha256": "d80ea49be02c5e08ec7169a323b91c368875e4b42fab5dbeffb655ffca468704",
+  "polus_jobs_submitted": 0,
+  "dataset_scale_experiments": 0,
+  "dense_training_outside_synthetic_pytest": 0,
+  "scientific_limitations": [
+    "Two-step zero-bootstrap cutoff differs from full remaining-horizon Q objective",
+    "Repeated dense-gap penalty and variable terminal path lengths preserved",
+    "Validation-only synthetic tests establish correctness, not empirical quality/cost superiority",
+    "Frozen deterministic evaluator/weights required for preview reuse",
+    "Target feasibility is model/dataset/width/horizon-specific; no tolerance fallback"
+  ]
+}

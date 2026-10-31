@@ -23,7 +23,7 @@ from .static_v2 import StaticPlan
 
 
 V2_METHODS = {"random_local_v2", "magnitude_local_v2", "snip_pt_local_v2", "grasp_pt_local_v2",
-              "adaptive_greedy_local_v2", "q_learning_local_v2"}
+              "adaptive_greedy_local_v2", "q_learning_local_v2", "lookahead_local_v4"}
 
 
 def _json_hash(value):
@@ -151,7 +151,8 @@ def prune_from_checkpoint_v2(checkpoint_path: str, config_path: str):
         with torch.no_grad():
             predicted = candidate(search_data).argmax(dim=-1)[idx["val"]]
         return float((predicted == search_data.y[idx["val"]]).float().mean())
-    context = PruningContext(seed=resolved.run.seed, device=str(device), config={"v2": cfg},
+    context = PruningContext(seed=resolved.run.seed, device=str(device),
+                             config={"v2": cfg, "lookahead": raw.get("lookahead", {})},
                              data={"data": search_data, "train_idx": idx["train"],
                                    "evaluate_validation": evaluate_validation})
     pruner = get_pruner(method)()
@@ -179,7 +180,9 @@ def prune_from_checkpoint_v2(checkpoint_path: str, config_path: str):
         dirty = bool(subprocess.check_output(["git", "status", "--porcelain", "--untracked-files=no"], text=True).strip())
     except (OSError, subprocess.CalledProcessError):
         git_sha, dirty = "unavailable", None
-    provenance = {"protocol": "LOCAL-STRUCTURED-V2-R2", "method": method, "seed": resolved.run.seed,
+    is_lookahead = method == "lookahead_local_v4"
+    protocol = "LOCAL-STRUCTURED-LOOKAHEAD-V4" if is_lookahead else "LOCAL-STRUCTURED-V2-R2"
+    provenance = {"protocol": protocol, "method": method, "seed": resolved.run.seed,
                   "dataset": resolved.data.name, "checkpoint_sha256": _file_hash(checkpoint_path),
                   "dense_tensor_sha256": tensor_hash(model.state_dict()), "split_sha256": _file_hash(split_path),
                   "dense_model_config": checkpoint["model_config"],
@@ -189,7 +192,8 @@ def prune_from_checkpoint_v2(checkpoint_path: str, config_path: str):
                   "pyg_version": torch_geometric.__version__, "device": str(device), "platform": platform.platform(),
                   "git_sha": git_sha, "tracked_worktree_dirty": dirty}
     # Unique directory prevents accidental replacement of V1 or earlier V2 evidence.
-    output = Path(resolved.run.output_dir).expanduser()/"local_structured_v2"/method/f"target_{target:g}"/uuid.uuid4().hex[:12]
+    group = "local_structured_lookahead" if is_lookahead else "local_structured_v2"
+    output = Path(resolved.run.output_dir).expanduser()/group/method/f"target_{target:g}"/uuid.uuid4().hex[:12]
     output.mkdir(parents=True, exist_ok=False)
     architecture = final.export_architecture_config()
     architecture.pop("name")
@@ -218,6 +222,11 @@ def prune_from_checkpoint_v2(checkpoint_path: str, config_path: str):
     _write_json(output/"config_snapshot.json", {"source": raw, "resolved": resolved.to_dict()})
     _write_json(output/"trace.json", {"deployment": trace, "training": training})
     _write_json(output/"q_table.json", qtable)
+    decisions_path = None
+    if is_lookahead:
+        decisions_path = output/"lookahead_decisions.json"
+        _write_json(decisions_path, plan.decisions)
     return PruningArtifacts(checkpoint_out, metrics_path, post_prune_metrics_path=metrics_path,
+                            adaptive_trace_path=decisions_path,
                             rl_trace_path=output/"trace.json" if trace else None,
                             q_table_path=output/"q_table.json" if qtable else None)
