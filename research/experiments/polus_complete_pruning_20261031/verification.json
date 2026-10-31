@@ -23,5 +23,12 @@
     "verified_historical_checkpoints": 6,
     "archive_bytes_verified": true,
     "validation_reproduced": true
-  }
+  },
+  "native_smoke": {
+    "passed": 14,
+    "failed": 0,
+    "skipped": 0,
+    "evidence": "native_preflight.json"
+  },
+  "source_commit": "55d0fc242b543c5725276144bd8e970eedc48ecd"
 }

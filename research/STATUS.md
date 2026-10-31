@@ -2,15 +2,18 @@
 
 **Updated:** 2026-10-31
 
-## Complete POLUS campaign preparation — 2026-10-31
+## Complete POLUS campaign submitted — 2026-10-31
 
-A separately authorized 18-dense/252-pruning campaign is in preflight on branch
-`campaign/complete-pruning-20261031`; no Questions, Flickr or OGB. Current SSH
-access recovered, native activation/runtime and scheduler limits verified;
-six archived seed101 checkpoints independently match the frozen archive and
-reproduce validation metrics. Twelve new fits are planned for seeds202/303.
-Historical algorithms/controllers remain unchanged. See [protocol and gates](experiments/polus_complete_pruning_20261031/README.md).
-This preparation entry does not establish LSF submission or experiment completion.
+**55/55 LSF jobs accepted,1611561–1611615**, executable source `55d0fc2`, branch
+`campaign/complete-pruning-20261031`.18 dense conditions (six verified native
+seed101 reuses,12 new seed202/303 fits),252 pruning tasks across seven unchanged
+method/controller packages. Two Cora seed101 pilot batches gate the other16
+conditions through automatic technical acceptance and strict checkpoint validation.
+547 pytest PASS/0 FAIL/6 skips;14/14 native synthetic checks PASS.845min hard
+aggregate active wall reservation; queue waiting separate. Running/completed
+not queried; scientific outputs not collected. No Questions/Flickr/OGB, fine-tuning,
+historical/manuscript edits, environment changes, push or merge. Launch-only session
+stopped after verified acceptance. [Submission report and job manifest](experiments/polus_complete_pruning_20261031/SUBMISSION_REPORT.md).
 
 ## Questions dataset integration and limited readiness — 2026-10-31
 

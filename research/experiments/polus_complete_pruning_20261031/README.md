@@ -1,6 +1,7 @@
 # Complete POLUS pruning campaign — 2026-10-31
 
-Status: **PREFLIGHT, NOT SUBMITTED**. This is a new campaign; historical V1–V4
+Status: **SUBMITTED:55/55 jobs accepted**, IDs1611561–1611615. Running/completed
+not queried. See [submission report](SUBMISSION_REPORT.md). This is a new campaign; historical V1–V4
 source and results are not overwritten. Preparation branch:
 `campaign/complete-pruning-20261031`, starting at
 `376610cdba94e62c98d658f60c12a4091702bf42` (Lookahead threshold audit and Questions

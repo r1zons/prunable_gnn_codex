@@ -1,0 +1,120 @@
+{
+  "smoke": {
+    "status": "PASS",
+    "scope": "20-node synthetic unit/regression smoke, not scientific pilot",
+    "cases": [
+      {
+        "model": "gcn",
+        "method": "static_random",
+        "status": "PASS",
+        "validation_evaluations": 0
+      },
+      {
+        "model": "gcn",
+        "method": "static_magnitude",
+        "status": "PASS",
+        "validation_evaluations": 0
+      },
+      {
+        "model": "gcn",
+        "method": "static_snip",
+        "status": "PASS",
+        "validation_evaluations": 0
+      },
+      {
+        "model": "gcn",
+        "method": "sequential_random",
+        "status": "PASS",
+        "validation_evaluations": 1
+      },
+      {
+        "model": "gcn",
+        "method": "adaptive_greedy",
+        "status": "PASS",
+        "validation_evaluations": 12
+      },
+      {
+        "model": "gcn",
+        "method": "lookahead_depth2",
+        "status": "PASS",
+        "validation_evaluations": 27
+      },
+      {
+        "model": "gcn",
+        "method": "tabular_q",
+        "status": "PASS",
+        "validation_evaluations": 6
+      },
+      {
+        "model": "graphsage",
+        "method": "static_random",
+        "status": "PASS",
+        "validation_evaluations": 0
+      },
+      {
+        "model": "graphsage",
+        "method": "static_magnitude",
+        "status": "PASS",
+        "validation_evaluations": 0
+      },
+      {
+        "model": "graphsage",
+        "method": "static_snip",
+        "status": "PASS",
+        "validation_evaluations": 0
+      },
+      {
+        "model": "graphsage",
+        "method": "sequential_random",
+        "status": "PASS",
+        "validation_evaluations": 3
+      },
+      {
+        "model": "graphsage",
+        "method": "adaptive_greedy",
+        "status": "PASS",
+        "validation_evaluations": 7
+      },
+      {
+        "model": "graphsage",
+        "method": "lookahead_depth2",
+        "status": "PASS",
+        "validation_evaluations": 27
+      },
+      {
+        "model": "graphsage",
+        "method": "tabular_q",
+        "status": "PASS",
+        "validation_evaluations": 6
+      }
+    ],
+    "torch": "2.0.1",
+    "threads": 4
+  },
+  "capacity": {
+    "status": "PASS",
+    "source_commit": "55d0fc242b543c5725276144bd8e970eedc48ecd",
+    "checked_unix": 1793412591.567871,
+    "native_inputs_verified": true,
+    "capacity_safe": true,
+    "lsf_limit_unit": "MB",
+    "normal_max_minutes": 180,
+    "maximum_active_jobs": 4,
+    "current_user_jobs": 0,
+    "pending_job_capacity": 300,
+    "maximum_aggregate_wall_minutes": 845,
+    "source_archive_sha256": "7ef42db5eeddd3403157c7a2cb534c990bffd09bafe315a19614f6586aff59b6",
+    "input_manifest_sha256": "414fbd317890e12c3be85fbe3bc21b8e09326662a8b66b6de5305b8a9fab265f",
+    "measured_frozen_forward_seconds": [
+      0.04885122627019882,
+      0.009157908335328101,
+      0.04101676866412163,
+      0.026337783597409726,
+      0.019778641313314436,
+      0.015088083036243916
+    ],
+    "capacity_basis": "55 jobs below pending cap; exclusive C4 serial execution; each 4 slots/8192 MB below node capacity; absolute wall reservation845 min; six verified frozen forward costs plus prior POLUS whole-condition evidence; no accuracy-based change",
+    "native_smoke_cases": 14,
+    "smoke_sha256": "ddc71ff6e00ce056b75b213b34018641e791e049689cbe6c62f81fe414c857e7"
+  }
+}

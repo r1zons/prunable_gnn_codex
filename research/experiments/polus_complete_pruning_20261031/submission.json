@@ -1,0 +1,1127 @@
+{
+  "status": "SUBMITTED",
+  "source_commit": "55d0fc242b543c5725276144bd8e970eedc48ecd",
+  "branch": "campaign/complete-pruning-20261031",
+  "source_archive_sha256": "7ef42db5eeddd3403157c7a2cb534c990bffd09bafe315a19614f6586aff59b6",
+  "protocol_sha256": "5e400a59c27fe98506f16eb0055098de780edd26f0b209695be3a397f1edf256",
+  "receipt_archive": {
+    "file": "submission-evidence-20261031T021106Z.tar.gz",
+    "sha256": "42171aac9656c2b4225150842068cec7e643d396c111d366e0aebc2252ecec94"
+  },
+  "accepted_jobs": 55,
+  "blocked_jobs": [],
+  "rejected_jobs": [],
+  "unresolved_submissions": [],
+  "dense_conditions": 18,
+  "verified_reused_dense": 6,
+  "new_dense_training_jobs": 12,
+  "submitted_pruning_tasks": 252,
+  "allocated_slot_hours": 56.333333333333336,
+  "maximum_aggregate_active_wall_minutes": 845,
+  "queue_waiting": "not measured; excluded from active reservation",
+  "running": "NOT_QUERIED",
+  "completed": "NOT_QUERIED",
+  "submission_only": true,
+  "scientific_results_collected": false,
+  "artifact_root": "${POLUS_TASK_ROOT}/results/polus-complete-pruning-20261031/",
+  "executable_source_root": "${POLUS_TASK_ROOT}/source-snapshots/complete-pruning-55d0fc242b543c5725276144bd8e970eedc48ecd/",
+  "jobs": [
+    {
+      "node": "train-cora-gcn-s101",
+      "stage": "train",
+      "condition": "cora-gcn-s101",
+      "job_id": 1611561,
+      "dependencies": [],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "5184efa40f8605a67b2b63de79e047966c29eb9bb303e9427d407855307f9223",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.13039
+    },
+    {
+      "node": "validate-cora-gcn-s101",
+      "stage": "validate",
+      "condition": "cora-gcn-s101",
+      "job_id": 1611562,
+      "dependencies": [
+        1611561
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "fa80ed45af4359a63c9a65ba6e6cfdef430dbaf86a813a5952a4888d6350e657",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.283756
+    },
+    {
+      "node": "prune-cora-gcn-s101",
+      "stage": "prune",
+      "condition": "cora-gcn-s101",
+      "job_id": 1611563,
+      "dependencies": [
+        1611562
+      ],
+      "resources": {
+        "wall_minutes": 20,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "866953edb1ce4dba48f653579c9c650be29c8ae661752c85a169e7040b6313cb",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.2962627
+    },
+    {
+      "node": "train-cora-graphsage-s101",
+      "stage": "train",
+      "condition": "cora-graphsage-s101",
+      "job_id": 1611564,
+      "dependencies": [],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "00df864fb0cc28ccdaae1b563eec90843c0384b8352a10ffa3f391f53f6cf844",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.3081481
+    },
+    {
+      "node": "validate-cora-graphsage-s101",
+      "stage": "validate",
+      "condition": "cora-graphsage-s101",
+      "job_id": 1611565,
+      "dependencies": [
+        1611564
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "6b0396917f182a0eb5bb2664978871070aaac000bd582b6eb548a41b27aa80be",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.319815
+    },
+    {
+      "node": "prune-cora-graphsage-s101",
+      "stage": "prune",
+      "condition": "cora-graphsage-s101",
+      "job_id": 1611566,
+      "dependencies": [
+        1611565
+      ],
+      "resources": {
+        "wall_minutes": 20,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "6741f1efcc62c9e99a2a80a789f502911d2ba96b737759cf40d47edc41c2ccd1",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.3316264
+    },
+    {
+      "node": "pilot-gate",
+      "stage": "gate",
+      "condition": null,
+      "job_id": 1611567,
+      "dependencies": [
+        1611563,
+        1611566
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "f3de84ce42f40a5acbb1f07ef5ac4714e519861eb8fdf12982dc3ac15e37f2af",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.343411
+    },
+    {
+      "node": "train-cora-gcn-s202",
+      "stage": "train",
+      "condition": "cora-gcn-s202",
+      "job_id": 1611568,
+      "dependencies": [
+        1611567
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "a44e4a0295f522a9b63819775093e812e3913a1015f103565c555941e08b8c46",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.3551264
+    },
+    {
+      "node": "validate-cora-gcn-s202",
+      "stage": "validate",
+      "condition": "cora-gcn-s202",
+      "job_id": 1611569,
+      "dependencies": [
+        1611568
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "d53b53e56fc72e507e639b0326c7fa40230c055982ee1440559239c677fc588b",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.367134
+    },
+    {
+      "node": "prune-cora-gcn-s202",
+      "stage": "prune",
+      "condition": "cora-gcn-s202",
+      "job_id": 1611570,
+      "dependencies": [
+        1611569
+      ],
+      "resources": {
+        "wall_minutes": 20,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "ec0ba6b00e417c6fbb394932bb5fb85b8faa54d8a96012333a164b17ac32f307",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.3787942
+    },
+    {
+      "node": "train-cora-gcn-s303",
+      "stage": "train",
+      "condition": "cora-gcn-s303",
+      "job_id": 1611571,
+      "dependencies": [
+        1611567
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "a7b2ca3aff5a7a36379529a3893a5c70b76c15414253b8c54c41ff7c2bf12d0e",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.3914926
+    },
+    {
+      "node": "validate-cora-gcn-s303",
+      "stage": "validate",
+      "condition": "cora-gcn-s303",
+      "job_id": 1611572,
+      "dependencies": [
+        1611571
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "6c7763de882bc6e6216cb69d52607093af08887d86bbbb56bf778e9ee2c51361",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.403279
+    },
+    {
+      "node": "prune-cora-gcn-s303",
+      "stage": "prune",
+      "condition": "cora-gcn-s303",
+      "job_id": 1611573,
+      "dependencies": [
+        1611572
+      ],
+      "resources": {
+        "wall_minutes": 20,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "637d182ac9d79199c74a888278cf45b564dbfd4feb17d654158a63b83802e7dc",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.415012
+    },
+    {
+      "node": "train-cora-graphsage-s202",
+      "stage": "train",
+      "condition": "cora-graphsage-s202",
+      "job_id": 1611574,
+      "dependencies": [
+        1611567
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "74999ae506f4cc8b1e49993b62797601ed065295538ea04e0101cde60c077672",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.4267225
+    },
+    {
+      "node": "validate-cora-graphsage-s202",
+      "stage": "validate",
+      "condition": "cora-graphsage-s202",
+      "job_id": 1611575,
+      "dependencies": [
+        1611574
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "3b3b06f0b21e8239a623d3743d45ea21a4132394908f66850e5a107c8f220d92",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.4389048
+    },
+    {
+      "node": "prune-cora-graphsage-s202",
+      "stage": "prune",
+      "condition": "cora-graphsage-s202",
+      "job_id": 1611576,
+      "dependencies": [
+        1611575
+      ],
+      "resources": {
+        "wall_minutes": 20,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "1399e1133c9478b07c6ba1c8dbaab0a6390d92cf51baded781377db7db749178",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.4503343
+    },
+    {
+      "node": "train-cora-graphsage-s303",
+      "stage": "train",
+      "condition": "cora-graphsage-s303",
+      "job_id": 1611577,
+      "dependencies": [
+        1611567
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "4a13456e4a684c1fcee591b633e34af5405f1fff25d6e061305ef4a2f8cb6a97",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.461758
+    },
+    {
+      "node": "validate-cora-graphsage-s303",
+      "stage": "validate",
+      "condition": "cora-graphsage-s303",
+      "job_id": 1611578,
+      "dependencies": [
+        1611577
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "de8c8aea62b10007ec2b883aa1f930bf72eda1384031f1dbc82b24d9388bb180",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.4732726
+    },
+    {
+      "node": "prune-cora-graphsage-s303",
+      "stage": "prune",
+      "condition": "cora-graphsage-s303",
+      "job_id": 1611579,
+      "dependencies": [
+        1611578
+      ],
+      "resources": {
+        "wall_minutes": 20,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "27b504e6329ee3ddd5bfbfc32970afefd8503e76865cd5c9fac6f27c60ae3098",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.484876
+    },
+    {
+      "node": "train-citeseer-gcn-s101",
+      "stage": "train",
+      "condition": "citeseer-gcn-s101",
+      "job_id": 1611580,
+      "dependencies": [
+        1611567
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "e520158ec7581b52059aa7d42c65b6bd8e52ae887eaea3efd05117779e6395ef",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.4967866
+    },
+    {
+      "node": "validate-citeseer-gcn-s101",
+      "stage": "validate",
+      "condition": "citeseer-gcn-s101",
+      "job_id": 1611581,
+      "dependencies": [
+        1611580
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "f3b6ac86f89c5d83610a93dd8071624ef78ad9f751bbfac07f6ab05f542d7d9f",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.508785
+    },
+    {
+      "node": "prune-citeseer-gcn-s101",
+      "stage": "prune",
+      "condition": "citeseer-gcn-s101",
+      "job_id": 1611582,
+      "dependencies": [
+        1611581
+      ],
+      "resources": {
+        "wall_minutes": 30,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "ca93821c3ee53c272c21eecbe599ed16a89fe89a45f1db3f9f5b942769dda304",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.520886
+    },
+    {
+      "node": "train-citeseer-gcn-s202",
+      "stage": "train",
+      "condition": "citeseer-gcn-s202",
+      "job_id": 1611583,
+      "dependencies": [
+        1611567
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "0a9ee72c539f786b3fdb205ed47a03ea58be38a504e36fee666e6fa2235cee49",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.5326264
+    },
+    {
+      "node": "validate-citeseer-gcn-s202",
+      "stage": "validate",
+      "condition": "citeseer-gcn-s202",
+      "job_id": 1611584,
+      "dependencies": [
+        1611583
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "dae8755ebb796fafe0e131e843573a30d4e6faad84e791be6036167c00aead3c",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.5448906
+    },
+    {
+      "node": "prune-citeseer-gcn-s202",
+      "stage": "prune",
+      "condition": "citeseer-gcn-s202",
+      "job_id": 1611585,
+      "dependencies": [
+        1611584
+      ],
+      "resources": {
+        "wall_minutes": 30,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "9e85a17505cf064b034d8d6fcda0425a21f5ad86369a457d9ec7de0e6dde4747",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.5571191
+    },
+    {
+      "node": "train-citeseer-gcn-s303",
+      "stage": "train",
+      "condition": "citeseer-gcn-s303",
+      "job_id": 1611586,
+      "dependencies": [
+        1611567
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "650206171878d536c6bebaeb2cca7e1f7d6f7d384fc5697656da28774fedf24a",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.5695271
+    },
+    {
+      "node": "validate-citeseer-gcn-s303",
+      "stage": "validate",
+      "condition": "citeseer-gcn-s303",
+      "job_id": 1611587,
+      "dependencies": [
+        1611586
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "8d4df815eecefccf0ea1262a0a16fa05c3340cfe555e6588649a5d36dd57f392",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.581769
+    },
+    {
+      "node": "prune-citeseer-gcn-s303",
+      "stage": "prune",
+      "condition": "citeseer-gcn-s303",
+      "job_id": 1611588,
+      "dependencies": [
+        1611587
+      ],
+      "resources": {
+        "wall_minutes": 30,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "efd52953b3324ea25248102c048882cd977dc8b415048a87b0266c1f9cf2d853",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.5940678
+    },
+    {
+      "node": "train-citeseer-graphsage-s101",
+      "stage": "train",
+      "condition": "citeseer-graphsage-s101",
+      "job_id": 1611589,
+      "dependencies": [
+        1611567
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "b42bb2d76cecbe0d3c3cca54dee40a0a27b1fff04913b0bf0ae483476a7f62eb",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.6156418
+    },
+    {
+      "node": "validate-citeseer-graphsage-s101",
+      "stage": "validate",
+      "condition": "citeseer-graphsage-s101",
+      "job_id": 1611590,
+      "dependencies": [
+        1611589
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "c223d22f1e60737e6141b56de12df618047fafeb67cac601e49463134e433055",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.6287847
+    },
+    {
+      "node": "prune-citeseer-graphsage-s101",
+      "stage": "prune",
+      "condition": "citeseer-graphsage-s101",
+      "job_id": 1611591,
+      "dependencies": [
+        1611590
+      ],
+      "resources": {
+        "wall_minutes": 30,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "49f648c2c0c54e65f0660b1e5cc43cdc9987519e0f991e28da6c1e90dd89218f",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.641811
+    },
+    {
+      "node": "train-citeseer-graphsage-s202",
+      "stage": "train",
+      "condition": "citeseer-graphsage-s202",
+      "job_id": 1611592,
+      "dependencies": [
+        1611567
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "894d57ad47f9e745b5cfd52b999524f22d1d5755008b4e98d727284203e632b1",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.6549356
+    },
+    {
+      "node": "validate-citeseer-graphsage-s202",
+      "stage": "validate",
+      "condition": "citeseer-graphsage-s202",
+      "job_id": 1611593,
+      "dependencies": [
+        1611592
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "7071acf26a3456d18a30ab8a712674260d0f7a4aa579b500c9abe67003a271c2",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.6676083
+    },
+    {
+      "node": "prune-citeseer-graphsage-s202",
+      "stage": "prune",
+      "condition": "citeseer-graphsage-s202",
+      "job_id": 1611594,
+      "dependencies": [
+        1611593
+      ],
+      "resources": {
+        "wall_minutes": 30,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "93a4866332373667b4b8e1f6b8f00636ecfbefff3344b60016c4191bd4329965",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.6808305
+    },
+    {
+      "node": "train-citeseer-graphsage-s303",
+      "stage": "train",
+      "condition": "citeseer-graphsage-s303",
+      "job_id": 1611595,
+      "dependencies": [
+        1611567
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "e7661248abc9003479ac5ce258656889380b6947d089f66ecee7c6eebe1d626a",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.693753
+    },
+    {
+      "node": "validate-citeseer-graphsage-s303",
+      "stage": "validate",
+      "condition": "citeseer-graphsage-s303",
+      "job_id": 1611596,
+      "dependencies": [
+        1611595
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "eb8c7fbe7c09c6ddbe09ccf5fdd20e8f0d7b895641a08354ced3d43af979b8b4",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.7066982
+    },
+    {
+      "node": "prune-citeseer-graphsage-s303",
+      "stage": "prune",
+      "condition": "citeseer-graphsage-s303",
+      "job_id": 1611597,
+      "dependencies": [
+        1611596
+      ],
+      "resources": {
+        "wall_minutes": 30,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "710e8e3ef9b857990f523f302c07d87088a25b932cb3c060d6d2e52ea432462d",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.7198746
+    },
+    {
+      "node": "train-pubmed-gcn-s101",
+      "stage": "train",
+      "condition": "pubmed-gcn-s101",
+      "job_id": 1611598,
+      "dependencies": [
+        1611567
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "f194d0bb70d6e6ba5c49a6c527134e778b927c628d7dded45591ff81752a7c41",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.7329137
+    },
+    {
+      "node": "validate-pubmed-gcn-s101",
+      "stage": "validate",
+      "condition": "pubmed-gcn-s101",
+      "job_id": 1611599,
+      "dependencies": [
+        1611598
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "e7a111f3e7c1d2464c1f5505a32cbaf183e41c96a03a9d9246e126f047694b44",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.7472384
+    },
+    {
+      "node": "prune-pubmed-gcn-s101",
+      "stage": "prune",
+      "condition": "pubmed-gcn-s101",
+      "job_id": 1611600,
+      "dependencies": [
+        1611599
+      ],
+      "resources": {
+        "wall_minutes": 45,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "6b38bee0b3bef38ca96dbbf5b350287de054bd36b347700b60ebb58e486dc9c0",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.760981
+    },
+    {
+      "node": "train-pubmed-gcn-s202",
+      "stage": "train",
+      "condition": "pubmed-gcn-s202",
+      "job_id": 1611601,
+      "dependencies": [
+        1611567
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "3db79e8873e84f043b1433868dec9b21bc55cbf3568a7aa89ff801789ec65125",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.7754617
+    },
+    {
+      "node": "validate-pubmed-gcn-s202",
+      "stage": "validate",
+      "condition": "pubmed-gcn-s202",
+      "job_id": 1611602,
+      "dependencies": [
+        1611601
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "7df9c72f9dac05e7e9cbc4dfde67dca1d80fd0cb203a882c4dfa10e2e207b03f",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.7889225
+    },
+    {
+      "node": "prune-pubmed-gcn-s202",
+      "stage": "prune",
+      "condition": "pubmed-gcn-s202",
+      "job_id": 1611603,
+      "dependencies": [
+        1611602
+      ],
+      "resources": {
+        "wall_minutes": 45,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "cb982deed767740bd96297db5fa22018ca205b5faff4ca5ea624dc000f1dd26a",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.802693
+    },
+    {
+      "node": "train-pubmed-gcn-s303",
+      "stage": "train",
+      "condition": "pubmed-gcn-s303",
+      "job_id": 1611604,
+      "dependencies": [
+        1611567
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "dd15a276cf3ab4b3aa85c3270e94d851bdd85f5a72e05b71a790bf10fbb93a28",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.8163388
+    },
+    {
+      "node": "validate-pubmed-gcn-s303",
+      "stage": "validate",
+      "condition": "pubmed-gcn-s303",
+      "job_id": 1611605,
+      "dependencies": [
+        1611604
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "8e6dbcedc8e4d5f30763225476c07cd85e537b5f7094426482484ae17a1ecf50",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.8301568
+    },
+    {
+      "node": "prune-pubmed-gcn-s303",
+      "stage": "prune",
+      "condition": "pubmed-gcn-s303",
+      "job_id": 1611606,
+      "dependencies": [
+        1611605
+      ],
+      "resources": {
+        "wall_minutes": 45,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "c8c384ce474b5bdcd19f26c6ec0651d9f6bc9370826658a11411ca116d29b966",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.8439765
+    },
+    {
+      "node": "train-pubmed-graphsage-s101",
+      "stage": "train",
+      "condition": "pubmed-graphsage-s101",
+      "job_id": 1611607,
+      "dependencies": [
+        1611567
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "e8d97571f84e2b20b06b12669246acd3f2f5a0a0b8a20fd33e6c7b01d319acd5",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.8577044
+    },
+    {
+      "node": "validate-pubmed-graphsage-s101",
+      "stage": "validate",
+      "condition": "pubmed-graphsage-s101",
+      "job_id": 1611608,
+      "dependencies": [
+        1611607
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "9af3da4aac167e7f32cd6ddcd89ece1e51d0c741dd138ea4db3941a1a9bdf5ad",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.8718126
+    },
+    {
+      "node": "prune-pubmed-graphsage-s101",
+      "stage": "prune",
+      "condition": "pubmed-graphsage-s101",
+      "job_id": 1611609,
+      "dependencies": [
+        1611608
+      ],
+      "resources": {
+        "wall_minutes": 45,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "964440024676ba8bab6fa6d438abe5e15272399f8d76f18c3d1489e38bffbc7a",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.8866756
+    },
+    {
+      "node": "train-pubmed-graphsage-s202",
+      "stage": "train",
+      "condition": "pubmed-graphsage-s202",
+      "job_id": 1611610,
+      "dependencies": [
+        1611567
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "bdc2ca28c342ab83047d012375726835db7854c9ee9f678193512e82271c95e3",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.901171
+    },
+    {
+      "node": "validate-pubmed-graphsage-s202",
+      "stage": "validate",
+      "condition": "pubmed-graphsage-s202",
+      "job_id": 1611611,
+      "dependencies": [
+        1611610
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "aeb20febce12e209e9ed7b712b716da602cdb90c76618cfe2dae9c60fc0d1601",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.915617
+    },
+    {
+      "node": "prune-pubmed-graphsage-s202",
+      "stage": "prune",
+      "condition": "pubmed-graphsage-s202",
+      "job_id": 1611612,
+      "dependencies": [
+        1611611
+      ],
+      "resources": {
+        "wall_minutes": 45,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "5860b059fa58cb4c3c9cfb22ef53e1e5ce4b02d338bd7176a407cdfd45a58485",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.9298077
+    },
+    {
+      "node": "train-pubmed-graphsage-s303",
+      "stage": "train",
+      "condition": "pubmed-graphsage-s303",
+      "job_id": 1611613,
+      "dependencies": [
+        1611567
+      ],
+      "resources": {
+        "wall_minutes": 10,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "57bfb43052996d486288b0e40b7e56383e352c35f2346ecfdcbf6b9e14011c7b",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.9440074
+    },
+    {
+      "node": "validate-pubmed-graphsage-s303",
+      "stage": "validate",
+      "condition": "pubmed-graphsage-s303",
+      "job_id": 1611614,
+      "dependencies": [
+        1611613
+      ],
+      "resources": {
+        "wall_minutes": 5,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "6063c1e5dc1bcdbc7a17071bdaf917d74b9bcf004967698de48bceeea245fc99",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.9586098
+    },
+    {
+      "node": "prune-pubmed-graphsage-s303",
+      "stage": "prune",
+      "condition": "pubmed-graphsage-s303",
+      "job_id": 1611615,
+      "dependencies": [
+        1611614
+      ],
+      "resources": {
+        "wall_minutes": 45,
+        "slots": 4,
+        "memory_limit_mb": 8192,
+        "exclusive": true,
+        "queue": "normal",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      },
+      "launcher_sha256": "9a9df814019e7c76fee8c556b6fba6e4babb5d7db27323dddab0ba49a5475b39",
+      "status": "ACCEPTED",
+      "created_unix": 1793412626.9729986
+    }
+  ]
+}
