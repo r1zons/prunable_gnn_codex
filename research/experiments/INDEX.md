@@ -1,5 +1,19 @@
 # Experiment campaign registry
 
+**POLUS-COMPLETE-COLLECTION-20261031** — completed collection/independent audit,
+source55d0fc2:18 dense/252 result sets,55 jobs DONE,1,226 files hash/size verified,
+270 strict reload/projection/frozen-metric checks.92 PASS/160 WARNING/0 FAIL;
+246 physically pruned +6 declared infeasible dense outcomes;96 outside symmetric
+band. Greedy unselected-candidate observations, original reused-fit wall and
+standardized dense inference latency remain explicitly missing.38 focused tests;
+full585 PASS/0 FAIL/6 skips. GO for descriptive analysis with controller/coverage
+limits; no new experiment, source-algorithm edit, push or merge.
+[Collection](polus_complete_pruning_20261031/collection/COLLECTION_REPORT.md),
+[audit](polus_complete_pruning_20261031/collection/AUDIT_REPORT.md),
+[252-row verified dataset](polus_complete_pruning_20261031/collection/verified_results.csv),
+[84-cell summary](polus_complete_pruning_20261031/collection/summary.csv).
+Raw:`${GNN_ARTIFACT_ROOT}/polus-complete-collection-20261031T110939Z/`.
+
 **POLUS-COMPLETE-PRUNING-20261031** — **SUBMITTED55/55 LSF jobs1611561–1611615**;
 running/completed not queried.18 dense conditions (six verified reuses,12 new fits),
 252 pruning tasks; Cora/CiteSeer/PubMed,GCN/GraphSAGE,seeds101/202/303,L3/H32,

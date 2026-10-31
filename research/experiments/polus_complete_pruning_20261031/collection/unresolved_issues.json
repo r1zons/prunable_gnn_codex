@@ -1,0 +1,85 @@
+{
+  "blocking_failures": [],
+  "go_for_descriptive_analysis": true,
+  "issues": [
+    {
+      "code": "REUSED_DENSE_ORIGINAL_TRAINING_WALL_NOT_SAVED",
+      "severity": "WARNING",
+      "affected_run_rows": 84,
+      "message": "Original fitting wall is unavailable for six reused seed101 checkpoints (84 linked pruning rows); current-campaign zero fitting cost is not original training time."
+    },
+    {
+      "code": "TARGET_OUTSIDE_SYMMETRIC_BAND",
+      "severity": "WARNING",
+      "affected_run_rows": 96,
+      "message": "96 observed target deviations under preserved controllers; do not treat them as equal-compression comparisons."
+    },
+    {
+      "code": "GREEDY_UNSELECTED_CANDIDATES_NOT_RECORDED",
+      "severity": "WARNING",
+      "affected_run_rows": 36,
+      "message": "36 Greedy selected trajectories are legal and consistent, but unselected candidate values are unavailable; argmax cannot be independently verified without forbidden reruns."
+    },
+    {
+      "code": "STATIC_NEAREST_FALLBACK",
+      "severity": "WARNING",
+      "affected_run_rows": 18,
+      "message": "18 CiteSeer/30% static outcomes use the recorded nearest-width fallback."
+    },
+    {
+      "code": "DECLARED_INFEASIBLE_UNPRUNED",
+      "severity": "WARNING",
+      "affected_run_rows": 6,
+      "message": "6 CiteSeer/30% Sequential Random outcomes retain the dense graph model; exact band is infeasible."
+    },
+    {
+      "code": "DENSE_INFERENCE_LATENCY_NOT_MEASURED",
+      "severity": "WARNING",
+      "affected_count": 18,
+      "message": "No standardized dense inference benchmark for these18 conditions. Preflight login timings are not a C4 dense baseline; do not calculate inference speedup."
+    },
+    {
+      "code": "LATENCY_RAW_SAMPLES_NOT_SAVED",
+      "severity": "INFO",
+      "affected_count": 252,
+      "message": "Only recorded means/std and pass counts are available; no new timing was performed."
+    },
+    {
+      "code": "RSS_IS_WORKER_HIGH_WATER",
+      "severity": "INFO",
+      "affected_count": 252,
+      "message": "Peak RSS is cumulative for the14-run worker and cannot be attributed as incremental per-method memory."
+    },
+    {
+      "code": "STATIC_SALIENCY_AND_OPTIMIZATION_NOT_REEXECUTED",
+      "severity": "INFO",
+      "affected_count": 108,
+      "message": "Static feasibility, masks, projection and final metrics are verified; full saliency/width optimization was not rerun. Per-parameter SNIP scores were not saved."
+    },
+    {
+      "code": "INTERMEDIATE_ACCURACIES_OBSERVED_NOT_REEVALUATED",
+      "severity": "INFO",
+      "affected_count": 144,
+      "message": "Recorded adaptive intermediate observations are audited arithmetically; only final frozen models are independently inferred."
+    },
+    {
+      "code": "REUSED_ORIGIN_GRAPH_DIGEST_RECONSTRUCTED",
+      "severity": "WARNING",
+      "affected_count": 6,
+      "message": "The six20261024 origins lack a contemporaneous graph tensor hash. Preserved raw/processed lineage and original checkpoint bytes were verified; current campaign frozen graph hashes are complete."
+    },
+    {
+      "code": "BACCT_QUERY_TIMEOUT_RESOLVED_WITH_BHIST",
+      "severity": "INFO",
+      "affected_count": 55,
+      "message": "The broad bacct query timed out; complete bhist accounting and successful stdout logs cover all55 IDs. Missing bjobs entries are scheduler cleanup, not missing experiments."
+    }
+  ],
+  "no_go_claims": [
+    "Greedy argmax independently proved",
+    "SNIP saliency independently reproduced",
+    "dense-to-pruned inference speedup",
+    "all methods matched at requested compression",
+    "policy episodes as independent trained GNNs"
+  ]
+}

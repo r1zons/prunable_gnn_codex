@@ -1,0 +1,11 @@
+{
+  "aggregate_active_lsf_seconds": 1925.0,
+  "sum_per_job_pending_seconds": 39296.0,
+  "cpu_accounting_seconds": 6960.2,
+  "actual_allocated_slot_hours": 10.694444444444445,
+  "requested_four_slot_active_hours": 2.138888888888889,
+  "measured_search_seconds": 952.7626144215465,
+  "measured_new_dense_fitting_seconds": 191.52237416617572,
+  "hard_requested_active_wall_minutes": 845,
+  "warning": "Pending is a sum over55 jobs and includes dependency waits; it is not elapsed campaign duration."
+}

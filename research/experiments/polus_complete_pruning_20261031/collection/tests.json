@@ -1,0 +1,26 @@
+{
+  "focused": {
+    "passed": 38,
+    "failed": 0,
+    "skipped": 0,
+    "log_sha256": "b122c0c043539f7cd85d40be4c5e21f52c1235f84a5378a3261032cb9627e1c5"
+  },
+  "full": {
+    "passed": 585,
+    "failed": 0,
+    "skipped": 6,
+    "log_sha256": "b41e2c78a1824585a66ae0c5f9ff77f48b399ff44e53e86e9eccc5a4d50d4270"
+  },
+  "skip_reasons": [
+    "2 CUDA device-preservation tests: CUDA unavailable",
+    "4 opt-in frozen-Cora Lookahead tests: not enabled"
+  ],
+  "audit_code_sha256": {
+    "src/gnn_pruning/experiments/complete_collection.py": "d73fe5fd7c74c3c98b9a21e808087bcdba774064547c46ad24de11f8fc5f952d",
+    "src/gnn_pruning/experiments/complete_audit.py": "132f80690bf6d57fcebdf4ff493e8ef6b640d70f6ccdecd49d892b05b3929a9e",
+    "src/gnn_pruning/experiments/complete_audit_trace.py": "422c0c368b2f6fb4b28da45ba9dc5356a935861b3f764c5b422071174c99da32",
+    "tests/test_complete_campaign_audit.py": "07aa7388198ad9f1c57a2558ae0535c4644f5cf5f5ccae46e5dd8057e83bcc13",
+    "research/experiments/polus_complete_pruning_20261031/collection/scripts/plot_verified.py": "3992c852737076b7eaa05f8f2c2c1cbd0f9d8c22a972b4af721ce357587e5493",
+    "research/experiments/polus_complete_pruning_20261031/collection/scripts/report_verified.py": "1cf6c8211954afc2f1ee064bb4ec4ae3f3003b94e5dffc2f010b17f02d337e9a"
+  }
+}

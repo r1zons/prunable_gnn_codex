@@ -1,0 +1,78 @@
+{
+  "AUDIT_REPORT.md": {
+    "bytes": 12886,
+    "sha256": "e6fc24f3b56089b580521fb04ebf8087a6ced86edf5d22c05aae7f073583a99f"
+  },
+  "COLLECTION_REPORT.md": {
+    "bytes": 5229,
+    "sha256": "a6d5655c21e801f1c2706d8e33de9771e3ea119d28493d3837a8b847b1ffc7fe"
+  },
+  "artifact_manifest.csv": {
+    "bytes": 249066,
+    "sha256": "9178fb0362cc4db11ea0219a155d527776b5fbc32c261407f6dc06c85f638907"
+  },
+  "audit.json": {
+    "bytes": 887663,
+    "sha256": "1996e2075fb6464552c5eec7cd137ccdd94da13b46a240b9e8e411e84ac5c367"
+  },
+  "audit_runs.csv": {
+    "bytes": 343129,
+    "sha256": "4be9e640b7c37da8adb1dd2038214455784a828bd086135f97cd1b0f2b26a03f"
+  },
+  "collection_receipt.json": {
+    "bytes": 1925,
+    "sha256": "b51305caa405ac5dad0c4a2436c3671c994dc42817812a519187f97f3cddc914"
+  },
+  "dense_audit.csv": {
+    "bytes": 9118,
+    "sha256": "527d665f8b5d26c0c91f17ecd5f4787817706d5e82a56c002d1b8ae6df795ab4"
+  },
+  "figures/accuracy_compression.png": {
+    "bytes": 240587,
+    "sha256": "7270132bd606f3210f775afa63fc4df0af8c159dd33177b022df0f76a116d81b"
+  },
+  "figures/coverage.png": {
+    "bytes": 130133,
+    "sha256": "3cc829a81d5d4af4c67c584700471804255e2fa668db394787e068bb5b75406d"
+  },
+  "figures/f1_compression.png": {
+    "bytes": 242433,
+    "sha256": "f8e72295a07b02f83128b1004c553577fa2dafb5569d4bc51fcd79d504eba5af"
+  },
+  "figures/quality_search_cost.png": {
+    "bytes": 222481,
+    "sha256": "d26fee174b41888ea768bafa49babd49e24f7d9946d96abe2662c0a36a2d9b14"
+  },
+  "job_status.csv": {
+    "bytes": 6953,
+    "sha256": "1f568ca0de5bbb2ac42eea73f320f0cf374efebe31a56509754734695180e84b"
+  },
+  "resources.json": {
+    "bytes": 498,
+    "sha256": "51c2ed96af2503462063c0bde8a7111435ef2d2b2d3b3aeb884fe4d5bd24153c"
+  },
+  "scripts/plot_verified.py": {
+    "bytes": 5244,
+    "sha256": "3992c852737076b7eaa05f8f2c2c1cbd0f9d8c22a972b4af721ce357587e5493"
+  },
+  "scripts/report_verified.py": {
+    "bytes": 26737,
+    "sha256": "1cf6c8211954afc2f1ee064bb4ec4ae3f3003b94e5dffc2f010b17f02d337e9a"
+  },
+  "summary.csv": {
+    "bytes": 41221,
+    "sha256": "6b9c3df67c171278520cc39d67e725dc8d9ddd474620ce43375561ba75a477a0"
+  },
+  "tests.json": {
+    "bytes": 1301,
+    "sha256": "eeefe70bc6d73b2bbbb06868a0c864886020867f04d86cd4f1ae4afac212edd3"
+  },
+  "unresolved_issues.json": {
+    "bytes": 3670,
+    "sha256": "1c53e475412545686132a98a978531e19a7246e535e99f8abff81e4c30af2ab6"
+  },
+  "verified_results.csv": {
+    "bytes": 343129,
+    "sha256": "4be9e640b7c37da8adb1dd2038214455784a828bd086135f97cd1b0f2b26a03f"
+  }
+}

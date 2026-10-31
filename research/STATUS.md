@@ -2,6 +2,31 @@
 
 **Updated:** 2026-10-31
 
+## Complete POLUS campaign collected and independently audited — 2026-10-31
+
+**18/18 dense models and252/252 condition results collected/core-verified**;
+55/55 LSF jobs1611561–1611615 DONE. All1,226 files (213,152,398 bytes) match remote
+SHA256/size; no missing/corrupt/duplicate result identities.270 checkpoints strictly
+reload, retained original channels project exactly, frozen validation/test metrics
+recompute (max difference2.22e-16). No split/data replacement, training, pruning
+rerun, scheduler submission, timing experiment, algorithm/manuscript edit or push.
+
+**GO for descriptive analysis with limits**:92 PASS/160 WARNING/0 FAIL/0 core
+NOT VERIFIED.246 physically smaller models;6 declared CiteSeer30% Random
+infeasible outcomes remain dense.96 outside-band outcomes retain original stopping
+semantics.36 Greedy argmax subchecks lack unselected candidate values; original
+fit wall for6 reused models and standardized dense inference latency are absent.
+38 focused pytest PASS; full585 PASS/0 FAIL/6 explicit skips. Active LSF wall32.08min;
+exclusive C4 allocated20 slots despite4 requested threads. Independent dense
+seeds101/202/303 remain n=3 per cell; Q episodes are not additional trained models.
+
+[Collection report](experiments/polus_complete_pruning_20261031/collection/COLLECTION_REPORT.md),
+[audit and limits](experiments/polus_complete_pruning_20261031/collection/AUDIT_REPORT.md),
+[verified252-row table](experiments/polus_complete_pruning_20261031/collection/verified_results.csv)
+and84-cell summary/figures are versioned compactly. Raw new provenance group:
+`${GNN_ARTIFACT_ROOT}/polus-complete-collection-20261031T110939Z/`.
+Audit branch:`audit/polus-complete-collection-20261031`; source55d0fc2 remains frozen.
+
 ## Complete POLUS campaign submitted — 2026-10-31
 
 **55/55 LSF jobs accepted,1611561–1611615**, executable source `55d0fc2`, branch
