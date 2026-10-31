@@ -181,7 +181,7 @@ def prune_from_checkpoint_v2(checkpoint_path: str, config_path: str):
     except (OSError, subprocess.CalledProcessError):
         git_sha, dirty = "unavailable", None
     is_lookahead = method == "lookahead_local_v4"
-    protocol = "LOCAL-STRUCTURED-LOOKAHEAD-V4" if is_lookahead else "LOCAL-STRUCTURED-V2-R2"
+    protocol = "LOCAL-STRUCTURED-LOOKAHEAD-GREEDY-THRESHOLD-V1" if is_lookahead else "LOCAL-STRUCTURED-V2-R2"
     provenance = {"protocol": protocol, "method": method, "seed": resolved.run.seed,
                   "dataset": resolved.data.name, "checkpoint_sha256": _file_hash(checkpoint_path),
                   "dense_tensor_sha256": tensor_hash(model.state_dict()), "split_sha256": _file_hash(split_path),
@@ -191,8 +191,10 @@ def prune_from_checkpoint_v2(checkpoint_path: str, config_path: str):
                   "python_version": platform.python_version(), "torch_version": str(torch.__version__),
                   "pyg_version": torch_geometric.__version__, "device": str(device), "platform": platform.platform(),
                   "git_sha": git_sha, "tracked_worktree_dirty": dirty}
+    if is_lookahead:
+        provenance["termination_policy"] = "greedy_threshold"
     # Unique directory prevents accidental replacement of V1 or earlier V2 evidence.
-    group = "local_structured_lookahead" if is_lookahead else "local_structured_v2"
+    group = "local_structured_lookahead_threshold" if is_lookahead else "local_structured_v2"
     output = Path(resolved.run.output_dir).expanduser()/group/method/f"target_{target:g}"/uuid.uuid4().hex[:12]
     output.mkdir(parents=True, exist_ok=False)
     architecture = final.export_architecture_config()
@@ -217,6 +219,12 @@ def prune_from_checkpoint_v2(checkpoint_path: str, config_path: str):
               "dense_metrics": {key: _metrics(model, data, idx[key]) for key in ("val", "test")},
               "zero_score_parameters": sum(int((s == 0).sum()) for s in scores.values()),
               "final_metrics": {key: _metrics(final, data, idx[key]) for key in ("val", "test")}}
+    if is_lookahead:
+        report.update(termination_policy="greedy_threshold",
+                      signed_target_deviation=achieved-target,
+                      overshoot=max(0.,achieved-target),
+                      overshoot_beyond_tolerance=achieved > target+cfg.get("target_sparsity_tolerance", .01),
+                      threshold_reached=achieved >= target-cfg.get("target_sparsity_tolerance", .01))
     metrics_path = output/"metrics.json"
     _write_json(metrics_path, report)
     _write_json(output/"config_snapshot.json", {"source": raw, "resolved": resolved.to_dict()})

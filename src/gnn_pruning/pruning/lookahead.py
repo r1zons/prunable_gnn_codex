@@ -1,4 +1,4 @@
-"""Deterministic exhaustive depth-1/2 planning on the unchanged V4 environment.
+"""Deterministic exhaustive depth-1/2 planning on the native Greedy environment.
 
 Only a selected first-action preview is adopted. The following plan can reuse its
 already evaluated children by concrete parent identity, never by aggregate state.
@@ -13,8 +13,7 @@ from typing import Any, Callable
 
 from torch import nn
 
-from .adaptive_v2 import AdaptiveResult, action_key
-from .experimental_v4 import Settings, V4Env
+from .adaptive_v2 import AdaptiveResult, LocalV2Env, action_key
 
 Action = tuple[int, int]
 
@@ -23,7 +22,7 @@ Action = tuple[int, int]
 class LookaheadPlan:
     """First-action successor, serializable search tree and actual preview costs."""
 
-    next_env: V4Env
+    next_env: LocalV2Env
     decision: dict[str, Any]
     evaluations: int
     explored_transitions: int
@@ -46,14 +45,14 @@ class LookaheadPlanner:
         if type(depth) is not int or depth not in (1, 2):
             raise ValueError('Lookahead depth must be integer 1 or 2.')
         if gamma != .9:
-            raise ValueError('Lookahead requires gamma=0.9 for V4 comparability.')
+            raise ValueError('Lookahead requires the shared reward discount gamma=0.9.')
         self.depth, self.gamma = depth, gamma
-        self._parent: V4Env | None = None
-        self._children: dict[Action, V4Env] = {}
+        self._parent: LocalV2Env | None = None
+        self._children: dict[Action, LocalV2Env] = {}
         self._parent_state: tuple | None = None
 
     @staticmethod
-    def _concrete_state(env: V4Env) -> tuple:
+    def _concrete_state(env: LocalV2Env) -> tuple:
         # Identity alone is insufficient if a caller advances the same environment.
         # Model weights and evaluator inputs must still obey the frozen contract.
         return (env.state(), tuple(map(tuple, env.original_kept_ids)),
@@ -62,28 +61,30 @@ class LookaheadPlanner:
                       ('accuracy', 'dense_accuracy', 'sparsity', 'target', 'tolerance',
                        'penalty_lambda', 'min_channels', 'p0')))
 
-    def plan(self, env: V4Env) -> LookaheadPlan:
+    def plan(self, env: LocalV2Env) -> LookaheadPlan:
         """Score all feasible leaves; leave the parent model/state/trace unchanged.
 
         Nonterminal branches must extend to the requested depth. Terminal branches
         end immediately; cutoff leaves receive neither bootstrap nor fake terminal
         penalties. A cached child is valid only for this exact parent object.
         """
-        if not isinstance(env, V4Env) or env.settings.menu != 'standard' or env.settings.incremental_drop or env.greedy:
-            raise ValueError('Lookahead requires the standard repeated-drop V4 environment.')
+        # Constrained V3/V4 subclasses can also set greedy=True; accepting them
+        # would silently reintroduce different menus/rewards/reachability filters.
+        if type(env) is not LocalV2Env or not env.greedy:
+            raise ValueError('Lookahead requires the native Greedy threshold environment.')
         if env.terminal:
             raise ValueError('Cannot plan from a terminal environment.')
         started = time.perf_counter()
         actions = env.legal_actions()
         reusable = (self._children if self._parent is env and
                     self._parent_state == self._concrete_state(env) else {})
-        first: dict[Action, V4Env] = {}
-        seconds: dict[Action, dict[Action, V4Env]] = {}
+        first: dict[Action, LocalV2Env] = {}
+        seconds: dict[Action, dict[Action, LocalV2Env]] = {}
         transitions, paths = [], []
         evaluations = hits = 0
         scoring = surgery = 0.
 
-        def preview(parent: V4Env, action: Action, path: list[str], cached: V4Env | None = None) -> V4Env:
+        def preview(parent: LocalV2Env, action: Action, path: list[str], cached: LocalV2Env | None = None) -> LocalV2Env:
             nonlocal evaluations, hits, scoring, surgery
             child = cached if cached is not None else parent.preview(action)
             if cached is None:
@@ -94,6 +95,7 @@ class LookaheadPlanner:
                 hits += 1
             transitions.append(dict(path=path, from_state=parent.state(), state=child.state(),
                                     evaluation_reused=cached is not None,
+                                    parameters_after=sum(p.numel() for p in child.model.parameters()),
                                     transition=copy.deepcopy(child.trace[-1])))
             return child
 
@@ -144,7 +146,7 @@ def run_lookahead(model: nn.Module, evaluate: Callable[[nn.Module], float], targ
     """
     planner = LookaheadPlanner(depth, gamma)
     started = time.perf_counter()
-    env = V4Env(model, evaluate, target, Settings(), penalty_lambda=penalty_lambda,
+    env = LocalV2Env(model, evaluate, target, penalty_lambda=penalty_lambda, greedy=True,
                 max_steps=max_steps, min_channels=min_channels, tolerance=tolerance)
     evaluations, explored, hits, leaf_paths = 0, 0, 0, 0
     scoring = surgery = 0.
@@ -160,6 +162,12 @@ def run_lookahead(model: nn.Module, evaluate: Callable[[nn.Module], float], targ
         surgery += plan.surgery_seconds
         env = plan.next_env  # Execute only the first action; never adopt the leaf.
     statistics = dict(depth=depth, gamma=gamma, menu='standard', state_version='local_v2',
+        termination_policy='greedy_threshold', achieved_sparsity=env.sparsity,
+        target_gap=abs(env.sparsity-target), target_violation=abs(env.sparsity-target)>tolerance,
+        signed_target_deviation=env.sparsity-target,
+        overshoot=max(0.,env.sparsity-target),
+        overshoot_beyond_tolerance=env.sparsity > target+tolerance,
+        threshold_reached=env.sparsity >= target-tolerance,
         objective=('r1' if depth == 1 else 'r1 + 0.9*r2; terminal ends path; zero cutoff bootstrap'),
         validation_evaluations=1+evaluations, candidate_evaluations=evaluations,
         explored_candidate_transitions=explored, candidate_paths=leaf_paths,

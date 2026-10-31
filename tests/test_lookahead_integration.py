@@ -10,7 +10,8 @@ from gnn_pruning.models import build_model
 from gnn_pruning.pruning import get_pruner
 from gnn_pruning.pruning import workflow_v2
 from gnn_pruning.pruning.workflow import prune_from_checkpoint
-from gnn_pruning.pruning.experimental_v3 import run_variant as run_v3
+from gnn_pruning.pruning.adaptive_v2 import LocalV2Env, run_greedy
+from gnn_pruning.pruning.lookahead import LookaheadPlanner
 from test_local_v2_integration import fixture_files
 from test_lookahead import without_times
 
@@ -59,11 +60,11 @@ def test_existing_prune_interface_checkpoints_trees_metrics_and_provenance(tmp_p
     report = json.loads(artifact.pruning_metrics_path.read_text())
     decisions = json.loads(artifact.adaptive_trace_path.read_text())
     trace = json.loads(artifact.rl_trace_path.read_text())
-    assert report['provenance']['protocol'] == 'LOCAL-STRUCTURED-LOOKAHEAD-V4'
+    assert report['provenance']['protocol'] == 'LOCAL-STRUCTURED-LOOKAHEAD-GREEDY-THRESHOLD-V1'
     assert report['provenance']['checkpoint_sha256'] == cfg['v2']['checkpoint_sha256']
     assert report['provenance']['dataset'] == dataset
     assert report['statistics']['depth'] == 2 and report['statistics']['gamma'] == .9
-    assert report['statistics']['terminal_reason'] in ('target_band','max_steps')
+    assert report['statistics']['terminal_reason'] in ('target_reached','max_steps','no_valid_actions')
     assert not trace['training'] and artifact.q_table_path is None
     assert len(decisions) == len(trace['deployment'])
     assert [d['selected_action'] for d in decisions] == [t['action'] for t in trace['deployment']]
@@ -71,7 +72,13 @@ def test_existing_prune_interface_checkpoints_trees_metrics_and_provenance(tmp_p
     assert_projection(dense,final,payload['original_kept_ids'])
     assert sum(p.numel() for p in final.parameters()) == report['parameters_after'] < report['parameters_before']
     assert report['achieved_sparsity'] == 1-report['parameters_after']/report['parameters_before']
-    assert report['target_gap'] <= .01 and not report['target_violation']
+    assert report['target_gap'] == pytest.approx(abs(report['achieved_sparsity']-.44))
+    assert report['target_violation'] == (report['target_gap'] > .01)
+    assert report['statistics']['termination_policy'] == 'greedy_threshold'
+    assert report['overshoot'] == max(0.,report['achieved_sparsity']-.44)
+    assert report['signed_target_deviation'] == report['achieved_sparsity']-.44
+    assert report['overshoot_beyond_tolerance'] == (report['achieved_sparsity'] > .45)
+    assert report['threshold_reached'] == (report['achieved_sparsity'] >= .44-.01)
     assert report['reporting_evaluations'] == 4
     assert 'test' in report['final_metrics'] and 'macro_f1' in report['final_metrics']['val']
     with torch.no_grad():
@@ -127,9 +134,63 @@ def test_depth_one_real_validation_greedy_equivalence_including_reported_f1(tmp_
     def evaluate(candidate):
         with torch.no_grad():
             return (candidate(data).argmax(-1)[val] == data.y[val]).float().mean().item()
-    reference = run_v3(dense,evaluate,'greedy_reachable_v3',target=.44,penalty_lambda=2.,max_steps=3)
+    reference = run_greedy(dense,evaluate,target=.44,penalty_lambda=2.,max_steps=3)
     assert reference.kept_indices == payload['original_kept_ids']
     assert reference.trace == json.loads(artifact.rl_trace_path.read_text())['deployment']
     assert report['final_metrics']['val'] == workflow_v2._metrics(reference.model,data,val)
     assert all(torch.equal(v,payload['model_state_dict'][k]) for k,v in reference.model.state_dict().items())
     assert report['statistics']['validation_evaluations'] == reference.statistics['validation_evaluations']
+
+
+@pytest.mark.parametrize('kind',['gcn','graphsage'])
+def test_depth_two_actual_forward_independent_path_search_and_physical_projection(tmp_path,kind):
+    from lookahead_forward_oracle import Node, enumerate_paths
+    dense,data,_,_,_ = configure(tmp_path,kind)
+    validation = torch.tensor([1,3])
+    hidden = torch.ones(data.num_nodes,dtype=torch.bool)
+    hidden[validation] = False
+    data.y[hidden] = -1
+    def evaluate(candidate):
+        assert (data.y[hidden] == -1).all()
+        candidate.eval()
+        with torch.no_grad():
+            predictions = candidate(data).argmax(-1)
+            return float((predictions[validation] == data.y[validation]).float().mean())
+    p0 = sum(p.numel() for p in dense.parameters())
+    dense_accuracy = evaluate(dense)
+    calls = []
+    def counted(candidate):
+        calls.append(1)
+        return evaluate(candidate)
+    env = LocalV2Env(dense,counted,.44,2.,greedy=True,max_steps=3)
+    planner = LookaheadPlanner(depth=2)
+    evaluations = 1
+    while not env.terminal:
+        root = Node(env.model,env.original_kept_ids,env.steps,env.sparsity,env.accuracy)
+        possible = enumerate_paths(root,evaluate,p0,dense_accuracy,.44)
+        best = max(possible,key=lambda path:path['score'])
+        selected = planner.plan(env)
+        rows = selected.decision['candidate_paths']
+        keys = lambda path:[f'prune:{a}:{k}' for a,k in path]
+        assert [p['actions'] for p in rows] == [keys(p['actions']) for p in possible]
+        assert [p['score'] for p in rows] == pytest.approx([p['score'] for p in possible],abs=1e-14)
+        assert selected.decision['selected_action'] == keys(best['actions'])[0]
+        assert selected.decision['best_planned_path'] == keys(best['actions'])
+        nodes = {tuple(keys(p['actions'][:i+1])):node
+                 for p in possible for i,node in enumerate(p['nodes'])}
+        for recorded in selected.decision['candidate_transitions']:
+            node = nodes[tuple(recorded['path'])]
+            transition = recorded['transition']
+            assert transition['original_kept_ids'] == node.ids
+            assert transition['reward'] == pytest.approx(node.reward,abs=1e-14)
+            assert transition['validation_accuracy'] == node.accuracy
+            assert transition['sparsity'] == node.sparsity
+            assert transition['terminal_penalty'] == node.penalty
+            assert transition['terminal_reason'] == node.reason
+            assert recorded['parameters_after'] == sum(p.numel() for p in node.model.parameters())
+        assert len(selected.next_env.trace) == len(env.trace)+1
+        assert_projection(dense,selected.next_env.model,selected.next_env.original_kept_ids)
+        assert selected.next_env.original_kept_ids == best['nodes'][0].ids
+        evaluations += selected.evaluations
+        env = selected.next_env
+    assert len(env.trace) <= 3 and len(calls) == evaluations

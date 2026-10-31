@@ -25,5 +25,5 @@ v2:
   max_steps: 20
   target_sparsity_tolerance: 0.01
 lookahead:
-  depth: 2  # 1 is the exact constrained-Greedy correctness reference.
+  depth: 2  # 1 matches native adaptive_greedy_local_v2 (threshold stopping).
   gamma: 0.9

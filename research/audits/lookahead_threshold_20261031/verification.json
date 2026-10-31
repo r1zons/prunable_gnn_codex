@@ -1,0 +1,142 @@
+{
+  "status": "PASS",
+  "date": "2026-10-31",
+  "base_commit": "70fe25d6e91d432646168bc263e193f15f45fc8f",
+  "branch": "audit/lookahead-greedy-threshold-20261031",
+  "canonical_checkout": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex",
+  "counts": {
+    "proposed_patch": {
+      "PASS": 40,
+      "FAIL": 5,
+      "SKIPPED": 1
+    },
+    "focused": {
+      "PASS": 53,
+      "FAIL": 0,
+      "SKIPPED": 0
+    },
+    "complete": {
+      "PASS": 506,
+      "FAIL": 0,
+      "SKIPPED": 2
+    },
+    "archived_cora_subset": {
+      "PASS": 4,
+      "FAIL": 0,
+      "SKIPPED": 0
+    }
+  },
+  "archived_cora_junit": [
+    {
+      "name": "test_real_frozen_cora_depth_one_matches_native_greedy[0.3-gcn]",
+      "status": "PASS"
+    },
+    {
+      "name": "test_real_frozen_cora_depth_one_matches_native_greedy[0.3-graphsage]",
+      "status": "PASS"
+    },
+    {
+      "name": "test_real_frozen_cora_depth_one_matches_native_greedy[0.5-gcn]",
+      "status": "PASS"
+    },
+    {
+      "name": "test_real_frozen_cora_depth_one_matches_native_greedy[0.5-graphsage]",
+      "status": "PASS"
+    }
+  ],
+  "skips": [
+    {
+      "name": "test_cuda_device_and_logits[gcn]",
+      "reason": "CUDA unavailable; device preservation unverified on GPU"
+    },
+    {
+      "name": "test_cuda_device_and_logits[graphsage]",
+      "reason": "CUDA unavailable; device preservation unverified on GPU"
+    }
+  ],
+  "environment": {
+    "python": "3.12.9",
+    "torch": "2.2.2",
+    "pyg": "2.6.1",
+    "numpy": "1.26.4",
+    "pytest": "8.3.5",
+    "matplotlib": "3.9.4 task-local supplement reused",
+    "threads": 2,
+    "cuda": false
+  },
+  "warnings": {
+    "count": 39,
+    "reason": "Existing Torch JIT ast.Str/s deprecations under Python 3.12"
+  },
+  "commands": {
+    "focused": "python -m pytest tests/test_lookahead.py tests/test_lookahead_integration.py -r a",
+    "full": "GNN_LOOKAHEAD_CORA_MANIFEST=<verified-manifest> GNN_LOOKAHEAD_AUDIT_OUTPUT=<fresh-external-dir> python -m pytest -r a --junitxml=<external-xml>"
+  },
+  "external_artifacts": "/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts/lookahead-threshold-audit-20261031",
+  "logs": {
+    "proposed-patch-focused.log": {
+      "sha256": "a28a6f7d468ad3a0a841e0aeeff2a8d55ea5bf3ed0c1787ed436b3da382243d3",
+      "bytes": 11277
+    },
+    "focused-initial-corrected.log": {
+      "sha256": "f9e248d30085c2e34ac9cac2499e42068df24a66d3a17449da2641673f138b91",
+      "bytes": 1011
+    },
+    "full-initial-corrected.log": {
+      "sha256": "cdac69f022993d75d201ecff23c86e6589bd9472a9b4d1c18a5de1396f3e9fa8",
+      "bytes": 1950
+    },
+    "full-initial-corrected.xml": {
+      "sha256": "46e73957ef1f45852059a54d132d1217d998c1178438a9c993a65fd5dde14cda",
+      "bytes": 69190
+    }
+  },
+  "supplied_files": {
+    "apply_lookahead_greedy_threshold.py": "4c731c8341231478fd33a3523450261f745895844cab1a1c824e805369ccaf20",
+    "LOOKAHEAD_AUDIT_FIX_INSTRUCTIONS.md": "b5443e41dab136c58946f71e172ad1f5ac7238b7331fa11c8a58846b01fa25b7"
+  },
+  "current_files": {
+    "src/gnn_pruning/pruning/lookahead.py": "b61652a6e908cf2af0603cc6401d2699701e0a50babf0e2246a405ba90511e8f",
+    "src/gnn_pruning/pruning/registered_lookahead.py": "c5f5f803b7964c22b004bd2fa8adefe5ffd2765bc308cf273b1f9fe842f1424d",
+    "src/gnn_pruning/pruning/workflow_v2.py": "4203f667d719416e7e082e76cc085142d065e27a16e2f88c94b1cf2fed844dfa",
+    "tests/test_lookahead.py": "51c7d7ee40b410c062c3b06f917283fc2ce29e1c21632f259d13609faf3b1e97",
+    "tests/test_lookahead_integration.py": "400f2ab0ff8549415bc420aaa57694572843f9ec06a3bb96e17343c6966df9b3",
+    "tests/lookahead_forward_oracle.py": "6020dcdc4fad10e435ea12172067aacef0082cf2a0560f33798f0a116e396a82",
+    "tests/test_lookahead_frozen_cora.py": "11f7d0e7cd4d0336d9488f0a8c57a038a5d3a5a135bdaff5f31acc1477f92001",
+    "docs/lookahead.md": "95a11080177b76329ac36858996ec1ca51d9cfaad41c32d8ec59a7a97708403f",
+    "configs/experiments/lookahead/example.yaml": "1ff32f3ef94b2b001c51ffb22981c84df8e2a16b0a9bb24ab30449811f82b098",
+    "research/audits/2026-10-31_lookahead_greedy_threshold.md": "e5ce8ad9da1a63c4bf2cef76f6488e558f1668fa808212686c17f9af2f3c1a63",
+    "research/audits/lookahead_threshold_20261031/frozen_cora.json": "2763dd4dddb020dc7209b605b1388409052619bb340c62e96fd3b2fa40c16954"
+  },
+  "protected_files": {
+    "src/gnn_pruning/pruning/adaptive_v2.py": "164285ec9c51e8181bd65d2d353f21cbdead8302ca7b8e4d6be55d98b57cc038",
+    "src/gnn_pruning/pruning/experimental_v3.py": "3d9a974cf40c7904805cc05b8d37415cc77cc905b01e4205db4f727f71af9213",
+    "src/gnn_pruning/pruning/experimental_v4.py": "c0efb64e79ad68ac47e72785cb1dd4e8b764d00493274f2c0a5b2a3aba97f4a3",
+    "src/gnn_pruning/pruning/static_v2.py": "abfde03e27ea99f838a480c55f13fc8764a9c2b423cb8e201c68dba4aa4ed397",
+    "src/gnn_pruning/pruning/registered_v2.py": "3624dab914054b74af22f4eedf4e641f3c47389dea082bdc3863fa65b91ec3f2",
+    "src/gnn_pruning/surgery/local_v2.py": "6288b6f888680c318b5a0047af4408bce137aceb0063de0379da2f04ad68c059",
+    "docs/lookahead_verification_20261031.json": "e0ebb3bbea10da57269277afac95a5820a18d4f32f61902f2f5e005b47cc99ba"
+  },
+  "input_manifest_sha256": "3e37eb54f550df8ee18cce8b948e038abd09fb548a140dbca1c8890b8829a43a",
+  "input_files": {
+    "graph_tensors.pt": "4202270306b85ac367d22b483fb9b2041af1a4085a732356f8714df1e6053596",
+    "splits.yaml": "59a0209a8e2a73a5e70a720d327f8c024d36d184a6d00be820ced0e1a3eb08bc",
+    "gcn.pt": "276b2ff0f7790a84afc2755e89d88f1a170865a4397e4355daf7552c7075c129",
+    "graphsage.pt": "09b289dcbaddc1afb1c3660f7fa5d60fb1109c3c3059bdae14d8c4de03034774"
+  },
+  "v4_archive_sha256": "d80ea49be02c5e08ec7169a323b91c368875e4b42fab5dbeffb655ffca468704",
+  "historical_results_and_manuscript_unchanged": true,
+  "remote_operations": false,
+  "push_or_merge": false,
+  "scope": {
+    "archived_depth1_comparisons": 4,
+    "real_depth2_dataset_runs": 0,
+    "training_outside_synthetic_pytest": 0,
+    "polus_jobs": 0
+  },
+  "recommendation": {
+    "implementation": "GO on verified local CPU",
+    "full_campaign": "NO-GO until controller-group/harmonization and achieved-compression comparison protocol is preregistered"
+  },
+  "remaining_failures": []
+}

@@ -12,7 +12,7 @@ from .lookahead import LookaheadResult, run_lookahead
 
 @register_pruner
 class LookaheadLocalV4Pruner(LocalV2Pruner):
-    """V4-constrained deterministic Lookahead, routed through pinned input workflow."""
+    """Native Greedy-threshold Lookahead; registry name retained for compatibility."""
 
     name = 'lookahead_local_v4'
     category = 'local_structured_lookahead'
