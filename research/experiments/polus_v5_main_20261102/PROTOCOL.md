@@ -78,3 +78,23 @@ all failures/target misses without removing unfavorable outcomes. Q coverage,
 unseen alternatives, deterministic ties, exploration and observed Bellman values
 support mechanism descriptions; no unrecorded counterfactual validation scores
 or significance claims.
+
+The approved asynchronous continuation uses an additional normal/exclusive C4
+release job (90min/8GiB/one active thread), depending on **ended** for both native
+preflight jobs. It independently requires bhist **Done successfully** for both;
+failed/ambiguous/partial evidence creates a blocked record and submits no research.
+A separately pinned reporting/controller file invokes the immutable scientific
+snapshot. Source/protocol/activation/controller/analysis hashes are checked before
+execution. Current queue/users/host state is queried again at release. Only a
+complete PASS gate produces the252-row measured resource manifest and18 research
+bsub requests. Every acceptance is recorded exactly once. Partial/ambiguous
+submission stops; it never silently retries.
+
+After18 successful acceptance responses, a separate90min/8GiB C4 verification job
+is submitted depending on ended for all18; it requires successful LSF history,
+all252 final artifacts, exact hashes/projections/reward/decision/Q arithmetic and
+validation reproduction before writing a VERIFIED marker or running article-table/
+figure generation. A failed verification preserves raw evidence and no scientific
+completion/analysis success is inferred. This reporting work performs no training,
+policy search, test evaluation or new scientific condition. Local collection only
+proceeds after verification-job success; original remote files are read only.

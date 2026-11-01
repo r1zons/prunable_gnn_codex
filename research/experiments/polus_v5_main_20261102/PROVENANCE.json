@@ -1,0 +1,11 @@
+{
+  "source_commit": "f050a5a6de5314204575e891ae2eca5e4af291b1",
+  "source_archive_sha256": "63011a2e459b3f64053c567f1d1f5f044eb3e5fea11e9b7fa3a73e685d2e2e26",
+  "payload_archive_sha256": "5cb14e2944aa50cae11c31a7641817ebf05434beedeb5327cff1aa2065372774",
+  "files": 911,
+  "source_verified_remotely": true,
+  "parent_commit": "2da2a9a9219323aef62e7802c3541639131a1d7b",
+  "scientific_engine_unchanged": true,
+  "dense_training_executed": false,
+  "held_out_test_evaluated": false
+}
