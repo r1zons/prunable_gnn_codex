@@ -1,0 +1,7 @@
+{
+  "uncached_source": "0dad7f29dd833ff9cb8e328341941e5efe9ae7dc",
+  "cached_source": "1b8b8b78667519f97c0682d2645837d4990960b8",
+  "unchanged_policy_module": "src/gnn_pruning/pruning/budget_v5.py",
+  "policy_module_sha256": "eeb63c0757786a866e47cf2e67abd7117b3c41d6fdf69d5eb840e72774bf745f",
+  "changes": "exact-model scalar validation reuse and honest execution counters; no policy/reward changes"
+}

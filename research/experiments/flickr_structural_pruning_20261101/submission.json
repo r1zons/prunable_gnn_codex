@@ -1,0 +1,123 @@
+{
+  "research": {
+    "expected": 56,
+    "SUBMITTED": 0,
+    "ACCEPTED": 0,
+    "RUNNING": 0,
+    "COMPLETED": 0,
+    "BLOCKED": 56,
+    "REJECTED": 0,
+    "UNRESOLVED": 0
+  },
+  "technical": {
+    "SUBMITTED": 8,
+    "ACCEPTED": 8,
+    "COMPLETED": 8,
+    "outputs_verified": 56,
+    "receipts": [
+      {
+        "stage": "uncached",
+        "id": "smoke-flickr-gcn-l2-h256-s101",
+        "job_id": 1611892,
+        "status": "DONE",
+        "source_commit": "0dad7f29dd833ff9cb8e328341941e5efe9ae7dc",
+        "receipt_sha256": "728385e2ba247f5c97c366463c33b89d21e4883f9db09c6ec57ebce090893c36",
+        "response_sha256": "75f1867dcf040059563883634dd5a7cec6d0e0d473642d8c26b5445866f74027",
+        "launcher_sha256": "e4ed64989831c90281706649c48ae5e3e1ef7f5a3b4e9c959ae9666f5f124257",
+        "history_sha256": "7051ea4663b6937f4bcf05328a141a7298ab8511a499c6dbd2210a47250d8cd3"
+      },
+      {
+        "stage": "uncached",
+        "id": "smoke-flickr-graphsage-l3-h128-s101",
+        "job_id": 1611889,
+        "status": "DONE",
+        "source_commit": "0dad7f29dd833ff9cb8e328341941e5efe9ae7dc",
+        "receipt_sha256": "2aed2de90f99bdc75d339ce6f94bec8ea9c1035553550a4967c403ac08b68bde",
+        "response_sha256": "505369938086be1a1bdf204f66a08be84b065edf0f021c1808bf69327d031e31",
+        "launcher_sha256": "e17d12f98d12e7858d76f2114877e99ab4accc07a12e7d23f2569f5cd6aba1e7",
+        "history_sha256": "9059c20700265cb724fb975a033463493dc7d39556275afebe028db929897525"
+      },
+      {
+        "stage": "uncached",
+        "id": "smoke-flickr-graphsage-l4-h128-s101",
+        "job_id": 1611890,
+        "status": "DONE",
+        "source_commit": "0dad7f29dd833ff9cb8e328341941e5efe9ae7dc",
+        "receipt_sha256": "20c8e05a727d6afba92a6e79bba03404ff58276e0d2411a54899026fd41dc4a5",
+        "response_sha256": "95d920010cf8fd50c8b6353be83672807c13048e58848defd6f77524f84fc19a",
+        "launcher_sha256": "d70418190a76dcbe8895d89294a81630e0abdd980463ce7450bf08e7f8b074c0",
+        "history_sha256": "533a4c0de92cab54423c46540c0b9fa2f6b3770f5a0c22d6fe66d4226a305248"
+      },
+      {
+        "stage": "uncached",
+        "id": "smoke-flickr-graphsage-l4-h256-s101",
+        "job_id": 1611891,
+        "status": "DONE",
+        "source_commit": "0dad7f29dd833ff9cb8e328341941e5efe9ae7dc",
+        "receipt_sha256": "a2a7ea55f73345baa09735489805e096c8a982581d9abc6e5cee16998fb1825a",
+        "response_sha256": "b403c0a165db4be2f71ec00ffd5677b228aa8389f989a25168b8bbb7a2fda4c8",
+        "launcher_sha256": "1be6245545031fc85996bc14746b29ab70f3e783575884dda82f7a59b3693aab",
+        "history_sha256": "be366bbb4dcba998bd17b9b5836ca760b2fe0679ae1ee9edba6e0b44a5bc96b6"
+      },
+      {
+        "stage": "cached_r2",
+        "id": "smoke-flickr-gcn-l2-h256-s101",
+        "job_id": 1611897,
+        "status": "DONE",
+        "source_commit": "1b8b8b78667519f97c0682d2645837d4990960b8",
+        "receipt_sha256": "70ab1a9e323d7394b75710223fae71e492e8d8fab4c69c4ee860e4e7ff37820d",
+        "response_sha256": "78e0bc9416d86da8eaf47b9ab428870946a79fb6a254d47cd18a070ffd2d58ba",
+        "launcher_sha256": "e420e7131fe38f6c648f388bdd899e2138a29b6e5c2d7c59f5785f6ab46257b0",
+        "history_sha256": "eafbfc0317488573096621bc8955b42940533c90ff263a7f17e702cb2132fe73"
+      },
+      {
+        "stage": "cached_r2",
+        "id": "smoke-flickr-graphsage-l3-h128-s101",
+        "job_id": 1611894,
+        "status": "DONE",
+        "source_commit": "1b8b8b78667519f97c0682d2645837d4990960b8",
+        "receipt_sha256": "38d2e1829cba5b10c5b67bc852e384d765485c23720bc85ee3d8b95ea3b981d7",
+        "response_sha256": "450a09ec41255e36a9c513dfb4a3212b909510ba43e2fddf26d0886ce364b0cc",
+        "launcher_sha256": "32f39adc704442d01b271fd1542afa045f6a53b69fd68d5392b2ffcce4bbd66a",
+        "history_sha256": "0073778e48ed1c0d95700eadfc2abd88f6ecfbd5b89708ef8f12dead85ca0ef3"
+      },
+      {
+        "stage": "cached_r2",
+        "id": "smoke-flickr-graphsage-l4-h128-s101",
+        "job_id": 1611895,
+        "status": "DONE",
+        "source_commit": "1b8b8b78667519f97c0682d2645837d4990960b8",
+        "receipt_sha256": "5e01c1358c791128f853b1c4060820dc05d3231b51fdefbfc1154f0c86a4c789",
+        "response_sha256": "5b0b8a388ed34e9537c800bac191f60ed8c2afd4be927c36cf018d4c5d6f8dcd",
+        "launcher_sha256": "07cb1039b7942add9910037cf378abe782d0598c4058d87622e4f95b4236f30e",
+        "history_sha256": "bbe60cc03f7ae8f879542660178f7ed31610e6a291784a0e71d16ff98f3d76cd"
+      },
+      {
+        "stage": "cached_r2",
+        "id": "smoke-flickr-graphsage-l4-h256-s101",
+        "job_id": 1611896,
+        "status": "DONE",
+        "source_commit": "1b8b8b78667519f97c0682d2645837d4990960b8",
+        "receipt_sha256": "e6063f2482881048f8cf5e73c247484c437a76584e03019fd2fbca5e29aaa65e",
+        "response_sha256": "770172836e49503c87feb46d84028a0555682eede6602a0ffa6ea3f20ab8f8d3",
+        "launcher_sha256": "dd10edbcb9c5666f187db81d3e0b4ec0ad7ef0f812ca022550f21c266d5c7760",
+        "history_sha256": "4f78cfcd959b3b972cbb5ee525618ae2640fe4dad4add030904e01a51c8f69f6"
+      }
+    ]
+  },
+  "blocking_forecasts": [
+    {
+      "condition": "flickr-graphsage-l4-h256-s101-tabular_q-t30-budget-v5",
+      "reasons": [
+        "measured safe projection exceeds170min/180min queue limit"
+      ]
+    },
+    {
+      "condition": "flickr-graphsage-l4-h256-s101-tabular_q-t50-budget-v5",
+      "reasons": [
+        "measured safe projection exceeds170min/180min queue limit"
+      ]
+    }
+  ],
+  "no_partial_matrix_submitted": true
+}

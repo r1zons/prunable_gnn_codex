@@ -1,0 +1,150 @@
+{
+  "PASS": 28,
+  "FAIL": 0,
+  "SKIPPED": 0,
+  "before_source": "0dad7f29dd833ff9cb8e328341941e5efe9ae7dc",
+  "after_source": "1b8b8b78667519f97c0682d2645837d4990960b8",
+  "new_forward_executed": false,
+  "comparisons": [
+    {
+      "condition": "flickr-graphsage-l3-h128-s101-static_random-t50-budget-v5",
+      "PASS": true,
+      "scope": "all technical deployment actions/rewards/masks/tensors; full planning paths when recorded"
+    },
+    {
+      "condition": "flickr-graphsage-l3-h128-s101-static_magnitude-t50-budget-v5",
+      "PASS": true,
+      "scope": "all technical deployment actions/rewards/masks/tensors; full planning paths when recorded"
+    },
+    {
+      "condition": "flickr-graphsage-l3-h128-s101-static_snip-t50-budget-v5",
+      "PASS": true,
+      "scope": "all technical deployment actions/rewards/masks/tensors; full planning paths when recorded"
+    },
+    {
+      "condition": "flickr-graphsage-l3-h128-s101-sequential_random-t50-budget-v5",
+      "PASS": true,
+      "scope": "all technical deployment actions/rewards/masks/tensors; full planning paths when recorded"
+    },
+    {
+      "condition": "flickr-graphsage-l3-h128-s101-adaptive_greedy-t50-budget-v5",
+      "PASS": true,
+      "scope": "all technical deployment actions/rewards/masks/tensors; full planning paths when recorded"
+    },
+    {
+      "condition": "flickr-graphsage-l3-h128-s101-lookahead_depth2-t50-budget-v5",
+      "PASS": true,
+      "scope": "all technical deployment actions/rewards/masks/tensors; full planning paths when recorded"
+    },
+    {
+      "condition": "flickr-graphsage-l3-h128-s101-tabular_q-t50-budget-v5",
+      "PASS": true,
+      "scope": "full first training episode: actions/rewards/states/Q updates/masks"
+    },
+    {
+      "condition": "flickr-graphsage-l4-h128-s101-static_random-t50-budget-v5",
+      "PASS": true,
+      "scope": "all technical deployment actions/rewards/masks/tensors; full planning paths when recorded"
+    },
+    {
+      "condition": "flickr-graphsage-l4-h128-s101-static_magnitude-t50-budget-v5",
+      "PASS": true,
+      "scope": "all technical deployment actions/rewards/masks/tensors; full planning paths when recorded"
+    },
+    {
+      "condition": "flickr-graphsage-l4-h128-s101-static_snip-t50-budget-v5",
+      "PASS": true,
+      "scope": "all technical deployment actions/rewards/masks/tensors; full planning paths when recorded"
+    },
+    {
+      "condition": "flickr-graphsage-l4-h128-s101-sequential_random-t50-budget-v5",
+      "PASS": true,
+      "scope": "all technical deployment actions/rewards/masks/tensors; full planning paths when recorded"
+    },
+    {
+      "condition": "flickr-graphsage-l4-h128-s101-adaptive_greedy-t50-budget-v5",
+      "PASS": true,
+      "scope": "all technical deployment actions/rewards/masks/tensors; full planning paths when recorded"
+    },
+    {
+      "condition": "flickr-graphsage-l4-h128-s101-lookahead_depth2-t50-budget-v5",
+      "PASS": true,
+      "scope": "all technical deployment actions/rewards/masks/tensors; full planning paths when recorded"
+    },
+    {
+      "condition": "flickr-graphsage-l4-h128-s101-tabular_q-t50-budget-v5",
+      "PASS": true,
+      "scope": "full first training episode: actions/rewards/states/Q updates/masks"
+    },
+    {
+      "condition": "flickr-graphsage-l4-h256-s101-static_random-t50-budget-v5",
+      "PASS": true,
+      "scope": "all technical deployment actions/rewards/masks/tensors; full planning paths when recorded"
+    },
+    {
+      "condition": "flickr-graphsage-l4-h256-s101-static_magnitude-t50-budget-v5",
+      "PASS": true,
+      "scope": "all technical deployment actions/rewards/masks/tensors; full planning paths when recorded"
+    },
+    {
+      "condition": "flickr-graphsage-l4-h256-s101-static_snip-t50-budget-v5",
+      "PASS": true,
+      "scope": "all technical deployment actions/rewards/masks/tensors; full planning paths when recorded"
+    },
+    {
+      "condition": "flickr-graphsage-l4-h256-s101-sequential_random-t50-budget-v5",
+      "PASS": true,
+      "scope": "all technical deployment actions/rewards/masks/tensors; full planning paths when recorded"
+    },
+    {
+      "condition": "flickr-graphsage-l4-h256-s101-adaptive_greedy-t50-budget-v5",
+      "PASS": true,
+      "scope": "all technical deployment actions/rewards/masks/tensors; full planning paths when recorded"
+    },
+    {
+      "condition": "flickr-graphsage-l4-h256-s101-lookahead_depth2-t50-budget-v5",
+      "PASS": true,
+      "scope": "all technical deployment actions/rewards/masks/tensors; full planning paths when recorded"
+    },
+    {
+      "condition": "flickr-graphsage-l4-h256-s101-tabular_q-t50-budget-v5",
+      "PASS": true,
+      "scope": "full first training episode: actions/rewards/states/Q updates/masks"
+    },
+    {
+      "condition": "flickr-gcn-l2-h256-s101-static_random-t50-budget-v5",
+      "PASS": true,
+      "scope": "all technical deployment actions/rewards/masks/tensors; full planning paths when recorded"
+    },
+    {
+      "condition": "flickr-gcn-l2-h256-s101-static_magnitude-t50-budget-v5",
+      "PASS": true,
+      "scope": "all technical deployment actions/rewards/masks/tensors; full planning paths when recorded"
+    },
+    {
+      "condition": "flickr-gcn-l2-h256-s101-static_snip-t50-budget-v5",
+      "PASS": true,
+      "scope": "all technical deployment actions/rewards/masks/tensors; full planning paths when recorded"
+    },
+    {
+      "condition": "flickr-gcn-l2-h256-s101-sequential_random-t50-budget-v5",
+      "PASS": true,
+      "scope": "all technical deployment actions/rewards/masks/tensors; full planning paths when recorded"
+    },
+    {
+      "condition": "flickr-gcn-l2-h256-s101-adaptive_greedy-t50-budget-v5",
+      "PASS": true,
+      "scope": "all technical deployment actions/rewards/masks/tensors; full planning paths when recorded"
+    },
+    {
+      "condition": "flickr-gcn-l2-h256-s101-lookahead_depth2-t50-budget-v5",
+      "PASS": true,
+      "scope": "all technical deployment actions/rewards/masks/tensors; full planning paths when recorded"
+    },
+    {
+      "condition": "flickr-gcn-l2-h256-s101-tabular_q-t50-budget-v5",
+      "PASS": true,
+      "scope": "full first training episode: actions/rewards/states/Q updates/masks"
+    }
+  ]
+}

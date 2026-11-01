@@ -1,0 +1,83 @@
+{
+  "branch": "campaign/flickr-structural-pruning-20261101",
+  "source_commit": "1b8b8b78667519f97c0682d2645837d4990960b8",
+  "earlier_uncached_source": "0dad7f29dd833ff9cb8e328341941e5efe9ae7dc",
+  "source_release": {
+    "source_commit": "1b8b8b78667519f97c0682d2645837d4990960b8",
+    "source_files": 848,
+    "source_archive_sha256": "4a4977a3cac50c838087c046d1e09c58033af359a24676caf9fb1a18e70c71d2",
+    "protocol_sha256": "b451c60bec314cf019d11be00d20417c5461b1abe8718015b81126599d401670"
+  },
+  "earlier_release": {
+    "source_commit": "0dad7f29dd833ff9cb8e328341941e5efe9ae7dc",
+    "source_files": 840,
+    "source_archive_sha256": "6a1870e908693380de3613abefad29b6d69540e331b1acd01b65bf11f51d6faf",
+    "protocol_sha256": "fdcea0e9902bcaa026fca687ef2ebed5b0a4fd8daf9eedd6c73dea0641aaae29"
+  },
+  "native_archive": {
+    "archive_sha256": "34b6e4cd9fe688849b3e892d46ff21e727c1385757ca385a9369c6ec357c2dd6",
+    "technical_jobs": [
+      1611894,
+      1611895,
+      1611896,
+      1611897
+    ],
+    "research_jobs_submitted": 0
+  },
+  "earlier_native_archive": {
+    "archive_sha256": "8ea910d5c6114779f67e6e373bbbb1c1d165eb4a4934931e39f689911b831cec",
+    "technical_jobs": [
+      1611889,
+      1611890,
+      1611891,
+      1611892
+    ],
+    "research_jobs_submitted": 0
+  },
+  "raw_local": "${GNN_ARTIFACT_ROOT}/flickr-structural-pruning-20261101/",
+  "raw_remote": "${POLUS_TASK_ROOT}/results/flickr-structural-pruning-20261101-cached-r2/",
+  "earlier_raw_remote": "${POLUS_TASK_ROOT}/results/flickr-structural-pruning-20261101/",
+  "local_verification": {
+    "focused_PASS": 146,
+    "focused_FAIL": 0,
+    "focused_SKIPPED": 0,
+    "full_PASS": 776,
+    "full_FAIL": 0,
+    "full_SKIPPED": 6
+  },
+  "evidence_hashes": {
+    "pytest-core-01.log": "414833b983ea96f693cb23ada292d73d7b415d43396ccf74e4c727b8ac1ba2f4",
+    "pytest-focused-01.log": "7024f82df3faa111b797cee50d69df4e3d28c9cc5de4368c02359751700148a3",
+    "pytest-full-final.log": "79ae3768db2811c6ba3ec9888a070731eaff77bfa533fea7acec3f141a6a8462",
+    "pytest-cached-focused-final.log": "ec640c6567ede278b60645b0b929cf9d23d90b2a8019d974ba1d6ce26a54bdaf",
+    "pytest-cached-full.log": "9e09a8880a4b54c460067b8a8cec11b572b4f60eed1982911a2e952889deb3ac",
+    "scheduler-final-queues.txt": "54f032f52d2cddef806c0bb18c7a0841cc7d5c5eda0f2e4d0a200cc6ba393e2e",
+    "scheduler-extended-policies.txt": "00fa502a9c3f57903ecc26796c19fce0bb4094289d65411e41dfe3d6b7968ee6",
+    "scheduler-other-policies.txt": "2e57b524e923f58c697b9c19bb7bf43728ab9cb8fb24ae7a5e66fdd085eda3a7",
+    "cached-independent-audit.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "native-execution-equivalence.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "native_environment": {
+    "python": "3.10.22 | packaged by conda-forge | (main, Oct  6 2026, 22:57:19) [GCC 14.4.0]",
+    "torch": "2.0.1",
+    "pyg": "2.4.0",
+    "numpy": "1.24.4",
+    "machine": "ppc64le",
+    "torch_threads": 4
+  },
+  "activation_sha256": "ac464bbf980c499281c31ccb018b0e9e172a00df6c1b12627d3f075c45121fce",
+  "tests_and_data_seed": {
+    "dense_seed": 101,
+    "split_seed": 101,
+    "policy_seed": 101
+  },
+  "source_snapshot_readonly": true,
+  "dense_retraining": false,
+  "finetuning": false,
+  "test_labels_accessed": false,
+  "scientific_conditions_submitted": 0,
+  "scientific_conditions_completed": 0,
+  "pushed": false,
+  "merged": false,
+  "analysis_verification_revision": "local commit containing this report; executed source pinned separately"
+}

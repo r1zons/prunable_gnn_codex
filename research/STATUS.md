@@ -2,6 +2,25 @@
 
 **Updated:** 2026-11-01
 
+## Flickr structural comparison — resource NO-GO, 2026-11-01
+
+New depth2/3/4 budget-V5 controllers and56-condition plan implemented separately;
+historical algorithms/evidence/manuscript unchanged. Four exact frozen Flickr
+Dense checkpoints, targets30/50%, all seven methods, minimum4, unit-deletion
+budget horizon and target-aware masked-state Q; no retraining/fine-tuning/test
+labels.146 focused PASS; full776 PASS/0 FAIL/6 explicit skips. All eight bands
+feasible. Exact validation reuse preserves native actions/rewards/Q updates;
+28 paired native contracts PASS. Executed source1b8b8b7, local branch
+`campaign/flickr-structural-pruning-20261101`.
+
+**Main SUBMITTED0/56, BLOCKED56.** Eight technical jobs1611889–1611892 and
+1611894–1611897 DONE,56 technical outputs independently verified. Revised Q4/256
+safety forecast193.021min exceeds normal180min; longer queues have incompatible
+ACLs. No partial matrix, episode reduction, restricted-queue submission, push or
+merge. Correctness GO, full campaign resource NO-GO; stopped safely.
+[Blocker/report/manifests](experiments/flickr_structural_pruning_20261101/SUBMISSION_REPORT.md).
+Raw:`${GNN_ARTIFACT_ROOT}/flickr-structural-pruning-20261101/`.
+
 ## Flickr Dense sweep collected and verified — 2026-11-01
 
 **32/32 COMPLETED, LSF1611757–1611788 DONE; 32 audited PASS/0 FAIL/0 SKIPPED.**

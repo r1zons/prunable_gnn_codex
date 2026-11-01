@@ -1,0 +1,585 @@
+{
+  "status": "FAIL",
+  "source_commit": "1b8b8b78667519f97c0682d2645837d4990960b8",
+  "protocol_digest": "488ce586321c2f779f69668b7699bda294ff6ab235c6aedcc6eb0bde4eb115f7",
+  "checked_unix": 1793549921.3448613,
+  "failures": [
+    {
+      "condition": "flickr-graphsage-l4-h256-s101-tabular_q-t30-budget-v5",
+      "reasons": [
+        "measured safe projection exceeds170min/180min queue limit"
+      ]
+    },
+    {
+      "condition": "flickr-graphsage-l4-h256-s101-tabular_q-t50-budget-v5",
+      "reasons": [
+        "measured safe projection exceeds170min/180min queue limit"
+      ]
+    }
+  ],
+  "conditions": [
+    {
+      "condition": "flickr-graphsage-l3-h128-s101-static_random-t30-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 0.029570773243904114,
+      "projection_multiplier": 1.0,
+      "safe_search_seconds": 180.09056049305946,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 9830,
+      "validation_evaluations": 0
+    },
+    {
+      "condition": "flickr-graphsage-l3-h128-s101-static_magnitude-t30-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 0.03854321222752333,
+      "projection_multiplier": 1.0,
+      "safe_search_seconds": 180.1180385874468,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 9973,
+      "validation_evaluations": 0
+    },
+    {
+      "condition": "flickr-graphsage-l3-h128-s101-static_snip-t30-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 1.5349244205281138,
+      "projection_multiplier": 1.0,
+      "safe_search_seconds": 184.70070603786735,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 10474,
+      "validation_evaluations": 0
+    },
+    {
+      "condition": "flickr-graphsage-l3-h128-s101-sequential_random-t30-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 2.801853269338608,
+      "projection_multiplier": 8.0,
+      "safe_search_seconds": 248.6454050987959,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 10474,
+      "validation_evaluations": 3
+    },
+    {
+      "condition": "flickr-graphsage-l3-h128-s101-adaptive_greedy-t30-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 15.740347678773105,
+      "projection_multiplier": 4.5,
+      "safe_search_seconds": 396.92166644809186,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 10474,
+      "validation_evaluations": 17
+    },
+    {
+      "condition": "flickr-graphsage-l3-h128-s101-lookahead_depth2-t30-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 65.25029273144901,
+      "projection_multiplier": 4.5,
+      "safe_search_seconds": 693.8460552601609,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 10474,
+      "validation_evaluations": 69
+    },
+    {
+      "condition": "flickr-graphsage-l3-h128-s101-tabular_q-t30-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 123.7717896392569,
+      "projection_multiplier": 10.333333333333334,
+      "safe_search_seconds": 2418.206529309896,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 10474,
+      "validation_evaluations": 140
+    },
+    {
+      "condition": "flickr-graphsage-l3-h128-s101-static_random-t50-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 0.029570773243904114,
+      "projection_multiplier": 1.0,
+      "safe_search_seconds": 180.09056049305946,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 9830,
+      "validation_evaluations": 0
+    },
+    {
+      "condition": "flickr-graphsage-l3-h128-s101-static_magnitude-t50-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 0.03854321222752333,
+      "projection_multiplier": 1.0,
+      "safe_search_seconds": 180.1180385874468,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 9973,
+      "validation_evaluations": 0
+    },
+    {
+      "condition": "flickr-graphsage-l3-h128-s101-static_snip-t50-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 1.5349244205281138,
+      "projection_multiplier": 1.0,
+      "safe_search_seconds": 184.70070603786735,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 10474,
+      "validation_evaluations": 0
+    },
+    {
+      "condition": "flickr-graphsage-l3-h128-s101-sequential_random-t50-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 2.801853269338608,
+      "projection_multiplier": 8.0,
+      "safe_search_seconds": 248.6454050987959,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 10474,
+      "validation_evaluations": 3
+    },
+    {
+      "condition": "flickr-graphsage-l3-h128-s101-adaptive_greedy-t50-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 15.740347678773105,
+      "projection_multiplier": 4.5,
+      "safe_search_seconds": 396.92166644809186,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 10474,
+      "validation_evaluations": 17
+    },
+    {
+      "condition": "flickr-graphsage-l3-h128-s101-lookahead_depth2-t50-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 65.25029273144901,
+      "projection_multiplier": 4.5,
+      "safe_search_seconds": 693.8460552601609,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 10474,
+      "validation_evaluations": 69
+    },
+    {
+      "condition": "flickr-graphsage-l3-h128-s101-tabular_q-t50-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 123.7717896392569,
+      "projection_multiplier": 10.333333333333334,
+      "safe_search_seconds": 2418.206529309896,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 10474,
+      "validation_evaluations": 140
+    },
+    {
+      "condition": "flickr-graphsage-l4-h128-s101-static_random-t30-budget-v5",
+      "actual_profile_host": "polus-c3-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 0.10339140146970749,
+      "projection_multiplier": 1.0,
+      "safe_search_seconds": 180.31663616700098,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 9925,
+      "validation_evaluations": 0
+    },
+    {
+      "condition": "flickr-graphsage-l4-h128-s101-static_magnitude-t30-budget-v5",
+      "actual_profile_host": "polus-c3-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 0.13124094903469086,
+      "projection_multiplier": 1.0,
+      "safe_search_seconds": 180.40192540641874,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 10014,
+      "validation_evaluations": 0
+    },
+    {
+      "condition": "flickr-graphsage-l4-h128-s101-static_snip-t30-budget-v5",
+      "actual_profile_host": "polus-c3-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 3.3988483110442758,
+      "projection_multiplier": 1.0,
+      "safe_search_seconds": 190.4089729525731,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 10491,
+      "validation_evaluations": 0
+    },
+    {
+      "condition": "flickr-graphsage-l4-h128-s101-sequential_random-t30-budget-v5",
+      "actual_profile_host": "polus-c3-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 5.299116730690002,
+      "projection_multiplier": 9.5,
+      "safe_search_seconds": 334.17117738351226,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 10491,
+      "validation_evaluations": 3
+    },
+    {
+      "condition": "flickr-graphsage-l4-h128-s101-adaptive_greedy-t30-budget-v5",
+      "actual_profile_host": "polus-c3-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 42.79309372790158,
+      "projection_multiplier": 5.0,
+      "safe_search_seconds": 835.2692477084929,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 10491,
+      "validation_evaluations": 25
+    },
+    {
+      "condition": "flickr-graphsage-l4-h128-s101-lookahead_depth2-t30-budget-v5",
+      "actual_profile_host": "polus-c3-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 267.99758302792907,
+      "projection_multiplier": 5.0,
+      "safe_search_seconds": 2524.9788514943793,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 10538,
+      "validation_evaluations": 153
+    },
+    {
+      "condition": "flickr-graphsage-l4-h128-s101-tabular_q-t30-budget-v5",
+      "actual_profile_host": "polus-c3-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 307.7637581322342,
+      "projection_multiplier": 10.333333333333334,
+      "safe_search_seconds": 5745.394626224569,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 10669,
+      "validation_evaluations": 184
+    },
+    {
+      "condition": "flickr-graphsage-l4-h128-s101-static_random-t50-budget-v5",
+      "actual_profile_host": "polus-c3-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 0.10339140146970749,
+      "projection_multiplier": 1.0,
+      "safe_search_seconds": 180.31663616700098,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 9925,
+      "validation_evaluations": 0
+    },
+    {
+      "condition": "flickr-graphsage-l4-h128-s101-static_magnitude-t50-budget-v5",
+      "actual_profile_host": "polus-c3-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 0.13124094903469086,
+      "projection_multiplier": 1.0,
+      "safe_search_seconds": 180.40192540641874,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 10014,
+      "validation_evaluations": 0
+    },
+    {
+      "condition": "flickr-graphsage-l4-h128-s101-static_snip-t50-budget-v5",
+      "actual_profile_host": "polus-c3-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 3.3988483110442758,
+      "projection_multiplier": 1.0,
+      "safe_search_seconds": 190.4089729525731,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 10491,
+      "validation_evaluations": 0
+    },
+    {
+      "condition": "flickr-graphsage-l4-h128-s101-sequential_random-t50-budget-v5",
+      "actual_profile_host": "polus-c3-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 5.299116730690002,
+      "projection_multiplier": 9.5,
+      "safe_search_seconds": 334.17117738351226,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 10491,
+      "validation_evaluations": 3
+    },
+    {
+      "condition": "flickr-graphsage-l4-h128-s101-adaptive_greedy-t50-budget-v5",
+      "actual_profile_host": "polus-c3-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 42.79309372790158,
+      "projection_multiplier": 5.0,
+      "safe_search_seconds": 835.2692477084929,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 10491,
+      "validation_evaluations": 25
+    },
+    {
+      "condition": "flickr-graphsage-l4-h128-s101-lookahead_depth2-t50-budget-v5",
+      "actual_profile_host": "polus-c3-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 267.99758302792907,
+      "projection_multiplier": 5.0,
+      "safe_search_seconds": 2524.9788514943793,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 10538,
+      "validation_evaluations": 153
+    },
+    {
+      "condition": "flickr-graphsage-l4-h128-s101-tabular_q-t50-budget-v5",
+      "actual_profile_host": "polus-c3-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 307.7637581322342,
+      "projection_multiplier": 10.333333333333334,
+      "safe_search_seconds": 5745.394626224569,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 10669,
+      "validation_evaluations": 184
+    },
+    {
+      "condition": "flickr-graphsage-l4-h256-s101-static_random-t30-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 0.15938262548297644,
+      "projection_multiplier": 1.0,
+      "safe_search_seconds": 180.2789195945952,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 10025,
+      "validation_evaluations": 0
+    },
+    {
+      "condition": "flickr-graphsage-l4-h256-s101-static_magnitude-t30-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 0.22754959762096405,
+      "projection_multiplier": 1.0,
+      "safe_search_seconds": 180.3982117958367,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 10048,
+      "validation_evaluations": 0
+    },
+    {
+      "condition": "flickr-graphsage-l4-h256-s101-static_snip-t30-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 3.751546205021441,
+      "projection_multiplier": 1.0,
+      "safe_search_seconds": 186.56520585878752,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 10610,
+      "validation_evaluations": 0
+    },
+    {
+      "condition": "flickr-graphsage-l4-h256-s101-sequential_random-t30-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 5.123403857462108,
+      "projection_multiplier": 20.0,
+      "safe_search_seconds": 359.3191350111738,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 10610,
+      "validation_evaluations": 3
+    },
+    {
+      "condition": "flickr-graphsage-l4-h256-s101-adaptive_greedy-t30-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 42.104840667918324,
+      "projection_multiplier": 11.0,
+      "safe_search_seconds": 990.5181828574277,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 10610,
+      "validation_evaluations": 25
+    },
+    {
+      "condition": "flickr-graphsage-l4-h256-s101-lookahead_depth2-t30-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 265.6212248299271,
+      "projection_multiplier": 11.0,
+      "safe_search_seconds": 5293.208577976096,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 11597,
+      "validation_evaluations": 153
+    },
+    {
+      "condition": "flickr-graphsage-l4-h256-s101-tabular_q-t30-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 630.4851435758173,
+      "projection_multiplier": 10.333333333333334,
+      "safe_search_seconds": 11581.273012996031,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 11610,
+      "validation_evaluations": 401
+    },
+    {
+      "condition": "flickr-graphsage-l4-h256-s101-static_random-t50-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 0.15938262548297644,
+      "projection_multiplier": 1.0,
+      "safe_search_seconds": 180.2789195945952,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 10025,
+      "validation_evaluations": 0
+    },
+    {
+      "condition": "flickr-graphsage-l4-h256-s101-static_magnitude-t50-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 0.22754959762096405,
+      "projection_multiplier": 1.0,
+      "safe_search_seconds": 180.3982117958367,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 10048,
+      "validation_evaluations": 0
+    },
+    {
+      "condition": "flickr-graphsage-l4-h256-s101-static_snip-t50-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 3.751546205021441,
+      "projection_multiplier": 1.0,
+      "safe_search_seconds": 186.56520585878752,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 10610,
+      "validation_evaluations": 0
+    },
+    {
+      "condition": "flickr-graphsage-l4-h256-s101-sequential_random-t50-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 5.123403857462108,
+      "projection_multiplier": 20.0,
+      "safe_search_seconds": 359.3191350111738,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 10610,
+      "validation_evaluations": 3
+    },
+    {
+      "condition": "flickr-graphsage-l4-h256-s101-adaptive_greedy-t50-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 42.104840667918324,
+      "projection_multiplier": 11.0,
+      "safe_search_seconds": 990.5181828574277,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 10610,
+      "validation_evaluations": 25
+    },
+    {
+      "condition": "flickr-graphsage-l4-h256-s101-lookahead_depth2-t50-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 265.6212248299271,
+      "projection_multiplier": 11.0,
+      "safe_search_seconds": 5293.208577976096,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 11597,
+      "validation_evaluations": 153
+    },
+    {
+      "condition": "flickr-graphsage-l4-h256-s101-tabular_q-t50-budget-v5",
+      "actual_profile_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 630.4851435758173,
+      "projection_multiplier": 10.333333333333334,
+      "safe_search_seconds": 11581.273012996031,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 11610,
+      "validation_evaluations": 401
+    },
+    {
+      "condition": "flickr-gcn-l2-h256-s101-static_random-t30-budget-v5",
+      "actual_profile_host": "polus-c2-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 0.03776015155017376,
+      "projection_multiplier": 1.0,
+      "safe_search_seconds": 180.1156404641224,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 10134,
+      "validation_evaluations": 0
+    },
+    {
+      "condition": "flickr-gcn-l2-h256-s101-static_magnitude-t30-budget-v5",
+      "actual_profile_host": "polus-c2-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 0.048382457345724106,
+      "projection_multiplier": 1.0,
+      "safe_search_seconds": 180.14817127562128,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 10148,
+      "validation_evaluations": 0
+    },
+    {
+      "condition": "flickr-gcn-l2-h256-s101-static_snip-t30-budget-v5",
+      "actual_profile_host": "polus-c2-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 1.586271122097969,
+      "projection_multiplier": 1.0,
+      "safe_search_seconds": 184.85795531142503,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 10699,
+      "validation_evaluations": 0
+    },
+    {
+      "condition": "flickr-gcn-l2-h256-s101-sequential_random-t30-budget-v5",
+      "actual_profile_host": "polus-c2-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 2.2379274554550648,
+      "projection_multiplier": 21.5,
+      "safe_search_seconds": 327.3535358951194,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 10699,
+      "validation_evaluations": 3
+    },
+    {
+      "condition": "flickr-gcn-l2-h256-s101-adaptive_greedy-t30-budget-v5",
+      "actual_profile_host": "polus-c2-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 6.698554499074817,
+      "projection_multiplier": 8.5,
+      "safe_search_seconds": 354.3717468040413,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 10699,
+      "validation_evaluations": 9
+    },
+    {
+      "condition": "flickr-gcn-l2-h256-s101-lookahead_depth2-t30-budget-v5",
+      "actual_profile_host": "polus-c2-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 14.502761071547866,
+      "projection_multiplier": 8.5,
+      "safe_search_seconds": 395.7285709392745,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 10699,
+      "validation_evaluations": 19
+    },
+    {
+      "condition": "flickr-gcn-l2-h256-s101-tabular_q-t30-budget-v5",
+      "actual_profile_host": "polus-c2-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 72.83349525276572,
+      "projection_multiplier": 10.333333333333334,
+      "safe_search_seconds": 1497.0723724875133,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 10699,
+      "validation_evaluations": 110
+    },
+    {
+      "condition": "flickr-gcn-l2-h256-s101-static_random-t50-budget-v5",
+      "actual_profile_host": "polus-c2-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 0.03776015155017376,
+      "projection_multiplier": 1.0,
+      "safe_search_seconds": 180.1156404641224,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 10134,
+      "validation_evaluations": 0
+    },
+    {
+      "condition": "flickr-gcn-l2-h256-s101-static_magnitude-t50-budget-v5",
+      "actual_profile_host": "polus-c2-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 0.048382457345724106,
+      "projection_multiplier": 1.0,
+      "safe_search_seconds": 180.14817127562128,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 10148,
+      "validation_evaluations": 0
+    },
+    {
+      "condition": "flickr-gcn-l2-h256-s101-static_snip-t50-budget-v5",
+      "actual_profile_host": "polus-c2-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 1.586271122097969,
+      "projection_multiplier": 1.0,
+      "safe_search_seconds": 184.85795531142503,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 10699,
+      "validation_evaluations": 0
+    },
+    {
+      "condition": "flickr-gcn-l2-h256-s101-sequential_random-t50-budget-v5",
+      "actual_profile_host": "polus-c2-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 2.2379274554550648,
+      "projection_multiplier": 21.5,
+      "safe_search_seconds": 327.3535358951194,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 10699,
+      "validation_evaluations": 3
+    },
+    {
+      "condition": "flickr-gcn-l2-h256-s101-adaptive_greedy-t50-budget-v5",
+      "actual_profile_host": "polus-c2-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 6.698554499074817,
+      "projection_multiplier": 8.5,
+      "safe_search_seconds": 354.3717468040413,
+      "unbound_host_margin": 1.75,
+      "required_memory_mb": 10699,
+      "validation_evaluations": 9
+    },
+    {
+      "condition": "flickr-gcn-l2-h256-s101-lookahead_depth2-t50-budget-v5",
+      "actual_profile_host": "polus-c2-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 14.502761071547866,
+      "projection_multiplier": 8.5,
+      "safe_search_seconds": 395.7285709392745,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 10699,
+      "validation_evaluations": 19
+    },
+    {
+      "condition": "flickr-gcn-l2-h256-s101-tabular_q-t50-budget-v5",
+      "actual_profile_host": "polus-c2-ib.bmc.hpc.cs.msu.ru",
+      "observed_search_seconds": 72.83349525276572,
+      "projection_multiplier": 10.333333333333334,
+      "safe_search_seconds": 1497.0723724875133,
+      "unbound_host_margin": 1.0,
+      "required_memory_mb": 10699,
+      "validation_evaluations": 110
+    }
+  ],
+  "accuracy_used_for_gate": false,
+  "forecast_not_hard_runtime_guarantee": true,
+  "rule": "harder50% prefix progress or31/3x three-episode Q cost;1.75x+180s;170min threshold"
+}

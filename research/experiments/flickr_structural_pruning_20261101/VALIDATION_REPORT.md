@@ -36,3 +36,19 @@ accuracy discrepancies. It performs no new forward or search.
 
 Revised native checks remain a mandatory gate. They use three technical Q
 episodes to measure repeated-state reuse; the research budget stays30 everywhere.
+
+## Final gate outcome
+
+Cached native jobs1611894–1611897 DONE;28/28 independent artifact, strict-reload,
+original-channel projection, parameter-count and exact-cache accounting audits
+PASS/0 FAIL/0 SKIPPED. Full native before/after execution bridge28 PASS/0 FAIL/
+0 SKIPPED, without new forwards: non-Q deployment actions/rewards/tensors and
+recorded planning trees match exactly; Q's common complete training episode0
+matches including every state, action, reward and Q update. See
+[NATIVE_EXECUTION_EQUIVALENCE.json](NATIVE_EXECUTION_EQUIVALENCE.json).
+
+All eight target bands are feasible. Maximum revised RSS3.113GiB; threads4.
+Correctness GO; complete campaign **NO-GO for available walltime**: Q4/256 safety
+forecast193.021min exceeds normal180min. Longer queues exclude this account by
+ACL. Main research SUBMITTED0/56, BLOCKED56; no partial matrix or algorithm/budget
+reduction. [Submission/blocker report](SUBMISSION_REPORT.md).

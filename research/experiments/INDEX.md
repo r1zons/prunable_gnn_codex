@@ -1,5 +1,14 @@
 # Experiment campaign registry
 
+**FLICKR-STRUCTURAL-PRUNING-20261101** — implementation/technical validation done,
+**research SUBMITTED0/56, BLOCKED56: resource NO-GO**. Four frozen Dense seed101
+architectures ×30/50% ×seven new budget-V5 policies; old controllers immutable.
+146 focused/776 full PASS,0 FAIL,6 full skips. Eight separate technical jobs DONE,
+56 outputs verified; native exact-execution bridge28 PASS. Revised Q4/256 safety
+forecast193.021min exceeds normal180min; longer queues exclude this account.
+No scientific result, partial matrix, push or merge. [Report and56-row manifest](flickr_structural_pruning_20261101/SUBMISSION_REPORT.md).
+Raw:`${GNN_ARTIFACT_ROOT}/flickr-structural-pruning-20261101/`.
+
 **FLICKR-DENSE-SWEEP-20261031 / collection20261101** — **COMPLETED32/32 and audited
 PASS32/FAIL0/SKIPPED0**, LSF1611757–1611788 DONE.481 collected files hash-inventoried;
 32 frozen checkpoints/physical parameter counts/source/input/split/config pins and
