@@ -1,0 +1,17 @@
+{
+  "status": "FORECAST_ASSESSMENT_ONLY_NOT_A_SUBMISSION_GATE",
+  "forecast_conditions_PASS": 56,
+  "FAIL": 0,
+  "max_minutes": 133.05112942033966,
+  "original_capacity_sha256": "f4466e2ffa1aae4de8fe80e2869919bdc1cb78c03154968a7d0050626aa2ded4",
+  "modified_resource_rows": 2,
+  "unchanged4_thread_rows": 54,
+  "proposed_q_4_256_threads": 12,
+  "required_q_allocation": "C4 exclusive20 slots, same20 physical-core affinity, intraop/BLAS12 and interop1",
+  "deployment_ready": false,
+  "blockers": [
+    "Production flickr_pruning.execute still sets4 threads; current LSF launcher also exports4. No execution plumbing changed during collection.",
+    "Fresh complete resource/source/input/manifest validation and separately authorized campaign submission are required. This assessment does not refresh historical gate timestamps."
+  ],
+  "full56_jobs_submitted": 0
+}

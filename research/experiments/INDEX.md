@@ -1,5 +1,17 @@
 # Experiment campaign registry
 
+**FLICKR-CPU-THREAD-SCALING-20261101 / collection20261102** — **COMPLETED8/8,
+audited8 PASS/0 FAIL/0 SKIPPED**, native C4 LSF1612046 DONE.1026 raw files/876 source
+pins verified;2616 stored transitions/2640 cache requests, all Q arithmetic/RNG/
+masks/checkpoints and8 validation forwards independently checked. Exact cross-
+thread trajectories/metrics and historical4/50 match.22 local tests PASS.
+**12 threads recommended**: worst-target forecast133.05min,8 gives143.38min,
+20 gives178.03min and fails170min acceptance. Forecast-only56-row proposal fits;
+full56 still requires configurable production resource plumbing/fresh gate and is
+not submitted. No new search/training/test labels, historical mutation or merge.
+[Report,8-run table,figures,proof and forecast-only assessment](flickr_cpu_thread_scaling_20261101/collection_20261102/REPORT.md).
+Raw:`${GNN_ARTIFACT_ROOT}/flickr-cpu-thread-scaling-collection-20261102T211303Z/`.
+
 **FLICKR-CPU-THREAD-SCALING-20261101** —3 bounded jobs ACCEPTED;1612044/1612045
 C2/C3 topology-only DONE; **1612046 benchmark RUN on C4**, confirmed by LSF/native
 host and20 physical-core allocation (160 SMT threads). All measurements4/8/12/20

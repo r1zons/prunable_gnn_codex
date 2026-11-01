@@ -1,6 +1,28 @@
 # Canonical GNN pruning research status
 
-**Updated:** 2026-11-01
+**Updated:** 2026-11-02
+
+## Flickr C4 thread scaling collected and independently verified — 2026-11-02
+
+**8/8 technical profiles COMPLETED, audited8 PASS/0 FAIL/0 SKIPPED**; C4 job1612046
+DONE, all measurements same exclusive20-slot C4 allocation. C2/C3 jobs1612044/45
+were topology only. Archive SHA/server inventory/local1026-file hashes and876
+executable-source pins verified;2616 training transitions/2640 cache requests,
+8 strict checkpoint projections and8 frozen validation forwards independently
+checked. All N=4/8/12/20 have exact matched actions/masks/tensors/rewards/Q and
+accuracy/F1; fresh4/50 also reproduces historical4/50.22 focused tests PASS.
+
+**Recommended12 threads for Q4/256**, conservative30-episode forecasts85.29min
+(target30) and133.05min(target50), both below170min.8 also passes;20 gives178.03min
+at50 and fails170 acceptance. No full30 run or new experiment during collection.
+A forecast-only56-row proposal retains54 old4-thread conditions and changes only
+2 Q4/256 rows; all predicted costs fit. **Full56 not deployment-ready/submitted**:
+production runner still fixes4 threads; resource plumbing and fresh full manifest/
+gate must be prepared separately. Historical/source evidence/manuscript unchanged.
+[Verified report,8-run tables, figures and reproduction](experiments/flickr_cpu_thread_scaling_20261101/collection_20261102/REPORT.md).
+Raw:`${GNN_ARTIFACT_ROOT}/flickr-cpu-thread-scaling-collection-20261102T211303Z/`.
+Branch:`campaign/flickr-structural-pruning-20261101`; compact verified collection
+prepared for the user-authorized push; no merge or scientific campaign launch.
 
 ## Flickr CPU thread scaling — C4 benchmark RUNNING, 2026-11-01
 

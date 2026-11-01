@@ -1,0 +1,62 @@
+{
+  "AUDIT.json": {
+    "sha256": "1ddb3245fbc5d65334846420687261e6e2e5198663bacf704bcfeb3c473857b1",
+    "bytes": 17695
+  },
+  "CAMPAIGN_ASSESSMENT.json": {
+    "sha256": "8fca938ad0be956d8f84ca5b14cedb17e0646ec8ad9864eaa81b990368dd4b74",
+    "bytes": 866
+  },
+  "PROVENANCE.json": {
+    "sha256": "4f5926768bc7296c99b75fdb821d19791a42e21eaeefbadbe9ff504b24f51b78",
+    "bytes": 3098
+  },
+  "REPORT.md": {
+    "sha256": "323f8fe62b2f2d24fa82c046354a1dbbdcb9e47151aaab5bd2aebfbdd3ce758f",
+    "bytes": 10896
+  },
+  "VERIFICATION.json": {
+    "sha256": "170c20ba30d8cfbca58e9fb2f53372786225d7909cb1b0434616cb1bef4e472b",
+    "bytes": 625
+  },
+  "audit.py": {
+    "sha256": "f56860f0ea490c9c243268cb1155f0fac51950fc546d6465a2da163a4a296eed",
+    "bytes": 21434
+  },
+  "campaign_resource_assessment.csv": {
+    "sha256": "db8ec9b22f8bc3f58211f7d89a32945ca69f540eebc01978f09b714acbd086e6",
+    "bytes": 11033
+  },
+  "figures/forward_scaling.png": {
+    "sha256": "00bda5900a80fc3317dca472d57732b94f9b34009b9f6238ff72f51022d6c335",
+    "bytes": 119577
+  },
+  "figures/forward_scaling.svg": {
+    "sha256": "747be1c690b6a1d937ad63aaaca30ecb35bc0213fef65faffd2c808c57fc7992",
+    "bytes": 67350
+  },
+  "figures/thread_scaling.png": {
+    "sha256": "2fb626069869227bbbaadea4abc5caa1d0ebcd9e26e4802969b7aad5b64b2036",
+    "bytes": 133684
+  },
+  "figures/thread_scaling.svg": {
+    "sha256": "1ae78eeafc0812da6895d00f311f0276d5dcc3b96bd2f3ea9986c9303b3d404c",
+    "bytes": 60420
+  },
+  "figures.py": {
+    "sha256": "2712957abaf7de4c60e698bb4c6077d1ba2f94971a74782d2c7e425262c49dcb",
+    "bytes": 3206
+  },
+  "run_identities.csv": {
+    "sha256": "3e96936bbdd5d971d0c47020bab67834cf3b7a985a3fdcea357a66368c95fb6b",
+    "bytes": 4178
+  },
+  "runs.csv": {
+    "sha256": "27e2be84ce079f97a44e063ec783523964cbc20bdac617480692de5b98f59ffa",
+    "bytes": 5190
+  },
+  "topology.csv": {
+    "sha256": "b454114e9c26c8c91aa161ac92829831d7b747ad355bc5b9f9c01c9ca51babba",
+    "bytes": 216
+  }
+}

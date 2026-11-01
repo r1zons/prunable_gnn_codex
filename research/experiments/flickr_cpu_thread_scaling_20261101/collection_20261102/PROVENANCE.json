@@ -1,0 +1,79 @@
+{
+  "collection_client_date": "2026-11-02",
+  "server_collection_status_timestamp": "Mon Nov  2 00:13:07 MSK 2026",
+  "raw_root": "${GNN_ARTIFACT_ROOT}/flickr-cpu-thread-scaling-collection-20261102T211303Z/",
+  "archive_sha256": "a317afc7e4f5d1255e010b5b6ab83387a71f43b6844ab04529bc1f5d4fc0c21f",
+  "archive_files": 1026,
+  "archive_uncompressed_bytes": 160173584,
+  "server_inventory_sha256": "2f5a3915d3a7185a38cdfdaab58ba296f46411dc796e7397ada2b95a1943e0c1",
+  "executable_source_commit": "10d778223f049935fd5d4ae554494da15377aaba",
+  "scientific_engine_commit": "1b8b8b78667519f97c0682d2645837d4990960b8",
+  "verified_executable_source_files": 876,
+  "source_archive_sha256": "bb2ffc33574975f592d476cb3a61a289fb15a007b4ff81f31ea58d783bb4756e",
+  "source_manifest_sha256": "66bc2e3d39a73554a33af82e6d947a964cfd7ecd67afa6220b3335e9d9a2aa18",
+  "critical_scientific_source_hashes": {
+    "src/gnn_pruning/pruning/budget_v5.py": "eeb63c0757786a866e47cf2e67abd7117b3c41d6fdf69d5eb840e72774bf745f",
+    "src/gnn_pruning/experiments/frozen_validation.py": "395a7bc438f8c783a1b9e49053736fd214cfb5dd1569c0563b843b6af29d70c5",
+    "src/gnn_pruning/surgery/local_v2.py": "6288b6f888680c318b5a0047af4408bce137aceb0063de0379da2f04ad68c059"
+  },
+  "prior_source_and_evidence_files_unchanged": 272,
+  "local_verification_environment": {
+    "python": "3.12.9",
+    "torch": "2.2.2",
+    "pyg": "2.6.1"
+  },
+  "native_reported_torch": "2.0.1",
+  "native_threads": [
+    4,
+    8,
+    12,
+    20
+  ],
+  "actual_benchmark_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+  "independent_audit": {
+    "PASS": 8,
+    "FAIL": 0,
+    "SKIPPED": 0,
+    "training_transitions": 2616,
+    "cache_requests": 2640,
+    "checkpoints": 8,
+    "validation_forwards": 8
+  },
+  "tests": {
+    "PASS": 22,
+    "FAIL": 0,
+    "SKIPPED": 0,
+    "seconds": 6.66,
+    "selection": [
+      "tests/test_flickr_thread_collection.py",
+      "tests/test_flickr_thread_scaling.py"
+    ],
+    "full_suite": "NOT_RERUN"
+  },
+  "reproduce_audit_arguments": [
+    "PYTHONPATH=src",
+    "VERIFICATION_PYTHON",
+    "research/experiments/flickr_cpu_thread_scaling_20261101/collection_20261102/audit.py",
+    "--raw",
+    "${COLLECTION_RAW}/raw",
+    "--submission",
+    "${GNN_ARTIFACT_ROOT}/flickr-cpu-thread-scaling-20261101",
+    "--historical",
+    "${GNN_ARTIFACT_ROOT}/flickr-structural-pruning-20261101",
+    "--dense-collection",
+    "${GNN_ARTIFACT_ROOT}/flickr-dense-collection-20261101T140723Z/raw",
+    "--output",
+    "${FRESH_AUDIT_OUTPUT}"
+  ],
+  "raw_evidence_hashes": {
+    "remote-status-private.txt": "474a85dec3bca3bf2313c6e6612003ed67d87b37644c9979016092dd41f4e0bd",
+    "remote-summary.json": "a7c7ea5225ea3b4f4dfc9ea3143d8576b6871ecd03b3a69d8a4147833e506633",
+    "independent-audit.log": "36650df2fa520f4bc3ac6b3dc7f64933aa2429110c28682c63a1821a27abbf12",
+    "collection-tests.log": "4c068a1cd68d4f3a3c98cd69dc7878a2361718cb06acb19d99c5514976b88ccc"
+  },
+  "no_new_experiments": true,
+  "no_training_or_policy_search": true,
+  "no_test_label_evaluation": true,
+  "no_full56_submission": true,
+  "no_historical_mutation": true
+}

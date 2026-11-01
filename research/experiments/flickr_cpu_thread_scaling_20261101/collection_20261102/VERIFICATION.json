@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "archive_files": 1026,
+  "source_files": 876,
+  "native_profiles_PASS": 8,
+  "FAIL": 0,
+  "SKIPPED": 0,
+  "independent_trace_checks": 2616,
+  "cache_requests_verified": 2640,
+  "strict_reloads_and_tensor_projections": 8,
+  "frozen_validation_metrics_recomputed": 8,
+  "historical4_thread_trace_match": true,
+  "all_thread_actions_masks_rewards_Q_exact": true,
+  "proposed_campaign_rows_forecast_PASS": 56,
+  "original_production_runner_unchanged": true,
+  "full56_deployment_ready": false,
+  "full56_submitted": 0,
+  "prior_files_unchanged": 272,
+  "compact_only_no_raw_checkpoints_or_traces": true
+}
