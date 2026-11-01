@@ -16,6 +16,7 @@ from gnn_pruning.pruning.budget_v5 import Budget, METHODS, VERSION, run, static_
 from gnn_pruning.pruning.static_v2 import apply_static_plan
 from gnn_pruning.surgery.local_v2 import prune_hidden_channels_local_v2
 from .flickr_dense import digest, environment, load_inputs, metrics, sha, tensors_hash, verify_run, write
+from .frozen_validation import FrozenAccuracy
 
 
 ARCHITECTURES = ('flickr-graphsage-l3-h128-s101','flickr-graphsage-l4-h128-s101',
@@ -87,7 +88,7 @@ def execute(root, protocol, condition, technical=False):
                                                budget_horizon=budget.horizon,technical=technical))
         calls=0
         forward_times=[]
-        def evaluate(model):
+        def forward_accuracy(model):
             nonlocal calls
             if not bool((data.y[split['test']]==-1).all()):
                 raise ValueError('Test labels exposed.')
@@ -97,6 +98,7 @@ def execute(root, protocol, condition, technical=False):
                 value=float((pred==data.y[split['val']]).float().mean())
             forward_times.append(time.perf_counter()-start);calls+=1
             return value
+        evaluate=FrozenAccuracy(forward_accuracy,manifest['training_tensor_sha256']+':'+manifest['split_sha256'])
         started=time.perf_counter()
         method=condition['method'];training=[];qtable=[];decisions=[]
         if method.startswith('static_'):
@@ -116,15 +118,34 @@ def execute(root, protocol, condition, technical=False):
                        scoring_gradient_forwards=int(criterion=='snip'),horizon=budget.horizon)
         else:
             settings=dict(protocol['q_learning'])
-            if technical:settings['episodes']=1
+            if technical:settings['episodes']=protocol['technical_q_episodes']
             result=run(dense,evaluate,method,condition['target'],seed=condition['policy_seed'],
                        budget=budget,max_deployment_steps=2 if technical else None,**settings)
             final,kept,trace,stats=result.model,result.kept_indices,result.trace,result.statistics
             training=result.training_trace;decisions=result.decisions
             qtable=[dict(state=s,actions=v) for s,v in result.q_table.items()]
         search_seconds=time.perf_counter()-started
-        if calls != stats['validation_evaluations']:
+        if evaluate.requests != stats['validation_evaluations']:
             raise ValueError('Evaluation accounting differs.')
+        if calls!=evaluate.forward_calls:
+            raise ValueError('Physical forward accounting differs.')
+        stats['validation_evaluation_requests']=stats['validation_evaluations']
+        stats['validation_evaluations']=calls
+        stats['evaluation_cache_hits']=evaluate.requests-calls
+        stats['candidate_evaluation_requests']=stats['candidate_evaluations']
+        if method in ('adaptive_greedy','lookahead_depth2'):
+            stats['candidate_evaluations']=max(0,calls-1)
+            offset=1
+            for d in decisions:
+                n=d['candidate_evaluations'];events=evaluate.events[offset:offset+n];offset+=n
+                d['candidate_evaluation_requests']=n
+                d['candidate_evaluations']=sum(not event['reused'] for event in events)
+                d['exact_model_cache_hits']=sum(event['reused'] for event in events)
+        else:
+            for i,entry in enumerate(training):
+                entry['validation_evaluation_reused']=evaluate.events[1+i]['reused']
+            for i,d in enumerate(decisions):
+                d['validation_evaluation_reused']=evaluate.events[1+len(training)+i]['reused']
         if not technical and not stats['complete']:
             raise ValueError('Technical prefix cannot masquerade as a completed experiment.')
         verify_projection(dense,final,kept)
@@ -151,6 +172,7 @@ def execute(root, protocol, condition, technical=False):
         achieved=1-after/before
         for name,value in [('deployment',trace),('training',training),('decisions',decisions),('q_table',qtable)]:
             write(output/(name+'.json'),value)
+        write(output/'evaluation_cache.json',evaluate.events)
         peak=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
         report=dict(condition=condition,technical=technical,source_commit=protocol['source_commit'],
              protocol_sha256=digest(protocol),dense_checkpoint_sha256=original['checkpoint_sha256'],
@@ -165,6 +187,8 @@ def execute(root, protocol, condition, technical=False):
              delta_macro_f1=final_metrics['macro_f1']-dense_metrics['macro_f1'],
              validation_per_class_f1=per_class(restored,data,split),statistics=stats,
              search_seconds=search_seconds,observed_validation_evaluations=calls,
+             validation_evaluation_requests=evaluate.requests,
+             evaluation_reuse='exact tensors/architecture and frozen input, within this run only',
              reporting_forward_evaluations=3,
              validation_forward_seconds=forward_times,actual_host=platform.node(),threads=4,
              peak_process_rss_bytes=int(peak if platform.system()=='Darwin' else peak*1024),
@@ -179,7 +203,7 @@ def execute(root, protocol, condition, technical=False):
 
 
 def smoke(root,protocol,arch):
-    """Seven native technical checks at50%; Q one full episode, deployment prefix2."""
+    """Seven native checks at50%; Q three full episodes, deployment prefix2."""
     results=[]
     for condition in matrix(protocol):
         if condition['architecture']==arch and condition['target']==.5:

@@ -29,18 +29,26 @@ Gates: synthetic depths2/3/4/both models/all methods; independent geometry,
 physical masked-reference/strict reload, real-forward depth2 oracle, target-aware
 Q and evaluation accounting; full pytest regression; all four archived Dense
 input/hash/metric checks; native four-thread technical smoke for all methods,
-including4/256. Smoke uses target50%, static complete plans, one full Q training
-episode and at most two adaptive deployment actions. Technical prefixes remain
+including4/256. Revised smoke uses target50%, static complete plans, three full Q
+training episodes and at most two adaptive deployment actions. Technical prefixes remain
 outside research output roots and are never described as completed conditions.
 All eight target geometries are checked before submission.
 
 Native measurements drive a resource forecast, never a quality gate. Forecast
-uses the harder50% trajectory prefix for both targets,31× one-episode Q cost,
+uses the harder50% trajectory prefix for both targets,31/3× three-episode Q cost,
 1.75× safety plus180seconds; unbound jobs receive an additional1.75× host margin.
 A condition above170minutes or32GiB safety memory
 fails the complete matrix gate; no method, target or episode is silently removed.
 Forecasts are not worst-case runtime guarantees; variable selected paths remain
 a limitation. Queue waiting is separate. Recheck current queue/hosts/user jobs.
+
+The original uncached four-job preflight passed correctness but failed the Q4/256
+resource gate (212.62min safety forecast). It remains immutable and released no
+research jobs. Execution revision2 adds per-run validation reuse only for exact
+model tensor/architecture/input identities, shared by all adaptive methods.
+Cached/uncached traces, masks, rewards, Q tables and decisions must match exactly.
+The research Q budget remains30; three technical episodes measure repeated-state
+reuse without changing any experimental condition or learning setting.
 
 After all gates PASS, submit all56 independent jobs at four threads, exclusive,
 normal queue,180minutes,32768MB. Large4/256 and Lookahead/Q jobs prefer the verified

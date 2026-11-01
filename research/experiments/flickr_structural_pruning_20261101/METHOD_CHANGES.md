@@ -60,3 +60,26 @@ quality. Static and adaptive action counts have different meaning. One Dense and
 one policy seed per architecture do not establish robustness. Selected Dense
 checkpoints retain their original finite500epoch convergence limitations. No
 test-label selection, extra seed, fine-tuning or manuscript edit occurs.
+
+**Cost scope.** `search_seconds` begins after frozen input/checkpoint loading and
+common width-goal geometry construction; it includes scoring, surgery, candidate
+forwards and policy search. Three post-search reporting forwards are separate,
+as is SNIP's one gradient scoring forward. Candidate preview counts and total
+validation callback forwards are distinct. LSF RUN/CPU/queue histories preserve
+end-to-end execution costs; search ratios are not ratios of full job costs.
+Technical smoke runs share a process, so RSS is a conservative cumulative
+high-water mark and caches can be warm. Research jobs run one condition/process.
+
+**Exact execution reuse (revision2).** The uncached native resource gate failed
+Q4/256, so a shared per-run validator now memoizes only identical architecture,
+full model tensor SHA256 and frozen graph/split identities. It reuses scalar
+validation accuracy, never Q values, rewards or a learned heuristic. All policy
+requests still occur; ties, RNG draws, states, actions and updates are unchanged.
+Twenty-four independent cached/uncached real-forward controller cases check exact
+decision/trace/mask/tensor/Q equality at all depths and both models. Different
+tensors at identical widths must miss. Requests, actual callback forwards,
+per-decision cache hits and full lookup events are preserved separately. Reporting
+and SNIP gradient forwards are outside this scalar validation cache. The revised
+technical Q profile has three episodes; research retains all30 episodes. The first
+source/preflight evidence remains immutable; this is an execution optimization,
+not an accuracy-dependent scientific change or a relabeled historical algorithm.

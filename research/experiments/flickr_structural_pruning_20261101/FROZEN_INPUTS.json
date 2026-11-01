@@ -1,0 +1,179 @@
+{
+  "dense": {
+    "flickr-graphsage-l3-h128-s101": {
+      "condition": {
+        "id": "flickr-graphsage-l3-h128-s101",
+        "model": "graphsage",
+        "layers": 3,
+        "width": 128,
+        "seed": 101
+      },
+      "model_config": {
+        "in_channels": 500,
+        "out_channels": 7,
+        "num_layers": 3,
+        "hidden_channels": 128,
+        "dropout": 0.5
+      },
+      "checkpoint_sha256": "0ed8149c6fa16a40b07ac94fe6c01a45251ca1b9031b95913d3555367de10344",
+      "tensor_sha256": "4e062b94b73c7af0a49858109ecbb6d2aa99cb8b6deaf32a6cbaf0151105c7c3",
+      "validation": {
+        "accuracy": 0.5388235294117647,
+        "macro_f1": 0.23644161026241658,
+        "loss": 1.3223111629486084,
+        "class_counts": [
+          1023,
+          1652,
+          1320,
+          946,
+          4563,
+          682,
+          7664
+        ],
+        "prediction_counts": [
+          40,
+          653,
+          128,
+          28,
+          5494,
+          0,
+          11507
+        ]
+      },
+      "dense_source_commit": "3995c6057f3460005b44bc57d98c6d5e7df7f9e2"
+    },
+    "flickr-graphsage-l4-h128-s101": {
+      "condition": {
+        "id": "flickr-graphsage-l4-h128-s101",
+        "model": "graphsage",
+        "layers": 4,
+        "width": 128,
+        "seed": 101
+      },
+      "model_config": {
+        "in_channels": 500,
+        "out_channels": 7,
+        "num_layers": 4,
+        "hidden_channels": 128,
+        "dropout": 0.5
+      },
+      "checkpoint_sha256": "bda15ae17485b04765695ded1e187365dea11e96c6bcc3da326b41839e7840f7",
+      "tensor_sha256": "be37d455f3ff23a2c81c74146f15165175dd1337bc0eb897ca93c6bac3e76962",
+      "validation": {
+        "accuracy": 0.5415126050420168,
+        "macro_f1": 0.23631074723458192,
+        "loss": 1.3178731203079224,
+        "class_counts": [
+          1023,
+          1652,
+          1320,
+          946,
+          4563,
+          682,
+          7664
+        ],
+        "prediction_counts": [
+          21,
+          771,
+          84,
+          3,
+          5783,
+          0,
+          11188
+        ]
+      },
+      "dense_source_commit": "3995c6057f3460005b44bc57d98c6d5e7df7f9e2"
+    },
+    "flickr-graphsage-l4-h256-s101": {
+      "condition": {
+        "id": "flickr-graphsage-l4-h256-s101",
+        "model": "graphsage",
+        "layers": 4,
+        "width": 256,
+        "seed": 101
+      },
+      "model_config": {
+        "in_channels": 500,
+        "out_channels": 7,
+        "num_layers": 4,
+        "hidden_channels": 256,
+        "dropout": 0.5
+      },
+      "checkpoint_sha256": "dcbf0722a61842ec2db4f24491e90ffaddabea0749ce411898110d3025fb5566",
+      "tensor_sha256": "0efe1c3c76264c86be993437346aa589e9fc9b948dc4892263c75532c8b5ca27",
+      "validation": {
+        "accuracy": 0.540280112044818,
+        "macro_f1": 0.2408897980672453,
+        "loss": 1.318444013595581,
+        "class_counts": [
+          1023,
+          1652,
+          1320,
+          946,
+          4563,
+          682,
+          7664
+        ],
+        "prediction_counts": [
+          21,
+          855,
+          122,
+          28,
+          5497,
+          0,
+          11327
+        ]
+      },
+      "dense_source_commit": "3995c6057f3460005b44bc57d98c6d5e7df7f9e2"
+    },
+    "flickr-gcn-l2-h256-s101": {
+      "condition": {
+        "id": "flickr-gcn-l2-h256-s101",
+        "model": "gcn",
+        "layers": 2,
+        "width": 256,
+        "seed": 101
+      },
+      "model_config": {
+        "in_channels": 500,
+        "out_channels": 7,
+        "num_layers": 2,
+        "hidden_channels": 256,
+        "dropout": 0.5
+      },
+      "checkpoint_sha256": "f534aa9bc05c6dabe21eb623310b9c1616595af92e251711f40e57dcee31de0a",
+      "tensor_sha256": "b856ed665d4b8885b720c886f8bf11d6157496f2866527876d027e19b29a946b",
+      "validation": {
+        "accuracy": 0.5233053221288515,
+        "macro_f1": 0.22267442029670054,
+        "loss": 1.3602235317230225,
+        "class_counts": [
+          1023,
+          1652,
+          1320,
+          946,
+          4563,
+          682,
+          7664
+        ],
+        "prediction_counts": [
+          8,
+          650,
+          60,
+          46,
+          5824,
+          1,
+          11261
+        ]
+      },
+      "dense_source_commit": "3995c6057f3460005b44bc57d98c6d5e7df7f9e2"
+    }
+  },
+  "input_manifest_sha256": "49fe4e78f123be7905dd3b473327620ab16494ec0af0088d203991b43fb8f30c",
+  "split_sha256": "d32c089a6dde1bce1b014715fa503dde4b881925d71b6339a12b8f945892a429",
+  "collection_archive_sha256": "a1a54f9e72b28f311cc3b350bd391e0f1c00db6a88106a1b290c1087c921f74c",
+  "dense_seed": 101,
+  "split_seed": 101,
+  "policy_seed": 101,
+  "test_labels_masked": true
+}

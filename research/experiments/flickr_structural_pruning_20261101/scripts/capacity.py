@@ -28,7 +28,7 @@ def capacity(root,protocol):
         r=smoke[condition['architecture'],condition['method']];method=condition['method']
         observed=r['search_seconds']
         if method.startswith('static_'):ratio=1.
-        elif method=='tabular_q':ratio=protocol['q_learning']['episodes']+1
+        elif method=='tabular_q':ratio=(protocol['q_learning']['episodes']+1)/r['statistics']['episodes']
         else:
             # Prefix observed progress, not an accuracy-based method/architecture choice.
             # Plan for the harder50% target for both targets, with1.75 time safety below.
@@ -51,7 +51,7 @@ def capacity(root,protocol):
     return dict(status='FAIL' if failure else 'PASS',source_commit=protocol['source_commit'],protocol_digest=digest(protocol),
                 checked_unix=time.time(),failures=failure,conditions=estimates,
                 accuracy_used_for_gate=False,forecast_not_hard_runtime_guarantee=True,
-                rule='harder50% prefix progress or31x one-episode Q cost;1.75x+180s;170min threshold')
+                rule='harder50% prefix progress or31/3x three-episode Q cost;1.75x+180s;170min threshold')
 
 
 if __name__=='__main__':

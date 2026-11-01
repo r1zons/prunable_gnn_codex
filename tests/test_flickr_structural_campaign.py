@@ -47,6 +47,10 @@ def test_real_forward_runner_checkpoint_masks_metrics_and_no_test(tmp_path,monke
     assert report['strict_reload'] and report['retained_projection'] and not report['test_labels_accessed']
     assert report['parameters_after']<report['parameters_before']
     assert report['statistics']['complete']
+    assert report['validation_evaluation_requests']==report['observed_validation_evaluations']+report['statistics']['evaluation_cache_hits']
+    if method in ('adaptive_greedy','lookahead_depth2'):
+        decisions=json.loads((tmp_path/'runs'/condition['id']/'decisions.json').read_text())
+        assert sum(d['candidate_evaluations'] for d in decisions)==report['statistics']['candidate_evaluations']
     assert len(report['validation_per_class_f1'])==3
     out=tmp_path/'runs'/condition['id']
     for name,expected in json.loads((out/'completed.json').read_text()).items():assert sha(out/name)==expected

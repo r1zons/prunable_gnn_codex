@@ -1,0 +1,9 @@
+{
+  "complete_old_native_lookahead_runs": 4,
+  "fresh_second_step_forward_records": 736,
+  "distinct_exact_masks": 381,
+  "repeated_real_forward_masks": 355,
+  "inconsistent_accuracies": [],
+  "source_commit": "0dad7f29dd833ff9cb8e328341941e5efe9ae7dc",
+  "new_forward_executed": false
+}

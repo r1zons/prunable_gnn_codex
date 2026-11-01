@@ -1,0 +1,74 @@
+[
+  {
+    "architecture": "flickr-graphsage-l3-h128-s101",
+    "target": 0.3,
+    "horizon": 248,
+    "candidate_width_tuples": 15624,
+    "goal_width_tuples": 363,
+    "band_feasible": true,
+    "parameters_dense": 162823
+  },
+  {
+    "architecture": "flickr-graphsage-l3-h128-s101",
+    "target": 0.5,
+    "horizon": 248,
+    "candidate_width_tuples": 15624,
+    "goal_width_tuples": 361,
+    "band_feasible": true,
+    "parameters_dense": 162823
+  },
+  {
+    "architecture": "flickr-graphsage-l4-h128-s101",
+    "target": 0.3,
+    "horizon": 372,
+    "candidate_width_tuples": 1953124,
+    "goal_width_tuples": 46364,
+    "band_feasible": true,
+    "parameters_dense": 195719
+  },
+  {
+    "architecture": "flickr-graphsage-l4-h128-s101",
+    "target": 0.5,
+    "horizon": 372,
+    "candidate_width_tuples": 1953124,
+    "goal_width_tuples": 54224,
+    "band_feasible": true,
+    "parameters_dense": 195719
+  },
+  {
+    "architecture": "flickr-graphsage-l4-h256-s101",
+    "target": 0.3,
+    "horizon": 756,
+    "candidate_width_tuples": 16194276,
+    "goal_width_tuples": 214356,
+    "band_feasible": true,
+    "parameters_dense": 522503
+  },
+  {
+    "architecture": "flickr-graphsage-l4-h256-s101",
+    "target": 0.5,
+    "horizon": 756,
+    "candidate_width_tuples": 16194276,
+    "goal_width_tuples": 532531,
+    "band_feasible": true,
+    "parameters_dense": 522503
+  },
+  {
+    "architecture": "flickr-gcn-l2-h256-s101",
+    "target": 0.3,
+    "horizon": 252,
+    "candidate_width_tuples": 252,
+    "goal_width_tuples": 5,
+    "band_feasible": true,
+    "parameters_dense": 130055
+  },
+  {
+    "architecture": "flickr-gcn-l2-h256-s101",
+    "target": 0.5,
+    "horizon": 252,
+    "candidate_width_tuples": 252,
+    "goal_width_tuples": 5,
+    "band_feasible": true,
+    "parameters_dense": 130055
+  }
+]
