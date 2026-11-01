@@ -1,5 +1,16 @@
 # Experiment campaign registry
 
+**POLUS-CUDA-PACKAGE-FEASIBILITY-20261101** — read-only, production upgrade
+**NO-GO**, isolated candidate plausible/unverified. RocketCE Torch2.0.1 cu118
+payload hash/ELF/POWER8 compiler/sm_60 evidence verified; stock Rocket Python
+POWER9 ISA and exact CPU Python/zlib solve blockers identified. Alternative
+Python3.10.13 technical105-package plan plus PyG2.4 wheel resolves, not installed
+or runtime-qualified. RHEL7.5/R440 current; NVIDIA R450/R520 ppc64le EL8 binaries
+are not official POWER8/EL7 qualification.5 dry-runs:3 success/2 dependency FAIL,
+0 envs/jobs;273 source/36 historical campaign files unchanged. No push/merge.
+[Report, binary inspection, complete candidate lock, admin/rollback plan](polus_cuda_package_feasibility_20261101/REPORT.md).
+Raw:`${GNN_ARTIFACT_ROOT}/polus-cuda-package-feasibility-20261101/`.
+
 **FLICKR-CUDA-AUDIT-20261101** — environment **NO-GO**, source521f20a.
 P100 hardware found on C2/C3/C4, but existing research Torch2.0.1 is CPU-only;
 15 visible prefixes/12 runnable Pythons yielded no compatible CUDA build.
