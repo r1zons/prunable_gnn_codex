@@ -1,5 +1,15 @@
 # Experiment campaign registry
 
+**FLICKR-DENSE-SWEEP-20261031 / collection20261101** — **COMPLETED32/32 and audited
+PASS32/FAIL0/SKIPPED0**, LSF1611757–1611788 DONE.481 collected files hash-inventoried;
+32 frozen checkpoints/physical parameter counts/source/input/split/config pins and
+best states verified, train/validation metrics independently recomputed; no test
+labels, training, pruning or new jobs.26 focused pytest PASS.26 max-epoch and six
+patience stops remain screening evidence from seed101. Compact collection/table,
+four figure pairs, audit and provenance: [report](flickr_dense_sweep_20261031/collection_20261101/README.md).
+Raw new group:`${GNN_ARTIFACT_ROOT}/flickr-dense-collection-20261101T140723Z/`.
+Original submission receipts below remain immutable.
+
 **FLICKR-DENSE-SWEEP-20261031** — **SUBMITTED32/32, ACCEPTED LSF1611757–1611788**.
 No research completion/status monitoring or result collection after acceptance.
 GCN/GraphSAGE × layers2/3/4/5 × hidden32/64/128/256, seed101, common frozen60/20/20,

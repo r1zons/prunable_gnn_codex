@@ -1,0 +1,2407 @@
+[
+  {
+    "path": "acceptance-research-jobs.json",
+    "bytes": 29140,
+    "sha256": "a6fc7f7636c861566398ce7ef7fcad271ca79b6091ccadec0b7f7e8fe433ea18"
+  },
+  {
+    "path": "capacity.json",
+    "bytes": 38208,
+    "sha256": "0659dfb44519402f6e93b4b0ee9d96ee09dc0110d8c9d7b499b781db575a8524"
+  },
+  {
+    "path": "inputs/graph.pt",
+    "bytes": 193611718,
+    "sha256": "6b3414ddddabaa10a7a9c0547bcaca22e58b72ee1e933126e8d38943eb0c6da8"
+  },
+  {
+    "path": "inputs/manifest.json",
+    "bytes": 1850,
+    "sha256": "49fe4e78f123be7905dd3b473327620ab16494ec0af0088d203991b43fb8f30c"
+  },
+  {
+    "path": "inputs/split.json",
+    "bytes": 970691,
+    "sha256": "3e164d5ad723c5f5916cd302fc8e11ae63b39d4d26a786ecb057de5179a8c401"
+  },
+  {
+    "path": "logs/flickr-gcn-l2-h128-s101.1611759.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-gcn-l2-h128-s101.1611759.out",
+    "bytes": 152112,
+    "sha256": "0b03386c4540f5287833a150ece901546459f0718d83a294d93dd730f9bceeaa"
+  },
+  {
+    "path": "logs/flickr-gcn-l2-h256-s101.1611760.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-gcn-l2-h256-s101.1611760.out",
+    "bytes": 152125,
+    "sha256": "2ec926ca5adef60ae859067156670e1f1660d93c0591f51cef4bafd83193f9aa"
+  },
+  {
+    "path": "logs/flickr-gcn-l2-h32-s101.1611757.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-gcn-l2-h32-s101.1611757.out",
+    "bytes": 151603,
+    "sha256": "41293d563ef323de32ae14678bf5bb0cb41c9a3ac49fc09e8feb7c98046c3264"
+  },
+  {
+    "path": "logs/flickr-gcn-l2-h64-s101.1611758.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-gcn-l2-h64-s101.1611758.out",
+    "bytes": 151646,
+    "sha256": "0c4664a0a639b7dc0a02bee67315e0193f230b01101b31f5b9f53c3181fe6fc0"
+  },
+  {
+    "path": "logs/flickr-gcn-l3-h128-s101.1611763.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-gcn-l3-h128-s101.1611763.out",
+    "bytes": 152165,
+    "sha256": "a3f563f8f23ccad753b027810ee05b4c474175b955c4aca06d1a373f57eaff76"
+  },
+  {
+    "path": "logs/flickr-gcn-l3-h256-s101.1611764.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-gcn-l3-h256-s101.1611764.out",
+    "bytes": 152138,
+    "sha256": "c5304b0eabd545d27cc287ebc1c2ab0213745adfebb537ab5311fc589ea833c5"
+  },
+  {
+    "path": "logs/flickr-gcn-l3-h32-s101.1611761.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-gcn-l3-h32-s101.1611761.out",
+    "bytes": 151822,
+    "sha256": "c33d7c6d851a6587ff02979c65f6c3139b6c04569a9d94a974cc1819a39ba4b3"
+  },
+  {
+    "path": "logs/flickr-gcn-l3-h64-s101.1611762.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-gcn-l3-h64-s101.1611762.out",
+    "bytes": 151713,
+    "sha256": "3ef286f94f4a1ac5f8b985b8a3b7c437e55bb85f8b55500fed7099253eae01e7"
+  },
+  {
+    "path": "logs/flickr-gcn-l4-h128-s101.1611767.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-gcn-l4-h128-s101.1611767.out",
+    "bytes": 152154,
+    "sha256": "4288db04c138bed1bf3517a243e933e82a6a8694f0ad59c438dcccfc833cf4ca"
+  },
+  {
+    "path": "logs/flickr-gcn-l4-h256-s101.1611768.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-gcn-l4-h256-s101.1611768.out",
+    "bytes": 151976,
+    "sha256": "c8abb8b0292bc5f13ebef3ff862783d8ff9e25aac255f0ca97af65028d4751fd"
+  },
+  {
+    "path": "logs/flickr-gcn-l4-h32-s101.1611765.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-gcn-l4-h32-s101.1611765.out",
+    "bytes": 151629,
+    "sha256": "7ff1c3d40992f3ae5a8ffbf93cd76299bd7b4eb1e4d07e84d1015746978cebb6"
+  },
+  {
+    "path": "logs/flickr-gcn-l4-h64-s101.1611766.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-gcn-l4-h64-s101.1611766.out",
+    "bytes": 151590,
+    "sha256": "24343b58c007003e471ac3aab6407a66ad36bcf875f2c7f92488e65e9d5f5905"
+  },
+  {
+    "path": "logs/flickr-gcn-l5-h128-s101.1611771.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-gcn-l5-h128-s101.1611771.out",
+    "bytes": 152258,
+    "sha256": "0b7105966f0e089fbb57e31736ae9cbc86cde736bc1e7dfd8ab17137378660fe"
+  },
+  {
+    "path": "logs/flickr-gcn-l5-h256-s101.1611772.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-gcn-l5-h256-s101.1611772.out",
+    "bytes": 152022,
+    "sha256": "bf67633fb7a8a54795c9118d49c7734db3521e2f28a5ec6580f5bbe4eb0cd353"
+  },
+  {
+    "path": "logs/flickr-gcn-l5-h32-s101.1611769.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-gcn-l5-h32-s101.1611769.out",
+    "bytes": 151870,
+    "sha256": "e76934e2e4e7a5ce59d99809df89e9a8619bfa29bdbff7b8495539677e91cce2"
+  },
+  {
+    "path": "logs/flickr-gcn-l5-h64-s101.1611770.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-gcn-l5-h64-s101.1611770.out",
+    "bytes": 151482,
+    "sha256": "d571fb066c88be805061dd7b42adbcc3d82782212cf3f0ff0f41b3ac560f2427"
+  },
+  {
+    "path": "logs/flickr-graphsage-l2-h128-s101.1611775.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-graphsage-l2-h128-s101.1611775.out",
+    "bytes": 138877,
+    "sha256": "681f94f9b926148c263cf8a19585ce7dbae6464c57075e55b1056dc303a27e8f"
+  },
+  {
+    "path": "logs/flickr-graphsage-l2-h256-s101.1611776.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-graphsage-l2-h256-s101.1611776.out",
+    "bytes": 122096,
+    "sha256": "ad37934fcfe32af5a7f1d1916bc9793f89448094c59c96ed55f54a055ddf5655"
+  },
+  {
+    "path": "logs/flickr-graphsage-l2-h32-s101.1611773.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-graphsage-l2-h32-s101.1611773.out",
+    "bytes": 154650,
+    "sha256": "27dcb7d3318212811d0bb46ab44eee5cc78ff87259b368cfaca8eb8b3dc52899"
+  },
+  {
+    "path": "logs/flickr-graphsage-l2-h64-s101.1611774.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-graphsage-l2-h64-s101.1611774.out",
+    "bytes": 154641,
+    "sha256": "e1232fc3323a03449da32e801441853311dfd8fe64bc8918bcc6f2caed65fb7a"
+  },
+  {
+    "path": "logs/flickr-graphsage-l3-h128-s101.1611779.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-graphsage-l3-h128-s101.1611779.out",
+    "bytes": 146721,
+    "sha256": "1a55e3237a2285c22c3384648b04af4d06b74ee9b1a5b76c178db364a09c494e"
+  },
+  {
+    "path": "logs/flickr-graphsage-l3-h256-s101.1611780.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-graphsage-l3-h256-s101.1611780.out",
+    "bytes": 118604,
+    "sha256": "669d3a16217b7a6b9ea318afdcfc830ee6624e0843672a27ccf904d8300e81d1"
+  },
+  {
+    "path": "logs/flickr-graphsage-l3-h32-s101.1611777.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-graphsage-l3-h32-s101.1611777.out",
+    "bytes": 154541,
+    "sha256": "481e919af2969aca0b267ed1d1a5242cf248cbce44d7528d2eec6981ed03f963"
+  },
+  {
+    "path": "logs/flickr-graphsage-l3-h64-s101.1611778.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-graphsage-l3-h64-s101.1611778.out",
+    "bytes": 154493,
+    "sha256": "8a1c3de4e3106d4f1375ac32699f993e6152bcb3badd3ac920e82fc83a432695"
+  },
+  {
+    "path": "logs/flickr-graphsage-l4-h128-s101.1611783.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-graphsage-l4-h128-s101.1611783.out",
+    "bytes": 151221,
+    "sha256": "07199574b0947336ddc6808fd3edc58ad4ee433f99a050080036757c13176c5b"
+  },
+  {
+    "path": "logs/flickr-graphsage-l4-h256-s101.1611784.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-graphsage-l4-h256-s101.1611784.out",
+    "bytes": 127338,
+    "sha256": "a9f7588f479e02ee8cb36be80b414fc7ac27b142202853505ab67278fcc8e835"
+  },
+  {
+    "path": "logs/flickr-graphsage-l4-h32-s101.1611781.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-graphsage-l4-h32-s101.1611781.out",
+    "bytes": 154646,
+    "sha256": "06ed7b73c889183c5dcf18c79e9c25e24f12567598dfe0468c53d824346b16fd"
+  },
+  {
+    "path": "logs/flickr-graphsage-l4-h64-s101.1611782.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-graphsage-l4-h64-s101.1611782.out",
+    "bytes": 154540,
+    "sha256": "72a27c785d14b3508de971f9fa8cfc05553d1cb0df790ad5975c81f6458847ff"
+  },
+  {
+    "path": "logs/flickr-graphsage-l5-h128-s101.1611787.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-graphsage-l5-h128-s101.1611787.out",
+    "bytes": 154942,
+    "sha256": "1e6e3adc293f7b58e6cc70bc61392111e5fe8d9393df10ecd09743d5cfab367f"
+  },
+  {
+    "path": "logs/flickr-graphsage-l5-h256-s101.1611788.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-graphsage-l5-h256-s101.1611788.out",
+    "bytes": 154871,
+    "sha256": "53e776d558d960a5509dca40f9185f0e91fc02704b18ff7fe1e812f36ee94770"
+  },
+  {
+    "path": "logs/flickr-graphsage-l5-h32-s101.1611785.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-graphsage-l5-h32-s101.1611785.out",
+    "bytes": 154568,
+    "sha256": "c905c0fa2e7a8e0545725a3d3fe7c847a3b79142b17c81d107978573f94285f6"
+  },
+  {
+    "path": "logs/flickr-graphsage-l5-h64-s101.1611786.err",
+    "bytes": 461,
+    "sha256": "b65857a9061568d8885c9d5fedd4f1d39c7395e03cbc310cd050db57141f5a69"
+  },
+  {
+    "path": "logs/flickr-graphsage-l5-h64-s101.1611786.out",
+    "bytes": 154433,
+    "sha256": "c47bbcb455b3f5a225f565d7add0c3b6fd3fdf7a25373923c50e44c95eb8ef7a"
+  },
+  {
+    "path": "logs/native-c2.1611753.err",
+    "bytes": 2766,
+    "sha256": "41d263a6674f6ac57edbc13f096a57b0f2446d57c642fa100c0e24bb0a665878"
+  },
+  {
+    "path": "logs/native-c2.1611753.out",
+    "bytes": 25658,
+    "sha256": "7b54c28935833a72bb03a1b0794ced3b4eef3d43201e8168e07fa8e6bdafb978"
+  },
+  {
+    "path": "logs/native-c3.1611754.err",
+    "bytes": 2766,
+    "sha256": "41d263a6674f6ac57edbc13f096a57b0f2446d57c642fa100c0e24bb0a665878"
+  },
+  {
+    "path": "logs/native-c3.1611754.out",
+    "bytes": 25651,
+    "sha256": "6cc4a29d105d2c8112efe806cf19cfae8082f0a871e421cc13c68375df0b3a0f"
+  },
+  {
+    "path": "logs/native-c4.1611755.err",
+    "bytes": 2766,
+    "sha256": "41d263a6674f6ac57edbc13f096a57b0f2446d57c642fa100c0e24bb0a665878"
+  },
+  {
+    "path": "logs/native-c4.1611755.out",
+    "bytes": 25652,
+    "sha256": "99115d647ae34a22eef6e5dbe08ab14cdd01fdb67eff3d9dd7e9b2cbf4684b0c"
+  },
+  {
+    "path": "preflight-evidence.tar.gz",
+    "bytes": 26209747,
+    "sha256": "7651b7a7a74ac4fd2e68407b4725b2d6f9e0f48eb10cb2c5fd6015451933aeae"
+  },
+  {
+    "path": "protocol.json",
+    "bytes": 847,
+    "sha256": "e3c7f8d1fac073d56aeb3e8821588c2ce72d3cd377dab933bd7b9e2d1606b2b0"
+  },
+  {
+    "path": "research-jobs.json",
+    "bytes": 13039,
+    "sha256": "8d73c5795065af5fb66557ba8a3417a0803e593e05993db5186eb1923478f3a1"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h128-s101/best.partial.pt",
+    "bytes": 262781,
+    "sha256": "8a28aa3db254265865fd0be27ec4d9855acf8797718ebcfb8880bed69bcc9f3f"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h128-s101/checkpoint.pt",
+    "bytes": 263025,
+    "sha256": "1181d69780d43eb8349fe21ac7e648d3955647c3e1d3fe47acd4500a761abcd5"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h128-s101/completed.json",
+    "bytes": 631,
+    "sha256": "26e0f2ec42a79047f25f1c81b6bdc84e42a9b65b2f04157014a1479db6adcafc"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h128-s101/environment.json",
+    "bytes": 5210,
+    "sha256": "49e4515ed48f19dc537038e8ddb7cf9218d88932d595ae9b622b54efe4ef777e"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h128-s101/environment_after.json",
+    "bytes": 5210,
+    "sha256": "254286552ff3c866da294d58fb899878ff0cf000e940e4e119125041967e9d99"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h128-s101/history.jsonl",
+    "bytes": 126863,
+    "sha256": "5a87ad0b43b0b04fe8bc7e9b4b893d03208f56dcb2a09d430f2f84fd4ec13dbe"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h128-s101/report.json",
+    "bytes": 2632,
+    "sha256": "300382c644ba41881634e84c5b58281cc4aecea955421defbb59b6ce851c1c17"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h128-s101/resolved_config.json",
+    "bytes": 870,
+    "sha256": "66045385ca73d15248296cf00fb42c92fb25f0d3bf222d4e2013ba5ddcfa55fa"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h256-s101/best.partial.pt",
+    "bytes": 522877,
+    "sha256": "684ffd420956a619bb67bb6afabcc936a79940f4185b3512fcff687a3d853212"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h256-s101/checkpoint.pt",
+    "bytes": 523121,
+    "sha256": "f534aa9bc05c6dabe21eb623310b9c1616595af92e251711f40e57dcee31de0a"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h256-s101/completed.json",
+    "bytes": 631,
+    "sha256": "39e7e866a759b01315d3693d4043c3b9f7048916761b9c5686d3a94f5b81da23"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h256-s101/environment.json",
+    "bytes": 5210,
+    "sha256": "8e3bb5c61672d3ed41f0411b4c9fa0166b0b62429a167f46e0f80efaa175011c"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h256-s101/environment_after.json",
+    "bytes": 5210,
+    "sha256": "477ae3e72368be30ff9a720d2c665f7e77ef4973d528218888cd014c95fae797"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h256-s101/history.jsonl",
+    "bytes": 126873,
+    "sha256": "52fc87ed68c814243be908f98906bbdcc7c66e1154961a1f8877b01a5930c1ad"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h256-s101/report.json",
+    "bytes": 2636,
+    "sha256": "587223321124ef9c0821289f314132be1bfb3e313aa10fcaf5b5396095951558"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h256-s101/resolved_config.json",
+    "bytes": 870,
+    "sha256": "d491e78954f949615cdfce37d1a13a4a0d092c89d7101a7038118016b3b2fa1f"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h32-s101/best.partial.pt",
+    "bytes": 67709,
+    "sha256": "eea2179ca54a0e60bb7f9e5bf13f78a4935e46d288fc2d6c9ae7e9d7582d9c2f"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h32-s101/checkpoint.pt",
+    "bytes": 67953,
+    "sha256": "37ea4959efd7effb49c1347db1a1125019b967e8102942cae7dfa3fc4e0251b3"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h32-s101/completed.json",
+    "bytes": 631,
+    "sha256": "23e5f4a2d221e5b6d855bb2fe078591959f957c54543f59066b81a56ce7e70af"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h32-s101/environment.json",
+    "bytes": 5207,
+    "sha256": "38ebac9c90893f6a6b6c666bc516874d75c3fd198c91edb93939143802f37604"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h32-s101/environment_after.json",
+    "bytes": 5207,
+    "sha256": "3a6cf635714bbf92e1ee3f6c7f6c8418150ece599b6d9c5faf64bb1deb97d707"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h32-s101/history.jsonl",
+    "bytes": 126860,
+    "sha256": "7c119da14ac7173b39ed869489b69c3ad7204f0f37f8ac6feea24e1bd0f77f3b"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h32-s101/report.json",
+    "bytes": 2615,
+    "sha256": "e1203f5b5a6e83e8cb5b726cdc655b96431c0982b3bcf9c4449cbeada064f374"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h32-s101/resolved_config.json",
+    "bytes": 867,
+    "sha256": "324e60cab556fa14bbe524a7c3ed691630fdcdc05e4edeb78a57c1271b4099b0"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h64-s101/best.partial.pt",
+    "bytes": 132733,
+    "sha256": "ac2580a5a0ca8bf08a5e0299b94f041a830239015ba7d04b8a2f00e4401f3520"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h64-s101/checkpoint.pt",
+    "bytes": 132977,
+    "sha256": "b8661bc704934c485b4aeab29780bf8af9554f6e55d465f2ad577217011d2bb1"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h64-s101/completed.json",
+    "bytes": 631,
+    "sha256": "f13fffd362c15769d9a00cb3674946e1685142f5e74bcaa0fa4323064bd94716"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h64-s101/environment.json",
+    "bytes": 5207,
+    "sha256": "7735e35a1c6ed042d7ceb48eeaac51a64a558de64f2ffd814ceaf60ac4aeac1b"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h64-s101/environment_after.json",
+    "bytes": 5207,
+    "sha256": "d4fd1ab465ecaaf3249474db8411042f1cde38a8b6120a0df33c47d1223aa94d"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h64-s101/history.jsonl",
+    "bytes": 126902,
+    "sha256": "9a70240711d302814777b5d6b6517cf880eb4c9cfa5487d921ce5fe705c4673c"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h64-s101/report.json",
+    "bytes": 2629,
+    "sha256": "20bc8b82d35be7f0faf20aff00f75a9c7a9f905b2bb38d1d2d864e11f1104cf2"
+  },
+  {
+    "path": "runs/flickr-gcn-l2-h64-s101/resolved_config.json",
+    "bytes": 867,
+    "sha256": "f0d895f42f1bcec618dde6f366a2978eab8daebf7dfbb9a3b4c0c62683aa0e17"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h128-s101/best.partial.pt",
+    "bytes": 329407,
+    "sha256": "a2fc2d84bd02dc5d125b7e2cb3dac22973151705a419b144f5293dfed7f2fe80"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h128-s101/checkpoint.pt",
+    "bytes": 329647,
+    "sha256": "d15cdcd717b203e4c6dd784df7adcfb048f6c911178b8a840de58bf0d400febc"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h128-s101/completed.json",
+    "bytes": 631,
+    "sha256": "cfb2c19cfe61384d4bd0d595c8e10da34f5a75bab7c1d6a1d7dab2c45ae7c8f2"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h128-s101/environment.json",
+    "bytes": 5210,
+    "sha256": "635489a170395137cc668f3f236bd2d670bb73d79a9e5a7eb082917eedabcf74"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h128-s101/environment_after.json",
+    "bytes": 5210,
+    "sha256": "eca0a9cf846c8670400f27aa14061e57b6f011d57581b813f9247a94869ecf7d"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h128-s101/history.jsonl",
+    "bytes": 126914,
+    "sha256": "609f6bd385d81e64758e5bf17562fa020db753b1c6db5246b5f39fd370c541e0"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h128-s101/report.json",
+    "bytes": 2632,
+    "sha256": "111112d8f003f0070177055d464286815af5b6f3ac162875b02073d08466b1a5"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h128-s101/resolved_config.json",
+    "bytes": 870,
+    "sha256": "784d3a1dab43e741fe9fcc35c0fad0433c3f1d5564d1af36c99dc1f0082ab21f"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h256-s101/best.partial.pt",
+    "bytes": 786623,
+    "sha256": "bc8df8fe938a55d75a5b65d6d1eb6dfbca34bd5c76280bfc26fae7224adfdbea"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h256-s101/checkpoint.pt",
+    "bytes": 786863,
+    "sha256": "ab4df838bfca06384ef54a1bcb1287532ce3ad1bb851c857532241f3219a986a"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h256-s101/completed.json",
+    "bytes": 631,
+    "sha256": "88ae2e90accc52b374f6002669e9556fe012e289885af1d2cca44150d66a4ab7"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h256-s101/environment.json",
+    "bytes": 5210,
+    "sha256": "a18c963831f52ee6b3334ff5301445beb651417c9eee18d11c8f99195a77f661"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h256-s101/environment_after.json",
+    "bytes": 5210,
+    "sha256": "a52a52abfb3a884b5a5d5881af7688dbbc59cf3f0fd13dd95c701463a95b19d4"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h256-s101/history.jsonl",
+    "bytes": 126886,
+    "sha256": "611e163a60fef0547c9c39b59841eb3ccbb49113c38ed38358699a87c8a698f7"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h256-s101/report.json",
+    "bytes": 2635,
+    "sha256": "6aef17113f15c9defb25176e42447f44a9266289f489140748ae222f906466de"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h256-s101/resolved_config.json",
+    "bytes": 870,
+    "sha256": "22c512c9098e4f605c53dd8151f5a1f87e964301ef069aad5077ff20d1d742aa"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h32-s101/best.partial.pt",
+    "bytes": 72511,
+    "sha256": "659248de0bd65e12fb3c227e18b86e881ef1429eba5be9ba7baf48916e14f5f7"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h32-s101/checkpoint.pt",
+    "bytes": 72751,
+    "sha256": "98e8f830efe43d7ba2c0c2389cbb9a5089c2d1f075298a8e93a8a5220c41a0b0"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h32-s101/completed.json",
+    "bytes": 631,
+    "sha256": "a232e556dd781fb04480173179999773ff4d0f0fd92028756dc687372f68f2ac"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h32-s101/environment.json",
+    "bytes": 5207,
+    "sha256": "ea78abede0641cf15c1ff33909ff6a60f8cdbd0218fab8786c05998f45da2a23"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h32-s101/environment_after.json",
+    "bytes": 5207,
+    "sha256": "4a034e7aadc837b68e0c76372b9d084795efb470e7ff3c2ab33e638f65296a0d"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h32-s101/history.jsonl",
+    "bytes": 127078,
+    "sha256": "1d9f74f9f3cca546901874acdd41d3d6dfb75ec7f62e203d1d651798b10766e2"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h32-s101/report.json",
+    "bytes": 2624,
+    "sha256": "4e564b483db520782e45ffccc464c6760e99f4254f9d5985a53ed55afab863ab"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h32-s101/resolved_config.json",
+    "bytes": 867,
+    "sha256": "1da8693fe807624cf82e37dd082d1fbb3bf36f041292e153b54b50c87a0bafa2"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h64-s101/best.partial.pt",
+    "bytes": 149951,
+    "sha256": "abf5f565da9705b28381dc5d8d9f4e9a1b42047de83087e9911275bb2eb6c701"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h64-s101/checkpoint.pt",
+    "bytes": 150191,
+    "sha256": "4b0e46880d391de7ed387d707e4cb8273fe9a02f6fcd1cb54c474c4ad2b92c81"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h64-s101/completed.json",
+    "bytes": 631,
+    "sha256": "401834832048f1ce80d6947dba326756aeca9597edd301626c8c83f4b0442626"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h64-s101/environment.json",
+    "bytes": 5207,
+    "sha256": "179ed33881195eb213afad0276312dbaa349fc8a979878c634d3a9b9a305c97f"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h64-s101/environment_after.json",
+    "bytes": 5207,
+    "sha256": "0491dc9f813e24818099149c3e0bda6dc1c78863b4907b4bfee5f646ad05818c"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h64-s101/history.jsonl",
+    "bytes": 126967,
+    "sha256": "fae895182d231f709e67fcaf4e1d3544eba7a22b8d5cfa6cf9d228a90e9ee27f"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h64-s101/report.json",
+    "bytes": 2624,
+    "sha256": "968b0aaed01ed64e48c4927887f51a2f421804a1b37f80898c5069279c7f444d"
+  },
+  {
+    "path": "runs/flickr-gcn-l3-h64-s101/resolved_config.json",
+    "bytes": 867,
+    "sha256": "9f9fee8e2186d975f837fd67cb91a129c7d02e421c97ab4ef5d5e89f893b056b"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h128-s101/best.partial.pt",
+    "bytes": 396097,
+    "sha256": "0bea012681af33973f9322ad9a935c85716e0b9f782221bd6ef8c5867af27385"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h128-s101/checkpoint.pt",
+    "bytes": 396333,
+    "sha256": "5b60998f08d1861b819c8b9873506382feed6d45906ea13908f4de97bb998144"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h128-s101/completed.json",
+    "bytes": 631,
+    "sha256": "ff1ab5c652af9f3f29780b4e0b38ef9b534cac8cabae2a3e794bf79954e13954"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h128-s101/environment.json",
+    "bytes": 5210,
+    "sha256": "a2a3edd95833a2d3c1f62063780ee5f9872e35212f5172d788b64ce7eed5bffe"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h128-s101/environment_after.json",
+    "bytes": 5210,
+    "sha256": "e124619c28f059f20874776d359d1c936b408db9078a59825dc8bf4e55271e5a"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h128-s101/history.jsonl",
+    "bytes": 126902,
+    "sha256": "d8107ad498506b0dea8b18ce5cab81bbdcf5641e8269920424f9ad0e2d87c9a4"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h128-s101/report.json",
+    "bytes": 2632,
+    "sha256": "4ce74f75114ec7d5885ce63b7364780a770f84095a5ced34ae24bc9bdd275f4c"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h128-s101/resolved_config.json",
+    "bytes": 870,
+    "sha256": "c3d0cb4420c534fa0f515c50ee888c5b6c11dc12c95f49f875ef9fdad9df4665"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h256-s101/best.partial.pt",
+    "bytes": 1050433,
+    "sha256": "05e21d8d81ba3ff04e37af335fe5a2041c0e4607cd5f2d41dfddbaa027274ed7"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h256-s101/checkpoint.pt",
+    "bytes": 1050669,
+    "sha256": "1ca3565915e1618d1711242d1554e702c6c0c66f2ef07a1e54242ef7fde68d4f"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h256-s101/completed.json",
+    "bytes": 631,
+    "sha256": "29ea74313696f4307d838031f0ad35bb7234d592f176935332db67de19a15cb5"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h256-s101/environment.json",
+    "bytes": 5210,
+    "sha256": "7a8528d8bac3db0646f358c8d90bd474189d8b0ce8a6c543be96c861dbd71289"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h256-s101/environment_after.json",
+    "bytes": 5210,
+    "sha256": "bada5216af58273529d70d61e4cdeeae0b998df5b50f6f792afe91a64626940d"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h256-s101/history.jsonl",
+    "bytes": 126723,
+    "sha256": "bf3f8ef29356df672edc53f415ad67066ecd31471bcd4f23826f8785c9efafcf"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h256-s101/report.json",
+    "bytes": 2631,
+    "sha256": "74a0590de025dd704dc457056725beee89dab9808b2fd0b78d1ca6fe1bc5a9c4"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h256-s101/resolved_config.json",
+    "bytes": 870,
+    "sha256": "7185de75f783715ab2a2d68042ad8da80167bc7b90af908cf2e5dbe9e219fa6b"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h32-s101/best.partial.pt",
+    "bytes": 77377,
+    "sha256": "22664f3c481ee12ad2b3c66b6390eff23f72ab6b308f95ab3b5020c4752fed9a"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h32-s101/checkpoint.pt",
+    "bytes": 77613,
+    "sha256": "5ae8e53cc5c1d31c50f9608c0411c9fec15d3060d0d6203e627f355e475a1bac"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h32-s101/completed.json",
+    "bytes": 631,
+    "sha256": "7385f170765fa9c667c4ca4a2a1a9f98259d4140757a2cac30b49e44cc0f3221"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h32-s101/environment.json",
+    "bytes": 5207,
+    "sha256": "35200e050165e763769e267ad30c6eed25d11f7d778ed54a33b4db9d317112b2"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h32-s101/environment_after.json",
+    "bytes": 5207,
+    "sha256": "f60414d7ccea6da737c8bb9fbf91db395a035a787ec8b22f6dd99182c4875c2f"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h32-s101/history.jsonl",
+    "bytes": 126884,
+    "sha256": "e9420f809df02bb235b102ddcbee94a44f93298cd9fef69803617db05edcfc74"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h32-s101/report.json",
+    "bytes": 2627,
+    "sha256": "162c6495cebc9628752c1a9f928d5992cb418fd88675ac38ccb6c24d80d3a140"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h32-s101/resolved_config.json",
+    "bytes": 867,
+    "sha256": "4b45254d1991fefbcec1c74e352d05db38ae96d7225708d348358ef3c12f3283"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h64-s101/best.partial.pt",
+    "bytes": 167233,
+    "sha256": "1cf4d86178bb93725dff1f9a0dedbca7486a49f11184577ef2f90981a603f9fe"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h64-s101/checkpoint.pt",
+    "bytes": 167469,
+    "sha256": "d1e6fff3848864df55dee6b8fee2ab6d6f4e80bbb7e04b0e6750e7669abc6103"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h64-s101/completed.json",
+    "bytes": 631,
+    "sha256": "63d5e2082be877c8f4acd344ada3c65ec5d27371974780c178cd8d00e88c061f"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h64-s101/environment.json",
+    "bytes": 5207,
+    "sha256": "4d6ff3c4dffa335de0e8871d74c9456a17dc93045100c492b659078fd5929580"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h64-s101/environment_after.json",
+    "bytes": 5207,
+    "sha256": "55c782feacc703fd6f6024eab5bd65a550941b686d23ba97dda274c12378551b"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h64-s101/history.jsonl",
+    "bytes": 126843,
+    "sha256": "f39dd3454359056399ab68267958ee8566f9f865ccec9d7599dbf740ce67015e"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h64-s101/report.json",
+    "bytes": 2620,
+    "sha256": "97790dc20748a5abfdd58f0930cfc8c5db7d3b020be1a4e930602862f7f52bc9"
+  },
+  {
+    "path": "runs/flickr-gcn-l4-h64-s101/resolved_config.json",
+    "bytes": 867,
+    "sha256": "ebb18e399c866792d6d719d9a4e228fd7fec616ebe58da9501771cc7f2d2c0c2"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h128-s101/best.partial.pt",
+    "bytes": 462723,
+    "sha256": "a1f06b20898374cefbd6cf8c0008d77dba90a2e494f010c349ac763f12d3da26"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h128-s101/checkpoint.pt",
+    "bytes": 462955,
+    "sha256": "4f0d4b4cfb3d19a67c993e95c9f208bb8696ca3a60fe2b332e50460c308467c3"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h128-s101/completed.json",
+    "bytes": 631,
+    "sha256": "5a4e9331f9713fc02a0e24e843c9cce0be3606f2b8c7bc2bc13bf1bddc6dfd8f"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h128-s101/environment.json",
+    "bytes": 5210,
+    "sha256": "a4be06c5972c8036fd11c8dc32c32e5582bea1b152238f7d41a72b9dc56451dc"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h128-s101/environment_after.json",
+    "bytes": 5210,
+    "sha256": "d658a5ab53efd64b7cda1a6b55396086a13370715aedab746c801ba1450a695e"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h128-s101/history.jsonl",
+    "bytes": 127005,
+    "sha256": "efbb83e4d0cc27495a2e8038e795aed367f6037d51a89aaf87e7f277af12b917"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h128-s101/report.json",
+    "bytes": 2632,
+    "sha256": "f928f5d9550dd6e51edbe8e26e029af8dbbdedaffba0429286141d08c9b1a162"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h128-s101/resolved_config.json",
+    "bytes": 870,
+    "sha256": "2402d05dd65da6678f4a139468ab6ed9e800fdb5b590eeaf2f608a3ab511dca0"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h256-s101/best.partial.pt",
+    "bytes": 1314243,
+    "sha256": "016e9eec1bc8eb6df6b8f3d4384a569ddca7e291e25d8c0c7f55fbba2efab626"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h256-s101/checkpoint.pt",
+    "bytes": 1314475,
+    "sha256": "219afadfd1c2da2dbf61a061f2ec9bf5fb2c361958f0353b2e6644aa9f3dd46f"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h256-s101/completed.json",
+    "bytes": 631,
+    "sha256": "3019144859bb5398ecc44ebc2a256eb166934e3cb926371e84c58beb14e49904"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h256-s101/environment.json",
+    "bytes": 5210,
+    "sha256": "eb6dc26b41b919328068580966583729aa2f0673b6d16f9a6b6b41b3095ca5fe"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h256-s101/environment_after.json",
+    "bytes": 5210,
+    "sha256": "998b9a1e57c0ac61df7efd8195251c90b2486c0ae403cd04224e33bba721dcfd"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h256-s101/history.jsonl",
+    "bytes": 126770,
+    "sha256": "1fcfe1638a4125fe917037b31c37d9d4b24a8621de1067b456835d0e319412c3"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h256-s101/report.json",
+    "bytes": 2632,
+    "sha256": "4f945de65e5ded2877026b188a3f98aaf91bde2c8f07a7581e5d0328b60c4d54"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h256-s101/resolved_config.json",
+    "bytes": 870,
+    "sha256": "f9658ad7e38b1f3fccaab8f6499001b616402093582b1e37a306f0578f7bec12"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h32-s101/best.partial.pt",
+    "bytes": 82179,
+    "sha256": "e11e6b967b3e4e85eeb41cb9c595a7bd580b4538206487834d242ce206015c3b"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h32-s101/checkpoint.pt",
+    "bytes": 82411,
+    "sha256": "7b6efa265cdcad44eb85d7cb9c78bbabd8094cce1e45b8728ee6d67ae6a2d808"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h32-s101/completed.json",
+    "bytes": 631,
+    "sha256": "79458b8908ef89ed20ca8d4d7df66003f2443d93c3ec7a41e3224e564687824f"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h32-s101/environment.json",
+    "bytes": 5210,
+    "sha256": "f7013edb91c3043e9557b5459a51fdddd6bdd0c32c3dc8904efc270d6f7f8b01"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h32-s101/environment_after.json",
+    "bytes": 5210,
+    "sha256": "88d76c0b7310999f07bd6cee01f20c056ad8f2f7872f9f5582429ab9b741327b"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h32-s101/history.jsonl",
+    "bytes": 127125,
+    "sha256": "d74d758af1bccf95cc70f67ee35da01a1653666a3e9d8487ff92114fb77e0757"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h32-s101/report.json",
+    "bytes": 2624,
+    "sha256": "bd887f9a3cfc90185e1216f13915a88c53f69c6236796a02a69c9959bd482627"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h32-s101/resolved_config.json",
+    "bytes": 867,
+    "sha256": "a70e5932964a7c365912a2666512368674c73c92cbfab6598a98bd6721f40014"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h64-s101/best.partial.pt",
+    "bytes": 184451,
+    "sha256": "c24033b07bdd3a832e98954a17633295884031b82d2c67e2a13dc289059b8ba7"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h64-s101/checkpoint.pt",
+    "bytes": 184683,
+    "sha256": "a935ef879d79cdbfc2ce8d73c70b9b3ef0ee1eaaaebac2be3a2d53346807b2b5"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h64-s101/completed.json",
+    "bytes": 631,
+    "sha256": "4741ea925b5c0dcdf72a8f374160b2c6a7ec3936d7576da27478d6cb3f210fc1"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h64-s101/environment.json",
+    "bytes": 5207,
+    "sha256": "74f0ea262d8f32b476782d02bba111cf934357b56c9bd5746fe7c505812bfdc0"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h64-s101/environment_after.json",
+    "bytes": 5207,
+    "sha256": "65c7626166dbf419053ca0ddf7fbf018dfc122500429f700e2f11b7e84b046fe"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h64-s101/history.jsonl",
+    "bytes": 126735,
+    "sha256": "1997bfe31c79c758544a67d35dc066fc0e6cafcd3f1e2093b6c84a865105a366"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h64-s101/report.json",
+    "bytes": 2626,
+    "sha256": "120ea3d821e7b5e2818ed6bf7241a2a6ea3a9afcb60f9bf479fccf3529a19fa1"
+  },
+  {
+    "path": "runs/flickr-gcn-l5-h64-s101/resolved_config.json",
+    "bytes": 867,
+    "sha256": "e7d4023ba01695cea60189a5a02e845126895f8cb4f8ed5267ddc7ea8eaac0f3"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h128-s101/best.partial.pt",
+    "bytes": 523007,
+    "sha256": "e65cb3eae2146172a9ae9cea314d8ed3749629272274e5d985da02e8d847f354"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h128-s101/checkpoint.pt",
+    "bytes": 523247,
+    "sha256": "b0103219e6a065dc81013abdd0cbed6d9d54143f10f2e76178464baefea73195"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h128-s101/completed.json",
+    "bytes": 631,
+    "sha256": "58d6a6e5cdf129717b5c1dd8dd23b3269663a40c214cae2c08f46ef733ddfe10"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h128-s101/environment.json",
+    "bytes": 5207,
+    "sha256": "e4d266cb96645e5e1755a73e05c34aab659300ef39008d44e88c764db4af023b"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h128-s101/environment_after.json",
+    "bytes": 5207,
+    "sha256": "d607e216c3eac2e2597de31a46e9573d1bf4f949653511da0b6cebd422291ff9"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h128-s101/history.jsonl",
+    "bytes": 113080,
+    "sha256": "2927ddff0936169957bcada0ebaddafabe5fd621432eb267b7959bec96e7df7e"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h128-s101/report.json",
+    "bytes": 2662,
+    "sha256": "9cef26e2363d998f3ca1d0751c6997299ae9ab5578104a70780f68c1deda2b81"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h128-s101/resolved_config.json",
+    "bytes": 882,
+    "sha256": "d79bcc73105b37b28fa0f268f1e7db880fde629774d1d50165db9157e684a852"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h256-s101/best.partial.pt",
+    "bytes": 1042687,
+    "sha256": "a996ec3670ea4620f4d37edf07daeee20ef5bb4697e436d6d72d5c04583c5f9d"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h256-s101/checkpoint.pt",
+    "bytes": 1042927,
+    "sha256": "26aeedbfb386510a4886026172e578a31f4563ea205f1737d33ded6049b86a92"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h256-s101/completed.json",
+    "bytes": 631,
+    "sha256": "545d2f1971cc94f35d2bb9809b49175b4e6b1e6f2eced11d378b3f7e9baeb2e6"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h256-s101/environment.json",
+    "bytes": 5210,
+    "sha256": "d715f389946ee9568a1be6aa29e48e3dab5b9d619105e2ae8fb07752d0a530d1"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h256-s101/environment_after.json",
+    "bytes": 5210,
+    "sha256": "16df5b7934f7f9e113bef7ca587d14021180280e15ce895d8f8fd9c53fe70cf4"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h256-s101/history.jsonl",
+    "bytes": 98874,
+    "sha256": "b3b3ef293bbb172d59165a6ba0cb2b55ef240d06969fbd21e543548480d984f6"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h256-s101/report.json",
+    "bytes": 2665,
+    "sha256": "43f716122feb9ef1d596126bfae29e63c7a53292e627e7dfad80339e2fefd9f0"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h256-s101/resolved_config.json",
+    "bytes": 882,
+    "sha256": "dceaa1b9258b8747542a90e0902c669f2d1a0e27ce548fb3c9d820b2143b0468"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h32-s101/best.partial.pt",
+    "bytes": 133247,
+    "sha256": "70a68f7852a5c4d4a3c703018f0358404c80612c2e415a3ecd98b08dbd0e9668"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h32-s101/checkpoint.pt",
+    "bytes": 133423,
+    "sha256": "ff0961de8db5057ceda7edc2bba5bdef670a650ba0c8af892f8b7d727821d789"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h32-s101/completed.json",
+    "bytes": 631,
+    "sha256": "3c6ced1934f4bc50fc42ca5a1a7950695b1807b71fc4175de47b7b161a2c3598"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h32-s101/environment.json",
+    "bytes": 5207,
+    "sha256": "c4878704ab3366145e2aec3362c3d13e413c12df446c841b64aaebf4597916f0"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h32-s101/environment_after.json",
+    "bytes": 5207,
+    "sha256": "77d24fd75376937d3a973a6ff7988a552f9cbca105dc93cfba0b9b28be0fa9f5"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h32-s101/history.jsonl",
+    "bytes": 126875,
+    "sha256": "1db202798886a78fa38d34c8efdacde4875065998be56c9591cf7d5608083aac"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h32-s101/report.json",
+    "bytes": 2637,
+    "sha256": "3272a03b294edac962a8c915eab5b6cdbb82d21e3c35b297e85b73f75a17c65c"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h32-s101/resolved_config.json",
+    "bytes": 879,
+    "sha256": "045e71ddf3f83077997966bd2b174079b3c1e07dc0b800dc5edefeba651ea42e"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h64-s101/best.partial.pt",
+    "bytes": 263167,
+    "sha256": "f75426c68dd74ed68417573b60c5ed1495bf4a6bb55327e9792a1cb7bb73b9c4"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h64-s101/checkpoint.pt",
+    "bytes": 263343,
+    "sha256": "9e5edbe94e5a5646856291ca4009c1132f7dfc74204ca6cabeefa04f847c0fae"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h64-s101/completed.json",
+    "bytes": 631,
+    "sha256": "67251bf85cd7a72c9f7940dcd165d03d6d43bfe78f210ecdb91071791024e848"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h64-s101/environment.json",
+    "bytes": 5207,
+    "sha256": "b4e4a367b4b45d72daf2c595a663432f9e6f502ce206ac14c20b650587413bb2"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h64-s101/environment_after.json",
+    "bytes": 5207,
+    "sha256": "1a1f3046f113a73b03832d602e5387d1695d7944cd8aa75642dbc51cdaeb92af"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h64-s101/history.jsonl",
+    "bytes": 126866,
+    "sha256": "d8954fe1524b0baf3e673c3918139e1fb8eb10cd369a70488f30c2fde99ed6e3"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h64-s101/report.json",
+    "bytes": 2644,
+    "sha256": "df5bf5a3903450ab5dfd6e1479625e28b67f028979d749a16f146e61a2434dd2"
+  },
+  {
+    "path": "runs/flickr-graphsage-l2-h64-s101/resolved_config.json",
+    "bytes": 879,
+    "sha256": "064c978214cb26f4337409b4656b335908c8915c136c4a775fd02f7ab834a9ab"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h128-s101/best.partial.pt",
+    "bytes": 655490,
+    "sha256": "5addf962ef178705d7651a663ce447ce71e2e359c0bdbb0db7a1be4f285eb2a3"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h128-s101/checkpoint.pt",
+    "bytes": 655724,
+    "sha256": "0ed8149c6fa16a40b07ac94fe6c01a45251ca1b9031b95913d3555367de10344"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h128-s101/completed.json",
+    "bytes": 631,
+    "sha256": "03c8be5c03642cc4c9fd928c75254b8a3c7bd6794d8341a3ccc1d611f0a67011"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h128-s101/environment.json",
+    "bytes": 5207,
+    "sha256": "384974590920cdad17cb87175b5485aee33d372f8743a14546cdb3ea3e36e445"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h128-s101/environment_after.json",
+    "bytes": 5207,
+    "sha256": "9d5f80cc67e62052e9a2b8a869538ffe505ec1cf6bd6953ac7e3692ae858ca78"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h128-s101/history.jsonl",
+    "bytes": 119682,
+    "sha256": "f694d7e3a8335bcef8b33632d401b81e43e4a2f3d24ac8252800db89d47d3585"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h128-s101/report.json",
+    "bytes": 2660,
+    "sha256": "b9c5b203c0507541ffb47771ede7aa710b3e2b2b45195915932dc9b58ad0d272"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h128-s101/resolved_config.json",
+    "bytes": 882,
+    "sha256": "093d00cb6d1beaf38c119db05a32c1dea86a78e0c4fe13bb1c27ab28ec73c993"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h256-s101/best.partial.pt",
+    "bytes": 1568898,
+    "sha256": "53a50650c9dc2eff33b77c40a1d8f72e236af5ddb6ed7721d17fde95b5de67ef"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h256-s101/checkpoint.pt",
+    "bytes": 1569132,
+    "sha256": "33c6099fbf6437dea5f56130871e10bef39a48fad835595fe3cc64122542c14e"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h256-s101/completed.json",
+    "bytes": 631,
+    "sha256": "a0f5bda76684af2d935f2c626b2092a512a962cff520fc20367c4ee365415687"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h256-s101/environment.json",
+    "bytes": 5210,
+    "sha256": "c2a92efd989bbb35edb865be75fdb519381ffab169351f453cdbe4f537f2b982"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h256-s101/environment_after.json",
+    "bytes": 5210,
+    "sha256": "3d91b9b25abe72ace5a3719dd723826d6f55093d4c164441c398c064e6471af2"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h256-s101/history.jsonl",
+    "bytes": 95888,
+    "sha256": "3247698a7b6d57cb6191952db3833598a404528ee22538bad99ef367ad27d39e"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h256-s101/report.json",
+    "bytes": 2665,
+    "sha256": "9c069ed91959723b9e584706408c93d89a396c5867eae42985b5d3cdc1bc34e2"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h256-s101/resolved_config.json",
+    "bytes": 882,
+    "sha256": "dca3c0457e24b0d224049dee2fd776f4a3b63ee721426c095e37d2bf1262d9b4"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h32-s101/best.partial.pt",
+    "bytes": 142466,
+    "sha256": "ec96500dc2feabed63fb912b3b7d1e91765d66b62958c2dcc47b637fe866183d"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h32-s101/checkpoint.pt",
+    "bytes": 142700,
+    "sha256": "6f6e142837c0ff46156444007784cb6561695a6c44267fe65f169ef4802755e9"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h32-s101/completed.json",
+    "bytes": 631,
+    "sha256": "5ac2cc94e6e513f1880a51d0feaf8405ccc89440116ae3c7e96dcc59684f9812"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h32-s101/environment.json",
+    "bytes": 5207,
+    "sha256": "da2190ad8fdeb60d91e01920f31ca9bfb600247f2ad609a141bf106aaebc5423"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h32-s101/environment_after.json",
+    "bytes": 5207,
+    "sha256": "51c8c7338e7809a5a30a0e83df09f43d0520aaca27d28b3035eedc8fcb6bed7a"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h32-s101/history.jsonl",
+    "bytes": 126765,
+    "sha256": "92543740d75ec661102bdf4d336284fd7ac923ee83579bc8600493bc17928b7c"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h32-s101/report.json",
+    "bytes": 2638,
+    "sha256": "cc01e40ac30b19a1e9c35a3be2baf1586617594bd7c475b86245a4a6923a9402"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h32-s101/resolved_config.json",
+    "bytes": 879,
+    "sha256": "8fc4198cf3b70abcc983fa4ed9715f8fc2c17eea25645867e7ff6fbf4e8ce74e"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h64-s101/best.partial.pt",
+    "bytes": 297090,
+    "sha256": "cc350797333a7a945322c2f3525b6c597bb49debbbf93422345d8e6cd8e55681"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h64-s101/checkpoint.pt",
+    "bytes": 297324,
+    "sha256": "2c3a07e6d80eef8bc1d5260079564adb5031ae0a9be2c925b474ff003e539448"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h64-s101/completed.json",
+    "bytes": 631,
+    "sha256": "f9c6cec071959c1d4727128053892632def5db80ed33e43317976c8298b840f8"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h64-s101/environment.json",
+    "bytes": 5207,
+    "sha256": "8012b73514555324800b53b25978229536c2cba4a18975029d84d9911f507419"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h64-s101/environment_after.json",
+    "bytes": 5207,
+    "sha256": "cec1632bd7ff2de72c919e9066e8a4541416a90cecd0fe6a3c70ed1798cff63d"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h64-s101/history.jsonl",
+    "bytes": 126717,
+    "sha256": "9510fed0fcc026874e83b1f6e7f952cad94aeba26a3ebe53bf8aa37491e4fdc4"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h64-s101/report.json",
+    "bytes": 2641,
+    "sha256": "4af4a27edd1fdf61cdd60eeff22190b422fdb1f6aacf3452df747ab2810f4d24"
+  },
+  {
+    "path": "runs/flickr-graphsage-l3-h64-s101/resolved_config.json",
+    "bytes": 879,
+    "sha256": "4cf4fc84665e44dbe809c39d6786658d455a5179f7fb1662501dc2198b96f029"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h128-s101/best.partial.pt",
+    "bytes": 788039,
+    "sha256": "3aed737fbbaadb3c2e1fdd3be788784d68da9719810bc707935fb7eda01745ac"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h128-s101/checkpoint.pt",
+    "bytes": 788203,
+    "sha256": "bda15ae17485b04765695ded1e187365dea11e96c6bcc3da326b41839e7840f7"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h128-s101/completed.json",
+    "bytes": 631,
+    "sha256": "e25f87cbe7642f59f483f7cb059a2b1f22a299b08a74558a66a0f99a63fcf195"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h128-s101/environment.json",
+    "bytes": 5210,
+    "sha256": "e4ae2c089e0b701aca9a6e6508646a6eb17eb5765a448121dcd70149df376a71"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h128-s101/environment_after.json",
+    "bytes": 5210,
+    "sha256": "2573e61268a258cbf80ccc3b85443f193ba81e96db687a0dc88ae4345c44ec8b"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h128-s101/history.jsonl",
+    "bytes": 123537,
+    "sha256": "a0a4b7b0ccf618ad27e5c48a06ee7fde5827002e5a44c5ed8ee55901924ac384"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h128-s101/report.json",
+    "bytes": 2663,
+    "sha256": "bc74642768766b435d96336adc010ea99f3dbd43d21d0e0eb70b843f48643ad5"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h128-s101/resolved_config.json",
+    "bytes": 882,
+    "sha256": "35717b68ba2293d4986817ed2ac2040f621a25281932193d5ea6e949c763f4a6"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h256-s101/best.partial.pt",
+    "bytes": 2095175,
+    "sha256": "946cd7f1c1bd1913c4e88deb9936f7c9bdb914c3b6576bce237380204f930b33"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h256-s101/checkpoint.pt",
+    "bytes": 2095403,
+    "sha256": "dcbf0722a61842ec2db4f24491e90ffaddabea0749ce411898110d3025fb5566"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h256-s101/completed.json",
+    "bytes": 631,
+    "sha256": "289993acc3a45bdc4ee334f29b1e965165d730043bae1bbfffa7bdf5d9535d5e"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h256-s101/environment.json",
+    "bytes": 5210,
+    "sha256": "711620c2a78b622433bb0cfa9bcd4345548a6fc80d5b44542d8e1c43cc2830e3"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h256-s101/environment_after.json",
+    "bytes": 5210,
+    "sha256": "d81a8498b661f544bb17ab6323946b99bcb2c06c632649c780fb10da7f94a849"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h256-s101/history.jsonl",
+    "bytes": 103288,
+    "sha256": "bfc7057bd2b7a92683999a3942adca5259c3df0a0cf976ddcf1a6a8678d420b1"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h256-s101/report.json",
+    "bytes": 2662,
+    "sha256": "398475fc75c7fc067cdd6a1c37b876937b01fd733848fec460caa3694c7441c2"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h256-s101/resolved_config.json",
+    "bytes": 882,
+    "sha256": "deb5bba4bbddcac4736163b5696e55745e3b086293c8ec0ae7a9bc7edba1a835"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h32-s101/best.partial.pt",
+    "bytes": 151687,
+    "sha256": "8e2eed0abe9bff4b0e9402d25420ef28be00fd58c51058ceb02dd60c65a24000"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h32-s101/checkpoint.pt",
+    "bytes": 151915,
+    "sha256": "be720f346fb68412839f02dc230f6756592c2f8a259586aab02ab178ed4330c7"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h32-s101/completed.json",
+    "bytes": 631,
+    "sha256": "e5c2b13a0fc106b4abee823660ce2e8154d09de4c716c64b7ec04d1cc1d4fe56"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h32-s101/environment.json",
+    "bytes": 5207,
+    "sha256": "e34ab90ab148a35dbb650ff1c49d386178ba60feb0dbb9c3402ca0fff517e5b0"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h32-s101/environment_after.json",
+    "bytes": 5207,
+    "sha256": "f07cd26d55501021c4b235203b080cf1da0a819c75cd9efe094fda848d7dab9e"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h32-s101/history.jsonl",
+    "bytes": 126870,
+    "sha256": "e9d47649033a506c754873f2c13529c868b3c4dc213918e72f8588665e448a9b"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h32-s101/report.json",
+    "bytes": 2642,
+    "sha256": "95aa422514c456d302b4510240660427f13ca0cf0eff89b659bce0de6df70835"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h32-s101/resolved_config.json",
+    "bytes": 879,
+    "sha256": "1c9997c9455609d0c2561a6763f827eb73421650fb9c406c4f3d32215e4e7676"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h64-s101/best.partial.pt",
+    "bytes": 331015,
+    "sha256": "1fb2547c70bb82848be7b374765005cbe46d2bc3833f1e75967c5a8f00f374be"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h64-s101/checkpoint.pt",
+    "bytes": 331243,
+    "sha256": "c23b66c8816ae7f9f9b90c76211c4b93e950d7ea937144ffe115a1eae0571ede"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h64-s101/completed.json",
+    "bytes": 631,
+    "sha256": "8c74804bfc7fe47f9d7b8de2d6241a12c010e4db37171e9f4b8779afdb1a72d5"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h64-s101/environment.json",
+    "bytes": 5207,
+    "sha256": "644cce7cb2a5b8ce16767e9960ab4735c393e2e9e61a223a2bb6b1331c876490"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h64-s101/environment_after.json",
+    "bytes": 5207,
+    "sha256": "70026d22240f9fa2b5e879b77612db281e47ba5637248e8dbd3af9d0fc703915"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h64-s101/history.jsonl",
+    "bytes": 126763,
+    "sha256": "e4279a6a60cb891707d3bc42c3b846ea1deb2a9e2f0a1170df69158569473029"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h64-s101/report.json",
+    "bytes": 2641,
+    "sha256": "9c568e9cf5204913e588475efc228dd1390501fef28a802d4ba77209a99164c0"
+  },
+  {
+    "path": "runs/flickr-graphsage-l4-h64-s101/resolved_config.json",
+    "bytes": 879,
+    "sha256": "d36a0c97f7b6cdcdf39827b07ecf7910d942ba28cb07487dd66fa5f89244ff6c"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h128-s101/best.partial.pt",
+    "bytes": 920525,
+    "sha256": "106b092ebe78d0e5a18aefc8d592e39167420eca25525984b3e7074b2ee48d8f"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h128-s101/checkpoint.pt",
+    "bytes": 920747,
+    "sha256": "eee58c6e71c40013ae66b08ffba4a9e9518d83d411121502a7d68f9b1ee46ea2"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h128-s101/completed.json",
+    "bytes": 631,
+    "sha256": "f9b56957836c126f4bbc0e45fb636887179578917be03d00e8d885a8b399ca2a"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h128-s101/environment.json",
+    "bytes": 5210,
+    "sha256": "55acc2f3d2fff4bf8a1d672595f7815aa0bcd5c1937843fc067279be5ed3ebea"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h128-s101/environment_after.json",
+    "bytes": 5210,
+    "sha256": "2dc10b8c823ba1d453a0fe47ae1ebf198ceea0c5efb78d1f1df968f1a88a744d"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h128-s101/history.jsonl",
+    "bytes": 126660,
+    "sha256": "7169ac8e3ecffeedcf338e4e9fa94245ef7ac8189e003251f37e340e1835a71f"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h128-s101/report.json",
+    "bytes": 2642,
+    "sha256": "907a636de229d9653cdbc8c698c94c0cdf8c2eec0a1bef3a06b79918016a1dca"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h128-s101/resolved_config.json",
+    "bytes": 882,
+    "sha256": "8502a4214bcc885d23f1375693352efa0f1301e9a4936d1bb6aadd2f5183e6b3"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h256-s101/best.partial.pt",
+    "bytes": 2621453,
+    "sha256": "74f21f994166e1642c7430c8ddcbd107f6394d60d297031e19c85ab54aba0302"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h256-s101/checkpoint.pt",
+    "bytes": 2621675,
+    "sha256": "31feb0f3c021c7901a4a5f3d4698570217aada464470246d59ad75e5dd93bea8"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h256-s101/completed.json",
+    "bytes": 631,
+    "sha256": "3ea452abfaecf1e734f7d2d33502826e15d7290e8aff938e96323d0e78a99edf"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h256-s101/environment.json",
+    "bytes": 5210,
+    "sha256": "815bc6dfa178364f373b52be73d7158dc4e60c687f61c64066b0d91e0cc9b780"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h256-s101/environment_after.json",
+    "bytes": 5210,
+    "sha256": "9efe491b133c9c9b4d318b85cade97547c6db8739b6b530d205efb92f5152b37"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h256-s101/history.jsonl",
+    "bytes": 126588,
+    "sha256": "82cfbccbb1d26f6b7860db7f8ee787344886233ecf5c2a76ed2324889dbe1818"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h256-s101/report.json",
+    "bytes": 2649,
+    "sha256": "277d960f6093ac3510f15e45c6802b7a5fe894d6e34df841e8c3d876a2d608f0"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h256-s101/resolved_config.json",
+    "bytes": 882,
+    "sha256": "ff7f294858571532e4c41109c8a1c5d3c372be16a711c9b126ed35d4ca7e5ed3"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h32-s101/best.partial.pt",
+    "bytes": 160973,
+    "sha256": "d6880c0866aa012287a14f3614812af3964f2fe98135e90e1ccc781ac619ad83"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h32-s101/checkpoint.pt",
+    "bytes": 161195,
+    "sha256": "40eafcec5d6d3c52f3db3abbe64871a1061ac810a4d50b561818366ee3963e17"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h32-s101/completed.json",
+    "bytes": 631,
+    "sha256": "e9d06e4d0e83d6aa165eb842c563fb59425287ce2f48212b2b88b9ca28246ff2"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h32-s101/environment.json",
+    "bytes": 5207,
+    "sha256": "99dc6d17806db2acdae8f1010b5c4244164e9a0cf6f05d3bc7360f49f4ce1ba3"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h32-s101/environment_after.json",
+    "bytes": 5207,
+    "sha256": "41e59be28b5bd1dcf942b38f5ece82980e522365a880915626008b49e1569464"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h32-s101/history.jsonl",
+    "bytes": 126791,
+    "sha256": "d36b0af16464d0f6128b79e8e00c6b7ca63d939c484ccffc95efd05b12bded13"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h32-s101/report.json",
+    "bytes": 2636,
+    "sha256": "889ca95ed77df07bf1e825cfa30af5ef3d7f4e9271f42c95b0d0b7c618166ff8"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h32-s101/resolved_config.json",
+    "bytes": 879,
+    "sha256": "a944d5fb12d6cc632a469f345a2a7d080ef81254b171e7b669dde38e00ffd2bd"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h64-s101/best.partial.pt",
+    "bytes": 365005,
+    "sha256": "a7cf8daf58fea41246bf15a9e476e7f61b48aa11ff436754bf51bc84c8c2b5ac"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h64-s101/checkpoint.pt",
+    "bytes": 365227,
+    "sha256": "44d2d2ddb222d6a99c4a99e14051321da29f2d132c6517802c059e3d26b16146"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h64-s101/completed.json",
+    "bytes": 631,
+    "sha256": "019ecc0685a85fe42e4314b80f9c9c064b98a20ccaabe2c94b95d37ea4bb6439"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h64-s101/environment.json",
+    "bytes": 5207,
+    "sha256": "9c8b3ce1c6f3bf3ce32db6d06c13abca42ea80ce02ffe59842c16693cf8f1ec9"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h64-s101/environment_after.json",
+    "bytes": 5207,
+    "sha256": "ad58a314b5f6d8ce740c880ca668ee61a48ef59cdfe9d2f240d232708ff74d4a"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h64-s101/history.jsonl",
+    "bytes": 126656,
+    "sha256": "ae8563e8307399639046a719cc8d8c997ce3355025cf399993c5de0f7eae3840"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h64-s101/report.json",
+    "bytes": 2637,
+    "sha256": "b70ae3560414d81c75373f0336afd718b6fe83f421cad987a4f714ff1e500d2c"
+  },
+  {
+    "path": "runs/flickr-graphsage-l5-h64-s101/resolved_config.json",
+    "bytes": 879,
+    "sha256": "06bd95baf34869d3e480aa54b1babcce1fe4028fd784c747f40b309f893a0d2c"
+  },
+  {
+    "path": "source-333f9acc7438eac1bc9fd41eb6361a06ad2054c3.tar.gz",
+    "bytes": 9952020,
+    "sha256": "405f72c54ab35d980bbcb9fbe42c1e322078038fa26f022982c3b20ef5cedba4"
+  },
+  {
+    "path": "source-3995c6057f3460005b44bc57d98c6d5e7df7f9e2.tar.gz",
+    "bytes": 9952198,
+    "sha256": "85758a8f1769e6c18b3e3efc7d73bcf53d23734ec7aa897e06053c4506b31ad1"
+  },
+  {
+    "path": "source-files.json",
+    "bytes": 113576,
+    "sha256": "20debb6fdaf43518ccd95258dd0ccded6e6af90b858e26364fee632a0a9a8133"
+  },
+  {
+    "path": "source-files.sha256",
+    "bytes": 231085,
+    "sha256": "5fd9561f7b99fdf76c34e23b55076c7320816fc62eb527c6dd9b31015715b56e"
+  },
+  {
+    "path": "submission-tools-fd998538237c2fcc7bc96761d4e12ea4246333d7/check_capacity.py",
+    "bytes": 5058,
+    "sha256": "300d17b63dcb0589ae04dea5383791e5d5662c30939ea16469a9e71301a7f2c6"
+  },
+  {
+    "path": "submission-tools-fd998538237c2fcc7bc96761d4e12ea4246333d7/flickr_lsf.py",
+    "bytes": 7773,
+    "sha256": "4c2c8a01725804854c739a57db17c49285a21b7a9f5846b1f0b13dfd5f32620a"
+  },
+  {
+    "path": "submission-tools-fd998538237c2fcc7bc96761d4e12ea4246333d7/pin.json",
+    "bytes": 930,
+    "sha256": "268ea4fc7009433284ad4f735edad0ad2b3498ccaab176a04fe95cd8c63ed5ac"
+  },
+  {
+    "path": "submissions/flickr-gcn-l2-h128-s101/intent.json",
+    "bytes": 830,
+    "sha256": "ef889db7810d446fa05b1e2262f3307ac3a0e77785888e1d0764a3dd4081789d"
+  },
+  {
+    "path": "submissions/flickr-gcn-l2-h128-s101/launcher.sh",
+    "bytes": 1724,
+    "sha256": "9a237f623f1bccabcdd8423a7b4f9e9f7e3813ea1a688e1e5c8dbab9d6ae6e54"
+  },
+  {
+    "path": "submissions/flickr-gcn-l2-h128-s101/receipt.json",
+    "bytes": 873,
+    "sha256": "229600901da276c78cfc2b21848d56a636cad68e7b643f3da11b7ffa61ea7cea"
+  },
+  {
+    "path": "submissions/flickr-gcn-l2-h128-s101/response.json",
+    "bytes": 101,
+    "sha256": "89a9e815866495ab7da8e74ce6bdbe974796d8b316b23a8e2ee1efc96df8ac65"
+  },
+  {
+    "path": "submissions/flickr-gcn-l2-h256-s101/intent.json",
+    "bytes": 775,
+    "sha256": "6952d7814ca9ad321572ed61b05ced460c34722d76fe08eddf4fe7cd531e2daf"
+  },
+  {
+    "path": "submissions/flickr-gcn-l2-h256-s101/launcher.sh",
+    "bytes": 1724,
+    "sha256": "20c81a9c6411325cd678da33e15867a8297f1f573d26b988497d0ce411b7576f"
+  },
+  {
+    "path": "submissions/flickr-gcn-l2-h256-s101/receipt.json",
+    "bytes": 818,
+    "sha256": "1b74ea89673cc99b3beb2ae2e9a1ad6ca6fe42e62d0a9035380436aa3b68c7db"
+  },
+  {
+    "path": "submissions/flickr-gcn-l2-h256-s101/response.json",
+    "bytes": 101,
+    "sha256": "f86595a9a625b385c07d8fcb6ddbda42d858ff806cb3d695cf7c1a2604afcb00"
+  },
+  {
+    "path": "submissions/flickr-gcn-l2-h32-s101/intent.json",
+    "bytes": 828,
+    "sha256": "0329fa18b942f2c1da73849b713c35d6d27b4608f238822a8a6ff34a96c59b19"
+  },
+  {
+    "path": "submissions/flickr-gcn-l2-h32-s101/launcher.sh",
+    "bytes": 1722,
+    "sha256": "73f2435d5dcd312d8216769f3a41cc0553d76211fbccda1749bd74a64ea03289"
+  },
+  {
+    "path": "submissions/flickr-gcn-l2-h32-s101/receipt.json",
+    "bytes": 871,
+    "sha256": "f62f8f41d064df740808caa25147870ed7c2ea5d69de500907e92546007115f3"
+  },
+  {
+    "path": "submissions/flickr-gcn-l2-h32-s101/response.json",
+    "bytes": 101,
+    "sha256": "ee2f6ec25fea5bc7869733c30055e55b543be1e0550e32aa56547cff60bc0ac6"
+  },
+  {
+    "path": "submissions/flickr-gcn-l2-h64-s101/intent.json",
+    "bytes": 827,
+    "sha256": "4a055bff4cf4a8fe23ce9c6615f057c503e736ae17d360c14a92adc2ecb753d1"
+  },
+  {
+    "path": "submissions/flickr-gcn-l2-h64-s101/launcher.sh",
+    "bytes": 1722,
+    "sha256": "48120a69661ae60455a22bf326e0cb17d63d4610dbfc11b126ae2e9e9feb6b16"
+  },
+  {
+    "path": "submissions/flickr-gcn-l2-h64-s101/receipt.json",
+    "bytes": 870,
+    "sha256": "01935be91a4af39cd4ad320ed3a370b70c1ba6d8e00614c5f8b49211bf81433e"
+  },
+  {
+    "path": "submissions/flickr-gcn-l2-h64-s101/response.json",
+    "bytes": 101,
+    "sha256": "057fae63e3769b8a535d277e37922b230606e2bffe3dd7fe7245bede3c04122f"
+  },
+  {
+    "path": "submissions/flickr-gcn-l3-h128-s101/intent.json",
+    "bytes": 830,
+    "sha256": "4326d9547e84614d56c1c8a2758b8cf1d3bd234227a0ed93089cbad3adfbe9d0"
+  },
+  {
+    "path": "submissions/flickr-gcn-l3-h128-s101/launcher.sh",
+    "bytes": 1724,
+    "sha256": "58f31f2a047b04873d61988f85bcd30e13f06d5afdb6104ab4b1c196e938550b"
+  },
+  {
+    "path": "submissions/flickr-gcn-l3-h128-s101/receipt.json",
+    "bytes": 873,
+    "sha256": "2a60d90ad263b5e392058d5440b8605c05f8664546944bf561778540695123cd"
+  },
+  {
+    "path": "submissions/flickr-gcn-l3-h128-s101/response.json",
+    "bytes": 101,
+    "sha256": "aeb9a42d4e003701c5c87251886f88f03a035855559be50b83313e0791e0ce08"
+  },
+  {
+    "path": "submissions/flickr-gcn-l3-h256-s101/intent.json",
+    "bytes": 775,
+    "sha256": "2d0cba8c5e54d44fec323a3cdd91690bdf56466072dfd9eeface434a920e12c9"
+  },
+  {
+    "path": "submissions/flickr-gcn-l3-h256-s101/launcher.sh",
+    "bytes": 1724,
+    "sha256": "c2fec247916cd5ee26571ad3d268390c910cd21618b03c7829d980b0caffaca7"
+  },
+  {
+    "path": "submissions/flickr-gcn-l3-h256-s101/receipt.json",
+    "bytes": 818,
+    "sha256": "cf3e0cf3c149e02c90abb40bb3bb9938b03e1f9cf0ebc48775f548f55272b25c"
+  },
+  {
+    "path": "submissions/flickr-gcn-l3-h256-s101/response.json",
+    "bytes": 101,
+    "sha256": "48cbdc2df14961afef0634c2500338b57a08754f488f30dc2fb880d279614851"
+  },
+  {
+    "path": "submissions/flickr-gcn-l3-h32-s101/intent.json",
+    "bytes": 827,
+    "sha256": "83b5ee76bbd1c2ba1341846d29c906577da43ef771f28af0a8d5da756edb1300"
+  },
+  {
+    "path": "submissions/flickr-gcn-l3-h32-s101/launcher.sh",
+    "bytes": 1722,
+    "sha256": "f0580a2a581c2a6446d1dec0c6ba1f37e2634b84bb6d777be68aabead5aaee85"
+  },
+  {
+    "path": "submissions/flickr-gcn-l3-h32-s101/receipt.json",
+    "bytes": 870,
+    "sha256": "47d87edaa809114fdc6e48f63e7656f07935342b3ec132ec77ba40f90ca03389"
+  },
+  {
+    "path": "submissions/flickr-gcn-l3-h32-s101/response.json",
+    "bytes": 101,
+    "sha256": "f92b8219c5d9b30c01911c19b23c6ee861df975f1bec798e2488109a3587f0d3"
+  },
+  {
+    "path": "submissions/flickr-gcn-l3-h64-s101/intent.json",
+    "bytes": 827,
+    "sha256": "1d3e42bfb353beae1e58a198ae9fd2611a990fb5b22ab5a3658d0dd59f0b1793"
+  },
+  {
+    "path": "submissions/flickr-gcn-l3-h64-s101/launcher.sh",
+    "bytes": 1722,
+    "sha256": "7c59639791c9e79bb6c860939469c3763821e4599e68d65f3650a8866fb6ef91"
+  },
+  {
+    "path": "submissions/flickr-gcn-l3-h64-s101/receipt.json",
+    "bytes": 870,
+    "sha256": "303a1a2a451c9eb45bc0babea9c441059c2d0e836e6e395edd61e9f4e2104acd"
+  },
+  {
+    "path": "submissions/flickr-gcn-l3-h64-s101/response.json",
+    "bytes": 101,
+    "sha256": "ec24de2d61d4edb204cc02f4859b9281a089a919f565bb7060c40ff8aa7f04ea"
+  },
+  {
+    "path": "submissions/flickr-gcn-l4-h128-s101/intent.json",
+    "bytes": 775,
+    "sha256": "510e8444638fe7ec3620129a00cddfb8000dd2f15d52f6ea01b8ed3afbc5a792"
+  },
+  {
+    "path": "submissions/flickr-gcn-l4-h128-s101/launcher.sh",
+    "bytes": 1724,
+    "sha256": "d88369fe96dba2624daff8da72f282f09b6708a6ee61282f06ee57c68f05b2fe"
+  },
+  {
+    "path": "submissions/flickr-gcn-l4-h128-s101/receipt.json",
+    "bytes": 818,
+    "sha256": "7f33e75afd41ad552f04c9fabd51b89a63350ec95984d6ea047d16599842aec9"
+  },
+  {
+    "path": "submissions/flickr-gcn-l4-h128-s101/response.json",
+    "bytes": 101,
+    "sha256": "2e8e78f72d5391078bbfb3135c6a6a9546622506d6eee8efba3b8dc68ef6154b"
+  },
+  {
+    "path": "submissions/flickr-gcn-l4-h256-s101/intent.json",
+    "bytes": 775,
+    "sha256": "50068fed89b2d29a29df13e706d760491c8afcb67e191f4d3224634096a0c3ee"
+  },
+  {
+    "path": "submissions/flickr-gcn-l4-h256-s101/launcher.sh",
+    "bytes": 1724,
+    "sha256": "34708b5dc446d442ef8d1de178ccd52ea4e761c92e61bc49ab02cbdaf9305fff"
+  },
+  {
+    "path": "submissions/flickr-gcn-l4-h256-s101/receipt.json",
+    "bytes": 818,
+    "sha256": "ca0631defcb62efb7a920b3545bd09daee4c337672b70af3cc20e95546fdc666"
+  },
+  {
+    "path": "submissions/flickr-gcn-l4-h256-s101/response.json",
+    "bytes": 101,
+    "sha256": "675ee4e0b2c68a843435f744e30296e2ddbd74db457ee8ee543ccc2de37d2fb3"
+  },
+  {
+    "path": "submissions/flickr-gcn-l4-h32-s101/intent.json",
+    "bytes": 828,
+    "sha256": "996571964ec350447aa424d69b100ddfa807ba546bc7bbcb7d9bb64626517719"
+  },
+  {
+    "path": "submissions/flickr-gcn-l4-h32-s101/launcher.sh",
+    "bytes": 1722,
+    "sha256": "c6d14bb72ec052242c95583af9d309d798b2df720c2cd8410e97e53fd7294ee0"
+  },
+  {
+    "path": "submissions/flickr-gcn-l4-h32-s101/receipt.json",
+    "bytes": 871,
+    "sha256": "7667f09d3a808046bd37b2b66496849f0ab5c586c0bdfc947e741067abba6a8f"
+  },
+  {
+    "path": "submissions/flickr-gcn-l4-h32-s101/response.json",
+    "bytes": 101,
+    "sha256": "dcadd08d186832e1c6b21d42e5b68511965dcf999a133687cf6dc3a26379ce63"
+  },
+  {
+    "path": "submissions/flickr-gcn-l4-h64-s101/intent.json",
+    "bytes": 828,
+    "sha256": "9c28a4770ca7d583f3aca58ee634a53aa681f5a1c73ca9a1603d8abfcd1472cf"
+  },
+  {
+    "path": "submissions/flickr-gcn-l4-h64-s101/launcher.sh",
+    "bytes": 1722,
+    "sha256": "55c8ae5e6a71d3c5b0a47c512fc67e9c853677e29b0f3cd37242f0a39b8899d4"
+  },
+  {
+    "path": "submissions/flickr-gcn-l4-h64-s101/receipt.json",
+    "bytes": 871,
+    "sha256": "6a1241fc2b7786813080709904f92b621dbab6a0407a3cf0a1ca03c68a5c38be"
+  },
+  {
+    "path": "submissions/flickr-gcn-l4-h64-s101/response.json",
+    "bytes": 101,
+    "sha256": "23fc6c663ff8901d292b0bd973efaf450e06611dcc9309b02b994a793aaaa7a7"
+  },
+  {
+    "path": "submissions/flickr-gcn-l5-h128-s101/intent.json",
+    "bytes": 774,
+    "sha256": "f0a1eae89231381fcbbc3709fce7a764137fa896b6b6c79f113acb4772ba8fa3"
+  },
+  {
+    "path": "submissions/flickr-gcn-l5-h128-s101/launcher.sh",
+    "bytes": 1724,
+    "sha256": "41d206a191ca0134715decd7f292b5749dce6b929173ea9f79592561fcaecf55"
+  },
+  {
+    "path": "submissions/flickr-gcn-l5-h128-s101/receipt.json",
+    "bytes": 817,
+    "sha256": "0e957c5100c449adeb923f020893e214087951f692e74a8c624323f98aa37180"
+  },
+  {
+    "path": "submissions/flickr-gcn-l5-h128-s101/response.json",
+    "bytes": 101,
+    "sha256": "b57e4932045fa5bc687d8ec21f7a644818946224f8fde77fafe52042d9ac7b2e"
+  },
+  {
+    "path": "submissions/flickr-gcn-l5-h256-s101/intent.json",
+    "bytes": 775,
+    "sha256": "7c52828f0fa38d5b207a5385934a8b6304d6c80ffb67d7bd83fefe6f242669b3"
+  },
+  {
+    "path": "submissions/flickr-gcn-l5-h256-s101/launcher.sh",
+    "bytes": 1724,
+    "sha256": "bab8bdb6c9be31b382ea9218776497653d1a4b253c453d71d3ac71b218a2d81e"
+  },
+  {
+    "path": "submissions/flickr-gcn-l5-h256-s101/receipt.json",
+    "bytes": 818,
+    "sha256": "8bfa34f0878dd64a29de5ccad97ed6f112aeaae8fa6a92b815658e55d1344010"
+  },
+  {
+    "path": "submissions/flickr-gcn-l5-h256-s101/response.json",
+    "bytes": 101,
+    "sha256": "4a756a6a711f9046d84341cb861ff2cbac74290a5112de49c751eb87fc64d707"
+  },
+  {
+    "path": "submissions/flickr-gcn-l5-h32-s101/intent.json",
+    "bytes": 828,
+    "sha256": "f5b8c4596554272e3ce53790d2f09f9d262f276818b84564e3875f540fc5c22a"
+  },
+  {
+    "path": "submissions/flickr-gcn-l5-h32-s101/launcher.sh",
+    "bytes": 1722,
+    "sha256": "0a2e38f5e46bff2aad0173d5afb580172e490d8d7cfbc4c32a771158c7c5918c"
+  },
+  {
+    "path": "submissions/flickr-gcn-l5-h32-s101/receipt.json",
+    "bytes": 871,
+    "sha256": "02c48228161e43700c7e3b0041ba32c54b297dc41d501c6a74e10da7a8c0cca7"
+  },
+  {
+    "path": "submissions/flickr-gcn-l5-h32-s101/response.json",
+    "bytes": 101,
+    "sha256": "c9d18d1944acbf0792015cd07cf1f3b9092147d0d56cd4131fafa90c61975e0d"
+  },
+  {
+    "path": "submissions/flickr-gcn-l5-h64-s101/intent.json",
+    "bytes": 828,
+    "sha256": "f26d8a181764fefc725c52b81ebc6dec1668f7245efb2b4f836b819aaaef961a"
+  },
+  {
+    "path": "submissions/flickr-gcn-l5-h64-s101/launcher.sh",
+    "bytes": 1722,
+    "sha256": "3825ae9daf8cb277b84382cda5fd10c53db4def9e0a59698e47f7304cbded984"
+  },
+  {
+    "path": "submissions/flickr-gcn-l5-h64-s101/receipt.json",
+    "bytes": 871,
+    "sha256": "38d927084d51e920c7d8a6a006e1d22e3e9201c2adaa340d621a569a1dfff788"
+  },
+  {
+    "path": "submissions/flickr-gcn-l5-h64-s101/response.json",
+    "bytes": 101,
+    "sha256": "8fca523d0fe5327db5c9e1bfbdb60d33697045c04e15ff4d31d484e21de9169f"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l2-h128-s101/intent.json",
+    "bytes": 841,
+    "sha256": "5f5856562c93546dc63deea3eeba9a2584792aeacfd794dc29d69c796391718a"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l2-h128-s101/launcher.sh",
+    "bytes": 1736,
+    "sha256": "6195980d84e331a6a5832edb105422b24ca8111033422aa6411e2d48df57042e"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l2-h128-s101/receipt.json",
+    "bytes": 884,
+    "sha256": "ce938a0f8c577312f924d0bf9237e31dd1b3524185041291eb57375e76bcaa31"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l2-h128-s101/response.json",
+    "bytes": 101,
+    "sha256": "5163cddaf0b5ee57dd42210e2ff7c3c8eaafb25c0ab0989cf5e34b311975649c"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l2-h256-s101/intent.json",
+    "bytes": 787,
+    "sha256": "a60bf960a524b6c56350acbeb7902e0ed1895ef50e78c1b20001dbbb92cfea20"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l2-h256-s101/launcher.sh",
+    "bytes": 1736,
+    "sha256": "df8d77cbc5d178d7dc089a28a8484a491280ebc8220d7406da7de0026754d701"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l2-h256-s101/receipt.json",
+    "bytes": 830,
+    "sha256": "1993e87fe69485508e26115511aee758f1b9fa2dc0b12c21ba4d1a8730b732da"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l2-h256-s101/response.json",
+    "bytes": 101,
+    "sha256": "a1567bc8b29cfcfa50c85c274b7b3533d779d2d1ff111fb7ad205ce90e3a565e"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l2-h32-s101/intent.json",
+    "bytes": 840,
+    "sha256": "5a64bd3bbb9c6e8007ce1d6ccac9def55e2512c88580978dd1981f0cf5e3d426"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l2-h32-s101/launcher.sh",
+    "bytes": 1734,
+    "sha256": "7b8d2aa8ef10e7e06a46a1906fc4f44e83a7a538a793c80b55d7b7a2719c0cec"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l2-h32-s101/receipt.json",
+    "bytes": 883,
+    "sha256": "7ef1e81d5b43e6d63e7adb89c04b004cd44d1d7630c2941fdee61381b34f7dd9"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l2-h32-s101/response.json",
+    "bytes": 101,
+    "sha256": "7ce8f785ce71e1d0e81ee70ea83b12b8077c76f1caf73244f513a05765010cf2"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l2-h64-s101/intent.json",
+    "bytes": 840,
+    "sha256": "930c8ec266ecaa437a669cd86bc1b1134b5efd4a4771cacf1634e739ac289d8a"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l2-h64-s101/launcher.sh",
+    "bytes": 1734,
+    "sha256": "99709f96f8bb3d7567f56aed4cbaa0ca8bc53f0bdb63de6ac755f3699f576c7c"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l2-h64-s101/receipt.json",
+    "bytes": 883,
+    "sha256": "82c85bb7784c78ed06ee6041df40862a487c83971527af7b7bad72c2e3d46b24"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l2-h64-s101/response.json",
+    "bytes": 101,
+    "sha256": "e28784e0dbdcf9bb4d8b471084cf0ddf9d790663cc598f25a6af08006f61dfa1"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l3-h128-s101/intent.json",
+    "bytes": 841,
+    "sha256": "e12fca960ebf1786ef687bd35a2ec61895fb38823e88ac46f071994d35c99cec"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l3-h128-s101/launcher.sh",
+    "bytes": 1736,
+    "sha256": "f26e9bc7ff2789ff075e59c68b79fd024abaa12dd30b1e8946ce8ba67927b8ac"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l3-h128-s101/receipt.json",
+    "bytes": 884,
+    "sha256": "5c4ccd09159481b58959f91fc188f149b3f5ce9920fbca1305a01dbd0c4c3d8b"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l3-h128-s101/response.json",
+    "bytes": 101,
+    "sha256": "4c3780eaee4f5a5ed86625347982cd8486fd530b39b0ebfc8e086ff991e25fa9"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l3-h256-s101/intent.json",
+    "bytes": 787,
+    "sha256": "548c65f35d66cdec47efe0332ba0c5320c4a5cfe69a83c65bb8c843e6702c2d4"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l3-h256-s101/launcher.sh",
+    "bytes": 1736,
+    "sha256": "08e639b5b7d0cd929b7295c7ae16808eb53c5ce9e2fa5bf0a6bb51d4270243d4"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l3-h256-s101/receipt.json",
+    "bytes": 830,
+    "sha256": "ef3aff88d37455ab8873ca424d348308f41c874278d5b416dee7bd3af7525bdc"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l3-h256-s101/response.json",
+    "bytes": 101,
+    "sha256": "0361737855448177f868bd183514dadfdb04c5db2f26fae1ad73710c2c50f167"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l3-h32-s101/intent.json",
+    "bytes": 838,
+    "sha256": "73bacbbdd3c0b22b11e1cbee4729fedc49a473773e070b63770f1ee487565a8a"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l3-h32-s101/launcher.sh",
+    "bytes": 1734,
+    "sha256": "7f76ddcf0017a93adbe6727f66788a4b1ee90ca0e53090bf97a2e2465a18583c"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l3-h32-s101/receipt.json",
+    "bytes": 881,
+    "sha256": "1d6511242c47296aaa1cdfcd69389cb9435c1545d5b9fa9a25e65f7fbe0e4e06"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l3-h32-s101/response.json",
+    "bytes": 101,
+    "sha256": "a6323df587b980890bf945fe27ecef7d5755b6468221e1dc37d0809def8d18c7"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l3-h64-s101/intent.json",
+    "bytes": 839,
+    "sha256": "e5d9b980ade86ff42076a3dd17f560cf951c66fde19d8e4828d87122bef6d63d"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l3-h64-s101/launcher.sh",
+    "bytes": 1734,
+    "sha256": "53a2602de7e92b72906560f5b21d978d681311bb915817614c87f823331fc9b4"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l3-h64-s101/receipt.json",
+    "bytes": 882,
+    "sha256": "7bc9398b8fdc9ab05744c8092a83fbee79b85936b75ec546ea1199a9f710c3bc"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l3-h64-s101/response.json",
+    "bytes": 101,
+    "sha256": "960356249d832cb6dd9075de44b363dd91d930c4e217c9506f6e0bfc64ed3175"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l4-h128-s101/intent.json",
+    "bytes": 787,
+    "sha256": "8ee40e16a585c5dd2bac5cca1dc02b930ea376d72267549f8c08d31bdfe29d58"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l4-h128-s101/launcher.sh",
+    "bytes": 1736,
+    "sha256": "9c9b33262e88780510b87f6b159c67834f0dbe6c836fe90dce9e1d3870b983ba"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l4-h128-s101/receipt.json",
+    "bytes": 830,
+    "sha256": "3d0dbfef2eba75f8e8ecde0be1ee1c54c4a1adf92f4761bc9ca7a6fff9371492"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l4-h128-s101/response.json",
+    "bytes": 101,
+    "sha256": "03278b5d901cf8f53169636d8f4fcc0ebb8bb309cedab953457f8e4542d8e9a5"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l4-h256-s101/intent.json",
+    "bytes": 787,
+    "sha256": "b2a0566903930c240527d6ee641b927503a65b4ba3ec862c5b957d5d7263c8f3"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l4-h256-s101/launcher.sh",
+    "bytes": 1736,
+    "sha256": "fe20100ba44fd390c3b186a4cdefbb5aaefd4ef4e2e64a18e1e25be0a41aaf86"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l4-h256-s101/receipt.json",
+    "bytes": 830,
+    "sha256": "f61c0e76641ad4a499b415c5a42e451c480f1566a1620f9b4753b12ac12e3856"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l4-h256-s101/response.json",
+    "bytes": 101,
+    "sha256": "1f4a85417985793266aaeb8952ef1fc69e7adae25176e55c8d0c3568f89b63f4"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l4-h32-s101/intent.json",
+    "bytes": 840,
+    "sha256": "3704a16882ecba214f8f7a759a8fa438d50bb0f35fd6d15d7f6157a4c6008eaf"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l4-h32-s101/launcher.sh",
+    "bytes": 1734,
+    "sha256": "97e4dc6ca1fedc61b1ea5bc9df7e5ef18301308d0b2c18fa0b6b140b04b2937f"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l4-h32-s101/receipt.json",
+    "bytes": 883,
+    "sha256": "621c45bdf5560f2a644f7c9b5eeb551ad52f3e7000f0da6f4933dd75621ee38a"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l4-h32-s101/response.json",
+    "bytes": 101,
+    "sha256": "7f483e094c5f37db3d2ba8086cde6a8a0749ce65c3c3dbcab1600f9215adfc4d"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l4-h64-s101/intent.json",
+    "bytes": 839,
+    "sha256": "d78c22d83c886f57d9c6523456c459c4f0f239efd0dfa60ab4c0a0dce81d5817"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l4-h64-s101/launcher.sh",
+    "bytes": 1734,
+    "sha256": "830d8e254f4d4745c94b00d8598b1aeee57814a97392e35d3cde8de421c1dcde"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l4-h64-s101/receipt.json",
+    "bytes": 882,
+    "sha256": "7aadc7df1186b37b2a3e03f7863358a505bd93ad78cdc1fb37232515694d88fe"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l4-h64-s101/response.json",
+    "bytes": 101,
+    "sha256": "dd0aa3a31603827609841db7b88cf007176f3a8857fd19fbd1349204bc45de5a"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l5-h128-s101/intent.json",
+    "bytes": 786,
+    "sha256": "6c288022ae02f76c10f8925b7605fd3a392e2ae05b135b92892a2412879274e5"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l5-h128-s101/launcher.sh",
+    "bytes": 1736,
+    "sha256": "ff97e835976b892e87e4ae6381b7216b64e66bac0483b290cdcad025940346d1"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l5-h128-s101/receipt.json",
+    "bytes": 829,
+    "sha256": "aa9c094b0f297d34e7631f13afe89b662c31e7762880fda505f0a56f43b5bfc9"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l5-h128-s101/response.json",
+    "bytes": 101,
+    "sha256": "42a039404b2a7ca0bc3c9770a0f06572032a0b215d2b8a7a3a3f2d890796faa6"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l5-h256-s101/intent.json",
+    "bytes": 787,
+    "sha256": "cd524561f91f8e293542ec019f41a64984b453a1151900bc1fa4240cfefeb0c6"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l5-h256-s101/launcher.sh",
+    "bytes": 1736,
+    "sha256": "248f0dea77160cee79207f97f56cdaab6068d7ae37146ad9034357543eeb750c"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l5-h256-s101/receipt.json",
+    "bytes": 830,
+    "sha256": "c490b29ed1e4c22fc4c9c767b7210990cd91c72b25c3b8c58b7866e91a9a5b79"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l5-h256-s101/response.json",
+    "bytes": 101,
+    "sha256": "e477a44764a19acf7aa7259b3cf11f156f6b49f3261d237a03ab86844e3c033c"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l5-h32-s101/intent.json",
+    "bytes": 840,
+    "sha256": "66316a597ae696d1136e6fb9c6ae751fc53e9e637c289ef4a7ad76e7416d5511"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l5-h32-s101/launcher.sh",
+    "bytes": 1734,
+    "sha256": "2ad813d675aecb075c8fe27bc60b854eb56923c39645f61c42043749f10618cf"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l5-h32-s101/receipt.json",
+    "bytes": 883,
+    "sha256": "91ec740744926c1296b65b0e2d793f9e8ff91ff722a28a166de0def2798d6f6d"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l5-h32-s101/response.json",
+    "bytes": 101,
+    "sha256": "e8593a7ef9186729dae8937ff181e3ec5eb90d89e663175b47520b6fb247e5a4"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l5-h64-s101/intent.json",
+    "bytes": 840,
+    "sha256": "4d1df5150d7a2c1fa92f137c94c811068ba5606253f9aef15fd8dd1c6b52e172"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l5-h64-s101/launcher.sh",
+    "bytes": 1734,
+    "sha256": "0b297135ecd1ac10569b1d37e753cf506410926056586c45c02fe9f782c39587"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l5-h64-s101/receipt.json",
+    "bytes": 883,
+    "sha256": "aaef54e8754909babdc4292eb696d924c1dbd1157cc115ae03695cc464fafeb4"
+  },
+  {
+    "path": "submissions/flickr-graphsage-l5-h64-s101/response.json",
+    "bytes": 101,
+    "sha256": "6ec8406a5b99b55c12b900a823fdc0912a05571200a2883d4530d3c40ac4ec96"
+  },
+  {
+    "path": "submissions/native-c2/intent.json",
+    "bytes": 597,
+    "sha256": "1e18db10c453026032d70aee3e0bbb6fafc7ff0e39fd9186c57ee1bd34ebd191"
+  },
+  {
+    "path": "submissions/native-c2/launcher.sh",
+    "bytes": 4627,
+    "sha256": "66ac6e96649fba963cb87eb77b5bdd3ce589d6d9cdcbd91e930d5a5417016502"
+  },
+  {
+    "path": "submissions/native-c2/receipt.json",
+    "bytes": 640,
+    "sha256": "e5a228ca64f23f20e6fedd1b7bad2da9f0079666d9deec3803ae321512ed94e7"
+  },
+  {
+    "path": "submissions/native-c2/response.json",
+    "bytes": 101,
+    "sha256": "f553273fe39cdd0d6ac36ec03ea4d7e6fd4bcb0899554ae16b1ecbc70ea11e24"
+  },
+  {
+    "path": "submissions/native-c3/intent.json",
+    "bytes": 596,
+    "sha256": "e9d12ae73f2585490f6cff75e3bf5fe06c7c662f1e03d370bf743da01d031d92"
+  },
+  {
+    "path": "submissions/native-c3/launcher.sh",
+    "bytes": 4627,
+    "sha256": "937940b42b1b7e3dc1947ed5d877ddba0e746d4f2d798222bb302acc7a986e13"
+  },
+  {
+    "path": "submissions/native-c3/receipt.json",
+    "bytes": 639,
+    "sha256": "a793fe63b34aa83497db01ce029014754b5d17b7c52d58e299fa662fe015d971"
+  },
+  {
+    "path": "submissions/native-c3/response.json",
+    "bytes": 101,
+    "sha256": "4113807af5fd7ca7d9d561bc52c4458cd8bc60f67444abea5645a70bbd4511c5"
+  },
+  {
+    "path": "submissions/native-c4/intent.json",
+    "bytes": 597,
+    "sha256": "ebced7d576427129b3cd63ca44b8bb7f707d854fbb5a4acb671ee0ae79cb1b6d"
+  },
+  {
+    "path": "submissions/native-c4/launcher.sh",
+    "bytes": 4627,
+    "sha256": "f82adaca0aeb0862cbf9826a56ef99095073ef988dd940b1c4a302d8e2337aee"
+  },
+  {
+    "path": "submissions/native-c4/receipt.json",
+    "bytes": 640,
+    "sha256": "fe06b55c2f327650d2214ceed65e62c06eac21d273c1b09804344c658bc6dc99"
+  },
+  {
+    "path": "submissions/native-c4/response.json",
+    "bytes": 101,
+    "sha256": "4caa8fd2a64d3ab4a9be3a70ae99d3ecea7c7938f521e71dc32a54b1fc92eae6"
+  }
+]

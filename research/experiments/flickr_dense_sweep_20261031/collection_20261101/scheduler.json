@@ -1,0 +1,162 @@
+{
+  "flickr-gcn-l2-h32-s101": {
+    "job_id": 1611757,
+    "status": "DONE",
+    "history_sha256": "20e071f99283e77c5fc7cacca501194e0dd86e5becdac11d6ad02ec5e7ba2194"
+  },
+  "flickr-gcn-l2-h64-s101": {
+    "job_id": 1611758,
+    "status": "DONE",
+    "history_sha256": "0edbd817550fd06ce093464e8db58e1ce32fac7e3777096a417a65731a9808e0"
+  },
+  "flickr-gcn-l2-h128-s101": {
+    "job_id": 1611759,
+    "status": "DONE",
+    "history_sha256": "81b0c23cab2ef5f8960641a05caddf551395970cafdc75226779f0ac38e111bf"
+  },
+  "flickr-gcn-l2-h256-s101": {
+    "job_id": 1611760,
+    "status": "DONE",
+    "history_sha256": "fb43bae15d32f3fee46e3f29dc3fc30b815a48b7aa970a8e8097c62bccb62308"
+  },
+  "flickr-gcn-l3-h32-s101": {
+    "job_id": 1611761,
+    "status": "DONE",
+    "history_sha256": "c872bb0f8fa7c6ca388a4a3d4432cacc80b39fb750c5f203f7ae9a3f64605115"
+  },
+  "flickr-gcn-l3-h64-s101": {
+    "job_id": 1611762,
+    "status": "DONE",
+    "history_sha256": "ee2da0e87d6637222b05b5dfd9d473d8abb5fb865cf243cc306834a8b3960143"
+  },
+  "flickr-gcn-l3-h128-s101": {
+    "job_id": 1611763,
+    "status": "DONE",
+    "history_sha256": "ff96fa658c6bb1f0667a41273065c480698dc61c82f70d65b690ae2adeb13bb1"
+  },
+  "flickr-gcn-l3-h256-s101": {
+    "job_id": 1611764,
+    "status": "DONE",
+    "history_sha256": "aad057370f6c9f768445a35117d3a4324970f2f8d2e19e7d9a9ef1f4167bfe4a"
+  },
+  "flickr-gcn-l4-h32-s101": {
+    "job_id": 1611765,
+    "status": "DONE",
+    "history_sha256": "ec3dcff8bc1af4cf2bc1585b287e07feeab6724e805978dd9712c9f3d3f50c9a"
+  },
+  "flickr-gcn-l4-h64-s101": {
+    "job_id": 1611766,
+    "status": "DONE",
+    "history_sha256": "f3c15e99cca58a43fb3dbe31469f0e13e2272d34e1395682aa0e184d4e76505e"
+  },
+  "flickr-gcn-l4-h128-s101": {
+    "job_id": 1611767,
+    "status": "DONE",
+    "history_sha256": "c5e3436f657ac3dd3e63bc06f60c5704a55f94c84833931a3adc7135007e132d"
+  },
+  "flickr-gcn-l4-h256-s101": {
+    "job_id": 1611768,
+    "status": "DONE",
+    "history_sha256": "cc9069af2c01db0561806c472aad4fe55c54d92c337de929b8675f13f4c145ae"
+  },
+  "flickr-gcn-l5-h32-s101": {
+    "job_id": 1611769,
+    "status": "DONE",
+    "history_sha256": "022262d36b253e24bbdadfa9805045c7c4650348de55185d8359b1df00566a1b"
+  },
+  "flickr-gcn-l5-h64-s101": {
+    "job_id": 1611770,
+    "status": "DONE",
+    "history_sha256": "90026c924304f519cee792e8667e8aa355facea9fca365e0cb19452a16ff6abb"
+  },
+  "flickr-gcn-l5-h128-s101": {
+    "job_id": 1611771,
+    "status": "DONE",
+    "history_sha256": "0139d8659a3141e9d7359ceaa393b865fd242a1bfe26335a82123acaf8c27535"
+  },
+  "flickr-gcn-l5-h256-s101": {
+    "job_id": 1611772,
+    "status": "DONE",
+    "history_sha256": "473b6292cb4eac5bf6625668b1e7ae2ab352f29bb9cc1f56e817ea41af7c183c"
+  },
+  "flickr-graphsage-l2-h32-s101": {
+    "job_id": 1611773,
+    "status": "DONE",
+    "history_sha256": "d4e5a5f03c1a854b73f132e578b470e4b0f49727cfb9adbdc0238cd7b507d08d"
+  },
+  "flickr-graphsage-l2-h64-s101": {
+    "job_id": 1611774,
+    "status": "DONE",
+    "history_sha256": "7da92be948009f1eb03b59e428826f07ba82da84fa6749c411dfe3009ca496da"
+  },
+  "flickr-graphsage-l2-h128-s101": {
+    "job_id": 1611775,
+    "status": "DONE",
+    "history_sha256": "1a96683def2e22c2ae6bcf6e2b6d2d7c66be17f02bb46d0897e4cb1051e8276b"
+  },
+  "flickr-graphsage-l2-h256-s101": {
+    "job_id": 1611776,
+    "status": "DONE",
+    "history_sha256": "a4ab79caa535065a582376cc66457d6f8e3abe743275f7f101b915cb7be434fc"
+  },
+  "flickr-graphsage-l3-h32-s101": {
+    "job_id": 1611777,
+    "status": "DONE",
+    "history_sha256": "f946809b458827caecbae2a8db66a3bf1bccd3ac330b984dea1255adacb5cd8d"
+  },
+  "flickr-graphsage-l3-h64-s101": {
+    "job_id": 1611778,
+    "status": "DONE",
+    "history_sha256": "7b717a2ecbff4bebc6de7d328160f367a0c6ca7464aa63e5a3eb1a9521c28ecc"
+  },
+  "flickr-graphsage-l3-h128-s101": {
+    "job_id": 1611779,
+    "status": "DONE",
+    "history_sha256": "48451c0c79f52f0d42e25afeb378a7c63d915fa3b900b7848641fb5f0c43dc53"
+  },
+  "flickr-graphsage-l3-h256-s101": {
+    "job_id": 1611780,
+    "status": "DONE",
+    "history_sha256": "d83f67047dd19cc490ba1c0313328a29af6f82a5305e3d6b46f1265fb3db18dc"
+  },
+  "flickr-graphsage-l4-h32-s101": {
+    "job_id": 1611781,
+    "status": "DONE",
+    "history_sha256": "9d61017186f904d0a26f50cc481d4494a39561898b3b0b8b0687b091dd4fb700"
+  },
+  "flickr-graphsage-l4-h64-s101": {
+    "job_id": 1611782,
+    "status": "DONE",
+    "history_sha256": "7d46f8a7185c2db14c0ab8d44f564641849a7e2941e6fe94b59b7b0f42f7d260"
+  },
+  "flickr-graphsage-l4-h128-s101": {
+    "job_id": 1611783,
+    "status": "DONE",
+    "history_sha256": "2f5f06d62ce931613a9071d4d0bae846f95f1e0bdef39fb2ca97b337b1382c19"
+  },
+  "flickr-graphsage-l4-h256-s101": {
+    "job_id": 1611784,
+    "status": "DONE",
+    "history_sha256": "b7d2dd9fd1103fcb1b5a56817d1595cce24a4608cd5e812e2a1b6d0ecd0156aa"
+  },
+  "flickr-graphsage-l5-h32-s101": {
+    "job_id": 1611785,
+    "status": "DONE",
+    "history_sha256": "8ca1c1b32c48308bdce4ffaf4af73fb7c7ac958055a5356fa7a78ca777136cb1"
+  },
+  "flickr-graphsage-l5-h64-s101": {
+    "job_id": 1611786,
+    "status": "DONE",
+    "history_sha256": "f9f5c0e794a391378af33a8181468ac5fc626f9680f824fb2516c9d981af98f1"
+  },
+  "flickr-graphsage-l5-h128-s101": {
+    "job_id": 1611787,
+    "status": "DONE",
+    "history_sha256": "e8a0a92734f46a9caa4a606639ef3f0e1d7cbe82615d53bd1961cd09b305ae90"
+  },
+  "flickr-graphsage-l5-h256-s101": {
+    "job_id": 1611788,
+    "status": "DONE",
+    "history_sha256": "518a7d250a8b08ffcdc316dd613f5807632f43e16d737e746b8c41c483c7433d"
+  }
+}

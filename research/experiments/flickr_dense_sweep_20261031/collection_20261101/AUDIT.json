@@ -1,0 +1,26 @@
+{
+  "expected": 32,
+  "PASS": 32,
+  "FAIL": 0,
+  "SKIPPED": 0,
+  "source_files_verified": 794,
+  "raw_files": 481,
+  "raw_bytes": 286813300,
+  "raw_manifest_sha256": "92e7e6916e723712bfd848f37618a544293884969c9c76f264025f13d2421e94",
+  "archive_sha256": "a1a54f9e72b28f311cc3b350bd391e0f1c00db6a88106a1b290c1087c921f74c",
+  "maximum_metric_delta": {
+    "accuracy": 0.0,
+    "macro_f1": 5.551115123125783e-17,
+    "loss": 3.5762786865234375e-07
+  },
+  "metric_tolerances": {
+    "accuracy": 1e-12,
+    "macro_f1": 1e-12,
+    "loss": 5e-05
+  },
+  "lsf_active_job_hours": 14.176111111111112,
+  "lsf_pending_job_hours": 66.06333333333333,
+  "lsf_cpu_hours": 44.31294444444445,
+  "test_labels_loaded": false,
+  "training_or_pruning_executed": false
+}

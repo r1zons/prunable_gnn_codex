@@ -1,0 +1,1154 @@
+[
+  {
+    "id": "flickr-gcn-l2-h32-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l2-h32-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l2-h32-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l2-h32-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l2-h32-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l2-h32-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l2-h64-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l2-h64-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l2-h64-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l2-h64-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l2-h64-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 2.7755575615628914e-17
+  },
+  {
+    "id": "flickr-gcn-l2-h64-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l2-h128-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l2-h128-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 2.7755575615628914e-17
+  },
+  {
+    "id": "flickr-gcn-l2-h128-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l2-h128-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l2-h128-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 2.7755575615628914e-17
+  },
+  {
+    "id": "flickr-gcn-l2-h128-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l2-h256-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l2-h256-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l2-h256-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l2-h256-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l2-h256-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l2-h256-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 1.1920928955078125e-07
+  },
+  {
+    "id": "flickr-gcn-l3-h32-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l3-h32-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l3-h32-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l3-h32-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l3-h32-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l3-h32-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l3-h64-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l3-h64-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l3-h64-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l3-h64-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l3-h64-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l3-h64-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l3-h128-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l3-h128-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 2.7755575615628914e-17
+  },
+  {
+    "id": "flickr-gcn-l3-h128-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l3-h128-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l3-h128-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 2.7755575615628914e-17
+  },
+  {
+    "id": "flickr-gcn-l3-h128-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l3-h256-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l3-h256-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l3-h256-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l3-h256-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l3-h256-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 2.7755575615628914e-17
+  },
+  {
+    "id": "flickr-gcn-l3-h256-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l4-h32-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l4-h32-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l4-h32-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 2.384185791015625e-07
+  },
+  {
+    "id": "flickr-gcn-l4-h32-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l4-h32-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l4-h32-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l4-h64-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l4-h64-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 2.7755575615628914e-17
+  },
+  {
+    "id": "flickr-gcn-l4-h64-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l4-h64-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l4-h64-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l4-h64-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l4-h128-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l4-h128-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l4-h128-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l4-h128-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l4-h128-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l4-h128-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l4-h256-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l4-h256-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 2.7755575615628914e-17
+  },
+  {
+    "id": "flickr-gcn-l4-h256-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l4-h256-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l4-h256-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l4-h256-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 2.384185791015625e-07
+  },
+  {
+    "id": "flickr-gcn-l5-h32-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l5-h32-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l5-h32-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 3.5762786865234375e-07
+  },
+  {
+    "id": "flickr-gcn-l5-h32-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l5-h32-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 5.551115123125783e-17
+  },
+  {
+    "id": "flickr-gcn-l5-h32-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l5-h64-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l5-h64-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l5-h64-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l5-h64-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l5-h64-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 5.551115123125783e-17
+  },
+  {
+    "id": "flickr-gcn-l5-h64-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l5-h128-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l5-h128-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l5-h128-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 1.1920928955078125e-07
+  },
+  {
+    "id": "flickr-gcn-l5-h128-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l5-h128-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l5-h128-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l5-h256-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l5-h256-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l5-h256-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 2.384185791015625e-07
+  },
+  {
+    "id": "flickr-gcn-l5-h256-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l5-h256-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-gcn-l5-h256-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l2-h32-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l2-h32-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 2.7755575615628914e-17
+  },
+  {
+    "id": "flickr-graphsage-l2-h32-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l2-h32-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l2-h32-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 2.7755575615628914e-17
+  },
+  {
+    "id": "flickr-graphsage-l2-h32-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l2-h64-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l2-h64-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l2-h64-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l2-h64-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l2-h64-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l2-h64-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l2-h128-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l2-h128-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l2-h128-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l2-h128-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l2-h128-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 2.7755575615628914e-17
+  },
+  {
+    "id": "flickr-graphsage-l2-h128-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 1.1920928955078125e-07
+  },
+  {
+    "id": "flickr-graphsage-l2-h256-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l2-h256-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l2-h256-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l2-h256-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l2-h256-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l2-h256-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l3-h32-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l3-h32-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l3-h32-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l3-h32-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l3-h32-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l3-h32-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l3-h64-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l3-h64-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l3-h64-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l3-h64-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l3-h64-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 2.7755575615628914e-17
+  },
+  {
+    "id": "flickr-graphsage-l3-h64-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l3-h128-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l3-h128-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 5.551115123125783e-17
+  },
+  {
+    "id": "flickr-graphsage-l3-h128-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l3-h128-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l3-h128-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l3-h128-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l3-h256-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l3-h256-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l3-h256-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l3-h256-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l3-h256-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l3-h256-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l4-h32-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l4-h32-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l4-h32-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 1.1920928955078125e-07
+  },
+  {
+    "id": "flickr-graphsage-l4-h32-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l4-h32-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l4-h32-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l4-h64-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l4-h64-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l4-h64-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l4-h64-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l4-h64-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l4-h64-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l4-h128-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l4-h128-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 5.551115123125783e-17
+  },
+  {
+    "id": "flickr-graphsage-l4-h128-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l4-h128-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l4-h128-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l4-h128-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l4-h256-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l4-h256-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l4-h256-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l4-h256-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l4-h256-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 5.551115123125783e-17
+  },
+  {
+    "id": "flickr-graphsage-l4-h256-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l5-h32-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l5-h32-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l5-h32-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l5-h32-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l5-h32-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l5-h32-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l5-h64-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l5-h64-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l5-h64-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l5-h64-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l5-h64-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 5.551115123125783e-17
+  },
+  {
+    "id": "flickr-graphsage-l5-h64-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l5-h128-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l5-h128-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 2.7755575615628914e-17
+  },
+  {
+    "id": "flickr-graphsage-l5-h128-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l5-h128-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l5-h128-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l5-h128-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 1.1920928955078125e-07
+  },
+  {
+    "id": "flickr-graphsage-l5-h256-s101",
+    "subset": "train",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l5-h256-s101",
+    "subset": "train",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l5-h256-s101",
+    "subset": "train",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l5-h256-s101",
+    "subset": "val",
+    "metric": "accuracy",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l5-h256-s101",
+    "subset": "val",
+    "metric": "macro_f1",
+    "absolute_delta": 0.0
+  },
+  {
+    "id": "flickr-graphsage-l5-h256-s101",
+    "subset": "val",
+    "metric": "loss",
+    "absolute_delta": 0.0
+  }
+]

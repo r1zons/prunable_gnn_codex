@@ -1,0 +1,32 @@
+{
+  "rule": "validation macro-F1, validation accuracy, then fewer parameters; recommend at most2/model",
+  "candidates": {
+    "gcn": [
+      "flickr-gcn-l2-h256-s101",
+      "flickr-gcn-l2-h128-s101"
+    ],
+    "graphsage": [
+      "flickr-graphsage-l4-h256-s101",
+      "flickr-graphsage-l3-h128-s101"
+    ]
+  },
+  "quality_size_frontier": [
+    "flickr-gcn-l2-h32-s101",
+    "flickr-gcn-l2-h64-s101",
+    "flickr-gcn-l2-h128-s101",
+    "flickr-gcn-l2-h256-s101",
+    "flickr-gcn-l4-h128-s101",
+    "flickr-graphsage-l2-h32-s101",
+    "flickr-graphsage-l2-h64-s101",
+    "flickr-graphsage-l3-h32-s101",
+    "flickr-graphsage-l3-h64-s101",
+    "flickr-graphsage-l3-h128-s101",
+    "flickr-graphsage-l4-h32-s101",
+    "flickr-graphsage-l4-h64-s101",
+    "flickr-graphsage-l4-h128-s101",
+    "flickr-graphsage-l4-h256-s101"
+  ],
+  "additional_seeds_launched": false,
+  "selection_finalized": false,
+  "test_evaluated": false
+}

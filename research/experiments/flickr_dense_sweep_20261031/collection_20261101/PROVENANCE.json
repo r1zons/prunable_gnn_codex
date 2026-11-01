@@ -1,0 +1,95 @@
+{
+  "collection_date": "2026-11-01",
+  "pre_collection_commit": "f71060cc5d45d5ed05c52b2b61a1e11abb4c8ace",
+  "scientific_source_commit": "3995c6057f3460005b44bc57d98c6d5e7df7f9e2",
+  "branch": "campaign/flickr-dense-sweep-20261031",
+  "raw_local": "${GNN_ARTIFACT_ROOT}/flickr-dense-collection-20261101T140723Z/",
+  "raw_remote": "${POLUS_TASK_ROOT}/results/flickr-dense-sweep-20261031/",
+  "archive_sha256": "a1a54f9e72b28f311cc3b350bd391e0f1c00db6a88106a1b290c1087c921f74c",
+  "archive_bytes": 105074830,
+  "job_ids": [
+    1611757,
+    1611758,
+    1611759,
+    1611760,
+    1611761,
+    1611762,
+    1611763,
+    1611764,
+    1611765,
+    1611766,
+    1611767,
+    1611768,
+    1611769,
+    1611770,
+    1611771,
+    1611772,
+    1611773,
+    1611774,
+    1611775,
+    1611776,
+    1611777,
+    1611778,
+    1611779,
+    1611780,
+    1611781,
+    1611782,
+    1611783,
+    1611784,
+    1611785,
+    1611786,
+    1611787,
+    1611788
+  ],
+  "scheduler_DONE": 32,
+  "RUNNING": 0,
+  "missing_or_failed": 0,
+  "output_audit_PASS": 32,
+  "tests": {
+    "focused_PASS": 26,
+    "focused_FAIL": 0,
+    "focused_SKIPPED": 0,
+    "full_suite": "not rerun: no training/pruning implementation changed; earlier submission full suite 630 PASS/0 FAIL/6 SKIPPED"
+  },
+  "external_evidence": {
+    "focused-pytest.log": {
+      "sha256": "0e8f807b59c63040f78a24d5c4369db027d104ee3ad1dfb3bfe08d3a1f7edfd3",
+      "bytes": 66
+    },
+    "focused-pytest-02.log": {
+      "sha256": "a9f3737cb1af90f82f26b93c6e289f5182c0f453c1c3367525f62492be885a18",
+      "bytes": 1206
+    },
+    "audit.log": {
+      "sha256": "70c72800afdf9a8bb6844f4ef4e60a372aadd1ec69d46854364d9f77c67a20f9",
+      "bytes": 1008
+    },
+    "analysis.log": {
+      "sha256": "e367a467eb6c10c7ef1cb6b4243f4c104a461311000489e08acc365d3955e728",
+      "bytes": 738
+    },
+    "verification-environment.txt": {
+      "sha256": "e70d9520bbfd4557fdb8f8a46d98e862fc8223d34db6c70cc60df19199d45930",
+      "bytes": 787
+    },
+    "environment-restore.log": {
+      "sha256": "3c9fe7e47b3a03f7af355c089f0c9a94a91c82e63e3cfa1a10d69a91c36a6ec7",
+      "bytes": 1113
+    },
+    "environment-restore-02.log": {
+      "sha256": "06235874be235886ed1d9337039789b0ff3d2ce0f533fee1df49941044ebb2aa",
+      "bytes": 2118
+    },
+    "environment-restore-03.log": {
+      "sha256": "3338517bb708605653cab1c0e15a4e481ef51f3b781c211e7c2bc858f4529ed0",
+      "bytes": 10786
+    },
+    "environment-yaml.log": {
+      "sha256": "9419424de3bf1c4a571ccd5364bd6e4bf6eb272569f44fcc6dfc111ce7896425",
+      "bytes": 517
+    }
+  },
+  "heldout_test_labels_loaded": false,
+  "new_training_pruning_or_LSF_submission": false,
+  "historical_submission_evidence_modified": false
+}

@@ -1,6 +1,28 @@
 # Canonical GNN pruning research status
 
-**Updated:** 2026-10-31
+**Updated:** 2026-11-01
+
+## Flickr Dense sweep collected and verified — 2026-11-01
+
+**32/32 COMPLETED, LSF1611757–1611788 DONE; 32 audited PASS/0 FAIL/0 SKIPPED.**
+New archive SHA256 matches the server; 481 files/286,813,300 bytes inventoried,
+794 source files verified against immutable source3995c60. All final checkpoints
+strictly reload, parameter counts and best partial states agree, original config,
+graph and split pins match. Independent frozen train/validation forward passes
+reproduce accuracy exactly, macro-F1 within5.55e−17 and loss within3.58e−7.
+Test labels remain masked; no training, pruning, submission or test evaluation.
+
+C2/C3/C4 executed10/7/15 jobs; all12 bound large conditions ran on C4.26 reached
+500epochs, six patience50; this does not establish convergence. Measured fitting
+13.982job-hours, LSF RUN14.176job-hours; queue waiting separate. Single seed101
+remains screening evidence.26 focused pytest PASS/0 FAIL/0 SKIPPED in a rebuilt
+isolated local environment; earlier full-suite result is not claimed as rerun.
+
+[Collection report, reproduction and compact verified outputs](experiments/flickr_dense_sweep_20261031/collection_20261101/README.md).
+Raw:`${GNN_ARTIFACT_ROOT}/flickr-dense-collection-20261101T140723Z/`.
+Branch:`campaign/flickr-dense-sweep-20261031`. Original submission evidence,
+historical results, algorithms and manuscript remain unchanged. No additional seeds
+or experiments started; compact collection is prepared for the authorized push.
 
 ## Full Flickr Dense sweep accepted — 2026-10-31
 
