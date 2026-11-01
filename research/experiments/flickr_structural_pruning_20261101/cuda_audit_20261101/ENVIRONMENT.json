@@ -1,0 +1,386 @@
+{
+  "compatible_cuda_environments_found": 0,
+  "container_inventory": {
+    "docker_binary": true,
+    "docker_daemon_accessible": false,
+    "shared_image_dirs_found": false,
+    "singularity_binary": true
+  },
+  "cpu_activation_sha256": "ac464bbf980c499281c31ccb018b0e9e172a00df6c1b12627d3f075c45121fce",
+  "date": "2026-11-01",
+  "enumerated_prefixes": 15,
+  "environments": [
+    {
+      "cuda_arch_list": null,
+      "cuda_available": null,
+      "cuda_build": null,
+      "cuda_runtime_packages": [],
+      "label": "own_registered_wave_cpp17",
+      "machine": null,
+      "pyg": null,
+      "pyg_missing": false,
+      "python": null,
+      "python_exists": false,
+      "torch": null,
+      "torch_missing": false,
+      "use_cuda_0": false
+    },
+    {
+      "cuda_arch_list": [],
+      "cuda_available": false,
+      "cuda_build": null,
+      "cuda_runtime_packages": [],
+      "label": "research_cpu",
+      "machine": "ppc64le",
+      "pyg": "2.4.0",
+      "pyg_missing": false,
+      "python": "3.10.22",
+      "python_exists": true,
+      "torch": "2.0.1",
+      "torch_missing": false,
+      "use_cuda_0": true
+    },
+    {
+      "cuda_arch_list": null,
+      "cuda_available": null,
+      "cuda_build": null,
+      "cuda_runtime_packages": [],
+      "label": "anaconda-3",
+      "machine": "ppc64le",
+      "pyg": null,
+      "pyg_missing": true,
+      "python": "3.7.7",
+      "python_exists": true,
+      "torch": null,
+      "torch_missing": true,
+      "use_cuda_0": false
+    },
+    {
+      "cuda_arch_list": null,
+      "cuda_available": null,
+      "cuda_build": null,
+      "cuda_runtime_packages": [],
+      "label": "anaconda-3/envs/invex",
+      "machine": null,
+      "pyg": null,
+      "pyg_missing": false,
+      "python": null,
+      "python_exists": false,
+      "torch": null,
+      "torch_missing": false,
+      "use_cuda_0": false
+    },
+    {
+      "cuda_arch_list": null,
+      "cuda_available": null,
+      "cuda_build": null,
+      "cuda_runtime_packages": [],
+      "label": "anaconda-3/envs/rjupyter",
+      "machine": "ppc64le",
+      "pyg": null,
+      "pyg_missing": true,
+      "python": "3.7.5",
+      "python_exists": true,
+      "torch": null,
+      "torch_missing": true,
+      "use_cuda_0": false
+    },
+    {
+      "cuda_arch_list": null,
+      "cuda_available": null,
+      "cuda_build": null,
+      "cuda_runtime_packages": [],
+      "label": "anaconda3-2022.05",
+      "machine": "ppc64le",
+      "pyg": null,
+      "pyg_missing": true,
+      "python": "3.9.12",
+      "python_exists": true,
+      "torch": null,
+      "torch_missing": true,
+      "use_cuda_0": false
+    },
+    {
+      "cuda_arch_list": null,
+      "cuda_available": null,
+      "cuda_build": null,
+      "cuda_runtime_packages": [],
+      "label": "anaconda3-2022.10",
+      "machine": "ppc64le",
+      "pyg": null,
+      "pyg_missing": true,
+      "python": "3.9.13",
+      "python_exists": true,
+      "torch": null,
+      "torch_missing": true,
+      "use_cuda_0": false
+    },
+    {
+      "cuda_arch_list": null,
+      "cuda_available": null,
+      "cuda_build": null,
+      "cuda_runtime_packages": [],
+      "label": "anaconda3-2023.03",
+      "machine": "ppc64le",
+      "pyg": null,
+      "pyg_missing": true,
+      "python": "3.10.12",
+      "python_exists": true,
+      "torch": null,
+      "torch_missing": true,
+      "use_cuda_0": false
+    },
+    {
+      "cuda_arch_list": null,
+      "cuda_available": null,
+      "cuda_build": null,
+      "cuda_runtime_packages": [
+        {
+          "build": "h46f38da_6",
+          "name": "cuda-cudart_linux-ppc64le",
+          "version": "12.0.107"
+        },
+        {
+          "build": "h883269e_0",
+          "name": "cuda-nvtx",
+          "version": "12.0.76"
+        },
+        {
+          "build": "h46f38da_1",
+          "name": "cuda-nvrtc",
+          "version": "12.0.76"
+        },
+        {
+          "build": "hffde075_2",
+          "name": "cuda-version",
+          "version": "12.0"
+        },
+        {
+          "build": "h46f38da_6",
+          "name": "cuda-cudart",
+          "version": "12.0.107"
+        }
+      ],
+      "label": "anaconda3-2023.03/envs/jupyterhub",
+      "machine": "ppc64le",
+      "pyg": null,
+      "pyg_missing": true,
+      "python": "3.11.5",
+      "python_exists": true,
+      "torch": null,
+      "torch_missing": true,
+      "use_cuda_0": false
+    },
+    {
+      "cuda_arch_list": null,
+      "cuda_available": null,
+      "cuda_build": null,
+      "cuda_runtime_packages": [
+        {
+          "build": "h46f38da_6",
+          "name": "cuda-cudart_linux-ppc64le",
+          "version": "12.0.107"
+        },
+        {
+          "build": "h883269e_0",
+          "name": "cuda-nvtx",
+          "version": "12.0.76"
+        },
+        {
+          "build": "h46f38da_1",
+          "name": "cuda-nvrtc",
+          "version": "12.0.76"
+        },
+        {
+          "build": "hffde075_2",
+          "name": "cuda-version",
+          "version": "12.0"
+        },
+        {
+          "build": "h46f38da_6",
+          "name": "cuda-cudart",
+          "version": "12.0.107"
+        }
+      ],
+      "label": "anaconda3-2023.03/envs/jupyterhub-good",
+      "machine": "ppc64le",
+      "pyg": null,
+      "pyg_missing": true,
+      "python": "3.9.0",
+      "python_exists": true,
+      "torch": null,
+      "torch_missing": true,
+      "use_cuda_0": false
+    },
+    {
+      "cuda_arch_list": null,
+      "cuda_available": null,
+      "cuda_build": null,
+      "cuda_runtime_packages": [
+        {
+          "build": "hedcfb66_12",
+          "name": "cudatoolkit",
+          "version": "11.8.0"
+        }
+      ],
+      "label": "anaconda3-2023.03/envs/test-cuda",
+      "machine": "ppc64le",
+      "pyg": null,
+      "pyg_missing": true,
+      "python": "3.10.12",
+      "python_exists": true,
+      "torch": null,
+      "torch_missing": true,
+      "use_cuda_0": false
+    },
+    {
+      "cuda_arch_list": null,
+      "cuda_available": null,
+      "cuda_build": null,
+      "cuda_runtime_packages": [
+        {
+          "build": "h2cbaaea_12",
+          "name": "cudatoolkit",
+          "version": "10.2.89"
+        }
+      ],
+      "label": "anaconda3-2023.03/envs/test-cuda-9.1",
+      "machine": "ppc64le",
+      "pyg": null,
+      "pyg_missing": true,
+      "python": "3.10.12",
+      "python_exists": true,
+      "torch": null,
+      "torch_missing": true,
+      "use_cuda_0": false
+    },
+    {
+      "cuda_arch_list": null,
+      "cuda_available": null,
+      "cuda_build": null,
+      "cuda_runtime_packages": [],
+      "label": "anaconda3-2023.03/envs/test-cuda2",
+      "machine": null,
+      "pyg": null,
+      "pyg_missing": false,
+      "python": null,
+      "python_exists": false,
+      "torch": null,
+      "torch_missing": false,
+      "use_cuda_0": false
+    },
+    {
+      "cuda_arch_list": null,
+      "cuda_available": null,
+      "cuda_build": null,
+      "cuda_runtime_packages": [],
+      "label": "anaconda3-2023.07-2",
+      "machine": "ppc64le",
+      "pyg": null,
+      "pyg_missing": true,
+      "python": "3.11.4",
+      "python_exists": true,
+      "torch": null,
+      "torch_missing": true,
+      "use_cuda_0": false
+    },
+    {
+      "cuda_arch_list": [],
+      "cuda_available": false,
+      "cuda_build": null,
+      "cuda_runtime_packages": [
+        {
+          "build": "cpu_py310hc26b713_0",
+          "name": "pytorch",
+          "version": "1.13.1"
+        }
+      ],
+      "label": "anaconda3-2023.07-2/envs/ska23-ml",
+      "machine": "ppc64le",
+      "pyg": null,
+      "pyg_missing": true,
+      "python": "3.10.13",
+      "python_exists": true,
+      "torch": "1.13.1",
+      "torch_missing": false,
+      "use_cuda_0": true
+    }
+  ],
+  "hardware": {
+    "allocated_job_gpu_visibility_verified": false,
+    "c1_status": "unavailable",
+    "compute_hosts": [
+      {
+        "cpu_slots": 20,
+        "driver": "440.33.01",
+        "gpu_count": 2,
+        "gpu_memory_mib_each": 16280,
+        "host": "polus-c2-ib.bmc.hpc.cs.msu.ru",
+        "host_memory": "256G",
+        "verification": "LSF lshosts -gpu and lsload GPU resources"
+      },
+      {
+        "cpu_slots": 20,
+        "driver": "440.33.01",
+        "gpu_count": 2,
+        "gpu_memory_mib_each": 16280,
+        "host": "polus-c3-ib.bmc.hpc.cs.msu.ru",
+        "host_memory": "256G",
+        "verification": "LSF lshosts -gpu and lsload GPU resources"
+      },
+      {
+        "cpu_slots": 20,
+        "driver": "440.33.01",
+        "gpu_count": 2,
+        "gpu_memory_mib_each": 16280,
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+        "host_memory": "1T",
+        "verification": "LSF lshosts -gpu and lsload GPU resources"
+      }
+    ],
+    "cpu": "POWER8",
+    "driver": "440.33.01",
+    "frontend": {
+      "compute_capability": [
+        6,
+        0
+      ],
+      "count": 2,
+      "gpu_model": "Tesla P100-SXM2-16GB",
+      "host": "polus-ib.bmc.hpc.cs.msu.ru",
+      "memory_mib_each": 16280,
+      "verification": "nvidia-smi and NVML; no CUDA kernel"
+    },
+    "machine": "ppc64le",
+    "nvidia_smi_cuda_max": "10.2",
+    "system_nvcc": "10.2.89"
+  },
+  "probe_kind": "SSH metadata, LSF inventory and environment imports; no compute job",
+  "runnable_pythons": 12,
+  "scheduler": {
+    "bhosts_gpu_extended_query_supported": false,
+    "bsub_gpu_help_available": true,
+    "gpu_new_syntax": "Y",
+    "gpu_reservation_acceptance_verified": false,
+    "gpulong": {
+      "preemptable": true,
+      "runlimit_minutes": 720,
+      "status": "Open:Active",
+      "user_acl_allows": false
+    },
+    "limit_units": "MB",
+    "normal": {
+      "exclusive_allowed": true,
+      "interactive": false,
+      "runlimit_minutes": 180,
+      "status": "Open:Active",
+      "user_acl_allows": true
+    },
+    "resource_enforce": [
+      "cpu",
+      "memory"
+    ],
+    "user_unfinished_jobs_at_inventory": 0
+  },
+  "search_boundary": "Approved own research prefix and visible shared Anaconda bases/registered environments; own user-site/venv path existence checks. Not an exhaustive search of other users/private images."
+}

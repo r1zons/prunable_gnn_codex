@@ -1,0 +1,86 @@
+{
+  "branch": "campaign/flickr-structural-pruning-20261101",
+  "date": "2026-11-01",
+  "initial_worktree": "clean",
+  "no_algorithm_changes": true,
+  "no_environment_installation": true,
+  "no_network_route_changes": true,
+  "no_new_lsf_jobs": true,
+  "no_push_or_merge": true,
+  "no_test_label_evaluation": true,
+  "prior_campaign_manifest_sha256": "f27e9828e74f07ef745af0e50b33b28fd2587df947da54db6456c24606a27638",
+  "probe_correction": "First metadata orchestrator used capture_output on system Python 3.6 and failed before imports. Successful r2 uses research Python 3.10 and is authoritative; failed raw output retained.",
+  "raw_inventory": {
+    "environment-candidates-private.txt": {
+      "bytes": 3606,
+      "sha256": "d9d71aab9f51286ec4e7870f1c330365aea72c669df69f3b479a225f55c930cf"
+    },
+    "environment-paths-private.txt": {
+      "bytes": 9130,
+      "sha256": "537491eb206557f21dc0f2a4bcb6b9da8457dad595abf438650550c8765edaf9"
+    },
+    "environment-probes-private.jsonl": {
+      "bytes": 2029,
+      "sha256": "49bbb60da2dc4a51154543e5bb4b00e9a564221e2e11be361f691fb18a884543"
+    },
+    "environment-probes-r2-private.jsonl": {
+      "bytes": 16014,
+      "sha256": "04826631cb682c5cdf7b9d2769240c311d14d1f8e3e7e60173f18dff62082217"
+    },
+    "environment-probes-r2-stderr.txt": {
+      "bytes": 454,
+      "sha256": "378c26f4f40b1abc10eb6285f9515b85645bedfd43caa8e8a1aa71d0d25dd715"
+    },
+    "environment-probes-stderr.txt": {
+      "bytes": 454,
+      "sha256": "378c26f4f40b1abc10eb6285f9515b85645bedfd43caa8e8a1aa71d0d25dd715"
+    },
+    "gpu-memory-allocation-config-private.txt": {
+      "bytes": 1033,
+      "sha256": "6469b00ab07570c7693e87d01ecf30e799b054af172e1f7c89cbd1cd44d3b8e1"
+    },
+    "local-existing-cuda-tests.log": {
+      "bytes": 1438,
+      "sha256": "9e13b6190933cf0178886dab71863ad7f7e773265e3b64d7f82bf0b254700414"
+    },
+    "local-focused-tests.log": {
+      "bytes": 1516,
+      "sha256": "9d3b48f8fa55f87a14d2d24c96f447b44239abea2b7eb38ec3a8af1aba31910b"
+    },
+    "nvml-containers-allocation-private.txt": {
+      "bytes": 4434,
+      "sha256": "7b258db8c1a69c7f025d98b5e6d77cc8c606abcd5301d0c0d4baa56b8aa089a3"
+    },
+    "polus-inventory-private.txt": {
+      "bytes": 18377,
+      "sha256": "a05fb8af11051536ccd5c74f31d7d7aedb93efb0ecd12f4b0c812c97cace9529"
+    },
+    "user-site-runtime-check-private.txt": {
+      "bytes": 880,
+      "sha256": "f78281c9bb1a29ed1daa23745d299cf934ca08a1cf268d63a7bb2802a2197db6"
+    }
+  },
+  "raw_root": "${GNN_ARTIFACT_ROOT}/flickr-cuda-audit-20261101/",
+  "source_commit": "521f20aacabb0a531858247f8a927f1db11323da",
+  "source_hashes": {
+    "configs/base/default.yaml": "58ceb97b1469c130e976179ac5e3a59ecee36c8c36079985f44be7a41ccaa43c",
+    "src/gnn_pruning/config/schema.py": "bc851dcf316dd527b8503cf88b03e34d7f35ec7ac8e6cd40605ccf3de97993c4",
+    "src/gnn_pruning/data/splits.py": "a7a8dffdb0ccc905f44b77abe36b0bd2ea1fae135c72b06709f8061f0522f6a8",
+    "src/gnn_pruning/evaluation/benchmark.py": "25ecea17c59cc8f5566eebb8d4b464638035e0629402b764f84c019cc27989f9",
+    "src/gnn_pruning/experiments/flickr_dense.py": "053b7cade91b5a5ff4aed07450866c46e4e95bc30efb4e40cffb42cfd37fa1e2",
+    "src/gnn_pruning/experiments/flickr_pruning.py": "6a77914efdd1606647fe542ffeec418bd677c9ab675b1f3cdf64f388a23fc6cb",
+    "src/gnn_pruning/experiments/frozen_validation.py": "395a7bc438f8c783a1b9e49053736fd214cfb5dd1569c0563b843b6af29d70c5",
+    "src/gnn_pruning/models/gcn.py": "a0e20de75e8b7f0e6e4b25e191fb97801cd19215ad10e055d8a5495e5b45b2a4",
+    "src/gnn_pruning/models/graphsage.py": "de5e92e92c82fdd0b5e1579a33654588a2e949718bd92e7c14dd446260e11b4b",
+    "src/gnn_pruning/pruning/adaptive_v2.py": "164285ec9c51e8181bd65d2d353f21cbdead8302ca7b8e4d6be55d98b57cc038",
+    "src/gnn_pruning/pruning/budget_v5.py": "eeb63c0757786a866e47cf2e67abd7117b3c41d6fdf69d5eb840e72774bf745f",
+    "src/gnn_pruning/pruning/static_v2.py": "abfde03e27ea99f838a480c55f13fc8764a9c2b423cb8e201c68dba4aa4ed397",
+    "src/gnn_pruning/pruning/workflow_v2.py": "4203f667d719416e7e082e76cc085142d065e27a16e2f88c94b1cf2fed844dfa",
+    "src/gnn_pruning/surgery/local_v2.py": "6288b6f888680c318b5a0047af4408bce137aceb0063de0379da2f04ad68c059",
+    "src/gnn_pruning/training/checkpoints.py": "f3946a76a17b48fb349768eb8c5e0763c6e012be3738b0e86a3b092a0988b953",
+    "src/gnn_pruning/training/workflow.py": "b812047a60e73b5cc0371642b19ef8fb8365e97f8a82e9c005b394c05c76cd96",
+    "src/gnn_pruning/utils/seed.py": "c757befbcbb440cc74eb5ded5049aa320db477b123d5dd07302005325c678e81",
+    "tests/test_frozen_validation.py": "332ddffc18c297bc804419fade45a1ebcd93bb6d674c85f030e9182c14bc17d0",
+    "tests/test_local_surgery_v2.py": "905882e28efbb719ef275b4d836dbb3a3f78d4d4f1e058052bfbd982fd30cd56"
+  }
+}

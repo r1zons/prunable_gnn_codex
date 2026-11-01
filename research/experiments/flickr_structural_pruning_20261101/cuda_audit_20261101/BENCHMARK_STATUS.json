@@ -1,0 +1,38 @@
+{
+  "cpu_gpu_comparison": {
+    "actions_equal": null,
+    "compression_equal": null,
+    "logit_max_error": null,
+    "macro_f1_difference": null,
+    "parameter_counts_equal": null,
+    "q_values_equal": null,
+    "retained_ids_equal": null,
+    "status": "NOT_RUN",
+    "validation_accuracy_difference": null
+  },
+  "estimated_30_episode_gpu_minutes": null,
+  "job_ids": [],
+  "new_lsf_jobs": 0,
+  "p100": {
+    "actual_forward_calls": null,
+    "cache_hits": null,
+    "dense_forward_seconds": null,
+    "gpu_utilization": null,
+    "peak_allocated_bytes": null,
+    "peak_reserved_bytes": null,
+    "pruned_forward_seconds": null,
+    "q_prefix_seconds": null,
+    "synchronization_overhead_seconds": null
+  },
+  "prior_cpu_reference": {
+    "actual_forwards": 401,
+    "cache_hits": 9,
+    "q_three_episode_4_256_seconds": 630.485,
+    "safety_forecast_30_episode_minutes": 193.021,
+    "source": "../CAPACITY.json and ../NATIVE_PREFLIGHT.json; previous task, not rerun",
+    "validation_requests": 410
+  },
+  "reason": "No discovered PyTorch CUDA build. Hardware presence cannot establish speedup, numerical equivalence, memory fit or 180-minute eligibility.",
+  "status": "NOT_RUN_ENVIRONMENT_GATE_FAILED",
+  "within_180_minutes": "UNVERIFIED"
+}

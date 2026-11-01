@@ -1,5 +1,15 @@
 # Experiment campaign registry
 
+**FLICKR-CUDA-AUDIT-20261101** — environment **NO-GO**, source521f20a.
+P100 hardware found on C2/C3/C4, but existing research Torch2.0.1 is CPU-only;
+15 visible prefixes/12 runnable Pythons yielded no compatible CUDA build.
+Normal180min accessible, gpulong ACL excludes account; no GPU allocation tested.
+Current runner CPU specialization/reporting and cross-device cache boundaries
+documented.112 local focused PASS/0 FAIL/2 CUDA SKIPPED; native CUDA/CPU-GPU
+comparison/performance NOT RUN.0 jobs/installs, no scientific changes/push/merge.
+[Report, component audit, sanitized inventory and minimal setup proposal](flickr_structural_pruning_20261101/cuda_audit_20261101/REPORT.md).
+Raw:`${GNN_ARTIFACT_ROOT}/flickr-cuda-audit-20261101/`.
+
 **FLICKR-STRUCTURAL-PRUNING-20261101** — implementation/technical validation done,
 **research SUBMITTED0/56, BLOCKED56: resource NO-GO**. Four frozen Dense seed101
 architectures ×30/50% ×seven new budget-V5 policies; old controllers immutable.

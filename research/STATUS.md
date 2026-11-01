@@ -2,6 +2,22 @@
 
 **Updated:** 2026-11-01
 
+## Flickr CUDA audit — environment NO-GO, 2026-11-01
+
+Current branch/source `campaign/flickr-structural-pruning-20261101` / `521f20a`:
+LSF reports two P100 GPUs each on C2/C3/C4; frontend NVIDIA/NVML confirms P100
+sm_60. Driver440.33.01/system CUDA10.2.89; research Torch2.0.1 `USE_CUDA=0`.
+No compatible CUDA Torch found among15 visible prefixes/12 runnable interpreters.
+Normal180min ACL permits account; gpulong720min excludes it; GPU reservation
+inside a job remains unverified. Current Flickr runner also requires explicit
+device/reporting integration; cross-device comparisons require separate caches.
+
+Local focused112 PASS/0 FAIL/2 CUDA SKIPPED. Native CUDA correctness, CPU/GPU
+comparison and benchmark **NOT RUN**, no defensible P100 runtime forecast.
+Stopped at the user-required environment gate: no jobs, installation, algorithm
+changes, full56 launch, push or merge. New isolated [audit/report and setup proposal](experiments/flickr_structural_pruning_20261101/cuda_audit_20261101/REPORT.md).
+Raw:`${GNN_ARTIFACT_ROOT}/flickr-cuda-audit-20261101/`.
+
 ## Flickr structural comparison — resource NO-GO, 2026-11-01
 
 New depth2/3/4 budget-V5 controllers and56-condition plan implemented separately;

@@ -1,0 +1,36 @@
+{
+  "full_suite_this_audit": "NOT_RUN_NO_IMPLEMENTATION_CHANGES",
+  "invocations": [
+    {
+      "command": "PYTHONPATH=src MPLBACKEND=Agg PYTHONDONTWRITEBYTECODE=1 python -m pytest tests/test_local_surgery_v2.py -k cuda -r a",
+      "deselected": 71,
+      "failed": 0,
+      "log": "local-existing-cuda-tests.log",
+      "passed": 0,
+      "seconds": 4.96,
+      "skipped": 2
+    },
+    {
+      "command": "PYTHONPATH=src MPLBACKEND=Agg PYTHONDONTWRITEBYTECODE=1 python -m pytest tests/test_config.py tests/test_local_surgery_v2.py tests/test_benchmark.py tests/test_frozen_validation.py -r a",
+      "failed": 0,
+      "log": "local-focused-tests.log",
+      "passed": 112,
+      "seconds": 15.53,
+      "skipped": 2
+    }
+  ],
+  "local_environment": {
+    "cuda_available": false,
+    "pyg": "2.6.1",
+    "python": "3.12.9",
+    "torch": "2.2.2"
+  },
+  "native_cuda_status": "NOT_RUN_ENVIRONMENT_GATE_FAILED",
+  "notes": [
+    "The two invocations select the same two GPU cases; do not sum them as four unique skips.",
+    "Existing CUDA tests cover tiny three-layer float64 GCN/GraphSAGE surgery/logits; they do not qualify Flickr V5."
+  ],
+  "skip_reason": "CUDA unavailable; device preservation unverified on GPU",
+  "source_commit": "521f20aacabb0a531858247f8a927f1db11323da",
+  "unique_cuda_skips": 2
+}
