@@ -1,0 +1,50 @@
+{
+  "BENCHMARK_PROTOCOL.json": {
+    "sha256": "9625e756b92549d8efb55c4d33187bc49ed013790b45a2c810a5824d8a3c9527",
+    "bytes": 1596
+  },
+  "BENCHMARK_RESULTS.csv": {
+    "sha256": "cadff5b61cd486725e340f4177232a63447a57db9e92654a00571bc394f013b4",
+    "bytes": 854
+  },
+  "BENCHMARK_RESULTS.json": {
+    "sha256": "7498e6b7bbd8acbacf9562b8c1014dd52e71fce680c9af3e3aef277a59b73532",
+    "bytes": 6470
+  },
+  "C4_CONFIRMATION.json": {
+    "sha256": "1a1b86a795adb0889daafcbd548a91fbcb3572d8cf1eb68e55e6b2f28166d56a",
+    "bytes": 974
+  },
+  "JOB_MANIFEST.csv": {
+    "sha256": "5fc183a817eca99ed71a8ac45043afba855b3a6d32db11ed542d87a1d67796e9",
+    "bytes": 484
+  },
+  "JOB_MANIFEST.json": {
+    "sha256": "abffac720235f3946c36f1cc14663c94a3fc5822e42a44b454477f569650a115",
+    "bytes": 2000
+  },
+  "PLAN.md": {
+    "sha256": "e089a6db6f75c9cf8889f5f8bcd05d0270e787025c28b3d6a06103b1cf74140c",
+    "bytes": 5968
+  },
+  "PROVENANCE.json": {
+    "sha256": "85dcd6418b27590ff8d0640ded0a0f63104a76ddc41be38d86c8f8d5c4523d93",
+    "bytes": 5634
+  },
+  "SUBMISSION_RECEIPTS.json": {
+    "sha256": "5e58d833d1e9797edc88642002f2c8e62465cca278e3ffa433e84f41129197de",
+    "bytes": 1466
+  },
+  "SUBMISSION_REPORT.md": {
+    "sha256": "4453e2cc2cc2495e197b412cbf932bf4943b268c3dcef3fcfb4c9cabc71757b2",
+    "bytes": 6914
+  },
+  "TEST_REPORT.md": {
+    "sha256": "0f3e44cce0d7b6461f37385559edb05a32fbcbd4e4a4647861315565c68c4802",
+    "bytes": 1181
+  },
+  "VERIFICATION.json": {
+    "sha256": "9de9dfcda0adc7a964924bb6f30e42d554019c3e862d19433e66a7e01406b880",
+    "bytes": 519
+  }
+}

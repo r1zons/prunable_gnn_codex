@@ -1,0 +1,9 @@
+threads,target,parent_job_id,parent_job_status_at_snapshot,profile_status,scientific_episodes,technical_episodes,forward_dense_median_seconds,forward_pruned_median_seconds,search_seconds,episode_seconds,actual_forward_calls,cache_hits,peak_rss_bytes,scientific_equivalence,forecast_minutes
+4,0.3,1612046,RUN,AWAITING_NATIVE_ARTIFACT_VERIFICATION,30,3,,,,,,,,,
+4,0.5,1612046,RUN,AWAITING_NATIVE_ARTIFACT_VERIFICATION,30,3,,,,,,,,,
+8,0.3,1612046,RUN,AWAITING_NATIVE_ARTIFACT_VERIFICATION,30,3,,,,,,,,,
+8,0.5,1612046,RUN,AWAITING_NATIVE_ARTIFACT_VERIFICATION,30,3,,,,,,,,,
+12,0.3,1612046,RUN,AWAITING_NATIVE_ARTIFACT_VERIFICATION,30,3,,,,,,,,,
+12,0.5,1612046,RUN,AWAITING_NATIVE_ARTIFACT_VERIFICATION,30,3,,,,,,,,,
+20,0.3,1612046,RUN,AWAITING_NATIVE_ARTIFACT_VERIFICATION,30,3,,,,,,,,,
+20,0.5,1612046,RUN,AWAITING_NATIVE_ARTIFACT_VERIFICATION,30,3,,,,,,,,,

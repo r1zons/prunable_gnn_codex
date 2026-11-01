@@ -1,0 +1,71 @@
+{
+  "single_snapshot": true,
+  "no_monitoring": true,
+  "jobs": [
+    {
+      "identity": "topology-c2",
+      "job_id": 1612044,
+      "accepted": true,
+      "scheduler_status": "DONE",
+      "allocated_host": "polus-c2-ib.bmc.hpc.cs.msu.ru",
+      "resources": {
+        "id": "topology-c2",
+        "stage": "topology",
+        "host": "polus-c2-ib.bmc.hpc.cs.msu.ru",
+        "slots": 1,
+        "wall_minutes": 3,
+        "memory_mb": 8192
+      },
+      "source_commit": "10d778223f049935fd5d4ae554494da15377aaba",
+      "actual_execution_hosts": [
+        "polus-c2-ib.bmc.hpc.cs.msu.ru"
+      ],
+      "requested_slots": 1,
+      "actual_reserved_slots": 20
+    },
+    {
+      "identity": "topology-c3",
+      "job_id": 1612045,
+      "accepted": true,
+      "scheduler_status": "DONE",
+      "allocated_host": "polus-c3-ib.bmc.hpc.cs.msu.ru",
+      "resources": {
+        "id": "topology-c3",
+        "stage": "topology",
+        "host": "polus-c3-ib.bmc.hpc.cs.msu.ru",
+        "slots": 1,
+        "wall_minutes": 3,
+        "memory_mb": 8192
+      },
+      "source_commit": "10d778223f049935fd5d4ae554494da15377aaba",
+      "actual_execution_hosts": [
+        "polus-c3-ib.bmc.hpc.cs.msu.ru"
+      ],
+      "requested_slots": 1,
+      "actual_reserved_slots": 20
+    },
+    {
+      "identity": "c4-thread-scaling",
+      "job_id": 1612046,
+      "accepted": true,
+      "scheduler_status": "RUN",
+      "allocated_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "resources": {
+        "id": "c4-thread-scaling",
+        "stage": "benchmark",
+        "host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+        "slots": 20,
+        "wall_minutes": 175,
+        "memory_mb": 32768
+      },
+      "source_commit": "10d778223f049935fd5d4ae554494da15377aaba",
+      "actual_execution_hosts": [
+        "polus-c4-ib.bmc.hpc.cs.msu.ru"
+      ],
+      "requested_slots": 20,
+      "actual_reserved_slots": 20
+    }
+  ],
+  "snapshot_time": "2026-11-01 22:44:04 MSK",
+  "results_collected_or_verified": false
+}

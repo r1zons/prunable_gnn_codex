@@ -2,6 +2,25 @@
 
 **Updated:** 2026-11-01
 
+## Flickr CPU thread scaling — C4 benchmark RUNNING, 2026-11-01
+
+Branch `campaign/flickr-structural-pruning-20261101`, executable10d7782.
+Accepted3 bounded normal/exclusive jobs:1612044 C2 topology DONE,1612045 C3 topology
+DONE (metadata only, no model/Q runs),1612046 all scaling measurements **RUN on C4**.
+LSF and native topology confirm C4 actual host,20 physical cores/160 logical/SMT8,
+2 sockets/NUMA nodes,20 allocated slots. All4/8/12/20-thread profiles run serially
+there with fixed one-SMT-sibling/core affinity, separate fresh processes and both
+30/50 targets; user C4 clarification already satisfied, no duplicate submissions.
+
+Source/input pins and original budget-V5/cache/reward/Q unchanged; scientific30
+versus technical3 episodes plus2-action deployment prefix.175min/32GiB bound;
+158 regression/13 final focused PASS,0 FAIL/0 SKIPPED (overlap). At22:49 MSK only
+4-thread/30% worker started,0/8 native profiles independently verified; no timing,
+equivalence or forecast success claimed. Full56 jobs0, NO-GO pending completed
+verification/fresh gate; no thread recommendation yet. No push/merge.
+[Submission report, C4 proof, manifests and pending measurement tables](experiments/flickr_cpu_thread_scaling_20261101/SUBMISSION_REPORT.md).
+Raw:`${GNN_ARTIFACT_ROOT}/flickr-cpu-thread-scaling-20261101/`.
+
 ## Flickr CUDA audit — environment NO-GO, 2026-11-01
 
 Current branch/source `campaign/flickr-structural-pruning-20261101` / `521f20a`:

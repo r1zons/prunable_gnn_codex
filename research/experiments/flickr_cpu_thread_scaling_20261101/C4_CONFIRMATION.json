@@ -1,0 +1,53 @@
+{
+  "checked_at": "Sun Nov  1 22:49:33 MSK 2026",
+  "job_id": 1612046,
+  "scheduler_status": "RUN",
+  "actual_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+  "physical_cores": 20,
+  "logical_cpu_count": 160,
+  "smt_logical_per_physical": 8,
+  "sockets": [
+    "0",
+    "1"
+  ],
+  "numa_nodes": [
+    "node0",
+    "node1"
+  ],
+  "selected_physical_cpu_ids": [
+    0,
+    80,
+    8,
+    88,
+    16,
+    96,
+    24,
+    104,
+    32,
+    112,
+    40,
+    120,
+    48,
+    128,
+    56,
+    136,
+    64,
+    144,
+    72,
+    152
+  ],
+  "observed_allocation_slots": 20,
+  "selected_affinity_has_one_smt_sibling_per_core": true,
+  "workers_started": [
+    "t4-target30"
+  ],
+  "worker_completion_records": [],
+  "all_measurements_host_locked": true,
+  "topology_only_job_ids": [
+    1612044,
+    1612045
+  ],
+  "resubmissions": 0,
+  "existing_jobs_cancelled": 0,
+  "reason": "Original measured workload already scheduled and executing on required C4; C2/C3 jobs collect metadata only."
+}

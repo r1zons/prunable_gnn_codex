@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "historical_campaign_files_unchanged": 36,
+  "accepted_unique_jobs": 3,
+  "confirmed_benchmark_host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+  "confirmed_slots": 20,
+  "confirmed_physical_cores": 20,
+  "topology_only_jobs": 2,
+  "scientific_profiles_completed_and_verified": 0,
+  "duplicate_submissions": 0,
+  "existing_jobs_cancelled": 0,
+  "all_unmeasured_values_null": true,
+  "private_access_values_excluded": true,
+  "local_links_verified": true,
+  "full56_jobs": 0,
+  "no_push_or_merge": true
+}

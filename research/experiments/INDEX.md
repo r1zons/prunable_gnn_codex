@@ -1,5 +1,16 @@
 # Experiment campaign registry
 
+**FLICKR-CPU-THREAD-SCALING-20261101** —3 bounded jobs ACCEPTED;1612044/1612045
+C2/C3 topology-only DONE; **1612046 benchmark RUN on C4**, confirmed by LSF/native
+host and20 physical-core allocation (160 SMT threads). All measurements4/8/12/20
+and targets30/50 sequential fresh processes on that same C4. Scientific30episodes,
+technical3+2-action deployment prefix, algorithms/cache/inputs unchanged; source
+10d7782.158 regression/13 focused PASS (overlap),0 FAIL/0 SKIPPED.0/8 native profiles
+collected/verified; forecasts/equivalence/thread choice pending, full56 NO-GO and
+0 submitted. C4 clarification satisfied without duplicate runs; no push/merge.
+[Report, C4 confirmation and machine-readable manifests/status](flickr_cpu_thread_scaling_20261101/SUBMISSION_REPORT.md).
+Raw:`${GNN_ARTIFACT_ROOT}/flickr-cpu-thread-scaling-20261101/`.
+
 **FLICKR-CUDA-AUDIT-20261101** — environment **NO-GO**, source521f20a.
 P100 hardware found on C2/C3/C4, but existing research Torch2.0.1 is CPU-only;
 15 visible prefixes/12 runnable Pythons yielded no compatible CUDA build.
