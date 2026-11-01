@@ -1,0 +1,51 @@
+{
+  "campaign": "flickr-cpu-thread-scaling-20261101",
+  "thread_counts": [
+    4,
+    8,
+    12,
+    20
+  ],
+  "targets": [
+    0.3,
+    0.5
+  ],
+  "hosts": {
+    "c2": "polus-c2-ib.bmc.hpc.cs.msu.ru",
+    "c3": "polus-c3-ib.bmc.hpc.cs.msu.ru",
+    "c4": "polus-c4-ib.bmc.hpc.cs.msu.ru"
+  },
+  "host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+  "scientific_source_commit": "1b8b8b78667519f97c0682d2645837d4990960b8",
+  "scientific_protocol_sha256": "b451c60bec314cf019d11be00d20417c5461b1abe8718015b81126599d401670",
+  "benchmark_source_commit": "PINNED_IN_EXTERNAL_EXECUTION_CONFIG_AFTER_LOCAL_COMMIT",
+  "representative_pruned": {
+    "id": "flickr-graphsage-l4-h256-s101-static_magnitude-t50-budget-v5",
+    "checkpoint_sha256": "b4a75142b2167ee67997ed1794fc88286704caa35aca13f88941a74a3ab46fc1",
+    "tensor_sha256": "45d7fc4d6c8176231e0b8338591535952fa09a7c511c8dc9d89eee9c9f0d4fa4",
+    "widths": [
+      111,
+      230,
+      219
+    ]
+  },
+  "historical_q_reference": "${PRIOR_CAMPAIGN_ROOT}/smoke/flickr-graphsage-l4-h256-s101-tabular_q-t50-budget-v5",
+  "technical_episodes": 3,
+  "scientific_episodes": 30,
+  "deployment_prefix_actions": 2,
+  "warmup": 2,
+  "repetitions": 7,
+  "child_timeout_seconds": 1200,
+  "lsf_wall_minutes": 175,
+  "slots": 20,
+  "memory_mb": 32768,
+  "forecasting": {
+    "multiplier": "31/3",
+    "time_safety": 1.75,
+    "fixed_seconds": 180,
+    "acceptance_minutes": 170,
+    "absolute_minutes": 180,
+    "targets": "independently measured; conservative max envelope"
+  },
+  "activation_sha256": "ac464bbf980c499281c31ccb018b0e9e172a00df6c1b12627d3f075c45121fce"
+}
