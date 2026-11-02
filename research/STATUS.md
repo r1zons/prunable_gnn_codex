@@ -2,6 +2,21 @@
 
 **Updated:** 2026-11-02
 
+## Flickr structural V5 collected — 2026-11-02
+
+**56/56 COMPLETED**, original IDs1612130–1612185 all historical LSF DONE; no
+RUN/PEND/failure. New immutable archive SHA and1,951 file hashes verified;504
+completion-output hashes and922 source files match the pinned Git source686cf3f.
+Metadata/physical-count/identity/accounting checks56 PASS; all stop target_band,
+zero outside band. Eight Q runs have30 complete episodes plus deployment. Actual
+hosts C2/C3/C4=19/14/23; special Q4/256 IDs1612164/1612171 retain12threads/C4,
+36.03/67.48min LSF RUN. Aggregate5.919 job-hours, queue separate. Strict reload and
+metric forwards remain original-worker evidence, not independently rerun. No new
+pytest/PyTorch/inference/scientific workload; citation/history/manuscript unchanged.
+[Collection report and56-row recorded outputs](experiments/flickr_submission_20261102/collection_20261102/REPORT.md).
+Raw:`${GNN_ARTIFACT_ROOT}/flickr-v5-collection-20261102T094740Z/`.
+User-authorized push of compact evidence; no merge or new job submission.
+
 ## Flickr placement corrected —2026-11-02
 
 Original56 IDs1612130–1612185 retained;21 PEND host lists cleared with supported

@@ -1,5 +1,13 @@
 # Experiment campaign registry
 
+**FLICKR-V5-COLLECTION-20261102** —56/56 COMPLETED, LSF1612130–1612185 historical
+DONE;1,951 files/504 completion pins/922 source files verified,56 metadata PASS.
+All target_band, Q30 episodes,54 four-thread/two12-thread C4 profiles. Collection
+only; no independent model reload/inference or tests, no new jobs or citation edits.
+[Report, recorded56-row results and reproducible integrity checks](flickr_submission_20261102/collection_20261102/REPORT.md).
+Raw:`${GNN_ARTIFACT_ROOT}/flickr-v5-collection-20261102T094740Z/`.
+
+
 **FLICKR-V5-PLACEMENT-CORRECTION-20261102** — same56 accepted IDs;21 eligible
 PEND jobs unbound via bmod -mn;33 already RUN/DONE not targeted (including one
 state-transition skip);two Q4/256 C4-only profiles preserved. Final33 DONE/3 RUN/
