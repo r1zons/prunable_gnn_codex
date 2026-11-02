@@ -1,0 +1,298 @@
+{
+  "integration_base": "16f916e54a4bc90663b5de4c55c44fe42a848ebd",
+  "latest_documentation_base": "24ba480245e014f28e3b73c09e8e34b0017d3bdb",
+  "branches": [
+    {
+      "ref": "analysis/polus-complete-scientific-20261031",
+      "commit": "00743e237dde54ad034af8cbca9a1ec317cc0ed5",
+      "included": true
+    },
+    {
+      "ref": "audit/lookahead-greedy-threshold-20261031",
+      "commit": "2e116c46184f4b07cffd3b07db86e926fb24cfda",
+      "included": true
+    },
+    {
+      "ref": "audit/polus-complete-collection-20261031",
+      "commit": "8f24513da09c0291a562fbb31a688da2698671b9",
+      "included": true
+    },
+    {
+      "ref": "audit/polus-cuda-package-feasibility-20261101",
+      "commit": "e01530b2d060660aac78bfcf30472017e036b150",
+      "included": true
+    },
+    {
+      "ref": "backup-pre-clean-main-20260923-183434",
+      "commit": "7092be6ddcef4fe8c7731271583e58c723376dd1",
+      "included": false
+    },
+    {
+      "ref": "campaign/complete-pruning-20261031",
+      "commit": "a76c6e4c23a3a0e75b2910d7a2ff777868cbd26a",
+      "included": true
+    },
+    {
+      "ref": "campaign/flickr-dense-sweep-20261031",
+      "commit": "5e9710840dac45be65bc1ff3b4fae78a2d150f42",
+      "included": true
+    },
+    {
+      "ref": "campaign/flickr-structural-pruning-20261101",
+      "commit": "2da2a9a9219323aef62e7802c3541639131a1d7b",
+      "included": true
+    },
+    {
+      "ref": "campaign/polus-v5-main-20261102",
+      "commit": "0251954c49bfb0db1d6dd868d8b6ae6fa5879860",
+      "included": true
+    },
+    {
+      "ref": "consolidation/gnn-research-20261025",
+      "commit": "d4222637486c7b269589c2e8bbded8bad4e042fb",
+      "included": true
+    },
+    {
+      "ref": "docs/adaptive-strategies-paper-20261102",
+      "commit": "24ba480245e014f28e3b73c09e8e34b0017d3bdb",
+      "included": true
+    },
+    {
+      "ref": "implementation/local-structured-v2-20261027",
+      "commit": "34e8ca89599b56ef14bb404527b6a72d6b26d403",
+      "included": true
+    },
+    {
+      "ref": "implementation/lookahead-depth2-20261031",
+      "commit": "70fe25d6e91d432646168bc263e193f15f45fc8f",
+      "included": true
+    },
+    {
+      "ref": "implementation/questions-readiness-20261031",
+      "commit": "376610cdba94e62c98d658f60c12a4091702bf42",
+      "included": true
+    },
+    {
+      "ref": "integration/main-reconciliation-20261102",
+      "commit": "16f916e54a4bc90663b5de4c55c44fe42a848ebd",
+      "included": true
+    },
+    {
+      "ref": "main",
+      "commit": "72293149d8fff186dd268789e7b8fea5848c9360",
+      "included": true
+    },
+    {
+      "ref": "publication/sitito-manuscript-v1-20261028",
+      "commit": "70854ce0307be04a39a506097f4dcaf9fa4a3e4a",
+      "included": true
+    },
+    {
+      "ref": "research/v4-tabular-diagnostic-20261029",
+      "commit": "f4a615eda552f760558cdd7f0f98b26b710ff44f",
+      "included": true
+    },
+    {
+      "ref": "submission/flickr-structural-v5-20261102",
+      "commit": "5705851fb41d896b9459807d286c8cb84027cfbd",
+      "included": true
+    },
+    {
+      "ref": "origin/analysis/polus-complete-scientific-20261031",
+      "commit": "00743e237dde54ad034af8cbca9a1ec317cc0ed5",
+      "included": true
+    },
+    {
+      "ref": "origin/audit/local-structured-v2-independent-20261026",
+      "commit": "5c4259664dfb5ae05e84deadacfcdc9486abb7ca",
+      "included": true
+    },
+    {
+      "ref": "origin/audit/polus-complete-collection-20261031",
+      "commit": "8f24513da09c0291a562fbb31a688da2698671b9",
+      "included": true
+    },
+    {
+      "ref": "origin/audit/polus-cuda-package-feasibility-20261101",
+      "commit": "e01530b2d060660aac78bfcf30472017e036b150",
+      "included": true
+    },
+    {
+      "ref": "origin/campaign/flickr-dense-sweep-20261031",
+      "commit": "5e9710840dac45be65bc1ff3b4fae78a2d150f42",
+      "included": true
+    },
+    {
+      "ref": "origin/campaign/flickr-structural-pruning-20261101",
+      "commit": "2da2a9a9219323aef62e7802c3541639131a1d7b",
+      "included": true
+    },
+    {
+      "ref": "origin/codex/create-initial-repository-structure-for-gnn_pruning",
+      "commit": "d42f1b69218d8a7a8009a0412517ef767c269ad7",
+      "included": false
+    },
+    {
+      "ref": "origin/codex/create-initial-repository-structure-for-gnn_pruning-5e0jl6",
+      "commit": "5ffcc87bbf74a72c8fdc4a39644ecee9e231f157",
+      "included": true
+    },
+    {
+      "ref": "origin/codex/create-initial-repository-structure-for-gnn_pruning-9ecuec",
+      "commit": "d177cf81e5f9f51bb230413df13cb1b8d043805c",
+      "included": true
+    },
+    {
+      "ref": "origin/codex/create-initial-repository-structure-for-gnn_pruning-eh46av",
+      "commit": "784157a9ffd5c3d3492aa298a7d918a32beef580",
+      "included": true
+    },
+    {
+      "ref": "origin/codex/create-initial-repository-structure-for-gnn_pruning-eu1xc5",
+      "commit": "c46f94cfd9ee87d1a51dc891b25a5dbe866b5ee5",
+      "included": true
+    },
+    {
+      "ref": "origin/codex/create-initial-repository-structure-for-gnn_pruning-kxp9a7",
+      "commit": "c00c52ab7c2f9188ce33fc6ed6687ce2edc9276a",
+      "included": true
+    },
+    {
+      "ref": "origin/codex/create-initial-repository-structure-for-gnn_pruning-mphvkp",
+      "commit": "6f5a474eaac5b774ff82c5481ed3067e3abec998",
+      "included": true
+    },
+    {
+      "ref": "origin/codex/create-initial-repository-structure-for-gnn_pruning-nbw9d4",
+      "commit": "a3b0181d04c4de579d36823d3273591a04c82f4b",
+      "included": true
+    },
+    {
+      "ref": "origin/codex/create-initial-repository-structure-for-gnn_pruning-t1a0xn",
+      "commit": "c9524049330d43908195391133550ab1dc3cdbf3",
+      "included": true
+    },
+    {
+      "ref": "origin/codex/create-initial-repository-structure-for-gnn_pruning-tmi8kx",
+      "commit": "35e856e1775ae0b41c9483bb91ab3f3c4ecc6410",
+      "included": true
+    },
+    {
+      "ref": "origin/consolidation/gnn-research-20261025",
+      "commit": "d4222637486c7b269589c2e8bbded8bad4e042fb",
+      "included": true
+    },
+    {
+      "ref": "origin/docs/adaptive-strategies-paper-20261102",
+      "commit": "24ba480245e014f28e3b73c09e8e34b0017d3bdb",
+      "included": true
+    },
+    {
+      "ref": "origin/docs/research-context-20261020",
+      "commit": "b5259183c105b775b548236db220d0da77e21d2a",
+      "included": true
+    },
+    {
+      "ref": "origin/implementation/local-structured-v2-20261027",
+      "commit": "34e8ca89599b56ef14bb404527b6a72d6b26d403",
+      "included": true
+    },
+    {
+      "ref": "origin/implementation/lookahead-depth2-20261031",
+      "commit": "70fe25d6e91d432646168bc263e193f15f45fc8f",
+      "included": true
+    },
+    {
+      "ref": "origin/main",
+      "commit": "72293149d8fff186dd268789e7b8fea5848c9360",
+      "included": true
+    },
+    {
+      "ref": "origin/publication/sitito-manuscript-v1-20261028",
+      "commit": "70854ce0307be04a39a506097f4dcaf9fa4a3e4a",
+      "included": true
+    },
+    {
+      "ref": "origin/research/local-structured-v2-draft-20261026",
+      "commit": "9076b0630a95fbbfab64422ec798189f29e589df",
+      "included": true
+    },
+    {
+      "ref": "origin/research/v4-tabular-diagnostic-20261029",
+      "commit": "f4a615eda552f760558cdd7f0f98b26b710ff44f",
+      "included": true
+    },
+    {
+      "ref": "origin/submission/flickr-structural-v5-20261102",
+      "commit": "5705851fb41d896b9459807d286c8cb84027cfbd",
+      "included": true
+    }
+  ],
+  "unchanged_existing_files": 946,
+  "existing_files_changed": [
+    "research/STATUS.md",
+    "research/experiments/INDEX.md"
+  ],
+  "untracked_files_preserved": 6,
+  "legacy_previews": [
+    {
+      "ref": "backup-pre-clean-main-20260923-183434",
+      "returncode": 1,
+      "conflicts": [
+        "CONFLICT (content): Merge conflict in configs/models/graphsage_l3_h192.yaml",
+        "CONFLICT (add/add): Merge conflict in scripts/summarize_pubmed_stress_sweep.py",
+        "CONFLICT (content): Merge conflict in src/gnn_pruning/pipelines/suite.py",
+        "CONFLICT (content): Merge conflict in src/gnn_pruning/pruning/__init__.py",
+        "CONFLICT (content): Merge conflict in src/gnn_pruning/reporting/csv_reporter.py",
+        "CONFLICT (add/add): Merge conflict in src/gnn_pruning/rl/environment.py",
+        "CONFLICT (content): Merge conflict in src/gnn_pruning/surgery/structural.py",
+        "CONFLICT (content): Merge conflict in tests/test_large_dataset_configs.py",
+        "CONFLICT (content): Merge conflict in tests/test_suite_aggregation.py",
+        "CONFLICT (content): Merge conflict in tests/test_surgery.py"
+      ],
+      "stderr": ""
+    },
+    {
+      "ref": "origin/codex/create-initial-repository-structure-for-gnn_pruning",
+      "returncode": 1,
+      "conflicts": [
+        "CONFLICT (content): Merge conflict in README.md",
+        "CONFLICT (add/add): Merge conflict in configs/datasets/dblp.yaml",
+        "CONFLICT (add/add): Merge conflict in configs/experiments/flickr_graphsage_l2_h128.yaml",
+        "CONFLICT (add/add): Merge conflict in configs/experiments/flickr_graphsage_l2_h64.yaml",
+        "CONFLICT (add/add): Merge conflict in configs/experiments/flickr_graphsage_l3_h128.yaml",
+        "CONFLICT (add/add): Merge conflict in configs/experiments/flickr_graphsage_l3_h64.yaml",
+        "CONFLICT (add/add): Merge conflict in configs/experiments/flickr_graphsage_l4_h128.yaml",
+        "CONFLICT (add/add): Merge conflict in pyproject.toml",
+        "CONFLICT (add/add): Merge conflict in scripts/run_flickr_graphsage_sweep.py",
+        "CONFLICT (add/add): Merge conflict in scripts/summarize_flickr_graphsage_sweep.py",
+        "CONFLICT (add/add): Merge conflict in src/gnn_pruning/config/schema.py",
+        "CONFLICT (add/add): Merge conflict in src/gnn_pruning/data/dblp_adapter.py",
+        "CONFLICT (add/add): Merge conflict in src/gnn_pruning/data/factory.py",
+        "CONFLICT (add/add): Merge conflict in src/gnn_pruning/evaluation/benchmark.py",
+        "CONFLICT (add/add): Merge conflict in src/gnn_pruning/models/gcn.py",
+        "CONFLICT (add/add): Merge conflict in src/gnn_pruning/models/graphsage.py",
+        "CONFLICT (add/add): Merge conflict in src/gnn_pruning/pipelines/dense_pipeline.py",
+        "CONFLICT (add/add): Merge conflict in src/gnn_pruning/pipelines/run_pipeline.py",
+        "CONFLICT (add/add): Merge conflict in src/gnn_pruning/pipelines/suite.py",
+        "CONFLICT (add/add): Merge conflict in src/gnn_pruning/pruning/__init__.py",
+        "CONFLICT (add/add): Merge conflict in src/gnn_pruning/pruning/methods.py",
+        "CONFLICT (add/add): Merge conflict in src/gnn_pruning/pruning/workflow.py",
+        "CONFLICT (add/add): Merge conflict in src/gnn_pruning/reporting/csv_reporter.py",
+        "CONFLICT (add/add): Merge conflict in src/gnn_pruning/surgery/__init__.py",
+        "CONFLICT (add/add): Merge conflict in src/gnn_pruning/surgery/structural.py",
+        "CONFLICT (add/add): Merge conflict in src/gnn_pruning/training/workflow.py",
+        "CONFLICT (add/add): Merge conflict in tests/test_data.py",
+        "CONFLICT (add/add): Merge conflict in tests/test_dense_pipeline.py",
+        "CONFLICT (add/add): Merge conflict in tests/test_large_dataset_configs.py",
+        "CONFLICT (add/add): Merge conflict in tests/test_pipeline_full_smoke.py",
+        "CONFLICT (add/add): Merge conflict in tests/test_pruning_diagnostics.py",
+        "CONFLICT (add/add): Merge conflict in tests/test_pruning_methods.py",
+        "CONFLICT (add/add): Merge conflict in tests/test_structured_pruning_runtime_path.py",
+        "CONFLICT (add/add): Merge conflict in tests/test_suite_aggregation.py",
+        "CONFLICT (add/add): Merge conflict in tests/test_surgery.py"
+      ],
+      "stderr": ""
+    }
+  ]
+}
