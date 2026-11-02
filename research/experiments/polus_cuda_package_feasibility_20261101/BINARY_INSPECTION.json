@@ -1,0 +1,116 @@
+{
+  "assessment": "Torch payload has POWER8 compiler flags, GLIBC_2.17 symbol requirements and compiled sm_60 string. Whole dependency closure and runtime remain unverified; stock RocketCE Python has POWER9 flags.",
+  "compiled_cuda_architecture_evidence": [
+    {
+      "architecture_strings": [
+        "// Test these using #if AT_CUDNN_ENABLED(), not #ifdef, so that it's",
+        "#define AT_CUDNN_ENABLED() 1",
+        "#define NVCC_FLAGS_EXTRA \"-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_90,code=sm_90\""
+      ],
+      "bytes": 817,
+      "member": "lib/python3.10/site-packages/torch/include/ATen/cuda/CUDAConfig.h"
+    },
+    {
+      "architecture_strings": [],
+      "bytes": 764,
+      "member": "lib/python3.10/site-packages/torch/include/ATen/Config.h"
+    },
+    {
+      "architecture_strings": [
+        "sm_60 sm_70 sm_75 sm_80 sm_86 sm_90"
+      ],
+      "bytes": 23717368,
+      "member": "lib/python3.10/site-packages/torch/lib/libtorch_python.so"
+    }
+  ],
+  "elf_summary": [
+    {
+      "bytes": 69168,
+      "elf_class": 2,
+      "elf_endian": 1,
+      "elf_machine": 21,
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "member": "lib/python3.10/site-packages/torch/_C.cpython-310-powerpc64le-linux-gnu.so"
+    },
+    {
+      "bytes": 638160,
+      "elf_class": 2,
+      "elf_endian": 1,
+      "elf_machine": 21,
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "member": "lib/python3.10/site-packages/torch/lib/libc10_cuda.so"
+    },
+    {
+      "bytes": 608521392,
+      "elf_class": 2,
+      "elf_endian": 1,
+      "elf_machine": 21,
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "member": "lib/python3.10/site-packages/torch/lib/libtorch_cuda.so"
+    },
+    {
+      "bytes": 203905888,
+      "elf_class": 2,
+      "elf_endian": 1,
+      "elf_machine": 21,
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "member": "lib/python3.10/site-packages/torch/lib/libtorch_cpu.so"
+    },
+    {
+      "bytes": 397536,
+      "elf_class": 2,
+      "elf_endian": 1,
+      "elf_machine": 21,
+      "glibc_versions": [
+        "GLIBC_2.17"
+      ],
+      "member": "lib/python3.10/site-packages/functorch/_C.cpython-310-powerpc64le-linux-gnu.so"
+    }
+  ],
+  "execution": false,
+  "python_archive": {
+    "bytes": 29784098,
+    "sha256": "be47b636396e5fbc16812cc451354d15287136e7759bd0fa296c7b4a4be475fb",
+    "url": "https://conda.anaconda.org/rocketce/linux-ppc64le/python-3.10.11-h8b3979d_4_cpython.tar.bz2"
+  },
+  "python_sysconfig_flags": {
+    "lib/python3.10/_sysconfigdata__linux_powerpc64le-linux-gnu.py": {
+      "CFLAGS": "-Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -mcpu=power9  -I/local/opence/miniconda3/envs/python-3.10.11_10Feb/conda-bld/python-split_1739241305455/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_/include -mcpu=power9   -mcpu=power9  -mcpu=power9 ",
+      "CONFIGURE_CFLAGS": "-mcpu=power9  -I/local/opence/miniconda3/envs/python-3.10.11_10Feb/conda-bld/python-split_1739241305455/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_/include -mcpu=power9 ",
+      "CONFIGURE_CPPFLAGS": "-mcpu=power9  -I/local/opence/miniconda3/envs/python-3.10.11_10Feb/conda-bld/python-split_1739241305455/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_/include -I/local/opence/miniconda3/envs/python-3.10.11_10Feb/conda-bld/python-split_1739241305455/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_/include -mcpu=power9 ",
+      "PY_CFLAGS": "-Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -mcpu=power9  -I/local/opence/miniconda3/envs/python-3.10.11_10Feb/conda-bld/python-split_1739241305455/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_/include -mcpu=power9   -mcpu=power9  -mcpu=power9 "
+    },
+    "lib/python3.10/_sysconfigdata_powerpc64le_conda_cos7_linux_gnu.py": {
+      "CFLAGS": "-Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -mcpu=power9 -mtune=power10 -I/local/opence/miniconda3/envs/python-3.10.11_10Feb/conda-bld/python-split_1739241305455/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_/include -mcpu=power9 -mtune=power10  -mcpu=power9 -mtune=power10     -mcpu=power9 -mtune=power10",
+      "CONFIGURE_CFLAGS": "-mcpu=power9 -mtune=power10 -I/local/opence/miniconda3/envs/python-3.10.11_10Feb/conda-bld/python-split_1739241305455/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_/include -mcpu=power9 -mtune=power10",
+      "CONFIGURE_CPPFLAGS": "-mcpu=power9 -mtune=power10 -I/local/opence/miniconda3/envs/python-3.10.11_10Feb/conda-bld/python-split_1739241305455/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_/include -I/local/opence/miniconda3/envs/python-3.10.11_10Feb/conda-bld/python-split_1739241305455/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_/include -mcpu=power9 -mtune=power10",
+      "PY_CFLAGS": "-Wno-unused-result -Wsign-compare -DNDEBUG -fwrapv -O2 -Wall -mcpu=power9 -mtune=power10 -I/local/opence/miniconda3/envs/python-3.10.11_10Feb/conda-bld/python-split_1739241305455/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_/include -mcpu=power9 -mtune=power10  -mcpu=power9 -mtune=power10     -mcpu=power9 -mtune=power10"
+    }
+  },
+  "recipe": {
+    "build_type": "cuda",
+    "cpu_opt_arch": "power8",
+    "cpu_opt_tune": "power9",
+    "cuda_levels": "6.0,7.0,7.5,8.0,8.6,9.0",
+    "evidence": "Exact package info/recipe and hash_input; recipe not executed",
+    "ppc_arch": "p9",
+    "use_cuda": 1
+  },
+  "torch_archive": {
+    "bytes": 355342042,
+    "download_seconds": 389.05158495903015,
+    "inspection": "zip info/recipe only; no execution or installation",
+    "sha256": "a2f1cc16ebb107b0b53b8412e93e9f3267a896821b68db8a125aa7a2a964775a",
+    "url": "https://conda.anaconda.org/rocketce/linux-ppc64le/pytorch-base-2.0.1-cuda11.8_py310_pb4.21.12_1.conda"
+  },
+  "torch_cpu_compile_flags": "-fvisibility-inlines-hidden -fmessage-length=0 -mcpu=power8 -mtune=power8 -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O3 -pipe -isystem /local/opence/miniconda3/envs/full191_p9_11.8_py310/conda-bld/pytorch-base_1688140634593/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold/include -fdebug-prefix-map=/local/opence/miniconda3/envs/full191_p9_11.8_py310/conda-bld/pytorch-base_1688140634593/work=/usr/local/src/conda/pytorch-base-2.0.1 -fdebug-prefix-map=/local/opence/miniconda3/envs/full191_p9_11.8_py310/conda-bld/pytorch-base_1688140634593/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold=/usr/local/src/conda-prefix -D__STDC_FORMAT_MACROS -fplt -I/local/opence/miniconda3/envs/full191_p9_11.8_py310/conda-bld/pytorch-base_1688140634593/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold/include -I/usr/local/cuda-11.8//include -I/local/opence/miniconda3/envs/full191_p9_11.8_py310/conda-bld/pytorch-base_1688140634593/_build_env/include -D_GLIBCXX_USE_CXX11_ABI=1 -Wno-deprecated -fvisibility-inlines-hidden -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=range-loop-construct -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wunused-local-typedefs -Wno-unused-parameter -Wno-unused-function -Wno-unused-result -Wno-strict-overflow -Wno-strict-aliasing -Wno-error=deprecated-declarations -Wno-stringop-overflow -Wno-psabi -Wno-error=pedantic -Wno-error=redundant-decls -Wno-error=old-style-cast -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Werror=cast-function-type -Wno-stringop-overflow",
+  "torch_version_py": "__version__ = '2.0.1'\ndebug = False\ncuda = '11.8'\ngit_version = '4a0c48d857f70b2fe09d63a3bbadfcc71e2de057'\nhip = None\n"
+}

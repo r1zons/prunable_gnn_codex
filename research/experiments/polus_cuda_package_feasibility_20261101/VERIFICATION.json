@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "scientific_source_files_unchanged": 273,
+  "historical_campaign_files_unchanged": 36,
+  "verified_full_archives": 2,
+  "solver_outcomes_verified": 5,
+  "successful_solver_plans": 3,
+  "failed_solver_plans": 2,
+  "conda_target_prefixes_created": 0,
+  "candidate_binary_executions": 0,
+  "native_cuda_tests": "NOT_RUN",
+  "pytest": "NOT_RUN_READ_ONLY_INVESTIGATION",
+  "actual_gpu_jobs": 0,
+  "technical_lock_package_records": 105,
+  "pyg_named_core_dependencies_present": true,
+  "raw_evidence_files": 86,
+  "report_local_links_verified": true,
+  "private_polus_access_values_excluded": true
+}

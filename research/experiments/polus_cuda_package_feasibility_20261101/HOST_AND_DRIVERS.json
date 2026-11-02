@@ -1,0 +1,569 @@
+{
+  "compute_kernel_headers_current": "NOT_REFRESHED_ADMIN_GATE",
+  "cpu_activation_sha256": "ac464bbf980c499281c31ccb018b0e9e172a00df6c1b12627d3f075c45121fce",
+  "current_metadata_scope": "Frontend read-only SSH; per-compute-node kernels reused from verified prior native Dense jobs; no direct compute SSH or LSF jobs",
+  "date": "2026-11-01",
+  "frontend": {
+    "dkms": "2.6.1",
+    "driver_installation": "RPM/DKMS",
+    "driver_libraries_rpm": "nvidia-driver-latest-dkms-cuda-libs-440.33.01-1.el7.ppc64le",
+    "gcc": "4.8.5-44.el7",
+    "glibc": "2.17",
+    "gpu_count": 2,
+    "gpu_model": "Tesla P100-SXM2-16GB",
+    "kernel": "3.10.0-693.1.1.el7.ppc64le",
+    "matching_kernel_devel": true,
+    "matching_kernel_headers": true,
+    "module_path": "/lib/modules/3.10.0-693.1.1.el7.ppc64le/extra/nvidia.ko",
+    "module_version": "440.33.01",
+    "os": "Red Hat Enterprise Linux Server 7.5 (Maipo)",
+    "system_cuda_toolkit": "10.2.89",
+    "vermagic": "3.10.0-693.1.1.el7.ppc64le SMP mod_unload modversions"
+  },
+  "no_module_or_system_modification": true,
+  "no_sudo": true,
+  "nvidia_repositories": {
+    "rhel7_450_520_candidates": [],
+    "rhel8_450_520_candidates": [
+      {
+        "arch": "ppc64le",
+        "name": "kmod-nvidia-latest-dkms",
+        "requires": [
+          {
+            "name": "/bin/sh",
+            "pre": "1"
+          },
+          {
+            "name": "/bin/sh"
+          },
+          {
+            "name": "dkms"
+          },
+          {
+            "epoch": "3",
+            "flags": "EQ",
+            "name": "nvidia-kmod-common",
+            "ver": "450.80.02"
+          }
+        ],
+        "url": "https://developer.download.nvidia.com/compute/cuda/repos/rhel8/ppc64le/kmod-nvidia-latest-dkms-450.80.02-1.el8.ppc64le.rpm",
+        "version": {
+          "epoch": "3",
+          "rel": "1.el8",
+          "ver": "450.80.02"
+        }
+      },
+      {
+        "arch": "ppc64le",
+        "name": "kmod-nvidia-latest-dkms",
+        "requires": [
+          {
+            "name": "/bin/sh",
+            "pre": "1"
+          },
+          {
+            "name": "/bin/sh"
+          },
+          {
+            "name": "dkms"
+          },
+          {
+            "epoch": "3",
+            "flags": "EQ",
+            "name": "nvidia-kmod-common",
+            "ver": "520.61.05"
+          }
+        ],
+        "url": "https://developer.download.nvidia.com/compute/cuda/repos/rhel8/ppc64le/kmod-nvidia-latest-dkms-520.61.05-1.el8.ppc64le.rpm",
+        "version": {
+          "epoch": "3",
+          "rel": "1.el8",
+          "ver": "520.61.05"
+        }
+      },
+      {
+        "arch": "ppc64le",
+        "name": "nvidia-driver",
+        "requires": [
+          {
+            "name": "/bin/sh"
+          },
+          {
+            "name": "dnf-plugin-nvidia"
+          },
+          {
+            "name": "libdl.so.2()(64bit)"
+          },
+          {
+            "name": "libdl.so.2(GLIBC_2.17)(64bit)"
+          },
+          {
+            "name": "libm.so.6()(64bit)"
+          },
+          {
+            "name": "libm.so.6(GLIBC_2.17)(64bit)"
+          },
+          {
+            "name": "libnvidia-glcore.so.450.80.02()(64bit)"
+          },
+          {
+            "name": "libnvidia-tls.so.450.80.02()(64bit)"
+          },
+          {
+            "epoch": "3",
+            "flags": "EQ",
+            "name": "nvidia-driver-libs(ppc-64)",
+            "ver": "450.80.02"
+          },
+          {
+            "epoch": "3",
+            "flags": "EQ",
+            "name": "nvidia-kmod-common",
+            "ver": "450.80.02"
+          },
+          {
+            "epoch": "0",
+            "flags": "GE",
+            "name": "xorg-x11-server-Xorg(ppc-64)",
+            "rel": "3",
+            "ver": "1.19.0"
+          },
+          {
+            "name": "libc.so.6(GLIBC_2.17)(64bit)"
+          }
+        ],
+        "url": "https://developer.download.nvidia.com/compute/cuda/repos/rhel8/ppc64le/nvidia-driver-450.80.02-1.el8.ppc64le.rpm",
+        "version": {
+          "epoch": "3",
+          "rel": "1.el8",
+          "ver": "450.80.02"
+        }
+      },
+      {
+        "arch": "ppc64le",
+        "name": "nvidia-driver",
+        "requires": [
+          {
+            "name": "/bin/bash"
+          },
+          {
+            "name": "/bin/sh",
+            "pre": "1"
+          },
+          {
+            "name": "/bin/sh"
+          },
+          {
+            "name": "dnf-plugin-nvidia"
+          },
+          {
+            "name": "libdl.so.2()(64bit)"
+          },
+          {
+            "name": "libdl.so.2(GLIBC_2.17)(64bit)"
+          },
+          {
+            "name": "libm.so.6()(64bit)"
+          },
+          {
+            "name": "libm.so.6(GLIBC_2.17)(64bit)"
+          },
+          {
+            "name": "libnvidia-glcore.so.520.61.05()(64bit)"
+          },
+          {
+            "name": "libnvidia-tls.so.520.61.05()(64bit)"
+          },
+          {
+            "name": "librt.so.1()(64bit)"
+          },
+          {
+            "epoch": "3",
+            "flags": "EQ",
+            "name": "nvidia-driver-libs(ppc-64)",
+            "ver": "520.61.05"
+          },
+          {
+            "epoch": "3",
+            "flags": "EQ",
+            "name": "nvidia-kmod-common",
+            "ver": "520.61.05"
+          },
+          {
+            "epoch": "0",
+            "flags": "GE",
+            "name": "xorg-x11-server-Xorg(ppc-64)",
+            "rel": "3",
+            "ver": "1.19.0"
+          },
+          {
+            "name": "libc.so.6(GLIBC_2.17)(64bit)"
+          }
+        ],
+        "url": "https://developer.download.nvidia.com/compute/cuda/repos/rhel8/ppc64le/nvidia-driver-520.61.05-1.el8.ppc64le.rpm",
+        "version": {
+          "epoch": "3",
+          "rel": "1.el8",
+          "ver": "520.61.05"
+        }
+      },
+      {
+        "arch": "ppc64le",
+        "name": "nvidia-driver-cuda-libs",
+        "requires": [
+          {
+            "name": "/sbin/ldconfig",
+            "pre": "1"
+          },
+          {
+            "name": "/sbin/ldconfig"
+          },
+          {
+            "name": "ldconfig",
+            "pre": "1"
+          },
+          {
+            "name": "libdl.so.2()(64bit)"
+          },
+          {
+            "name": "libdl.so.2(GLIBC_2.17)(64bit)"
+          },
+          {
+            "name": "libm.so.6()(64bit)"
+          },
+          {
+            "name": "libm.so.6(GLIBC_2.17)(64bit)"
+          },
+          {
+            "name": "libpthread.so.0()(64bit)"
+          },
+          {
+            "name": "libpthread.so.0(GLIBC_2.17)(64bit)"
+          },
+          {
+            "name": "librt.so.1()(64bit)"
+          },
+          {
+            "name": "librt.so.1(GLIBC_2.17)(64bit)"
+          },
+          {
+            "name": "libc.so.6(GLIBC_2.17)(64bit)"
+          }
+        ],
+        "url": "https://developer.download.nvidia.com/compute/cuda/repos/rhel8/ppc64le/nvidia-driver-cuda-libs-450.80.02-1.el8.ppc64le.rpm",
+        "version": {
+          "epoch": "3",
+          "rel": "1.el8",
+          "ver": "450.80.02"
+        }
+      },
+      {
+        "arch": "ppc64le",
+        "name": "nvidia-driver-cuda-libs",
+        "requires": [
+          {
+            "name": "/sbin/ldconfig",
+            "pre": "1"
+          },
+          {
+            "name": "/sbin/ldconfig"
+          },
+          {
+            "name": "ld64.so.2()(64bit)"
+          },
+          {
+            "name": "ld64.so.2(GLIBC_2.17)(64bit)"
+          },
+          {
+            "name": "ldconfig",
+            "pre": "1"
+          },
+          {
+            "name": "libEGL.so.1()(64bit)"
+          },
+          {
+            "name": "libEGL_nvidia.so.0()(64bit)"
+          },
+          {
+            "name": "libdl.so.2()(64bit)"
+          },
+          {
+            "name": "libdl.so.2(GLIBC_2.17)(64bit)"
+          },
+          {
+            "name": "libgcc_s.so.1()(64bit)"
+          },
+          {
+            "name": "libgcc_s.so.1(GCC_3.0)(64bit)"
+          },
+          {
+            "name": "libgcc_s.so.1(GCC_3.3)(64bit)"
+          },
+          {
+            "name": "libgcc_s.so.1(GCC_3.4.4)(64bit)"
+          },
+          {
+            "name": "libgcc_s.so.1(GCC_4.2.0)(64bit)"
+          },
+          {
+            "name": "libm.so.6()(64bit)"
+          },
+          {
+            "name": "libm.so.6(GLIBC_2.17)(64bit)"
+          },
+          {
+            "name": "libnvidia-egl-wayland.so.1()(64bit)"
+          },
+          {
+            "name": "libpthread.so.0()(64bit)"
+          },
+          {
+            "name": "libpthread.so.0(GLIBC_2.17)(64bit)"
+          },
+          {
+            "name": "librt.so.1()(64bit)"
+          },
+          {
+            "name": "librt.so.1(GLIBC_2.17)(64bit)"
+          },
+          {
+            "name": "libc.so.6(GLIBC_2.17)(64bit)"
+          }
+        ],
+        "url": "https://developer.download.nvidia.com/compute/cuda/repos/rhel8/ppc64le/nvidia-driver-cuda-libs-520.61.05-1.el8.ppc64le.rpm",
+        "version": {
+          "epoch": "3",
+          "rel": "1.el8",
+          "ver": "520.61.05"
+        }
+      },
+      {
+        "arch": "ppc64le",
+        "name": "nvidia-driver-libs",
+        "requires": [
+          {
+            "name": "/sbin/ldconfig",
+            "pre": "1"
+          },
+          {
+            "name": "/sbin/ldconfig"
+          },
+          {
+            "name": "egl-wayland(ppc-64)"
+          },
+          {
+            "name": "ld64.so.2()(64bit)"
+          },
+          {
+            "name": "ld64.so.2(GLIBC_2.17)(64bit)"
+          },
+          {
+            "name": "ldconfig",
+            "pre": "1"
+          },
+          {
+            "name": "libX11.so.6()(64bit)"
+          },
+          {
+            "name": "libXext.so.6()(64bit)"
+          },
+          {
+            "name": "libdl.so.2()(64bit)"
+          },
+          {
+            "name": "libdl.so.2(GLIBC_2.17)(64bit)"
+          },
+          {
+            "epoch": "0",
+            "flags": "GE",
+            "name": "libglvnd(ppc-64)",
+            "ver": "1.0"
+          },
+          {
+            "epoch": "0",
+            "flags": "GE",
+            "name": "libglvnd-egl(ppc-64)",
+            "ver": "1.0"
+          },
+          {
+            "epoch": "0",
+            "flags": "GE",
+            "name": "libglvnd-gles(ppc-64)",
+            "ver": "1.0"
+          },
+          {
+            "epoch": "0",
+            "flags": "GE",
+            "name": "libglvnd-glx(ppc-64)",
+            "ver": "1.0"
+          },
+          {
+            "epoch": "0",
+            "flags": "GE",
+            "name": "libglvnd-opengl(ppc-64)",
+            "ver": "1.0"
+          },
+          {
+            "name": "libm.so.6()(64bit)"
+          },
+          {
+            "name": "libm.so.6(GLIBC_2.17)(64bit)"
+          },
+          {
+            "name": "libpthread.so.0()(64bit)"
+          },
+          {
+            "name": "libpthread.so.0(GLIBC_2.17)(64bit)"
+          },
+          {
+            "name": "librt.so.1()(64bit)"
+          },
+          {
+            "name": "libc.so.6(GLIBC_2.17)(64bit)"
+          }
+        ],
+        "url": "https://developer.download.nvidia.com/compute/cuda/repos/rhel8/ppc64le/nvidia-driver-libs-450.80.02-1.el8.ppc64le.rpm",
+        "version": {
+          "epoch": "3",
+          "rel": "1.el8",
+          "ver": "450.80.02"
+        }
+      },
+      {
+        "arch": "ppc64le",
+        "name": "nvidia-driver-libs",
+        "requires": [
+          {
+            "name": "/sbin/ldconfig",
+            "pre": "1"
+          },
+          {
+            "name": "/sbin/ldconfig"
+          },
+          {
+            "name": "egl-wayland(ppc-64)"
+          },
+          {
+            "name": "ld64.so.2()(64bit)"
+          },
+          {
+            "name": "ld64.so.2(GLIBC_2.17)(64bit)"
+          },
+          {
+            "name": "ldconfig",
+            "pre": "1"
+          },
+          {
+            "name": "libX11.so.6()(64bit)"
+          },
+          {
+            "name": "libXext.so.6()(64bit)"
+          },
+          {
+            "name": "libdl.so.2()(64bit)"
+          },
+          {
+            "name": "libdl.so.2(GLIBC_2.17)(64bit)"
+          },
+          {
+            "name": "libdrm.so.2()(64bit)"
+          },
+          {
+            "name": "libgbm.so.1()(64bit)"
+          },
+          {
+            "epoch": "0",
+            "flags": "GE",
+            "name": "libglvnd(ppc-64)",
+            "ver": "1.0"
+          },
+          {
+            "epoch": "0",
+            "flags": "GE",
+            "name": "libglvnd-egl(ppc-64)",
+            "ver": "1.0"
+          },
+          {
+            "epoch": "0",
+            "flags": "GE",
+            "name": "libglvnd-gles(ppc-64)",
+            "ver": "1.0"
+          },
+          {
+            "epoch": "0",
+            "flags": "GE",
+            "name": "libglvnd-glx(ppc-64)",
+            "ver": "1.0"
+          },
+          {
+            "epoch": "0",
+            "flags": "GE",
+            "name": "libglvnd-opengl(ppc-64)",
+            "ver": "1.0"
+          },
+          {
+            "name": "libm.so.6()(64bit)"
+          },
+          {
+            "name": "libm.so.6(GLIBC_2.17)(64bit)"
+          },
+          {
+            "name": "libpthread.so.0()(64bit)"
+          },
+          {
+            "name": "libpthread.so.0(GLIBC_2.17)(64bit)"
+          },
+          {
+            "name": "librt.so.1()(64bit)"
+          },
+          {
+            "name": "libc.so.6(GLIBC_2.17)(64bit)"
+          }
+        ],
+        "url": "https://developer.download.nvidia.com/compute/cuda/repos/rhel8/ppc64le/nvidia-driver-libs-520.61.05-1.el8.ppc64le.rpm",
+        "version": {
+          "epoch": "3",
+          "rel": "1.el8",
+          "ver": "520.61.05"
+        }
+      },
+      {
+        "arch": "ppc64le",
+        "name": "nvidia-kmod-headers",
+        "requires": [],
+        "url": "https://developer.download.nvidia.com/compute/cuda/repos/rhel8/ppc64le/nvidia-kmod-headers-520.61.05-1.el8.ppc64le.rpm",
+        "version": {
+          "epoch": "3",
+          "rel": "1.el8",
+          "ver": "520.61.05"
+        }
+      }
+    ]
+  },
+  "prior_compute_kernels": [
+    {
+      "host": "polus-c4-ib.bmc.hpc.cs.msu.ru",
+      "platform": "Linux-3.10.0-693.el7.ppc64le-ppc64le-with-glibc2.17",
+      "source": "raw/runs/flickr-gcn-l4-h128-s101/environment.json"
+    },
+    {
+      "host": "polus-c2-ib.bmc.hpc.cs.msu.ru",
+      "platform": "Linux-3.10.0-693.el7.ppc64le-ppc64le-with-glibc2.17",
+      "source": "raw/runs/flickr-graphsage-l3-h64-s101/environment.json"
+    },
+    {
+      "host": "polus-c3-ib.bmc.hpc.cs.msu.ru",
+      "platform": "Linux-3.10.0-693.el7.ppc64le-ppc64le-with-glibc2.17",
+      "source": "raw/runs/flickr-gcn-l5-h64-s101/environment.json"
+    }
+  ],
+  "qualification": "No official combined POWER8/RHEL7.5/P100 CUDA11.8 upgrade path established. RHEL8 RPM availability is not RHEL7 or POWER8 support.",
+  "scheduler": {
+    "gpulong_acl": false,
+    "gpulong_minutes": 720,
+    "normal_acl": true,
+    "normal_minutes": 180,
+    "one_gpu_reservation_tested": false,
+    "source": "Previous verified same-day CUDA audit"
+  }
+}

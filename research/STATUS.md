@@ -119,6 +119,27 @@ verification/fresh gate; no thread recommendation yet. No push/merge.
 [Submission report, C4 proof, manifests and pending measurement tables](experiments/flickr_cpu_thread_scaling_20261101/SUBMISSION_REPORT.md).
 Raw:`${GNN_ARTIFACT_ROOT}/flickr-cpu-thread-scaling-20261101/`.
 
+## POLUS prebuilt CUDA packages / driver feasibility — 2026-11-01
+
+Read-only investigation on branch `audit/polus-cuda-package-feasibility-20261101`,
+base `db3fa65`. RocketCE1.9.1 Torch2.0.1/CUDA11.8 ppc64le payload independently
+hash-verified: actual POWER8 compile flags, GLIBC_2.17 and compiled sm_60 target.
+Stock selected RocketCE Python has POWER9 flags; exact research Python3.10.22
+conflicts with the old zlib pin. Alternative defaults Python3.10.13 technical
+stack resolves105 Conda packages plus separately selected universal PyG2.4 wheel;
+whole runtime/ISA closure remains unverified. No current-project CUDA10.2 solution
+validated in inspected IBM/OpenCE archives.
+
+Frontend RHEL7.5/kernel3.10/glibc2.17, RPM/DKMS R440 confirmed. NVIDIA R450/R520
+ppc64le candidates found for EL8, absent from queried EL7 repo; POWER8/RHEL7.5/P100
+CUDA11.8 official upgrade qualification not established. **NO-GO for production
+upgrade/campaign launch**; promising isolated qualification candidate only.
+Five solver dry-runs:3 resolve/2 explicit dependency failures,0 prefixes created;
+2 archive hashes verified;273 source/36 prior campaign files unchanged.
+No installs, sudo, driver/kernel changes, jobs, scientific changes, push or merge.
+[Report, binary evidence, exact package lock and conditional rollback plan](experiments/polus_cuda_package_feasibility_20261101/REPORT.md).
+Raw:`${GNN_ARTIFACT_ROOT}/polus-cuda-package-feasibility-20261101/`.
+
 ## Flickr CUDA audit — environment NO-GO, 2026-11-01
 
 Current branch/source `campaign/flickr-structural-pruning-20261101` / `521f20a`:

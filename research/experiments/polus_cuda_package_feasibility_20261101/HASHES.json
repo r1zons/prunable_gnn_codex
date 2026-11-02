@@ -1,0 +1,42 @@
+{
+  "ADMINISTRATIVE_PLAN.md": {
+    "sha256": "aeb6774b3d82315ddf1790cc94d315f45cdbb255106152e4d199300580166d3a",
+    "bytes": 5495
+  },
+  "BINARY_INSPECTION.json": {
+    "sha256": "32deb1f80ab092f1ef521948a48a98415f2f6e6bff2fcd46d68c3efb6842e084",
+    "bytes": 9030
+  },
+  "HOST_AND_DRIVERS.json": {
+    "sha256": "64aaa7cf35502c65770863f7cf4fa66ce6e16ae466a21afd91f5fec93f15a8d0",
+    "bytes": 15071
+  },
+  "PACKAGE_CANDIDATES.csv": {
+    "sha256": "213e3d83d7dbb706bb84440a85c0d9063ed642f934456e00d279503caf8987e5",
+    "bytes": 3140
+  },
+  "PACKAGE_CANDIDATES.json": {
+    "sha256": "181668871c69e38833bd0f4cbedfc40d44b58bcb9610b21560f06fec7ac4689b",
+    "bytes": 12675
+  },
+  "PROPOSED_TECHNICAL_LOCK.json": {
+    "sha256": "769a88b7b1724b819ec52ee31b819d45f21de50318cce11a5f3b842925d8e202",
+    "bytes": 52758
+  },
+  "PROVENANCE.json": {
+    "sha256": "519a94c351cd53ecb34c5be66fa3ea5134ed6e0f49958dff02f1f624f0d4653d",
+    "bytes": 14325
+  },
+  "REPORT.md": {
+    "sha256": "1920422e2fcf399159fe16999cd7a3a3354197e1edd91f3f9c0929c317acdd65",
+    "bytes": 16940
+  },
+  "SOLVER_RESULTS.json": {
+    "sha256": "490385307cb139f4d2fe053670154c717f8e875518f981ad099549417a5f36ea",
+    "bytes": 8770
+  },
+  "VERIFICATION.json": {
+    "sha256": "310b34f4fb7bbdb8b8a199b2b142ddde058c1065c8cd40839ef2ec3099720b0d",
+    "bytes": 618
+  }
+}

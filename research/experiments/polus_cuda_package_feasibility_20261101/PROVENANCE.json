@@ -1,0 +1,370 @@
+{
+  "source_commit": "db3fa65b683dba20c5487293b6654bb4cf8ede97",
+  "branch": "audit/polus-cuda-package-feasibility-20261101",
+  "initial_worktree": "clean",
+  "date": "2026-11-01",
+  "raw_root": "${GNN_ARTIFACT_ROOT}/polus-cuda-package-feasibility-20261101/",
+  "raw_inventory": {
+    "cuda-forward-compatibility.html": {
+      "sha256": "0d91c11875289782c6a8418bf2fac14ef1a8c5e8666f1aaafef626c3ea078ade",
+      "bytes": 42994
+    },
+    "cuda-minor-compatibility.html": {
+      "sha256": "b07e04eedefee03faf62d1a27141f0cc80cc44655769280b2099c7dd8269f2ee",
+      "bytes": 28913
+    },
+    "cuda110-platforms.html": {
+      "sha256": "39cc932e0803f30be1c6b8da51da1d448810c68c6a6f1ba5ece5beee84e567be",
+      "bytes": 230224
+    },
+    "cuda118-platforms.html": {
+      "sha256": "27e6ad3be224f0c7b86a0b7826bf71c8ccad3a7c1675062da842b36b9e63cecc",
+      "bytes": 392473
+    },
+    "cuda118-release.html": {
+      "sha256": "1ced67533caf8f2a408ef6eaf8acd787f19646ef78baa608169d5e103e20ebf7",
+      "bytes": 341681
+    },
+    "documentation-fetch.json": {
+      "sha256": "a5fb419d4904efeb66e0cc4c653da0d66b7d8da5bffc1c5771e261374562fcf7",
+      "bytes": 1884
+    },
+    "driver-origin-r2-private.txt": {
+      "sha256": "02245ce90c7f4f0293ef5c89d43bf7ebe54b0d77f1d69502181485b3509ef169",
+      "bytes": 904
+    },
+    "host-os-driver-private.txt": {
+      "sha256": "5025257caaf9777ef0ecf79c5a90c55242087785acee8fa32333a7a233b88997",
+      "bytes": 5954
+    },
+    "ibm-index.html": {
+      "sha256": "43391482c75b2437a24c333d3fad147ff62b84a50f4b3222fb6b04c5fe402224",
+      "bytes": 449474
+    },
+    "ibm-repodata.json.bz2": {
+      "sha256": "6b4b594e31670f1f0e41df9afb8f403e29296421ea016a11191fe39d5e0e95e8",
+      "bytes": 96852
+    },
+    "info-pytorch-base-2.0.1-cuda11.8_py310_pb4.21.12_1.tar.zst": {
+      "sha256": "a7335ac96a68b20a5390f4aa5ce8b23f04b3fd66c25b49fab9a9e0e6425de13d",
+      "bytes": 636433
+    },
+    "metadata-fetch-r2.json": {
+      "sha256": "20ea2b5574daf72781fce4331b09b31a7317e07c6f7b0d7f26195dddf13bb620",
+      "bytes": 2129
+    },
+    "metadata-fetch-r3.json": {
+      "sha256": "e9f63f34bb175b70fc59ecd68915a64a63c53b57826898c9be247fb7f3e69f8d",
+      "bytes": 1065
+    },
+    "metadata-fetch.json": {
+      "sha256": "4afc7c33629c44788e4940a073399a14807d6bd4fc8497995c20647518559fe5",
+      "bytes": 1786
+    },
+    "nvidia-primary-fetch.json": {
+      "sha256": "238db296e7389e68dfc6a7f3017df641c7bf45f0b01aa1fe58fb20fe59ce207b",
+      "bytes": 509
+    },
+    "nvidia-rhel7-driver-candidates.json": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    "nvidia-rhel7-ppc64le-index.html": {
+      "sha256": "38a6bc519afb2af6eb5b7121371875de697e5039901451862da56a16e0c99e6b",
+      "bytes": 372832
+    },
+    "nvidia-rhel7-primary.xml.gz": {
+      "sha256": "641534f2f6e650f53f800ef7bb9d161c5809e2fa25813abb8b426264e2170b2b",
+      "bytes": 212753
+    },
+    "nvidia-rhel7-repomd.xml": {
+      "sha256": "9869defc51e061d6634b9b6bb7ccee99617d1b6741faef5b231ebc3b51e05e2e",
+      "bytes": 3102
+    },
+    "nvidia-rhel8-driver-candidates.json": {
+      "sha256": "bbedb42dd8f8981f7fb8f37bb9ae7092839c66de174d97476a20e7d60c352d67",
+      "bytes": 10814
+    },
+    "nvidia-rhel8-ppc64le-index.html": {
+      "sha256": "f98827f941c1c2a2d1c9ef585ef3ec0c8228715228baf87361aac22d4ca5a431",
+      "bytes": 879368
+    },
+    "nvidia-rhel8-primary.xml.gz": {
+      "sha256": "3065323571aecf4259f8ab72f21e46d3d94c8934a8fb8969c5ec0ebd435e9ce2",
+      "bytes": 460351
+    },
+    "nvidia-rhel8-repomd.xml": {
+      "sha256": "c8c13747942f2c6be4defddcef9a0c1c27915cc8cac3ba65c69de1db8fc1b3e8",
+      "bytes": 3566
+    },
+    "nvidia450-release.html": {
+      "sha256": "09a8e2d34e1c399f2d771cdb6d57e81324c0d5f2407571aff5592baea1a38bd7",
+      "bytes": 83996
+    },
+    "open-ce-1.0.0-repodata.json": {
+      "sha256": "6af65b67882339898f78cdf9a45c0dd37f099451fb358bb1add3eb601d82da12",
+      "bytes": 86554
+    },
+    "open-ce-1.2.2-repodata.json": {
+      "sha256": "b026301bacf64a4269537fe8ff7e0d6b1a07bbc10030082fe2d4611e2ddcd072",
+      "bytes": 159137
+    },
+    "open-ce-1.4.1-repodata.json": {
+      "sha256": "87ec4df1a44ae75b77d88ccb837748b2866bd9c5ef9db90a1a844ba646093d92",
+      "bytes": 137642
+    },
+    "open-ce-1.5.1-power8-repodata.json": {
+      "sha256": "470329b47a4bdd9a38a443c3f8857dd4237658dc7360c6fc23b655b43868ccd2",
+      "bytes": 35412
+    },
+    "open-ce-1.9.1-noarch-repodata.json": {
+      "sha256": "58853e8e7d6005b6c99e028835142c3e8557aa3c2fba70b757df1b5bd691711e",
+      "bytes": 40272
+    },
+    "open-ce-1.9.1-repodata.json": {
+      "sha256": "d45ebcf91fc6d6faac7613d38d0ef7c376f88d9920d5e3ad3759313c9b7c441c",
+      "bytes": 197612
+    },
+    "prior-compute-kernels.json": {
+      "sha256": "29c2e0b239235abc5697670e6db7dc113e5e447c1d3c499f56c3b7ccdc4de64b",
+      "bytes": 580
+    },
+    "pyg-2.4.0-pypi.json": {
+      "sha256": "47dcd413fd14bba452ddb0c2661e8df301cd099c33f8c7a0e4310f1fae4beac8",
+      "bytes": 65959
+    },
+    "pyg-cu118-wheel-index.html": {
+      "sha256": "35f401bcde909847908f4f21696226c39804558b4e2bfaa77d462a3e326f9eb2",
+      "bytes": 12285
+    },
+    "pyg-wheel-dry-run.json": {
+      "sha256": "850b9bb09b64f81c2bb4cd8c43caa63680f130d6eb0d4171bf8c143e9de76831",
+      "bytes": 65864
+    },
+    "python-3.10.11-h8b3979d_4_cpython.tar.bz2": {
+      "sha256": "be47b636396e5fbc16812cc451354d15287136e7759bd0fa296c7b4a4be475fb",
+      "bytes": 29784098
+    },
+    "pytorch-base-2.0.1-cuda11.8_py310_pb4.21.12_1.conda": {
+      "sha256": "a2f1cc16ebb107b0b53b8412e93e9f3267a896821b68db8a125aa7a2a964775a",
+      "bytes": 355342042
+    },
+    "pytorch-channel-ppc64le.json.bz2": {
+      "sha256": "04979824fd9ce75868ef20161b1757d18f4136489bd17f63988e1568e1647fb1",
+      "bytes": 122
+    },
+    "pytorch201-cuda.cmake": {
+      "sha256": "0cdab44cb15d2c1825f0ac37d2f298fdca6dfb56540ef6ea99e23da00aeb2ff2",
+      "bytes": 16496
+    },
+    "rocketce-1.9.1-linux-repodata.json.bz2": {
+      "sha256": "dbe5b3103c2d3ec4a5bf507e04dca36fd9fea76e15ce1bb10dbb529d446d8da9",
+      "bytes": 40641
+    },
+    "rocketce-1.9.1-noarch-repodata.json.bz2": {
+      "sha256": "aea3df8af22fdcf12875a70081550c51409b66df15807adf2e85f41a85b9eff3",
+      "bytes": 6512
+    },
+    "rocketce-201-release.html": {
+      "sha256": "a5ac3e707b94c2606a2c188b5a4553a87676c8cb0de3d5bfcb26db57e29c88fa",
+      "bytes": 348829
+    },
+    "rocketce-archive-verification.json": {
+      "sha256": "b90cb18e236ff239ee54dc2a3f687b5c4ec90dba2792ade26da332d3a231b569",
+      "bytes": 331
+    },
+    "rocketce-compiled-architecture-strings.json": {
+      "sha256": "23660176640cbbcda18ec2a46d289f4efadd70700c983f82d70a1d8b19a56e6b",
+      "bytes": 837
+    },
+    "rocketce-main-repodata.json.bz2": {
+      "sha256": "6a4c80ba4fd02753bf780b1acbb74ae0a60171760f822380131ca85cf6c04e5b",
+      "bytes": 194071
+    },
+    "rocketce-package-zip-directory.json": {
+      "sha256": "fac9d428596a90fcf098454f70e2d791cf396ee5597b5cf9ff20d917221eec38",
+      "bytes": 373
+    },
+    "rocketce-payload-info.json": {
+      "sha256": "c5dbdd4f30ae9feb78828a8e0ab5643d72c220c903bee0ddf57f77d41cd387cf",
+      "bytes": 59960
+    },
+    "rocketce-power8-report.html": {
+      "sha256": "0f9aa3c41aa4bd086b5af3b785f17b5bc1403701106867c3c1b8168cfd62c83b",
+      "bytes": 326233
+    },
+    "rocketce-python-api.json": {
+      "sha256": "4d8333dfb4617e7984e26561ca2463baa3370fd867d709179f6c54281f7ffbd0",
+      "bytes": 16119
+    },
+    "rocketce-python-static-info.json": {
+      "sha256": "bcf61fe38c52ddfb312131ea29f33b9f21999f76e8db5aca21c01b09172d02af",
+      "bytes": 334329
+    },
+    "rocketce-pytorch-api.json": {
+      "sha256": "b464847dd500a293ed73f7d0eba7ee815bce23234fadd16ad4a829c9df1cb30f",
+      "bytes": 25352
+    },
+    "rocketce-pytorch-base-api.json": {
+      "sha256": "46635edb09568250184e3d2f912dc2c303cf9322f39a634e6048125026eb8d74",
+      "bytes": 76375
+    },
+    "rocketce-select-api.json": {
+      "sha256": "fd4f0b9c2848f5311ab7ffb340195cc8e45ba5e0202debff53f50ff1c110fd66",
+      "bytes": 4014
+    },
+    "rocketce-static-payload-inspection.json": {
+      "sha256": "51ab59f0a0f60270e5e635fbb097355a701b23d3640c713851571f2c7d076556",
+      "bytes": 9990
+    },
+    "scripts/fetch_cuda_metadata_r2.py": {
+      "sha256": "332b17a090be36057d613d29d81c7c2b3bb9ea61fef0eb27596598875cb530f0",
+      "bytes": 1946
+    },
+    "scripts/fetch_cuda_metadata_r3.py": {
+      "sha256": "d33f0538dcb997ee18cd1b2ba10d17550a6c7a6cf2a3480e5ce232c53669fa2e",
+      "bytes": 1313
+    },
+    "scripts/fetch_cuda_package_metadata.py": {
+      "sha256": "b7a9e5658b7834d0297ec1cea059e0e230efc4f608818353c05c50d5e229ec86",
+      "bytes": 1648
+    },
+    "scripts/fetch_nvidia_primary.py": {
+      "sha256": "57f6267d1e5cf857ab66ac9dd8c6dd7a647adf650ac9883ecc07a33a3ac00417",
+      "bytes": 1758
+    },
+    "scripts/inspect_rocketce_arch_strings.py": {
+      "sha256": "279c6216b4ca8ae2a5b5d291733d9efb4214aa3ea17dd6af017075d77a597c12",
+      "bytes": 1243
+    },
+    "scripts/inspect_rocketce_archive.py": {
+      "sha256": "063c3c67da7ef1475fe9368d7feacad1b1b3170f5f7e5cd25502535ba6cd9082",
+      "bytes": 1938
+    },
+    "scripts/inspect_rocketce_payload.py": {
+      "sha256": "9dcdd5dd9db6def5aa77293ef4553d11cefe357cecfe6db3e906bc3d639832cd",
+      "bytes": 2057
+    },
+    "scripts/inspect_rocketce_python.py": {
+      "sha256": "856cbb18443fe1b18b4b64433a7d989204cb354f7ee38b60530ceb78cb91f426",
+      "bytes": 1124
+    },
+    "scripts/polus_cuda_metadata_probe.py": {
+      "sha256": "84a1871bd708adfd9dea031b796306567e45f9ce463c1fdc89092c205cc0309e",
+      "bytes": 1605
+    },
+    "scripts/polus_driver_origin_r2.py": {
+      "sha256": "7b1848f7acd87e63371d94a97e5c32fc4f6a5596fa999425217e1b7003dff1f4",
+      "bytes": 820
+    },
+    "scripts/read_conda_info_range.py": {
+      "sha256": "467808afe891128a0b0a6c0a53ef54f87d1a911ee362719e444ee2892aaee71e",
+      "bytes": 1625
+    },
+    "scripts/rocketce_range_api.py": {
+      "sha256": "22fe90629d94542159f017dbdeeddac400a47777e73ec778df364f093180e44f",
+      "bytes": 1408
+    },
+    "scripts/rocketce_solver_audit.py": {
+      "sha256": "d8ba515f93f7b01449fcdaa3f0fe7994ecc3a4300644d31b68c7d37fab1a04de",
+      "bytes": 2056
+    },
+    "scripts/rocketce_solver_audit_r2.py": {
+      "sha256": "1f5bfdae5d10c4662a070f6725521cd39be6f3526c4294e0ed0232fcd0ea5b33",
+      "bytes": 2122
+    },
+    "scripts/rocketce_solver_audit_r3.py": {
+      "sha256": "98f57aadf3be405e1fd8d1099a7bb1e868681ea131eec8501335981f2f7b253b",
+      "bytes": 2325
+    },
+    "scripts/rocketce_solver_audit_r4.py": {
+      "sha256": "da85a718c393f223cdcedc3c9ba18a368b00e89ccca79fa4112f4780736de023",
+      "bytes": 2303
+    },
+    "scripts/rocketce_solver_audit_r5.py": {
+      "sha256": "0b9973e5f4a5dfd1707e0f4385aa359675c334f28224acdd774a6cf6bdf5c693",
+      "bytes": 2341
+    },
+    "scripts/snapshot_cuda_docs.py": {
+      "sha256": "0ebd045031d5eb2637a4ce22d584c02009d283cb8c0890f1f03073d5ce70923f",
+      "bytes": 1795
+    },
+    "solver-context-r2.json": {
+      "sha256": "c816c546718095d73e3e7868c4024f9b87e5c20fa21ec689593675d5a4c8caf5",
+      "bytes": 1075
+    },
+    "solver-context-r3.json": {
+      "sha256": "d4a9792c51bbc2f7767b6c1a16a5ed556c49ce254550fe668638c24e8987f1d0",
+      "bytes": 1345
+    },
+    "solver-context-r4.json": {
+      "sha256": "93eebd5493de514c1a583aa74ecd58fc09cfce94cdb0bc7e139baa0348d7db8b",
+      "bytes": 1323
+    },
+    "solver-context-r5.json": {
+      "sha256": "d361434600b5029ab13e491bd4b3eaac4f615fe00d905db3fbdda6099beacfa0",
+      "bytes": 1336
+    },
+    "solver-context.json": {
+      "sha256": "1ae430f8e61c8878a2e6f7d0539f37bae2e38dd10224f03304a088aa6743695b",
+      "bytes": 1022
+    },
+    "solver-rocketce-complete-channels-cu118.json": {
+      "sha256": "b8b5a69f8e6b4e30bc94774fb1126df562948e3706cf911ddb358bedb83fbdba",
+      "bytes": 99499
+    },
+    "solver-rocketce-complete-channels-cu118.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "solver-rocketce-defaults-python31013-cu118.json": {
+      "sha256": "fd635df729df2e13c22fb9331e272435410f318ea8ad4ef7fb119eb465939138",
+      "bytes": 118864
+    },
+    "solver-rocketce-defaults-python31013-cu118.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "solver-rocketce-full-python310-cu118.json": {
+      "sha256": "7d86ca5d2c611185bc684e1698c5b9f8c731aa810e3902609ea7f4164ef5ab6a",
+      "bytes": 125392
+    },
+    "solver-rocketce-full-python310-cu118.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "solver-rocketce-full-technical-cu118.json": {
+      "sha256": "694848943c3ec9d736a782a5f18cc2d9190e347b6d31ababc9c78e9a089dd6db",
+      "bytes": 1972
+    },
+    "solver-rocketce-full-technical-cu118.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "solver-rocketce-hypothetical-cu118.json": {
+      "sha256": "abd4ea33e8500ec83dd8f48c362a9bc675927a26addd44b7cd2260f714a9f2b3",
+      "bytes": 1086
+    },
+    "solver-rocketce-hypothetical-cu118.stderr": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  },
+  "original_source_files_verified": 273,
+  "historical_campaign_files_verified": 36,
+  "source_tree_git_hash": "e4c592f19638b534316e6dcbe2862b5d9f95c50c",
+  "no_installation": true,
+  "no_candidate_execution": true,
+  "no_sudo": true,
+  "no_driver_or_kernel_changes": true,
+  "no_lsf_jobs": true,
+  "no_campaign_changes": true,
+  "no_push_or_merge": true,
+  "limitations": [
+    "Host current OS/module metadata is frontend-only; compute kernels reused from prior verified jobs.",
+    "Solver virtual package overrides are hypothetical; no ISA/runtime guarantee.",
+    "Initial direct CDN byte-range request unsupported; alternate official API byte range and later full-file SHA verification succeeded.",
+    "Five bounded Conda dry-runs retained, including two failed dependency solves; no force/no-deps Conda installation.",
+    "PyG pip no-deps dry-run only; named core dependencies separately included in Conda."
+  ]
+}
