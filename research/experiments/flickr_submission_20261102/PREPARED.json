@@ -1,0 +1,9 @@
+{
+  "source_commit": "686cf3f1913c2085260ccfef40c384de8580a042",
+  "source_archive_sha256": "9420133e3504aa907614315be81a3e8308802dd18dac16eaca18af302789384c",
+  "metadata_archive_sha256": "b89f6c2dd1d971cd471cc92a040c0c71372a140a85d1d1395b03aa50b6f6ec47",
+  "scientific_conditions": 56,
+  "source_files": 922,
+  "resource_profile_12_count": 2,
+  "new_tests_executed": false
+}

@@ -1,5 +1,14 @@
 # Experiment campaign registry
 
+**FLICKR-STRUCTURAL-V5-SUBMISSION-20261102** — **56/56 ACCEPTED, LSF1612130–1612185**;
+REJECTED0/UNRESOLVED0/NOT SUBMITTED0. Independent jobs/no citation dependency;
+54 old4-thread allocations and two measured12-thread/C4/20-slot Q4/256 profiles.
+Executable686cf3f; original frozen inputs and structural_budget_v5 unchanged.
+Explicit historical-evidence reuse; no fresh PASS timestamps, tests, verification
+workloads, auxiliary jobs, monitoring, collection, analysis, push or merge.
+Citation campaign/source untouched. [Report,manifest,receipts](flickr_submission_20261102/SUBMISSION_REPORT.md).
+Raw:`${GNN_ARTIFACT_ROOT}/flickr-submission-20261102/`.
+
 **FLICKR-CPU-THREAD-SCALING-20261101 / collection20261102** — **COMPLETED8/8,
 audited8 PASS/0 FAIL/0 SKIPPED**, native C4 LSF1612046 DONE.1026 raw files/876 source
 pins verified;2616 stored transitions/2640 cache requests, all Q arithmetic/RNG/

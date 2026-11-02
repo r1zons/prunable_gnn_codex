@@ -1,0 +1,291 @@
+{
+  "source_commit": "686cf3f1913c2085260ccfef40c384de8580a042",
+  "conditions": [
+    {
+      "condition_id": "flickr-graphsage-l3-h128-s101-static_random-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612130
+    },
+    {
+      "condition_id": "flickr-graphsage-l3-h128-s101-static_magnitude-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612131
+    },
+    {
+      "condition_id": "flickr-graphsage-l3-h128-s101-static_snip-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612132
+    },
+    {
+      "condition_id": "flickr-graphsage-l3-h128-s101-sequential_random-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612133
+    },
+    {
+      "condition_id": "flickr-graphsage-l3-h128-s101-adaptive_greedy-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612134
+    },
+    {
+      "condition_id": "flickr-graphsage-l3-h128-s101-lookahead_depth2-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612135
+    },
+    {
+      "condition_id": "flickr-graphsage-l3-h128-s101-tabular_q-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612136
+    },
+    {
+      "condition_id": "flickr-graphsage-l3-h128-s101-static_random-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612137
+    },
+    {
+      "condition_id": "flickr-graphsage-l3-h128-s101-static_magnitude-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612138
+    },
+    {
+      "condition_id": "flickr-graphsage-l3-h128-s101-static_snip-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612139
+    },
+    {
+      "condition_id": "flickr-graphsage-l3-h128-s101-sequential_random-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612140
+    },
+    {
+      "condition_id": "flickr-graphsage-l3-h128-s101-adaptive_greedy-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612141
+    },
+    {
+      "condition_id": "flickr-graphsage-l3-h128-s101-lookahead_depth2-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612142
+    },
+    {
+      "condition_id": "flickr-graphsage-l3-h128-s101-tabular_q-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612143
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h128-s101-static_random-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612144
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h128-s101-static_magnitude-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612145
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h128-s101-static_snip-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612146
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h128-s101-sequential_random-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612147
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h128-s101-adaptive_greedy-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612148
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h128-s101-lookahead_depth2-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612149
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h128-s101-tabular_q-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612150
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h128-s101-static_random-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612151
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h128-s101-static_magnitude-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612152
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h128-s101-static_snip-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612153
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h128-s101-sequential_random-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612154
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h128-s101-adaptive_greedy-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612155
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h128-s101-lookahead_depth2-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612156
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h128-s101-tabular_q-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612157
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h256-s101-static_random-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612158
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h256-s101-static_magnitude-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612159
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h256-s101-static_snip-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612160
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h256-s101-sequential_random-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612161
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h256-s101-adaptive_greedy-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612162
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h256-s101-lookahead_depth2-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612163
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h256-s101-tabular_q-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612164
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h256-s101-static_random-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612165
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h256-s101-static_magnitude-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612166
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h256-s101-static_snip-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612167
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h256-s101-sequential_random-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612168
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h256-s101-adaptive_greedy-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612169
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h256-s101-lookahead_depth2-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612170
+    },
+    {
+      "condition_id": "flickr-graphsage-l4-h256-s101-tabular_q-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612171
+    },
+    {
+      "condition_id": "flickr-gcn-l2-h256-s101-static_random-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612172
+    },
+    {
+      "condition_id": "flickr-gcn-l2-h256-s101-static_magnitude-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612173
+    },
+    {
+      "condition_id": "flickr-gcn-l2-h256-s101-static_snip-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612174
+    },
+    {
+      "condition_id": "flickr-gcn-l2-h256-s101-sequential_random-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612175
+    },
+    {
+      "condition_id": "flickr-gcn-l2-h256-s101-adaptive_greedy-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612176
+    },
+    {
+      "condition_id": "flickr-gcn-l2-h256-s101-lookahead_depth2-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612177
+    },
+    {
+      "condition_id": "flickr-gcn-l2-h256-s101-tabular_q-t30-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612178
+    },
+    {
+      "condition_id": "flickr-gcn-l2-h256-s101-static_random-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612179
+    },
+    {
+      "condition_id": "flickr-gcn-l2-h256-s101-static_magnitude-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612180
+    },
+    {
+      "condition_id": "flickr-gcn-l2-h256-s101-static_snip-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612181
+    },
+    {
+      "condition_id": "flickr-gcn-l2-h256-s101-sequential_random-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612182
+    },
+    {
+      "condition_id": "flickr-gcn-l2-h256-s101-adaptive_greedy-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612183
+    },
+    {
+      "condition_id": "flickr-gcn-l2-h256-s101-lookahead_depth2-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612184
+    },
+    {
+      "condition_id": "flickr-gcn-l2-h256-s101-tabular_q-t50-budget-v5",
+      "status": "ACCEPTED",
+      "job_id": 1612185
+    }
+  ],
+  "counts": {
+    "ACCEPTED": 56,
+    "REJECTED": 0,
+    "UNRESOLVED": 0,
+    "NOT SUBMITTED": 0
+  }
+}

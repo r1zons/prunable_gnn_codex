@@ -2,6 +2,20 @@
 
 **Updated:** 2026-11-02
 
+## Flickr structural V5 —56 scientific conditions ACCEPTED,2026-11-02
+
+Dedicated branch`submission/flickr-structural-v5-20261102`, executable686cf3f,
+from latest canonical0251954. LSF **1612130–1612185,56/56 ACCEPTED**, REJECTED0,
+UNRESOLVED0,NOT SUBMITTED0. No execution/completion monitoring or results claimed.
+54 original4-thread resource/host profiles preserved; Q4/256 jobs1612164/1612171
+use measured12-thread/interop1/20-slot exclusive C4 affinity,32GiB/180min.
+Historical audit and completed C4 benchmark reused under explicit submission-only
+authorization; old gate records/timestamps unchanged. Minimal resource plumbing;
+**no new tests or computational verification**, no auxiliary jobs, environments,
+network changes, push or merge. Citation source/jobs1612111–1612129 untouched.
+[Submission report,56-row manifest and receipts](experiments/flickr_submission_20261102/SUBMISSION_REPORT.md).
+Raw:`${GNN_ARTIFACT_ROOT}/flickr-submission-20261102/`.
+
 ## Flickr C4 thread scaling collected and independently verified — 2026-11-02
 
 **8/8 technical profiles COMPLETED, audited8 PASS/0 FAIL/0 SKIPPED**; C4 job1612046

@@ -1,0 +1,13 @@
+{
+  "parent_commit": "0251954c49bfb0db1d6dd868d8b6ae6fa5879860",
+  "protected_citation_files_unchanged": 19,
+  "citation_jobs_modified_or_cancelled": false,
+  "auxiliary_jobs_submitted": 0,
+  "new_tests_executed": 0,
+  "new_local_or_technical_research_workloads": 0,
+  "scheduler_queries": 0,
+  "execution_monitoring": false,
+  "result_collection": false,
+  "push": false,
+  "merge": false
+}

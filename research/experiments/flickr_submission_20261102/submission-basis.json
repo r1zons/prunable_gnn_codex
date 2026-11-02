@@ -1,0 +1,42 @@
+{
+  "authority": "EXPLICIT_USER_AUTHORIZATION_TO_REUSE_EXISTING_VERIFIED_EVIDENCE",
+  "new_compute_verification_performed": false,
+  "historical_records_refreshed": false,
+  "new_tests_executed": false,
+  "scientific_evidence_source": "1b8b8b78667519f97c0682d2645837d4990960b8",
+  "benchmark_source": "10d778223f049935fd5d4ae554494da15377aaba",
+  "source_commit": "686cf3f1913c2085260ccfef40c384de8580a042",
+  "evidence_files": {
+    "evidence/00-resolved_protocol.json": "b451c60bec314cf019d11be00d20417c5461b1abe8718015b81126599d401670",
+    "evidence/01-JOB_MANIFEST.csv": "006455530ee05ed31fa4970305a7f35a62a8f7d6646d9117721e6d262607cf82",
+    "evidence/02-CAPACITY.json": "f4466e2ffa1aae4de8fe80e2869919bdc1cb78c03154968a7d0050626aa2ded4",
+    "evidence/03-PROVENANCE.json": "73f60086a5cd0719f987897078f36d5f1bc08bedab00449dab58cb8dcabb201f",
+    "evidence/04-IMPLEMENTATION_AUDIT.md": "7619358be54d74e2638722c4e7fb54e26c0ff2f4ebcf2be2bee8df0c6e118bbe",
+    "evidence/05-NATIVE_EXECUTION_EQUIVALENCE.json": "8ec1669409b3ea1a163f0d7a8b55d37674b6bc1c8be8cd0c33881b9bbdb6c65e",
+    "evidence/06-NATIVE_CACHE_CONTRACT.json": "073d2b4359cc742c74372030d177eb11e83205c3684e62d30967d60c3d3dde97",
+    "evidence/07-submission.json": "6e05f30dc422103846a29160a6ea2953cce6b59cb5fc77138453baef8ec61c78",
+    "evidence/08-REPORT.md": "323f8fe62b2f2d24fa82c046354a1dbbdcb9e47151aaab5bd2aebfbdd3ce758f",
+    "evidence/09-AUDIT.json": "1ddb3245fbc5d65334846420687261e6e2e5198663bacf704bcfeb3c473857b1",
+    "evidence/10-VERIFICATION.json": "170c20ba30d8cfbca58e9fb2f53372786225d7909cb1b0434616cb1bef4e472b",
+    "evidence/11-PROVENANCE.json": "4f5926768bc7296c99b75fdb821d19791a42e21eaeefbadbe9ff504b24f51b78",
+    "evidence/12-CAMPAIGN_ASSESSMENT.json": "8fca938ad0be956d8f84ca5b14cedb17e0646ec8ad9864eaa81b990368dd4b74",
+    "evidence/13-campaign_resource_assessment.csv": "db8ec9b22f8bc3f58211f7d89a32945ca69f540eebc01978f09b714acbd086e6",
+    "evidence/14-runs.csv": "27e2be84ce079f97a44e063ec783523964cbc20bdac617480692de5b98f59ffa"
+  },
+  "scientific_dependencies_unchanged_sha256": {
+    "src/gnn_pruning/pruning/budget_v5.py": "eeb63c0757786a866e47cf2e67abd7117b3c41d6fdf69d5eb840e72774bf745f",
+    "src/gnn_pruning/pruning/adaptive_v2.py": "164285ec9c51e8181bd65d2d353f21cbdead8302ca7b8e4d6be55d98b57cc038",
+    "src/gnn_pruning/pruning/static_v2.py": "abfde03e27ea99f838a480c55f13fc8764a9c2b423cb8e201c68dba4aa4ed397",
+    "src/gnn_pruning/surgery/local_v2.py": "6288b6f888680c318b5a0047af4408bce137aceb0063de0379da2f04ad68c059",
+    "src/gnn_pruning/experiments/frozen_validation.py": "395a7bc438f8c783a1b9e49053736fd214cfb5dd1569c0563b843b6af29d70c5",
+    "src/gnn_pruning/experiments/flickr_dense.py": "053b7cade91b5a5ff4aed07450866c46e4e95bc30efb4e40cffb42cfd37fa1e2",
+    "src/gnn_pruning/models/gcn.py": "a0e20de75e8b7f0e6e4b25e191fb97801cd19215ad10e055d8a5495e5b45b2a4",
+    "src/gnn_pruning/models/registry.py": "c19614e0449a030e018f88ae083ea12263061a6bf6349ee71f55e3e9ba6a13b3",
+    "src/gnn_pruning/models/__init__.py": "a23dfb8b9479cfe7bfe6bfb1231b48c7d20174f452eba9d978bcb19893e879ea",
+    "src/gnn_pruning/models/graphsage.py": "de5e92e92c82fdd0b5e1579a33654588a2e949718bd92e7c14dd446260e11b4b",
+    "src/gnn_pruning/models/base.py": "c7224b95fdee40f16654f0e008338da67c09811b9b4d2440895fc21ce4d22985"
+  },
+  "changed_allocations": 2,
+  "retained_allocations": 54,
+  "note": "The original CAPACITY FAIL record and old timestamps are preserved. Explicit present authorization relies on completed scaling evidence and revised resource plumbing; no fresh native PASS was generated."
+}

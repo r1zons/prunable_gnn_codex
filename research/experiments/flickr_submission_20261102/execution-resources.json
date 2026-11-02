@@ -1,0 +1,618 @@
+{
+  "flickr-graphsage-l3-h128-s101-static_random-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l3-h128-s101-static_magnitude-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l3-h128-s101-static_snip-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l3-h128-s101-sequential_random-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l3-h128-s101-adaptive_greedy-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l3-h128-s101-lookahead_depth2-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l3-h128-s101-tabular_q-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l3-h128-s101-static_random-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l3-h128-s101-static_magnitude-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l3-h128-s101-static_snip-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l3-h128-s101-sequential_random-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l3-h128-s101-adaptive_greedy-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l3-h128-s101-lookahead_depth2-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l3-h128-s101-tabular_q-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h128-s101-static_random-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h128-s101-static_magnitude-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h128-s101-static_snip-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h128-s101-sequential_random-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h128-s101-adaptive_greedy-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h128-s101-lookahead_depth2-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h128-s101-tabular_q-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h128-s101-static_random-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h128-s101-static_magnitude-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h128-s101-static_snip-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h128-s101-sequential_random-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h128-s101-adaptive_greedy-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h128-s101-lookahead_depth2-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h128-s101-tabular_q-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h256-s101-static_random-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h256-s101-static_magnitude-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h256-s101-static_snip-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h256-s101-sequential_random-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h256-s101-adaptive_greedy-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h256-s101-lookahead_depth2-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h256-s101-tabular_q-t30-budget-v5": {
+    "threads": 12,
+    "interop_threads": 1,
+    "cpu_affinity": [
+      0,
+      80,
+      8,
+      88,
+      16,
+      96,
+      24,
+      104,
+      32,
+      112,
+      40,
+      120,
+      48,
+      128,
+      56,
+      136,
+      64,
+      144,
+      72,
+      152
+    ],
+    "thread_environment": {
+      "OMP_NUM_THREADS": "12",
+      "OPENBLAS_NUM_THREADS": "12",
+      "MKL_NUM_THREADS": "12",
+      "NUMEXPR_NUM_THREADS": "12",
+      "OMP_DYNAMIC": "FALSE",
+      "OMP_MAX_ACTIVE_LEVELS": "1",
+      "OMP_PROC_BIND": "FALSE",
+      "OMP_PLACES": "threads",
+      "CUDA_VISIBLE_DEVICES": "",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "flickr-graphsage-l4-h256-s101-static_random-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h256-s101-static_magnitude-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h256-s101-static_snip-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h256-s101-sequential_random-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h256-s101-adaptive_greedy-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h256-s101-lookahead_depth2-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-graphsage-l4-h256-s101-tabular_q-t50-budget-v5": {
+    "threads": 12,
+    "interop_threads": 1,
+    "cpu_affinity": [
+      0,
+      80,
+      8,
+      88,
+      16,
+      96,
+      24,
+      104,
+      32,
+      112,
+      40,
+      120,
+      48,
+      128,
+      56,
+      136,
+      64,
+      144,
+      72,
+      152
+    ],
+    "thread_environment": {
+      "OMP_NUM_THREADS": "12",
+      "OPENBLAS_NUM_THREADS": "12",
+      "MKL_NUM_THREADS": "12",
+      "NUMEXPR_NUM_THREADS": "12",
+      "OMP_DYNAMIC": "FALSE",
+      "OMP_MAX_ACTIVE_LEVELS": "1",
+      "OMP_PROC_BIND": "FALSE",
+      "OMP_PLACES": "threads",
+      "CUDA_VISIBLE_DEVICES": "",
+      "PYTHONDONTWRITEBYTECODE": "1"
+    }
+  },
+  "flickr-gcn-l2-h256-s101-static_random-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-gcn-l2-h256-s101-static_magnitude-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-gcn-l2-h256-s101-static_snip-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-gcn-l2-h256-s101-sequential_random-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-gcn-l2-h256-s101-adaptive_greedy-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-gcn-l2-h256-s101-lookahead_depth2-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-gcn-l2-h256-s101-tabular_q-t30-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-gcn-l2-h256-s101-static_random-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-gcn-l2-h256-s101-static_magnitude-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-gcn-l2-h256-s101-static_snip-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-gcn-l2-h256-s101-sequential_random-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-gcn-l2-h256-s101-adaptive_greedy-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-gcn-l2-h256-s101-lookahead_depth2-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  },
+  "flickr-gcn-l2-h256-s101-tabular_q-t50-budget-v5": {
+    "threads": 4,
+    "interop_threads": null,
+    "cpu_affinity": null,
+    "thread_environment": {
+      "OMP_NUM_THREADS": "4",
+      "MKL_NUM_THREADS": "4",
+      "OPENBLAS_NUM_THREADS": "4"
+    }
+  }
+}
