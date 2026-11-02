@@ -1,10 +1,15 @@
 # gnn_pruning
 
+Research context and current campaign/article status: [research hub](research/README.md)
+and [current status](research/STATUS.md). The generic CLI described below and
+separately pinned V2/V3/V4/V5 research controllers are different interfaces;
+use each campaign's protocol rather than assuming names imply identical behavior.
+
 `gnn_pruning` is a config-driven PyTorch Geometric research framework for structural pruning of node-classification GNNs.
 
 ## Implemented Scope
 
-- Datasets: Cora, Citeseer, PubMed, Flickr, Reddit, and an explicit homogeneous-author adapter for heterogeneous DBLP.
+- Datasets: Cora, Citeseer, PubMed, Questions, Flickr, Reddit, and an explicit homogeneous-author adapter for heterogeneous DBLP.
 - Models: GCN and GraphSAGE with configurable depth, hidden width, and dropout.
 - Reproducible exact-ratio train/validation/test splits.
 - Dense training with validation-loss early stopping and checkpoint compatibility checks.

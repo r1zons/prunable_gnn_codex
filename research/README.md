@@ -1,49 +1,50 @@
 # Research hub — structural pruning of GNNs
 
-**Purpose:** Short entry point for the research behind `prunable_gnn_codex`, so a new ChatGPT, Work, or Codex session can restore context without rereading conversations. This is an evidence index, **not** an automatically validated scientific report.
+**Updated: 2026-11-02.** Start here to restore project context without relying on
+chat memory. The repository contains different historical protocols and campaigns;
+implemented code, accepted jobs, completed outputs and independently checked
+scientific claims are distinct states.
 
-## Reading order (mandatory)
+## Reading order
 
-1. [`STATUS.md`](STATUS.md) — current canonical state, paths, results, caveats and next actions.
-2. [`experiments/INDEX.md`](experiments/INDEX.md) — campaign registry and artifact hashes.
-3. [`publications/sitito_2026/PLAN.md`](publications/sitito_2026/PLAN.md) — current paper's editorial and research tasks.
-4. [`CLAIMS.md`](CLAIMS.md) and [`EVIDENCE.md`](EVIDENCE.md) — claim/evidence discipline and historical provenance.
-5. [`RESEARCH_STATE.md`](../RESEARCH_STATE.md) and [`HISTORY.md`](HISTORY.md) — older audited code scope and timeline; retain as historical context where they conflict with `STATUS.md`.
-6. [`AGENTS.md`](../AGENTS.md) — implementation instructions; [`ROADMAP.md`](../ROADMAP.md) — engineering roadmap.
+1. [Current status](STATUS.md): the opening summary is current; later entries are
+   a dated event log, including superseded blockers and submission-only states.
+2. [Current article intentions](publications/adaptive_strategies_2026/STATE_AND_PLAN.md):
+   new manuscript, adaptive strategy behavior, hypothesis and evidence limits.
+3. [Campaign registry](experiments/INDEX.md), then the relevant protocol, manifests,
+   receipts, collection/audit and analysis reports. Citation V5 and Flickr V5 are
+   separate campaigns; completion of one says nothing about the other.
+4. [SITITO release](publications/sitito_2026/RELEASES.md): immutable previous text,
+   reusable material for the new article, not the current writing plan.
+5. [Historical claims](CLAIMS.md), [historical evidence](EVIDENCE.md),
+   [history](HISTORY.md) and [older code snapshot](../RESEARCH_STATE.md).
+   Their old open items do not override later verified campaign reports.
+6. [Repository instructions](../AGENTS.md) and [engineering roadmap](../ROADMAP.md).
 
-## Research boundaries
+## Current research direction
 
-- Current implementation: **structural hidden-channel pruning of GCN / GraphSAGE** in a node-classification task. The graph's nodes and edges are not pruned.
-- Implemented tabular Q-learning is an **experimental baseline**, not a proven superior method and not a finalized thesis novelty.
-- The only immediate objective is a scientifically defensible submission through the VMK MSU conference by the researcher-designated target of **2026-11-02**. The organizer's official deadline and submission path still require independent confirmation.
-- Unrelated algorithm development, HPC benchmarking and later publication candidates, including *ПаВТ-2027*, are deferred until after this submission effort.
-- Avoid duplicate publication: the two manuscripts need distinct research questions, experimental evidence, and claims.
+Compare structural hidden-channel pruning strategies for GCN/GraphSAGE, giving
+particular attention to decisions, trajectories and consequences of adaptive
+methods. Quality, achieved physical compression and cost remain necessary outcomes.
+Additional flexibility helping the method is a hypothesis, not a proven advantage.
+Q-learning is one method; Lookahead is implemented; beam/genetic search is not part
+of the seven-method V5 matrix. Literature can cover a wider range than experiments.
 
-## Evidence/status vocabulary
+The graph itself is not sparsified. Parameter reduction is not measured speedup.
+Training, pruning and model-selection decisions never use test labels. Preserve
+independent Dense seeds versus policy seeds and platform/source provenance.
 
-- **VERIFIED_CODE:** inspected at the explicitly pinned commit (not necessarily reproduced experimentally).
-- **DOCUMENTED_HISTORICAL:** shown in earlier coursework; raw run provenance may be absent.
-- **USER_REPORTED:** methodological fact clarified by the researcher, awaiting artifacts/protocol.
-- **VERIFIED_EXPERIMENT:** independently traceable run ID, exact code/config, split, seeds, environment and results.
-- **HYPOTHESIS:** testable possibility, not a finding.
-- **OPEN:** decision, evidence, or verification not yet complete.
+## Evidence vocabulary
 
-Never silently promote a DOCUMENTED_HISTORICAL, USER_REPORTED or HYPOTHESIS item to VERIFIED_EXPERIMENT.
+- **ACCEPTED/SUBMITTED:** scheduler receipt, not a completed experiment.
+- **COMPLETED:** successful execution and final outputs; state exact evidence.
+- **INTEGRITY VERIFIED:** bytes/hashes and recorded metadata agree; does not imply
+  independently rerun tensor reconstruction or model inference.
+- **INDEPENDENTLY AUDITED:** name the actual checks and limitations of that audit.
+- **ANALYZED:** scientific/descriptive analysis exists for that specific provenance.
+- **HYPOTHESIS / OPEN:** intentions, associations or missing verification, not facts.
 
-## Immediate objective: the first paper
-
-1. Preserve the historical audit and do not treat the two-seed debug benchmark as publication-grade evidence of Q-learning superiority.
-2. Prepare the approved Kaggle pilot without mixing its outputs with historical runs.
-3. Use the pilot only to verify execution, method compatibility, convergence diagnostics, artifact capture and runtime.
-4. Freeze validation-based comparison rules before reviewing final multi-seed test results.
-5. Prepare the manuscript and venue materials in parallel; do not defer writing until experiments finish.
-
-## Updates
-
-Update `CLAIMS.md` and `EVIDENCE.md` when new supporting artifacts appear. Review changes in a branch/PR before merging. Keep large checkpoints, private material and raw logs outside the public Git repository, linking them with stable identifiers and (where useful) hashes. Do not rely on AI-chat memory as the canonical source.
-
-## Latest local evidence audit
-
-The earlier [2026-10-22 local Codex audit summary](audits/2026-10-22_local-codex.md) remains historical. It has been superseded for the canonical protocol by the completed [2026-10-25 local CPU audit](experiments/local_cpu_2026/audit/AUDIT_REPORT.md): 18 dense conditions and 252 method-target rows across seeds 101, 202 and 303.
-
-The reviewed Kaggle plan is preserved as the protocol source, but the completed local CPU and POLUS CPU campaigns remain separate executions. Read the registry before using either result set.
+Large checkpoints, raw traces/logs and private access metadata remain under the
+adjacent external `prunable_gnn_artifacts` root, outside Git. A clone restores
+compact provenance and analysis, not all raw artifacts. Read the per-campaign paths
+and hashes before collecting or rerunning anything. Do not overwrite evidence.

@@ -1,5 +1,19 @@
 # Experiment campaign registry
 
+**Reading rule (2026-11-02):** entries below are dated events. Later collection
+or analysis entries supersede earlier submission/blocker states for the same
+campaign; retain all original evidence. Current overview: [STATUS](../STATUS.md).
+Current paper direction: [new article plan](../publications/adaptive_strategies_2026/STATE_AND_PLAN.md).
+
+**CITATION-V5-MAIN-20261102** —18 scientific jobs1612111–1612128 ACCEPTED for252
+conditions; reporting1612129 ACCEPTED. Scientific sourcef050a5a; orchestration0251954.
+Completion/collection/full audit **NOT VERIFIED in the current local summary**.
+Last stored scheduler snapshot02:52:58 MSK is historical, not a current query.
+Do not confuse preflight/test fixtures or the completed October31 campaign with
+V5 production results. [Local receipt-backed status](polus_v5_main_20261102/LOCAL_STATUS_20261102.md),
+[protocol](polus_v5_main_20261102/PROTOCOL.md), [operations](polus_v5_main_20261102/OPERATIONS.md).
+
+
 **FLICKR-V5-COLLECTION-20261102** —56/56 COMPLETED, LSF1612130–1612185 historical
 DONE;1,951 files/504 completion pins/922 source files verified,56 metadata PASS.
 All target_band, Q30 episodes,54 four-thread/two12-thread C4 profiles. Collection

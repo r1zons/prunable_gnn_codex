@@ -75,3 +75,19 @@ Report complete, partial and unrecoverable links; do not fabricate missing prove
 - The only immediate publication objective is a scientifically defensible submission by the researcher-designated date 2026-11-02. Unrelated algorithms, HPC benchmarking and later papers are deferred.
 
 The complete prospective protocol is maintained in `research/experiments/kaggle_pilot_2026/PLAN.md`.
+
+
+### 2 November 2026 — new article direction confirmed by researcher
+
+- Prepare a new manuscript using SITITO v1 and later results; preserve the v1 release.
+- Main object: pruning strategies, with emphasis on adaptive decisions, trajectories
+  and consequences. Quality/compression/cost alone do not exhaust the question.
+- Increased adaptive freedom helping quality/compression or efficiency is a
+  hypothesis; no predetermined winner. Q diagnostics are supporting evidence.
+- Include broader methodological families in the literature, without treating beam
+  or evolutionary search as implemented members of the seven-method V5 matrix.
+- Researcher reports personal editorial comments only, no external review,
+  approval or submission yet. Final conclusions/venue remain open.
+- Current decisions, campaign readiness and drafting outline are in the
+  [new article plan](publications/adaptive_strategies_2026/STATE_AND_PLAN.md).
+  The attached older Chat proposal is advisory, not evidence or execution authority.

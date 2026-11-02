@@ -1,5 +1,17 @@
 # Evidence and provenance register
 
+## Historical evidence register — current evidence pointer
+
+**2026-11-02:** the register below describes the October22 historical review and
+its decisions. It is not a complete current scientific-claims ledger. The current
+[new article plan](publications/adaptive_strategies_2026/STATE_AND_PLAN.md) records
+the researcher-approved focus on adaptive strategy behavior. Use
+[STATUS](STATUS.md) and the [campaign registry](experiments/INDEX.md) for subsequent
+verified results, and each campaign's own audit/analysis for admissible claims.
+A current cross-campaign claim-to-evidence table remains to be prepared; do not
+silently promote old hypotheses or merge different controllers/provenance groups.
+
+
 This index records **what exists and how strongly it supports a claim**. It does not upgrade coursework figures to independently reproduced results.
 
 ## Sources

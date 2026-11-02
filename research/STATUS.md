@@ -2,6 +2,41 @@
 
 **Updated:** 2026-11-02
 
+## Текущее состояние и намерения — 2026-11-02
+
+Готовим **новую статью о стратегиях структурного прунинга GNN**, используя
+материалы СИТИТО v1 и последующие результаты. Главный акцент — поведение
+адаптивных алгоритмов: выбор преобразований, траектории и последствия решений,
+наряду с качеством, фактической компрессией и стоимостью. Польза большей свободы
+и адаптивности — гипотеза, не заранее установленный вывод. Q-learning — один из
+методов сравнения. По сообщению исследователя внешних отзывов/согласования/подачи
+пока не было; имеются его личные редакционные комментарии.
+
+**Текущий редакционный источник:** [состояние и план новой статьи](publications/adaptive_strategies_2026/STATE_AND_PLAN.md).
+СИТИТО v1 остаётся неизменным релизом. Прежний Kaggle-план и сроки не являются
+текущим разрешением на запуски или подтверждённым маршрутом подачи.
+
+| Направление | Последнее подтверждённое состояние | Что ещё требуется |
+|---|---|---|
+| Flickr V5 | 56/56 собраны; целостность и метаданные проверены | Содержательный сравнительный анализ; независимый повторный reload/inference при сборе не выполнялся |
+| Citation V5 | 18 научных заданий1612111–1612128 и обработчик1612129 ACCEPTED | Завершение и пригодность полного архива/аудита в этой локальной сводке не подтверждены; [квитанции и старый снимок](experiments/polus_v5_main_20261102/LOCAL_STATUS_20261102.md) |
+| Предыдущая POLUS-кампания31 октября | 252 результата собраны, проверены и проанализированы | Использовать с ограничениями её исторических контроллеров; не переименовывать в V5 |
+| V3/V4 | Проверенная диагностика и анализ траекторий | Переиспользовать в новой статье с разделением версий/seed/платформ |
+| Questions | Интеграция и малый пилот выполнены; качество baseline NO-GO | Не включена в текущие citation/Flickr-кампании |
+| Рукопись | СИТИТО v1 заморожена; новая версия на стадии замысла | Проверка литературы, подбор пригодных данных, новый черновик и выводы после анализа |
+
+Текущая документационная ветка: `docs/adaptive-strategies-paper-20261102`, от
+`5705851` (последняя опубликованная коллекция Flickr). Последний push был в
+`submission/flickr-structural-v5-20261102`, не в main. Не переключать checkout на
+историческую ветку по старой записи. Проверять фактический HEAD и рабочее дерево.
+
+## Как читать записи ниже
+
+Ниже — журнал этапов, а не набор одновременно действующих статусов. Старые
+BLOCKED/RUNNING/ACCEPTED относятся к указанному этапу; последующая коллекция может
+их сменить. Сохранённые отчёты и квитанции не переписываются. Состояние разных
+кампаний (особенно citation V5 и Flickr V5) не переносится с одной на другую.
+
 ## Flickr structural V5 collected — 2026-11-02
 
 **56/56 COMPLETED**, original IDs1612130–1612185 all historical LSF DONE; no
@@ -431,7 +466,7 @@ conda gnn_pruning (Python3.8.20):71 passed/2 skipped. The unnecessary temporary
 CUDA/POLUS remain unverified; no dense training, large experiment or server run
 is authorized. Tiny synthetic Q-policy unit tests are part of Stage III. Historical evidence is unchanged.
 
-**Article target:** 2026-11-02 (researcher-designated; official venue path/deadline still requires confirmation)
+**Historical article target:** 2026-11-02; this was a project target, not a confirmed venue deadline. Current editorial intentions are stated at the top.
 
 ## Start here
 
@@ -439,18 +474,22 @@ The only canonical repository is:
 
 `/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_codex`
 
-The reviewed experimental implementation is pinned to `72293149d8fff186dd268789e7b8fea5848c9360`. Consolidation work is on `consolidation/gnn-research-20261025`; inspect the branch HEAD and working tree before further edits.
+Use the current-state summary at the top and the new article plan linked there.
+Each campaign has its own immutable source SHA in its manifest; there is no single
+historical commit governing all experiments. Commit `7229314` and branch
+`consolidation/gnn-research-20261025` describe the older October25 evidence group,
+not the current checkout or V5 scientific source.
 
 Read next:
 
 1. [`experiments/INDEX.md`](experiments/INDEX.md) for campaign status, paths and hashes.
 2. [`experiments/local_cpu_2026/audit/AUDIT_REPORT.md`](experiments/local_cpu_2026/audit/AUDIT_REPORT.md) for the three-seed local audit.
 3. [`experiments/polus_cpu_2026/README.md`](experiments/polus_cpu_2026/README.md) for the POLUS pilot and platform caveats.
-4. [`publications/sitito_2026/PLAN.md`](publications/sitito_2026/PLAN.md) for the paper plan.
+4. [`publications/adaptive_strategies_2026/STATE_AND_PLAN.md`](publications/adaptive_strategies_2026/STATE_AND_PLAN.md) for the current article plan; the SITITO plan is historical.
 
 Do not use chat history as the source of record when these files and the hashed artifacts answer the question.
 
-## Canonical evidence now available
+## Historical evidence summary — October24/25
 
 - Local CPU campaign, 2026-10-25: 18 dense conditions and 252 method-target results, seeds 101/202/303, all strict checkpoint reloads and exact structural-reduction checks passed.
 - POLUS CPU campaign `pilot-cpu-101-c4-v2`, 2026-10-24: six LSF jobs 1598695–1598700, six dense conditions and 84 method-target results, seed 101, code commit `72293149d8fff186dd268789e7b8fea5848c9360`.
@@ -458,11 +497,11 @@ Do not use chat history as the source of record when these files and the hashed 
 - POLUS seed 101 is a repeat of seed 101 on another platform, not a fourth statistically independent seed.
 - The unrelated `cmc_msu_hpc_course_2026` tree contains wave-equation work and contributes no GNN result.
 
-## Scientific guardrails
+## Scientific guardrails — version-aware
 
 - Compare methods at achieved parameter reduction, not requested target alone.
-- Adaptive Layerwise did not reach either 0.30 or 0.50 target in the local campaign; achieved reduction was 0.0062–0.0440. Treat it as a failed matched-compression comparator, not as a valid 30%/50% point.
-- Q-learning uses a different local non-monotonic surgery capability from static cascade baselines. Differences cannot be attributed to learning alone.
+- In the historical local October25 campaign, Adaptive Layerwise did not reach either 0.30 or 0.50 target in the local campaign; achieved reduction was 0.0062–0.0440. Treat it as a failed matched-compression comparator, not as a valid 30%/50% point.
+- Historical Q-learning used different local surgery from static cascade baselines; this limitation belongs to that protocol. V5 has separate budget controllers. Inspect each version before attributing differences to learning.
 - Group Lasso is a pruning-time scoring/regularization pass, not dense training with a Group-Lasso objective.
 - Test metrics are descriptive reporting only. Do not use them for protocol changes, method selection or winner claims.
 - Timing evidence is platform-specific. Parameter reduction is not measured acceleration, and the current Q-learning speed proxy is not hardware-aware.
@@ -473,17 +512,17 @@ Large/raw artifacts live outside Git in the adjacent directory:
 
 `/Users/perfect/Desktop/code/MSU/MSU_SQI_25_DIPLOMA/test_codex/prunable_gnn_artifacts`
 
-Portable tools may set `GNN_REPO_ROOT` and `GNN_ARTIFACT_ROOT`. POLUS uses `POLUS_TASK_ROOT=$HOME/gnn-polus-20261023`; SSH target and Mac route details remain in the user's existing secure configuration or ignored `research/local-overrides.yaml`. The tracked example contains placeholders only.
+Portable tools may set `GNN_REPO_ROOT` and `GNN_ARTIFACT_ROOT`. Resolve POLUS login, task root and campaign roots from that campaign's existing private access metadata; do not infer them from a historical account, SSH alias or `$HOME`. Access/network values remain in secure configuration or ignored local files; tracked examples contain placeholders only.
 
 Do not move, delete, regenerate or overwrite the external artifact tree. The original source folder `/Users/perfect/Documents/ChatGPT/Диплом` remains an additional backup and was not deleted.
 
-## Immediate work to 2026-11-02
+## Current next work
 
-1. Build paper tables/figures from the local three-seed condition-level aggregate; do not pool across datasets/models or with POLUS.
-2. Present Adaptive Layerwise target failure and Q-learning target/stop behavior explicitly.
-3. Use the POLUS run as cross-platform/operational evidence only unless a separately declared analysis needs it.
-4. Freeze the claim-to-evidence table before final prose and verify the official submission route/template/deadline.
-5. Obtain supervisor approval; do not launch replacement experiments merely because a result is inconvenient.
+Follow the new article plan: establish usable evidence for each campaign, analyze
+strategy decisions alongside outcomes/cost, verify literature, and prepare a new
+draft. Final conclusions and venue requirements are open. Documentation work does
+not authorize experiments, model execution, LSF changes, push or merge. Historical
+reports and the SITITO release remain immutable.
 
 ## Working convention for chats
 

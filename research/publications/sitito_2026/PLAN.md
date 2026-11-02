@@ -1,5 +1,14 @@
 # SITITO / VMK MSU — first manuscript plan
 
+> **Historical plan, superseded for current writing on 2026-11-02.**
+> The researcher is preparing a new article using SITITO v1 and later results,
+> focusing on adaptive strategy decisions/behavior alongside quality and cost.
+> Read [the current state and plan](../adaptive_strategies_2026/STATE_AND_PLAN.md).
+> The October22 plan below is retained for provenance; its Kaggle launch gates,
+> target date and Q-centered working title are not current execution instructions.
+> The immutable `releases/v1_20261027/` files are unchanged.
+
+
 **Status:** active research/editorial plan, revised 2026-10-22. **Only immediate objective:** prepare a scientifically defensible submission by the researcher-designated target of **2026-11-02**. Selection for the journal is not guaranteed.
 
 Target journal: «Современные информационные технологии и ИТ-образование». Verify whether the manuscript is to be entered **via the conference** or as a **direct journal submission**, because templates/abstract requirements can differ.

@@ -1,5 +1,11 @@
 # ROADMAP.md
 
+This is the engineering foundation/roadmap, not the current article or experiment
+schedule. For subsequent Lookahead, Questions and V5 work, read the
+[current status](research/STATUS.md) and
+[new article intentions](research/publications/adaptive_strategies_2026/STATE_AND_PLAN.md).
+Historical research variants retain their own source and protocol boundaries.
+
 ## Implemented Foundation
 
 - Config layering and YAML-driven experiments.
