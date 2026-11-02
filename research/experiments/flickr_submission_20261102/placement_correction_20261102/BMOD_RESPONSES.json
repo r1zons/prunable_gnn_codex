@@ -1,0 +1,443 @@
+[
+  {
+    "job_id": 1612142,
+    "operation": [
+      "bmod",
+      "-mn",
+      "1612142"
+    ],
+    "original_response": {
+      "returncode": 0,
+      "args": [
+        "bmod",
+        "-mn",
+        "1612142"
+      ],
+      "stderr": "",
+      "stdout": "Parameters of job <1612142> are being changed\n"
+    },
+    "verified_result": "MANDATORY_HOST_LIST_REMOVED",
+    "unrelated_requirements_preserved": true,
+    "initial_observation_status": "UNRESOLVED"
+  },
+  {
+    "job_id": 1612149,
+    "operation": [
+      "bmod",
+      "-mn",
+      "1612149"
+    ],
+    "original_response": {
+      "returncode": 0,
+      "args": [
+        "bmod",
+        "-mn",
+        "1612149"
+      ],
+      "stderr": "",
+      "stdout": "Parameters of job <1612149> are being changed\n"
+    },
+    "verified_result": "MANDATORY_HOST_LIST_REMOVED",
+    "unrelated_requirements_preserved": true,
+    "initial_observation_status": "ACCEPTED_PENDING_VERIFICATION"
+  },
+  {
+    "job_id": 1612150,
+    "operation": [
+      "bmod",
+      "-mn",
+      "1612150"
+    ],
+    "original_response": {
+      "returncode": 0,
+      "args": [
+        "bmod",
+        "-mn",
+        "1612150"
+      ],
+      "stderr": "",
+      "stdout": "Parameters of job <1612150> are being changed\n"
+    },
+    "verified_result": "MANDATORY_HOST_LIST_REMOVED",
+    "unrelated_requirements_preserved": true,
+    "initial_observation_status": "ACCEPTED_PENDING_VERIFICATION"
+  },
+  {
+    "job_id": 1612156,
+    "operation": [
+      "bmod",
+      "-mn",
+      "1612156"
+    ],
+    "original_response": {
+      "returncode": 0,
+      "args": [
+        "bmod",
+        "-mn",
+        "1612156"
+      ],
+      "stderr": "",
+      "stdout": "Parameters of job <1612156> are being changed\n"
+    },
+    "verified_result": "MANDATORY_HOST_LIST_REMOVED",
+    "unrelated_requirements_preserved": true,
+    "initial_observation_status": "ACCEPTED_PENDING_VERIFICATION"
+  },
+  {
+    "job_id": 1612157,
+    "operation": [
+      "bmod",
+      "-mn",
+      "1612157"
+    ],
+    "original_response": {
+      "returncode": 0,
+      "args": [
+        "bmod",
+        "-mn",
+        "1612157"
+      ],
+      "stderr": "",
+      "stdout": "Parameters of job <1612157> are being changed\n"
+    },
+    "verified_result": "MANDATORY_HOST_LIST_REMOVED",
+    "unrelated_requirements_preserved": true,
+    "initial_observation_status": "ACCEPTED_PENDING_VERIFICATION"
+  },
+  {
+    "job_id": 1612158,
+    "operation": [
+      "bmod",
+      "-mn",
+      "1612158"
+    ],
+    "original_response": {
+      "returncode": 0,
+      "args": [
+        "bmod",
+        "-mn",
+        "1612158"
+      ],
+      "stderr": "",
+      "stdout": "Parameters of job <1612158> are being changed\n"
+    },
+    "verified_result": "MANDATORY_HOST_LIST_REMOVED",
+    "unrelated_requirements_preserved": true,
+    "initial_observation_status": "ACCEPTED_PENDING_VERIFICATION"
+  },
+  {
+    "job_id": 1612159,
+    "operation": [
+      "bmod",
+      "-mn",
+      "1612159"
+    ],
+    "original_response": {
+      "returncode": 0,
+      "args": [
+        "bmod",
+        "-mn",
+        "1612159"
+      ],
+      "stderr": "",
+      "stdout": "Parameters of job <1612159> are being changed\n"
+    },
+    "verified_result": "MANDATORY_HOST_LIST_REMOVED",
+    "unrelated_requirements_preserved": true,
+    "initial_observation_status": "ACCEPTED_PENDING_VERIFICATION"
+  },
+  {
+    "job_id": 1612160,
+    "operation": [
+      "bmod",
+      "-mn",
+      "1612160"
+    ],
+    "original_response": {
+      "returncode": 0,
+      "args": [
+        "bmod",
+        "-mn",
+        "1612160"
+      ],
+      "stderr": "",
+      "stdout": "Parameters of job <1612160> are being changed\n"
+    },
+    "verified_result": "MANDATORY_HOST_LIST_REMOVED",
+    "unrelated_requirements_preserved": true,
+    "initial_observation_status": "ACCEPTED_PENDING_VERIFICATION"
+  },
+  {
+    "job_id": 1612161,
+    "operation": [
+      "bmod",
+      "-mn",
+      "1612161"
+    ],
+    "original_response": {
+      "returncode": 0,
+      "args": [
+        "bmod",
+        "-mn",
+        "1612161"
+      ],
+      "stderr": "",
+      "stdout": "Parameters of job <1612161> are being changed\n"
+    },
+    "verified_result": "MANDATORY_HOST_LIST_REMOVED",
+    "unrelated_requirements_preserved": true,
+    "initial_observation_status": "ACCEPTED_PENDING_VERIFICATION"
+  },
+  {
+    "job_id": 1612162,
+    "operation": [
+      "bmod",
+      "-mn",
+      "1612162"
+    ],
+    "original_response": {
+      "returncode": 0,
+      "args": [
+        "bmod",
+        "-mn",
+        "1612162"
+      ],
+      "stderr": "",
+      "stdout": "Parameters of job <1612162> are being changed\n"
+    },
+    "verified_result": "MANDATORY_HOST_LIST_REMOVED",
+    "unrelated_requirements_preserved": true,
+    "initial_observation_status": "ACCEPTED_PENDING_VERIFICATION"
+  },
+  {
+    "job_id": 1612163,
+    "operation": [
+      "bmod",
+      "-mn",
+      "1612163"
+    ],
+    "original_response": {
+      "returncode": 0,
+      "args": [
+        "bmod",
+        "-mn",
+        "1612163"
+      ],
+      "stderr": "",
+      "stdout": "Parameters of job <1612163> are being changed\n"
+    },
+    "verified_result": "MANDATORY_HOST_LIST_REMOVED",
+    "unrelated_requirements_preserved": true,
+    "initial_observation_status": "ACCEPTED_PENDING_VERIFICATION"
+  },
+  {
+    "job_id": 1612165,
+    "operation": [
+      "bmod",
+      "-mn",
+      "1612165"
+    ],
+    "original_response": {
+      "returncode": 0,
+      "args": [
+        "bmod",
+        "-mn",
+        "1612165"
+      ],
+      "stderr": "",
+      "stdout": "Parameters of job <1612165> are being changed\n"
+    },
+    "verified_result": "MANDATORY_HOST_LIST_REMOVED",
+    "unrelated_requirements_preserved": true,
+    "initial_observation_status": "ACCEPTED_PENDING_VERIFICATION"
+  },
+  {
+    "job_id": 1612166,
+    "operation": [
+      "bmod",
+      "-mn",
+      "1612166"
+    ],
+    "original_response": {
+      "returncode": 0,
+      "args": [
+        "bmod",
+        "-mn",
+        "1612166"
+      ],
+      "stderr": "",
+      "stdout": "Parameters of job <1612166> are being changed\n"
+    },
+    "verified_result": "MANDATORY_HOST_LIST_REMOVED",
+    "unrelated_requirements_preserved": true,
+    "initial_observation_status": "ACCEPTED_PENDING_VERIFICATION"
+  },
+  {
+    "job_id": 1612167,
+    "operation": [
+      "bmod",
+      "-mn",
+      "1612167"
+    ],
+    "original_response": {
+      "returncode": 0,
+      "args": [
+        "bmod",
+        "-mn",
+        "1612167"
+      ],
+      "stderr": "",
+      "stdout": "Parameters of job <1612167> are being changed\n"
+    },
+    "verified_result": "MANDATORY_HOST_LIST_REMOVED",
+    "unrelated_requirements_preserved": true,
+    "initial_observation_status": "ACCEPTED_PENDING_VERIFICATION"
+  },
+  {
+    "job_id": 1612168,
+    "operation": [
+      "bmod",
+      "-mn",
+      "1612168"
+    ],
+    "original_response": {
+      "returncode": 0,
+      "args": [
+        "bmod",
+        "-mn",
+        "1612168"
+      ],
+      "stderr": "",
+      "stdout": "Parameters of job <1612168> are being changed\n"
+    },
+    "verified_result": "MANDATORY_HOST_LIST_REMOVED",
+    "unrelated_requirements_preserved": true,
+    "initial_observation_status": "ACCEPTED_PENDING_VERIFICATION"
+  },
+  {
+    "job_id": 1612169,
+    "operation": [
+      "bmod",
+      "-mn",
+      "1612169"
+    ],
+    "original_response": {
+      "returncode": 0,
+      "args": [
+        "bmod",
+        "-mn",
+        "1612169"
+      ],
+      "stderr": "",
+      "stdout": "Parameters of job <1612169> are being changed\n"
+    },
+    "verified_result": "MANDATORY_HOST_LIST_REMOVED",
+    "unrelated_requirements_preserved": true,
+    "initial_observation_status": "ACCEPTED_PENDING_VERIFICATION"
+  },
+  {
+    "job_id": 1612170,
+    "operation": [
+      "bmod",
+      "-mn",
+      "1612170"
+    ],
+    "original_response": {
+      "returncode": 0,
+      "args": [
+        "bmod",
+        "-mn",
+        "1612170"
+      ],
+      "stderr": "",
+      "stdout": "Parameters of job <1612170> are being changed\n"
+    },
+    "verified_result": "MANDATORY_HOST_LIST_REMOVED",
+    "unrelated_requirements_preserved": true,
+    "initial_observation_status": "ACCEPTED_PENDING_VERIFICATION"
+  },
+  {
+    "job_id": 1612177,
+    "operation": [
+      "bmod",
+      "-mn",
+      "1612177"
+    ],
+    "original_response": {
+      "returncode": 0,
+      "args": [
+        "bmod",
+        "-mn",
+        "1612177"
+      ],
+      "stderr": "",
+      "stdout": "Parameters of job <1612177> are being changed\n"
+    },
+    "verified_result": "MANDATORY_HOST_LIST_REMOVED",
+    "unrelated_requirements_preserved": true,
+    "initial_observation_status": "ACCEPTED_PENDING_VERIFICATION"
+  },
+  {
+    "job_id": 1612184,
+    "operation": [
+      "bmod",
+      "-mn",
+      "1612184"
+    ],
+    "original_response": {
+      "returncode": 0,
+      "args": [
+        "bmod",
+        "-mn",
+        "1612184"
+      ],
+      "stderr": "",
+      "stdout": "Parameters of job <1612184> are being changed\n"
+    },
+    "verified_result": "MANDATORY_HOST_LIST_REMOVED",
+    "unrelated_requirements_preserved": true,
+    "initial_observation_status": "ACCEPTED_PENDING_VERIFICATION"
+  },
+  {
+    "job_id": 1612178,
+    "operation": [
+      "bmod",
+      "-mn",
+      "1612178"
+    ],
+    "original_response": {
+      "returncode": 0,
+      "args": [
+        "bmod",
+        "-mn",
+        "1612178"
+      ],
+      "stderr": "",
+      "stdout": "Parameters of job <1612178> are being changed\n"
+    },
+    "verified_result": "MANDATORY_HOST_LIST_REMOVED",
+    "unrelated_requirements_preserved": true,
+    "initial_observation_status": "ACCEPTED_PENDING_VERIFICATION"
+  },
+  {
+    "job_id": 1612185,
+    "operation": [
+      "bmod",
+      "-mn",
+      "1612185"
+    ],
+    "original_response": {
+      "returncode": 0,
+      "args": [
+        "bmod",
+        "-mn",
+        "1612185"
+      ],
+      "stderr": "",
+      "stdout": "Parameters of job <1612185> are being changed\n"
+    },
+    "verified_result": "MANDATORY_HOST_LIST_REMOVED",
+    "unrelated_requirements_preserved": true,
+    "initial_observation_status": "ACCEPTED_PENDING_VERIFICATION"
+  }
+]

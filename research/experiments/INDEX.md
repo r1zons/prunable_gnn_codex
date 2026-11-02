@@ -1,5 +1,12 @@
 # Experiment campaign registry
 
+**FLICKR-V5-PLACEMENT-CORRECTION-20261102** — same56 accepted IDs;21 eligible
+PEND jobs unbound via bmod -mn;33 already RUN/DONE not targeted (including one
+state-transition skip);two Q4/256 C4-only profiles preserved. Final33 DONE/3 RUN/
+20 PEND;0 unexpected pending host restrictions,0 duplicate/new jobs. Only scheduler
+metadata/configuration work,no tests or scientific execution; citation untouched.
+[Report,original/final56 states,bmod responses,future host guard](flickr_submission_20261102/placement_correction_20261102/REPORT.md).
+
 **FLICKR-STRUCTURAL-V5-SUBMISSION-20261102** — **56/56 ACCEPTED, LSF1612130–1612185**;
 REJECTED0/UNRESOLVED0/NOT SUBMITTED0. Independent jobs/no citation dependency;
 54 old4-thread allocations and two measured12-thread/C4/20-slot Q4/256 profiles.

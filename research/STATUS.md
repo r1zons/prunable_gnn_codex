@@ -2,6 +2,18 @@
 
 **Updated:** 2026-11-02
 
+## Flickr placement corrected —2026-11-02
+
+Original56 IDs1612130–1612185 retained;21 PEND host lists cleared with supported
+bmod -mn, all unrelated resources verified unchanged. Original31 DONE/1 RUN were
+untouched;1612143 became RUN and was skipped. Jobs1612164/1612171 retain C4,
+12threads/interop1/20slots/exclusive/32GiB/180min and verified affinity. Final
+snapshot33 DONE/3 RUN/20 PEND; no nonspecial PEND remains C4-bound. Original
+26 C4 bindings/30 unbound disproved the all56-pinned premise. Future submitter
+rejects C4 binding outside the two Q4/256 conditions; archived source/configs and
+accepted receipts preserved. No new jobs,tests,scientific work,citation changes,
+push or merge. [Correction,all56 before/after states and responses](experiments/flickr_submission_20261102/placement_correction_20261102/REPORT.md).
+
 ## Flickr structural V5 —56 scientific conditions ACCEPTED,2026-11-02
 
 Dedicated branch`submission/flickr-structural-v5-20261102`, executable686cf3f,

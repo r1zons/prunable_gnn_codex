@@ -19,6 +19,14 @@ ARCHITECTURES = ('flickr-graphsage-l3-h128-s101','flickr-graphsage-l4-h128-s101'
 METHODS = ('static_random','static_magnitude','static_snip','sequential_random',
            'adaptive_greedy','lookahead_depth2','tabular_q')
 CPUS = [0,80,8,88,16,96,24,104,32,112,40,120,48,128,56,136,64,144,72,152]
+C4_HOST = 'polus-c4-ib.bmc.hpc.cs.msu.ru'
+
+
+def required_host(job):
+    """Only the two measured Q4/256 conditions require a mandatory host."""
+    special = (job['architecture']=='flickr-graphsage-l4-h256-s101'
+               and job['method']=='tabular_q' and job['target'] in (.3,.5))
+    return C4_HOST if special else None
 
 
 def sha(path):
@@ -67,7 +75,7 @@ def validate(root):
         expected_slots=20 if special else int(old['requested_threads'])
         if (j['dependencies'] or r['queue']!='normal' or r['wall_minutes']!=int(old['wall_minutes'])
             or r['memory_mb']!=int(old['memory_mb']) or not r['exclusive']
-            or r['slots']!=expected_slots or r['host']!=(None if old['host_constraint']=='UNBOUND' else old['host_constraint'])
+            or r['slots']!=expected_slots or r['host']!=required_host(j)
             or j['dense_checkpoint_sha256']!=p['dense'][j['architecture']]['checkpoint_sha256']
             or not 0<j['forecast_minutes']<=170):
             raise ValueError('Changed/unsupported resource or input allocation: '+j['id'])
@@ -101,6 +109,8 @@ def launcher(job,root,source,taskroot,activation,profile):
 
 def command(job,root):
     r=job['resources'];hosts=['-m',r['host']] if r['host'] else []
+    if r['host'] != required_host(job):
+        raise ValueError('Only Q4/256 may be C4-bound; all other jobs must be unbound.')
     return ['bsub','-q','normal','-n',str(r['slots']),'-W',str(r['wall_minutes']),'-x',*hosts,
             '-R','span[hosts=1]','-R',f'rusage[mem={r["memory_mb"]}]','-M',str(r['memory_mb']),
             '-J','flickr56-'+job['id'],'-o',str(root/'logs'/(job['id']+'.%J.out')),
