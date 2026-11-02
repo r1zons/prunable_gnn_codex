@@ -1,0 +1,17 @@
+{
+  "research/experiments/flickr_structural_pruning_20261101/resolved_protocol.json": "b451c60bec314cf019d11be00d20417c5461b1abe8718015b81126599d401670",
+  "research/experiments/flickr_structural_pruning_20261101/JOB_MANIFEST.csv": "006455530ee05ed31fa4970305a7f35a62a8f7d6646d9117721e6d262607cf82",
+  "research/experiments/flickr_structural_pruning_20261101/CAPACITY.json": "f4466e2ffa1aae4de8fe80e2869919bdc1cb78c03154968a7d0050626aa2ded4",
+  "research/experiments/flickr_structural_pruning_20261101/PROVENANCE.json": "73f60086a5cd0719f987897078f36d5f1bc08bedab00449dab58cb8dcabb201f",
+  "research/experiments/flickr_structural_pruning_20261101/IMPLEMENTATION_AUDIT.md": "7619358be54d74e2638722c4e7fb54e26c0ff2f4ebcf2be2bee8df0c6e118bbe",
+  "research/experiments/flickr_structural_pruning_20261101/NATIVE_EXECUTION_EQUIVALENCE.json": "8ec1669409b3ea1a163f0d7a8b55d37674b6bc1c8be8cd0c33881b9bbdb6c65e",
+  "research/experiments/flickr_structural_pruning_20261101/NATIVE_CACHE_CONTRACT.json": "073d2b4359cc742c74372030d177eb11e83205c3684e62d30967d60c3d3dde97",
+  "research/experiments/flickr_structural_pruning_20261101/submission.json": "6e05f30dc422103846a29160a6ea2953cce6b59cb5fc77138453baef8ec61c78",
+  "research/experiments/flickr_cpu_thread_scaling_20261101/collection_20261102/REPORT.md": "323f8fe62b2f2d24fa82c046354a1dbbdcb9e47151aaab5bd2aebfbdd3ce758f",
+  "research/experiments/flickr_cpu_thread_scaling_20261101/collection_20261102/AUDIT.json": "1ddb3245fbc5d65334846420687261e6e2e5198663bacf704bcfeb3c473857b1",
+  "research/experiments/flickr_cpu_thread_scaling_20261101/collection_20261102/VERIFICATION.json": "170c20ba30d8cfbca58e9fb2f53372786225d7909cb1b0434616cb1bef4e472b",
+  "research/experiments/flickr_cpu_thread_scaling_20261101/collection_20261102/PROVENANCE.json": "4f5926768bc7296c99b75fdb821d19791a42e21eaeefbadbe9ff504b24f51b78",
+  "research/experiments/flickr_cpu_thread_scaling_20261101/collection_20261102/CAMPAIGN_ASSESSMENT.json": "8fca938ad0be956d8f84ca5b14cedb17e0646ec8ad9864eaa81b990368dd4b74",
+  "research/experiments/flickr_cpu_thread_scaling_20261101/collection_20261102/campaign_resource_assessment.csv": "db8ec9b22f8bc3f58211f7d89a32945ca69f540eebc01978f09b714acbd086e6",
+  "research/experiments/flickr_cpu_thread_scaling_20261101/collection_20261102/runs.csv": "27e2be84ce079f97a44e063ec783523964cbc20bdac617480692de5b98f59ffa"
+}

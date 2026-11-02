@@ -72,20 +72,26 @@ def verify_projection(dense, final, kept):
         raise ValueError('Retained original masks do not project to final tensors.')
 
 
-def execute(root, protocol, condition, technical=False):
+def execute(root, protocol, condition, technical=False, execution_resources=None):
     """One independent run; completed markers require integrity and physical pruning."""
     if condition not in matrix(protocol):
         raise ValueError('Unknown run identity.')
     output=root/('smoke' if technical else 'runs')/condition['id']
     output.mkdir(parents=True,exist_ok=False)
     try:
-        torch.set_num_threads(4)
+        threads = 4 if execution_resources is None else execution_resources['threads']
+        if threads not in (4, 12):
+            raise ValueError('Unsupported Flickr execution thread count.')
+        if execution_resources is not None and execution_resources.get('interop_threads') is not None:
+            torch.set_num_interop_threads(execution_resources['interop_threads'])
+        torch.set_num_threads(threads)
         dense,data,split,manifest,original=frozen(root,protocol,condition['architecture'])
         dense_hash=tensors_hash(dense.state_dict())
         budget=Budget(dense,condition['target'],**protocol['budget'])
         write(output/'environment.json',environment())
         write(output/'resolved_config.json',dict(condition=condition,protocol_sha256=digest(protocol),
-                                               budget_horizon=budget.horizon,technical=technical))
+                                               budget_horizon=budget.horizon,technical=technical,
+                                               execution_resources=execution_resources))
         calls=0
         forward_times=[]
         def forward_accuracy(model):
@@ -190,7 +196,8 @@ def execute(root, protocol, condition, technical=False):
              validation_evaluation_requests=evaluate.requests,
              evaluation_reuse='exact tensors/architecture and frozen input, within this run only',
              reporting_forward_evaluations=3,
-             validation_forward_seconds=forward_times,actual_host=platform.node(),threads=4,
+             validation_forward_seconds=forward_times,actual_host=platform.node(),threads=threads,
+             interop_threads=torch.get_num_interop_threads(),execution_resources=execution_resources,
              peak_process_rss_bytes=int(peak if platform.system()=='Darwin' else peak*1024),
              checkpoint_sha256=sha(output/'checkpoint.pt'),tensor_sha256=tensors_hash(final.state_dict()),
              strict_reload=True,retained_projection=True,test_labels_accessed=False)
