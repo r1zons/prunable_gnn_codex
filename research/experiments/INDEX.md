@@ -1,5 +1,7 @@
 # Experiment campaign registry
 
+**POLUS-P100-20261110** — GPU-окружение CUDA 10.2 проверено на P100. GCN и GraphSAGE прошли SNIP и строгий reload. Завершены парные CPU/P100 замеры и масштабирование пакета Flickr на 1/2/4/6 GPU. [Отчёт, задания LSF и воспроизведение](polus_p100_20261110/REPORT.md).
+
 **Reading rule (2026-11-02):** entries below are dated events. Later collection
 or analysis entries supersede earlier submission/blocker states for the same
 campaign; retain all original evidence. Current overview: [STATUS](../STATUS.md).
