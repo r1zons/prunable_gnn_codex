@@ -1,0 +1,15 @@
+#!/bin/bash
+set -euo pipefail
+export LC_ALL=C LANG=C
+: "${LSB_JOBID:?Submit through LSF}"
+sha256sum -c launch.sha256
+activation="$HOME/gnn-p100-20261110/activate-p100.sh"
+printf '%s  %s\n' "$(cat activation.sha256)" "$activation" | sha256sum -c -
+source "$activation"
+export PYTHONPATH="$PWD/src"
+export OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 MKL_NUM_THREADS=4
+hostname
+nvidia-smi --query-gpu=name,driver_version,pci.bus_id,memory.total --format=csv
+exec taskset -c 0,8,16,24 python -u -m gnn_pruning.experiments.meshgraphnet_technical \
+  --config configs/experiments/meshgraphnet_cylinderflow_technical.yaml \
+  --inputs inputs --output "run.$LSB_JOBID"
