@@ -1,5 +1,7 @@
 # Experiment campaign registry
 
+**MESHGRAPHNET-CYLINDERFLOW-TECHNICAL-20261112** — один запуск LSF 1618429 DONE на P100 C3. Проверены двухкомпонентный forward, 10-шаговый rollout, train-only backward, физическое удаление 8 каналов и строгий reload. Локальные проверки 4/4 PASS. Подходящий обученный checkpoint пока не подтверждён. [Результаты и рекомендуемый бюджет обучения](meshgraphnet_cylinderflow_plan_20261112/TECHNICAL_REPORT.md) · [Научный протокол](meshgraphnet_cylinderflow_plan_20261112/REPORT.md).
+
 **POLUS-P100-20261110** — GPU-окружение CUDA 10.2 проверено на P100. GCN и GraphSAGE прошли SNIP и строгий reload. Завершены парные CPU/P100 замеры и масштабирование пакета Flickr на 1/2/4/6 GPU. [Отчёт, задания LSF и воспроизведение](polus_p100_20261110/REPORT.md).
 
 **Reading rule (2026-11-02):** entries below are dated events. Later collection
