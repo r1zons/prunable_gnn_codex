@@ -1,0 +1,18 @@
+seed: 101
+cpu_threads: 4
+max_updates: 100000
+normalization_batches: 1000
+adam_initial_lr: 0.0001
+adam_lr_floor: 0.000001
+decay_updates: 5000000
+decay_rate: 0.1
+noise_std: 0.02
+validation_seed: 101
+validation_trajectories: 16
+validation_starts: [100, 300]
+validation_horizon: 100
+validation_every_updates: 1000
+initial_validation_budget_seconds: 180
+wall_seconds: 10800
+shutdown_reserve_seconds: 180
+checkpoint_every_seconds: 780
