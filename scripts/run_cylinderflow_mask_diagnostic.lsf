@@ -1,0 +1,16 @@
+#!/bin/bash
+set -euo pipefail
+started=$(date +%s)
+export LC_ALL=C LANG=C
+: "${LSB_JOBID:?}"
+sha256sum --quiet -c source.sha256
+parent="$HOME/gnn-p100-20261110/meshgraphnet-cylinderflow-training-20261113"
+(cd "$parent" && sha256sum --quiet -c launch.sha256 && cmp expected-data.md5 data/VERIFIED.md5)
+(cd "$parent/data" && awk '$2=="valid.tfrecord"' VERIFIED.md5 | md5sum -c -)
+activation="$HOME/gnn-p100-20261110/activate-p100.sh"
+printf '%s  %s\n' "$(cat "$parent/activation.sha256")" "$activation" | sha256sum -c -
+source "$activation"
+export PYTHONPATH="$PWD/src" OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 MKL_NUM_THREADS=4
+nvidia-smi --query-gpu=name,driver_version,pci.bus_id --format=csv
+exec taskset -c 0,8,16,24 python -u scripts/run_cylinderflow_mask_diagnostic.py \
+  "$parent" results source.sha256 --seconds 5100 --started "$started"
