@@ -1,5 +1,7 @@
 # Experiment campaign registry
 
+**MESHGRAPHNET-CYLINDERFLOW-VALIDATION-47000** — LSF 1618544 DONE, one P100. The checkpoint from training job 1618479 reproduced E1, E20 and E100 across 32 baseline-validation windows. [Results and reproduction](meshgraphnet_cylinderflow_plan_20261112/VALIDATION_47000.md).
+
 **MESHGRAPHNET-CYLINDERFLOW-TRAINING-20261113** — one-job protocol for one P100 and a 180-minute LSF limit, with a 100,000-update cap and resumable checkpoints. Scheduler acceptance is recorded in the run’s submission receipts. [Submission plan and artifact paths](meshgraphnet_cylinderflow_plan_20261112/TRAINING_SUBMISSION.md).
 
 **MESHGRAPHNET-CYLINDERFLOW-TECHNICAL-20261112** — один запуск LSF 1618429 DONE на P100 C3. Проверены двухкомпонентный forward, 10-шаговый rollout, train-only backward, физическое удаление 8 каналов и строгий reload. Локальные проверки 4/4 PASS. Подходящий обученный checkpoint пока не подтверждён. [Результаты и рекомендуемый бюджет обучения](meshgraphnet_cylinderflow_plan_20261112/TECHNICAL_REPORT.md) · [Научный протокол](meshgraphnet_cylinderflow_plan_20261112/REPORT.md).

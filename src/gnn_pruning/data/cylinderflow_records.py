@@ -118,8 +118,8 @@ class CylinderFlowRecords:
     def __len__(self):
         return len(self.records)
 
-    def mesh(self, ordinal: int) -> Mesh:
-        """Read and deduplicate the static graph of one trajectory."""
+    def geometry(self, ordinal: int):
+        """Read validated original triangle cells, coordinates and node types."""
         nodes, fields = self.records[ordinal]
         arrays = {}
         for name, dtype in (("cells", "<i4"), ("mesh_pos", "<f4"), ("node_type", "<i4")):
@@ -132,8 +132,11 @@ class CylinderFlowRecords:
                 or not np.isfinite(pos).all() or types.min() < 0 or types.max() >= 9
                 or not np.isin(types, [0, 5]).any()):
             raise ValueError(f"Invalid mesh {self.split}:{ordinal}")
-        return mesh_from_triangles(torch.from_numpy(cells).long(), torch.from_numpy(pos),
-                                   torch.from_numpy(types).long())
+        return torch.from_numpy(cells).long(), torch.from_numpy(pos), torch.from_numpy(types).long()
+
+    def mesh(self, ordinal: int) -> Mesh:
+        """Read and deduplicate the static graph of one trajectory."""
+        return mesh_from_triangles(*self.geometry(ordinal))
 
     def velocity(self, ordinal: int, frame: int, count: int) -> torch.Tensor:
         """Read only the contiguous frame window needed by the caller."""

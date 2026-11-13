@@ -1,0 +1,15 @@
+#!/bin/bash
+set -eo pipefail
+export LC_ALL=C LANG=C
+: "${LSB_JOBID:?}"
+sha256sum -c evaluation-source.sha256
+parent="$HOME/gnn-p100-20261110/meshgraphnet-cylinderflow-training-20261113"
+(cd "$parent" && sha256sum --quiet -c launch.sha256 && cmp expected-data.md5 data/VERIFIED.md5)
+(cd "$parent/data" && awk '$2=="meta.json" || $2=="valid.tfrecord"' VERIFIED.md5 | md5sum -c -)
+printf '%s  %s\n' "$(cat "$parent/activation.sha256")" "$HOME/gnn-p100-20261110/activate-p100.sh" | sha256sum -c -
+source "$HOME/gnn-p100-20261110/activate-p100.sh"
+cp -r "$parent/src" src
+cp cylinderflow_records.py src/gnn_pruning/data/cylinderflow_records.py
+export PYTHONPATH="$PWD/src" OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 MKL_NUM_THREADS=4
+nvidia-smi --query-gpu=name,driver_version,pci.bus_id --format=csv
+exec taskset -c 0,8,16,24 python -u evaluate_cylinderflow_rollouts.py "$parent" "run.$LSB_JOBID"
