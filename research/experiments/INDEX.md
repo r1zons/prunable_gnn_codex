@@ -1,5 +1,7 @@
 # Experiment campaign registry
 
+**MESHGRAPHNET-CYLINDERFLOW-MASK-DIAGNOSTIC-20261113** — LSF 1618575 DONE. Собраны 416 окон без пропусков и отказов. Независимо сверены checkpoint 47 000, разбиения и тензоры всех 24 масок. Пятишаговая ошибка лучше согласуется с E100 по всей библиотеке, эффект различается по третям важности. [Результаты и воспроизведение](meshgraphnet_cylinderflow_plan_20261112/MASK_DIAGNOSTIC_RESULTS.md).
+
 **MESHGRAPHNET-CYLINDERFLOW-VALIDATION-47000** — LSF 1618544 DONE, one P100. The checkpoint from training job 1618479 reproduced E1, E20 and E100 across 32 baseline-validation windows. [Results and reproduction](meshgraphnet_cylinderflow_plan_20261112/VALIDATION_47000.md).
 
 **MESHGRAPHNET-CYLINDERFLOW-TRAINING-20261113** — one-job protocol for one P100 and a 180-minute LSF limit, with a 100,000-update cap and resumable checkpoints. Scheduler acceptance is recorded in the run’s submission receipts. [Submission plan and artifact paths](meshgraphnet_cylinderflow_plan_20261112/TRAINING_SUBMISSION.md).
