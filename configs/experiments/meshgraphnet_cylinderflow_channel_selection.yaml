@@ -1,0 +1,17 @@
+seed: 101
+selection_start: 200
+selection_horizons: {magnitude: 0, one_step: 1, five_step: 5}
+diagnostic_starts: [100, 300]
+diagnostic_horizon: 100
+removals_per_decision: 2
+decisions: 15
+snapshot_decisions: [2, 4, 8, 15]
+low_pool: 8
+low_draws: 4
+global_draws: 3
+duplicate_retries: 1000
+tie_atol: 1.0e-9
+tie_rtol: 1.0e-4
+timing_warmup: 5
+timing_repeats: 20
+bootstrap_repeats: 10000
