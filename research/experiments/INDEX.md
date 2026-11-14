@@ -1,6 +1,6 @@
 # Experiment campaign registry
 
-**MESHGRAPHNET-CYLINDERFLOW-CHANNEL-SELECTION-20261113** — LSF 1618600 DONE. Собраны 45 решений, 12 сжатых моделей и 224 окна без пропусков и отказов. Сверены SHA-256 всех 323 файлов. Сравнение качества впереди. [Отчёт о сборе](meshgraphnet_channel_selection_20261113/COLLECTION.md).
+**MESHGRAPHNET-CYLINDERFLOW-CHANNEL-SELECTION-20261113** — LSF 1618600 DONE. Собраны 224 окна без пропусков и отказов. Независимо сверены 45 решений и тензоры 12 сжатых моделей. Пятишаговый отбор снизил E100 относительно одношагового на трёх из четырёх уровней. Все сжатые модели уступили dense и persistence по средней E100. [Анализ](meshgraphnet_channel_selection_20261113/analysis/REPORT.md) · [Отчёт о сборе](meshgraphnet_channel_selection_20261113/COLLECTION.md).
 
 **MESHGRAPHNET-CYLINDERFLOW-MASK-DIAGNOSTIC-20261113** — LSF 1618575 DONE. Собраны 416 окон без пропусков и отказов. Независимо сверены checkpoint 47 000, разбиения и тензоры всех 24 масок. Пятишаговая ошибка лучше согласуется с E100 по всей библиотеке, эффект различается по третям важности. [Результаты и воспроизведение](meshgraphnet_cylinderflow_plan_20261112/MASK_DIAGNOSTIC_RESULTS.md).
 
