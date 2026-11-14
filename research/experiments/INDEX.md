@@ -1,5 +1,7 @@
 # Experiment campaign registry
 
+**MESHGRAPHNET-CYLINDERFLOW-CHANNEL-SELECTION-20261113** — LSF 1618600 DONE. Собраны 45 решений, 12 сжатых моделей и 224 окна без пропусков и отказов. Сверены SHA-256 всех 323 файлов. Сравнение качества впереди. [Отчёт о сборе](meshgraphnet_channel_selection_20261113/COLLECTION.md).
+
 **MESHGRAPHNET-CYLINDERFLOW-MASK-DIAGNOSTIC-20261113** — LSF 1618575 DONE. Собраны 416 окон без пропусков и отказов. Независимо сверены checkpoint 47 000, разбиения и тензоры всех 24 масок. Пятишаговая ошибка лучше согласуется с E100 по всей библиотеке, эффект различается по третям важности. [Результаты и воспроизведение](meshgraphnet_cylinderflow_plan_20261112/MASK_DIAGNOSTIC_RESULTS.md).
 
 **MESHGRAPHNET-CYLINDERFLOW-VALIDATION-47000** — LSF 1618544 DONE, one P100. The checkpoint from training job 1618479 reproduced E1, E20 and E100 across 32 baseline-validation windows. [Results and reproduction](meshgraphnet_cylinderflow_plan_20261112/VALIDATION_47000.md).
