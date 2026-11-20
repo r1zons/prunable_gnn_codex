@@ -1,0 +1,9 @@
+{
+  "job": "1623806",
+  "archive_max_abs_curve_diff": {
+    "A": 0.0,
+    "C": 0.0
+  },
+  "failures": [],
+  "nonfinite_timings": 0
+}

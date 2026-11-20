@@ -93,9 +93,13 @@ def analyze(source, previous, out):
     for left, right in pairs:
         delta = np.array(curves[left])[:, -1] - np.array(curves[right])[:, -1]
         low, high = np.quantile(delta[draws].mean(axis=1), [.025,.975])
+        delta_mean = np.array(curves[left]).mean(axis=1) - np.array(curves[right]).mean(axis=1)
+        mean_low, mean_high = np.quantile(delta_mean[draws].mean(axis=1), [.025,.975])
         speed = ratios[left,right]
         contrasts.append(dict(left=left, right=right, dE100=delta.mean(), ci_low=low,
-                              ci_high=high, E100_wins=int((delta < 0).sum()),
+                              ci_high=high, E100_wins=int((delta < 0).sum()), dMean100=delta_mean.mean(),
+                              mean_ci_low=mean_low, mean_ci_high=mean_high,
+                              mean100_wins=int((delta_mean < 0).sum()),
                               paired_speedup=median(speed), paired_seconds=median(timedeltas[left,right]),
                               faster_pairs=sum(s>1 for s in speed), pairs=len(speed)))
     write_csv(out / "summary.csv", summary)
@@ -103,6 +107,17 @@ def analyze(source, previous, out):
     write_csv(out / "trajectories.csv", trajectory_rows)
     write_csv(out / "curves.csv", [dict(step=i+1, **{k: mean(c[i] for c in curves[k]) for k in labels})
                                   for i in range(100)])
+    from analyze_cylinderflow_mask_diagnostic import plt
+    fig, ax = plt.subplots(figsize=(7.5, 4.3), layout="constrained")
+    names = {"A": "A · Dense", "C": "C · Независимые карты", "D": "D · Обмен по рёбрам"}
+    for label, color in (("A", "#535964"), ("C", "#b24a23"), ("D", "#006b79")):
+        ax.plot(range(1, 101), np.mean(curves[label], axis=0), label=names[label],
+                lw=2, color=color)
+    ax.set(xlabel="Шаг прогноза", ylabel="MSE поля скорости", yscale="log", xlim=(1, 100))
+    ax.grid(axis="y", alpha=.25)
+    ax.legend()
+    fig.savefig(out / "rollout-error.png", dpi=180)
+    plt.close(fig)
     (out / "verification.json").write_text(json.dumps(dict(job=protocol["job"],
         archive_max_abs_curve_diff=comparisons, failures=failures,
         nonfinite_timings=sum(not item["final_finite"] for p in (source/"timing").glob("*.json")
