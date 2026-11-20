@@ -44,3 +44,22 @@ def test_bypass_and_zero_affine_match():
                                        models["C"].step(mesh, initial), rtol=0, atol=0)
     finally:
         torch.set_num_threads(previous)
+
+
+def test_linear_exchange_receivers_get_sum_of_sender_messages():
+    from types import SimpleNamespace
+    from run_cylinderflow_linear_exchange import LinearExchange, LATENT
+
+    replacement = LinearExchange().eval()
+    mesh = SimpleNamespace(senders=torch.tensor([0, 1]), receivers=torch.tensor([2, 2]))
+    nodes = torch.zeros(3, LATENT)
+    nodes[:, 0] = torch.tensor([2., 3., 7.])
+    edges = torch.zeros(2, LATENT)
+    with torch.no_grad():
+        for param in replacement.parameters():
+            param.zero_()
+        replacement.edge.weight[0, 0] = 1
+        replacement.node.weight[0, LATENT] = 1
+        out_nodes, out_edges = replacement(nodes, edges, mesh)
+    torch.testing.assert_close(out_nodes[:, 0], torch.tensor([2., 3., 12.]))
+    torch.testing.assert_close(out_edges[:, 0], torch.tensor([2., 3.]))
