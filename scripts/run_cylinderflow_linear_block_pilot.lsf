@@ -1,0 +1,17 @@
+#!/bin/bash
+set -euo pipefail
+export LC_ALL=C LANG=C
+: "${LSB_JOBID:?}"
+sha256sum --quiet -c source.sha256
+sha256sum --quiet -c submission/pins.sha256
+parent="$HOME/gnn-p100-20261110/meshgraphnet-cylinderflow-training-20261113"
+activation="$HOME/gnn-p100-20261110/activate-p100.sh"
+printf '%s  %s\n' 79171fa282fcd4fd5ff93d13e04ade43e83c1b11a0b96eee0951e4e0ed37f3ca "$parent/data/valid.tfrecord" \
+  ba3b3448e75b346ab68f9dbe1bc221b10e6c6e9a30e060d35c8197b5416cbb1b "$activation" | sha256sum -c -
+printf '%s  %s\n' 046cf222b4a6632c9b3764522ece980b "$parent/data/train.tfrecord" | md5sum -c -
+source "$activation"
+export PYTHONPATH="$PWD/src" OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 MKL_NUM_THREADS=4
+export CUBLAS_WORKSPACE_CONFIG=:4096:8
+nvidia-smi --query-gpu=name,driver_version,pci.bus_id --format=csv
+exec flock -n .run.lock taskset -c 0,8,16,24 python -u scripts/run_cylinderflow_linear_block_pilot.py \
+  "$parent" results

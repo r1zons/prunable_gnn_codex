@@ -1,0 +1,10 @@
+blocks_one_based: [7, 8]
+seed: 101
+train_trajectories: 8
+train_frames: [100, 200, 300, 400]
+nodes_per_frame: 256
+edges_per_frame: 1024
+ridge_relative: 0.001
+horizon: 100
+dense_e100_relative_tolerance: 0.005
+timing_warmup_steps: 10
