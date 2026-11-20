@@ -1,5 +1,7 @@
 # Experiment campaign registry
 
+**MESHGRAPHNET-CYLINDERFLOW-LINEAR-BLOCK-PILOT-20261120** — LSF 1623799 DONE. Собраны 48 forecast windows и 288 замеров T100. Замена блоков 7–8 снизила E100 относительно обхода на 62,6%, при ускорении к dense 1,125× и росте E100 к dense на 334,4%. [Отчёт и результаты](meshgraphnet_linear_block_pilot_20261120/REPORT.md).
+
 **FLICKR-INFERENCE-BASELINE-STAGE1-20261117** — аудит существующего GraphSAGE L4/H256 seed101. Проверены журнал 408 эпох и тензоры 14 физических V5-моделей. GO для сопоставления протоколов и подготовки замеров, ограничения runtime и качества зафиксированы. [Аудит](../audits/2026-11-17_structured_inference_stage1.md) · [Baseline и точные пути](flickr_inference_baseline_20261117/BASELINE.md).
 
 **MESHGRAPHNET-CYLINDERFLOW-CHANNEL-SELECTION-20261113** — LSF 1618600 DONE. Собраны 224 окна без пропусков и отказов. Независимо сверены 45 решений и тензоры 12 сжатых моделей. Пятишаговый отбор снизил E100 относительно одношагового на трёх из четырёх уровней. Все сжатые модели уступили dense и persistence по средней E100. [Анализ](meshgraphnet_channel_selection_20261113/analysis/REPORT.md) · [Отчёт о сборе](meshgraphnet_channel_selection_20261113/COLLECTION.md).

@@ -1,0 +1,23 @@
+{
+  "job": "1623799",
+  "comparison_windows": 48,
+  "timed_rollouts": 288,
+  "max_abs_curve_difference_dense_vs_archive": 0.0,
+  "calibration_seconds": 84.23613648675382,
+  "selected_train_ids": [
+    199,
+    367,
+    552,
+    595,
+    867,
+    930,
+    946,
+    988
+  ],
+  "parameter_counts": {
+    "A": 2332930,
+    "B": 2035458,
+    "C": 2068482
+  },
+  "source": "f3b3458049ceb2fa5c13736254482dc5e71d1268"
+}
