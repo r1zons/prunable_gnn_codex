@@ -1,0 +1,10 @@
+{
+  "job": "1624841",
+  "dense_and_D_max_abs_curve_delta": {
+    "A": 0.0,
+    "D": 0.0
+  },
+  "failures": [],
+  "nonfinite_timing": 0,
+  "source": "ab9fc50d4a101370180f8fded18fd44c9fa3d7c2"
+}

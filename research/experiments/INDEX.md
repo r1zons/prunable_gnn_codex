@@ -1,5 +1,7 @@
 # Experiment campaign registry
 
+**MESHGRAPHNET-CYLINDERFLOW-BLOCK-DISTILLATION-20261121** — LSF 1624841 DONE. Дистилляция блока 7 снизила E100 на 47,6% относительно того же блока без обучения, с сопоставимым T100. К Dense парное ускорение 1,065× и рост E100 на 394,9%. [Отчёт и результаты](meshgraphnet_block_distillation_20261121/REPORT.md).
+
 **MESHGRAPHNET-CYLINDERFLOW-LINEAR-BLOCK-PILOT-20261120** — LSF 1623799 DONE. Собраны 48 forecast windows и 288 замеров T100. Замена блоков 7–8 снизила E100 относительно обхода на 62,6%, при ускорении к dense 1,125× и росте E100 к dense на 334,4%. [Отчёт и результаты](meshgraphnet_linear_block_pilot_20261120/REPORT.md).
 
 **FLICKR-INFERENCE-BASELINE-STAGE1-20261117** — аудит существующего GraphSAGE L4/H256 seed101. Проверены журнал 408 эпох и тензоры 14 физических V5-моделей. GO для сопоставления протоколов и подготовки замеров, ограничения runtime и качества зафиксированы. [Аудит](../audits/2026-11-17_structured_inference_stage1.md) · [Baseline и точные пути](flickr_inference_baseline_20261117/BASELINE.md).
