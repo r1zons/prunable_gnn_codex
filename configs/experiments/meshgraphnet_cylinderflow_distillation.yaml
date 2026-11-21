@@ -1,0 +1,13 @@
+blocks_one_based: [7, 8]
+seed: 101
+heldout_seed: 102
+heldout_trajectories: 4
+train_frames: [100, 200, 300, 400]
+optimizer: Adam
+learning_rate: 0.0003
+epochs: 8
+checkpoint_selection: lowest_heldout_feature_loss_earliest_tie_including_initial
+horizon: 100
+timing_warmup_steps: 10
+reference_curve_rtol: 0.005
+reference_curve_atol: 1.0e-8

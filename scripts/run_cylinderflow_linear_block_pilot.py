@@ -147,9 +147,9 @@ def steps(model, mesh, velocity, count):
     return velocity
 
 
-def benchmark(models, windows, cfg, output):
-    """Time six orders per window, balancing all model positions on the same GPU."""
-    orders = list(itertools.permutations(models))
+def benchmark(models, windows, cfg, output, *, orders=None):
+    """Time balanced model orders on the same GPU."""
+    orders = list(itertools.permutations(models) if orders is None else orders)
     rng = random.Random(cfg["seed"])
     for ordinal, start, mesh, frames in windows:
         for model in models.values():

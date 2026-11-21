@@ -88,13 +88,15 @@ def project(dense, removed):
 
 
 @torch.inference_mode()
-def score_rollout(model, mesh, frames):
+def score_rollout(model, mesh, frames, *, reference_inputs=False):
     """Record physical-unit MSE, actual forward calls and the first failed step."""
     velocity = frames[0]
     predictions = []
     error = None
     calls = 0
-    for _ in range(len(frames) - 1):
+    for i in range(len(frames) - 1):
+        if reference_inputs:
+            velocity = frames[i]
         try:
             if model is not None:
                 calls += 1
@@ -108,7 +110,8 @@ def score_rollout(model, mesh, frames):
     if predictions:
         fields = torch.stack(predictions)
         active = mesh.active
-        assert torch.equal(fields[:, ~active], frames[0, ~active].expand_as(fields[:, ~active]))
+        boundary = frames[:len(fields), ~active] if reference_inputs else frames[0, ~active].expand_as(fields[:, ~active])
+        assert torch.equal(fields[:, ~active], boundary)
         mse = (fields[:, active] - frames[1:1 + len(fields), active]).square().mean(dim=(1, 2))
         finite = torch.isfinite(fields).flatten(1).all(1) & torch.isfinite(mse)
         good = next((i for i, ok in enumerate(finite.tolist()) if not ok), len(fields))
