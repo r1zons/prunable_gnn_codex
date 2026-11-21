@@ -87,7 +87,7 @@ def features(block, samples):
     return dict(node_mse=node, edge_mse=edge, equal_weight_mse=(node + edge) / 2)
 
 
-def train_block(after, train, heldout, cfg, out):
+def train_block(after, train, heldout, cfg, out, on_epoch=None):
     """Use held-out training trajectories to select a budgeted checkpoint."""
     block = after.processors[FIRST]
     assert cfg["optimizer"] == "Adam"
@@ -114,6 +114,8 @@ def train_block(after, train, heldout, cfg, out):
         if value < best_loss:
             best_loss, best_epoch = value, epoch
             best_state = copy.deepcopy(block.state_dict())
+        if on_epoch is not None:
+            on_epoch(epoch, block, optimizer, rng)
         print("feature", epoch, metrics, flush=True)
     return best_state, best_epoch, history
 

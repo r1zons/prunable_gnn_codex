@@ -1,0 +1,4 @@
+epochs: 128
+rollout_epochs: [8, 16, 32, 64, 128]
+previous_protocol_sha256: 8aeaae61a40ee1ad9e856ce11145ef74f2847f4e2b812b82207944fe491be077
+previous_block_sha256: 03135d9a5c0aeefcf1300c595c1952003219edffa0d92a3b404a907fe1d5e1ab

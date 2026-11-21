@@ -3,6 +3,16 @@
 set -euo pipefail
 export LC_ALL=C LANG=C
 umask 077
+job=mgn-block-distillation-20261121
+wall=0:45
+minutes=45
+worker=scripts/run_cylinderflow_block_distillation.lsf
+if [[ ${1:-} == --extend ]]; then
+    job=mgn-block-distillation-extended
+    wall=3:00
+    minutes=180
+    worker=scripts/run_cylinderflow_distillation_extended.lsf
+fi
 sha256sum --quiet -c source.sha256
 test ! -e submission
 mkdir submission
@@ -12,7 +22,7 @@ cat > submission/INTENT <<RECEIPT
 status=INTENT
 created=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 source=$source_sha
-name=mgn-block-distillation-20261121
+name=$job
 queue=normal
 hosts=polus-c2-ib.bmc.hpc.cs.msu.ru polus-c3-ib.bmc.hpc.cs.msu.ru polus-c4-ib.bmc.hpc.cs.msu.ru
 slots=4
@@ -20,16 +30,16 @@ threads=4
 interop_threads=1
 exclusive=yes
 memory_mb=8192
-wall_minutes=45
+wall_minutes=$minutes
 gpus=1
 gpu_request=num=1:mode=shared:j_exclusive=yes
 RECEIPT
-if bsub -J mgn-block-distillation-20261121 -q normal -W 0:45 -n 4 -x \
+if bsub -J "$job" -q normal -W "$wall" -n 4 -x \
     -m "polus-c2-ib.bmc.hpc.cs.msu.ru polus-c3-ib.bmc.hpc.cs.msu.ru polus-c4-ib.bmc.hpc.cs.msu.ru" \
     -R "span[hosts=1] rusage[mem=8192]" -M 8192 \
     -gpu "num=1:mode=shared:j_exclusive=yes" -cwd "$PWD" \
     -o "$PWD/lsf.%J.out" -e "$PWD/lsf.%J.err" \
-    < scripts/run_cylinderflow_block_distillation.lsf \
+    < "$worker" \
     > submission/bsub.out 2> submission/bsub.err; then
     rc=0
 else
