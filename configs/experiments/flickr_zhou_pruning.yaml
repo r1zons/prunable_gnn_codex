@@ -1,0 +1,11 @@
+ratios: [2, 4, 8]
+policy_seed: 101
+minimum: 4
+tolerance: 0.01
+q_learning:
+  episodes: 30
+  alpha: 0.1
+  gamma: 0.9
+  epsilon: 0.2
+warmup: 5
+repeats: 20

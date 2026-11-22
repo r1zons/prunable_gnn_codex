@@ -34,16 +34,20 @@ class ZhouBranch(nn.Module):
 class ZhouLayer(nn.Module):
     """Concatenate self and neighbor branches fed by a common dropped-out input."""
 
-    def __init__(self, inputs, width, dropout):
+    def __init__(self, inputs, widths, dropout):
         super().__init__()
-        self.self_branch = ZhouBranch(inputs, width)
-        self.neighbor_branch = ZhouBranch(inputs, width)
+        self.self_branch = ZhouBranch(inputs, widths[0])
+        self.neighbor_branch = ZhouBranch(inputs, widths[1])
         self.dropout = nn.Dropout(dropout)
 
     def forward(self, features, adj):
         features = self.dropout(features)
-        own = self.self_branch.normalize(self.self_branch.projection(features))
+        own = features.new_empty((len(features), 0))
+        if self.self_branch.projection.out_features:
+            own = self.self_branch.normalize(self.self_branch.projection(features))
         neighbor = self.neighbor_branch
+        if not neighbor.projection.out_features:
+            return own
         if self.training:
             projected = neighbor.projection(torch.sparse.mm(adj, features))
         else:
@@ -54,18 +58,24 @@ class ZhouLayer(nn.Module):
 class ZhouGraphSAGE(BaseNodeClassifier):
     """Two two-branch layers and a linear classifier over unit-normalized embeddings."""
 
-    def __init__(self, in_channels, hidden_channels, out_channels, num_layers=2, dropout=.3):
+    def __init__(self, in_channels, hidden_channels, out_channels, num_layers=2, dropout=.3,
+                 branch_widths=None):
         super().__init__(dropout)
         if num_layers != 2 or type(hidden_channels) is not int or hidden_channels <= 0:
             raise ValueError("Zhou GraphSAGE requires two layers and a positive shared branch width")
         self.in_channels = in_channels
         self.hidden_channels = hidden_channels
         self.out_channels = out_channels
+        widths = ((hidden_channels, hidden_channels),) * 2 if branch_widths is None else branch_widths
+        if (len(widths) != 2 or any(len(pair) != 2 or not sum(pair) or
+                                   any(type(w) is not int or not 0 <= w <= hidden_channels for w in pair)
+                                   for pair in widths)):
+            raise ValueError("Invalid Zhou branch widths")
         self.layers = nn.ModuleList([
-            ZhouLayer(in_channels, hidden_channels, dropout),
-            ZhouLayer(2 * hidden_channels, hidden_channels, dropout),
+            ZhouLayer(in_channels, widths[0], dropout),
+            ZhouLayer(sum(widths[0]), widths[1], dropout),
         ])
-        self.classifier = nn.Linear(2 * hidden_channels, out_channels, bias=False)
+        self.classifier = nn.Linear(sum(widths[1]), out_channels, bias=False)
         nn.init.xavier_uniform_(self.classifier.weight)
         self.classifier_bias = nn.Parameter(torch.zeros(out_channels))
 
@@ -81,8 +91,21 @@ class ZhouGraphSAGE(BaseNodeClassifier):
         features = F.dropout(features, p=self.dropout, training=self.training)
         return self.classifier(features) + self.classifier_bias
 
+    @property
+    def branch_widths(self):
+        """Current self/neighbor widths in concatenation order."""
+        return tuple((layer.self_branch.projection.out_features,
+                      layer.neighbor_branch.projection.out_features) for layer in self.layers)
+
+    @property
+    def hidden_channel_dims(self):
+        return tuple(map(sum, self.branch_widths))
+
     def export_architecture_config(self):
         """Describe this variant for strict checkpoint reconstruction."""
-        return dict(name="graphsage_zhou", in_channels=self.in_channels,
-                    hidden_channels=self.hidden_channels, out_channels=self.out_channels,
-                    num_layers=2, dropout=self.dropout)
+        config = dict(name="graphsage_zhou", in_channels=self.in_channels,
+                      hidden_channels=self.hidden_channels, out_channels=self.out_channels,
+                      num_layers=2, dropout=self.dropout)
+        if self.branch_widths != ((self.hidden_channels,) * 2,) * 2:
+            config["branch_widths"] = [list(pair) for pair in self.branch_widths]
+        return config

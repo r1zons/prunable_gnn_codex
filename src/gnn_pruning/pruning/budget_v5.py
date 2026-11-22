@@ -20,7 +20,9 @@ import torch
 from .adaptive_v2 import AdaptiveResult, _clone, action_key, update_q
 from .static_v2 import (StaticPlan, apply_static_plan, channel_rankings,
                         compute_scores, parameter_count_for_widths)
+from gnn_pruning.models.graphsage_zhou import ZhouGraphSAGE
 from gnn_pruning.surgery.local_v2 import prune_hidden_channels_local_v2
+from gnn_pruning.surgery.zhou import prune_zhou
 
 VERSION = 'structural_budget_v5'
 SIZES = (1, 2, 4, 8)
@@ -31,20 +33,26 @@ METHODS = ('static_random', 'static_magnitude', 'static_snip', 'sequential_rando
 class Budget:
     """Integer parameter geometry and downward reachability for 1–3 hidden layers."""
 
-    def __init__(self, model, target, tolerance=.01, minimum=4):
+    def __init__(self, model, target, tolerance=.01, minimum=4, goal_widths=None):
         if not math.isfinite(target) or not 0 < target < 1:
             raise ValueError('Target must be finite and strictly between zero and one.')
         if not math.isfinite(tolerance) or tolerance < 0 or type(minimum) is not int or minimum < 4:
             raise ValueError('Invalid tolerance/minimum.')
-        self.original = tuple(c.out_channels for c in model.convs[:-1])
+        self.zhou = isinstance(model, ZhouGraphSAGE)
+        if self.zhou:
+            self.original = model.hidden_channel_dims
+            self.p0 = sum(p.numel() for p in model.parameters())
+            self.factor, self.biases = 1, (3, 3, 1)
+        else:
+            self.original = tuple(c.out_channels for c in model.convs[:-1])
+            self.p0 = parameter_count_for_widths(model, self.original)
+            self.factor = 2 if hasattr(model.convs[0], 'lin_l') else 1
+            self.biases = tuple(int((c.lin_l.bias if hasattr(c, 'lin_l') else c.bias) is not None)
+                                for c in model.convs)
         if not 1 <= len(self.original) <= 3 or min(self.original) < minimum:
             raise ValueError('Budget V5 supports depths2/3/4 above minimum width.')
-        self.p0 = parameter_count_for_widths(model, self.original)
         self.minimum, self.target, self.tolerance = minimum, target, tolerance
         self.horizon = sum(w-minimum for w in self.original)
-        self.factor = 2 if hasattr(model.convs[0], 'lin_l') else 1
-        self.biases = tuple(int((c.lin_l.bias if hasattr(c, 'lin_l') else c.bias) is not None)
-                            for c in model.convs)
         self.features, self.classes = model.in_channels, model.out_channels
         axes = np.ogrid[tuple(slice(0, w+1) for w in self.original)]
         dims = [self.features, *axes, self.classes]
@@ -62,6 +70,15 @@ class Budget:
         lo = math.ceil((1-nominal-eps)*self.p0)
         hi = math.floor((1-nominal+eps)*self.p0)
         goals = valid & (counts >= lo) & (counts <= hi)
+        if goal_widths is not None:
+            widths = tuple(goal_widths)
+            if (len(widths) != len(self.original)
+                    or any(type(w) is not int or not minimum <= w <= n
+                           for w, n in zip(widths, self.original))
+                    or not goals[widths]):
+                raise ValueError('Fixed widths must be legal and inside the parameter budget.')
+            goals.fill(False)
+            goals[widths] = True
         self.fallback = not bool(goals.any())
         if self.fallback:
             distance = np.abs((self.p0-counts)*nominal.denominator - nominal.numerator*self.p0)
@@ -88,6 +105,34 @@ class Budget:
         return bool(self.prefix[tuple(widths)])
 
 
+def _zhou_scores(scores):
+    # V5 operates on the concatenated hidden channel IDs, including normalization parameters.
+    for i in range(2):
+        for field in ('projection.weight', 'bias', 'offset', 'scale'):
+            yield f'layers.{i}.{field}', torch.cat([
+                scores[f'layers.{i}.{branch}.{field}'] for branch in ('self_branch', 'neighbor_branch')
+            ])
+    yield 'layers.2.weight', scores['classifier.weight']
+    yield 'layers.2.bias', scores['classifier_bias']
+
+
+def _rankings(model, scores, zhou):
+    if not zhou:
+        return channel_rankings(model, scores)
+    grouped = tuple(_zhou_scores(scores))
+    ranks = []
+    for layer, width in enumerate(model.hidden_channel_dims):
+        values = torch.zeros(width, dtype=torch.float64)
+        for name, score in grouped:
+            index = int(name.split('.')[1])
+            if index == layer:
+                values += (score.sum(1) if score.ndim == 2 else score).cpu().double()
+            elif index == layer+1 and score.ndim == 2:
+                values += score.sum(0).cpu().double()
+        ranks.append(sorted(range(width), key=lambda c: (-float(values[c]), c)))
+    return ranks
+
+
 def static_plan(model, criterion, budget, seed, data=None, train_idx=None):
     """Fixed dense ranks; exhaustive widths, exact union saliency via prefix sums."""
     rng = random.Random(seed)
@@ -98,11 +143,11 @@ def static_plan(model, criterion, budget, seed, data=None, train_idx=None):
         keeps = [sorted(rng.sample(range(n), k)) for n,k in zip(budget.original,widths)]
         score = None
     else:
-        rankings = channel_rankings(model, scores)
+        rankings = _rankings(model, scores, budget.zhou)
         orders = [list(range(model.in_channels)), *rankings, list(range(model.out_channels))]
         retained = np.zeros(len(coords), dtype=np.float64)
         dense_score = 0.
-        for name, tensor in scores.items():
+        for name, tensor in (_zhou_scores(scores) if budget.zhou else scores.items()):
             layer = int(name.split('.')[1]); value = tensor.detach().cpu().double().numpy()
             dense_score += float(value.sum(dtype=np.float64))
             rows = coords[:,layer] if layer < len(budget.original) else np.full(len(coords), model.out_channels)
@@ -178,9 +223,10 @@ class BudgetEnv:
             raise ValueError('Illegal/terminal action; STOP is unavailable outside the goal.')
         before=self.widths();old_s=self.sparsity
         layer,k=action
-        ranking=channel_rankings(self.model,compute_scores(self.model,'magnitude'))[layer]
+        ranking=_rankings(self.model,compute_scores(self.model,'magnitude'),self.budget.zhou)[layer]
         keep=sorted(ranking[:len(ranking)-k])
-        self.model=prune_hidden_channels_local_v2(self.model,layer,keep,self.budget.minimum)
+        surgery=prune_zhou if self.budget.zhou else prune_hidden_channels_local_v2
+        self.model=surgery(self.model,layer,keep,self.budget.minimum)
         self.kept=[list(ids) for ids in self.kept]
         self.kept[layer]=[self.kept[layer][i] for i in keep]
         self.steps+=1;self.accuracy=self._accuracy()
