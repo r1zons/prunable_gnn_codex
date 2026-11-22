@@ -12,6 +12,11 @@ if [[ ${1:-} == --extend ]]; then
     wall=3:00
     minutes=180
     worker=scripts/run_cylinderflow_distillation_extended.lsf
+elif [[ ${1:-} == --positions ]]; then
+    job=mgn-processor-positions
+    wall=3:00
+    minutes=180
+    worker=scripts/run_cylinderflow_positions.lsf
 fi
 sha256sum --quiet -c source.sha256
 test ! -e submission

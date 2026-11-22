@@ -1,0 +1,8 @@
+pairs: [[1, 2], [7, 8], [14, 15]]
+horizon: 20
+epochs: 128
+timing_repeats: 3
+warmup_steps: 3
+profile_steps: 5
+confirmation_trajectories: 8
+seed: 101

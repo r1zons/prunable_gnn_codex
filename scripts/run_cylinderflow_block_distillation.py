@@ -43,7 +43,7 @@ def frozen_hash(model, block):
 
 
 @torch.no_grad()
-def capture(teacher, records, ids, frames, device):
+def capture(teacher, records, ids, frames, device, first_index=FIRST, last_index=LAST):
     """Capture complete teacher inputs and targets in detached tensors."""
     assert records.split == "train"
     states = {}
@@ -54,8 +54,8 @@ def capture(teacher, records, ids, frames, device):
     def after(_module, _args, output):
         states["target"] = output
 
-    first = teacher.processors[FIRST].register_forward_pre_hook(before)
-    last = teacher.processors[LAST].register_forward_hook(after)
+    first = teacher.processors[first_index].register_forward_pre_hook(before)
+    last = teacher.processors[last_index].register_forward_hook(after)
     samples = []
     try:
         for ordinal in ids:
@@ -87,9 +87,9 @@ def features(block, samples):
     return dict(node_mse=node, edge_mse=edge, equal_weight_mse=(node + edge) / 2)
 
 
-def train_block(after, train, heldout, cfg, out, on_epoch=None):
+def train_block(after, train, heldout, cfg, out, on_epoch=None, block_index=FIRST):
     """Use held-out training trajectories to select a budgeted checkpoint."""
-    block = after.processors[FIRST]
+    block = after.processors[block_index]
     assert cfg["optimizer"] == "Adam"
     assert cfg["checkpoint_selection"] == "lowest_heldout_feature_loss_earliest_tie_including_initial"
     optimizer = torch.optim.Adam(block.parameters(), lr=cfg["learning_rate"])
