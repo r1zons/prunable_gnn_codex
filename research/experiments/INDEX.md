@@ -1,5 +1,7 @@
 # Experiment campaign registry
 
+**FLICKR-ZHOU-PRUNING-20261123** — 21/21 условий DONE. Семь методов V5 при ширинах 2×, 4× и 8×. Static Random лидировал по validation Micro-F1 при всех бюджетах. Lookahead и Greedy дали одинаковые итоговые checkpoint при 2× и 4×. [Отчёт и результаты](flickr_zhou_pruning_20261123/REPORT.md).
+
 **FLICKR-ZHOU-DENSE-20261122** — LSF 1625975 и 1625976 DONE. Паритет с GCNP на P100, плотный Flickr seed 101 с test Micro-F1 0,51244 и full-graph logits 58,88 мс. [Отчёт и результаты](flickr_zhou_dense_20261122/REPORT.md).
 
 **MESHGRAPHNET-CYLINDERFLOW-BLOCK-DISTILLATION-20261121** — LSF 1624841 DONE. Дистилляция блока 7 снизила E100 на 47,6% относительно того же блока без обучения, с сопоставимым T100. К Dense парное ускорение 1,065× и рост E100 на 394,9%. [Отчёт и результаты](meshgraphnet_block_distillation_20261121/REPORT.md).
