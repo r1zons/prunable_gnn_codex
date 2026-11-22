@@ -1,0 +1,6 @@
+seed: 101
+parity_atol: 0.00002
+parity_rtol: 0.00002
+sampling_batch: 200
+warmup: 5
+repeats: 20

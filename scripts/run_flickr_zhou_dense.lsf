@@ -1,0 +1,12 @@
+#!/bin/bash
+set -euo pipefail
+export LC_ALL=C LANG=C
+: "${LSB_JOBID:?}" "${ZHOU_STAGE:?}"
+sha256sum --quiet -c source.sha256
+sha256sum --quiet -c upstream.sha256
+activation="$HOME/gnn-p100-20261110/activate-p100.sh"
+printf '%s  %s\n' ba3b3448e75b346ab68f9dbe1bc221b10e6c6e9a30e060d35c8197b5416cbb1b "$activation" | sha256sum -c -
+source "$activation"
+export PYTHONPATH="$PWD/src" OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 MKL_NUM_THREADS=4
+nvidia-smi --query-gpu=name,driver_version,pci.bus_id --format=csv
+exec taskset -c 0,8,16,24 python -u scripts/run_flickr_zhou_dense.py "$ZHOU_STAGE" "$ZHOU_STAGE"

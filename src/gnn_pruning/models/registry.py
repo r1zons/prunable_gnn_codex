@@ -6,12 +6,14 @@ from typing import Any, Callable, Dict
 
 from .gcn import GCNNodeClassifier
 from .graphsage import GraphSAGENodeClassifier
+from .graphsage_zhou import ZhouGraphSAGE
 
 ModelBuilder = Callable[..., Any]
 
 MODEL_REGISTRY: Dict[str, ModelBuilder] = {
     "gcn": GCNNodeClassifier,
     "graphsage": GraphSAGENodeClassifier,
+    "graphsage_zhou": ZhouGraphSAGE,
     # Extension points for future work:
     # "gat": GATNodeClassifier,
     # "gin": GINNodeClassifier,
