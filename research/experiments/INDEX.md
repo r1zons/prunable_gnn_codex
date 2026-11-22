@@ -1,5 +1,7 @@
 # Experiment campaign registry
 
+**FLICKR-ZHOU-DENSE-20261122** — LSF 1625975 и 1625976 DONE. Паритет с GCNP на P100, плотный Flickr seed 101 с test Micro-F1 0,51244 и full-graph logits 58,88 мс. [Отчёт и результаты](flickr_zhou_dense_20261122/REPORT.md).
+
 **MESHGRAPHNET-CYLINDERFLOW-BLOCK-DISTILLATION-20261121** — LSF 1624841 DONE. Дистилляция блока 7 снизила E100 на 47,6% относительно того же блока без обучения, с сопоставимым T100. К Dense парное ускорение 1,065× и рост E100 на 394,9%. [Отчёт и результаты](meshgraphnet_block_distillation_20261121/REPORT.md).
 
 **MESHGRAPHNET-CYLINDERFLOW-LINEAR-BLOCK-PILOT-20261120** — LSF 1623799 DONE. Собраны 48 forecast windows и 288 замеров T100. Замена блоков 7–8 снизила E100 относительно обхода на 62,6%, при ускорении к dense 1,125× и росте E100 к dense на 334,4%. [Отчёт и результаты](meshgraphnet_linear_block_pilot_20261120/REPORT.md).
