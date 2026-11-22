@@ -163,13 +163,19 @@ def parity(cfg, network, params, out):
                          out_channels=7, num_layers=2, dropout=.5).cuda().eval()
     checkpoint(out / "legacy-checkpoint.pt", legacy)
     old, _ = restore(out / "legacy-checkpoint.pt")
+    for name, tensor in legacy.state_dict().items():
+        torch.testing.assert_close(old.state_dict()[name], tensor, rtol=0, atol=0)
     from torch_geometric.data import Data
     data = Data(x=author.feat_full, edge_index=adj.indices())
-    torch.testing.assert_close(legacy(data), old(data), rtol=0, atol=0)
+    legacy_logits, reloaded_logits = legacy(data), old(data)
+    # CUDA scatter accumulation in the unchanged PyG SAGEConv can vary by roundoff.
+    torch.testing.assert_close(legacy_logits, reloaded_logits,
+                               rtol=cfg["parity_rtol"], atol=cfg["parity_atol"])
     write(out / "parity.json", dict(status="PASS", device=torch.cuda.get_device_name(0),
           precision="FP32", author_commit=AUTHOR_COMMIT, atol=cfg["parity_atol"], rtol=cfg["parity_rtol"],
           max_abs=observations, parameter_counts=counts, parameter_shapes=shapes,
-          strict_reload=True, legacy_graphsage_strict_reload=True))
+          strict_reload=True, legacy_graphsage_strict_reload=True,
+          legacy_graphsage_reload_logits_max_abs=float((legacy_logits - reloaded_logits).abs().max())))
     print("PASS", observations, counts, flush=True)
 
 
