@@ -1,5 +1,7 @@
 # Experiment campaign registry
 
+**FLICKR-ZHOU-FINETUNE-20261123** — LSF 1625990 DONE. Три маски Flickr 4× дообучены по одному протоколу. Разрыв test Micro-F1 сократился с 14,65 до 0,73 п.п. [Отчёт и результаты](flickr_zhou_finetune_20261123/REPORT.md).
+
 **FLICKR-ZHOU-PRUNING-20261123** — 21/21 условий DONE. Семь методов V5 при ширинах 2×, 4× и 8×. Static Random лидировал по validation Micro-F1 при всех бюджетах. Lookahead и Greedy дали одинаковые итоговые checkpoint при 2× и 4×. [Отчёт и результаты](flickr_zhou_pruning_20261123/REPORT.md).
 
 **FLICKR-ZHOU-DENSE-20261122** — LSF 1625975 и 1625976 DONE. Паритет с GCNP на P100, плотный Flickr seed 101 с test Micro-F1 0,51244 и full-graph logits 58,88 мс. [Отчёт и результаты](flickr_zhou_dense_20261122/REPORT.md).
