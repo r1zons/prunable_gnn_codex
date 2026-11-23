@@ -3,13 +3,19 @@
 set -euo pipefail
 export LC_ALL=C LANG=C
 umask 077
-stage=${1:?Use parity, train, smoke, 2x, 4x or 8x}
+stage=${1:?Use parity, train, smoke, 2x, 4x, 8x or finetune}
 hosts="polus-c2-ib.bmc.hpc.cs.msu.ru polus-c3-ib.bmc.hpc.cs.msu.ru polus-c4-ib.bmc.hpc.cs.msu.ru"
 memory=8192
 case "$stage" in
   parity) wall=0:10 ;;
   train) test -f parity/gate.json; wall=0:45 ;;
   smoke) wall=0:10 ;;
+  finetune)
+    sha256sum --quiet -c frozen-pruned.sha256
+    wall=0:15
+    memory=16384
+    hosts=polus-c4-ib.bmc.hpc.cs.msu.ru
+    ;;
   2x|4x|8x)
     test -f smoke/gate.json
     wall=0:45

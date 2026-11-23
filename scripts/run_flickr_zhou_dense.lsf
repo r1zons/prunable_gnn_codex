@@ -10,6 +10,10 @@ source "$activation"
 export PYTHONPATH="$PWD/src" OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 MKL_NUM_THREADS=4
 nvidia-smi --query-gpu=name,driver_version,pci.bus_id --format=csv
 case "$ZHOU_STAGE" in
+  finetune)
+    sha256sum --quiet -c frozen-pruned.sha256
+    exec taskset -c 0,8,16,24 python -u scripts/run_flickr_zhou_finetune.py
+    ;;
   smoke|2x|4x|8x)
     exec taskset -c 0,8,16,24 python -u scripts/run_flickr_zhou_pruning.py "$ZHOU_STAGE"
     ;;
